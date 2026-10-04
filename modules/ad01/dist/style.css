@@ -7,3 +7,5 @@
 @media(max-width:960px){.learning-grid,.task-layout{grid-template-columns:1fr}.calculus-hero-art{width:265px}.hero{padding-right:300px}.task-stimulus{max-width:650px;width:100%;margin:auto}.lab-controls{grid-template-columns:1fr 1fr}.lesson-text{max-width:730px}}
 @media(max-width:620px){.calculus-hero-art{display:none}.hero{padding:0 0 28px}.lab-controls{grid-template-columns:1fr}.explorer{padding:18px}.formula-box{font-size:13px}.task-layout{gap:16px}.hero h1{font-size:40px}.graph-figure figcaption{font-size:12px}.plot-label{font-size:14px}.tick{font-size:14px}.calculus-graph{border-radius:7px}}
 @media print{.lab-controls,.step-tabs,.graph-legend{display:none}.learning-grid,.task-layout{display:block}.calculus-hero-art{display:none}.graph-figure{break-inside:avoid}.task-card{max-width:none}}
+
+.motion-controls{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:12px 0 18px}.motion-controls .tiny{flex:1;min-width:180px;margin:0}.range-row output{min-width:52px}#play-motion{min-width:148px}@media print{.motion-controls{display:none!important}}
