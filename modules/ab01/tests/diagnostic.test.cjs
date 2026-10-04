@@ -1,0 +1,24 @@
+const assert=require('node:assert/strict');const E=require('../dist/engine.js');
+const ans=t=>({values:Array.isArray(t.answer)?t.answer:[0,0],choice:t.kind==='drag-choice'?t.choiceAnswer:t.answer,moved:true,touched:true,explanation:''});
+const records={};for(const t of E.TASKS){const a=ans(t);assert(E.valid(t,a),t.id);assert(Object.values(E.score(t,a)).every(Boolean),t.id);records[t.id]={status:'submitted',answer:a,supported:false};}
+assert.deepEqual(E.selectFollowups(records),[],'Perfect core produces no unnecessary follow-ups');
+assert.equal(E.evidence(records,'scaling').observations.length,2,'Two related dimensions of one task retained');
+records.v2.answer.values=[3,2];assert.equal(E.evidence(records,'representation').state,'Conflicting evidence');
+let f=E.selectFollowups(records);assert.equal(f[0].id,'f-r');assert.equal(f[0].dimension,'Transfer to a moved start');
+records.v1.status='skipped';records.v2.status='skipped';assert.equal(E.evidence(records,'representation').state,'Missing evidence');
+assert.equal(E.selectFollowups({}).length,4,'Follow-up cap is four even with five missing concepts');
+assert(!E.valid(E.TASKS[0],{values:['',0]}),'Blank is not zero');
+assert(!E.valid(E.TASKS[1],{values:[3,-2],moved:false}),'Untouched graph is incomplete');
+assert(!E.valid(E.TASKS[1],{values:[3.5,-2],moved:true}),'Graph snaps to integer coordinates');
+assert(!E.valid(E.TASKS[1],{values:[8,0],moved:true}),'Out-of-grid values rejected');
+assert(!E.valid(E.TASKS[4],{values:[-2,-4],moved:true,choice:null}),'Multipart answer requires both parts');
+assert(!E.valid(E.TASKS[5],{values:[2,1],touched:false}),'Untouched coefficients incomplete');
+assert(!E.valid(E.TASKS[5],{values:[3.5,1],touched:true}),'Out-of-range coefficient rejected');
+assert(!E.valid(E.TASKS[5],{values:[2.1,1],touched:true}),'Coefficient step constraint enforced');
+assert.deepEqual(E.score(E.TASKS[4],{values:[-2,-4],moved:true,choice:0}),{Geometry:true,Meaning:false},'Scaling geometry does not conceal meaning conflict');
+assert.equal(E.score(E.TASKS[6],{choice:0})['Reachability'],false,'Two arrows need not span the plane');
+for(const t of Object.values(E.FOLLOWUPS))assert(Object.values(E.score(t,ans(t))).every(Boolean),t.id);
+records.v1={status:'submitted',answer:ans(E.TASKS[0]),supported:true};records.v2={status:'submitted',answer:ans(E.TASKS[1]),supported:true};assert.equal(E.evidence(records,'representation').state,'Supported evidence');
+records.v1.supported=false;assert.equal(E.evidence(records,'representation').state,'Mixed support conditions');
+records.v1.answer.explanation='I do not understand vectors at all.';assert.equal(E.evidence(records,'representation').observations[0].correct,true,'Free text is not keyword scored or folded into numeric judgment');
+console.log('PASS: canonical answers, evidence conflicts, support conditions, missing evidence, input constraints, structural follow-ups.');

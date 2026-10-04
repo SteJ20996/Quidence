@@ -1,0 +1,11 @@
+{
+  "repository": "SteJ20996/AA01",
+  "module": "AB01",
+  "source_commit": "9e093f9a4814faec27cb3fb3ef8e5b905ceb63b7",
+  "snapshot_date": "2026-10-03 America/Los_Angeles",
+  "included": "AB01 README.md, dist/, tests/ under modules/ab01/",
+  "original_git_history_included": false,
+  "original_hosting_configuration_included": false,
+  "aa01_main_system_imported": false,
+  "student_accounts_added": false
+}

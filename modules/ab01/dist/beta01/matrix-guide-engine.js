@@ -1,0 +1,14 @@
+(function(root){
+'use strict';
+const STEPS=[
+{title:'Start with 1 step right and 2 steps up.',text:'The vector (1, 2) tells us two counts: use the right-direction once, then use the up-direction twice.',focus:'original',formula:'v = 1 × (1, 0) + 2 × (0, 1) = (1, 2)'},
+{title:'The first column gives the new right-step.',text:'Read the first column from top to bottom: (1, 0). One old right-step becomes 1 step right and 0 steps up. This direction stays unchanged.',focus:'first',formula:'Old right-step (1, 0) → new right-step (1, 0)'},
+{title:'The second column gives the new up-step.',text:'Read the second column from top to bottom: (1, 1). One old up-step becomes a diagonal move: 1 step right AND 1 step up.',focus:'second',formula:'Old up-step (0, 1) → new up-step (1, 1)'},
+{title:'Keep the counts: 1 of the first, 2 of the second.',text:'The original 1 and 2 still tell us how many copies to use. Replace the two old directions with their new directions.',focus:'counts',formula:'Av = 1 × (1, 0) + 2 × (1, 1)'},
+{title:'Use the new right-step once.',text:'Begin at (0, 0). Make the first move: 1 right and 0 up. You arrive at (1, 0).',focus:'first-move',formula:'(0, 0) + (1, 0) = (1, 0)'},
+{title:'Use the new up-step twice.',text:'Each new up-step adds 1 right and 1 up. First: (1, 0) → (2, 1). Second: (2, 1) → (3, 2). Watch the two moves separately.',focus:'two-moves',formula:'(1, 0) + (1, 1) + (1, 1) = (3, 2)'},
+{title:'Count the final horizontal and vertical changes.',text:'The first move added 1 right. The two diagonal moves added 2 more right and 2 up. Total: 3 right and 2 up.',focus:'result',formula:'Horizontal: 1 × 1 + 2 × 1 = 3\nVertical: 1 × 0 + 2 × 1 = 2'}
+];
+function scene(index,p=1){if(!Number.isInteger(index)||index<0||index>=STEPS.length||!Number.isFinite(p)||p<0||p>1)throw new Error('Invalid guide step or progress.');let position=[0,0],segments=[];const segment=(from,to,color,copy)=>segments.push({from,to,color,copy});if(index===0){const q=3*p;const first=Math.min(1,q),up1=Math.max(0,Math.min(1,q-1)),up2=Math.max(0,Math.min(1,q-2));segment([0,0],[first,0],'first',1);if(up1>0)segment([1,0],[1,up1],'second',1);if(up2>0)segment([1,1],[1,1+up2],'second',2);position=q<=1?[first,0]:q<=2?[1,up1]:[1,1+up2];}else if(index===4){position=[p,0];segment([0,0],position,'first',1);}else if(index>=5){segment([0,0],[1,0],'first',1);const q=index===6?2:2*p,one=Math.min(1,q),two=Math.max(0,q-1);if(one>0)segment([1,0],[1+one,one],'second',1);if(two>0)segment([2,1],[2+two,1+two],'second',2);position=q<=1?[1+one,one]:[2+two,1+two];}return{index,progress:p,position,segments,right:[1,0],up:index<=1?[0,1]:index===2?[p,1]:[1,1],checkpoint:index===5?(p<.5?[1,0]:p<1?[2,1]:[3,2]):position};}
+const api={STEPS,scene,matrix:[1,1,0,1],input:[1,2],output:[3,2]};root.MatrixGuideMath=api;if(typeof module!=='undefined')module.exports=api;
+})(typeof window!=='undefined'?window:globalThis);

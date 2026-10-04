@@ -1,0 +1,15 @@
+# Local generated files
+node_modules/
+.DS_Store
+*.log
+
+# Credentials and original-platform configuration
+.env
+.env.*
+!.env.example
+.openai/
+
+# Student/session exports must stay outside this repository
+records/
+student-data/
+session-exports/

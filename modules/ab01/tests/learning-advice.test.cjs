@@ -1,0 +1,27 @@
+const assert=require('node:assert/strict'),E=require('../dist/learning-engine.js'),A=require('../dist/learning-advice.js');
+const tasks=Object.values(E.TASKS).flat();
+const correct=t=>({...(t.kind!=='choice'?{values:[...t.answer]}:{}),...(t.options?{choice:t.kind==='choice'?t.answer:t.choiceAnswer}:{})});
+function record(id,answer,support={}){const t=tasks.find(t=>t.id===id),phase=Object.keys(E.TASKS).find(k=>E.TASKS[k].some(t=>t.id===id));const s={answer,score:E.score(t,answer),support};return{status:'submitted',stage:phase,answer,submissions:[s]};}
+const find=(p,id)=>p.targets.find(t=>t.id===id);
+let state=E.fresh(),p=A.plan(state);
+assert(p.targets.every(t=>t.status==='missing'));
+state.records['pre-3']={status:'not-studied',stage:'pre',submissions:[]};assert.equal(find(A.plan(state),'columns').status,'not-studied');
+state=E.fresh();state.records['practice-1']=record('practice-1',{values:[2,1]},{systemHint:true});
+assert.equal(find(A.plan(state),'columns').status,'fresh-check-needed','Supported practice is not fresh-task evidence.');
+state=E.fresh();state.records['post-2']=record('post-2',{values:[5,1],choice:0});p=A.plan(state);
+assert.equal(find(p,'coefficients').status,'recheck');assert.equal(find(p,'calculation').status,'fresh-match');
+assert(p.priorityTargetIds.includes('coefficients'));assert(find(p,'coefficients').why.includes('numerical output matched but the coefficient choice did not'));
+state.records['post-2']=record('post-2',{values:[0,0],choice:1});p=A.plan(state);
+assert.equal(find(p,'calculation').status,'recheck');assert.equal(find(p,'coefficients').status,'fresh-match');assert(find(p,'calculation').why.includes('coefficient choice matched but the output did not'));
+state=E.fresh();for(const phase of ['pre','practice','post'])for(const t of E.TASKS[phase])state.records[t.id]=record(t.id,correct(t));
+p=A.plan(state);assert(p.targets.filter(t=>t.scope==='Lesson goal').every(t=>t.status==='fresh-match'));assert(p.nextDirection.startsWith('Continue with changed numbers'));
+assert.equal(find(p,'negative').evidence.length,1);assert.equal(find(p,'negative').evidence[0].dimensions.length,2,'Related parts stay in a single task observation.');
+state.records['post-2'].submissions[0].support.otherHelpReported=true;p=A.plan(state);assert.equal(find(p,'coefficients').status,'supported');assert.equal(find(p,'calculation').status,'supported');
+state.records['post-2']=record('post-2',{values:[0,0],choice:0});const r=record('post-2',{values:[5,1],choice:1});state.records['post-2'].submissions.push(r.submissions[0]);state.records['post-2'].answer=r.answer;
+p=A.plan(state);assert.equal(find(p,'calculation').status,'revised');assert.equal(find(p,'coefficients').status,'revised');
+state.records['post-2']=record('post-2',{values:[0,0],choice:1});state.records['delay-1']=record('delay-1',{values:[1,3],choice:0});
+p=A.plan(state);assert.equal(find(p,'calculation').status,'mixed','A later match must not erase a different earlier fresh-task result.');
+state.records['post-2'].status='skipped';assert.equal(find(A.plan(state),'calculation').status,'fresh-match','A skipped current response is not an incorrect submission.');
+const before=JSON.stringify(state);A.plan(state);assert.equal(JSON.stringify(state),before,'Suggestions must not rewrite answer records or scores.');
+assert.equal(p.priorityTargetIds.length,2);assert(p.courseConnection.includes('do not predict an exam grade'));
+console.log('PASS: missing versus incorrect evidence, supported versus fresh responses, calculation/meaning mismatches, revision history, mixed later evidence, task-level grouping, priorities and record preservation.');

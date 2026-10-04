@@ -1,0 +1,28 @@
+const assert=require('node:assert/strict'),M=require('../dist/student-materials.js'),Element=require('./learning-dom.cjs');
+assert.deepEqual(M.multiply([2,0,0,1],[1,1]),[2,1]);
+assert.deepEqual(M.multiply([0,1,-1,0],[1,1]),[1,-1]);
+const n=M.neural();assert.deepEqual(n.mixed,[3,1]);assert.deepEqual(n.shifted,[3,-1]);assert.deepEqual(n.activated,[3,0]);
+assert.deepEqual(M.multiply([2,1,1,2],[3,1]),[7,5],'Both receipt equations must match the same prices.');
+let began=0,explored=0;const host=new Element();
+M.intro(host,{onBegin:()=>began++,onExplore:()=>explored++});
+host.querySelector('#begin-learning').click();host.querySelector('#explore-materials').click();assert.equal(began,1);assert.equal(explored,1);
+assert(host.innerHTML.includes('same guided example'));assert(host.innerHTML.includes('Not studied yet'));
+let returned=0;const exposures=[];
+M.applications(host,{onBack:()=>returned++,onExposure:e=>exposures.push(e)});
+const plots=host.querySelectorAll('svg'),coords=plot=>plot.querySelectorAll('circle').map(c=>[Number(c.getAttribute('cx')),Number(c.getAttribute('cy'))]);
+const [original,transformed]=plots.map(coords),distance=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1]);
+assert.equal(distance(original[0],original[1]),distance(original[1],original[2]),'The coordinate diagram must use equal horizontal and vertical units.');
+assert.equal(distance(transformed[0],transformed[1]),2*distance(original[0],original[1]));
+assert.equal(distance(transformed[1],transformed[2]),distance(original[1],original[2]));
+assert.equal(exposures[0].topic,'graphics');assert(host.querySelector('#material-example').innerHTML.includes('(2, 1)'));
+host.querySelector('[data-graphic-mode="turn"]').click();assert(host.querySelector('#material-example').innerHTML.includes('(1, -1)'));
+host.querySelector('[data-material-topic="systems"]').click();assert(!host.querySelector('#material-example').innerHTML.includes('2 × 3 + 1 = 7'));
+for(let i=0;i<4;i++)host.querySelector('[data-example-step="'+i+'"]').click();
+assert(host.querySelector('#material-example').innerHTML.includes('3 + 2 × 1 = 5'));
+host.querySelector('[data-material-topic="neural"]').click();
+for(let i=0;i<4;i++){host.querySelector('[data-example-step="'+i+'"]').click();assert(host.querySelector('#material-example').innerHTML.includes('>'+['(1, 2)','(3, 1)','(3, -1)','(3, 0)'][i]+'</output>'));}
+assert(host.querySelector('#material-example').innerHTML.includes('remains affine'));
+assert(host.innerHTML.includes('not yet provide complete lessons'));
+host.querySelector('#materials-return').click();assert.equal(returned,1);
+assert(exposures.some(e=>e.topic==='systems'&&e.step===3));assert(exposures.some(e=>e.topic==='neural'&&e.step===3));
+console.log('PASS: graphics destinations, simultaneous equations, affine and activation arithmetic, every example step, topic navigation, scope labels and exposure callbacks.');
