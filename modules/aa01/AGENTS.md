@@ -1,0 +1,9 @@
+# Cluevera main development conventions
+
+- This checkout is the active Beta 0.5 product. Continue releases through 0.5, 0.6 and later when requested. Beta_Style02 is archived; do not sync changes back to its Site or checkout without an explicit user request.
+- Keep all beta/student-facing text in English. Keep AA01 in the footer only. Preserve signed numeric input, timing, draft/history integrity, optional support and private audience.
+- Retain the original ten base activities with their different answer forms. Q11 is the integrated equation model; optional P4 contains separate quadratic sign stages selected after readiness self-report. Preserve unified report/export and immutable route-source records. Sports Day is one project in four short views, with the claim inside Explore. S5 remains archived.
+- Supplementary visual models start closed, with an accessible optional entry. Required graph-reading or graphical-response stimuli remain visible. Preserve support snapshots and pre-help drafts; an opened helper is not proof of necessity or a learning style.
+- Use reviewed branch templates with prewritten answer components and reason anchors. Keep the source event and variant IDs. Never replace a served item. Do not route on speed or unfamiliar explanation wording.
+- Do not copy questions, diagrams or explanations from the mixed-source handwritten PDF into the beta. Use newly composed mathematics prompts and original drawings; preserve provenance uncertainty for candidate material. If an instructional visual relationship is unclear, put the mathematical goal and presentation question in the design backlog for discussion with the user.
+- Validate changed interactions with the relevant DOM/state and mathematical tests. These checks are not native browser or diagnostic-validity certification.

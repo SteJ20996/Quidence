@@ -1,0 +1,358 @@
+{
+  "version": "0.4-draft-1",
+  "items": [
+    {
+      "item_id": "C1",
+      "dependency_group": "C1",
+      "independent_task_count": 1,
+      "representations": [
+        "number_line",
+        "selection"
+      ],
+      "components": [
+        {
+          "subpart": "point",
+          "construct": "signed_location",
+          "expected": -1.5
+        },
+        {
+          "subpart": "near",
+          "construct": "distance_from_zero",
+          "expected": "-0.5"
+        }
+      ],
+      "explanation_constructs": [],
+      "caution": "Do not count subparts as independent tasks."
+    },
+    {
+      "item_id": "C2",
+      "dependency_group": "C2",
+      "independent_task_count": 1,
+      "representations": [
+        "number_line",
+        "numeric"
+      ],
+      "components": [
+        {
+          "subpart": "token",
+          "construct": "leftward_movement",
+          "expected": -8
+        },
+        {
+          "subpart": "end",
+          "construct": "signed_subtraction",
+          "expected": -8
+        }
+      ],
+      "explanation_constructs": [],
+      "caution": "Two equivalent inputs are corroborating within-task evidence, not two independent tasks."
+    },
+    {
+      "item_id": "C3",
+      "dependency_group": "C3",
+      "independent_task_count": 1,
+      "representations": [
+        "table",
+        "numeric"
+      ],
+      "components": [
+        {
+          "subpart": "one",
+          "construct": "unit_rate",
+          "expected": 2.5
+        },
+        {
+          "subpart": "two",
+          "construct": "rate_scaling",
+          "expected": 5
+        },
+        {
+          "subpart": "five",
+          "construct": "rate_scaling",
+          "expected": 12.5
+        },
+        {
+          "subpart": "rate",
+          "construct": "unit_rate",
+          "expected": 2.5
+        }
+      ],
+      "explanation_constructs": [],
+      "caution": "Two equivalent inputs are corroborating within-task evidence, not two independent tasks."
+    },
+    {
+      "item_id": "C4",
+      "dependency_group": "C4",
+      "independent_task_count": 1,
+      "representations": [
+        "table",
+        "text"
+      ],
+      "components": [
+        {
+          "subpart": "table",
+          "construct": "proportional_relationship",
+          "expected": "A"
+        }
+      ],
+      "explanation_constructs": [
+        "constant_ratio",
+        "nonzero_start",
+        "proportional_vs_linear"
+      ],
+      "caution": "Do not count subparts as independent tasks."
+    },
+    {
+      "item_id": "C5",
+      "dependency_group": "C5",
+      "independent_task_count": 1,
+      "representations": [
+        "symbolic",
+        "sorting"
+      ],
+      "components": [
+        {
+          "subpart": "cardA",
+          "construct": "equivalence",
+          "expected": "same"
+        },
+        {
+          "subpart": "cardB",
+          "construct": "constant_distribution",
+          "expected": "different"
+        }
+      ],
+      "explanation_constructs": [],
+      "caution": "Do not count subparts as independent tasks."
+    },
+    {
+      "item_id": "C6",
+      "dependency_group": "C6",
+      "independent_task_count": 1,
+      "representations": [
+        "symbolic",
+        "text"
+      ],
+      "components": [
+        {
+          "subpart": "step",
+          "construct": "distribution_step",
+          "expected": "2x+6=14"
+        }
+      ],
+      "explanation_constructs": [
+        "distribution_scope",
+        "constant_multiplication"
+      ],
+      "caution": "Do not count subparts as independent tasks."
+    },
+    {
+      "item_id": "C7",
+      "dependency_group": "C7",
+      "independent_task_count": 1,
+      "representations": [
+        "symbolic",
+        "number_line_description"
+      ],
+      "components": [
+        {
+          "subpart": "boundary",
+          "construct": "inequality_boundary",
+          "expected": 3
+        },
+        {
+          "subpart": "dot",
+          "construct": "boundary_inclusion",
+          "expected": "closed"
+        },
+        {
+          "subpart": "ray",
+          "construct": "solution_direction",
+          "expected": "right"
+        }
+      ],
+      "explanation_constructs": [],
+      "caution": "Do not count subparts as independent tasks."
+    },
+    {
+      "item_id": "C8",
+      "dependency_group": "C8",
+      "independent_task_count": 1,
+      "representations": [
+        "table",
+        "graph",
+        "numeric"
+      ],
+      "components": [
+        {
+          "subpart": "m",
+          "construct": "positive_slope_magnitude",
+          "expected": 2
+        },
+        {
+          "subpart": "b",
+          "construct": "intercept",
+          "expected": 3
+        },
+        {
+          "subpart": "pair",
+          "construct": "zero_input_point",
+          "expected": "0,3"
+        }
+      ],
+      "explanation_constructs": [],
+      "caution": "Two equivalent inputs are corroborating within-task evidence, not two independent tasks."
+    },
+    {
+      "item_id": "C9",
+      "dependency_group": "C9",
+      "independent_task_count": 1,
+      "representations": [
+        "graph",
+        "numeric",
+        "text"
+      ],
+      "components": [
+        {
+          "subpart": "m",
+          "construct": "signed_slope",
+          "expected": -1
+        },
+        {
+          "subpart": "b",
+          "construct": "intercept",
+          "expected": 2
+        }
+      ],
+      "explanation_constructs": [
+        "slope_sign",
+        "slope_magnitude",
+        "intercept"
+      ],
+      "caution": "Do not count subparts as independent tasks."
+    },
+    {
+      "item_id": "C10",
+      "dependency_group": "C10",
+      "independent_task_count": 1,
+      "representations": [
+        "context",
+        "symbolic",
+        "numeric",
+        "text"
+      ],
+      "components": [
+        {
+          "subpart": "model",
+          "construct": "fixed_plus_variable_model",
+          "expected": "12+5v"
+        },
+        {
+          "subpart": "cost",
+          "construct": "substitution",
+          "expected": 27
+        }
+      ],
+      "explanation_constructs": [
+        "fixed_cost",
+        "per_visit_rate",
+        "substitution"
+      ],
+      "caution": "Do not count subparts as independent tasks."
+    },
+    {
+      "item_id": "FN",
+      "dependency_group": "FN",
+      "independent_task_count": 1,
+      "representations": [
+        "context",
+        "numeric",
+        "text"
+      ],
+      "components": [
+        {
+          "subpart": "temp",
+          "construct": "signed_subtraction",
+          "expected": -6
+        }
+      ],
+      "explanation_constructs": [
+        "signed_subtraction",
+        "direction"
+      ],
+      "caution": "Do not count subparts as independent tasks."
+    },
+    {
+      "item_id": "FP",
+      "dependency_group": "FP",
+      "independent_task_count": 1,
+      "representations": [
+        "context",
+        "text"
+      ],
+      "components": [
+        {
+          "subpart": "origin",
+          "construct": "origin_relationship",
+          "expected": "run"
+        }
+      ],
+      "explanation_constructs": [
+        "zero_input",
+        "origin",
+        "fixed_cost"
+      ],
+      "caution": "Do not count subparts as independent tasks."
+    },
+    {
+      "item_id": "FE",
+      "dependency_group": "FE",
+      "independent_task_count": 1,
+      "representations": [
+        "symbolic",
+        "text"
+      ],
+      "components": [
+        {
+          "subpart": "step",
+          "construct": "distribution_step",
+          "expected": "4x+8=20"
+        }
+      ],
+      "explanation_constructs": [
+        "distribution_scope",
+        "constant_multiplication"
+      ],
+      "caution": "Do not count subparts as independent tasks."
+    },
+    {
+      "item_id": "FG",
+      "dependency_group": "FG",
+      "independent_task_count": 1,
+      "representations": [
+        "points",
+        "symbolic",
+        "text"
+      ],
+      "components": [
+        {
+          "subpart": "faster",
+          "construct": "rate_comparison",
+          "expected": "A"
+        }
+      ],
+      "explanation_constructs": [
+        "slope_magnitude",
+        "rate_comparison",
+        "intercept_vs_rate"
+      ],
+      "caution": "Do not count subparts as independent tasks."
+    }
+  ],
+  "followup_dependency": {
+    "FE": "Near-identical to C6. New numbers alone do not establish transfer.",
+    "FP": "May follow C4. It offers new context but overlaps proportionality.",
+    "FN": "Related signed-number follow-up; record prior hints.",
+    "FG": "Related rate follow-up; retain task identity and support exposure."
+  }
+}
