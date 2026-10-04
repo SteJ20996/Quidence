@@ -3,7 +3,7 @@
 const C=window.AD01Content,E=window.AD01Engine,M=window.AD01Math,G=window.AD01Graphs;
 const app=document.getElementById('app'),KEY=E.SCHEMA;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let state=E.fresh(),saving=true,blocked=false,raw='',notice='',step=0;
+let state=E.fresh(),saving=true,blocked=false,raw='',notice='',step=0,motion=null,motionFrame=0;
 try{raw=localStorage.getItem(KEY)||'';if(raw){const loaded=E.hydrate(JSON.parse(raw));if(loaded)state=loaded;else blocked=true;}}
 catch{if(raw)blocked=true;else saving=false;}
 const lesson=()=>C.LESSONS[state.lessonIndex];
@@ -25,7 +25,7 @@ function slider(name,label,min,max,inc,value){return`<label class="control-label
 function controls(){
  const l=state.labs[state.lessonIndex],side=select('side','Approach direction',[[-1,'From the left (h < 0)'],[1,'From the right (h > 0)']],l.side);
  if(state.lessonIndex===0)return select('kind','Example',[['hole','A hole: near 1, f(1) = 4'],['jump','A jump at 0']],l.kind)+slider('exponent','Log₁₀ of distance |x − target|',-2.3,-.3,.05,l.exponent)+side;
- if(state.lessonIndex===1)return select('kind','Curve',[['square','f(x) = x²'],['absolute','f(x) = |x|']],l.kind)+slider('a','First point a',-2,2,.05,l.a)+slider('h','Distance |h| between the two x-values',.02,1,.02,l.h)+side+`<label class="help-label"><input type="checkbox" id="lab-showDerivative" data-lab="showDerivative" ${l.showDerivative?'checked':''}> Also show the derivative graph</label>`;
+ if(state.lessonIndex===1)return select('kind','Curve',[['square','f(x) = x²'],['absolute','f(x) = |x|']],l.kind)+slider('a','First point a',-2,2,.05,l.a)+slider('h','Distance |h| between the two x-values',.001,1,.001,l.h)+side+`<label class="help-label"><input type="checkbox" id="lab-showDerivative" data-lab="showDerivative" ${l.showDerivative?'checked':''}> Also show the derivative graph</label>`;
  if(state.lessonIndex===2)return select('kind','Curve and starting point',[['square','Positive curve: x², starting at 0'],['linear','Signed example: x, starting at −2']],l.kind)+slider('b','Right endpoint b',.25,2,.05,l.b)+slider('n','Number of equal-width rectangles n',2,64,2,l.n)+select('method','Sample each rectangle at',[['left','Left endpoint'],['midpoint','Midpoint'],['right','Right endpoint']],l.method);
  return slider('x','Accumulation endpoint x',-2,2,.05,l.x)+slider('h','Width |h| of the new interval',.02,1,.02,l.h)+side;
 }
@@ -35,12 +35,65 @@ function formula(){return[
  '∫ₐᵇ f(x) dx = limₙ→∞ Σᵢ₌₁ⁿ f(xᵢ) Δx',
  'A(x) = ∫₀ˣ f(t) dt   →   A′(x) = f(x)'
  ][state.lessonIndex];}
-function explorer(){return`<article class="card explorer"><p class="eyebrow">MOVE · COMPARE · EXPLAIN</p><h2>Try it on the graph.</h2><div class="lab-controls">${controls()}</div><div id="live-readout" class="lab-readout" role="status" aria-live="polite" aria-atomic="true"></div><div id="lab-graphs"></div><p class="graph-legend"><span class="legend-item curve">● Function</span>${state.lessonIndex===1||state.lessonIndex===3?'<span class="legend-item secant">┄ Secant</span><span class="legend-item tangent">— Tangent</span>':''}${state.lessonIndex>=2?'<span class="legend-item tangent">▧ Positive contribution</span><span class="legend-item secant">▧ Negative contribution</span>':''}</p><div id="lab-formula" class="formula-box">${formula()}</div><p class="tiny">${state.lessonIndex===0?'The distance slider uses a logarithmic scale. Each step changes the distance proportionally.':state.lessonIndex===2?'n equal-width rectangles; increasing n makes each width smaller.':'Sliders show finite steps. A limit requires reasoning about arbitrarily small nonzero steps.'} Controls explore the example; they do not submit an answer.</p>${button('reset-lab','Reset this graph','quiet small')}</article>`;}
+function explorer(){return`<article class="card explorer"><p class="eyebrow">MOVE · COMPARE · EXPLAIN</p><h2>Try it on the graph.</h2><div class="lab-controls">${controls()}</div><div class="motion-controls"><button type="button" class="btn primary" id="play-motion" data-action="play-motion" aria-pressed="false">Play animation</button><p id="motion-note" class="tiny" role="status">Watch the change, then pause or use the controls.</p></div><div id="live-readout" class="lab-readout" role="status" aria-live="polite" aria-atomic="true"></div><div id="lab-graphs"></div><p class="graph-legend"><span class="legend-item curve">● Function</span>${state.lessonIndex===1||state.lessonIndex===3?'<span class="legend-item secant">┄ Secant</span><span class="legend-item tangent">— Tangent</span>':''}${state.lessonIndex>=2?'<span class="legend-item tangent">▧ Positive contribution</span><span class="legend-item secant">▧ Negative contribution</span>':''}</p><div id="lab-formula" class="formula-box">${formula()}</div><p class="tiny">${state.lessonIndex===0?'The distance slider uses a logarithmic scale. Each step changes the distance proportionally.':state.lessonIndex===2?'n equal-width rectangles; increasing n makes each width smaller.':'Sliders show finite steps. A limit requires reasoning about arbitrarily small nonzero steps.'} Controls explore the example; they do not submit an answer.</p>${button('reset-lab','Reset this graph','quiet small')}</article>`;}
 function learnHtml(){
  const l=lesson();
  if(!state.lessons[state.lessonIndex].seenSteps.includes(step)){state.lessons[state.lessonIndex].seenSteps.push(step);E.log(state,'lesson_step_viewed',{lesson:l.id,step});}
  return`<section class="learning-grid"><article class="card lesson-copy"><p class="eyebrow">STEP ${step+1} OF 4</p><div class="step-tabs" aria-label="Worked lesson steps">${l.steps.map((_,i)=>`<button data-action="step" data-index="${i}" class="step-dot ${step===i?'active':''}" aria-label="Read step ${i+1}" ${step===i?'aria-current="step"':''}>${i+1}</button>`).join('')}</div><h2>${esc(l.steps[step].title)}</h2><p class="lesson-text">${esc(l.steps[step].text)}</p><div class="try-note"><h3>Try this</h3><p>${esc(l.steps[step].try)}</p></div><div class="actions">${button('prev-step','← Previous','quiet',step===0?'disabled':'')}${button('next-step',step<3?'Next step →':'Try fresh questions →','primary',step===3&&state.lessons[state.lessonIndex].seenSteps.length<4?'disabled':'')}</div><p class="tiny">${state.lessons[state.lessonIndex].seenSteps.length} of 4 steps opened. Take time to compare the graphs.</p></article>${explorer()}</section>`;
 }
+function motionSpec(){
+ const index=state.lessonIndex,l=state.labs[index];
+ if(index===0)return{key:'exponent',start:l.exponent,end:-2.3,replay:-.3};
+ if(index===1)return{key:'h',start:l.h,end:.001,replay:1};
+ if(index===2)return{key:'n',start:l.n,end:64,replay:4};
+ return{key:'x',start:l.x,end:2,replay:-2};
+}
+function updateMotionButton(){
+ const b=document.getElementById('play-motion');if(!b)return;
+ const spec=motionSpec();
+ b.textContent=motion?'Pause animation':Math.abs(spec.start-spec.end)<.00001?'Replay animation':'Play animation';
+ b.setAttribute('aria-pressed',motion?'true':'false');
+}
+function stopMotion(reason='paused',persist=true){
+ if(motionFrame){cancelAnimationFrame(motionFrame);motionFrame=0;}
+ if(!motion)return;
+ const previous=motion;motion=null;
+ E.log(state,reason==='completed'?'graph_animation_completed':'graph_animation_paused',{lesson:C.LESSONS[previous.lessonIndex].id,reason,settings:{...state.labs[previous.lessonIndex]}});
+ const readout=document.getElementById('live-readout');if(readout)readout.setAttribute('aria-live','polite');
+ const note=document.getElementById('motion-note');if(note)note.textContent=reason==='completed'?'Animation finished. Compare the values or change a control.':'Animation paused. Use the controls or press Play to continue.';
+ updateMotionButton();if(persist&&!blocked)save();
+}
+function applyMotionValue(spec,value){
+ if(spec.key==='n')value=Math.max(2,Math.min(64,2*Math.round(value/2)));
+ else if(spec.key==='h')value=Math.max(.001,Math.min(1,value));
+ state.labs[state.lessonIndex][spec.key]=value;
+ const input=document.getElementById('lab-'+spec.key);if(input)input.value=String(value);
+ updateExplorer();
+}
+function playMotion(){
+ if(motion){stopMotion('paused');return;}
+ if(blocked||state.view!=='lesson'||state.stage!=='learn')return;
+ const spec=motionSpec();if(Math.abs(spec.start-spec.end)<.00001)spec.start=spec.replay;
+ motion={...spec,lessonIndex:state.lessonIndex,startedAt:null};
+ E.log(state,'graph_animation_started',{lesson:lesson().id,settings:{...state.labs[state.lessonIndex]}});
+ const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(reduced){applyMotionValue(spec,spec.end);stopMotion('completed');return;}
+ const readout=document.getElementById('live-readout');if(readout)readout.setAttribute('aria-live','off');
+ const note=document.getElementById('motion-note');if(note)note.textContent='Animation playing. Pause whenever you want to inspect a value.';
+ updateMotionButton();save();
+ function frame(time){
+  if(!motion)return;
+  if(state.view!=='lesson'||state.stage!=='learn'||state.lessonIndex!==motion.lessonIndex){stopMotion('navigation');return;}
+  if(motion.startedAt===null)motion.startedAt=time;
+  const progress=Math.min(1,Math.max(0,(time-motion.startedAt)/4500)),eased=progress*progress*(3-2*progress);
+  const value=spec.key==='h'?spec.start*Math.pow(spec.end/spec.start,eased):spec.start+(spec.end-spec.start)*eased;
+  applyMotionValue(spec,value);
+  if(progress<1)motionFrame=requestAnimationFrame(frame);else stopMotion('completed');
+ }
+ motionFrame=requestAnimationFrame(frame);
+}
+if(window.addEventListener)window.addEventListener('pagehide',()=>stopMotion('pagehide'));
+if(document.addEventListener)document.addEventListener('visibilitychange',()=>{if(document.hidden)stopMotion('hidden');});
 function updateExplorer(){
  if(state.view!=='lesson'||state.stage!=='learn'||blocked)return;
  const l=state.labs[state.lessonIndex],f=G.fmt;
@@ -54,6 +107,7 @@ function updateExplorer(){
  const box=document.getElementById('lab-formula');if(box)box.textContent=formula();
  for(const [name,value]of Object.entries(l)){const out=document.getElementById('out-'+name);if(out)out.textContent=String(value);}
  const range=document.getElementById('lab-exponent');if(range)range.setAttribute('aria-valuetext',`distance ${f(10**l.exponent)}`);
+ updateMotionButton();
 }
 const resultLabel=result=>result==='correct'?'Correct on this question':result==='unsure'?'Not sure yet':'Revisit this idea';
 function answerText(t,a){return a.choices.map(id=>id==='unsure'?'I’m not sure yet':t.options.find(o=>o.id===id)?.label||id).join('; ');}
@@ -63,6 +117,7 @@ function reviewHtml(){
 }
 function summaryHtml(){return`<section class="summary-heading"><p class="eyebrow">YOUR FOUR-LESSON SUMMARY</p><h1>Connect the picture<br>to the mathematics.</h1><p class="lead">First predictions and questions after instruction are separate observations. These activities give you starting points for practice, rather than a complete measure of calculus understanding.</p></section><div class="card"><div class="table-wrap"><table class="summary-table"><thead><tr><th scope="col">Concept</th><th scope="col">First saved prediction</th><th scope="col">Fresh questions</th></tr></thead><tbody>${C.LESSONS.map((l,i)=>`<tr><th scope="row">${esc(l.short)}</th><td>${resultLabel(state.records[l.predict.id].submissions[0].result)}</td><td>${l.checks.map(t=>resultLabel(E.last(state,t.id).result)).join('<br>')}${button('open','View feedback','quiet small',`data-index="${i}"`)}</td></tr>`).join('')}</tbody></table></div><p class="tiny">History includes first attempts, revisions, previous feedback, and self-reported help. Explanations are saved and are not automatically scored.</p><div class="actions">${button('export-json','Download answer history','primary')}${button('export-md','Download readable summary')}${button('print','Print summary','quiet')}</div></div><section class="card next-steps"><h2>Practice the connections</h2><ul>${C.LESSONS.map(l=>`<li>${esc(l.short)}: ${esc(l.next)}</li>`).join('')}</ul></section>`;}
 function render(focus=false){
+ stopMotion('navigation',false);
  if(blocked){app.innerHTML=`<section class="card recovery"><h1>Your saved session needs attention.</h1><p>It could not be read and has been kept unchanged. Download a copy before replacing it.</p><div class="actions">${button('raw','Download saved record','primary')}${button('reset-blocked','Replace with a new session')}</div></section><dialog id="reset-dialog"><h2>Replace the unreadable AD01 record?</h2><p>Download the record first if you want to keep it.</p><div class="actions">${button('cancel-reset','Keep it')}${button('confirm-reset','Replace record','primary')}</div></dialog>`;return;}
  app.innerHTML=nav()+(state.view==='orientation'?orientation():state.view==='summary'?summaryHtml():`<section class="lesson-heading"><p class="eyebrow">LESSON ${state.lessonIndex+1} OF 4</p><h1>${esc(lesson().title)}</h1><p class="muted">${esc(lesson().goal)}</p>${phases()}</section>`+(state.stage==='learn'?learnHtml():state.stage==='review'?reviewHtml():taskHtml(currentTask())));
  const form=document.getElementById('answer-form');if(form)form.addEventListener('submit',e=>{e.preventDefault();const t=currentTask();if(E.submit(state,t.id,state.stage)){notice='Answer saved. Continue when you are ready.';save();render();document.querySelector('[data-action="next"]').focus();}else{notice='Choose an answer or “I’m not sure yet,” then save it.';document.getElementById('answer-status').textContent=notice;}});
@@ -81,6 +136,7 @@ function openLesson(index){
 app.addEventListener('input',event=>{
  const target=event.target;
  if(target.dataset.lab){
+  stopMotion('control',false);
   const name=target.dataset.lab;state.labs[state.lessonIndex][name]=target.type==='checkbox'?target.checked:target.tagName==='SELECT'&&name!=='side'?target.value:Number(target.value);
   updateExplorer();save();return;
  }
@@ -104,6 +160,8 @@ app.addEventListener('click',event=>{
  if(action==='cancel-reset'){document.getElementById('reset-dialog').close();return;}
  if(action==='confirm-reset'){state=E.fresh();blocked=false;raw='';step=0;render(true);return;}
  if(blocked)return;
+ if(action==='play-motion'){playMotion();return;}
+ stopMotion('navigation',false);
  if(action==='home')state.view='orientation';
  else if(action==='start')state.view='lesson';
  else if(action==='open'){openLesson(i);return;}

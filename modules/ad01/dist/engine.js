@@ -15,7 +15,7 @@ function validLabs(labs){
  if(!Array.isArray(labs)||labs.length!==4||labs.some(l=>!l||typeof l!=='object'))return false;
  const [a,b,c,d]=labs;
  return ['hole','jump'].includes(a.kind)&&range(a.exponent,-2.3,-.3)&&[-1,1].includes(a.side)
-  &&['square','absolute'].includes(b.kind)&&range(b.a,-2,2)&&range(b.h,.02,1)&&[-1,1].includes(b.side)&&typeof b.showDerivative==='boolean'
+  &&['square','absolute'].includes(b.kind)&&range(b.a,-2,2)&&range(b.h,.001,1)&&[-1,1].includes(b.side)&&typeof b.showDerivative==='boolean'
   &&['square','linear'].includes(c.kind)&&range(c.b,.25,2)&&Number.isInteger(c.n)&&c.n>=2&&c.n<=64&&['left','midpoint','right'].includes(c.method)
   &&range(d.x,-2,2)&&range(d.h,.02,1)&&[-1,1].includes(d.side);
 }

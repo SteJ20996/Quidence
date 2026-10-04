@@ -12,18 +12,18 @@ class Element{
  closest(s){return this.matches(s)?this:this.parent?.closest(s)||null;}
  setAttribute(k,v){this.attrs[k]=String(v);}addEventListener(type,callback){this.events[type]=callback;}focus(){this.focused=true;}appendChild(e){this.children.push(e);e.parent=this;}remove(){this.parent.children=this.parent.children.filter(x=>x!==this);}click(){}showModal(){this.open=true;}close(){this.open=false;}
 }
-function harness(map=new Map(),failSaving=false){
+function harness(map=new Map(),failSaving=false,options={}){
  const app=new Element('main',{id:'app'}),note=new Element('span',{id:'storage-note'}),body=new Element('body'),blobs=[],downloads=[];
  const document={body,getElementById:id=>id==='app'?app:id==='storage-note'?note:app.querySelector('#'+id),querySelector:s=>app.querySelector(s),createElement:tag=>{const e=new Element(tag);if(tag==='a')e.click=()=>downloads.push({name:e.download,url:e.href});return e;}};
- const window={scrollTo(){},print(){this.printed=true;}};
- window.document=document;const context={window,document,localStorage:{getItem:k=>map.get(k)||null,setItem:(k,v)=>{if(failSaving)throw Error('Storage denied');map.set(k,v);}},Blob,URL:{createObjectURL:b=>{blobs.push(b);return 'blob:'+blobs.length;},revokeObjectURL(){}},setTimeout:f=>f()};
+ const frames=new Map();let clockId=0;const window={matchMedia:()=>({matches:!!options.reduced}),scrollTo(){},print(){this.printed=true;}};
+ window.document=document;const context={window,document,requestAnimationFrame:f=>{frames.set(++clockId,f);return clockId;},cancelAnimationFrame:id=>frames.delete(id),localStorage:{getItem:k=>map.get(k)||null,setItem:(k,v)=>{if(failSaving)throw Error('Storage denied');map.set(k,v);}},Blob,URL:{createObjectURL:b=>{blobs.push(b);return 'blob:'+blobs.length;},revokeObjectURL(){}},setTimeout:f=>f()};
  vm.createContext(context);for(const file of ['math.js','graphs.js','content.js','engine.js','app.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../dist/',file),'utf8'),context,{filename:file});
  function click(action,index){const b=app.all().find(x=>x.dataset.action===action&&(index===undefined||x.dataset.index===String(index)));assert.ok(b,`Missing ${action} ${index??''}`);if(!b.disabled)app.events.click({target:b});}
  function choose(value){const form=app.querySelector('#answer-form'),x=form.querySelectorAll('[name="choice"]').find(x=>x.value===value);assert.ok(x,`Missing choice ${value}`);if(x.attrs.type==='radio')form.querySelectorAll('[name="choice"]').forEach(x=>x.checked=false);x.checked=!x.checked;app.events.input({target:x});}
  function input(name,value){const x=app.querySelector(`[name="${name}"]`);if(typeof value==='boolean')x.checked=value;else x.value=value;app.events.input({target:x});}
  function submit(){app.querySelector('#answer-form').events.submit({preventDefault(){}});}
  const saved=()=>JSON.parse(map.get(E.SCHEMA));
- function lab(name,value){const el=app.querySelector('[data-lab=\"'+name+'\"]');assert.ok(el,'Missing lab control '+name);if(typeof value==='boolean')el.checked=value;else el.value=String(value);app.events.input({target:el});app.events.change({target:el});}return{app,note,window,map,blobs,downloads,document,click,choose,input,lab,submit,saved};
+ function lab(name,value){const el=app.querySelector('[data-lab=\"'+name+'\"]');assert.ok(el,'Missing lab control '+name);if(typeof value==='boolean')el.checked=value;else el.value=String(value);app.events.input({target:el});app.events.change({target:el});}function tick(time){for(const[id,fn]of [...frames]){frames.delete(id);fn(time);}}return{app,note,window,map,blobs,downloads,document,click,choose,input,lab,submit,saved,frames,tick};
 }
 function learn(h){h.click('next');for(let i=0;i<4;i++)h.click('next-step');}
 function finishLesson(h,i){const l=C.LESSONS[i];h.choose('unsure');h.submit();learn(h);for(const t of l.checks){h.choose(t.correct[0]);h.submit();h.click('next');}}
@@ -51,4 +51,21 @@ test('graph text equivalents, endpoint extremes, and static question SVGs stay f
  const h=harness();h.click('open',1);h.choose('unsure');h.submit();h.click('next');h.lab('a',2);h.lab('h',1);assert.match(h.document.getElementById('lab-graphs').innerHTML,/Q = \(3, 9\)/);assert.doesNotMatch(h.document.getElementById('lab-graphs').innerHTML,/NaN|Infinity/);
  for(let i=0;i<4;i++){const q=harness();q.click('open',i);assert.ok(q.app.querySelector('svg'));assert.match(q.app.innerHTML,/aria-labelledby="ad-plot/);}
  const l=harness();l.click('start');l.choose('unsure');l.submit();l.click('next');l.lab('kind','jump');assert.match(l.document.getElementById('lab-formula').textContent,/−1 ≠ 1/);l.lab('kind','hole');assert.match(l.document.getElementById('lab-formula').textContent,/f\(1\) = 4/);
+});
+test('finite animations finish for all four lessons, update graphs, and preserve answers',()=>{
+ const goals=[['exponent',-2.3],['h',.001],['n',64],['x',2]];
+ for(let i=0;i<4;i++){
+  const h=harness();h.click('open',i);h.choose('unsure');h.submit();h.click('next');const before=JSON.stringify(h.saved().records);h.click('play-motion');assert.equal(h.document.getElementById('play-motion').textContent,'Pause animation');
+  for(const t of [0,1500,3000,4500])h.tick(t);
+  assert.equal(h.frames.size,0);assert.equal(h.saved().labs[i][goals[i][0]],goals[i][1]);assert.equal(JSON.stringify(h.saved().records),before);assert.equal(h.document.getElementById('play-motion').textContent,'Replay animation');assert.ok(E.hydrate(h.saved()));assert.doesNotMatch(h.document.getElementById('lab-graphs').innerHTML,/NaN|Infinity/);
+ }
+});
+test('pause, manual control, navigation, and replay cancel stale frames',()=>{
+ const h=harness();h.click('open',2);h.choose('unsure');h.submit();h.click('next');h.click('play-motion');h.tick(0);h.tick(1500);h.click('play-motion');assert.equal(h.frames.size,0);assert.ok(h.saved().labs[2].n>8&&h.saved().labs[2].n<64);
+ h.click('play-motion');h.tick(0);h.lab('n',10);assert.equal(h.frames.size,0);assert.equal(h.saved().labs[2].n,10);
+ h.click('play-motion');h.tick(0);h.click('home');assert.equal(h.frames.size,0);assert.equal(h.saved().view,'orientation');
+ h.click('start');h.lab('n',64);h.click('play-motion');h.tick(0);assert.match(h.document.getElementById('live-readout').textContent,/Rectangle sum/);h.tick(4500);assert.equal(h.saved().labs[2].n,64);assert.equal(h.frames.size,0);
+});
+test('reduced-motion preference reaches the endpoint without scheduling playback',()=>{
+ const h=harness(new Map(),false,{reduced:true});h.click('open',1);h.choose('unsure');h.submit();h.click('next');h.click('play-motion');assert.equal(h.frames.size,0);assert.equal(h.saved().labs[1].h,.001);assert.match(h.document.getElementById('live-readout').textContent,/Δy\/Δx = 2\.001/);
 });
