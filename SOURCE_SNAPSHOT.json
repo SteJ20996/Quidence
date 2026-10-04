@@ -1,7 +1,7 @@
 {
   "repository": "SteJ20996/AA01",
   "snapshot_date": "2026-10-04 America/Los_Angeles",
-  "included": "Both module dist/, tests/, documentation; root subject hub and navigation links",
+  "included": "Imported AA01 and AB01 snapshots; AC01 and AD01 authored in this repository; module dist/, tests/, documentation, subject hub and navigation",
   "original_git_history_included": false,
   "original_hosting_configuration_included": false,
   "aa01_main_system_imported": true,
@@ -16,7 +16,18 @@
       "source_commit": "dd0dc94b128e7a77ebafc1179c746acadac9bdec",
       "version": "Cluevera Beta 0.5",
       "path": "modules/aa01"
+    },
+    "AC01": {
+      "source_commit": "2617f39100ab2604db24dfe1d0149406b0cd6b77",
+      "version": "Beta 0.1",
+      "path": "modules/ac01",
+      "origin": "Authored in this repository"
+    },
+    "AD01": {
+      "version": "Beta 0.1",
+      "path": "modules/ad01",
+      "origin": "Authored in this repository"
     }
   },
-  "integration_changes": "Subject-selection links and shared navigation CSS; original module logic retained"
+  "integration_changes": "Four-subject Dashboard and shared navigation CSS; AA01, AB01, and AC01 learning logic retained"
 }
