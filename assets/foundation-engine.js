@@ -2,6 +2,18 @@
 'use strict';
 const B=typeof module==='object'&&module.exports?require('./foundation-bank.js'):root.ClueveraFoundationBank;
 const SCHEMA='cluevera_foundation_portfolio_v1',clone=v=>JSON.parse(JSON.stringify(v));
+const UNCHECKED={
+ aa01:['Multiplication and division of rational numbers; powers and roots','Equations with variables on both sides, no solution, or infinitely many solutions','Inequality steps involving multiplication or division by a negative number','General systems of equations, function domains, and quadratic equations'],
+ ab01:['Matrix composition and multiplication order','Elimination and systems with no solution or infinitely many solutions','Nullspace, rank, basis, dimension, and inverse matrices','Dot products, orthogonality, projections, determinants, and eigenvectors'],
+ ac01:['Constructing a payoff model from a story and stating its assumptions','Expected payoffs and mixed strategies','Sequential decisions, backward induction, and credible threats','Repeated games and incomplete information'],
+ ad01:['Constructing a difference quotient and derivative without a supplied slope','Product, quotient, chain, implicit, and inverse-function differentiation rules','Antiderivatives, integration constants, and finding definite integrals analytically','Function analysis, optimization, differential equations, and wider integration applications']
+};
+const CONDITIONS={
+ aa01:[{task:'aa-f12',note:'The graph description supplies the horizontal and vertical moves. This checks converting directions to coordinates; independent graph reading needs a new task.'}],
+ ab01:[{task:'ab-f12',note:'The reasoning prompt supplies the zero-vector test. It checks applying this necessary condition to a translation, not independently choosing a test or proving an arbitrary map linear.'}],
+ ac01:[{task:'ac-f08',note:'The comparison pattern is stated in the question. This checks interpreting that pattern; identifying dominance independently needs a new table.'}],
+ ad01:[{task:'ad-f05',note:'The tangent slope is supplied. This checks the meaning of derivative notation, not calculating a tangent slope independently.'},{task:'ad-f11',note:'The rectangle sums and exact integral are supplied. This checks comparing errors, not constructing a rectangle sum independently.'}]
+};
 const stamp=()=>new Date().toISOString();
 let sequence=0;
 const object=v=>!!v&&typeof v==='object'&&!Array.isArray(v);
@@ -54,10 +66,24 @@ function review(s,t,points,note){
 }
 function latestReview(s,t){const r=s.records[t.id];return r?.reviews.filter(x=>x.submission===r.submissions.length).at(-1)||null;}
 function observations(s){return tasks(s).map(t=>{const r=s.records[t.id],a=last(s,t);return{id:t.id,group:t.groupName,title:t.title,status:a?a.objective.state:'missing',parts:a?.objective.parts||{},explanation:a?.answer.explanation||r?.draft.explanation||'',explanationReview:a?latestReview(s,t):null,otherHelp:a?.answer.otherHelp||false,attempts:r?.submissions.length||0,next:t.next};});}
-function portable(s){return{product:'Cluevera',kind:'foundation-check',schema:SCHEMA,bankVersion:B.VERSION,exportedAt:stamp(),scope:B.MODULES[s.module].scope,subject:B.MODULES[s.module].title,session:clone(s),taskDefinitions:clone(tasks(s)),observations:observations(s),interpretation:'Objective answer components are checked with fixed mathematics. Explanations require human or AI-tutor review. These observations do not establish mastery, effort, AI use, or a complete course diagnosis.'};}
+function scopeReview(s){return{scope:B.MODULES[s.module].scope,groups:[...B.MODULES[s.module].groups],notChecked:[...UNCHECKED[s.module]],suppliedInformation:clone(CONDITIONS[s.module]),interpretation:'These limits describe this 15-question check. Other lessons and projects may provide additional evidence. Completion and matching components do not establish complete subject mastery.'};}
+function nextChecks(s){return observations(s).flatMap(o=>{
+ const a=last(s,tasks(s).find(t=>t.id===o.id)),reasons=[];
+ if(o.status==='recheck')reasons.push('Some number or choice components need another check.');
+ if(o.status==='unsure')reasons.push('You marked this answer as uncertain.');
+ if(o.explanationReview?.points===0)reasons.push('The local explanation review asks for a revised reason.');
+ if(o.explanationReview?.points===1)reasons.push('The local explanation review confirms part of the connection; check the remaining part.');
+ if(a?.answer.otherHelp)reasons.push('Other help was reported. Use a new question if you want to check independent use.');
+ if(a?.feedbackSeen)reasons.push('This response was saved after a report was opened. Use a new question to check transfer.');
+ else if(o.attempts>1)reasons.push('Earlier attempts are available. Review what changed and try a new question.');
+ return reasons.length?[{...o,followupReasons:reasons}]:[];
+});}
+function portable(s){return{product:'Cluevera',kind:'foundation-check',schema:SCHEMA,bankVersion:B.VERSION,exportedAt:stamp(),scope:B.MODULES[s.module].scope,subject:B.MODULES[s.module].title,session:clone(s),taskDefinitions:clone(tasks(s)),observations:observations(s),scopeReview:scopeReview(s),recommendedFollowups:nextChecks(s),interpretation:'Objective answer components are checked with fixed mathematics. Explanations require human or AI-tutor review. These observations do not establish mastery, effort, AI use, or a complete course diagnosis.'};}
 function answerText(t,a){return t.fields.map(f=>{const v=a?.values[f.id];return f.label+': '+(f.kind==='number'?v||'not entered':f.kind==='multi'?(v||[]).map(x=>f.options.find(o=>o.value===x)?.label||x).join('; ')||'not selected':f.options.find(o=>o.value===v)?.label||'not selected');}).join('\n');}
 function markdown(s){
  const module=B.MODULES[s.module];let out='# Cluevera · '+module.title+'\n\nScope: '+module.scope+'\nSession: '+s.id+'\n\n## A useful request for an AI tutor\n\nUse the actual answers and explanations below to suggest one or two learning priorities. Explain which specific responses support each suggestion, and ask a follow-up question when the reasoning is ambiguous. Keep arithmetic errors, conceptual explanations, missing evidence, and reported help distinct. Do not treat this short check as a complete course assessment or infer effort or AI use from it. Start with a short explanation and one changed-number practice question, then adapt to my response.\n\n';
+ const scope=scopeReview(s);out+='## Scope and evidence limits\n\n'+scope.interpretation+'\n\nNot checked in these 15 questions:\n'+scope.notChecked.map(x=>'- '+x).join('\n')+'\n\nSupplied information affecting interpretation:\n'+scope.suppliedInformation.map(x=>'- '+x.task+': '+x.note).join('\n')+'\n\n';
+ const followups=nextChecks(s);out+='## Possible next checks\n\n'+(followups.length?followups.map(o=>'- '+o.id+' · '+o.title+': '+o.followupReasons.join(' ')+' Next: '+o.next).join('\n'):'No specific follow-up was selected from the fixed checks, reported support, or saved local reviews. Unreviewed written reasons and untested topics still need evidence.')+'\n\n';
  out+='## Answer and explanation history\n\n';
  for(const t of tasks(s)){
   const r=s.records[t.id];out+='### '+t.title+' · '+t.groupName+'\n\n'+t.prompt+'\n\n';
@@ -90,6 +116,6 @@ function hydrate(value){
  }
  return clone(value);
 }
-const api={SCHEMA,numeric,fresh,session,createSession,tasks,task,blank,record,edit,validate,evaluate,submit,last,done,review,latestReview,observations,portable,answerText,markdown,hydrate};
+const api={SCHEMA,numeric,fresh,session,createSession,tasks,task,blank,record,edit,validate,evaluate,submit,last,done,review,latestReview,observations,scopeReview,nextChecks,portable,answerText,markdown,hydrate};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraFoundationEngine=api;
 })(typeof window==='undefined'?globalThis:window);

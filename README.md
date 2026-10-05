@@ -47,7 +47,7 @@ Terminal 需保持运行。关闭服务时按 **Control+C**。如果之前的服
 - 原课程评分和会话仍各自独立。新增 Saved reports 保存四个模块打开的报告副本与版本。
 - 每个学科有独立的 15 题基础检查，必须解释。草稿、提交历史和本地人工解释审核按学科/检查分别保存；新检查不覆盖旧检查。数字/选择判断与解释审核分开。
 - 保存是当前浏览器本地功能，没有云端档案或自动跨设备同步。浏览器清理或存储不可用会影响保存；下载报告后可交给另一 AI 导师。
-- 基础覆盖、解释要求与剩余缺口见 [FOUNDATION_AUDIT.md](FOUNDATION_AUDIT.md)；完整新题审核清单见 [FOUNDATION_ITEM_REVIEW.md](FOUNDATION_ITEM_REVIEW.md)。
+- 基础覆盖、解释要求与剩余缺口见 [FOUNDATION_AUDIT.md](FOUNDATION_AUDIT.md)；完整新题审核清单见 [FOUNDATION_ITEM_REVIEW.md](FOUNDATION_ITEM_REVIEW.md)。完成题目能支持多强的漏洞判断、现有项目的依赖与后续补强见 [DIAGNOSTIC_COVERAGE_REVIEW.md](DIAGNOSTIC_COVERAGE_REVIEW.md)。
 
 ## 运行检查
 
