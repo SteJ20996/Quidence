@@ -8,7 +8,7 @@ function harness(saved,{saving=true,start=true,hash=''}={}){
  if(saved!==undefined)store.set(KEY,saved);
  const document={body,getElementById:id=>body.querySelector('#'+id),querySelector:s=>body.querySelector(s),querySelectorAll:s=>body.querySelectorAll(s),createElement:t=>new Element(t),modelContext:{registerTool(t,options){registry[t.name]=t;options?.signal.addEventListener('abort',()=>{if(registry[t.name]===t)delete registry[t.name];});}}};
  const context={AbortController,performance:{now:()=>0},requestAnimationFrame:f=>(frames.push(f),frames.length),cancelAnimationFrame(){},document,localStorage:{getItem:k=>store.get(k)||null,setItem(k,v){if(!saving)throw Error('Saving denied');store.set(k,v);}},crypto,structuredClone,console,Blob,URL:{createObjectURL:b=>(blobs.push(b),'blob:test'),revokeObjectURL(){}},setTimeout:f=>(timers.push(f),timers.length),clearTimeout(){},window:{location:{hash,pathname:'/',search:''},scrollTo(){},matchMedia:()=>({matches:true})}};
- vm.createContext(context);
+ context.window.document=document;context.window.localStorage=context.localStorage;vm.createContext(context);vm.runInContext(fs.readFileSync(require('node:path').join(__dirname,'../../../assets/report-store.js'),'utf8'),context);
  for(const file of ['matrix-guide-engine.js','matrix-guide.js','learning-engine.js','student-materials.js','learning-advice.js','learning.js'])vm.runInContext(fs.readFileSync('dist/'+file,'utf8'),context);
  if(start&&!registry.read_ab01_learning.execute({}).blockedLoad&&registry.read_ab01_learning.execute({}).phase==='intro'&&!hash)document.getElementById('begin-learning').click();
  return{document,registry,store,blobs,frames,timers,E:context.window.AB01Learning,state:()=>JSON.parse(store.get(KEY)),read:()=>registry.read_ab01_learning.execute({}),stage:a=>registry.stage_ab01_learning_answer.execute(a),submit:()=>registry.submit_ab01_learning_answer.execute({}),show:i=>registry.show_matrix_walkthrough_step.execute({step:i}),click:id=>{const e=document.getElementById(id);assert(e,'Missing '+id);e.click();},input(id,value){const e=document.getElementById(id);assert(e,'Missing '+id);e.value=String(value);e.oninput({target:e});}};
@@ -65,7 +65,7 @@ function answerPhase(h,phase){for(const t of h.E.TASKS[phase]){h.stage(canonical
  h.click('matrix-link');h.stage({values:[-1,0]});h.submit();h.click('next');
  assert.equal(h.state().records['post-1'].submissions[0].support.moduleOpenedInPhase,true);
  h.stage({values:[5,1],choice:0});h.submit();assert.equal(h.read().evidence.post[1].last,undefined);h.click('next');h.click('skip');
- assert.equal(h.state().stage,'report');
+ assert.equal(h.state().stage,'report');assert.equal(JSON.parse(h.store.get('cluevera_saved_reports_v1')).items[0].module,'ab01');
  const originalAnswers=JSON.stringify(h.state().records),practice=h.document.querySelector('[data-coach-review="coefficients"]'),solution=h.document.querySelector('[data-coach-solution="coefficients"]');
  practice.open=true;practice.ontoggle();solution.open=true;solution.ontoggle();
  assert(h.state().events.some(e=>e.type==='suggested_practice_solution_viewed'&&e.targetId==='coefficients'));

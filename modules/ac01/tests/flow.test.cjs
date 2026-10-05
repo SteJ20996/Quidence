@@ -10,6 +10,7 @@ class Element{
  matches(s){if(s.endsWith(':checked'))return this.checked&&this.matches(s.slice(0,-8));if(s.startsWith('#'))return this.attrs.id===s.slice(1);const a=s.match(/^\[([^=\]]+)(?:="([^"]*)")?\]$/);if(a)return a[1]in this.attrs&&(a[2]===undefined||this.attrs[a[1]]===a[2]);return this.tagName===s;}
  querySelectorAll(s){return this.all().filter(x=>x.matches(s));}querySelector(s){return this.querySelectorAll(s)[0]||null;}
  closest(s){return this.matches(s)?this:this.parent?.closest(s)||null;}
+ setAttribute(k,v){this.attrs[k]=String(v);}
  addEventListener(type,callback){this.events[type]=callback;}focus(){this.focused=true;}appendChild(e){this.children.push(e);e.parent=this;}remove(){this.parent.children=this.parent.children.filter(x=>x!==this);}click(){}showModal(){this.open=true;}close(){this.open=false;}
 }
 function harness(map=new Map(),failSaving=false){
@@ -17,7 +18,7 @@ function harness(map=new Map(),failSaving=false){
  const document={body,getElementById:id=>id==='app'?app:id==='storage-note'?note:app.querySelector('#'+id),querySelector:s=>app.querySelector(s),createElement:tag=>{const e=new Element(tag);if(tag==='a')e.click=()=>downloads.push({name:e.download,url:e.href});return e;}};
  const window={scrollTo(){},print(){this.printed=true;}};
  const context={window,document,localStorage:{getItem:k=>map.get(k)||null,setItem:(k,v)=>{if(failSaving)throw Error('Storage denied');map.set(k,v);}},Blob,URL:{createObjectURL:b=>{blobs.push(b);return 'blob:'+blobs.length;},revokeObjectURL(){}},setTimeout:f=>f()};
- vm.createContext(context);for(const file of ['content.js','engine.js','app.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../dist/',file),'utf8'),context,{filename:file});
+ window.document=document;window.localStorage=context.localStorage;vm.createContext(context);vm.runInContext(fs.readFileSync(path.join(__dirname,'../../../assets/report-store.js'),'utf8'),context);for(const file of ['content.js','engine.js','app.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../dist/',file),'utf8'),context,{filename:file});
  function click(action,index){const b=app.all().find(x=>x.dataset.action===action&&(index===undefined||x.dataset.index===String(index)));assert.ok(b,`Missing ${action} ${index??''}`);if(!b.disabled)app.events.click({target:b});}
  function choose(value){const form=app.querySelector('#answer-form'),x=form.querySelectorAll('[name="choice"]').find(x=>x.value===value);assert.ok(x,`Missing choice ${value}`);if(x.attrs.type==='radio')form.querySelectorAll('[name="choice"]').forEach(x=>x.checked=false);x.checked=!x.checked;app.events.input({target:x});}
  function input(name,value){const x=app.querySelector(`[name="${name}"]`);if(typeof value==='boolean')x.checked=value;else x.value=value;app.events.input({target:x});}
@@ -34,7 +35,7 @@ test('complete mixed workflow, blank gates, revisions, resume, and exports',asyn
  h.choose('73');h.submit();h.choose('37');assert.equal(h.app.querySelector('[data-action="next"]').disabled,true);h.input('explanation','<img src=x onerror=alert(1)>');h.input('otherHelp',true);h.submit();
  const first=h.saved().records.c1.submissions[0];assert.equal(first.answer.choices[0],'73');assert.equal(h.saved().records.c1.submissions.length,2);assert.doesNotMatch(h.app.innerHTML,/<img src=x/);
  const resumed=harness(h.map);assert.match(resumed.app.innerHTML,/&lt;img/);assert.equal(resumed.app.querySelector('[data-action="next"]').disabled,false);resumed.click('next');resumed.choose('a');resumed.submit();resumed.click('next');assert.match(resumed.app.innerHTML,/Your first prediction/);assert.match(resumed.app.innerHTML,/Fresh questions after instruction/);
- const r=resumed;r.click('continue');finishLesson(r,1);r.click('continue');finishLesson(r,2);r.click('continue');finishLesson(r,3);r.click('continue');assert.equal(r.saved().view,'summary');assert.equal(E.allDone(r.saved()),true);
+ const r=resumed;r.click('continue');finishLesson(r,1);r.click('continue');finishLesson(r,2);r.click('continue');finishLesson(r,3);r.click('continue');assert.equal(r.saved().view,'summary');assert.equal(JSON.parse(r.map.get('cluevera_saved_reports_v1')).items[0].module,'ac01');assert.ok(r.app.all().some(x=>x.attrs.role==='status'&&x.textContent.includes('report copy')));assert.equal(E.allDone(r.saved()),true);
  r.click('export-json');r.click('export-md');assert.equal(r.downloads.length,2);const exported=JSON.parse(await r.blobs[0].text());assert.equal(Object.keys(exported.records).length,12);assert.equal(exported.records.c1.submissions[0].answer.choices[0],'73');assert.equal(exported.records.c1.submissions[1].support.otherHelp,true);assert.match(await r.blobs[1].text(),/Initial prediction/);assert.match(await r.blobs[1].text(),/> <img src=x/);
  const again=harness(r.map);assert.equal(again.saved().view,'summary');again.click('print');assert.equal(again.window.printed,true);
 });
@@ -58,5 +59,5 @@ test('all four dashboard links and AC01 local assets resolve within the project'
  const root=path.resolve(__dirname,'../../..'),hub=fs.readFileSync(path.join(root,'index.html'),'utf8');
  const links=Array.from(hub.matchAll(/class="subject-link" href="([^"]+)"/g),m=>m[1]);assert.deepEqual(links,['modules/aa01/dist/','modules/ab01/dist/','modules/ac01/dist/','modules/ad01/dist/']);
  links.forEach(l=>assert.ok(fs.existsSync(path.join(root,l,'index.html'))));
- const entry=fs.readFileSync(path.join(__dirname,'../dist/index.html'),'utf8');for(const m of entry.matchAll(/(?:href|src)="([^"]+)"/g)){if(m[1]==='./')continue;assert.ok(fs.existsSync(path.resolve(__dirname,'../dist',m[1])),m[1]);}
+ const entry=fs.readFileSync(path.join(__dirname,'../dist/index.html'),'utf8');for(const m of entry.matchAll(/(?:href|src)="([^"]+)"/g)){if(m[1]==='./')continue;assert.ok(fs.existsSync(path.resolve(__dirname,'../dist',m[1].split(/[?#]/)[0])),m[1]);}
 });

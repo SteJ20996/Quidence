@@ -51,3 +51,8 @@ AD01 的 19 项检查覆盖极限与点值、尖角、割线代数、矩形估�
 可选真实浏览器检查：安装 Playwright 及其 Chromium 后运行 `node --test modules/ad01/tests/flow.browser.cjs`。如果 Chromium 在其他位置，可通过 `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` 指定。`AD01_SCREENSHOT_DIR` 可指定截图目录。该脚本覆盖整个答题流程、图像控件、手机宽度、恢复与下载。
 
 本次开发通过常规数学与状态检查，并对生成 SVG 进行了渲染检查；当前执行环境没有 Chromium，因此尚未完成真实浏览器视觉验收。上线前需在 Mac/Windows 浏览器中打开四节课并检查图像、键盘操作与手机排版。
+
+
+## 基础检查与报告副本
+
+公共导航新增 [15 题基础检查](../../foundations/index.html?module=ad01) 和 [Saved reports](../../reports/index.html)。新检查要求每题解释，保留草稿、历次提交和审核；原课程题目和旧记录格式保持兼容。打开本模块报告时，在浏览器另存一份报告副本。保存不等于云端同步，跨设备使用请下载报告。范围与限制见 [全站基础审核](../../FOUNDATION_AUDIT.md)。

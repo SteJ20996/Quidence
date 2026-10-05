@@ -98,3 +98,8 @@ Both additions use the main signed-input widgets, active timers, optional suppor
 Q11 follows the box model 4x−3=9 → 4x=12 → four groups of 3. Both adding 3 and subtracting −3 on both sides are accepted. P4 uses y=(x−2)²+5 and y=−(x−2)²+5. Expansions, three distinct chosen inputs, opening, turning-point coordinates and extremum type are checked separately. Reason choices and short writing provide provisional central-reason evidence; selecting a supplied reason is not independent proof production.
 
 The old standalone lab is retained as historical source, without a live header entry; the main report/export is the current workflow. BS02 remains frozen. All nine suites include integrated navigation, gate draft/timing preservation, sign-source provenance, support snapshots, stale-route revision handling and export records. SVG rendering is checked separately; native full-page layout, touch and print/download behavior remain unverified.
+
+
+## 基础检查与报告副本
+
+公共导航新增 [15 题基础检查](../../foundations/index.html?module=aa01) 和 [Saved reports](../../reports/index.html)。新检查要求每题解释，保留草稿、历次提交和审核；原课程题目和旧记录格式保持兼容。打开本模块报告时，在浏览器另存一份报告副本。保存不等于云端同步，跨设备使用请下载报告。范围与限制见 [全站基础审核](../../FOUNDATION_AUDIT.md)。

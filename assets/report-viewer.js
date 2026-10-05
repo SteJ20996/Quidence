@@ -1,0 +1,26 @@
+(function(root){
+'use strict';
+const S=root.ClueveraReportStore,esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function mount(host,options={}){
+ let result,selected=null,version=0,notice='';try{result=S.read(options.storage||root.localStorage);}catch{result={ok:false,error:'Browser saving is unavailable.',raw:''};}
+ function download(data,name){try{const url=URL.createObjectURL(new Blob([data],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);notice='Download requested. You can attach this report to your AI tutor conversation.';}catch{notice='The download could not start. Copy the report text below or use a full browser tab.';}render();}
+ function render(){
+  if(!result.ok){host.innerHTML='<h1>Keep your saved reports safe.</h1><p>'+esc(result.error)+'</p>'+(result.raw?'<button data-r-action="raw">Download the original saved data</button>':'')+'<p><a href="../">All subjects</a></p>';return;}
+  const item=result.data.items.find(x=>x.id===selected),record=item?.versions[version];
+  host.innerHTML='<div class="f-toolbar"><a href="../" data-r-home>← All subjects</a><a href="../foundations/" data-r-foundations>Foundation checks</a></div><section class="f-report"><p class="f-eyebrow">YOUR LEARNING RECORDS</p><h1>Saved reports</h1><p>Revisit what you wrote, or take a report to another AI tutor. These copies stay in this browser; download one before switching browsers or devices.</p><p role="status">'+esc(notice)+'</p>'+(result.data.items.length?'<ul class="f-history">'+result.data.items.map(x=>'<li><button data-r-action="open" data-report="'+esc(x.id)+'">'+esc(x.subject)+' · '+esc(new Date(x.versions.at(-1).savedAt).toLocaleString())+' · '+x.versions.length+' saved version(s)</button></li>').join('')+'</ul>':'<p>No reports have been saved here yet. Open a report at the end of a lesson activity or foundation check to keep a copy.</p>')+(record?'<article class="f-intro"><h2>'+esc(item.subject)+'</h2><label class="f-field">Saved version<select data-r-version>'+item.versions.map((r,i)=>'<option value="'+i+'" '+(i===version?'selected':'')+'>'+esc(new Date(r.savedAt).toLocaleString())+' · version '+(i+1)+'</option>').join('')+'</select></label><p>Session: '+esc(item.sessionId)+'</p><div class="f-actions"><button class="f-primary" data-r-action="download">Download for an AI tutor</button><button data-r-action="copy">Copy report text</button></div><h3>A useful request for your AI tutor</h3><p>'+esc(S.HANDOFF)+'</p>'+(Array.isArray(record.payload.observations)?'<h3>Answers and explanations</h3>'+record.payload.observations.filter(o=>o&&typeof o==='object').map(o=>'<section class="f-attempt"><h3>'+esc(o.title)+' · '+esc(o.status)+'</h3><div class="f-quote">'+esc(o.explanation)+'</div></section>').join(''):record.payload.reportText?'<pre>'+esc(record.payload.reportText)+'</pre>':'<p>The complete answers, explanations, and lesson context are retained in the report below.</p>')+'<label class="f-field">Full portable report<textarea id="r-copy" readonly rows="10">'+esc(JSON.stringify({aiTutorRequest:S.HANDOFF,subject:item.subject,savedAt:record.savedAt,report:record.payload},null,2))+'</textarea></label></article>':'')+'</section>';
+ }
+ host.addEventListener('click',event=>{
+  if(event.target.closest('[data-r-home]')&&options.onHome){event.preventDefault();options.onHome();return;}
+  if(event.target.closest('[data-r-foundations]')&&options.onFoundations){event.preventDefault();options.onFoundations();return;}
+  const b=event.target.closest('[data-r-action]');if(!b)return;const action=b.dataset.rAction;
+  if(action==='raw'){download(result.raw,'Cluevera_Original_Saved_Reports.json');return;}
+  if(!result.ok)return;
+  if(action==='open'){selected=b.dataset.report;version=result.data.items.find(x=>x.id===selected).versions.length-1;notice='';render();}
+  if(action==='download'){const item=result.data.items.find(x=>x.id===selected),r=item.versions[version];download(JSON.stringify({aiTutorRequest:S.HANDOFF,subject:item.subject,savedAt:r.savedAt,report:r.payload},null,2),'Cluevera_'+item.module+'_Saved_Report.json');}
+  if(action==='copy'){const text=host.querySelector('#r-copy');if(root.navigator?.clipboard?.writeText){root.navigator.clipboard.writeText(text.value).then(()=>{notice='Report copied. Paste it into your AI tutor conversation.';render();}).catch(()=>{text.select();notice='Select and copy the report text below.';});}else{text.select();notice='The report text is selected. Use your device’s Copy command.';const status=host.querySelector('[role="status"]');if(status)status.textContent=notice;}}
+ });
+ host.addEventListener('change',event=>{if(event.target.hasAttribute('data-r-version')){version=Number(event.target.value);render();}});
+ render();return{render};
+}
+root.ClueveraReportViewer={mount};
+})(window);

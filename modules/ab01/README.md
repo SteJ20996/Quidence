@@ -81,3 +81,8 @@ The original and new matrices remain visible with stable column colors. Original
 Playback holds for reading between steps, supports pause and direct step selection, and honors reduced motion. Switching to the guide preserves all exploratory inputs. The exploration configuration page tool selects the exploration view; walkthrough page tools use the guide's same state and actions.
 
 Validation: `node tests/matrix-guide.test.cjs` verifies all seven steps, unchanged counts, both column images, separate route checkpoints (1,0) → (2,1) → (3,2), final arithmetic, invalid navigation, full playback and mode switching without replacing exploratory inputs. Mathematical and existing matrix interaction checks also pass. Real browser visual QA remains unavailable for this static Site in the current environment.
+
+
+## 基础检查与报告副本
+
+公共导航新增 [15 题基础检查](../../foundations/index.html?module=ab01) 和 [Saved reports](../../reports/index.html)。新检查要求每题解释，保留草稿、历次提交和审核；原课程题目和旧记录格式保持兼容。打开本模块报告时，在浏览器另存一份报告副本。保存不等于云端同步，跨设备使用请下载报告。范围与限制见 [全站基础审核](../../FOUNDATION_AUDIT.md)。
