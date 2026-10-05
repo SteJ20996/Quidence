@@ -1,0 +1,19 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const Element=require('./foundation-dom.cjs');
+function harness(module, map=new Map(),failSaving=false,options={}){
+ const C=require('../modules/'+module+'/dist/content.js'),E=require('../assets/course-engine.js').create(C);
+ const app=new Element('main',{id:'app'}),note=new Element('span',{id:'storage-note'}),body=new Element('body'),blobs=[],downloads=[];
+ const document={body,getElementById:id=>id==='app'?app:id==='storage-note'?note:app.querySelector('#'+id),querySelector:s=>app.querySelector(s),createElement:tag=>{const e=new Element(tag);if(tag==='a')e.click=()=>downloads.push({name:e.download,url:e.href});return e;}};
+ const frames=new Map();let clockId=0;const window={matchMedia:()=>({matches:!!options.reduced}),scrollTo(){},print(){this.printed=true;}};
+ window.document=document;const context={window,document,requestAnimationFrame:f=>{frames.set(++clockId,f);return clockId;},cancelAnimationFrame:id=>frames.delete(id),localStorage:{getItem:k=>map.get(k)||null,setItem:(k,v)=>{if(failSaving)throw Error('Storage denied');map.set(k,v);}},Blob,URL:{createObjectURL:b=>{blobs.push(b);return 'blob:'+blobs.length;},revokeObjectURL(){}},setTimeout:f=>f()};
+ window.document=document;window.localStorage=context.localStorage;vm.createContext(context);vm.runInContext(fs.readFileSync(path.join(__dirname,'../assets/report-store.js'),'utf8'),context);vm.runInContext(fs.readFileSync(path.join(__dirname,'../modules',module,'dist/content.js'),'utf8'),context);for(const file of ['course-graphs.js','course-engine.js','course-app.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../assets',file),'utf8'),context,{filename:file});
+ function click(action,index){const b=app.all().find(x=>x.dataset.action===action&&(index===undefined||x.dataset.index===String(index)));assert.ok(b,`Missing ${action} ${index??''}`);if(!b.disabled)app.events.click({target:b});}
+ function choose(value){const form=app.querySelector('#answer-form'),x=form.querySelectorAll('[name="choice"]').find(x=>x.value===value);assert.ok(x,`Missing choice ${value}`);if(x.attrs.type==='radio')form.querySelectorAll('[name="choice"]').forEach(x=>x.checked=false);x.checked=!x.checked;app.events.input({target:x});}
+ function input(name,value){const x=app.querySelector(`[name="${name}"]`);if(typeof value==='boolean')x.checked=value;else x.value=value;app.events.input({target:x});}
+ function submit(){app.querySelector('#answer-form').events.submit({preventDefault(){}});}
+ const saved=()=>JSON.parse(map.get(E.SCHEMA));
+ function lab(name,value){const el=app.querySelector('[data-lab=\"'+name+'\"]');assert.ok(el,'Missing lab control '+name);if(typeof value==='boolean')el.checked=value;else el.value=String(value);app.events.input({target:el});app.events.change({target:el});}function tick(time){for(const[id,fn]of [...frames]){frames.delete(id);fn(time);}}return{C,E,app,note,window,map,blobs,downloads,document,click,choose,input,lab,submit,saved,frames,tick};
+}
+
+module.exports=harness;

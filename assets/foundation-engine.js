@@ -9,12 +9,16 @@ const UNCHECKED={
  ac01:['Constructing a payoff model from a story and stating its assumptions','Expected payoffs and mixed strategies','Sequential decisions, backward induction, and credible threats','Repeated games and incomplete information'],
  ad01:['Constructing a difference quotient and derivative without a supplied slope','Product, quotient, chain, implicit, and inverse-function differentiation rules','Antiderivatives, integration constants, and finding definite integrals analytically','Function analysis, optimization, differential equations, and wider integration applications']
 };
+UNCHECKED.ae01=['Quartiles, IQR, boxplots, histograms, and calculating spread without supplied deviations','Regression, residuals, correlation, sampling distributions, confidence intervals, and hypothesis tests','Bayes’ rule, probability distributions, and evaluating assumptions of real studies'];
+UNCHECKED.af01=['Full polynomial and rational analysis, trigonometric identities, and general trigonometric equations','Conics, sequences, series, vectors, polar coordinates, and complex numbers','Constructing and validating models from unfamiliar real situations'];
 const CONDITIONS={
  aa01:[{task:'aa-f12',note:'The graph description supplies the horizontal and vertical moves. This checks converting directions to coordinates; independent graph reading needs a new task.'}],
  ab01:[{task:'ab-f12',note:'The reasoning prompt supplies the zero-vector test. It checks applying this necessary condition to a translation, not independently choosing a test or proving an arbitrary map linear.'}],
  ac01:[{task:'ac-f08',note:'The comparison pattern is stated in the question. This checks interpreting that pattern; identifying dominance independently needs a new table.'}],
  ad01:[{task:'ad-f05',note:'The tangent slope is supplied. This checks the meaning of derivative notation, not calculating a tangent slope independently.'},{task:'ad-f11',note:'The rectangle sums and exact integral are supplied. This checks comparing errors, not constructing a rectangle sum independently.'}]
 };
+CONDITIONS.ae01=[{task:'ae-f08',note:'The mean and sum of squared deviations are supplied. This checks the sample divisor, square root, and units; constructing the deviations requires another task.'}];
+CONDITIONS.af01=[{task:'af-f09',note:'The difference-quotient form is supplied. This checks computing and interpreting a secant slope, not independently choosing the method.'}];
 const stamp=()=>new Date().toISOString();
 let sequence=0;
 const object=v=>!!v&&typeof v==='object'&&!Array.isArray(v);
@@ -29,6 +33,7 @@ function fresh(){return{schema:SCHEMA,bankVersion:B.VERSION,modules:Object.fromE
 function session(portfolio,module){const m=portfolio.modules[module];return m?.sessions.find(s=>s.id===m.active)||null;}
 function createSession(portfolio,module,check='entry'){
  if(!B.MODULES[module])throw Error('Unknown subject');
+ if(check==='followup'&&!X.MODULES[module])throw Error('No further check is available for this subject');
  if(!['entry','followup'].includes(check))throw Error('Unknown check');
  const s={id:stamp()+'-'+(++sequence)+'-'+Math.random().toString(36).slice(2,9),module,bankVersion:check==='followup'?X.VERSION:B.VERSION,createdAt:stamp(),view:'intro',index:0,records:{},events:[]};
  if(check==='followup')s.check=check;
@@ -116,13 +121,13 @@ function markdown(s){
  return out+'These are task observations. All original explanations and earlier attempts remain available for review.\n';
 }
 function hydrate(value){
- if(!object(value)||value.schema!==SCHEMA||value.bankVersion!==B.VERSION||!object(value.modules)||Object.keys(value.modules).sort().join()!==Object.keys(B.MODULES).sort().join())return null;
+ if(!object(value)||value.schema!==SCHEMA||value.bankVersion!==B.VERSION||!object(value.modules)||Object.keys(value.modules).some(id=>!B.MODULES[id])||['aa01','ab01','ac01','ad01'].some(id=>!value.modules[id])||Object.keys(value.modules).length!==4&&Object.keys(value.modules).length!==Object.keys(B.MODULES).length)return null;
  const ids=new Set();
  for(const [module,m]of Object.entries(value.modules)){
   if(!object(m)||!Array.isArray(m.sessions)||!(m.active===null||typeof m.active==='string'))return null;
   if(m.active!==null&&!m.sessions.some(s=>s?.id===m.active))return null;
   for(const s of m.sessions){
-   if(!object(s)||typeof s.id!=='string'||ids.has(s.id)||s.module!==module||![B.VERSION,X.VERSION].includes(s.bankVersion)||(s.bankVersion===X.VERSION?s.check!=='followup':s.check!==undefined&&s.check!=='entry')||!Number.isFinite(Date.parse(s.createdAt))||!['intro','task','report'].includes(s.view)||!Number.isInteger(s.index)||s.index<0||s.index>=tasks(s).length||!object(s.records)||!Array.isArray(s.events)||s.events.some(e=>!object(e)||typeof e.type!=='string'||!Number.isFinite(Date.parse(e.at))))return null;
+   if(!object(s)||typeof s.id!=='string'||ids.has(s.id)||s.module!==module||(s.bankVersion===X.VERSION&&!X.MODULES[module])||![B.VERSION,X.VERSION].includes(s.bankVersion)||(s.bankVersion===X.VERSION?s.check!=='followup':s.check!==undefined&&s.check!=='entry')||!Number.isFinite(Date.parse(s.createdAt))||!['intro','task','report'].includes(s.view)||!Number.isInteger(s.index)||s.index<0||s.index>=tasks(s).length||!object(s.records)||!Array.isArray(s.events)||s.events.some(e=>!object(e)||typeof e.type!=='string'||!Number.isFinite(Date.parse(e.at))))return null;
    ids.add(s.id);
    for(const [id,r]of Object.entries(s.records)){
     const t=tasks(s).find(t=>t.id===id);
@@ -134,8 +139,10 @@ function hydrate(value){
    if(s.view==='report'&&!done(s))return null;
   }
  }
- return clone(value);
+ const migrated=clone(value);for(const id of Object.keys(B.MODULES))if(!migrated.modules[id])migrated.modules[id]={active:null,sessions:[]};
+ return migrated;
 }
 const api={SCHEMA,numeric,fresh,session,createSession,definition,checkName,tasks,task,blank,record,edit,validate,evaluate,submit,last,done,review,latestReview,observations,componentChecks,evidenceSummary,scopeReview,nextChecks,portable,answerText,markdown,hydrate};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraFoundationEngine=api;
 })(typeof window==='undefined'?globalThis:window);
+

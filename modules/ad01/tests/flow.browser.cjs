@@ -18,7 +18,7 @@ async function learn(page){await click(page,'next');for(let i=0;i<4;i++)await cl
 async function finish(page,i){await choose(page,'unsure');await page.locator('#answer-form').evaluate(f=>f.requestSubmit());await learn(page);for(const t of C.LESSONS[i].checks){await choose(page,t.correct[0]);await page.locator('#answer-form').evaluate(f=>f.requestSubmit());await click(page,'next');}}
 test('complete workflow: blank gates, unsaved edits, history, resume, feedback and exports',async()=>{
  const context=await browser.newContext({viewport:{width:1280,height:900}}),page=await context.newPage(),errors=[];
- page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/');assert.equal(await page.locator('.subject-link').count(),4);
+ page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/');assert.equal(await page.locator('.subject-link').count(),6);
  await page.locator('.subject-link[href="modules/ad01/dist/"]').click();await click(page,'start');
  await page.locator('#answer-form').evaluate(f=>f.requestSubmit());assert.match(await page.locator('#answer-status').textContent(),/Choose an answer/);assert.equal(await page.locator('[data-action="next"]').isDisabled(),true);
  await choose(page,'4');await page.locator('#answer-form').evaluate(f=>f.requestSubmit());assert.doesNotMatch(await page.locator('#app').textContent(),/Correct on this question|Revisit this idea/);
@@ -59,3 +59,4 @@ test('desktop screenshot and visible graph bounds for the largest two-point sepa
  if(process.env.AD01_SCREENSHOT_DIR)await page.screenshot({path:path.join(process.env.AD01_SCREENSHOT_DIR,'ad01-desktop.png'),fullPage:true});
  await context.close();
 });
+

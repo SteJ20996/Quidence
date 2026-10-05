@@ -7,10 +7,10 @@ const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-10,`${a} differs from ${b}`);
 const mv=(a,v)=>a.map(row=>row.reduce((s,x,i)=>s+x*v[i],0));
 const response=t=>({...E.blank(t),values:Object.fromEntries(t.fields.map(f=>[f.id,f.kind==='multi'?[...f.answer]:String(f.answer)])),explanation:'I checked the relevant quantities and connections.'});
 test('thirty supplemental items have distinct IDs, valid choices, explicit reason requests, and retained entry definitions',()=>{
- const ids=new Set(Object.values(B.MODULES).flatMap(m=>m.tasks.map(t=>t.id)));assert.equal(ids.size,60);
+ const ids=new Set(Object.values(B.MODULES).flatMap(m=>m.tasks.map(t=>t.id)));assert.equal(ids.size,90);
  assert.deepEqual(Object.values(X.MODULES).map(m=>m.tasks.length),[8,8,6,8]);
  for(const[module,m]of Object.entries(X.MODULES))for(const t of m.tasks){assert.ok(!ids.has(t.id));ids.add(t.id);assert.equal(t.module,module);assert.equal(t.groupName,m.groups[t.group]);assert.ok(t.reason.length>25&&t.solution.length>30&&t.next.length>25);assert.match(t.provenance,/Newly composed/);assert.equal(new Set(t.fields.map(f=>f.id)).size,t.fields.length);for(const f of t.fields){if(f.kind==='number')assert.ok(Number.isFinite(f.answer));else{assert.ok(f.options.some(o=>o.value===f.answer));assert.equal(new Set(f.options.map(o=>o.value)).size,f.options.length);}}}
- assert.equal(ids.size,90);assert.equal(B.VERSION,'cluevera-foundations-1');
+ assert.equal(ids.size,120);assert.equal(B.VERSION,'cluevera-foundations-1');
 });
 test('supplemental school mathematics checks portions, operation order, changing percentage bases, and solution sets',()=>{
  close(refs('aa-x01').cups*(1/8),3/4);assert.deepEqual(refs('aa-x02'),{value:-2*(3-5)+1,valid:'no'});assert.notEqual(-2*3-5+1,refs('aa-x02').value);
@@ -48,10 +48,11 @@ test('supplemental calculus independently computes limits, quotients, nonunit su
  const anti=refs('ad-x07');assert.equal(2*anti.a,2);assert.equal(anti.constant,5);assert.equal(anti.f3,anti.a*3**2+anti.constant);assert.deepEqual(refs('ad-x08'),{value:3**2-1**2,slope:2*3});
 });
 test('old and further checks restore with their own immutable definitions and reject cross-version answers',()=>{
- const p=E.fresh();for(const module of Object.keys(B.MODULES)){const entry=E.createSession(p,module);for(const t of E.tasks(entry)){E.edit(entry,t,response(t));E.submit(entry,t);}entry.view='report';const original=JSON.stringify(entry);const further=E.createSession(p,module,'followup');assert.equal(JSON.stringify(entry),original);for(const t of E.tasks(further)){E.edit(further,t,response(t));assert.equal(E.submit(further,t).ok,true);}further.view='report';assert.equal(E.portable(entry).bankVersion,B.VERSION);assert.equal(E.portable(further).bankVersion,X.VERSION);assert.equal(E.portable(further).taskDefinitions.length,X.MODULES[module].tasks.length);assert.match(E.markdown(further),/Further foundation check/);assert.deepEqual(E.hydrate(p),p);}
+ const p=E.fresh();for(const module of Object.keys(X.MODULES)){const entry=E.createSession(p,module);for(const t of E.tasks(entry)){E.edit(entry,t,response(t));E.submit(entry,t);}entry.view='report';const original=JSON.stringify(entry);const further=E.createSession(p,module,'followup');assert.equal(JSON.stringify(entry),original);for(const t of E.tasks(further)){E.edit(further,t,response(t));assert.equal(E.submit(further,t).ok,true);}further.view='report';assert.equal(E.portable(entry).bankVersion,B.VERSION);assert.equal(E.portable(further).bankVersion,X.VERSION);assert.equal(E.portable(further).taskDefinitions.length,X.MODULES[module].tasks.length);assert.match(E.markdown(further),/Further foundation check/);assert.deepEqual(E.hydrate(p),p);}
  const bad=structuredClone(p),s=bad.modules.aa01.sessions[1];s.records['aa-x01'].submissions[0].taskVersion=B.VERSION;assert.equal(E.hydrate(bad),null);s.records['aa-x01'].submissions[0].taskVersion=X.VERSION;s.check='entry';assert.equal(E.hydrate(bad),null);
 });
 test('partial components and multi-select detail are retained without grading uncertainty or explanation text automatically',()=>{
  const p=E.fresh(),s=E.createSession(p,'ab01','followup'),t=item('ab-x03'),a=response(t);a.values.hsX='99';a.explanation='4';E.edit(s,t,a);E.submit(s,t);const o=E.observations(s)[2];assert.deepEqual(o.components.map(c=>c.state),['recheck','matched','matched','matched']);assert.equal(o.explanationReview,null);assert.equal(E.evidenceSummary(s).matched,3);assert.equal(E.evidenceSummary(s).recheck,1);
  const m=B.MODULES.ac01.tasks.find(t=>t.id==='ac-f13'),answer=response(m);answer.values.cells=['tl','tr'];const checked=E.componentChecks(m,{answer,objective:E.evaluate(m,answer)})[0];assert.equal(checked.state,'recheck');assert.equal(checked.selection.correct.length,1);assert.equal(checked.selection.extra.length,1);assert.equal(checked.selection.missing.length,1);answer.unsure=true;const uncertain=E.componentChecks(m,{answer,objective:E.evaluate(m,answer)})[0];assert.equal(uncertain.state,'unsure');assert.equal(uncertain.selection,undefined);
 });
+

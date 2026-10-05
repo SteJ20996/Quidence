@@ -4,8 +4,8 @@ const B=require('../assets/foundation-bank.js'),E=require('../assets/foundation-
 const answers=id=>Object.fromEntries(B.MODULES[id].tasks.map(t=>[t.id,Object.fromEntries(t.fields.map(f=>[f.id,f.answer]))]));
 const mul=(a,v)=>a.map(row=>row.reduce((s,n,i)=>s+n*v[i],0));
 const pure=g=>{const cells=[];for(let r=0;r<2;r++)for(let c=0;c<2;c++)if(g.payoffs[r][c][0]>=g.payoffs[1-r][c][0]&&g.payoffs[r][c][1]>=g.payoffs[r][1-c][1])cells.push(['tl','tr','bl','br'][2*r+c]);return cells;};
-test('sixty original items have unique IDs, five balanced groups, answer fields, and focused reason prompts',()=>{
- const ids=new Set();for(const [module,m]of Object.entries(B.MODULES)){assert.equal(m.tasks.length,15);assert.equal(m.groups.length,5);for(let g=0;g<5;g++)assert.equal(m.tasks.filter(t=>t.group===g).length,3);for(const t of m.tasks){assert.ok(!ids.has(t.id));ids.add(t.id);assert.equal(t.module,module);assert.ok(t.reason.length>25&&t.solution.length>25&&t.next.length>20);assert.ok(t.fields.length>=1);assert.equal(new Set(t.fields.map(f=>f.id)).size,t.fields.length);assert.match(t.provenance,/Newly composed/);}}assert.equal(ids.size,60);
+test('ninety entry items have unique IDs, five balanced groups, answer fields, and focused reason prompts',()=>{
+ const ids=new Set();for(const [module,m]of Object.entries(B.MODULES)){assert.equal(m.tasks.length,15);assert.equal(m.groups.length,5);for(let g=0;g<5;g++)assert.equal(m.tasks.filter(t=>t.group===g).length,3);for(const t of m.tasks){assert.ok(!ids.has(t.id));ids.add(t.id);assert.equal(t.module,module);assert.ok(t.reason.length>25&&t.solution.length>25&&t.next.length>20);assert.ok(t.fields.length>=1);assert.equal(new Set(t.fields.map(f=>f.id)).size,t.fields.length);assert.match(t.provenance,/Newly composed/);}}assert.equal(ids.size,90);
 });
 test('school-math references match independent arithmetic, slope, and budget calculations',()=>{
  const a=answers('aa01');assert.equal(a['aa-f01'].greater,-3/4>-.8?'fraction':'decimal');assert.equal(a['aa-f02'].value,-2-5);assert.equal(a['aa-f03'].sum,1/2+1/4);assert.deepEqual(a['aa-f04'],{one:12/3,five:5*(12/3)});
@@ -31,3 +31,4 @@ test('calculus references match one-sided limits, difference quotients, rectangl
  const rectangles=B.MODULES.ad01.tasks[9].visual.rectangles;assert.equal(a['ad-f10'].sum,rectangles.reduce((n,[x0,x1,y])=>n+(x1-x0)*y,0));assert.ok(Math.abs(8/3-1.75)<Math.abs(8/3-1));assert.equal(a['ad-f11'].closer,'four');const primitive=x=>x*x/2;assert.equal(a['ad-f12'].integral,primitive(1)-primitive(-1));assert.equal(a['ad-f12'].area,.5*1*1+.5*1*1);assert.equal(a['ad-f13'].integral,3*(0-2));assert.equal(a['ad-f14'].derivative,2**2-1);assert.equal(a['ad-f15'].change,-2*(3-1));
 });
 test('task graphics remain finite and provide readable descriptions at narrow and desktop widths',()=>{for(const m of Object.values(B.MODULES))for(const t of m.tasks)for(const width of [240,320,620]){const svg=G.visual(t,width);assert.doesNotMatch(svg,/NaN|Infinity|undefined/);if(t.visual)assert.ok(svg.includes(t.visual.description));if(t.matrix)assert.match(svg,/Matrix rows:/);}});
+

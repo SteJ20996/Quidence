@@ -1,6 +1,6 @@
 (function(root){
 'use strict';
-const KEY='cluevera_saved_reports_v1',SUBJECTS={aa01:'Secondary-school math',ab01:'Linear algebra foundations',ac01:'Game theory foundations',ad01:'Visual calculus'};
+const KEY='cluevera_saved_reports_v1',SUBJECTS={aa01:'Secondary-school math',ab01:'Linear algebra foundations',ac01:'Game theory foundations',ad01:'Visual calculus',ae01:'Statistics foundations',af01:'Pre-calculus foundations'};
 const clone=v=>JSON.parse(JSON.stringify(v));
 function fresh(){return{schema:KEY,items:[]};}
 function hydrate(v){if(!v||v.schema!==KEY||!Array.isArray(v.items))return null;const ids=new Set();for(const x of v.items){if(!x||typeof x.id!=='string'||ids.has(x.id)||!SUBJECTS[x.module]||!Array.isArray(x.versions)||!x.versions.length||x.versions.some(r=>!r||typeof r.signature!=='string'||!Number.isFinite(Date.parse(r.savedAt))||!r.payload||typeof r.payload!=='object'))return null;ids.add(x.id);}return clone(v);}
@@ -22,3 +22,4 @@ function appendNotice(host,result){if(!result||!root.document)return;const p=roo
 const api={KEY,SUBJECTS,fresh,hydrate,read,save,appendNotice,HANDOFF};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraReportStore=api;
 })(typeof window==='undefined'?globalThis:window);
+
