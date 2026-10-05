@@ -8,7 +8,7 @@ test('empty explanations and incomplete answers are gated; uncertainty is missin
  a.explanation='I do not understand how to compare negatives.';a.values.greater='';E.edit(s,t,a);assert.equal(E.submit(s,t).ok,false);a.unsure=true;E.edit(s,t,a);assert.equal(E.submit(s,t).ok,true);assert.equal(E.last(s,t).objective.state,'unsure');assert.equal(E.last(s,t).answer.explanation,a.explanation);
 });
 test('signed decimal and fraction input is equivalent without executing expressions or accepting zero denominators',()=>{assert.equal(E.numeric('−3/4'),-.75);assert.equal(E.numeric(' 2 / -3 '),-2/3);assert.equal(E.numeric('.5'),.5);for(const text of ['','1/0','NaN','Infinity','2+3','alert(1)','1e999'])assert.equal(E.numeric(text),null);const t=B.MODULES.aa01.tasks[2],a=answer(t);a.values.sum='3/4';assert.equal(E.evaluate(t,a).state,'matched');a.values.sum='';assert.equal(E.evaluate(t,a).state,'recheck');});
-test('all four completed sessions restore and export the exact questions, original reasons, and support context',()=>{
+test('all six completed sessions restore and export the exact questions, original reasons, and support context',()=>{
  for(const module of Object.keys(B.MODULES)){const{p,s}=complete(module);assert.ok(E.hydrate(p));assert.equal(E.done(s),true);const out=E.portable(s);assert.equal(out.taskDefinitions.length,15);assert.equal(out.observations.length,15);assert.ok(out.observations.every(x=>x.explanationReview===null));assert.match(E.markdown(s),/AI tutor/);assert.match(E.markdown(s),/Reasoning prompt:/);assert.match(E.markdown(s),/Other help reported:/);}
 });
 test('revisions preserve first answers, earlier feedback and attempt-specific human reviews',()=>{
@@ -19,7 +19,7 @@ test('impossible state, altered scoring, duplicate sessions and invalid reviews 
 test('report archive keeps all subjects and immutable revisions while avoiding timestamp-only duplicates',()=>{
  const map=new Map(),storage={getItem:k=>map.get(k)||null,setItem:(k,v)=>map.set(k,v)};
  for(const module of Object.keys(B.MODULES)){const{s}=complete(module),payload=E.portable(s);assert.equal(S.save(module,payload,s.id,storage).ok,true);payload.exportedAt='changed timestamp';assert.equal(S.save(module,payload,s.id,storage).changed,false);payload.session.records[E.tasks(s)[0].id].submissions[0].answer.explanation='A later report explanation.';assert.equal(S.save(module,payload,s.id,storage).changed,true);}
- const archive=S.read(storage).data;assert.equal(archive.items.length,4);assert.ok(archive.items.every(x=>x.versions.length===2));assert.ok(archive.items.every(x=>x.versions[0].payload.session.records[x.versions[0].payload.taskDefinitions[0].id].submissions[0].answer.explanation!=='A later report explanation.'));
+ const archive=S.read(storage).data;assert.equal(archive.items.length,6);assert.ok(archive.items.every(x=>x.versions.length===2));assert.ok(archive.items.every(x=>x.versions[0].payload.session.records[x.versions[0].payload.taskDefinitions[0].id].submissions[0].answer.explanation!=='A later report explanation.'));
 });
 test('unreadable report data and full storage are preserved with an explicit failure result',()=>{const map=new Map([[S.KEY,'{corrupt']]),storage={getItem:k=>map.get(k),setItem:(k,v)=>map.set(k,v)};assert.equal(S.save('aa01',{test:1},'sample',storage).ok,false);assert.equal(map.get(S.KEY),'{corrupt');const denied={getItem:()=>null,setItem(){throw Error('quota');}};assert.equal(S.save('aa01',{test:1},'sample',denied).ok,false);});
 test('next checks retain explanation concerns and support conditions without inventing a weakness for matching answers',()=>{
@@ -27,3 +27,4 @@ test('next checks retain explanation concerns and support conditions without inv
  const revised=answer(last,'Both equations now check.');revised.otherHelp=true;E.edit(s,last,revised);E.submit(s,last);assert.equal(E.latestReview(s,last),null);next=E.nextChecks(s);assert.match(next.at(-1).followupReasons.join(' '),/Other help was reported/);assert.match(next.at(-1).followupReasons.join(' '),/after a report was opened/);assert.doesNotMatch(next.at(-1).followupReasons.join(' '),/asks for a revised reason/);
  for(const module of Object.keys(B.MODULES)){const session=complete(module).s,report=E.portable(session);assert.equal(report.scopeReview.groups.length,5);assert.ok(report.scopeReview.notChecked.length);assert.ok(report.scopeReview.suppliedInformation.every(x=>E.tasks(session).some(t=>t.id===x.task)));assert.match(E.markdown(session),/Not checked in these 15 questions/);}
 });
+
