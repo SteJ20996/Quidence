@@ -1,4 +1,4 @@
-# Geometry lab · bs02.5
+# Geometry lab · Beta 0.6
 
 All student-facing text is English. Both activities were composed for this project; no external question-bank text was copied.
 
@@ -6,7 +6,7 @@ All student-facing text is English. Both activities were composed for this proje
 
 Source: Project-composed.
 
-Prompt: Explore `8(x + 3)(2x + 5)` as the volume of a rectangular prism. Keep height 8 when you split the other two lengths. Rewrite the expression as `ax² + bx + c`. Enter a, b, c, and the volume at x = 2. Which two parts contribute to the x term? Explain why their contributions are added.
+Prompt: Explore `8(x + 3)(2x + 5)` as the volume of a rectangular prism. Keep height 8 when you split the other two lengths. Rewrite the expression as `ax² + bx + c`. Enter a, b, c, and the volume at x = 2. Can you briefly show your work here? Sequential distribution, partitioning and equivalent calculations are welcome.
 
 | Part | Height | Width | Depth | Volume |
 |---|---:|---|---|---|
@@ -29,14 +29,14 @@ Evidence: Given geometric model, selected stage, final rotation/zoom/x preview, 
 
 Source: Project-composed.
 
-Prompt: Explore `3(x − 2)` by removing a width-2 strip from a height-3 rectangle. Which expression matches it for every x: `3x − 6`, `3x − 2`, or `3x + 6`? Enter the remaining area at x = 5. Why is the removed area 6 rather than 2? Describe the strip or use a calculation.
+Prompt: A height-5 rectangle has width x. Remove a width-3 strip. Someone claims the remaining area is `5x−3`. Which expression matches `5(x−3)` for every x: `5x−15`, `5x−3`, or `5x+15`? Enter the area at x=7 and explain or calculate the removed area.
 
-Answer: `3x − 6`. At x = 5, remaining width is 3 and remaining area is 9 square units.
+Answer: `5x−15`. At x=7, remaining width is 4 and remaining area is 20 square units.
 
-Reason essence: Removing width 2 at full height 3 removes area `2 × 3 = 6`; subtract that area from `3x`. The central dimensional reason, including an equivalent concise calculation, earns provisional full core-reason credit. A correct numerical example alone is partial evidence. Unrecognized wording and conflicts are retained for review.
+Reason essence: Removing width 3 at full height 5 removes area `3 × 5 = 15`; subtract that area from `5x`. The central dimensional reason or equivalent distribution earns provisional full core-reason credit. A correct numerical example alone is partial evidence. Unrecognized wording and conflicts are retained for review. Historical 3(x−2) explanation fixtures remain distinct from the current task snapshot.
 
-Interaction: Whole → mark the width-2 red strip → move the removed strip aside. Blue is included/kept; red is removed/subtracted, with hatching and labels in addition to color. There is no minus operator between the remaining blue part and the already-removed red part. The statement “Remaining area = whole area − removed area” explains the operation. x previews range from 3 to 9; the response remains at x = 5.
+Interaction: Whole → mark the width-3 red strip → move the removed strip aside. Blue is kept; red is removed, with hatching and labels in addition to color. The minus sign belongs to the red removed area. The statement “Remaining area = whole area − removed area” explains the operation. x previews range from 4 to 9; the response remains at x=7. One graphical unit is 27px; height 135px and removed width 81px stay fixed.
 
-Model domain: x > 2 gives a positive remaining width. At x = 2 the remaining area is zero; at smaller x, the algebraic identity remains valid while this ordinary positive-length picture no longer represents the result.
+Model domain: x > 3 gives a positive remaining width. At x=3 the remaining area is zero; at smaller x, the algebraic identity remains valid while this ordinary positive-length picture no longer represents the result.
 
 Evidence: Given subtraction model, final x preview, selected rewrite, numerical area, raw reason, reason matches/review status, and normal attempt history.

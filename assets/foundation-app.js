@@ -43,8 +43,10 @@ function mount(host,options={}){
  function render(focus=false){
   if(blocked){host.innerHTML='<section class="f-intro"><h1>Keep your saved check safe.</h1><p>The existing check could not be read and has been kept unchanged.</p><div class="f-actions">'+button('raw','Download the saved data')+button('replace','Replace with a fresh portfolio')+'</div><dialog id="f-recovery-dialog"><h2>Replace the saved checks?</h2><p>Download the original data first if you want to keep it. This replaces the foundation-check portfolio only.</p>'+button('cancel-replace','Keep the original')+button('confirm-replace','Replace it')+'</dialog></section>';return;}
   const s=current();archive();host.innerHTML=nav()+status()+(s.view==='intro'?intro():s.view==='task'?question():report());save();
+  if(s.view==='report')root.ClueveraReportTools?.attach(host,mTitle(),{markdown:E.markdown(s)},root.ClueveraReportStore?.HANDOFF);
   if(focus){const heading=host.querySelector('#f-heading');heading?.setAttribute('tabindex','-1');heading?.focus();}
  }
+ function mTitle(){return B.MODULES[selected].title;}
  function openReport(){const s=current();if(!E.done(s)){notice='Save an answer and explanation for all '+E.tasks(s).length+' questions before opening the report.';render();return;}s.view='report';if(!s.events.some(e=>e.type==='report_opened'))s.events.push({type:'report_opened',at:new Date().toISOString()});notice='';render(true);}
  host.addEventListener('input',event=>{
   if(blocked)return;const target=event.target,s=current();

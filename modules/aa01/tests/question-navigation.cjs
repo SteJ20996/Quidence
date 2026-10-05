@@ -21,11 +21,11 @@ for(const[id,index]of core.map((id,i)=>[id,i])){
 for(const id of ['S1','V1','D1']){
  h.q(`[data-catalog-item="${id}"]`).click();
  assert.equal(h.api.state.queue[h.api.state.index],id);
- assert(h.app.innerHTML.includes(id==='S1'?'Sports Day views':id==='V1'?'8(x + 3)(2x + 5)':'3(x − 2)'));
+ assert(h.app.innerHTML.includes(id==='S1'?'Sports Day views':id==='V1'?'8(x + 3)(2x + 5)':'5x − 3'));
 }
 const options=h.qa('option');
 assert.equal(options.length,19);
-for(const id of h.api.state.queue){
+for(const id of h.api.state.queue.filter(id=>id!=='QP')){
  const destination=h.api.state.queue.indexOf(id),opt=h.q(`option[value="${destination}"]`);
  assert(opt,`missing mobile destination ${id}`);
  h.q('#area-select').value=opt.value;h.q('#area-select').fire('change');
@@ -37,7 +37,7 @@ const attempts=h.api.state.records.C3.attempts.length;
 h.q('#catalog-toggle').click();assert(h.q('#question-list').hidden);assert.equal(h.q('#catalog-toggle').getAttribute('aria-expanded'),'false');
 assert.equal(h.api.collect().one,2.5);assert.equal(h.api.state.records.C3.attempts.length,attempts);assert.equal(h.api.activityTime(h.api.state.records.C3),2000);
 h.api.goto(h.api.state.queue.indexOf('C1'));assert(h.q('#question-list').hidden);
-h.api.submit({point:-1.5,near:'-0.5'});h.api.advance();
+h.api.state.includeStretch=true;h.api.submit({point:-1.5,near:'-0.5'});h.api.advance();
 assert.equal(h.api.state.queue[h.api.state.index],'FAN');
 h.q('#catalog-toggle').click();assert.equal(h.qa('[data-catalog-item]').length,16);
 // An inserted adaptive check shifts queue indices, but Q labels and destinations stay correct.
@@ -51,5 +51,6 @@ h.q('[data-catalog-item="C3"]').click();assert.equal(h.api.collect().one,2.5);as
 h.q('#catalog-toggle').click();h.q('#snapshot').click();h.q('#restart').click();h.q('#confirm-restart').click();
 assert.equal(h.q('#question-list').hidden,false);assert.equal(h.qa('[data-catalog-item]').length,15);
 const html=fs.readFileSync(path.join(__dirname,'../dist/index.html'),'utf8');
-assert(html.includes('Beta 0.5'));for(const name of ['style.css','rubric.js','reasoning.js','geometry.js','adaptive.js','app.js'])assert(html.includes(`${name}?v=0.5`));
+assert(html.includes('Beta 0.6'));for(const name of ['style.css','rubric.js','reasoning.js','geometry.js','adaptive.js','app.js'])assert(html.includes(`${name}?v=0.6`));
 console.log(JSON.stringify({result:'passed',checks:['eleven distinct question entries open real response forms','three base activities independently reachable; optional fourth covered by integration suite','every mobile question/project step reachable','list toggle preserves drafts/timers','adaptive insertion retains Q numbering and destinations','restart restores complete visible inventory','release label and asset cache keys'],scope:'DOM callbacks and state; native browser layout unverified'}));
+

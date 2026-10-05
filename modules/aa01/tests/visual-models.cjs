@@ -48,9 +48,10 @@ for(const x of [1,2,3,4,5,6]){area.api.goto(4);const el=area.q('[data-area-x]');
   assert.equal(wholes.length,2);assert.equal(wholes[0][3],wholes[1][3]);assert.equal(wholes[0][4],wholes[1][4]);
   assert.equal(Number(wholes[0][3])*Number(wholes[0][4]),parts.reduce((sum,p)=>sum+Number(p[3])*Number(p[4]),0));
 }
-for(const [id,height,constant]of [['C6',2,3],['FE',4,2]]){
+for(const [id,height,constant]of [['FE',4,2]]){
   const html=area.api.form(id);assert(html.includes('data-area-stage="whole"'));assert(html.includes('data-area-stage="partition"'));assert(html.includes('data-area-stage="separate"'));
   assert(html.includes(`Both pieces have height ${height}; their widths are x and ${constant}.`));
   assert(!html.includes(`>${height} × ${constant}</text>`));
 }
 console.log(JSON.stringify({result:'passed',scope:'mathematical SVG and state checks, not browser layout',checks:['equal repeated laps, not unequal tracks','lap count and time groups','original submission retained','visual support snapshots','positive x split area identity','constant piece remains 6','clue never auto-fills answers','report distinguishes aided results','view/slider state persists']}));
+

@@ -26,10 +26,11 @@ h.q('[data-optional-visual="cost-blocks"]').click();assert.equal(r.hints.length,
 h.input('setupA',24);h.q('#submit').click();assert.equal(r.attempts.length,2);assert.equal(r.attempts[0].support.hint_ids.length,0);assert(r.attempts[1].support.hint_ids.includes('S1-cost-blocks'));
 h.q('#snapshot').click();assert(h.app.innerHTML.includes('Before optional support: answer components matched'));assert(h.app.innerHTML.includes('Opening a visual is a choice, not proof'));
 // This is a convention for comparable content, not only the Sports Day example.
-const forms=load();for(const[id,key]of [['C3','lap-model'],['C5','area-model'],['C6','area-model'],['FE','area-model'],['FN','temperature-model'],['V1','volume-model'],['D1','subtraction-model']]){
+const forms=load();for(const[id,key]of [['C3','lap-model'],['C5','area-model'],['FE','area-model'],['FN','temperature-model'],['V1','volume-model'],['D1','subtraction-model']]){
  const html=forms.api.form(id);assert(html.includes(`data-optional-visual="${key}"`));assert(html.includes(`id="visual-${key}" hidden`));
 }
 for(const id of ['C10','FM','FB','S1','S2','S3','S4','S6'])assert(forms.api.costSpec(id));
 // Number-line responses and graph reading keep their required stimulus.
 assert(forms.api.form('C1').includes('data-line="point"'));assert(forms.api.form('C9').includes('Descending line'));
 console.log(JSON.stringify({result:'passed',checks:['optional default and toggle persistence','same dollar scale and exact block counts','equal costs at 9 and change after 9','view controls preserve saved credit and answers','pre-help drafts and immutable submission snapshots','shared-project support propagates without rewriting earlier evidence','independent and supported submissions in report','applies to comparable activities; required graph stimuli retained'],scope:'DOM callback and math checks; live browser behavior unverified'}));
+

@@ -57,7 +57,7 @@ app.addEventListener('click',event=>{
  else if(action==='continue'){if(E.allDone(state)){state.view='summary';}else{const next=state.lessonIndex<3?state.lessonIndex+1:C.LESSONS.findIndex((_,j)=>!E.lessonDone(state,j));openLesson(next);return;}}
  else if(action==='export-json'){download('AC01_Answer_History.json',JSON.stringify(E.exportRecord(state),null,2),'application/json');return;}
  else if(action==='export-md'){download('AC01_Learning_Summary.md',markdown(),'text/markdown');return;}
- else if(action==='print'){window.print();return;}
+ else if(action==='print'){try{const ok=window.ClueveraReportTools.openPrint(window.ClueveraReportTools.printable(document.title,{markdown:markdown()}));notice=ok?'The report opened in a new tab. Print / save as PDF there.':'Allow pop-ups or download the readable report.';}catch{notice='The report tab could not open. Download the readable report.';}render();return;}
  else return;
  const localAction=state.stage==='learn'&&['step','prev-step','next-step','switch-a','switch-b'].includes(action);
  render(!localAction);
@@ -65,3 +65,4 @@ app.addEventListener('click',event=>{
 });
 lab=[...lesson().start];render();
 })();
+
