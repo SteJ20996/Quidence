@@ -6,6 +6,7 @@ function load(config={}){
  let time=1000,nodes=[],tools=new Map();
  class Element{
   constructor(tag='div',attrs={}){this.tagName=tag;this.attributes={...attrs};this.dataset={};for(const [k,v]of Object.entries(attrs))if(k.startsWith('data-'))this.dataset[k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=v;this.value=attrs.value??'';this.style={};this.disabled='disabled'in attrs;this.hidden='hidden'in attrs;this.listeners={};this.textContent='';this._html='';}
+  appendChild(el){nodes.push(el);return el;}
   setAttribute(k,v){this.attributes[k]=String(v);}getAttribute(k){return this.attributes[k];}
   get classList(){return {add:(name)=>{const classes=new Set((this.attributes.class??'').split(' ').filter(Boolean));classes.add(name);this.attributes.class=[...classes].join(' ');}};}
   addEventListener(k,f){(this.listeners[k]??=[]).push(f);}
@@ -28,14 +29,15 @@ function load(config={}){
   return true;
  }
  const app=new Element('main',{id:'app'});
- const document={querySelector(s){return s==='#app'?app:nodes.find(n=>matches(n,s))??null;},querySelectorAll(s){return nodes.filter(n=>s.split(',').some(part=>matches(n,part)));},modelContext:{registerTool(t){tools.set(t.name,t);}}};
+ const archiveMap=new Map(),document={createElement:t=>new Element(t),querySelector(s){return s==='#app'?app:nodes.find(n=>matches(n,s))??null;},querySelectorAll(s){return nodes.filter(n=>s.split(',').some(part=>matches(n,part)));},modelContext:{registerTool(t){tools.set(t.name,t);}}};
  class MockDate extends Date{static now(){return time;}}
- const context={window:{scrollTo(){},addEventListener(){}},document,crypto,structuredClone,Date:MockDate,Blob,URL,AbortController,setInterval(){},setTimeout(){},console};vm.createContext(context);
+ const context={window:{scrollTo(){},addEventListener(){}},document,crypto,structuredClone,Date:MockDate,Blob,URL,AbortController,setInterval(){},setTimeout(){},console};context.window.document=document;context.window.localStorage={getItem:k=>archiveMap.get(k)||null,setItem:(k,v)=>archiveMap.set(k,v)};vm.createContext(context);
+ vm.runInContext(fs.readFileSync(path.join(root,'../../assets/report-store.js'),'utf8'),context);
  for(const f of config.files??['rubric.js','reasoning.js','geometry.js','adaptive.js','sketch-lab/math.js','integrated.js'])vm.runInContext(fs.readFileSync(path.join(root,'dist',f),'utf8'),context);
  let source=fs.readFileSync(path.join(root,'dist',config.entry??'app.js'),'utf8').replace(config.marker??'  registerPageTools();',config.expose??'  window.testOnly={state,expected,required,collect,check,ensure,submit,advance,goto,renderQuestion,renderReport,updateTimer,activityTime,form,findings,coordinateGraph,conditionalResults,costBlockDiagram,costSpec,routeAdaptive,sessionExport};\n  registerPageTools();');
  vm.runInContext(source,context);
  const q=s=>document.querySelector(s),qa=s=>document.querySelectorAll(s);
- return {api:context.window.testOnly,reason:context.window.ClueveraReasoning,app,tools,q,qa,tick(ms){time+=ms;},input(k,value){const el=q(`[data-n="${k}"]`);assert(el,`missing field ${k}`);el.value=String(value);el.fire('input');},choose(k,value){const el=q(`[data-choice="${k}"][data-value="${value}"]`)??q(`[data-line="${k}"][data-value="${value}"]`);assert(el,`missing choice ${k}=${value}`);el.click();},text(s){q('[data-text="why"]').value=s;q('[data-text="why"]').fire('input');}};
+ return {archiveMap,api:context.window.testOnly,reason:context.window.ClueveraReasoning,app,tools,q,qa,tick(ms){time+=ms;},input(k,value){const el=q(`[data-n="${k}"]`);assert(el,`missing field ${k}`);el.value=String(value);el.fire('input');},choose(k,value){const el=q(`[data-choice="${k}"][data-value="${value}"]`)??q(`[data-line="${k}"][data-value="${value}"]`);assert(el,`missing choice ${k}=${value}`);el.click();},text(s){q('[data-text="why"]').value=s;q('[data-text="why"]').fire('input');}};
 }
 module.exports={load};
 if(require.main===module){
@@ -61,7 +63,7 @@ if(require.main===module){
  for(const [k,v]of Object.entries({maxA:22,maxB:16,costA:90,nextA:93,costB:86,nextB:91}))h.input(k,v);h.q('#submit').click();assert.equal(h.api.state.records.S4.score.correct,true);assert.equal(h.api.state.records.S4.reason.points,2);assert.equal(h.api.state.records.S4.reason.method,'structured_boundary_checks_bs02');assert(h.api.state.records.S4.reasonSource);
  const event=h.api.state.events.at(-1);assert.equal(event.item_version,'0.5');assert.equal(event.response.fields.nextB,91);assert(event.timing.total_active_ms>=0);
  // Open report and return without destroying a saved answer or its scoring.
- h.q('#snapshot').click();assert.equal(h.api.state.phase,'report');assert(h.app.innerHTML.includes('submitted'));assert(!h.app.innerHTML.includes('undefined/2'));h.q('#return-work').click();assert.equal(h.api.state.records.S4.complete!==null,true);assert.equal(h.api.state.records.S4.reason.points,2);
+ h.q('#snapshot').click();assert.equal(h.api.state.phase,'report');assert(JSON.parse(h.archiveMap.get('cluevera_saved_reports_v1')).items[0].versions[0].payload.taskContext.every(t=>t.reference===null||t.id));assert(h.app.innerHTML.includes('submitted'));assert(!h.app.innerHTML.includes('undefined/2'));h.q('#return-work').click();assert.equal(h.api.state.records.S4.complete!==null,true);assert.equal(h.api.state.records.S4.reason.points,2);
  // Editing invalidates prior credit, but history remains. Wrong boundary calculations do not reuse the structured explanation.
  h.input('maxA','23');assert.equal(h.api.state.records.S4.complete,null);assert.equal(h.api.state.records.S4.reasonSource,undefined);h.input('costA','93');h.input('nextA','96');h.q('#submit').click();assert.equal(h.api.state.records.S4.score.correct,false);assert(h.api.state.records.S4.reason.reviewReasons.includes('missing_explanation'));
  const conditional=h.api.conditionalResults('S4',{maxA:23,maxB:16,costA:93,nextA:96,costB:86,nextB:91});assert.equal(conditional.costA.correct,true);assert.equal(conditional.maxA.correct,false);

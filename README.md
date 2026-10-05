@@ -6,7 +6,9 @@
 
 | 位置 | 内容 |
 | --- | --- |
-| `index.html`、`assets/` | 学科选择首页与公共返回导航 |
+| `index.html`、`assets/` | 学科选择首页、解释型基础检查、报告保存和公共导航 |
+| `foundations/`、`reports/` | 各模块原 15 题基础检查；新增 8/8/6/8 题进一步检查；共同保存的报告 |
+| `tests/` | 90 道原创题的数学、解释门槛、分量判断、答题流程和记录检查 |
 | `modules/aa01/dist/` | Cluevera Beta 0.5：当前 Pre-Algebra / Algebra I 活动、几何模型、综合项目及报告 |
 | `modules/aa01/tests/` | AA01 的九个回归检查文件及历史答案 fixture |
 | `modules/ab01/dist/` | AB01 矩阵学习、向量诊断、Matrix Lab 及 Beta 0.1 静态存档 |
@@ -16,7 +18,7 @@
 | `modules/ad01/dist/` | AD01：极限、导数、积分和微积分基本定理四节课，包含可播放、暂停与重播的图像、手动控件与新题 |
 | `modules/ad01/tests/` | AD01 数学、会话、图像操作和入口检查；含可选真实浏览器脚本 |
 
-中学入口目前覆盖所列基础内容，并非全部中学课程。各模块保留原有答题、提示、计时、记录和报告逻辑。其他 AA 系列功能尚未整合。
+中学入口目前覆盖所列基础内容，并非全部中学课程。各模块保留原有课程、答题、提示、计时和会话逻辑；打开报告时新增共同保存副本。其他 AA 系列功能尚未整合。
 
 ## 在 Mac 上打开整个网站
 
@@ -37,12 +39,16 @@ Terminal 需保持运行。关闭服务时按 **Control+C**。如果之前的服
 
 ## 记录与返回入口
 
-- AA01 作答记录仍保存在当前标签页的内存中；刷新或关闭页面会重置。需要保留时使用模块的 JSON 导出或报告打印功能。
+- AA01 当前作答仍在原标签页内存中；刷新会重置活动。打开报告时另存浏览器副本；导出/打印可以跨设备保留。
 - AB01 保留原来的浏览器本地存储方式；没有新增云端账号、跨设备同步或统一学生档案。
 - AC01 使用独立的浏览器本地记录。每课包含一次初始判断、四个教学步骤、两道新题与反馈；四课完成后可导出答案历史和 Markdown 报告。初始判断与学完后的作答分开呈现。
 - AD01 使用独立的浏览器本地记录，保存预测、新题、答案历史与图像设置。四课完成后可导出 JSON 和 Markdown 总结。
 - 四个模块顶部的 **Choose a subject** 在新标签页打开选择首页，让原来的活动页面保持打开。它不会把 AA01 内存中的作答变成永久记录。
-- 集成并不合并四个模块的评分、报告或会话；首页只提供学科选择。
+- 原课程评分和会话仍各自独立。新增 Saved reports 保存四个模块打开的报告副本与版本。
+- 每个学科保留独立的 15 题入口检查，另有 Further foundations：AA01 8题、AB01 8题、AC01 6题、AD01 8题。全部必须解释。原题版本和旧会话保持兼容；两种检查分别保存草稿、提交历史、报告和本地人工解释审核。
+- 报告显示各回答分量和多选题的正确/多选/漏选情况；解释保持未审核，直到明确保存本地人工审核。分量数不换算成能力分或加权总分。修改后，旧解释分不会沿用到新提交。
+- 保存是当前浏览器本地功能，没有云端档案或自动跨设备同步。浏览器清理或存储不可用会影响保存；下载报告后可交给另一 AI 导师。
+- 基础覆盖、解释要求与剩余缺口见 [FOUNDATION_AUDIT.md](FOUNDATION_AUDIT.md)；原60题见 [FOUNDATION_ITEM_REVIEW.md](FOUNDATION_ITEM_REVIEW.md)，新增30题见 [FOUNDATION_FOLLOWUP_REVIEW.md](FOUNDATION_FOLLOWUP_REVIEW.md)。漏洞判断与补强对应关系见 [DIAGNOSTIC_COVERAGE_REVIEW.md](DIAGNOSTIC_COVERAGE_REVIEW.md)。试答与评分检查步骤见 [TESTING_GUIDE.md](TESTING_GUIDE.md)。
 
 ## 运行检查
 
@@ -52,7 +58,7 @@ Terminal 需保持运行。关闭服务时按 **Control+C**。如果之前的服
 node scripts/test-all.cjs
 ```
 
-也可分别运行 `node scripts/test-aa01.cjs`、`node scripts/test-ab01.cjs`、`node scripts/test-ac01.cjs` 和 `node scripts/test-ad01.cjs`。脚本会使用各模块需要的路径。模块检查覆盖数学、DOM fixtures 和交互状态，不能证明教学效果或诊断有效性。
+也可分别运行 `node scripts/test-aa01.cjs`、`node scripts/test-ab01.cjs`、`node scripts/test-ac01.cjs` 、`node scripts/test-ad01.cjs` 和 `node scripts/test-foundations.cjs`。脚本会使用各模块需要的路径。模块检查覆盖数学、DOM fixtures 和交互状态，不能证明教学效果或诊断有效性。
 
 ## 开发约定
 

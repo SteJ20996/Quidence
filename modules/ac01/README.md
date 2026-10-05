@@ -43,3 +43,8 @@ Definitions were checked against these primary university teaching sources; no s
 - [Yale ECON 159, Lecture 5: best responses and Nash equilibrium](https://oyc.yale.edu/economics/econ-159/lecture-5)
 
 The module was added to this GitHub repository only. Website hosting and domain configuration are separate.
+
+
+## 基础检查与报告副本
+
+公共导航新增 [15 题基础检查](../../foundations/index.html?module=ac01) 和 [Saved reports](../../reports/index.html)。新检查要求每题解释，保留草稿、历次提交和审核；原课程题目和旧记录格式保持兼容。打开本模块报告时，在浏览器另存一份报告副本。保存不等于云端同步，跨设备使用请下载报告。范围与限制见 [全站基础审核](../../FOUNDATION_AUDIT.md)。
