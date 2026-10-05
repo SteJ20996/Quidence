@@ -7,8 +7,8 @@
 | 位置 | 内容 |
 | --- | --- |
 | `index.html`、`assets/` | 学科选择首页、解释型基础检查、报告保存和公共导航 |
-| `foundations/`、`reports/` | 四个模块各 15 题的独立基础检查；共同保存的报告 |
-| `tests/` | 60 道新题的数学、解释门槛、答题流程和记录检查 |
+| `foundations/`、`reports/` | 各模块原 15 题基础检查；新增 8/8/6/8 题进一步检查；共同保存的报告 |
+| `tests/` | 90 道原创题的数学、解释门槛、分量判断、答题流程和记录检查 |
 | `modules/aa01/dist/` | Cluevera Beta 0.5：当前 Pre-Algebra / Algebra I 活动、几何模型、综合项目及报告 |
 | `modules/aa01/tests/` | AA01 的九个回归检查文件及历史答案 fixture |
 | `modules/ab01/dist/` | AB01 矩阵学习、向量诊断、Matrix Lab 及 Beta 0.1 静态存档 |
@@ -45,9 +45,10 @@ Terminal 需保持运行。关闭服务时按 **Control+C**。如果之前的服
 - AD01 使用独立的浏览器本地记录，保存预测、新题、答案历史与图像设置。四课完成后可导出 JSON 和 Markdown 总结。
 - 四个模块顶部的 **Choose a subject** 在新标签页打开选择首页，让原来的活动页面保持打开。它不会把 AA01 内存中的作答变成永久记录。
 - 原课程评分和会话仍各自独立。新增 Saved reports 保存四个模块打开的报告副本与版本。
-- 每个学科有独立的 15 题基础检查，必须解释。草稿、提交历史和本地人工解释审核按学科/检查分别保存；新检查不覆盖旧检查。数字/选择判断与解释审核分开。
+- 每个学科保留独立的 15 题入口检查，另有 Further foundations：AA01 8题、AB01 8题、AC01 6题、AD01 8题。全部必须解释。原题版本和旧会话保持兼容；两种检查分别保存草稿、提交历史、报告和本地人工解释审核。
+- 报告显示各回答分量和多选题的正确/多选/漏选情况；解释保持未审核，直到明确保存本地人工审核。分量数不换算成能力分或加权总分。修改后，旧解释分不会沿用到新提交。
 - 保存是当前浏览器本地功能，没有云端档案或自动跨设备同步。浏览器清理或存储不可用会影响保存；下载报告后可交给另一 AI 导师。
-- 基础覆盖、解释要求与剩余缺口见 [FOUNDATION_AUDIT.md](FOUNDATION_AUDIT.md)；完整新题审核清单见 [FOUNDATION_ITEM_REVIEW.md](FOUNDATION_ITEM_REVIEW.md)。完成题目能支持多强的漏洞判断、现有项目的依赖与后续补强见 [DIAGNOSTIC_COVERAGE_REVIEW.md](DIAGNOSTIC_COVERAGE_REVIEW.md)。
+- 基础覆盖、解释要求与剩余缺口见 [FOUNDATION_AUDIT.md](FOUNDATION_AUDIT.md)；原60题见 [FOUNDATION_ITEM_REVIEW.md](FOUNDATION_ITEM_REVIEW.md)，新增30题见 [FOUNDATION_FOLLOWUP_REVIEW.md](FOUNDATION_FOLLOWUP_REVIEW.md)。漏洞判断与补强对应关系见 [DIAGNOSTIC_COVERAGE_REVIEW.md](DIAGNOSTIC_COVERAGE_REVIEW.md)。试答与评分检查步骤见 [TESTING_GUIDE.md](TESTING_GUIDE.md)。
 
 ## 运行检查
 
