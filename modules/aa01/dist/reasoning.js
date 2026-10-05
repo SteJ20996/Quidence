@@ -20,7 +20,7 @@
   };
   const wrong={
     V1:[/\b40\s*x?\s*\+\s*48\s*x?\s*=\s*(?:40|48)\s*x?\b/,/(?:ignore|skip|leave out).{0,25}(?:mixed|cross).{0,15}(?:term|part)/],
-    D1:[/(?:removed|strip|subtract).{0,35}(?:area\s*(?:is|=)\s*2\b|only\s*2\b)/,/\b3x\s*-\s*2\b.{0,20}(?:correct|right|equivalent)/],
+    D1:[/(?:removed|strip|subtract).{0,35}(?:area\s*(?:is|=)\s*[23]\b|only\s*[23]\b)/,/\b5x\s*-\s*3\b.{0,20}(?:correct|right|equivalent)/],
     C4:[/\ba\b.{0,20}(?:not|doesn't|isn't).{0,30}(?:constant ratio|proportional)/,/\bb\s+(?:is\s+(?:still\s+)?|remains\s+)proportional/,/\bboth\b.{0,15}(?:are|is)\s*proportional/],
     C6:[/(?:do not|don't|never)\s+multiply\s+(?:both|every|each)/,/(?:2|two).{0,12}only\s*multiplies?\s*x/,/(?:leave|keep).{0,15}(?:3|constant).{0,15}(?:same|unchanged)/,/\b3\b.{0,10}(?:stays?|remains?).{0,10}(?:same|unchanged)/],
     C9:[/\by\b.{0,10}(?:does not|doesn't|not).{0,10}decrease/,/\b(?:slope|rate)\s+(?:is\s+)?positive/,/\by\b.{0,12}(?:rises?|increases?).{0,20}\bx\b.{0,10}increase/],
@@ -74,8 +74,8 @@
       default:return {points:null,connection:null};
     }
   }
-  function evaluate(id,raw,objectiveCorrect=true) {
-    const anchors=sportsAnchors[id]??original.anchors(id);
+  function evaluate(id,raw,objectiveCorrect=true,context={}) {
+    const anchors=id==='D1'?['The removed area is 5 × 3 = 15, so subtract 15 from 5x.','At x = 7, the remaining area is 5 × (7 − 3) = 20.']:sportsAnchors[id]??original.anchors(id);
     if(!anchors.length)return null;
     const {text:t,unclearQuote}=retainedText(raw);
     const reasons=[];if(!String(raw??'').trim())reasons.push('missing_explanation');
@@ -129,10 +129,26 @@
         connection=connections[id]?1:0;
       }
     }
+    const concrete=window.ClueveraReasonEvidence?.assess(id,t,context.answer??{},context.task??null);
+    if(concrete?.matched&&!contradicted&&!unclearQuote){
+      points=Math.max(points??0,concrete.points);connection=concrete.connection??connection;
+      matched=[...new Set([...matched,...anchors.slice(0,concrete.points===2?anchors.length:1)])];
+      // These recognized everyday negations have a specific mathematical role.
+      if(['C10','S6','FB'].includes(id)&&concrete.points===2){const n=reasons.indexOf('unresolved_negation');if(n>=0)reasons.splice(n,1);}
+    }
+    if(concrete?.errors.length){points=points>0?1:null;connection=null;contradicted=true;reasons.push('arithmetic_error');}
     if(unclearQuote){points=null;connection=null;}
     if(points===null&&!reasons.includes('missing_explanation')&&!reasons.includes('answer_explanation_conflict'))reasons.push('unknown_or_conflicting_wording');
     const needsReview=reasons.length>0;
-    return {points,max:2,connection,connectionMax:1,status:needsReview?'Needs review':'Provisional credit',matched,anchors,contradicted,objectiveConflict:!objectiveCorrect,reviewReasons:reasons,method:'conservative_patterns_v0.4-r2; not a semantic certification',evidenceSpans:matched.length?[{start:0,end:String(raw).length,text:String(raw),claimStatus:contradicted||points===null?'unresolved':'retained'}]:[]};
+    return {points,max:2,connection,connectionMax:1,status:needsReview?'Needs review':'Provisional credit',matched,anchors,contradicted,objectiveConflict:!objectiveCorrect,reviewReasons:[...new Set(reasons)],calculationChecks:concrete?.equations??[],method:'claim_and_calculation_evidence_0.6; not a semantic certification',evidenceSpans:matched.length?[{start:0,end:String(raw).length,text:String(raw),claimStatus:contradicted||points===null?'unresolved':'retained'}]:[]};
   }
-  window.ClueveraReasoning={evaluate,anchors:id=>sportsAnchors[id]??original.anchors(id),ids:[...original.ids,...Object.keys(sportsAnchors)]};
+  const counterexampleAnchors=['At x = 3, x² is 9 while 2x is 6. One unequal pair disproves an identity claimed for every x.'];
+  function counterexample(raw,correct){
+    const evidence=window.ClueveraReasonEvidence.assess('C6',raw),errors=evidence.errors.filter(e=>e.value!==null),reasons=[];
+    if(!String(raw??'').trim())reasons.push('missing_explanation');
+    else if(evidence.points===null)reasons.push('unknown_or_conflicting_wording');
+    if(errors.length)reasons.push('arithmetic_error');if(!correct)reasons.push('objective_conflict');
+    return{points:errors.length?null:evidence.points,max:2,connection:evidence.connection,connectionMax:1,status:reasons.length?'Needs review':'Provisional credit',matched:evidence.matched?counterexampleAnchors:[],anchors:counterexampleAnchors,contradicted:!!errors.length,objectiveConflict:!correct,reviewReasons:reasons,calculationChecks:evidence.equations.filter(e=>e.value!==null),method:'counterexample_calculation_evidence_0.6',evidenceSpans:evidence.matched?[{start:0,end:String(raw).length,text:String(raw),claimStatus:errors.length?'unresolved':'retained'}]:[]};
+  }
+  window.ClueveraReasoning={evaluate,counterexample,counterexampleAnchors,anchors:id=>id==='D1'?['The removed area is 5 × 3 = 15, so subtract 15 from 5x.','At x = 7, the remaining area is 20.']:sportsAnchors[id]??original.anchors(id),ids:[...original.ids,...Object.keys(sportsAnchors)]};
 })();

@@ -40,6 +40,7 @@ for(const[key,task]of Object.entries(a.tasks)){
 for(const scenario of ['clean','supported','mixed','skipped']){
  const h=load();let steps=0;
  while(h.api.state.phase==='assessment'&&steps++<40){
+  if(h.api.state.quadraticGate){h.q('#quadratic-not-yet').click();continue;}
   const id=h.api.state.queue[h.api.state.index];
   if(scenario==='skipped'){h.q('#skip').click();continue;}
   const answer={...h.api.expected[id],why:'My reasoning can be reviewed.'};
@@ -51,15 +52,16 @@ for(const scenario of ['clean','supported','mixed','skipped']){
   if(scenario==='mixed'&&id==='C10')answer.model='17v';
   h.api.submit(answer);assert(h.api.state.records[id].complete!==null,id);h.api.advance();
  }
- assert.equal(h.api.state.phase,'report',scenario);assert.equal(h.api.state.adaptiveDecisions.length,5,scenario);
+ assert.equal(h.api.state.phase,'report',scenario);assert(h.api.state.adaptiveDecisions.length<=3,scenario);if(scenario==='clean')assert.equal(h.api.state.adaptiveDecisions.length,0);
  assert.equal(h.api.state.queue.filter(id=>/^C\d+$/.test(id)).length,11);assert(h.api.state.queue.includes('V1')&&h.api.state.queue.includes('D1'));assert(!h.api.state.queue.includes('S5'));
- assert.equal(new Set(h.api.state.queue).size,h.api.state.queue.length);assert(h.api.state.queue.length<=25);
- assert(h.app.innerHTML.includes('How your next checks were chosen'));assert.equal(h.api.sessionExport().adaptive_decisions.length,5);
+ assert.equal(new Set(h.api.state.queue).size,h.api.state.queue.length);assert(h.api.state.queue.length<=22);
+ assert(h.app.innerHTML.includes('How your next checks were chosen'));assert.equal(h.api.sessionExport().adaptive_decisions.length,h.api.state.adaptiveDecisions.length);
  if(scenario==='clean')assert(h.api.state.adaptiveDecisions.every(d=>d.mode==='stretch'));
  if(scenario==='mixed')assert.equal(h.api.state.adaptiveItems.FAM.variant_id,'M-bridge');
  if(scenario==='skipped')assert(h.api.state.adaptiveDecisions.every(d=>d.mode==='bridge'));
 }
 // A served question is immutable even when its source answer is revised.
-const h=load();h.api.submit({point:-1.5,near:'-0.5'});h.api.advance();const snapshot=JSON.stringify(h.api.state.adaptiveItems.FAN);
-h.api.goto(h.api.state.queue.indexOf('C1'));h.q('#hint').click();h.api.submit({point:-1.5,near:'-0.5'});h.api.advance();assert.equal(JSON.stringify(h.api.state.adaptiveItems.FAN),snapshot);assert.equal(h.api.state.adaptiveDecisions.length,1);h.q('#snapshot').click();h.q('#restart').click();h.q('#confirm-restart').click();assert.equal(h.api.state.adaptiveDecisions.length,0);assert.equal(Object.keys(h.api.state.adaptiveItems).length,0);assert.equal(h.api.state.queue.length,18);
-console.log(JSON.stringify({result:'passed',checks:['component-specific branch choices','no routing penalty from time or unknown wording','18 reviewed variant answers and mathematical identities','all variant forms, optional helpers, signed input and reports','clean, supported, mixed and skipped complete journeys','five bounded checks, no duplicate IDs','source event and variant export','served questions stay immutable'],scope:'DOM callbacks and reviewed local math; diagnostic validity and native browser behavior unverified'}));
+const h=load();h.api.state.includeStretch=true;h.api.submit({point:-1.5,near:'-0.5'});h.api.advance();const snapshot=JSON.stringify(h.api.state.adaptiveItems.FAN);
+h.api.goto(h.api.state.queue.indexOf('C1'));h.q('#hint').click();h.api.submit({point:-1.5,near:'-0.5'});h.api.advance();assert.equal(JSON.stringify(h.api.state.adaptiveItems.FAN),snapshot);assert.equal(h.api.state.adaptiveDecisions.length,1);h.q('#snapshot').click();h.q('#restart').click();h.q('#confirm-restart').click();assert.equal(h.api.state.adaptiveDecisions.length,0);assert.equal(Object.keys(h.api.state.adaptiveItems).length,0);assert.equal(h.api.state.queue.length,19);
+console.log(JSON.stringify({result:'passed',checks:['component-specific branch choices','no routing penalty from time or unknown wording','18 reviewed variant answers and mathematical identities','all variant forms, optional helpers, signed input and reports','clean, supported, mixed and skipped complete journeys','up to three optional checks; zero for clean default path, no duplicate IDs','source event and variant export','served questions stay immutable'],scope:'DOM callbacks and reviewed local math; diagnostic validity and native browser behavior unverified'}));
+

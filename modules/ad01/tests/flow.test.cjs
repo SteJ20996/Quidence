@@ -15,9 +15,9 @@ class Element{
 function harness(map=new Map(),failSaving=false,options={}){
  const app=new Element('main',{id:'app'}),note=new Element('span',{id:'storage-note'}),body=new Element('body'),blobs=[],downloads=[];
  const document={body,getElementById:id=>id==='app'?app:id==='storage-note'?note:app.querySelector('#'+id),querySelector:s=>app.querySelector(s),createElement:tag=>{const e=new Element(tag);if(tag==='a')e.click=()=>downloads.push({name:e.download,url:e.href});return e;}};
- const frames=new Map();let clockId=0;const window={matchMedia:()=>({matches:!!options.reduced}),scrollTo(){},print(){this.printed=true;}};
+ const frames=new Map();let clockId=0;const window={matchMedia:()=>({matches:!!options.reduced}),scrollTo(){},print(){this.printed=true;},open(){const tab={opener:this,document:{open(){},write(html){tab.html=html;},close(){}},focus(){}};this.preview=tab;return tab;}};
  window.document=document;const context={window,document,requestAnimationFrame:f=>{frames.set(++clockId,f);return clockId;},cancelAnimationFrame:id=>frames.delete(id),localStorage:{getItem:k=>map.get(k)||null,setItem:(k,v)=>{if(failSaving)throw Error('Storage denied');map.set(k,v);}},Blob,URL:{createObjectURL:b=>{blobs.push(b);return 'blob:'+blobs.length;},revokeObjectURL(){}},setTimeout:f=>f()};
- window.document=document;window.localStorage=context.localStorage;vm.createContext(context);vm.runInContext(fs.readFileSync(path.join(__dirname,'../../../assets/report-store.js'),'utf8'),context);for(const file of ['math.js','graphs.js','content.js','engine.js','app.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../dist/',file),'utf8'),context,{filename:file});
+ window.document=document;window.localStorage=context.localStorage;vm.createContext(context);vm.runInContext(fs.readFileSync(path.join(__dirname,'../../../assets/report-tools.js'),'utf8'),context);vm.runInContext(fs.readFileSync(path.join(__dirname,'../../../assets/report-store.js'),'utf8'),context);for(const file of ['math.js','graphs.js','content.js','engine.js','app.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../dist/',file),'utf8'),context,{filename:file});
  function click(action,index){const b=app.all().find(x=>x.dataset.action===action&&(index===undefined||x.dataset.index===String(index)));assert.ok(b,`Missing ${action} ${index??''}`);if(!b.disabled)app.events.click({target:b});}
  function choose(value){const form=app.querySelector('#answer-form'),x=form.querySelectorAll('[name="choice"]').find(x=>x.value===value);assert.ok(x,`Missing choice ${value}`);if(x.attrs.type==='radio')form.querySelectorAll('[name="choice"]').forEach(x=>x.checked=false);x.checked=!x.checked;app.events.input({target:x});}
  function input(name,value){const x=app.querySelector(`[name="${name}"]`);if(typeof value==='boolean')x.checked=value;else x.value=value;app.events.input({target:x});}
@@ -69,3 +69,4 @@ test('pause, manual control, navigation, and replay cancel stale frames',()=>{
 test('reduced-motion preference reaches the endpoint without scheduling playback',()=>{
  const h=harness(new Map(),false,{reduced:true});h.click('open',1);h.choose('unsure');h.submit();h.click('next');h.click('play-motion');assert.equal(h.frames.size,0);assert.equal(h.saved().labs[1].h,.001);assert.match(h.document.getElementById('live-readout').textContent,/Δy\/Δx = 2\.001/);
 });
+

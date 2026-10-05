@@ -83,7 +83,12 @@
     };
     const matched=correct&&!negated&&(patterns[task.core]?.test(t)||plainCore[task.core]?.test(t))&&!reasons.length;
     if(!matched&&!reasons.includes('missing_explanation'))reasons.push('unknown_or_conflicting_wording');
-    return {points:matched?2:null,max:2,connection:null,connectionMax:1,status:reasons.length?'Needs review':'Provisional credit',matched:matched?[task.anchor]:[],anchors:[task.anchor],contradicted:false,objectiveConflict:!correct,reviewReasons:reasons,method:'reviewed_adaptive_anchor_patterns_0.4.1; not semantic certification',evidenceSpans:matched?[{start:0,end:String(raw).length,text:String(raw),claimStatus:'retained'}]:[]};
+    const evidence=typeof window==='object'?window.ClueveraReasonEvidence?.assess('',t,{},task):null;
+    const recognized=matched||evidence?.matched;
+    if(evidence?.matched&&!evidence.errors.length){const i=reasons.indexOf('unknown_or_conflicting_wording');if(i>=0)reasons.splice(i,1);}
+    if(evidence?.errors.length)reasons.push('arithmetic_error');
+    const points=evidence?.errors.length?(recognized?1:null):recognized?2:null;
+    return {points,max:2,connection:evidence?.connection??null,connectionMax:1,status:reasons.length?'Needs review':'Provisional credit',matched:recognized?[task.anchor]:[],anchors:[task.anchor],contradicted:!!evidence?.errors.length,objectiveConflict:!correct,reviewReasons:[...new Set(reasons)],calculationChecks:evidence?.equations??[],method:'reviewed_adaptive_calculation_evidence_0.6; not semantic certification',evidenceSpans:recognized?[{start:0,end:String(raw).length,text:String(raw),claimStatus:evidence?.errors.length?'unresolved':'retained'}]:[]};
   }
   return {checkpoints,tasks,select,reasoning};
 });

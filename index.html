@@ -9,7 +9,10 @@
   <link rel="icon" href="modules/aa01/dist/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/hub.css">
   <script src="assets/hub-filters.js" defer></script>
-</head>
+  <script src="assets/report-tools.js" defer></script>
+  <script src="assets/report-store.js" defer></script>
+  <script src="assets/hub-goals.js" defer></script>
+<link rel="stylesheet" href="assets/report-tools.css"></head>
 <body>
   <header class="site-header"><a class="brand" href="./" aria-label="Cluevera home"><span class="brand-mark" aria-hidden="true">C</span>Cluevera</a><span class="preview-label">Math discovery · Beta preview</span></header>
   <main>
@@ -31,10 +34,16 @@
       <p id="filter-status" class="filter-status" role="status" aria-live="polite" aria-atomic="true"></p>
       <p id="filter-empty" class="filter-empty" hidden>No subjects match this combination yet. Try another stage or use “Show all subjects.”</p>
     </section>
+    <section id="learning-entry" class="learning-entry" aria-label="Choose your subject and learning goal" hidden>
+      <div class="learning-subjects"><p class="eyebrow">1 · PICK YOUR SUBJECT</p><h2>A useful starting point.</h2><div class="learning-subject-buttons" role="group" aria-label="Subject for your learning request">
+        <button type="button" data-learning-subject="aa01" aria-pressed="true">Algebra</button><button type="button" data-learning-subject="ab01" aria-pressed="false">Linear algebra</button><button type="button" data-learning-subject="ac01" aria-pressed="false">Game theory</button><button type="button" data-learning-subject="ad01" aria-pressed="false">Visual calculus</button><button type="button" data-learning-subject="ae01" aria-pressed="false">Statistics</button><button type="button" data-learning-subject="af01" aria-pressed="false">Pre-calculus</button>
+      </div><p id="goal-subject-empty" hidden>No subjects match these filters yet. Use “Show all subjects” to choose a starting point.</p><div class="goal-course-links"><a id="goal-course" href="modules/aa01/dist/">Explore this subject →</a><a id="goal-foundations" href="foundations/?module=aa01">Complete a foundation check →</a></div></div>
+      <div class="learning-request"><p class="eyebrow">2 · TELL US WHAT YOU NEED</p><h2 id="goal-subject-label">Algebra</h2><label for="learning-goal">What would you like to improve, or which homework question are you stuck on?</label><textarea id="learning-goal" rows="5" maxlength="3000" placeholder="Paste your question, show what you tried, or name an idea you want to understand."></textarea><label for="goal-report">Include a saved report from this browser<select id="goal-report"><option value="">Start with my question only</option></select></label><div class="goal-actions"><button id="goal-copy" type="button">Copy my learning request</button><a href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT ↗</a><a href="https://claude.ai/" target="_blank" rel="noopener">Open Claude ↗</a></div><p id="goal-status" role="status" aria-live="polite"></p><textarea id="goal-markdown" readonly rows="8" aria-label="Markdown learning request for manual copying" hidden></textarea><p class="goal-note">Your request stays in this browser. Copy it and paste it into your AI tutor, or continue with Cluevera’s lessons and checks.</p></div>
+    </section>
     <section class="subject-grid" aria-label="Choose a mathematics subject">
       <article class="subject-card school" data-subject="aa01">
         <div class="subject-tags" data-subject-tags aria-label="Suggested starting contexts"></div>
-        <div class="card-top"><span class="topic-label">SECONDARY SCHOOL</span><span class="version">Beta 0.5</span></div>
+        <div class="card-top"><span class="topic-label">SECONDARY SCHOOL</span><span class="version">Beta 0.6</span></div>
         <svg class="subject-picture" viewBox="0 0 320 132" role="img" aria-label="An equation connected to a number line and a coordinate graph"><rect x="12" y="16" width="128" height="90" rx="15" fill="#eaf0ff"/><text x="76" y="52" text-anchor="middle" fill="#2147df" font-size="21" font-family="sans-serif">4x − 3 = 9</text><path d="M27 83h98M45 78v10M76 78v10M107 78v10" fill="none" stroke="#2147df" stroke-width="2"/><circle cx="107" cy="83" r="5" fill="#2147df"/><path d="M164 111V18M156 101h147M167 93l111-65" fill="none" stroke="#496086" stroke-width="2"/><path d="M167 93l111-65" stroke="#2147df" stroke-width="4"/><circle cx="206" cy="70" r="5" fill="#2147df"/><circle cx="249" cy="45" r="5" fill="#2147df"/></svg>
         <h2>Secondary-school math</h2>
         <p>Start with Pre-Algebra and Algebra I: numbers, expressions, equations, graphs, and visual models.</p>

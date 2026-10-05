@@ -11,14 +11,14 @@ function save(module,payload,sessionId,storage){
  try{storage=storage||root.localStorage;const result=read(storage);if(!result.ok)return result;const data=result.data;
   const session=String(sessionId||payload.session?.id||payload.session_id||payload.sessionId||payload.state?.sessionId||payload.state?.id||payload.id||'current-session');
   const id=module+':'+session,hash=signature(payload);let item=data.items.find(x=>x.id===id);
-  if(item?.versions.at(-1).signature===hash)return{ok:true,id,changed:false};
+  if(item?.versions.at(-1).signature===hash)return{ok:true,id,changed:false,module,payload};
   if(!item){item={id,module,subject:SUBJECTS[module],sessionId:session,versions:[]};data.items.push(item);}
   item.versions.push({savedAt:new Date().toISOString(),signature:hash,payload:clone(payload)});
-  storage.setItem(KEY,JSON.stringify(data));return{ok:true,id,changed:true};
+  storage.setItem(KEY,JSON.stringify(data));return{ok:true,id,changed:true,module,payload};
  }catch{return{ok:false,error:'Your report is open, but it could not be saved in this browser. Download a copy.'};}
 }
 const HANDOFF='Read the actual questions, answers, explanations, support context, and revisions in this report. Suggest one or two learning priorities with specific evidence. Ask a follow-up when reasoning is ambiguous. Keep missing evidence separate from incorrect answers, and calculation separate from conceptual explanation. Do not infer mastery, effort, or AI use from this short activity. Teach one next idea, offer a changed-number question, and adapt to the learner’s answer.';
-function appendNotice(host,result){if(!result||!root.document)return;const p=root.document.createElement('p');p.className='saved-report-note'+(result.ok?'':' error');p.setAttribute('role',result.ok?'status':'alert');p.textContent=result.ok?'A report copy is saved in this browser. Download it for another AI tutor, or revisit it when you keep learning. ':result.error+' ';if(result.ok){const a=root.document.createElement('a');a.href='../../../reports/';a.textContent='View saved reports';p.appendChild(a);}host.appendChild(p);}
+function appendNotice(host,result){if(!result||!root.document)return;const p=root.document.createElement('p');p.className='saved-report-note'+(result.ok?'':' error');p.setAttribute('role',result.ok?'status':'alert');p.textContent=result.ok?'A report copy is saved in this browser. Download it for another AI tutor, or revisit it when you keep learning. ':result.error+' ';if(result.ok){const a=root.document.createElement('a');a.href='../../../reports/';a.textContent='View saved reports';p.appendChild(a);}host.appendChild(p);if(result.ok&&result.payload)root.ClueveraReportTools?.attach(host,SUBJECTS[result.module],result.payload,HANDOFF);}
 const api={KEY,SUBJECTS,fresh,hydrate,read,save,appendNotice,HANDOFF};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraReportStore=api;
 })(typeof window==='undefined'?globalThis:window);

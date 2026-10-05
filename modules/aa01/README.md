@@ -1,6 +1,18 @@
-# Cluevera · Math Discovery Beta 0.5
+# Cluevera · Math Discovery Beta 0.6
 
-Interface developed as Beta_Style02, now selected to replace the main Beta 0.4 experience. Earlier main-version source is preserved in its Git history.
+Current development is in the GitHub subject hub. The interface originated in Beta_Style02; its archive and earlier releases remain historical sources.
+
+## Beta 0.6 · Student-feedback revision
+
+Local autosave restores unfinished numeric text, signs, explanations, views, submitted attempts, helper snapshots, active time and report/reviewer state. Unreadable progress is kept unchanged for recovery. Browser storage is not cloud synchronization.
+
+Q6 now tests a counterexample to x² = 2x instead of repeating Q5 distribution. P2 asks “Can you briefly show your work here?” P3 uses a height-5 rectangle with a width-3 strip removed: 5(x−3) = 5x−15, with area 20 at x=7. Q1–Q11 and P1–P4 are primary entries; P4 includes a readiness check-in, and “not yet studied” records exposure without treating it as an error. Extra checks are capped at three; clean work does not automatically generate stretch practice.
+
+Explanation feedback accepts concrete equivalent arithmetic, distribution and everyday descriptions. Unknown wording stays reviewable. The report separates objective mismatches, arithmetic errors, partial reasoning and insufficient evidence, with the original question and work retained. This remains a bounded rule-based suggestion, not general semantic grading.
+
+PDF export opens a detached compact report with its own explicit print button. It does not invoke printing automatically. Question, student-work and feedback colors differ; Markdown copy includes actual prompts, explanations and revision history. Shared handoff controls let students copy and then open ChatGPT or Claude to paste manually.
+
+See [the feedback review](../../FEEDBACK_REVIEW_2026-10-05.md) for exact changes and remaining macOS verification. The sections below document earlier releases; their optional-P4, mandatory-extra-check and old P3 descriptions are historical.
 
 ## Experience
 
@@ -12,16 +24,16 @@ Interface developed as Beta_Style02, now selected to replace the main Beta 0.4 e
 - First two activities have immediate feedback. Later submissions pause the timer and show correctness in the snapshot.
 - Missing explanation, ambiguous wording, conflict, and suggested credit are separate report statuses. No general semantic grading claim.
 - Decide includes explicit chosen-group and next-player cost checks. Complete correct checks can serve as an explanation without extra prose.
-- Reports include local review, JSON export, print view, and restart confirmation. Refresh clears the session.
+- Reports include local review, JSON export, detached print view, Markdown copy and restart confirmation. Local autosave restores the session after refresh.
 
 ## Source and deployment
 
-Buildless HTML/CSS/JavaScript in `dist/`, served on the main owner-private Site with the selected bs02 interface.
-Math prompts were composed within the Cluevera project. This revision preserves the mathematical core of Beta 0.4 and rewrites its presentation. The larger mixed-source PDF bank is not copied into this prototype.
+Buildless HTML/CSS/JavaScript in `dist/`, linked from the GitHub subject hub. Publishing the repository changes does not deploy or alter the earlier private Site.
+Math prompts were composed within the Cluevera project. Q6 and P3 were revised following student feedback. The larger mixed-source PDF bank is not copied into this prototype.
 
 ## Limits
 
-This is an interface experiment, not a validated diagnostic or learning-gain measure. Pattern-based explanation grading remains limited. Browser-native print dialogs and download policies depend on the user's browser. Session responses are in memory only.
+This is an interface experiment, not a validated diagnostic or learning-gain measure. Pattern-based explanation grading remains limited. Browser-native print dialogs and download policies depend on the user's browser. Local storage depends on the current browser and can be cleared; export records for portability.
 
 ## Verification
 
