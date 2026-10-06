@@ -22,8 +22,8 @@ Register with a lowercase username (3–32 letters/numbers/underscore/hyphen) an
 - Logged-in answers upload after a short debounce. The account page also offers manual sync. Network failure retains local work.
 - Open the account page and sync before continuing a course on another device. A running course stages newer cloud work instead of replacing its in-memory answers underneath the student.
 - Conflicting records remain unchanged until the student chooses. “Use account’s work” first saves the local copy to a separate backup key; storage failure blocks replacement. “Keep this device’s work” requires the current cloud revision and retains prior cloud versions. Both copies can be downloaded before choosing.
-- Sync works at the record level. Foundation checks share one portfolio record and reports share one report collection: simultaneous edits to different items in either collection may require choosing a whole collection. Download both copies before resolving. This first version does not merge individual questions or report items.
-- Saved records include course work, visual algebra activities, vectors, matrices, foundation portfolios, reports, and learning requests. Temporary Matrix Lab controls do not persist.
+- Sync works at the record level. Foundation checks share one portfolio record, diagnostic challenges share a separate portfolio record, and reports share one report collection: simultaneous edits to different items in either collection may require choosing a whole collection. Download both copies before resolving. This first version does not merge individual questions or report items.
+- Saved records include course work, visual algebra activities, vectors, matrices, foundation portfolios, diagnostic challenge portfolios, reports, and learning requests. Temporary Matrix Lab controls do not persist.
 - Sign out when using a shared device. Downloaded work and recovery codes should be kept private.
 
 ## Hosting recipe
@@ -69,6 +69,6 @@ This is a student account service, with no teacher dashboard, email verification
 
 `npm test` includes existing mathematics/state/DOM regressions and the account integration tests. `npm run test:sync` runs the new tests alone. Coverage includes two authenticated HTTP clients, account isolation, version conflicts, immutable revisions, CSRF/origin rejection, recovery rotation/session revocation, disk restart, denied private files, guest import, separate local namespaces, staged downloads, failed backup protection, offline preservation, and edits during upload.
 
-Student-visible Beta/test labels and module codes were removed from active pages, report titles, and download names. Internal legacy keys and namespaces remain to preserve saved work. Archived earlier pages are retained as historical source but removed from active navigation. “Planned” remains on the unimplemented Macroeconomics outline so its availability is accurate.
+Student-visible Beta/test labels and module codes were removed from active pages, report titles, and download names. Internal legacy keys and namespaces remain to preserve saved work. Archived earlier pages are retained as historical source but removed from active navigation. Economic and Game Theory courses have since been retired. Their legacy record keys remain available for historical data export; new course selectors do not offer them.
 
 Native macOS Safari behavior and the deployed HTTPS reverse proxy still require testing after hosting. The tests do not establish educational validity or full curriculum coverage.

@@ -78,3 +78,4 @@ test('incompatible, corrupt, and impossible saved states are rejected without mu
  const duplicates=E.fresh();duplicates.lessons[0].seenSteps=[0,0,0,0];assert.equal(E.hydrate(duplicates),null);
  assert.equal(E.hydrate(null),null);
 });
+
