@@ -20,3 +20,8 @@ session-exports/
 *.sqlite-*
 *.db
 *.db-*
+
+# Track only the public records guide; keep student exports ignored.
+!/records/
+/records/*
+!/records/index.html

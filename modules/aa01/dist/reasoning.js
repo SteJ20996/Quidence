@@ -150,5 +150,10 @@
     if(errors.length)reasons.push('arithmetic_error');if(!correct)reasons.push('objective_conflict');
     return{points:errors.length?null:evidence.points,max:2,connection:evidence.connection,connectionMax:1,status:reasons.length?'Needs review':'Provisional credit',matched:evidence.matched?counterexampleAnchors:[],anchors:counterexampleAnchors,contradicted:!!errors.length,objectiveConflict:!correct,reviewReasons:reasons,calculationChecks:evidence.equations.filter(e=>e.value!==null),method:'counterexample_calculation_evidence_0.6',evidenceSpans:evidence.matched?[{start:0,end:String(raw).length,text:String(raw),claimStatus:errors.length?'unresolved':'retained'}]:[]};
   }
-  window.QuidenceReasoning={evaluate,counterexample,counterexampleAnchors,anchors:id=>id==='D1'?['The removed area is 5 × 3 = 15, so subtract 15 from 5x.','At x = 7, the remaining area is 20.']:sportsAnchors[id]??original.anchors(id),ids:[...original.ids,...Object.keys(sportsAnchors)]};
+  // Keep detector output for auditing, never as ground truth about understanding.
+  function needsSemanticReview(candidate){
+    if(!candidate)return null;
+    return {...candidate,points:null,connection:null,status:'Needs review',reviewReasons:[...new Set([...(candidate.reviewReasons??[]),'semantic_review_required'])],patternCandidate:{points:candidate.points,connection:candidate.connection,matched:[...(candidate.matched??[])],method:candidate.method},method:'meaning-review-required-1',interpretation:'Pattern candidates and arithmetic checks do not establish that this explanation answers the question or demonstrates understanding.'};
+  }
+  window.QuidenceReasoning={evaluate,counterexample,needsSemanticReview,counterexampleAnchors,anchors:id=>id==='D1'?['The removed area is 5 × 3 = 15, so subtract 15 from 5x.','At x = 7, the remaining area is 20.']:sportsAnchors[id]??original.anchors(id),ids:[...original.ids,...Object.keys(sportsAnchors)]};
 })();

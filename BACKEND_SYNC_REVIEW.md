@@ -1,5 +1,7 @@
 # Account and cross-device learning records
 
+
+后续决定：公测暂停账户和云同步，新学习记录改为仅本地保存。默认账户 API 已关闭，已有云端数据未删除。本文件中的旧账户实现及未批准草案仅供历史/后续讨论，当前状态以 [LOCAL_ONLY_REVIEW.md](LOCAL_ONLY_REVIEW.md) 为准。
 This change supplies a runnable Node.js backend and account page. It has not been deployed to a public host. A GitHub Pages or Python static server can show the courses but cannot provide these account APIs.
 
 ## Run locally

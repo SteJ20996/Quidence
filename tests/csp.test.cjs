@@ -3,7 +3,7 @@ const {test}=require('node:test'),assert=require('node:assert/strict'),fs=requir
 const {createServer}=require('../backend/server.cjs'),{CONTENT_SECURITY_POLICY}=require('../backend/security.cjs'),Tools=require('../assets/report-tools.js');
 const root=path.resolve(__dirname,'..');
 test('server sends restrictive script CSP on HTML, assets and API; exposes only the public data-use page',async t=>{
- const server=createServer({dataPath:':memory:'});await new Promise(r=>server.listen(0,'127.0.0.1',r));t.after(()=>new Promise(r=>server.close(r)));const base='http://127.0.0.1:'+server.address().port;
+ const server=createServer({accountsEnabled:true,dataPath:':memory:'});await new Promise(r=>server.listen(0,'127.0.0.1',r));t.after(()=>new Promise(r=>server.close(r)));const base='http://127.0.0.1:'+server.address().port;
  for(const route of ['/','/data-use/','/assets/foundation-start.js','/api/me']){
   const response=await fetch(base+route);assert.equal(response.status,200);assert.equal(response.headers.get('content-security-policy'),CONTENT_SECURITY_POLICY);await response.text();
  }
@@ -14,7 +14,7 @@ test('server sends restrictive script CSP on HTML, assets and API; exposes only 
 });
 test('served HTML has no inline script or inline event handler blocked by the CSP',()=>{
  function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);}
- const files=['index.html',...['account','data-use','courses','diagnostics','foundations','projects','reports','modules'].flatMap(p=>walk(path.join(root,p)).filter(x=>x.endsWith('.html')).map(x=>path.relative(root,x)))];
+ const files=['index.html',...['account','records','data-use','courses','diagnostics','foundations','projects','reports','modules'].flatMap(p=>walk(path.join(root,p)).filter(x=>x.endsWith('.html')).map(x=>path.relative(root,x)))];
  for(const file of files){const text=fs.readFileSync(path.join(root,file),'utf8');for(const tag of text.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)){assert.match(tag[1],/\bsrc=/,file);assert.equal(tag[2].trim(),'',file);}assert.doesNotMatch(text,/\bon(?:click|load|error|input|change|submit)\s*=/i,file);}
 });
 test('extracted startup scripts still select the subject and mount report and foundation views',()=>{

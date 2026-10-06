@@ -1,5 +1,7 @@
 # Quidence · Theoretical and Applied Mathematics
 
+公测已暂停账户与云端同步，新学习记录仅保存在当前浏览器。所有活动页提供 [保存、恢复与删除记录](records/) 入口，公用设备离开前应清除本地记录和下载文件。默认 `npm start` 不开启账户 API 或打开学生数据库；开发测试中的 `accountsEnabled: true` 不用于公测。当前规则见 [LOCAL_ONLY_REVIEW.md](LOCAL_ONLY_REVIEW.md)。
+
 主页现在专注 8 个数学学科，统计学保留；经济学和博弈论不再提供课程活动。
 
 | 分类 | 学科 | 中高难度诊断题 |
@@ -8,9 +10,9 @@
 | Further Mathematics | Pre-calculus、Calculus、Statistics | 各 4 题 |
 | Further Mathematics | Linear Algebra | 12 题 |
 
-共 40 道原创诊断题、156 个独立检查的答案分量。主页各课程卡及课程导航提供 **Test your understanding / Diagnostic challenges** 入口；可直接测试，不必先完成入门课。入门教学、旧基础检查和视觉活动仍可用于复习。
+共 40 道诊断题、156 个独立检查的答案分量。主页各课程卡及课程导航提供 **Test your understanding / Diagnostic challenges** 入口；可直接测试，不必先完成入门课。入门教学、旧基础检查和视觉活动仍可用于复习。
 
-新增 16 个原创 California-inspired field projects，8 科各两个；包含 52 个分步问题、123 个数值输入、6 个模型公式、2 个几何构造和 39 个开放回应。新增项目全部不是选择题。主页每科的 **Explore two field projects** 可直接进入；目标难度约 6.5/10，待试做校准。
+新增 16 个 California-inspired field projects，8 科各两个；包含 52 个分步问题、123 个数值输入、6 个模型公式、2 个几何构造和 39 个开放回应。新增项目全部不是选择题。主页每科的 **Explore two field projects** 可直接进入；目标难度约 6.5/10，待试做校准。
 
 几何可轻点放点、输入分数坐标、用按钮连线及撤销；答案和图形一起保存。等价多项式用系数核验，解释不按关键词、语法或长度自动判分。每小问有理解要点及可记录的本地复核；未审核的理解保留待复核。见 [PROJECTS_REVIEW.md](PROJECTS_REVIEW.md)。
 

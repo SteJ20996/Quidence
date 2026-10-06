@@ -39,3 +39,7 @@
 ## Claude follow-up checks
 
 Run `node --test tests/csp.test.cjs tests/security.test.cjs tests/learning-handoff.test.cjs` for CSP headers, extracted startup scripts, manual standalone printing, concurrent classroom registration/login, trusted proxy rate buckets and corrupted homepage request protection. `node scripts/build-source-ledger.cjs --check` detects a stale source inventory; it is not an originality test. The server CSP must also be configured by any static hosting deployment. Check actual browser CSP violations and report-tab printing before deployment; no native macOS printing or browser enforcement certification is implied by Node fixtures.
+
+## Local-only public testing
+
+`node --test tests/local-records.test.cjs tests/explanation-policy.test.cjs` verifies the public default rejects account APIs, creates no student database, makes no sync requests, preserves existing local workspaces, exports/restores raw records, refuses overwrite, clears only reviewed learning keys, and blocks stale writes. Explanation tests keep keyword suggestions as audit candidates without automatic understanding credit. Older account/security tests explicitly enable the dormant backend to preserve regression coverage; their passing results are not a claim that public accounts are available. See `LOCAL_ONLY_REVIEW.md`.
