@@ -4,18 +4,17 @@ Reviewed 2026-10-06 against merged main `c6999a2`.
 
 ## Homepage scope
 
-Keep six subject areas, six existing exploration links, the learning-request entry, and access to saved reports. Following the latest feedback, the duplicate “Find a starting point” filter panel is temporarily removed. The homepage presents: 1. Pick your subject; 2. Tell us what you need (optional); 3. Try our problems. Learners can skip the request and start through any of the six subject cards. Order the catalogue from school mathematics to pre-calculus, calculus, statistics, linear algebra, and game theory. Course names belong inside those six cards rather than becoming twelve competing homepage cards.
+The homepage now has three groups and eleven independent course links. The duplicate filter panel remains removed. Students can pick a course, optionally describe a learning need, or start directly through the course cards.
 
-| Subject area | Course routes | Current scope |
+| Group | Course links | Current scope |
 | --- | --- | --- |
-| School mathematics | Pre-Algebra, Algebra I, Geometry, Algebra II | One shared sampler of selected Pre-Algebra / Algebra I foundations. Geometry and Algebra II are planned. |
-| Pre-calculus | Pre-calculus | Existing four-lesson exploration, separate from calculus and linked to it. |
-| Calculus | Visual calculus, AP Calculus AB, AP Calculus BC | Existing conceptual exploration. Both AP routes are planned; this is not a full AP syllabus. |
-| Statistics | Statistics foundations, AP Statistics | Existing foundations exploration. AP route planned. |
-| Linear algebra | Linear algebra foundations | Existing vectors and matrix transformations. |
-| Game theory | Game theory foundations | Existing choices, payoffs, best responses and equilibria. |
+| School Mathematics | Pre-Algebra, Algebra I, Geometry, Algebra II | Four distinct introductory courses; each has four lessons, twelve original questions, its own session key, and separately archived reports. |
+| Further Mathematics | Pre-calculus, Calculus, Statistics, Linear Algebra | Existing explorations and foundation checks. Calculus launches Visual Calculus; AP Calculus AB/BC and AP Statistics remain planned. |
+| Economics & Decision-Making | Microeconomics, Macroeconomics, Game Theory | Microeconomics has four original introductory lessons. Macroeconomics links only to a clearly marked outline. Game Theory retains its existing independent activities. |
 
-There are twelve course-route labels, including five planned routes. Seven labels describe available material, but the two school labels share one activity: six working explorations in total. Planned routes have no active launch links. The unused filter API remains available for a later redesign; it is not loaded by the homepage. AP routes are catalogue placeholders, not a claim of current curriculum alignment.
+Ten course entries launch introductory activities; one launches a planned outline. These are not full school or university curricula. Original AA01 visual algebra activities and records remain accessible through the new school course pages. New course records do not relabel or overwrite AA01 session data. The learning-request entry migrates an old `aa01` subject choice to Algebra I while keeping the request text and original report title.
+
+The course registry is `assets/course-catalog.js`. Generated pages and the homepage can be rebuilt with `node scripts/build-course-pages.cjs` and `node scripts/build-course-home.cjs`. Detailed content scope and remaining gaps are in `COURSE_EXPANSION_REVIEW.md`.
 
 ## Findings and repairs
 
@@ -33,9 +32,9 @@ There are twelve course-route labels, including five planned routes. Seven label
 
 ## Coverage and reproducibility
 
-`node scripts/build-hub-illustrations.cjs` regenerates all six standalone vector covers. No generated raster art or network image dependency is used.
+`node scripts/build-hub-illustrations.cjs` regenerates the original six vector covers. `node scripts/build-course-illustrations.cjs` builds six additional covers, including the reused Algebra I equation diagram. No generated raster art or network image dependency is used.
 
-`node scripts/audit-graphics.cjs /absolute/output/path` produces 303 static SVG fixtures and a manifest from active renderers: six covers; algebra number lines, inequality rays, line graphs, area operations, equation groups, cost blocks and projected prisms; linear-algebra diagnostics, six matrix presets and seven guided steps at 280/480px; all calculus question diagrams plus lab endpoints; statistics dot plots; pre-calculus function plots, unit circles, sine and growth; entry and further foundation-check diagrams at 320/520px. Quadratic comparisons include both signs and large accepted sample inputs.
+`node scripts/audit-graphics.cjs /absolute/output/path` produces 351 static SVG fixtures and a manifest from active renderers: the original covers, new course covers and boundary states of the new interactive models; algebra number lines, inequality rays, line graphs, area operations, equation groups, cost blocks and projected prisms; linear-algebra diagnostics, six matrix presets and seven guided steps at 280/480px; all calculus question diagrams plus lab endpoints; statistics dot plots; pre-calculus function plots, unit circles, sine and growth; entry and further foundation-check diagrams at 320/520px. Quadratic comparisons include both signs and large accepted sample inputs.
 
 Fixtures were rasterized with Sharp/librsvg and visually inspected by figure family and boundary cases. Numerical tests independently check the cover curve, tangent slope, rectangle heights, circle radius, catalogue counts, finite outputs and bounded calculus annotations. Existing matrix, volume, integral, probability and game tests check the mathematical relationships. Game payoff grids, statistics tables and matrices are semantic HTML; their values and interaction states are covered by existing engine/UI tests rather than SVG snapshots.
 

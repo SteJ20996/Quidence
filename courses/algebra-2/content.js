@@ -1,0 +1,1 @@
+(function(root){const C=typeof module==='object'&&module.exports?require('../../assets/school-course-content.js').create('algebra-2'):root.ClueveraSchoolCourseContent.create('algebra-2');if(typeof module==='object'&&module.exports)module.exports=C;else root.ClueveraCourseContent=C;})(typeof window==='undefined'?globalThis:window);

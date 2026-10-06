@@ -55,9 +55,9 @@ test('saving failure continues in memory; corrupt records are preserved through 
  const denied=harness(new Map(),true);assert.match(denied.note.textContent,/unavailable/);denied.click('start');denied.choose('b');denied.submit();denied.click('next');assert.match(denied.app.innerHTML,/STEP 1 OF 4/);
  const map=new Map([[E.SCHEMA,'{corrupt']]),h=harness(map);assert.match(h.app.innerHTML,/kept unchanged/);assert.equal(map.get(E.SCHEMA),'{corrupt');h.click('raw');assert.equal(h.downloads[0].name,'AC01_Saved_Record.json');h.click('reset-blocked');assert.equal(h.document.getElementById('reset-dialog').open,true);h.click('cancel-reset');assert.equal(map.get(E.SCHEMA),'{corrupt');h.click('reset-blocked');h.click('confirm-reset');assert.equal(h.saved().schema,E.SCHEMA);assert.equal(h.saved().view,'orientation');
 });
-test('all six dashboard links and AC01 local assets resolve within the project',()=>{
+test('all course dashboard links and AC01 local assets resolve within the project',()=>{
  const root=path.resolve(__dirname,'../../..'),hub=fs.readFileSync(path.join(root,'index.html'),'utf8');
- const links=Array.from(hub.matchAll(/class="subject-link" href="([^"]+)"/g),m=>m[1]);assert.deepEqual(links,['modules/aa01/dist/','modules/af01/dist/','modules/ad01/dist/','modules/ae01/dist/','modules/ab01/dist/','modules/ac01/dist/']);
+ const links=Array.from(hub.matchAll(/class="subject-link" href="([^"]+)"/g),m=>m[1]);assert.deepEqual(links,['courses/pre-algebra/','courses/algebra-1/','courses/geometry/','courses/algebra-2/','modules/af01/dist/','modules/ad01/dist/','modules/ae01/dist/','modules/ab01/dist/','courses/microeconomics/','courses/macroeconomics/','modules/ac01/dist/']);
  links.forEach(l=>assert.ok(fs.existsSync(path.join(root,l,'index.html'))));
  const entry=fs.readFileSync(path.join(__dirname,'../dist/index.html'),'utf8');for(const m of entry.matchAll(/(?:href|src)="([^"]+)"/g)){if(m[1]==='./')continue;assert.ok(fs.existsSync(path.resolve(__dirname,'../dist',m[1].split(/[?#]/)[0])),m[1]);}
 });

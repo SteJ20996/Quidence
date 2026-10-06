@@ -20,11 +20,10 @@ test('pre-calculus cover point lies exactly on a circle, and all six assets are 
  near(Number(p.cx)-246,74-Number(p.cy));
  for(const[id,svg]of Object.entries(svgs)){assert.equal(fs.readFileSync(path.join(__dirname,'../assets/illustrations',id+'.svg'),'utf8'),svg);assert.match(svg,/<title/);assert.match(svg,/<desc/);assert.doesNotMatch(svg,/NaN|Infinity|fill=""/);}
 });
-test('homepage distinguishes twelve course routes from six working exploration links',()=>{
+test('homepage distinguishes ten available courses from one planned outline',()=>{
  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
- assert.equal([...html.matchAll(/data-subject="/g)].length,6);assert.equal([...html.matchAll(/data-course-state="/g)].length,12);assert.equal([...html.matchAll(/data-course-state="planned"/g)].length,5);assert.equal([...html.matchAll(/class="subject-link"/g)].length,6);
- for(const m of html.matchAll(/<li data-course-state="planned">([\s\S]*?)<\/li>/g))assert.doesNotMatch(m[1],/<a\b/);
- assert.match(html,/shared foundation sampler/);assert.match(html,/not a full AP course/);
+ assert.equal([...html.matchAll(/data-subject="/g)].length,11);assert.equal([...html.matchAll(/data-course-state="available"/g)].length,10);assert.equal([...html.matchAll(/data-course-state="planned"/g)].length,1);assert.equal([...html.matchAll(/class="subject-link"/g)].length,11);
+ assert.match(html,/View course outline/);assert.match(html,/AP Calculus AB and BC are planned/);assert.match(html,/Ten open introductory courses/);
 });
 test('active figure families render finite states; calculus labels stay inside the frame',()=>{
  const samples=A.collect();assert.ok(samples.length>290);for(const s of samples){assert.doesNotMatch(s.svg,/NaN|Infinity/,s.name);if(s.group!=='ab01')assert.match(s.svg,/role="img"/,s.name);

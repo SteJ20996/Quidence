@@ -1,0 +1,1 @@
+(function(root){const C=typeof module==='object'&&module.exports?require('../../assets/school-course-content.js').create('microeconomics'):root.ClueveraSchoolCourseContent.create('microeconomics');if(typeof module==='object'&&module.exports)module.exports=C;else root.ClueveraCourseContent=C;})(typeof window==='undefined'?globalThis:window);

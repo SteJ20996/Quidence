@@ -8,7 +8,9 @@ class Element{
  matches(s){if(s.endsWith(':checked'))return this.checked&&this.matches(s.slice(0,-8));if(s.startsWith('#'))return this.attrs.id===s.slice(1);const a=s.match(/^\[([^=\]]+)(?:="([^"]*)")?\]$/);if(a)return a[1]in this.attrs&&(a[2]===undefined||this.attrs[a[1]]===a[2]);return this.tagName===s.toUpperCase();}
  querySelectorAll(s){return this.all().filter(x=>x.matches(s));}querySelector(s){return this.querySelectorAll(s)[0]||null;}
  closest(s){return this.matches(s)?this:this.parent?.closest(s)||null;}
+ removeAttribute(k){delete this.attrs[k];if(k==='href')delete this.href;}
  setAttribute(k,v){this.attrs[k]=String(v);}addEventListener(type,callback){this.events[type]=callback;}focus(){this.focused=true;}appendChild(e){this.children.push(e);e.parent=this;}remove(){this.parent.children=this.parent.children.filter(x=>x!==this);}click(){}showModal(){this.open=true;}close(){this.open=false;}
 }
 
 module.exports=Element;
+

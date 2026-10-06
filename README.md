@@ -1,6 +1,6 @@
-# Cluevera — AA01 / AB01 / AC01 / AD01 / AE01 / AF01 Subject Hub
+# Cluevera · Mathematics, Economics & Decision-Making
 
-这是一个私有开发仓库。首页提供六个入口：中学数学（AA01 / Cluevera Beta 0.6）、线性代数（AB01 Beta 0.2）、博弈论入门（AC01 Beta 0.1）、可视化微积分（AD01 Beta 0.1）、统计学基础（AE01 Beta 0.1）和 Pre-calculus（AF01 Beta 0.1）。学生选择后进入对应模块，不需要先创建账号。
+首页分三组，提供 11 个独立课程入口：学校数学（Pre-Algebra、Algebra I、Geometry、Algebra II）、数学进阶（Pre-calculus、Calculus、Statistics、Linear Algebra）、经济学与决策（Microeconomics、Macroeconomics、Game Theory）。10 个入口提供入门活动；Macroeconomics 目前只有明确标注的课程纲要。原有 AA01–AF01 模块及其记录保留，不需要创建账号。
 
 ## 当前内容
 
@@ -83,7 +83,7 @@ AD01 的 19 项数学与交互状态检查已通过，包含四课动画、暂�
 
 ## 统计学与 Pre-calculus 扩展（2026-10-05）
 
-AE01 与 AF01 已放入六入口 Dashboard。Pre-calculus 使用独立入口，并与 Visual Calculus 双向衔接。每个新模块提供四节入门课与 15 题基础检查；不代表完整 AP Statistics、Pre-calculus 或大学课程。新增题覆盖和剩余缺口见 [SUBJECT_EXPANSION_REVIEW.md](SUBJECT_EXPANSION_REVIEW.md)。
+AE01 与 AF01 已接入课程主页。Pre-calculus 使用独立入口，并与 Visual Calculus 双向衔接。每个新模块提供四节入门课与 15 题基础检查；不代表完整 AP Statistics、Pre-calculus 或大学课程。新增题覆盖和剩余缺口见 [SUBJECT_EXPANSION_REVIEW.md](SUBJECT_EXPANSION_REVIEW.md)。
 
 旧四学科的本地基础检查档案会添加两个空学科容器；已保存答案、解释审核和报告保持原样。新模块暂不提供 Further foundations；原四模块的进一步检查继续可用。
 
@@ -111,3 +111,7 @@ AA01 Beta 0.6 增加本地进度恢复，替换重复的 Q6、调整 P2/P3，并
 报告先打开独立预览，由学生点击打印；AA01 使用紧凑的题目、作答、反馈排版。六个模块及基础检查提供 Markdown 复制和 AI 导师入口。首页新增左侧学科、右侧学习目标/作业输入，可附上该学科的已保存报告；内容由学生手动粘贴。
 
 完整自动回归通过。macOS 导出 PDF 后卡死尚未在此环境复现，原生打印仍需在受影响的 Mac 上复测。具体行为与检查范围见 [FEEDBACK_REVIEW_2026-10-05.md](FEEDBACK_REVIEW_2026-10-05.md)。
+
+## 独立课程扩展
+
+四门学校数学与 Microeconomics 各提供四节入门课、12 道原创预测或检查题、互动模型、必填解释、独立进度与可携带报告。原 AA01 视觉活动仍作为补充链接保留。新课程暂未另建 15 题基础检查，不会把共享 AA01 检查伪装为各课程独立诊断。Macroeconomics 目前没有题目、进度或评分。完整范围、覆盖缺口和生成方式见 [COURSE_EXPANSION_REVIEW.md](COURSE_EXPANSION_REVIEW.md)。
