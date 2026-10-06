@@ -853,7 +853,6 @@
     add({name:"skip_cluevera_activity",title:"Skip Cluevera activity",description:"Mark the current activity as missing evidence and move to the next.",inputSchema:{type:"object",properties:{activityId:{type:"string"}},required:["activityId"],additionalProperties:false},annotations:{readOnlyHint:false},execute:({activityId})=>{if(state.quadraticGate||state.phase!=="assessment"||activityId!==current()||state.records[activityId]?.complete!==null&&state.records[activityId]?.complete!==undefined)throw Error("Activity is not open.");document.querySelector("#skip").click();return {phase:state.phase,nextActivityId:state.phase==="assessment"?current():null}}});
     add({name:"continue_cluevera_session",title:"Continue Cluevera session",description:"After a correct warm-up or saved answer, show the next activity or final report.",inputSchema:{type:"object",properties:{},additionalProperties:false},annotations:{readOnlyHint:false},execute:()=>{if(state.quadraticGate||state.phase!=="assessment"||state.records[current()]?.complete===null)throw Error("Complete or skip the current activity first.");advance();return {phase:state.phase,activityId:state.phase==="assessment"&&!state.quadraticGate?current():null}}});
   }
-  const brand=document.querySelector('.brand');if(brand)brand.onclick=e=>{e.preventDefault();goto(0);};
   restoreProgress();
   app.addEventListener('input',scheduleSave);
   app.addEventListener('change',scheduleSave);
