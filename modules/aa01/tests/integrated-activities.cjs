@@ -31,6 +31,6 @@ for(const [key,patch,target]of [['expansion',{b:-3},'expansion'],['points',{y1:8
 }
 // Validation and semantic uncertainty never change a math-based route.
 const t=load();start(t);t.api.submit({...positive,x3:2});assert.equal(t.api.state.records.QP.attempts.length,0);assert(t.q('#validation').textContent.includes('different x-values'));t.api.submit({...positive,reason:'',why:'My own unusual explanation.'});assert.equal(t.api.state.records.QP.reason.points,null);assert.equal(t.api.state.records.QP.quadraticRoute.target,'negative');
-const html=fs.readFileSync('dist/index.html','utf8');assert(!html.includes('workshop-link'));assert(html.includes('Beta 0.6'));assert(html.includes('integrated.js?v=0.6'));
+const html=fs.readFileSync('dist/index.html','utf8');assert(!html.includes('workshop-link'));assert(!/Beta\s*0\.6/i.test(html));assert(html.includes('sync-client.js'));assert(html.includes('integrated.js?v=0.6'));
 console.log(JSON.stringify({result:'passed',checks:['15 visible primary entries with two integrated sketch activities','optional readiness gate preserves draft/time and blocks hidden submissions','Q11 signed operations, timer, model stages and immutable support','one report/export across base, equation and both quadratic stages','separate sign records with source events and component observations','all component routes and unknown wording guard','revision clears stale route; reset clears readiness'],scope:'math and DOM callbacks; native rendering/downloads unverified'}));
 

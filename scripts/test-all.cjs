@@ -7,3 +7,5 @@ for (const script of ['test-aa01.cjs', 'test-ab01.cjs', 'test-ac01.cjs', 'test-a
   if (result.status !== 0) process.exit(result.status ?? 1);
 }
 
+
+const sync = spawnSync(process.execPath, ['--test', path.join(__dirname,'../tests/backend-sync.test.cjs'),path.join(__dirname,'../tests/sync-client.test.cjs')], {stdio:'inherit'});if(sync.status!==0)process.exit(sync.status??1);

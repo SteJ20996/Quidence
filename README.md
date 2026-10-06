@@ -2,6 +2,10 @@
 
 首页分三组，提供 11 个独立课程入口：学校数学（Pre-Algebra、Algebra I、Geometry、Algebra II）、数学进阶（Pre-calculus、Calculus、Statistics、Linear Algebra）、经济学与决策（Microeconomics、Macroeconomics、Game Theory）。10 个入口提供入门活动；Macroeconomics 目前只有明确标注的课程纲要。原有 AA01–AF01 模块及其记录保留，不需要创建账号。
 
+## 账号与跨设备记录
+
+安装 Node.js 24.19 或更新的 24.x，在项目根目录运行 `npm start`，打开 <http://127.0.0.1:3000/account/>。不需要安装第三方依赖。要让不同设备访问，需按 [BACKEND_SYNC_REVIEW.md](BACKEND_SYNC_REVIEW.md) 部署到同一 HTTPS 地址并使用持久存储。当前提交提供代码和本地验证，尚未部署线上服务。
+
 ## 当前内容
 
 | 位置 | 内容 |
@@ -9,7 +13,7 @@
 | `index.html`、`assets/` | 学科选择首页、解释型基础检查、报告保存和公共导航 |
 | `foundations/`、`reports/` | 六个模块各 15 题入口基础检查；原四模块另有 8/8/6/8 题进一步检查；共同保存的报告 |
 | `tests/` | 120 道原创基础检查题的数学、解释门槛、分量判断、答题流程和记录检查 |
-| `modules/aa01/dist/` | Cluevera Beta 0.6：当前 Pre-Algebra / Algebra I 活动、几何模型、综合项目、进度保存及报告 |
+| `modules/aa01/dist/` | 当前 Pre-Algebra / Algebra I 活动、几何模型、综合项目、进度保存及报告 |
 | `modules/aa01/tests/` | AA01 的回归检查文件、实际反馈案例及历史答案 fixture |
 | `modules/ab01/dist/` | AB01 矩阵学习、向量诊断、Matrix Lab 及 Beta 0.1 静态存档 |
 | `modules/ab01/tests/` | AB01 的九个数学和交互检查文件 |
@@ -36,14 +40,14 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory .
 
 5. 在同一台电脑的浏览器打开 <http://127.0.0.1:8000/>。
 
-运行命令时必须在项目根目录。现在从整个项目根目录提供网页，首页才会显示六个入口；旧命令的 `--directory modules/ab01/dist` 只打开 AB01。
+运行命令时必须在项目根目录。现在从整个项目根目录提供网页，首页才会显示全部课程入口；旧命令的 `--directory modules/ab01/dist` 只打开 AB01。
 
 Terminal 需保持运行。关闭服务时按 **Control+C**。如果之前的服务还在运行，先在那个 Terminal 窗口按 Control+C，再启动新命令。Windows 安装了 Python Launcher 时，命令开头可改为 `py -3`。
 
 ## 记录与返回入口
 
 - AA01 自动在当前浏览器保存作答草稿、原始输入、提交历史、提示和报告状态；刷新可恢复，离开页面的时间不计入作答。存储不可用时会显示提示；损坏的记录不会被自动覆盖。
-- AB01 保留原来的浏览器本地存储方式；没有新增云端账号、跨设备同步或统一学生档案。
+- 矩阵学习和向量诊断保留原有本地记录，并可通过账号同步；Matrix Lab 的临时操作不保存。
 - AC01 使用独立的浏览器本地记录。每课包含一次初始判断、四个教学步骤、两道新题与反馈；四课完成后可导出答案历史和 Markdown 报告。初始判断与学完后的作答分开呈现。
 - AE01 / AF01 分别保存课程草稿、初始判断、学后作答、解释、求助记录与修改历史。每课有一次初始判断和两道新题；须填写理由后才能提交。每个学科另有独立 15 题基础检查。AF01 与 AD01 双向链接，课程记录仍各自独立。
 - AD01 使用独立的浏览器本地记录，保存预测、新题、答案历史与图像设置。四课完成后可导出 JSON 和 Markdown 总结。
@@ -51,7 +55,7 @@ Terminal 需保持运行。关闭服务时按 **Control+C**。如果之前的服
 - 原课程评分和会话仍各自独立。新增 Saved reports 保存六个模块打开的报告副本与版本。
 - 每个学科保留独立的 15 题入口检查，另有 Further foundations：AA01 8题、AB01 8题、AC01 6题、AD01 8题。全部必须解释。原题版本和旧会话保持兼容；两种检查分别保存草稿、提交历史、报告和本地人工解释审核。
 - 报告显示各回答分量和多选题的正确/多选/漏选情况；解释保持未审核，直到明确保存本地人工审核。分量数不换算成能力分或加权总分。修改后，旧解释分不会沿用到新提交。
-- 保存是当前浏览器本地功能，没有云端档案或自动跨设备同步。浏览器清理或存储不可用会影响保存；下载报告后可交给另一 AI 导师。
+- 未登录时保存在当前浏览器；运行后端服务后可选择登录同一账号，同步课程作答、基础检查、学习需求和报告。浏览器清理或存储不可用会影响本地保存。GitHub Pages 或 Python 静态服务没有账号接口。
 - 基础覆盖、解释要求与剩余缺口见 [FOUNDATION_AUDIT.md](FOUNDATION_AUDIT.md)；原60题见 [FOUNDATION_ITEM_REVIEW.md](FOUNDATION_ITEM_REVIEW.md)，新增30题见 [FOUNDATION_FOLLOWUP_REVIEW.md](FOUNDATION_FOLLOWUP_REVIEW.md)。漏洞判断与补强对应关系见 [DIAGNOSTIC_COVERAGE_REVIEW.md](DIAGNOSTIC_COVERAGE_REVIEW.md)。试答与评分检查步骤见 [TESTING_GUIDE.md](TESTING_GUIDE.md)。
 
 ## 运行检查

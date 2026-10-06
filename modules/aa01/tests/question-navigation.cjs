@@ -51,6 +51,6 @@ h.q('[data-catalog-item="C3"]').click();assert.equal(h.api.collect().one,2.5);as
 h.q('#catalog-toggle').click();h.q('#snapshot').click();h.q('#restart').click();h.q('#confirm-restart').click();
 assert.equal(h.q('#question-list').hidden,false);assert.equal(h.qa('[data-catalog-item]').length,15);
 const html=fs.readFileSync(path.join(__dirname,'../dist/index.html'),'utf8');
-assert(html.includes('Beta 0.6'));for(const name of ['style.css','rubric.js','reasoning.js','geometry.js','adaptive.js','app.js'])assert(html.includes(`${name}?v=0.6`));
+assert(!/Beta\s*0\.6/i.test(html));assert(html.includes('sync-client.js'));for(const name of ['style.css','rubric.js','reasoning.js','geometry.js','adaptive.js','app.js'])assert(html.includes(`${name}?v=0.6`));
 console.log(JSON.stringify({result:'passed',checks:['eleven distinct question entries open real response forms','three base activities independently reachable; optional fourth covered by integration suite','every mobile question/project step reachable','list toggle preserves drafts/timers','adaptive insertion retains Q numbering and destinations','restart restores complete visible inventory','release label and asset cache keys'],scope:'DOM callbacks and state; native browser layout unverified'}));
 
