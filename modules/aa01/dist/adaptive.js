@@ -54,7 +54,7 @@
     if(mode==='confirm'&&anchor==='C1'&&priorErrors.includes('point')&&!priorErrors.includes('near'))key='N-midpoint';
     if(mode==='bridge'&&anchor==='C8')key=errors.includes('b')||errors.includes('pair')||record.skip?'F-start':'F-rate';
     if(mode==='bridge'&&anchor==='C10'&&parts.model===true)key='M-substitute';
-    const task=tasks[key];return {id:checkpoints[anchor],anchor,mode,key,reason,source_event_id:record.lastEventId??null,source_attempt:record.attempts.length,component_errors:errors,prior_component_errors:priorErrors,source_support_ids:[...support],task:{...structuredClone(task),variant_id:key,provenance:'Self-created within Quidence; uses standard mathematical concepts.',version:'0.4.1'}};
+    const task=tasks[key];return {id:checkpoints[anchor],anchor,mode,key,reason,source_event_id:record.lastEventId??null,source_attempt:record.attempts.length,component_errors:errors,prior_component_errors:priorErrors,source_support_ids:[...support],task:{...structuredClone(task),variant_id:key,provenance:'Composed within Quidence using standard mathematical concepts; source clearance has not been independently verified.',version:'0.4.1'}};
   }
   function reasoning(task,raw,correct){
     const t=String(raw??'').toLowerCase().replace(/[−–]/g,'-').replace(/[×]/g,'*').replace(/[÷]/g,'/');

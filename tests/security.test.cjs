@@ -28,9 +28,12 @@ test('proxy identity ignores spoofed headers by default and uses only explicit t
 });
 async function fixture(t){const server=createServer({dataPath:':memory:'});await new Promise(r=>server.listen(0,'127.0.0.1',r));t.after(()=>new Promise(r=>server.close(r)));const origin='http://127.0.0.1:'+server.address().port;
  const post=(route,body,headers={})=>fetch(origin+route,{method:'POST',headers:{Origin:origin,'Content-Type':'application/json',...headers},body:JSON.stringify(body)});return{server,origin,post};}
-test('ten simultaneous registrations from one classroom address complete without busy rejection',async t=>{
- const {post}=await fixture(t),responses=await Promise.all(Array.from({length:10},(_,i)=>post('/api/register',{username:'class_student_'+i,password:'classroom strong password '+i})));
- assert.deepEqual(responses.map(r=>r.status),Array(10).fill(201));await Promise.all(responses.map(r=>r.json()));
+test('twelve simultaneous classroom registrations and then logins complete without busy rejection',async t=>{
+ const {post}=await fixture(t),responses=await Promise.all(Array.from({length:12},(_,i)=>post('/api/register',{username:'class_student_'+i,password:'classroom strong password '+i})));
+ assert.deepEqual(responses.map(r=>r.status),Array(12).fill(201));await Promise.all(responses.map(r=>r.json()));
+ const logins=await Promise.all(Array.from({length:12},(_,i)=>post('/api/login',{username:'class_student_'+i,password:'classroom strong password '+i})));
+ assert.deepEqual(logins.map(r=>r.status),Array(12).fill(200));
+ const bodies=await Promise.all(logins.map(r=>r.json()));assert.equal(new Set(bodies.map(b=>b.user.id)).size,12);
 });
 test('logout is repeatable and an upload finished after logout cannot create a revision',async t=>{
  const {origin,post}=await fixture(t),registered=await post('/api/register',{username:'race_student',password:'a strong password 123'}),cookie=registered.headers.get('set-cookie').split(';')[0],{csrf}=await registered.json();
@@ -43,4 +46,14 @@ test('logout is repeatable and an upload finished after logout cannot create a r
  assert.equal((await post('/api/logout',{},headers)).status,200);
  const login=await post('/api/login',{username:'race_student',password:'a strong password 123'}),newCookie=login.headers.get('set-cookie').split(';')[0];await login.json();
  const records=await fetch(origin+'/api/records',{headers:{Cookie:newCookie}});assert.deepEqual((await records.json()).records,[]);
+});
+
+test('HTTP rate buckets ignore spoofed proxy headers by default and separate explicitly trusted clients',async t=>{
+ for(const trustedProxyCIDRs of ['', '127.0.0.1/32']){
+  const server=createServer({dataPath:':memory:',trustedProxyCIDRs});await new Promise(r=>server.listen(0,'127.0.0.1',r));t.after(()=>new Promise(r=>server.close(r)));const origin='http://127.0.0.1:'+server.address().port;
+  async function request(i,ip){const r=await fetch(origin+'/api/register',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json','X-Forwarded-For':ip},body:JSON.stringify({username:'proxy_test_'+i,password:'short'})});await r.json();return r.status;}
+  for(let i=0;i<60;i++)assert.equal(await request(i,'198.51.100.1'),400);
+  assert.equal(await request(60,'198.51.100.1'),429);
+  assert.equal(await request(61,'198.51.100.2'),trustedProxyCIDRs?400:429);
+ }
 });

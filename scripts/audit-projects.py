@@ -1,4 +1,4 @@
-"""Independent project oracle: derives values from scenario inputs, never reads authored keys."""
+"""Separate project recomputation: derives values from scenario inputs without importing authored keys. This is not independent human certification."""
 from fractions import Fraction as F
 from math import sqrt, atan2, pi, ceil
 from pathlib import Path
@@ -101,7 +101,7 @@ r=[[0,-1],[1,0]];s=[[2,0],[0,1]];t=mm(r,s);w=[3,2];tw=mv(t,w);recovered=solve(t,
 vertices=[[0,0],[3,0],[3,2]];area=abs(signed_area(vertices));mappedarea=abs(signed_area([mv(t,z) for z in vertices]));assert mappedarea==abs(det(t))*area
 put('la-p02',dict(a11=t[0][0],a12=t[0][1],a21=t[1][0],a22=t[1][1],tx=tw[0],ty=tw[1],inputX=recovered[0],inputY=recovered[1],det=det(t),area=mappedarea,c1=wc[0],c2=wc[1],outC1=tc[0],outC2=tc[1],twiceX=twice[0],twiceY=twice[1]), 'Independent composition, inverse solve, transformed shoelace area and basis solves; check T²=-2I.')
 
-result={'audit':'Independent scenario computations; no authored answer key imported. Exact fractions where rational, mathematical square roots for irrational quantities. Text understanding is not auto-scored.','questions':questions}
+result={'audit':'Separately implemented scenario computations (project-authored, not independent human certification); no authored answer key imported. Exact fractions where rational, mathematical square roots for irrational quantities. Text understanding is not auto-scored.','questions':questions}
 target=Path(__file__).resolve().parent.parent/'review/project-math-audit.json'
 target.parent.mkdir(exist_ok=True);target.write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps({'projects':len(questions),'numericComponents':sum(len(q['numbers']) for q in questions.values()),'formulaComponents':sum(len(q['formulas']) for q in questions.values()),'drawings':sum(len(q['drawings']) for q in questions.values())}))

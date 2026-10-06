@@ -74,3 +74,5 @@ node scripts/render-challenge-graphics.cjs
 `npm test` 检查当前数学、题目流程、草稿/历史/报告、图像、账号隔离和同步冲突；新增诊断检查使用独立复算答案，逐个扰动分量来核对部分匹配及错误反馈。Python 审核只使用标准库。图像审核页是独立 SVG，不需要浏览器截图依赖。
 
 旧版本审核文件保留作为历史记录；以本 README 和本次诊断审核表为当前范围。macOS 实机交互及打印仍需实际浏览器测试。
+
+Current record behavior is described at `data-use/`. See [Claude follow-up status](CLAUDE_FOLLOWUP_REVIEW.md), [source review process](SOURCE_REVIEW.md), and the [unapproved privacy and retention draft](PRIVACY_AND_RETENTION_DRAFT.md). There is no online account deletion or automatic revision expiry yet. The explanation checks are provisional and do not call an AI grading model; these activities do not certify comprehensive mathematical mastery.

@@ -1,4 +1,4 @@
-"""Independent exact-arithmetic oracle; does not read the authored answer keys."""
+"""Separate exact-arithmetic recomputation; does not read authored answer keys. Both implementations were produced in this project, not independently certified by a human reviewer."""
 from fractions import Fraction as F
 from math import isqrt
 from pathlib import Path
@@ -119,5 +119,5 @@ R['st-c03']={'mean':mean,'variance':var,'newMean':newmean,'newVariance':newvar};
 xs=[1,2,3];ys=[2,1,4];alpha,beta,residual=regression(xs,ys);ymean=F(sum(ys),len(ys));sst=sum((F(y)-ymean)**2 for y in ys)
 R['st-c04']={'b':beta,'a':alpha,'residual':residual[1],'r2':1-dot(residual,residual)/sst}
 assert len(R)==40
-output={'method':'Independent Python Fraction arithmetic, Gaussian elimination, polynomial products, exact integrals, interval checks, and statistical identities. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,F))else value for field,value in answers.items()}for key,answers in R.items()}}
+output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, and statistical identities. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,F))else value for field,value in answers.items()}for key,answers in R.items()}}
 path=Path(__file__).resolve().parents[1]/'review'/'challenge-math-audit.json';path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(output,indent=2)+'\n');print(json.dumps({'questions':len(R),'components':sum(len(x)for x in R.values()),'output':str(path)}))

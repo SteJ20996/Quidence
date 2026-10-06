@@ -1,5 +1,5 @@
 {
-  "method": "Independent Python Fraction arithmetic, Gaussian elimination, polynomial products, exact integrals, interval checks, and statistical identities. Authored answer keys are not imported.",
+  "method": "Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, and statistical identities. Authored answer keys are not imported.",
   "questions": {
     "la-c01": {
       "k": "3",

@@ -35,3 +35,7 @@
 复核 0/1/2 只针对一次提交：0 表示理由未回应关键问题或需修改；1 表示部分连接仍不完整；2 表示支持了该题关键连接。无法判断保持 Open。应结合图、式子、日常语言和追问核对，不是整门学科的分数或全面数学语言认证。
 
 反馈请保留科目、入口、题目 ID、完整原回答、实际结果、预期结果和操作顺序。`npm test` 覆盖数学、状态、DOM、旧数据兼容及真实 HTTP 账户测试；仍需教师审核、学生试答与实际浏览器检查，才能评估覆盖范围、误判和教学效果。
+
+## Claude follow-up checks
+
+Run `node --test tests/csp.test.cjs tests/security.test.cjs tests/learning-handoff.test.cjs` for CSP headers, extracted startup scripts, manual standalone printing, concurrent classroom registration/login, trusted proxy rate buckets and corrupted homepage request protection. `node scripts/build-source-ledger.cjs --check` detects a stale source inventory; it is not an originality test. The server CSP must also be configured by any static hosting deployment. Check actual browser CSP violations and report-tab printing before deployment; no native macOS printing or browser enforcement certification is implied by Node fixtures.
