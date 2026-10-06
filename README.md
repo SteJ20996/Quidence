@@ -10,6 +10,11 @@
 
 共 40 道原创诊断题、156 个独立检查的答案分量。主页各课程卡及课程导航提供 **Test your understanding / Diagnostic challenges** 入口；可直接测试，不必先完成入门课。入门教学、旧基础检查和视觉活动仍可用于复习。
 
+新增 16 个原创 California-inspired field projects，8 科各两个；包含 52 个分步问题、123 个数值输入、6 个模型公式、2 个几何构造和 39 个开放回应。新增项目全部不是选择题。主页每科的 **Explore two field projects** 可直接进入；目标难度约 6.5/10，待试做校准。
+
+几何可轻点放点、输入分数坐标、用按钮连线及撤销；答案和图形一起保存。等价多项式用系数核验，解释不按关键词、语法或长度自动判分。每小问有理解要点及可记录的本地复核；未审核的理解保留待复核。见 [PROJECTS_REVIEW.md](PROJECTS_REVIEW.md)。
+
+
 ## 题目和反馈
 
 - 新题要求组合概念、处理限制或特殊情况、构建模型，并解释或核验结果。线代重点包括参数系统、秩与零空间、复合顺序、换基、投影、最小二乘、特征向量、面积变化和子空间。
@@ -42,6 +47,12 @@ npm start
 | --- | --- |
 | `assets/challenge-bank.js`、`diagnostics/` | 8 科中高难度诊断题与入口 |
 | `assets/foundation-engine.js`、`assets/foundation-app.js` | 共用检查、历史保存与报告流程；新题使用独立记录空间 |
+| `assets/project-bank.js` | 16 个原创多步骤情境项目 |
+| `assets/project-tools.js` | 有界多项式检查与几何构造工具 |
+| `projects/` | 独立项目入口与保存 |
+| `review/project-math-audit.json` | 从情境数据独立推导的答案参照 |
+| `review/project-graphics.svg` | 给定图与独立审核的几何构造 |
+| `PROJECTS_REVIEW.md` | 逐项目审核、解释标准和验证范围 |
 | `review/challenge-math-audit.json` | 全 40 题独立复算的答案参照 |
 | `scripts/audit-challenges.py` | 不读取题库答案的精确分数、消元、积分与统计验证 |
 | `review/challenge-graphics.svg` | 新图在 320px 和 520px 宽度下的审核页 |

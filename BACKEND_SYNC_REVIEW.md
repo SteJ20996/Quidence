@@ -72,3 +72,6 @@ This is a student account service, with no teacher dashboard, email verification
 Student-visible Beta/test labels and module codes were removed from active pages, report titles, and download names. Internal legacy keys and namespaces remain to preserve saved work. Archived earlier pages are retained as historical source but removed from active navigation. Economic and Game Theory courses have since been retired. Their legacy record keys remain available for historical data export; new course selectors do not offer them.
 
 Native macOS Safari behavior and the deployed HTTPS reverse proxy still require testing after hosting. The tests do not establish educational validity or full curriculum coverage.
+
+
+本次项目扩展加入 `cluevera_project_portfolio_v1`：保存 8 科项目的原始分步回应、结构化几何点/线段、不可变提交及按提交绑定的本地复核。`projects/` 纳入允许静态路径。项目专项的实际 HTTP 检查验证第二设备恢复这些数据、保留版本历史和拒绝旧版本写入。旧诊断键及原学习记录未改写；后端仍需单独部署，冲突按整份组合记录处理。

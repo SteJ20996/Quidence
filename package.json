@@ -9,6 +9,7 @@
     "start": "node backend/server.cjs",
     "test": "node scripts/test-all.cjs",
     "test:sync": "node --test tests/backend-sync.test.cjs tests/sync-client.test.cjs",
+    "test:projects": "node --test tests/projects.test.cjs",
     "test:diagnostics": "node --test tests/challenges.test.cjs"
   }
 }
