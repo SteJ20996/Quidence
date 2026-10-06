@@ -2,6 +2,13 @@
   "name": "cluevera",
   "private": true,
   "version": "1.0.0",
-  "engines": {"node": ">=24.19.0 <25"},
-  "scripts": {"start": "node backend/server.cjs", "test": "node scripts/test-all.cjs", "test:sync": "node --test tests/backend-sync.test.cjs tests/sync-client.test.cjs"}
+  "engines": {
+    "node": ">=24.19.0 <25"
+  },
+  "scripts": {
+    "start": "node backend/server.cjs",
+    "test": "node scripts/test-all.cjs",
+    "test:sync": "node --test tests/backend-sync.test.cjs tests/sync-client.test.cjs",
+    "test:diagnostics": "node --test tests/challenges.test.cjs"
+  }
 }

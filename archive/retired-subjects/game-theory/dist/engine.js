@@ -78,3 +78,4 @@ function exportRecord(state){
 const api={SCHEMA,TASKS,bestResponses,dominant,deviation,equilibria,valid,score,fresh,record,update,submit,log,lessonDone,allDone,last,hydrate,exportRecord};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.AC01Engine=api;
 })(typeof window==='undefined'?globalThis:window);
+
