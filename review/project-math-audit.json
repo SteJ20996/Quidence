@@ -1,0 +1,325 @@
+{
+  "audit": "Independent scenario computations; no authored answer key imported. Exact fractions where rational, mathematical square roots for irrational quantities. Text understanding is not auto-scored.",
+  "questions": {
+    "pa-p01": {
+      "numbers": {
+        "concentrate": "24/5",
+        "fraction": "4/25",
+        "cups": "180",
+        "runners": "48",
+        "needed": "240",
+        "prepared": "40",
+        "extraConcentrate": "8/5",
+        "extraWater": "42/5"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Track ingredient and whole independently; reverse retention; verify cups and mixture."
+    },
+    "pa-p02": {
+      "numbers": {
+        "distance": "3",
+        "elevation": "125",
+        "climb": "135",
+        "walking": "60",
+        "elapsed": "84",
+        "spare": "6",
+        "newSpeed": "35/11"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Map length versus height; clock arithmetic; solve a reverse speed constraint."
+    },
+    "a1-p01": {
+      "numbers": {
+        "minimum": "12",
+        "surplus": "54",
+        "freeMinimum": "19",
+        "adults": "12",
+        "students": "8",
+        "balance": "-2"
+      },
+      "formulas": {
+        "cost": [
+          "90",
+          "12"
+        ]
+      },
+      "drawings": {},
+      "method": "Solve linear and integer inequalities; recover a ticket mixture and verify both totals."
+    },
+    "a1-p02": {
+      "numbers": {
+        "root1": "6",
+        "root2": "9",
+        "constraint": "15/2",
+        "low": "6",
+        "high": "15/2",
+        "maximum": "225/2"
+      },
+      "formulas": {
+        "length": [
+          "30",
+          "-2"
+        ],
+        "area": [
+          "0",
+          "30",
+          "-2"
+        ]
+      },
+      "drawings": {},
+      "method": "Factor the area boundary, intersect inequalities, then compare a concave quadratic on the feasible interval."
+    },
+    "ge-p01": {
+      "numbers": {
+        "gridArea": "24",
+        "realArea": "2400",
+        "midline": "50.0",
+        "smallArea": "600"
+      },
+      "formulas": {},
+      "drawings": {
+        "map": {
+          "points": {
+            "M": [
+              "5",
+              "1"
+            ],
+            "N": [
+              "1",
+              "4"
+            ],
+            "G": [
+              "11/3",
+              "3"
+            ]
+          },
+          "edges": [
+            [
+              "M",
+              "N"
+            ]
+          ]
+        }
+      },
+      "method": "Exact midpoint/centroid coordinates, shoelace area, squared scale and Pythagorean length."
+    },
+    "ge-p02": {
+      "numbers": {
+        "walk": "1000.0",
+        "direct": "721.1102550927978",
+        "area": "120000",
+        "tangent": "300.0"
+      },
+      "formulas": {},
+      "drawings": {
+        "route": {
+          "points": {
+            "U": [
+              "6",
+              "0"
+            ],
+            "V": [
+              "6",
+              "6"
+            ],
+            "W": [
+              "2",
+              "6"
+            ]
+          },
+          "edges": [
+            [
+              "U",
+              "V"
+            ],
+            [
+              "V",
+              "W"
+            ]
+          ]
+        }
+      },
+      "method": "Translate, rotate, translate back; verify rigid invariants and radius/tangent orthogonality."
+    },
+    "a2-p01": {
+      "numbers": {
+        "early": "1/2",
+        "late": "1",
+        "peakTime": "3/4",
+        "peakHeight": "25/8",
+        "ground": "2",
+        "range": "12"
+      },
+      "formulas": {
+        "height": [
+          "2",
+          "3",
+          "-2"
+        ]
+      },
+      "drawings": {},
+      "method": "Gaussian elimination on three observations; solve height/ground boundaries and check vertex and physical domain."
+    },
+    "a2-p02": {
+      "numbers": {
+        "amplitude": "80",
+        "multiplier": "0.7071067811865476",
+        "c4": "40",
+        "r4": "30",
+        "tc": "6",
+        "tr": "4",
+        "limitC": "20",
+        "limitR": "10"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Separate baseline and excess; two-hour/hourly conversion; verify both threshold inverses and asymptotes."
+    },
+    "pc-p01": {
+      "numbers": {
+        "midline": "3",
+        "amplitude": "2",
+        "period": "12.0",
+        "min": "1",
+        "max": "5",
+        "cross1": "2",
+        "cross2": "10",
+        "lowTime": "9"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Solve cos(angle)=1/2 on a full closed period; verify two crossings, signs and shifted extrema."
+    },
+    "pc-p02": {
+      "numbers": {
+        "bx": "3",
+        "by": "5.196152422706632",
+        "distance": "7.211102550927978",
+        "angle": "133.89788624801398",
+        "time": "1.8027756377319946",
+        "rotatedX": "6",
+        "rotatedY": "0"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Cartesian components checked with the cosine rule and quadrant-aware direction; rigid rotation check."
+    },
+    "ca-p01": {
+      "numbers": {
+        "turn1": "2",
+        "turn2": "4",
+        "displacement": "400",
+        "distance": "560",
+        "averageVelocity": "4/3",
+        "averageSpeed": "28/15",
+        "acceleration": "-1/15",
+        "maxPosition": "400",
+        "maxTime1": "2",
+        "maxTime2": "5"
+      },
+      "formulas": {
+        "position": [
+          "0",
+          "480",
+          "-180",
+          "20"
+        ]
+      },
+      "drawings": {},
+      "method": "Integrate exactly with the 60 factor, split by velocity sign, compare all endpoints/stationary points, convert acceleration."
+    },
+    "ca-p02": {
+      "numbers": {
+        "peakTime": "6",
+        "peakPower": "36",
+        "endPower": "20",
+        "uncapped": "800/3",
+        "average": "80/3",
+        "clip1": "3.550510257216822",
+        "clip2": "8.449489742783179",
+        "exported": "247.07074872440126",
+        "sensitivity": "32"
+      },
+      "formulas": {
+        "energy": [
+          "0",
+          "0",
+          "6",
+          "-1/3"
+        ]
+      },
+      "drawings": {},
+      "method": "Integrate the quadratic; independently integrate excess around the vertex; verify clipping boundaries and fundamental-theorem sensitivity."
+    },
+    "st-p01": {
+      "numbers": {
+        "mean": "2",
+        "variance": "2",
+        "se": "0.5773502691896257",
+        "low": "0.5156324579134721",
+        "high": "3.484367542086528",
+        "positive": "5"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Reconstruct each pair, sample squared deviations and SE; use exactly the supplied critical value."
+    },
+    "st-p02": {
+      "numbers": {
+        "mainMean": "12",
+        "pocketMean": "4",
+        "pooledMean": "8",
+        "total": "280",
+        "plastic": "170",
+        "fraction": "17/28",
+        "plasticGivenPocket": "1/4",
+        "pocketGivenPlastic": "1/9"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Use population segment counts to expand means; keep raw conditional sample denominators separate from weighted population totals."
+    },
+    "la-p01": {
+      "numbers": {
+        "rank": "2",
+        "x": "7/2",
+        "y": "1/2",
+        "r1": "1",
+        "r2": "1",
+        "r3": "-1",
+        "sse": "3",
+        "weightedX": "4",
+        "weightedY": "1/2",
+        "weightedError": "3/2"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Independent elimination of A\u1d40WA systems; exact residuals and weighted orthogonality under both metrics."
+    },
+    "la-p02": {
+      "numbers": {
+        "a11": "0",
+        "a12": "-1",
+        "a21": "2",
+        "a22": "0",
+        "tx": "-2",
+        "ty": "6",
+        "inputX": "3",
+        "inputY": "2",
+        "det": "2",
+        "area": "6.0",
+        "c1": "5/2",
+        "c2": "1/2",
+        "outC1": "2",
+        "outC2": "-4",
+        "twiceX": "-6",
+        "twiceY": "-4"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Independent composition, inverse solve, transformed shoelace area and basis solves; check T\u00b2=-2I."
+    }
+  }
+}

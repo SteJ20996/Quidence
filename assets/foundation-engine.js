@@ -44,25 +44,26 @@ const definition=s=>s.bankVersion===X.VERSION?X.MODULES[s.module]:B.MODULES[s.mo
 const tasks=s=>definition(s).tasks;
 const checkName=s=>settings.checkTitle||(s.bankVersion===X.VERSION?'Further foundation check':'Entry foundation check');
 const task=s=>tasks(s)[s.index];
-function blank(t){return{values:Object.fromEntries(t.fields.map(f=>[f.id,f.kind==='multi'?[]:''])),explanation:'',unsure:false,otherHelp:false,...(settings.challenge?{notStudied:false}:{})};}
-function record(s,t){return s.records[t.id]||(s.records[t.id]={draft:blank(t),status:'draft',submissions:[],reviews:[]});}
+function blank(t){return{values:Object.fromEntries(t.fields.map(f=>[f.id,settings.fieldTypes?.[f.kind]?.blank?.()??(f.kind==='multi'?[]:'')])),explanation:'',unsure:false,otherHelp:false,...(settings.challenge?{notStudied:false}:{})};}
+function record(s,t){return s.records[t.id]||(s.records[t.id]={draft:blank(t),status:'draft',submissions:[],reviews:[],...(settings.projects?{partReviews:[]}: {})});}
 function edit(s,t,answer){const r=record(s,t);r.draft=clone(answer);r.status='draft';}
 function validDraft(t,a){
  if(!object(a)||!object(a.values)||typeof a.explanation!=='string'||a.explanation.length>3000||typeof a.unsure!=='boolean'||typeof a.otherHelp!=='boolean'||a.notStudied!==undefined&&typeof a.notStudied!=='boolean'||a.unsure&&a.notStudied)return false;
  if(Object.keys(a.values).some(k=>!t.fields.some(f=>f.id===k)))return false;
- return t.fields.every(f=>{const v=a.values[f.id];return f.kind==='multi'?Array.isArray(v)&&v.every(x=>typeof x==='string'&&f.options.some(o=>o.value===x))&&new Set(v).size===v.length:typeof v==='string'&&v.length<=80&&(f.kind==='number'||v===''||f.options.some(o=>o.value===v));});
+ return t.fields.every(f=>{const v=a.values[f.id];if(settings.fieldTypes?.[f.kind])return settings.fieldTypes[f.kind].valid(f,v);return f.kind==='multi'?Array.isArray(v)&&v.every(x=>typeof x==='string'&&f.options.some(o=>o.value===x))&&new Set(v).size===v.length:typeof v==='string'&&v.length<=80&&(f.kind==='number'||v===''||f.options.some(o=>o.value===v));});
 }
 function validate(t,a){
  if(!validDraft(t,a))return'An answer could not be read. Please check the fields.';
  if(!a.explanation.trim())return'Add your reasoning, a calculation, or where you got stuck before saving.';
  if(a.unsure||a.notStudied)return'';
- for(const f of t.fields){const v=a.values[f.id];if(f.kind==='number'&&numeric(v)===null)return'Enter a number, decimal, or fraction for '+f.label+'.';if(f.kind==='choice'&&!v)return'Choose an answer for '+f.label+'.';if(f.kind==='multi'&&!v.length)return'Select at least one answer for '+f.label+'.';}
+ for(const f of t.fields){const v=a.values[f.id];if(f.kind==='number'&&!(settings.projects&&v.trim()==='')&&numeric(v)===null)return'Enter a number, decimal, or fraction for '+f.label+'.';if(f.kind==='choice'&&!v)return'Choose an answer for '+f.label+'.';if(f.kind==='multi'&&!v.length)return'Select at least one answer for '+f.label+'.';}
  return'';
 }
 function evaluate(t,a){
  if(a.notStudied)return{state:'not-studied',parts:{}};
  if(a.unsure)return{state:'unsure',parts:{}};
- const parts={};for(const f of t.fields){const v=a.values[f.id],n=f.kind==='number'?numeric(v):null;parts[f.id]=f.kind==='number'?n!==null&&Math.abs(n-f.answer)<=1e-8*Math.max(1,Math.abs(f.answer)):f.kind==='multi'?JSON.stringify([...v].sort())===JSON.stringify([...f.answer].sort()):v===f.answer;}
+ const parts={};for(const f of t.fields){const v=a.values[f.id],n=f.kind==='number'?numeric(v):null;if(settings.fieldTypes?.[f.kind]){parts[f.id]=settings.fieldTypes[f.kind].check(f,v);continue;}if(settings.projects&&v.trim()===''){parts[f.id]=null;continue;}parts[f.id]=f.kind==='number'?n!==null&&Math.abs(n-f.answer)<=Math.max(f.absoluteTolerance||0,1e-8*Math.max(1,Math.abs(f.answer))):f.kind==='multi'?JSON.stringify([...v].sort())===JSON.stringify([...f.answer].sort()):v===f.answer;}
+ if(settings.projects)return{state:Object.values(parts).some(v=>v===false)?'recheck':t.fields.some(f=>parts[f.id]===null&&(f.kind==='drawing'?settings.fieldTypes.drawing.check(f,a.values[f.id])===null:!a.values[f.id].trim()))?'partial':Object.values(parts).some(v=>v===null)?'review':'matched',parts};
  return{state:Object.values(parts).every(Boolean)?'matched':'recheck',parts};
 }
 function submit(s,t){
@@ -77,14 +78,20 @@ function review(s,t,points,note){
  r.reviews.push({submission:r.submissions.length,points,note:note.trim(),at:stamp()});return true;
 }
 function latestReview(s,t){const r=s.records[t.id];return r?.reviews.filter(x=>x.submission===r.submissions.length).at(-1)||null;}
+function reviewPart(s,t,field,points,note){
+ const r=s.records[t.id];if(!settings.projects||!r||!last(s,t)||!t.fields.some(f=>f.id===field)||![null,0,1,2].includes(points)||typeof note!=='string'||!note.trim()||note.length>2000)return false;
+ (r.partReviews||(r.partReviews=[])).push({field,submission:r.submissions.length,points,note:note.trim(),at:stamp()});return true;
+}
+function latestPartReview(s,t,field){if(!last(s,t))return null;const r=s.records[t.id];return r?.partReviews?.filter(x=>x.submission===r.submissions.length&&x.field===field).at(-1)||null;}
 function componentChecks(t,a){return t.fields.map(f=>{
- const state=!a?'missing':a.answer.notStudied?'not-studied':a.answer.unsure?'unsure':a.objective.parts[f.id]?'matched':'recheck';
- const result={id:f.id,label:f.label,state};
+ const state=!a?'missing':a.answer.notStudied?'not-studied':a.answer.unsure?'unsure':a.objective.parts[f.id]===null?(f.kind==='drawing'?!Object.keys(a.answer.values[f.id].points).length:!a.answer.values[f.id].trim())?'missing':'review':a.objective.parts[f.id]?'matched':'recheck';
+ const result={id:f.id,label:f.label,state};if(settings.projects){result.answer=settings.fieldTypes?.[f.kind]?.text(f,a?.answer.values[f.id])??(a?.answer.values[f.id]||'not entered');if(f.kind==='drawing'&&a){result.drawing=settings.fieldTypes.drawing.valid(f,a.answer.values[f.id])?clone(a.answer.values[f.id]):null;result.drawingSpec={id:f.id,label:f.label,board:clone(f.board)};if(!a.answer.unsure&&!a.answer.notStudied)result.constructionParts=settings.fieldTypes.drawing.parts(f,a.answer.values[f.id]);}result.reviewCriteria=f.reviewCriteria||[];if(state==='review')result.feedback=f.kind==='drawing'?'Construction is incomplete; inspect the preserved points and segments rather than treating missing construction as incorrect.':f.kind==='formula'?'Expression preserved for review; it is outside the bounded polynomial checker.':'Review the mathematical meaning of this response; no keyword, grammar, or length score is assigned.';}
  if(f.skill){result.skill=f.skill;if(state==='recheck'){const upstream=(f.dependsOn||[]).filter(id=>a.objective.parts[id]===false);result.feedback=upstream.length?'Recheck after '+upstream.map(id=>t.fields.find(x=>x.id===id).label).join(', ')+'. This result may follow from an earlier value; it is not separate evidence of another weakness.':f.onMismatch;}if(state==='not-studied')result.feedback='Not studied yet; this is readiness information, not evidence of a failed concept.';}
  if(a&&!a.answer.unsure&&!a.answer.notStudied&&f.kind==='multi'){const selected=a.answer.values[f.id];result.selection={correct:selected.filter(v=>f.answer.includes(v)).map(v=>f.options.find(o=>o.value===v).label),extra:selected.filter(v=>!f.answer.includes(v)).map(v=>f.options.find(o=>o.value===v).label),missing:f.answer.filter(v=>!selected.includes(v)).map(v=>f.options.find(o=>o.value===v).label)};}
  return result;
 });}
-function observations(s){return tasks(s).map(t=>{const r=s.records[t.id],a=last(s,t);return{id:t.id,group:t.groupName,title:t.title,status:a?a.objective.state:'missing',parts:a?.objective.parts||{},components:componentChecks(t,a),explanation:a?.answer.explanation||r?.draft.explanation||'',explanationReview:a?latestReview(s,t):null,otherHelp:a?.answer.otherHelp||false,attempts:r?.submissions.length||0,next:t.next,...(t.difficulty?{difficulty:t.difficulty}:{} )};});}
+function reviewedComponents(s,t){return componentChecks(t,last(s,t)).map(c=>{if(!settings.projects)return c;const review=latestPartReview(s,t,c.id);return{...c,state:c.state==='review'&&review&&review.points!==null?'reviewed':c.state,review};});}
+function observations(s){return tasks(s).map(t=>{const r=s.records[t.id],a=last(s,t);return{id:t.id,group:t.groupName,title:t.title,status:a?a.objective.state:'missing',parts:a?.objective.parts||{},components:reviewedComponents(s,t),explanation:a?.answer.explanation||r?.draft.explanation||'',explanationReview:a?latestReview(s,t):null,otherHelp:a?.answer.otherHelp||false,attempts:r?.submissions.length||0,next:t.next,...(t.difficulty?{difficulty:t.difficulty}:{} )};});}
 const FOLLOWUP_UNCHECKED={
  aa01:['Powers and roots, general systems, function domains, and quadratic equations','Independent graphical construction and wider fraction, percentage, and equation transfer'],
  ab01:['General elimination algorithms, formal basis/dimension/rank, and inverse matrix construction','Dot products, orthogonality, projections, determinants, and eigenvectors','A complete proof of linearity for an arbitrary map'],
@@ -92,11 +99,13 @@ const FOLLOWUP_UNCHECKED={
  ad01:['General differentiation rules and wider limit techniques','Function analysis, optimization, differential equations, and wider integration applications','Exact derivatives inferred from finite data alone']
 };
 function scopeReview(s){const further=s.bankVersion===X.VERSION,d=definition(s);return{scope:B.MODULES[s.module].scope,groups:[...d.groups],notChecked:[...(settings.challenge?d.notChecked:(further?FOLLOWUP_UNCHECKED:UNCHECKED)[s.module])],suppliedInformation:settings.challenge||further?[]:clone(CONDITIONS[s.module]),interpretation:'These limits describe this '+tasks(s).length+'-question '+checkName(s).toLowerCase()+'. Matching components do not establish complete subject mastery.'};}
-function evidenceSummary(s){const obs=observations(s),parts=obs.flatMap(o=>o.components);return{matched:parts.filter(x=>x.state==='matched').length,recheck:parts.filter(x=>x.state==='recheck').length,unsure:parts.filter(x=>x.state==='unsure').length,notStudied:parts.filter(x=>x.state==='not-studied').length,missing:parts.filter(x=>x.state==='missing').length,explanations:{open:obs.filter(o=>!o.explanationReview||o.explanationReview.points===null).length,revise:obs.filter(o=>o.explanationReview?.points===0).length,partial:obs.filter(o=>o.explanationReview?.points===1).length,connected:obs.filter(o=>o.explanationReview?.points===2).length}};}
+function evidenceSummary(s){const obs=observations(s),parts=obs.flatMap(o=>o.components);return{matched:parts.filter(x=>x.state==='matched').length,recheck:parts.filter(x=>x.state==='recheck').length,unsure:parts.filter(x=>x.state==='unsure').length,notStudied:parts.filter(x=>x.state==='not-studied').length,missing:parts.filter(x=>x.state==='missing').length,review:parts.filter(x=>x.state==='review').length,reviewed:parts.filter(x=>x.state==='reviewed').length,explanations:{open:obs.filter(o=>!o.explanationReview||o.explanationReview.points===null).length,revise:obs.filter(o=>o.explanationReview?.points===0).length,partial:obs.filter(o=>o.explanationReview?.points===1).length,connected:obs.filter(o=>o.explanationReview?.points===2).length}};}
 function nextChecks(s){return observations(s).flatMap(o=>{
  const a=last(s,tasks(s).find(t=>t.id===o.id)),reasons=[];
  if(o.status==='recheck')reasons.push(...o.components.filter(c=>c.state==='recheck').map(c=>c.feedback||'Recheck '+c.label+'.'));
  if(o.status==='not-studied')reasons.push('This topic was marked not studied. Check prerequisites before attempting another diagnostic; do not interpret it as a demonstrated weakness.');
+ if(settings.projects&&o.components.some(c=>c.state==='review'||c.state==='missing'))reasons.push('Read the open responses and missing parts before interpreting the fixed checks. Accept equivalent methods; ask a targeted follow-up about an unclear mathematical connection.');
+ if(settings.projects)for(const c of o.components.filter(c=>c.review?.points===0||c.review?.points===1)){const f=tasks(s).find(t=>t.id===o.id).fields.find(f=>f.id===c.id);reasons.push('Local mathematical review of '+c.label+' identifies '+(c.review.points===0?'a connection to revise':'a remaining connection')+'. '+(f.followup||'Ask for an independent check using another representation.'));}
  if(o.status==='unsure')reasons.push('You marked this answer as uncertain.');
  if(o.explanationReview?.points===0)reasons.push('The local explanation review asks for a revised reason.');
  if(o.explanationReview?.points===1)reasons.push('The local explanation review confirms part of the connection; check the remaining part.');
@@ -105,21 +114,23 @@ function nextChecks(s){return observations(s).flatMap(o=>{
  else if(o.attempts>1)reasons.push('Earlier attempts are available. Review what changed and try a new question.');
  return reasons.length?[{...o,followupReasons:reasons}]:[];
 });}
-function portable(s){return{product:'Cluevera',kind:settings.challenge?'diagnostic-challenge':'foundation-check',check:checkName(s),schema:SCHEMA,bankVersion:s.bankVersion,exportedAt:stamp(),scope:B.MODULES[s.module].scope,subject:B.MODULES[s.module].title,session:clone(s),taskDefinitions:clone(tasks(s)),observations:observations(s),evidenceSummary:evidenceSummary(s),scopeReview:scopeReview(s),recommendedFollowups:nextChecks(s),interpretation:'Objective answer components are checked with fixed mathematics. Explanations require human or AI-tutor review. These observations do not establish mastery, effort, AI use, or a complete course diagnosis.'};}
-function answerText(t,a){return t.fields.map(f=>{const v=a?.values[f.id];return f.label+': '+(f.kind==='number'?v||'not entered':f.kind==='multi'?(v||[]).map(x=>f.options.find(o=>o.value===x)?.label||x).join('; ')||'not selected':f.options.find(o=>o.value===v)?.label||'not selected');}).join('\n');}
+function portable(s){return{product:'Cluevera',kind:settings.projects?'field-project':settings.challenge?'diagnostic-challenge':'foundation-check',check:checkName(s),schema:SCHEMA,bankVersion:s.bankVersion,exportedAt:stamp(),...(settings.projects?{markdown:markdown(s)}:{}),scope:B.MODULES[s.module].scope,subject:B.MODULES[s.module].title,session:clone(s),taskDefinitions:clone(tasks(s)),observations:observations(s),evidenceSummary:evidenceSummary(s),scopeReview:scopeReview(s),recommendedFollowups:nextChecks(s),interpretation:'Objective answer components are checked with fixed mathematics. Explanations require human or AI-tutor review. These observations do not establish mastery, effort, AI use, or a complete course diagnosis.'};}
+function answerText(t,a){return t.fields.map(f=>{const v=a?.values[f.id];if(settings.fieldTypes?.[f.kind])return f.label+': '+settings.fieldTypes[f.kind].text(f,v);return f.label+': '+(f.kind==='number'?v||'not entered':f.kind==='multi'?(v||[]).map(x=>f.options.find(o=>o.value===x)?.label||x).join('; ')||'not selected':f.options.find(o=>o.value===v)?.label||'not selected');}).join('\n');}
 function markdown(s){
  const module=B.MODULES[s.module];let out='# Cluevera · '+module.title+'\n\nScope: '+module.scope+'\nSession: '+s.id+'\n\n## A useful request for an AI tutor\n\nUse the actual answers and explanations below to suggest one or two learning priorities. Explain which specific responses support each suggestion, and ask a follow-up question when the reasoning is ambiguous. Keep arithmetic errors, conceptual explanations, missing evidence, and reported help distinct. Do not treat this short check as a complete course assessment or infer effort or AI use from it. Start with a short explanation and one changed-number practice question, then adapt to my response.\n\n';
- const summary=evidenceSummary(s);out+='Check: '+checkName(s)+' · '+tasks(s).length+' questions\n\n## Fixed components and separate explanation reviews\n\nMatched components: '+summary.matched+'; need another check: '+summary.recheck+'; uncertain: '+summary.unsure+'; not studied: '+summary.notStudied+'; missing: '+summary.missing+'. These are component counts, not a weighted grade or mastery estimate.\nExplanation reviews — open: '+summary.explanations.open+'; revision: '+summary.explanations.revise+'; partial: '+summary.explanations.partial+'; key connection explained: '+summary.explanations.connected+'. Reviews concern only the current submitted attempt.\n\n';
+ const summary=evidenceSummary(s);out+='Check: '+checkName(s)+' · '+tasks(s).length+' questions\n\n## Fixed components and separate explanation reviews\n\nMatched components: '+summary.matched+'; need another check: '+summary.recheck+'; uncertain: '+summary.unsure+'; not studied: '+summary.notStudied+'; locally reviewed responses: '+(summary.reviewed||0)+'; open response review: '+(summary.review||0)+'; missing: '+summary.missing+'. These are component counts, not a weighted grade or mastery estimate.\nExplanation reviews — open: '+summary.explanations.open+'; revision: '+summary.explanations.revise+'; partial: '+summary.explanations.partial+'; key connection explained: '+summary.explanations.connected+'. Reviews concern only the current submitted attempt.\n\n';
  const scope=scopeReview(s);out+='## Scope and evidence limits\n\n'+scope.interpretation+'\n\nNot checked in these '+tasks(s).length+' questions:\n'+scope.notChecked.map(x=>'- '+x).join('\n')+'\n\nSupplied information affecting interpretation:\n'+(scope.suppliedInformation.length?scope.suppliedInformation.map(x=>'- '+x.task+': '+x.note).join('\n'):'No separate supplied-answer condition is flagged here. The full prompts remain above each answer; they still define the support and limits of the evidence.')+'\n\n';
  const followups=nextChecks(s);out+='## Possible next checks\n\n'+(followups.length?followups.map(o=>'- '+o.id+' · '+o.title+': '+o.followupReasons.join(' ')+' Next: '+o.next).join('\n'):'No specific follow-up was selected from the fixed checks, reported support, or saved local reviews. Unreviewed written reasons and untested topics still need evidence.')+'\n\n';
  out+='## Answer and explanation history\n\n';
  for(const t of tasks(s)){
   const r=s.records[t.id];out+='### '+t.title+' · '+t.groupName+'\n\n'+t.prompt+'\n\n';
+  if(t.steps)out+=t.steps.map(step=>'#### '+step.title+'\n\n'+step.prompt+'\n').join('\n')+'\n';
   if(t.table)out+='Given table: '+JSON.stringify(t.table)+'\n\n';if(t.matrix)out+='Given matrix: '+JSON.stringify(t.matrix)+'\n\n';if(t.visual)out+='Graph/table description: '+t.visual.description+'\n'+(t.visual.kind==='game'?'Payoffs: '+JSON.stringify(t.visual)+'\n':'')+'\n';
   out+='Reasoning prompt: '+t.reason+'\n\n';
-  out+='Current component checks:\n'+componentChecks(t,last(s,t)).map(x=>'- '+x.label+': '+x.state+(x.skill?' · '+x.skill:'')+(x.feedback?' · '+x.feedback:'')+(x.selection?' · correct selections: '+x.selection.correct.join(', ')+'; extra selections: '+x.selection.extra.join(', ')+'; missing selections: '+x.selection.missing.join(', '):'')).join('\n')+'\n\n';
+  out+='Current component checks:\n'+reviewedComponents(s,t).map(x=>'- '+x.label+': '+x.state+(x.skill?' · '+x.skill:'')+(x.feedback?' · '+x.feedback:'')+(x.reviewCriteria?.length?' · review criteria: '+x.reviewCriteria.join('; '):'')+(x.selection?' · correct selections: '+x.selection.correct.join(', ')+'; extra selections: '+x.selection.extra.join(', ')+'; missing selections: '+x.selection.missing.join(', '):'')).join('\n')+'\n\n';
   for(const [i,a]of (r?.submissions||[]).entries())out+='Attempt '+(i+1)+' · '+a.objective.state+' · '+a.at+'\n'+(a.answer.notStudied?'Student marked this topic not studied.\n':'')+(a.answer.unsure?'Student selected “I’m not sure”.\n':'')+answerText(t,a.answer)+'\nStudent explanation: '+a.answer.explanation+'\nOther help reported: '+a.answer.otherHelp+'\nEarlier report viewed: '+a.feedbackSeen+'\n\n';
   if(!r?.submissions.length)out+='No submitted answer.\n\n';else if(r.status==='draft')out+='Current revision is not submitted. Draft explanation: '+r.draft.explanation+'\n\n';
+  for(const x of r?.partReviews||[])out+='Local review of part '+x.field+' on attempt '+x.submission+': '+(x.points===null?'open':x.points+'/2')+' · '+x.note+'\n';
   out+='Reference mathematics: '+t.solution+'\nNext check: '+t.next+'\n';for(const x of r?.reviews||[])out+='Local review of attempt '+x.submission+': '+(x.points===null?'open':x.points+'/2')+' · '+x.note+'\n';out+='\n';
  }
  return out+'These are task observations. All original explanations and earlier attempts remain available for review.\n';
@@ -138,6 +149,7 @@ function hydrate(value){
     if(!t||!object(r)||!validDraft(t,r.draft)||!['draft','submitted'].includes(r.status)||!Array.isArray(r.submissions)||!Array.isArray(r.reviews)||r.status==='submitted'&&!r.submissions.length)return null;
     for(const a of r.submissions)if(!object(a)||a.taskVersion!==s.bankVersion||validate(t,a.answer)||typeof a.feedbackSeen!=='boolean'||!Number.isFinite(Date.parse(a.at))||JSON.stringify(a.objective)!==JSON.stringify(evaluate(t,a.answer)))return null;
     if(r.status==='submitted'&&JSON.stringify(r.draft)!==JSON.stringify(r.submissions.at(-1).answer))return null;
+    if(r.partReviews!==undefined&&(!settings.projects||!Array.isArray(r.partReviews)||r.partReviews.some(x=>!object(x)||!t.fields.some(f=>f.id===x.field)||!Number.isInteger(x.submission)||x.submission<1||x.submission>r.submissions.length||![null,0,1,2].includes(x.points)||typeof x.note!=='string'||!x.note.trim()||x.note.length>2000||!Number.isFinite(Date.parse(x.at)))))return null;
     if(r.reviews.some(x=>!object(x)||!Number.isInteger(x.submission)||x.submission<1||x.submission>r.submissions.length||![null,0,1,2].includes(x.points)||typeof x.note!=='string'||!x.note.trim()||x.note.length>2000||!Number.isFinite(Date.parse(x.at))))return null;
    }
    if(s.view==='report'&&!done(s))return null;
@@ -146,7 +158,7 @@ function hydrate(value){
  const migrated=clone(value);for(const id of Object.keys(B.MODULES))if(!migrated.modules[id])migrated.modules[id]={active:null,sessions:[]};
  return migrated;
 }
-const api={settings,SCHEMA,numeric,fresh,session,createSession,definition,checkName,tasks,task,blank,record,edit,validate,evaluate,submit,last,done,review,latestReview,observations,componentChecks,evidenceSummary,scopeReview,nextChecks,portable,answerText,markdown,hydrate};
+const api={settings,SCHEMA,numeric,fresh,session,createSession,definition,checkName,tasks,task,blank,record,edit,validate,evaluate,submit,last,done,review,latestReview,reviewPart,latestPartReview,observations,componentChecks,evidenceSummary,scopeReview,nextChecks,portable,answerText,markdown,hydrate};
 return api;
 }
 const api=build(B,X);api.forBank=build;

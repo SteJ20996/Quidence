@@ -11,6 +11,6 @@ const COURSES={
  ae01:{title:'Statistics',group:'further',course:'modules/ae01/dist/',foundation:'foundations/?module=ae01',description:'Read distributions, compare summaries, and examine study design.',scope:'Statistics foundations are open. AP Statistics is planned.',illustration:'ae01'},
  ab01:{title:'Linear Algebra',group:'further',course:'modules/ab01/dist/',foundation:'foundations/?module=ab01',description:'Connect vectors and matrices with geometric transformations.',scope:'Selected two-dimensional vector and matrix activities.',illustration:'ab01'},
 };
-for(const[id,c]of Object.entries(COURSES)){c.challenge='diagnostics/?module='+id;c.challengeCount=id==='ab01'?12:4;}
+for(const[id,c]of Object.entries(COURSES)){c.project='projects/?module='+id;c.projectCount=2;c.challenge='diagnostics/?module='+id;c.challengeCount=id==='ab01'?12:4;}
 const api={GROUPS,COURSES};if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraCourseCatalog=api;
 })(typeof window==='undefined'?globalThis:window);

@@ -11,3 +11,5 @@ for (const script of ['test-aa01.cjs', 'test-ab01.cjs', 'test-ad01.cjs', 'test-f
 const sync = spawnSync(process.execPath, ['--test', path.join(__dirname,'../tests/backend-sync.test.cjs'),path.join(__dirname,'../tests/sync-client.test.cjs')], {stdio:'inherit'});if(sync.status!==0)process.exit(sync.status??1);
 
 const diagnostic = spawnSync(process.execPath, ['--test', path.join(__dirname,'../tests/challenges.test.cjs')], {stdio:'inherit'});if(diagnostic.status!==0)process.exit(diagnostic.status??1);
+
+const projects = spawnSync(process.execPath, ['--test',path.join(__dirname,'../tests/projects.test.cjs')], {stdio:'inherit'});if(projects.status!==0)process.exit(projects.status??1);

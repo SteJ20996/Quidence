@@ -1,6 +1,7 @@
 (function(root){
 'use strict';
 const KEYS={
+ cluevera_project_portfolio_v1:{label:"Field projects",schema:"cluevera_project_portfolio_v1"},
  cluevera_challenge_portfolio_v1:{label:'Diagnostic challenges',schema:'cluevera_challenge_portfolio_v1'},
  cluevera_algebra_progress_v06:{label:'Visual algebra activities',schema:'cluevera_algebra_progress_v06'},
  aa01_2_beta01_draft_v1:{label:'Vector diagnostic',schema:1},
