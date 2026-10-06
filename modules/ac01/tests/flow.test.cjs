@@ -57,7 +57,7 @@ test('saving failure continues in memory; corrupt records are preserved through 
 });
 test('all six dashboard links and AC01 local assets resolve within the project',()=>{
  const root=path.resolve(__dirname,'../../..'),hub=fs.readFileSync(path.join(root,'index.html'),'utf8');
- const links=Array.from(hub.matchAll(/class="subject-link" href="([^"]+)"/g),m=>m[1]);assert.deepEqual(links,['modules/aa01/dist/','modules/ab01/dist/','modules/ac01/dist/','modules/ad01/dist/','modules/ae01/dist/','modules/af01/dist/']);
+ const links=Array.from(hub.matchAll(/class="subject-link" href="([^"]+)"/g),m=>m[1]);assert.deepEqual(links,['modules/aa01/dist/','modules/af01/dist/','modules/ad01/dist/','modules/ae01/dist/','modules/ab01/dist/','modules/ac01/dist/']);
  links.forEach(l=>assert.ok(fs.existsSync(path.join(root,l,'index.html'))));
  const entry=fs.readFileSync(path.join(__dirname,'../dist/index.html'),'utf8');for(const m of entry.matchAll(/(?:href|src)="([^"]+)"/g)){if(m[1]==='./')continue;assert.ok(fs.existsSync(path.resolve(__dirname,'../dist',m[1].split(/[?#]/)[0])),m[1]);}
 });

@@ -9,7 +9,13 @@ function plot({title,description,xmin=-2.5,xmax=2.5,ymin=-2,ymax=6,xlabel='x',yl
  const W=620,H=310,L=54,R=22,T=30,B=45,pw=W-L-R,ph=H-T-B,id='ad-plot-'+(++serial);
  const X=x=>L+(x-xmin)/(xmax-xmin)*pw,Y=y=>T+(ymax-y)/(ymax-ymin)*ph;
  const line=(x1,y1,x2,y2,color,cls='')=>`<path d="M${X(x1)} ${Y(y1)}L${X(x2)} ${Y(y2)}" fill="none" stroke="${color}" ${cls.includes("stroke-width")?"":"stroke-width=\"2.4\""} ${cls}/>`;
- const text=(x,y,s,color=COLORS.muted,dx=9,dy=-10)=>`<text x="${X(x)+dx}" y="${Y(y)+dy}" fill="${color}" class="plot-label">${esc(s)}</text>`;
+ // Keep annotations readable when a point approaches the frame. Data still clips to the plot.
+ const labels=[],labelBoxes=[];
+ const text=(x,y,s,color=COLORS.muted,dx=9,dy=-10)=>{
+  const width=String(s).length*8.5,tx=Math.max(L+6,Math.min(W-R-width-6,X(x)+dx));let ty;
+  for(const offset of[0,-22,22,-44,44]){ty=Math.max(T+18,Math.min(H-B-7,Y(y)+dy+offset));if(!labelBoxes.some(b=>tx<b.x+b.width+5&&tx+width+5>b.x&&Math.abs(ty-b.y)<19))break;}
+  labelBoxes.push({x:tx,y:ty,width});labels.push(`<text x="${tx}" y="${ty}" fill="${color}" class="plot-label">${esc(s)}</text>`);return'';
+ };
  const point=(x,y,label='',color=COLORS.curve,open=false,dx=10,dy=-10)=>`<circle cx="${X(x)}" cy="${Y(y)}" r="5" fill="${open?'white':color}" stroke="${color}" stroke-width="2.3"/>${label?text(x,y,label,color,dx,dy):''}`;
  const curve=(f,color=COLORS.curve,a=xmin,b=xmax,dash=false)=>{const n=220,pts=Array.from({length:n+1},(_,i)=>{const x=a+(b-a)*i/n;return`${i?'L':'M'}${X(x).toFixed(2)} ${Y(f(x)).toFixed(2)}`;});return`<path d="${pts.join(' ')}" fill="none" stroke="${color}" stroke-width="3" ${dash?'stroke-dasharray="7 5"':''}/>`;};
  const area=(f,a,b,roots=[0],orientation=1)=>{
@@ -22,7 +28,8 @@ function plot({title,description,xmin=-2.5,xmax=2.5,ymin=-2,ymax=6,xlabel='x',yl
  for(let x=Math.ceil(xmin/step(xmax,xmin))*step(xmax,xmin);x<=xmax;x+=step(xmax,xmin))grid+=line(x,ymin,x,ymax,'#e8eaf1','stroke-width="1"')+`<text x="${X(x)}" y="${H-22}" text-anchor="middle" class="tick">${x}</text>`;
  for(let y=Math.ceil(ymin/step(ymax,ymin))*step(ymax,ymin);y<=ymax;y+=step(ymax,ymin))grid+=line(xmin,y,xmax,y,'#e8eaf1','stroke-width="1"')+`<text x="${L-10}" y="${Y(y)+4}" text-anchor="end" class="tick">${y}</text>`;
  const axes=(xmin<=0&&xmax>=0?line(0,ymin,0,ymax,'#99a7bc'):'')+(ymin<=0&&ymax>=0?line(xmin,0,xmax,0,'#99a7bc'):'');
- return`<figure class="graph-figure"><svg class="calculus-graph" viewBox="0 0 ${W} ${H}" role="img" aria-labelledby="${id}-title ${id}-desc"><title id="${id}-title">${esc(title)}</title><desc id="${id}-desc">${esc(description)}</desc><defs><clipPath id="${id}"><rect x="${L}" y="${T}" width="${pw}" height="${ph}"/></clipPath></defs>${grid}${axes}<g clip-path="url(#${id})">${draw({line,text,point,curve,area,rect,X,Y})}</g><text x="${W-R}" y="${H-7}" text-anchor="end" class="axis-label">${esc(xlabel)}</text><text x="${L}" y="17" class="axis-label">${esc(ylabel)}</text></svg><figcaption>${esc(description)}</figcaption></figure>`;
+ const marks=draw({line,text,point,curve,area,rect,X,Y});
+ return`<figure class="graph-figure"><svg class="calculus-graph" viewBox="0 0 ${W} ${H}" role="img" aria-labelledby="${id}-title ${id}-desc"><title id="${id}-title">${esc(title)}</title><desc id="${id}-desc">${esc(description)}</desc><defs><clipPath id="${id}"><rect x="${L}" y="${T}" width="${pw}" height="${ph}"/></clipPath></defs>${grid}${axes}<g clip-path="url(#${id})">${marks}</g><g class="plot-annotations">${labels.join('')}</g><text x="${W-R}" y="${H-7}" text-anchor="end" class="axis-label">${esc(xlabel)}</text><text x="${L}" y="17" class="axis-label">${esc(ylabel)}</text></svg><figcaption>${esc(description)}</figcaption></figure>`;
 }
 function limits(kind,distance,side){
  const target=kind==='hole'?1:0,x=target+side*distance,y=M.limitValue(kind,x),left=kind==='hole'?2:-1,right=kind==='hole'?2:1,value=kind==='hole'?4:1;

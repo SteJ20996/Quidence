@@ -21,13 +21,14 @@
   function graph(id,a={},compare=false){
     const points=[1,2,3].map(i=>({x:a['x'+i]})).filter(p=>Number.isFinite(p.x)&&Math.abs(p.x)<=50),xs=points.map(p=>p.x),xMin=Math.floor(Math.min(0,...xs))-1,xMax=Math.ceil(Math.max(4,...xs))+1;
     const ids=compare?['positive','negative']:[id],sample=ids.flatMap(k=>[M.value(k,xMin),M.value(k,xMax),5]),yMin=Math.floor(Math.min(0,...sample))-1,yMax=Math.ceil(Math.max(6,...sample))+1;
-    const L=55,R=590,T=22,B=322,x=v=>L+(v-xMin)/(xMax-xMin)*(R-L),y=v=>B-(v-yMin)/(yMax-yMin)*(B-T);
     const ticks=(lo,hi)=>{
       const raw=(hi-lo)/6,power=10**Math.floor(Math.log10(raw)),step=[1,2,5,10].map(n=>n*power).find(n=>n>=raw);
       const start=Math.ceil(lo/step)*step;return Array.from({length:Math.max(1,Math.floor((hi-start)/step)+1)},(_,i)=>start+i*step);
     };
     const fmt=n=>Math.abs(n)<1e-8?'0':Number(n.toFixed(2)).toString();
-    const grid=ticks(xMin,xMax).map(v=>`<line x1="${x(v)}" y1="${T}" x2="${x(v)}" y2="${B}"/><text class="graph-label" x="${x(v)}" y="${B+22}" text-anchor="middle">${fmt(v)}</text>`).join('')+ticks(yMin,yMax).map(v=>`<line x1="${L}" y1="${y(v)}" x2="${R}" y2="${y(v)}"/><text class="graph-label" x="${L-9}" y="${y(v)+4}" text-anchor="end">${fmt(v)}</text>`).join('');
+    // Large accepted inputs can produce signed four-digit ticks. Reserve room for the minus sign.
+    const yTicks=ticks(yMin,yMax),L=Math.max(55,...yTicks.map(v=>fmt(v).length*11+20)),R=590,T=22,B=322,x=v=>L+(v-xMin)/(xMax-xMin)*(R-L),y=v=>B-(v-yMin)/(yMax-yMin)*(B-T);
+    const grid=ticks(xMin,xMax).map(v=>`<line x1="${x(v)}" y1="${T}" x2="${x(v)}" y2="${B}"/><text class="graph-label" x="${x(v)}" y="${B+22}" text-anchor="middle">${fmt(v)}</text>`).join('')+yTicks.map(v=>`<line x1="${L}" y1="${y(v)}" x2="${R}" y2="${y(v)}"/><text class="graph-label" x="${L-9}" y="${y(v)+4}" text-anchor="end">${fmt(v)}</text>`).join('');
     const paths=ids.map(k=>`<path class="${k}-curve" d="${Array.from({length:201},(_,i)=>{const v=xMin+(xMax-xMin)*i/200;return `${i?'L':'M'}${x(v).toFixed(2)},${y(M.value(k,v)).toFixed(2)}`}).join(' ')}"/>`).join('');
     return `<svg viewBox="0 0 640 375" role="img" aria-label="Computed graph of ${ids.map(k=>M.functions[k].formula).join(' and ')}. The axes have labelled scales. Your chosen x-values appear on the given function."><g class="graph-grid">${grid}</g><path class="graph-axis" d="M${L},${y(0)}H${R}M${x(0)},${B}V${T}"/>${paths}${points.map(p=>`<circle class="graph-point ${id==='negative'?'negative-point':''}" cx="${x(p.x)}" cy="${y(M.value(id,p.x))}" r="5"><title>(${fmt(p.x)}, ${fmt(M.value(id,p.x))})</title></circle>`).join('')}<text class="graph-label" x="${R+15}" y="${y(0)+4}">x</text><text class="graph-label" x="${x(0)+9}" y="${T+8}">y</text></svg>`;
   }
