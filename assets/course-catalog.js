@@ -1,0 +1,18 @@
+(function(root){
+'use strict';
+const GROUPS=[{id:'school',title:'School Mathematics',description:'Four separate courses. Choose the class you are taking.'},{id:'further',title:'Further Mathematics',description:'Connect functions, change, data, and linear transformations.'},{id:'economics',title:'Economics & Decision-Making',description:'Explore markets and choices that depend on other people.'}];
+const COURSES={
+ 'pre-algebra':{title:'Pre-Algebra',group:'school',course:'courses/pre-algebra/',description:'Signed numbers, fractions, ratios, and expressions.',scope:'Four introductory lessons; selected foundations, not a complete school course.',illustration:'pre-algebra'},
+ 'algebra-1':{title:'Algebra I',group:'school',course:'courses/algebra-1/',description:'Equations, linear functions, systems, and quadratic roots.',scope:'Four introductory lessons. Continue with the original visual algebra activities for more practice.',illustration:'algebra-1'},
+ geometry:{title:'Geometry',group:'school',course:'courses/geometry/',description:'Angles, triangle relationships, similarity, and measurement.',scope:'Four introductory lessons. Formal proof, circles, and transformations come later.',illustration:'geometry'},
+ 'algebra-2':{title:'Algebra II',group:'school',course:'courses/algebra-2/',description:'Polynomial factors, rational restrictions, exponentials, and logarithms.',scope:'Four introductory lessons. A full function-analysis course comes later.',illustration:'algebra-2'},
+ af01:{title:'Pre-calculus',group:'further',course:'modules/af01/dist/',foundation:'foundations/?module=af01',description:'Connect function rules to graphs, angles, and growth.',scope:'Selected introductory activities and a separate foundation check.',illustration:'af01'},
+ ad01:{title:'Calculus',group:'further',course:'modules/ad01/dist/',foundation:'foundations/?module=ad01',description:'Explore limits, tangent slopes, and accumulation through Visual Calculus.',scope:'Visual Calculus is open. AP Calculus AB and BC are planned course routes.',illustration:'ad01'},
+ ae01:{title:'Statistics',group:'further',course:'modules/ae01/dist/',foundation:'foundations/?module=ae01',description:'Read distributions, compare summaries, and examine study design.',scope:'Statistics foundations are open. AP Statistics is planned.',illustration:'ae01'},
+ ab01:{title:'Linear Algebra',group:'further',course:'modules/ab01/dist/',foundation:'foundations/?module=ab01',description:'Connect vectors and matrices with geometric transformations.',scope:'Selected two-dimensional vector and matrix activities.',illustration:'ab01'},
+ microeconomics:{title:'Microeconomics',group:'economics',course:'courses/microeconomics/',description:'Opportunity cost, supply and demand, elasticity, and marginal choices.',scope:'Four introductory lessons using simplified models. Continue to Game Theory for strategic choices.',illustration:'microeconomics'},
+ macroeconomics:{title:'Macroeconomics',group:'economics',course:'courses/macroeconomics/',description:'A future course about output, inflation, unemployment, and policy models.',scope:'Course outline only. Lessons and practice are not open yet.',illustration:'macroeconomics',planned:true},
+ ac01:{title:'Game Theory',group:'economics',course:'modules/ac01/dist/',foundation:'foundations/?module=ac01',description:'Read payoffs, compare best responses, and test equilibrium.',scope:'An independent course with applications in economics, mathematics, and computer science.',illustration:'ac01'}
+};
+const api={GROUPS,COURSES};if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraCourseCatalog=api;
+})(typeof window==='undefined'?globalThis:window);

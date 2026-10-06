@@ -74,14 +74,14 @@ function answerPhase(h,phase){for(const t of h.E.TASKS[phase]){h.stage(canonical
  assert(h.document.getElementById('start-delayed').disabled);h.click('start-delayed');assert.equal(h.state().stage,'report');
  h.click('export-json');const full=JSON.parse(await h.blobs.at(-1).text());
  assert.equal(full.learningAdvice.version,'matrix-advice-0.2.1');assert(full.learningAdvice.priorityTargetIds.includes('coefficients'));assert(h.document.getElementById('learning-app').innerHTML.includes('numerical output matched but the coefficient choice did not'));
- assert.equal(full.project,'AB01');assert.equal(full.version,'Beta 0.2');assert.equal(full.taskDefinitions.length,10);
+ assert.equal(full.project,'AB01');assert.equal(full.version,'2');assert.equal(full.taskDefinitions.length,10);
  assert.equal(full.phaseEvidence.pre[1].status,'skipped');assert.equal(full.phaseEvidence.pre[2].status,'not-studied');
  assert.equal(full.phaseEvidence.practice[0].first['Column coordinates'],false);assert.equal(full.phaseEvidence.practice[0].last['Column coordinates'],true);
  assert.equal(full.phaseEvidence.post[1].last['Output calculation'],true);assert.equal(full.phaseEvidence.post[1].last['Preserved coefficients'],false);
  assert.equal(full.phaseEvidence.post[2].last,null);assert.equal(full.lesson.checkpoint.attempts.length,3);
  assert(full.records['practice-2'].submissions[0].answer.explanation.includes('counts'));
  assert(full.records['practice-2'].submissions[0].support.otherHelpReported);
- h.click('export-md');const md=await h.blobs.at(-1).text();assert(md.includes('# AB01'));assert(md.includes('Submission 2'));assert(md.includes('human review'));assert(md.includes('## Suggested next steps'));assert(md.includes('original coefficients'));
+ h.click('export-md');const md=await h.blobs.at(-1).text();assert(md.includes('# Linear Algebra Foundations'));assert(md.includes('Submission 2'));assert(md.includes('human review'));assert(md.includes('## Suggested next steps'));assert(md.includes('original coefficients'));
  const oldPost=JSON.stringify(h.state().records['post-2']);
  const saved=h.state();saved.completedAt=new Date(Date.now()-86400001).toISOString();h=harness(JSON.stringify(saved));
  assert.equal(h.document.getElementById('start-delayed').disabled,false);h.click('start-delayed');assert.equal(h.state().stage,'delayed');
@@ -104,3 +104,4 @@ function answerPhase(h,phase){for(const t of h.E.TASKS[phase]){h.stage(canonical
  h=harness(undefined,{saving:false});assert(h.document.getElementById('learning-storage').textContent.includes('unavailable'));h.stage({values:[2,-1]});assert.equal(h.submit().ok,true,'Session remains usable when browser saving fails.');
  console.log('PASS: complete and mixed learning flows, no-feedback gating, lesson prediction gate/resume, answer revisions, support history, separated report/export, delayed check, old-record preservation, reset, corrupt records and saving failure. DOM fixtures; real browser visual QA remains unavailable.');
 })().catch(e=>{console.error(e);process.exit(1);});
+

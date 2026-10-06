@@ -13,3 +13,10 @@ node_modules/
 records/
 student-data/
 session-exports/
+
+
+# Account data and SQLite files
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*

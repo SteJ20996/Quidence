@@ -1,0 +1,11 @@
+.git
+node_modules
+.env
+.env.*
+student-data
+records
+session-exports
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
