@@ -24,12 +24,12 @@ test('copy failure keeps a selected Markdown fallback and never automatically se
  const h=harness({clipboard:false});await h.q('goal-copy').events.click();assert.equal(h.q('goal-markdown').hidden,false);assert(h.q('goal-markdown').selected);assert.match(h.q('goal-markdown').value,/# My learning request/);assert.match(h.q('goal-status').textContent,/Copy command/);assert.equal(h.tabs.length,0);
 });
 test('saved reports can be included with the selected subject and exact response history',async()=>{
- const h=harness();h.window.ClueveraReportStore.save('aa01',{markdown:'# Algebra\n\nQuestion: solve 4x-3=9\n\n> My step: add 3 to both sides.'},'sample',h.window.localStorage);
+ const h=harness();h.window.QuidenceReportStore.save('aa01',{markdown:'# Algebra\n\nQuestion: solve 4x-3=9\n\n> My step: add 3 to both sides.'},'sample',h.window.localStorage);
  const loaded=harness({map:h.map});const option=loaded.q('goal-report').querySelectorAll('option').find(o=>o.value==='aa01:sample');assert(option);loaded.q('goal-report').value=option.value;await loaded.q('goal-copy').events.click();assert.match(loaded.copied[0],/My step: add 3/);assert.match(loaded.copied[0],/solve 4x-3=9/);
 });
 test('print reports are detached and manual; Markdown rendering escapes student HTML',()=>{
- const h=harness(),T=h.window.ClueveraReportTools,html=T.printable('Algebra',{markdown:'# A check\n\nQuestion: test a claim\n\n> <script>alert(1)</script>\n\nReference: check the two values'});
+ const h=harness(),T=h.window.QuidenceReportTools,html=T.printable('Algebra',{markdown:'# A check\n\nQuestion: test a claim\n\n> <script>alert(1)</script>\n\nReference: check the two values'});
  assert(T.openPrint(html));assert.equal(h.tabs[0].opener,null);assert.match(h.tabs[0].html,/question-text/);assert.match(h.tabs[0].html,/student-work/);assert.match(h.tabs[0].html,/report-feedback/);assert.match(h.tabs[0].html,/&lt;script&gt;/);assert.doesNotMatch(h.tabs[0].html,/<script>alert/);
- const blocked=harness({blocked:true});assert.equal(blocked.window.ClueveraReportTools.openPrint(html),false);
+ const blocked=harness({blocked:true});assert.equal(blocked.window.QuidenceReportTools.openPrint(html),false);
  assert.match(Tools.markdown('Legacy',{records:{a:{answer:2}}}),/Complete learning record/);
 });

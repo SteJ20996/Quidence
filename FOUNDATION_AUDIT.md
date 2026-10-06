@@ -1,4 +1,4 @@
-# Cluevera 基础题与报告自查
+# Quidence 基础题与报告自查
 
 审核基准：`main` 的 `17f83742b0b11c63475c0987f4664ade6d19f840`。入口题库 `cluevera-foundations-1` 的60道原创题保持原定义。另加独立版本 `cluevera-foundation-followups-1` 的30道原创任务；学生界面使用英文。原题见 [FOUNDATION_ITEM_REVIEW.md](FOUNDATION_ITEM_REVIEW.md)，新增题见 [FOUNDATION_FOLLOWUP_REVIEW.md](FOUNDATION_FOLLOWUP_REVIEW.md)。
 
@@ -25,7 +25,7 @@
 
 ## 报告与连续记录
 
-首页的空格已修复；新增说明允许学生把报告交给另一 AI 导师，或继续使用 Cluevera，并用保存的报告选择下一步练习。
+首页的空格已修复；新增说明允许学生把报告交给另一 AI 导师，或继续使用 Quidence，并用保存的报告选择下一步练习。
 
 - 基础检查保存草稿、历次检查、每题提交与审核；修改不覆盖先前答案。
 - 原课程打开报告时，复制到共同的 Saved reports 页面。AA01 未完成活动仍只在原标签页内存中；打开报告的副本可以保存在浏览器。本版没有把 AA01 原会话迁移成可恢复的活动。

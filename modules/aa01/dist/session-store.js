@@ -1,5 +1,6 @@
-(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraAlgebraSession=api;})(typeof window==='object'?window:globalThis,()=>{
+(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceAlgebraSession=api;})(typeof window==='object'?window:globalThis,()=>{
 'use strict';
+// Legacy persistence identifiers are intentionally retained; see BRAND_MIGRATION.md.
 const KEY='cluevera_algebra_progress_v06';
 function hydrate(raw){
  if(!raw||raw.schema!==KEY||!raw.state||typeof raw.savedAt!=='number')return null;

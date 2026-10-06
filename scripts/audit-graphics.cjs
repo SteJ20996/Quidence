@@ -7,7 +7,7 @@ function collect(){
  for(const[id,svg]of Object.entries(require('./build-hub-illustrations.cjs').build()))add('hub',id,svg);
  for(const[id,svg]of Object.entries(require('./build-course-illustrations.cjs').covers()))add('course-covers',id,svg);
  const extra=require('../assets/school-course-content.js'),models=require('../assets/course-models.js');for(const id of extra.IDS){const c=extra.create(id);for(let i=0;i<c.LESSONS.length;i++){const l=c.LESSONS[i],cases=[l.defaults];for(const control of l.controls)for(const value of control.options?control.options.map(x=>x[0]):[control.min,control.max])cases.push({...l.defaults,[control.name]:value});for(let j=0;j<cases.length;j++)add('course-models',id+'-'+i+'-'+j,models.model(id,i,cases[j]).graph);}}
- const h=require('../modules/aa01/tests/workspace.cjs').load({expose:'window.testOnly={state,goto,miniLine,inequalityView,lapDiagram,timeGroups,separateAreaDiagram,areaDiagram,subtractionDiagram,coordinateGraph,costBlockDiagram,I:window.ClueveraIntegrated}; registerPageTools();'}),a=h.api;
+ const h=require('../modules/aa01/tests/workspace.cjs').load({expose:'window.testOnly={state,goto,miniLine,inequalityView,lapDiagram,timeGroups,separateAreaDiagram,areaDiagram,subtractionDiagram,coordinateGraph,costBlockDiagram,I:window.QuidenceIntegrated}; registerPageTools();'}),a=h.api;
  for(let i=0;i<a.state.queue.length;i++){a.goto(i);add('aa01',a.state.queue[i],h.app.innerHTML);}
  for(const x of[1,6]){add('aa01','area-'+x,a.areaDiagram(x,true));add('aa01','subtraction-'+x,a.subtractionDiagram(x+3));}
  for(const id of['QP','QN'])for(const x of[2,50])add('aa01',id+'-'+x,a.I.preview(id,{x1:x,x2:-x,x3:0},true));

@@ -1,6 +1,6 @@
 # AC01 · Game Theory Foundations · Beta 0.1
 
-AC01 is the third subject entry in the Cluevera dashboard, alongside AA01 and AB01. Student-facing text is English. It runs as static HTML/CSS/JavaScript with no runtime dependencies, sign-up, backend, or external question bank.
+AC01 is the third subject entry in the Quidence dashboard, alongside AA01 and AB01. Student-facing text is English. It runs as static HTML/CSS/JavaScript with no runtime dependencies, sign-up, backend, or external question bank.
 
 ## Learning sequence
 

@@ -45,7 +45,7 @@ test('real app handlers change lab settings and calculations without submitting 
 });
 test('storage failure allows in-memory work; corrupt storage is preserved until explicit replacement',()=>{
  const h=harness(new Map(),true);assert.match(h.note.textContent,/unavailable/);h.click('start');h.choose('unsure');h.submit();h.click('next');assert.equal(h.document.getElementById('lab-graphs').querySelectorAll('svg').length,1);
- const map=new Map([[E.SCHEMA,'{corrupt'],['ac01_beta01_session_v1','AC01 unchanged']]),r=harness(map);assert.match(r.app.innerHTML,/kept unchanged/);r.click('reset-blocked');r.click('cancel-reset');assert.equal(map.get(E.SCHEMA),'{corrupt');r.click('raw');assert.equal(r.downloads[0].name,'Cluevera_Calculus_Saved_Record.json');r.click('reset-blocked');r.click('confirm-reset');assert.equal(r.saved().schema,E.SCHEMA);assert.equal(map.get('ac01_beta01_session_v1'),'AC01 unchanged');
+ const map=new Map([[E.SCHEMA,'{corrupt'],['ac01_beta01_session_v1','AC01 unchanged']]),r=harness(map);assert.match(r.app.innerHTML,/kept unchanged/);r.click('reset-blocked');r.click('cancel-reset');assert.equal(map.get(E.SCHEMA),'{corrupt');r.click('raw');assert.equal(r.downloads[0].name,'Quidence_Calculus_Saved_Record.json');r.click('reset-blocked');r.click('confirm-reset');assert.equal(r.saved().schema,E.SCHEMA);assert.equal(map.get('ac01_beta01_session_v1'),'AC01 unchanged');
 });
 test('graph text equivalents, endpoint extremes, and static question SVGs stay finite',()=>{
  const h=harness();h.click('open',1);h.choose('unsure');h.submit();h.click('next');h.lab('a',2);h.lab('h',1);assert.match(h.document.getElementById('lab-graphs').innerHTML,/Q = \(3, 9\)/);assert.doesNotMatch(h.document.getElementById('lab-graphs').innerHTML,/NaN|Infinity/);

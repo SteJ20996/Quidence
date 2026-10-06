@@ -69,6 +69,6 @@ function exportRecord(state){
 const api={SCHEMA,TASKS,defaultLabs,validLabs,valid,score,fresh,record,update,submit,log,lessonDone,allDone,last,hydrate,exportRecord};
 return api;
 }
-if(typeof module==='object'&&module.exports)module.exports={create};else root.ClueveraCourseEngine=create(root.ClueveraCourseContent);
+if(typeof module==='object'&&module.exports)module.exports={create};else root.QuidenceCourseEngine=create(root.QuidenceCourseContent);
 })(typeof window==='undefined'?globalThis:window);
 

@@ -57,5 +57,5 @@ function model(course,index,s){
  if(!graph)throw new Error('Unknown course model: '+course+' / '+index);
  return{graph,readout,formula,note};
 }
-const api={model,cartesian,graphic,table,market,midpointElasticity,unitRatio};if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraCourseModels=api;
+const api={model,cartesian,graphic,table,market,midpointElasticity,unitRatio};if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceCourseModels=api;
 })(typeof window==='undefined'?globalThis:window);

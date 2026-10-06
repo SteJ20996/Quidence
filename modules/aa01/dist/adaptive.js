@@ -1,5 +1,5 @@
 /* Reviewed local branches. No remote generation, ability scores, or timing-based routing. */
-(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraAdaptive=api;})(typeof window==='object'?window:globalThis,()=>{
+(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceAdaptive=api;})(typeof window==='object'?window:globalThis,()=>{
   'use strict';
   const checkpoints={C1:'FAN',C3:'FAR',C5:'FAE',C8:'FAF',C10:'FAM'};
   const num=(key,label,unit='')=>({key,label,type:'number',unit});
@@ -54,7 +54,7 @@
     if(mode==='confirm'&&anchor==='C1'&&priorErrors.includes('point')&&!priorErrors.includes('near'))key='N-midpoint';
     if(mode==='bridge'&&anchor==='C8')key=errors.includes('b')||errors.includes('pair')||record.skip?'F-start':'F-rate';
     if(mode==='bridge'&&anchor==='C10'&&parts.model===true)key='M-substitute';
-    const task=tasks[key];return {id:checkpoints[anchor],anchor,mode,key,reason,source_event_id:record.lastEventId??null,source_attempt:record.attempts.length,component_errors:errors,prior_component_errors:priorErrors,source_support_ids:[...support],task:{...structuredClone(task),variant_id:key,provenance:'Self-created within Cluevera; uses standard mathematical concepts.',version:'0.4.1'}};
+    const task=tasks[key];return {id:checkpoints[anchor],anchor,mode,key,reason,source_event_id:record.lastEventId??null,source_attempt:record.attempts.length,component_errors:errors,prior_component_errors:priorErrors,source_support_ids:[...support],task:{...structuredClone(task),variant_id:key,provenance:'Self-created within Quidence; uses standard mathematical concepts.',version:'0.4.1'}};
   }
   function reasoning(task,raw,correct){
     const t=String(raw??'').toLowerCase().replace(/[−–]/g,'-').replace(/[×]/g,'*').replace(/[÷]/g,'/');
@@ -83,7 +83,7 @@
     };
     const matched=correct&&!negated&&(patterns[task.core]?.test(t)||plainCore[task.core]?.test(t))&&!reasons.length;
     if(!matched&&!reasons.includes('missing_explanation'))reasons.push('unknown_or_conflicting_wording');
-    const evidence=typeof window==='object'?window.ClueveraReasonEvidence?.assess('',t,{},task):null;
+    const evidence=typeof window==='object'?window.QuidenceReasonEvidence?.assess('',t,{},task):null;
     const recognized=matched||evidence?.matched;
     if(evidence?.matched&&!evidence.errors.length){const i=reasons.indexOf('unknown_or_conflicting_wording');if(i>=0)reasons.splice(i,1);}
     if(evidence?.errors.length)reasons.push('arithmetic_error');

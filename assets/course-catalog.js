@@ -12,5 +12,5 @@ const COURSES={
  ab01:{title:'Linear Algebra',group:'further',course:'modules/ab01/dist/',foundation:'foundations/?module=ab01',description:'Connect vectors and matrices with geometric transformations.',scope:'Selected two-dimensional vector and matrix activities.',illustration:'ab01'},
 };
 for(const[id,c]of Object.entries(COURSES)){c.project='projects/?module='+id;c.projectCount=2;c.challenge='diagnostics/?module='+id;c.challengeCount=id==='ab01'?12:4;}
-const api={GROUPS,COURSES};if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraCourseCatalog=api;
+const api={GROUPS,COURSES};if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceCourseCatalog=api;
 })(typeof window==='undefined'?globalThis:window);

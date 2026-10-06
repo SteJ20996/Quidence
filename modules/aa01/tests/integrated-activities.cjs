@@ -5,7 +5,7 @@ const negative={a:-1,b:4,c:1,opening:'down',x1:0,y1:1,x2:2,y2:5,x3:4,y3:1,vx:2,v
 function start(h){h.q('[data-open-quadratic]').click();h.q('#quadratic-ready').click();assert.equal(h.api.state.queue[h.api.state.index],'QP');}
 const h=load();assert.equal(h.qa('[data-catalog-item]').length,15);assert.equal(h.api.state.queue.length,19);assert(h.api.state.queue.includes('QP'));
 // Readiness is selection, no submitted result; main draft and time survive the gate.
-h.choose('point','-1.5');h.tick(2000);h.q('[data-open-quadratic]').click();h.tick(8000);assert.equal(h.api.state.records.QP,undefined);assert.throws(()=>h.tools.get('submit_cluevera_answer').execute({activityId:'C1',answer:{point:-1.5,near:'-0.5'}}));
+h.choose('point','-1.5');h.tick(2000);h.q('[data-open-quadratic]').click();h.tick(8000);assert.equal(h.api.state.records.QP,undefined);assert.throws(()=>h.tools.get('submit_quidence_answer').execute({activityId:'C1',answer:{point:-1.5,near:'-0.5'}}));
 h.q('#quadratic-not-yet').click();assert.equal(h.api.collect().point,-1.5);assert.equal(h.api.activityTime(h.api.state.records.C1),2000);assert.equal(h.api.state.events.length,1);assert.equal(h.api.state.events[0].status,'not_yet_studied');assert(h.api.state.events[0].question.prompt.includes('Have you already studied quadratic graphs?'));assert(h.api.sessionMarkdown().includes('Have you already studied quadratic graphs?'));assert(!h.api.sessionMarkdown().includes('Question: Expand (x − 2)'));
 h.q('[data-open-quadratic]').click();h.q('[data-catalog-item="C2"]').click();h.api.goto(0);assert.equal(h.api.collect().point,-1.5);
 // Q11 correct and incorrect submissions, signed alternative operation and main snapshots.

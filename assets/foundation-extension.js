@@ -165,7 +165,7 @@ const MODULES={
    'Use a new integrand and lower limit, then calculate both accumulation and its derivative.')
  ]}
 };
-for(const[module,m]of Object.entries(MODULES))for(const item of m.tasks){item.module=module;item.groupName=m.groups[item.group];item.provenance='Newly composed Cluevera follow-up item; standard mathematical ideas and original task contexts.';}
+for(const[module,m]of Object.entries(MODULES))for(const item of m.tasks){item.module=module;item.groupName=m.groups[item.group];item.provenance='Newly composed Quidence follow-up item; standard mathematical ideas and original task contexts.';}
 const api={VERSION:'cluevera-foundation-followups-1',MODULES};
-if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraFoundationExtension=api;
+if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceFoundationExtension=api;
 })(typeof window==='undefined'?globalThis:window);

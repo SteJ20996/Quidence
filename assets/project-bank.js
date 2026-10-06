@@ -5,7 +5,7 @@ const n=(id,label,answer,skill,dependsOn=[],absoluteTolerance=1e-8)=>({id,label,
 const p=(id,label,answer,variable,skill)=>({id,label,kind:'formula',answer,variable,skill,onMismatch:'Compare your model with the stated relationships. Equivalent expanded or factored polynomials are accepted.'});
 const w=(id,label,criteria,followup)=>({id,label,kind:'reason',skill:label,reviewCriteria:criteria,followup,onMismatch:'Read the original reasoning before deciding which connection needs another question.'});
 const step=(title,prompt,fields)=>({title,prompt,fields});
-const task=(id,title,scene,steps,solution,next,extra={})=>({id,title,prompt:scene,steps:steps.map(s=>({...s,fields:s.fields.map(f=>f.id)})),fields:steps.flatMap(s=>s.fields),solution,next,group:0,difficulty:'project · target 6.5/10',difficultyTarget:6.5,reason:'Add a short conclusion, another way to check your result, or what you would ask next. Your step-by-step explanations above can use equations, diagrams, or everyday words.',provenance:'Original Cluevera scenario, invented data, newly written prompts and solutions; no imported exam, textbook question, map, photograph, or diagram.',version:VERSION,...extra});
+const task=(id,title,scene,steps,solution,next,extra={})=>({id,title,prompt:scene,steps:steps.map(s=>({...s,fields:s.fields.map(f=>f.id)})),fields:steps.flatMap(s=>s.fields),solution,next,group:0,difficulty:'project · target 6.5/10',difficultyTarget:6.5,reason:'Add a short conclusion, another way to check your result, or what you would ask next. Your step-by-step explanations above can use equations, diagrams, or everyday words.',provenance:'Original Quidence scenario, invented data, newly written prompts and solutions; no imported exam, textbook question, map, photograph, or diagram.',version:VERSION,...extra});
 const table=(headers,rows)=>({table:{headers,rows}});
 const MODULES={
 'pre-algebra':{title:'Pre-Algebra',course:'../courses/pre-algebra/',prerequisite:'Fractions, unit conversions, ratios, percentages, signed numbers, and elapsed time.',scope:'Plan quantities and interpret a map through two California-inspired projects',tasks:[
@@ -110,5 +110,5 @@ task('la-p02','A route map that stretches before it turns','A hypothetical cycli
 ]}
 };
 for(const[module,d]of Object.entries(MODULES)){d.groups=['Two different field projects'];d.notChecked=['A complete course syllabus or independent transfer to every new context','Empirical difficulty calibration and automatic semantic grading of written reasoning'];for(const t of d.tasks)Object.assign(t,{module,groupName:d.groups[0]});}
-const api={VERSION,MODULES};if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraProjectBank=api;
+const api={VERSION,MODULES};if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceProjectBank=api;
 })(typeof window==='undefined'?globalThis:window);

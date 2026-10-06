@@ -1,6 +1,6 @@
 /* Actual cuboid coordinates, orthographic projection and face visibility.
    No remote assets, telemetry, or answer-field mutations. */
-(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraGeometry=api;})(typeof window==='object'?window:globalThis,()=>{
+(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceGeometry=api;})(typeof window==='object'?window:globalThis,()=>{
   'use strict';
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   const finite=(v,f)=>Number.isFinite(v)?v:f;

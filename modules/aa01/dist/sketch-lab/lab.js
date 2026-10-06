@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const M=window.ClueveraSketch,app=document.querySelector('#app');
+  const M=window.QuidenceSketch,app=document.querySelector('#app');
   const state={topic:'equation',ready:false,functionId:'positive',negativeUnlocked:false,comparison:false,records:{},events:[],route:null,highlight:null,view:'work',sessionId:crypto.randomUUID()};
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const current=()=>state.topic==='equation'?'equation':state.functionId;
@@ -120,7 +120,7 @@
     document.querySelector('#lab-review').onclick=()=>{retain();state.view='review';renderReview();};
     document.querySelector('#export').onclick=()=>{
       if(state.view==='work'&&(state.topic==='equation'||state.ready))remember();
-      try{const output={version:'sketch-lab-0.1',session_id:state.sessionId,events:state.events,records:state.records,exported_at:new Date().toISOString(),limits:'Experimental activity records; no validated mastery estimate. Main assessment records are separate.'};const blob=new Blob([JSON.stringify(output,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='cluevera-sketch-lab.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch{const notice=document.querySelector('#export-notice')??document.createElement('p');notice.id='export-notice';notice.textContent='Download could not start. Keep this tab open and try in a full browser tab.';app.appendChild(notice);}
+      try{const output={version:'sketch-lab-0.1',session_id:state.sessionId,events:state.events,records:state.records,exported_at:new Date().toISOString(),limits:'Experimental activity records; no validated mastery estimate. Main assessment records are separate.'};const blob=new Blob([JSON.stringify(output,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='quidence-sketch-lab.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch{const notice=document.querySelector('#export-notice')??document.createElement('p');notice.id='export-notice';notice.textContent='Download could not start. Keep this tab open and try in a full browser tab.';app.appendChild(notice);}
     };
   }
   function renderReview(){

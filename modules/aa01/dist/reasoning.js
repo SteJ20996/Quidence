@@ -129,7 +129,7 @@
         connection=connections[id]?1:0;
       }
     }
-    const concrete=window.ClueveraReasonEvidence?.assess(id,t,context.answer??{},context.task??null);
+    const concrete=window.QuidenceReasonEvidence?.assess(id,t,context.answer??{},context.task??null);
     if(concrete?.matched&&!contradicted&&!unclearQuote){
       points=Math.max(points??0,concrete.points);connection=concrete.connection??connection;
       matched=[...new Set([...matched,...anchors.slice(0,concrete.points===2?anchors.length:1)])];
@@ -144,11 +144,11 @@
   }
   const counterexampleAnchors=['At x = 3, x² is 9 while 2x is 6. One unequal pair disproves an identity claimed for every x.'];
   function counterexample(raw,correct){
-    const evidence=window.ClueveraReasonEvidence.assess('C6',raw),errors=evidence.errors.filter(e=>e.value!==null),reasons=[];
+    const evidence=window.QuidenceReasonEvidence.assess('C6',raw),errors=evidence.errors.filter(e=>e.value!==null),reasons=[];
     if(!String(raw??'').trim())reasons.push('missing_explanation');
     else if(evidence.points===null)reasons.push('unknown_or_conflicting_wording');
     if(errors.length)reasons.push('arithmetic_error');if(!correct)reasons.push('objective_conflict');
     return{points:errors.length?null:evidence.points,max:2,connection:evidence.connection,connectionMax:1,status:reasons.length?'Needs review':'Provisional credit',matched:evidence.matched?counterexampleAnchors:[],anchors:counterexampleAnchors,contradicted:!!errors.length,objectiveConflict:!correct,reviewReasons:reasons,calculationChecks:evidence.equations.filter(e=>e.value!==null),method:'counterexample_calculation_evidence_0.6',evidenceSpans:evidence.matched?[{start:0,end:String(raw).length,text:String(raw),claimStatus:errors.length?'unresolved':'retained'}]:[]};
   }
-  window.ClueveraReasoning={evaluate,counterexample,counterexampleAnchors,anchors:id=>id==='D1'?['The removed area is 5 × 3 = 15, so subtract 15 from 5x.','At x = 7, the remaining area is 20.']:sportsAnchors[id]??original.anchors(id),ids:[...original.ids,...Object.keys(sportsAnchors)]};
+  window.QuidenceReasoning={evaluate,counterexample,counterexampleAnchors,anchors:id=>id==='D1'?['The removed area is 5 × 3 = 15, so subtract 15 from 5x.','At x = 7, the remaining area is 20.']:sportsAnchors[id]??original.anchors(id),ids:[...original.ids,...Object.keys(sportsAnchors)]};
 })();

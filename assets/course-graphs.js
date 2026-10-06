@@ -1,6 +1,6 @@
 (function(root){
 'use strict';
-const Models=typeof module==='object'&&module.exports?require('./course-models.js'):root.ClueveraCourseModels;
+const Models=typeof module==='object'&&module.exports?require('./course-models.js'):root.QuidenceCourseModels;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=n=>Math.abs(n)<1e-9?'0':Number(n.toFixed(3)).toString();
 const mean=a=>a.reduce((s,x)=>s+x,0)/a.length;
@@ -57,5 +57,5 @@ function lab(module,index,s){
  const y=s.initial*s.factor**s.t,linear=s.initial*(1+s.t*(s.factor-1));return{graph:plot({fn:'exp',...s,compare:true}),readout:`t = ${fmt(s.t)} · Exponential amount = ${fmt(y)} · Matched line = ${fmt(linear)} · First-unit change = ${fmt(s.initial*(s.factor-1))}`,formula:`y = ${s.initial} × ${s.factor}ᵗ; t = log base ${s.factor} of (y/${s.initial})`,note:'The line shares the initial value and first time step. Its later values need not match the multiplicative model.'};
 }
 const api={fmt,mean,median,probability,value,task,lab};
-if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraCourseGraphs=api;
+if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceCourseGraphs=api;
 })(typeof window==='undefined'?globalThis:window);

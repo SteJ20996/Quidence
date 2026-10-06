@@ -1,4 +1,4 @@
-# Cluevera · Theoretical and Applied Mathematics
+# Quidence · Theoretical and Applied Mathematics
 
 主页现在专注 8 个数学学科，统计学保留；经济学和博弈论不再提供课程活动。
 

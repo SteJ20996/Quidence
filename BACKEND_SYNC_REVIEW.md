@@ -17,14 +17,15 @@ Register with a lowercase username (3–32 letters/numbers/underscore/hyphen) an
 ## Student behavior
 
 - Guest records continue saving locally under their existing keys. Existing record schemas, course versions, and answer histories are preserved.
-- Each account has a separate browser storage namespace. Signing out restores the guest workspace. Account records remain on that browser for offline continuation; this is workspace separation, not encryption against someone with access to the browser profile.
+- Each account has a separate browser storage namespace. Signing out restores the guest workspace. Explicit sign-out removes all account caches, sync baselines and conflict backups from that browser. Guest originals remain until the user selects Clear learning records from this device. Download unsynced work first. This is deletion of application copies, not encryption or forensic erasure. Session expiry or a failed network request does not silently discard unsynced work.
 - Import is explicit and only fills missing account records on this device. Guest originals are retained. A different cloud copy becomes a conflict to review.
 - Logged-in answers upload after a short debounce. The account page also offers manual sync. Network failure retains local work.
 - Open the account page and sync before continuing a course on another device. A running course stages newer cloud work instead of replacing its in-memory answers underneath the student.
 - Conflicting records remain unchanged until the student chooses. “Use account’s work” first saves the local copy to a separate backup key; storage failure blocks replacement. “Keep this device’s work” requires the current cloud revision and retains prior cloud versions. Both copies can be downloaded before choosing.
 - Sync works at the record level. Foundation checks share one portfolio record, diagnostic challenges share a separate portfolio record, and reports share one report collection: simultaneous edits to different items in either collection may require choosing a whole collection. Download both copies before resolving. This first version does not merge individual questions or report items.
 - Saved records include course work, visual algebra activities, vectors, matrices, foundation portfolios, diagnostic challenge portfolios, reports, and learning requests. Temporary Matrix Lab controls do not persist.
-- Sign out when using a shared device. Downloaded work and recovery codes should be kept private.
+- Sign out when using a shared device. Clear device records if guest work also needs removal. Browser-saved passwords, recovery codes, screenshots and downloaded files must be removed separately. Offline sign-out clears local application copies but cannot confirm server-session revocation; the page says so and keeps a signed-out marker to prevent automatically reopening the account.
+- Course pages use an explicit application storage adapter; native browser Storage is not patched. Cross-tab account changes block stale writes immediately, reload active courses, and clear account-form/recovery-code displays. A returning page restored from the browser back/forward cache reloads before work continues.
 
 ## Hosting recipe
 
@@ -33,7 +34,7 @@ Serve the learning pages and API from the **same HTTPS origin**, with a reverse 
 Production startup requires `PUBLIC_ORIGIN`, exactly the HTTPS origin without a trailing slash:
 
 ```sh
-NODE_ENV=production PUBLIC_ORIGIN=https://learn.example.com HOST=127.0.0.1 DATA_PATH=/var/lib/cluevera/cluevera.sqlite npm start
+NODE_ENV=production PUBLIC_ORIGIN=https://learn.example.com HOST=127.0.0.1 DATA_PATH=/var/lib/quidence/cluevera.sqlite npm start
 ```
 
 The database directory must be writable by the service user and private. Put the reverse proxy on that HTTPS hostname, forward to loopback port 3000, and keep Node’s port inaccessible from the public internet. `PUBLIC_ORIGIN` supplies the trusted origin; the server does not trust forwarded host headers. Passwords are entered only over HTTPS in production.
@@ -41,12 +42,12 @@ The database directory must be writable by the service user and private. Put the
 A Dockerfile is included (recipe not run in this workspace):
 
 ```sh
-docker build -t cluevera .
-docker volume create cluevera-data
-docker run -d --name cluevera -p 127.0.0.1:3000:3000 -e PUBLIC_ORIGIN=https://learn.example.com -v cluevera-data:/app/student-data cluevera
+docker build -t quidence .
+docker volume create quidence-data
+docker run -d --name quidence -p 127.0.0.1:3000:3000 -e PUBLIC_ORIGIN=https://learn.example.com -v quidence-data:/app/student-data quidence
 ```
 
-The volume must be writable by the image’s non-root `node` user. Point your HTTPS reverse proxy to `127.0.0.1:3000`. For a hosted container service, mount a persistent disk at `/app/student-data`, configure the public HTTPS origin, and use exactly one instance.
+Reuse any existing data volume; creating a new volume does not migrate the old database. The volume must be writable by the image’s non-root `node` user. Point your HTTPS reverse proxy to `127.0.0.1:3000`. For a hosted container service, mount a persistent disk at `/app/student-data`, configure the public HTTPS origin, and use exactly one instance.
 
 Back up the database using SQLite’s online backup API, or stop the service before copying the database and any WAL/SHM files together. Test restoring the backup before relying on it. The repository and container context exclude student data, database files, and environment files. No credentials or live student accounts are supplied.
 
@@ -61,7 +62,7 @@ Back up the database using SQLite’s online backup API, or stop the service bef
 | `PUT /api/records/:key` | Conditional write with `baseVersion` and serialized `value`; stale write returns 409 |
 | `GET /api/records/:key/history` | Immutable previous cloud revisions for this account |
 
-Passwords use salted scrypt. Only a hash of each session token and recovery code is stored. Sessions use HttpOnly, SameSite=Strict cookies (Secure in production). Writes require the configured Origin; authenticated writes also require a session CSRF token. Authentication is rate limited and hashing concurrency is capped. Requests have size/time limits; each record is capped at 2 MiB and account revision history at 50 MiB. Full quota errors retain local work. Static routing excludes source/server files, secrets, and database paths. The backend accepts only the reviewed record keys and their schema versions.
+Passwords use salted scrypt. Only a hash of each session token and recovery code is stored. Sessions use HttpOnly, SameSite=Strict cookies (Secure in production). Writes require the configured Origin; authenticated writes also require a session CSRF token. Authentication is rate limited and strong hashing uses a bounded FIFO queue: two simultaneous hashes, at most 64 waiting requests, and a 30-second waiting limit. Disconnected queued requests are cancelled. Up to ten concurrent classroom registrations are tested; this is not a production load rating. Registration allows 60 attempts per IP per hour and 10 per username/IP per hour. Login/recovery allow 120 attempts per IP per minute and 12 per username/IP per minute. The rate table is bounded to 10,000 entries; it resets on process restart. Requests have size/time limits; each record is capped at 2 MiB and account revision history at 50 MiB. Full quota errors retain local work. Static routing excludes source/server files, secrets, and database paths. The backend accepts only the reviewed record keys and their schema versions. A save rechecks the session after reading its request body, so a request completed after sign-out cannot add a revision. Logout is repeatable for an already expired or revoked session.
 
 This is a student account service, with no teacher dashboard, email verification, billing, classroom roles, or public account administration. There is no deletion UI yet. This first version does not support multiple Node processes sharing a network-mounted SQLite file.
 
@@ -75,3 +76,9 @@ Native macOS Safari behavior and the deployed HTTPS reverse proxy still require 
 
 
 本次项目扩展加入 `cluevera_project_portfolio_v1`：保存 8 科项目的原始分步回应、结构化几何点/线段、不可变提交及按提交绑定的本地复核。`projects/` 纳入允许静态路径。项目专项的实际 HTTP 检查验证第二设备恢复这些数据、保留版本历史和拒绝旧版本写入。旧诊断键及原学习记录未改写；后端仍需单独部署，冲突按整份组合记录处理。
+
+## Proxy rate limits
+
+Forwarded IP headers are ignored unless `TRUSTED_PROXY_CIDRS` explicitly lists trusted proxy IPs or CIDRs, for example `127.0.0.1/32,::1/128` for a proxy on the same host. Do not configure universal networks or public clients as trusted proxies. The proxy must replace or append forwarding headers correctly. The server scans hops from the socket toward the client and stops at the first untrusted hop. Keep the Node port private; an IP rate limit is not account security on its own. Actual hosting/proxy configuration is still unverified.
+
+History is still immutable and quota bounded; this patch does not introduce an automatic retention period or deletion policy. Age confirmation, privacy/terms, operator details, account deletion and password/recovery UX need separate decisions before a student-facing public launch.

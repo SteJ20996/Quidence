@@ -2,7 +2,7 @@
   "use strict";
   const app = document.querySelector("#app");
   const core = ["C1","C2","C3","C4","C5","C6","C7","C8","C9","C10","C11"];
-  const integrated=window.ClueveraIntegrated;
+  const integrated=window.QuidenceIntegrated;
   const sports = ["S1","S2","S3","S6","S4"];
   const geometryLab = ['V1','D1'];
   const titles = {
@@ -50,7 +50,7 @@
     S6:"Any whole number above 9 gives a counterexample: at 12 players, A costs $60 and B $66. B is not always cheaper.",FM:"At 8 players, P = $42; Q = $38. Q costs less. The rules were supplied.",FB:"C = 6 + 5n covers 18 players under a $100 budget ($96). The next player costs $101."
   };
   const state = {phase:"assessment", queue:[...core,...sports,...geometryLab,'QP'], index:0, records:{}, catalogOpen:true, quadraticReady:false,quadraticUnlocked:false,quadraticComparison:false,quadraticGate:false,quadraticDecisions:[], planned:true, followPlanned:false, adaptiveItems:{},adaptiveDecisions:[],lastMessage:"", sessionId:crypto.randomUUID(), events:[], reviewed:[], reviewMode:false, reviewDrafts:{}, reviewMessages:{}};
-  const sessionStore=window.ClueveraAlgebraSession;
+  const sessionStore=window.QuidenceAlgebraSession;
   let savingBlocked=false,savedNotice='',saveTimer=null,recovered=false;
   function saveProgress(){
     if(!sessionStore||savingBlocked)return;
@@ -58,13 +58,13 @@
     if(state.phase==='report')preserveReviewDrafts();
     const snapshot=structuredClone(state);
     for(const r of Object.values(snapshot.records))if(r.complete===null){r.elapsedBeforeRevision=activityTime(state.records[r.id]);r.started=clock();r.paused=true;}
-    try{const result=sessionStore.save(window.localStorage,snapshot);savedNotice=result.ok?'Progress saved in this browser.':result.error;}catch{savedNotice='Browser saving is unavailable. Download your record before refreshing.';}
+    try{const result=sessionStore.save((window.QuidenceStorage||window.localStorage),snapshot);savedNotice=result.ok?'Progress saved in this browser.':result.error;}catch{savedNotice='Browser saving is unavailable. Download your record before refreshing.';}
     const notice=document.querySelector('#progress-status');if(notice)notice.textContent=savedNotice;
   }
   function scheduleSave(){if(saveTimer!==null)clearTimeout(saveTimer);saveTimer=setTimeout(()=>{saveTimer=null;saveProgress();},400);}
   function restoreProgress(){
     if(!sessionStore)return;
-    let result;try{result=sessionStore.read(window.localStorage);}catch{return;}
+    let result;try{result=sessionStore.read((window.QuidenceStorage||window.localStorage));}catch{return;}
     if(!result.ok){savingBlocked=!!result.raw;savedNotice=result.error;return;}
     if(!result.state)return;
     Object.assign(state,result.state);recovered=true;savedNotice='Your previous progress has been restored.';
@@ -221,34 +221,34 @@
     }
   }
   function solidBoard(){
-    const v=window.ClueveraGeometry.normalize(state.records.V1?.solidView);
-    return `<div class="solid-stage-nav" role="group" aria-label="Volume-model stages">${['Whole','Partition','Separate & add'].map((label,i)=>`${i?'<span aria-hidden="true">→</span>':''}<button type="button" data-solid-stage="${i}" aria-pressed="${v.stage===i}">${i+1} · ${label}</button>`).join('')}</div><div id="solid-viewport" class="solid-viewport" tabindex="0" role="group" aria-label="Interactive 3D prism. Drag to rotate. Arrow keys rotate; plus and minus zoom; Home resets the view.">${window.ClueveraGeometry.render(v)}</div><div class="solid-controls" role="group" aria-label="Change the 3D view">${[['left','Turn left'],['right','Turn right'],['up','Tilt up'],['down','Tilt down'],['in','Zoom in'],['out','Zoom out'],['reset','Reset view']].map(([key,label])=>`<button class="secondary" type="button" data-solid-action="${key}">${label}</button>`).join('')}</div><p class="help">Drag with a mouse or one finger to rotate. Zoom changes the view, not the lengths. The gaps in stage 3 are only for display.</p><div class="solid-x-control"><label for="solid-x">Explore positive lengths: x = <span id="solid-x-value">${v.x}</span></label><input id="solid-x" data-solid-x type="range" min="1" max="5" step="1" value="${v.x}"></div><p id="solid-lengths" class="help"></p><p id="solid-stage-note" class="model-caption"></p><div class="piece-dimensions">${table(['Part','Height','Width','Depth'],[['A','8','x','2x'],['B','8','x','5'],['C','8','3','2x'],['D','8','3','5']])}</div><p class="help">The ordinary solid model uses x > 0. The algebraic identity also holds for other real x.</p>`;
+    const v=window.QuidenceGeometry.normalize(state.records.V1?.solidView);
+    return `<div class="solid-stage-nav" role="group" aria-label="Volume-model stages">${['Whole','Partition','Separate & add'].map((label,i)=>`${i?'<span aria-hidden="true">→</span>':''}<button type="button" data-solid-stage="${i}" aria-pressed="${v.stage===i}">${i+1} · ${label}</button>`).join('')}</div><div id="solid-viewport" class="solid-viewport" tabindex="0" role="group" aria-label="Interactive 3D prism. Drag to rotate. Arrow keys rotate; plus and minus zoom; Home resets the view.">${window.QuidenceGeometry.render(v)}</div><div class="solid-controls" role="group" aria-label="Change the 3D view">${[['left','Turn left'],['right','Turn right'],['up','Tilt up'],['down','Tilt down'],['in','Zoom in'],['out','Zoom out'],['reset','Reset view']].map(([key,label])=>`<button class="secondary" type="button" data-solid-action="${key}">${label}</button>`).join('')}</div><p class="help">Drag with a mouse or one finger to rotate. Zoom changes the view, not the lengths. The gaps in stage 3 are only for display.</p><div class="solid-x-control"><label for="solid-x">Explore positive lengths: x = <span id="solid-x-value">${v.x}</span></label><input id="solid-x" data-solid-x type="range" min="1" max="5" step="1" value="${v.x}"></div><p id="solid-lengths" class="help"></p><p id="solid-stage-note" class="model-caption"></p><div class="piece-dimensions">${table(['Part','Height','Width','Depth'],[['A','8','x','2x'],['B','8','x','5'],['C','8','3','2x'],['D','8','3','5']])}</div><p class="help">The ordinary solid model uses x > 0. The algebraic identity also holds for other real x.</p>`;
   }
   function refreshSolid(){
-    const r=ensure('V1');r.solidView=window.ClueveraGeometry.normalize(r.solidView);
-    const v=r.solidView,el=document.querySelector('#solid-viewport');if(el)el.innerHTML=window.ClueveraGeometry.render(v);
+    const r=ensure('V1');r.solidView=window.QuidenceGeometry.normalize(r.solidView);
+    const v=r.solidView,el=document.querySelector('#solid-viewport');if(el)el.innerHTML=window.QuidenceGeometry.render(v);
     document.querySelectorAll('[data-solid-stage]').forEach(el=>el.setAttribute('aria-pressed',String(Number(el.dataset.solidStage)===v.stage)));
     const output=document.querySelector('#solid-x-value');if(output)output.textContent=String(v.x);
     const lengths=document.querySelector('#solid-lengths');if(lengths)lengths.textContent=`Full lengths at x = ${v.x}: height 8 · width x + 3 = ${v.x+3} · depth 2x + 5 = ${2*v.x+5}.`;
     const note=document.querySelector('#solid-stage-note');if(note)note.textContent=['The whole prism has dimensions 8, x + 3, and 2x + 5.','Split both horizontal lengths. The four parts exactly fill the original solid.','Every part still has height 8. Add their four volumes; the spaces between parts are not extra volume.'][v.stage];
   }
   function changeSolid(action){
-    const r=ensure('V1'),v=window.ClueveraGeometry.normalize(r.solidView);
+    const r=ensure('V1'),v=window.QuidenceGeometry.normalize(r.solidView);
     if(action==='left')v.yaw-=.22;if(action==='right')v.yaw+=.22;if(action==='up')v.pitch+=.15;if(action==='down')v.pitch-=.15;
     if(action==='in')v.zoom*=1.15;if(action==='out')v.zoom/=1.15;
     if(action==='reset'){v.yaw=-.65;v.pitch=.42;v.zoom=1;}
-    r.solidView=window.ClueveraGeometry.normalize(v);refreshSolid();
+    r.solidView=window.QuidenceGeometry.normalize(v);refreshSolid();
   }
   function bindSolidControls(){
     const r=ensure('V1');
     document.querySelectorAll('[data-solid-action]').forEach(el=>el.onclick=()=>changeSolid(el.dataset.solidAction));
     document.querySelectorAll('[data-solid-stage]').forEach(el=>el.onclick=()=>{
-      const stage=Number(el.dataset.solidStage);r.solidView={...window.ClueveraGeometry.normalize(r.solidView),stage};
+      const stage=Number(el.dataset.solidStage);r.solidView={...window.QuidenceGeometry.normalize(r.solidView),stage};
       r.views??=[];r.views.push({view:['whole_solid','partitioned_solid','separated_solids'][stage],at:clock()});refreshSolid();
     });
     const surface=document.querySelector('#solid-viewport');let drag=null;
     surface.onpointerdown=e=>{if(e.button!==undefined&&e.button!==0)return;drag={x:e.clientX,y:e.clientY,id:e.pointerId};surface.setPointerCapture?.(e.pointerId);surface.focus();};
-    surface.onpointermove=e=>{if(!drag||e.pointerId!==drag.id)return;const v=window.ClueveraGeometry.normalize(r.solidView);v.yaw+=(e.clientX-drag.x)*.009;v.pitch+=(e.clientY-drag.y)*.009;drag.x=e.clientX;drag.y=e.clientY;r.solidView=v;refreshSolid();};
+    surface.onpointermove=e=>{if(!drag||e.pointerId!==drag.id)return;const v=window.QuidenceGeometry.normalize(r.solidView);v.yaw+=(e.clientX-drag.x)*.009;v.pitch+=(e.clientY-drag.y)*.009;drag.x=e.clientX;drag.y=e.clientY;r.solidView=v;refreshSolid();};
     const stop=e=>{if(drag&&e.pointerId===drag.id){drag=null;if(surface.hasPointerCapture?.(e.pointerId))surface.releasePointerCapture(e.pointerId);}};
     surface.onpointerup=stop;surface.onpointercancel=stop;surface.onlostpointercapture=()=>{drag=null;};
     surface.onkeydown=e=>{const action={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down','+':'in','=':'in','-':'out',Home:'reset'}[e.key];if(action){e.preventDefault();changeSolid(action);}};
@@ -470,7 +470,7 @@
     document.querySelectorAll('[data-sign]').forEach(el=>el.addEventListener('click',()=>{noteAction();el.textContent=el.textContent==='+'?'−':'+';refreshVisuals(id);}));
     document.querySelectorAll('input,textarea').forEach(el=>el.addEventListener('input',()=>{
       if(el.dataset.costCount!==undefined){const n=Number(el.value);if(!Number.isInteger(n)||n<0||n>24)return;r.costCount=n;refreshCostBlocks();return;}
-      if(el.dataset.solidX!==undefined){const x=Number(el.value);if(!Number.isInteger(x)||x<1||x>5)return;r.solidView={...window.ClueveraGeometry.normalize(r.solidView),x};refreshSolid();return;}
+      if(el.dataset.solidX!==undefined){const x=Number(el.value);if(!Number.isInteger(x)||x<1||x>5)return;r.solidView={...window.QuidenceGeometry.normalize(r.solidView),x};refreshSolid();return;}
       if(el.dataset.minusX!==undefined){const x=Number(el.value);if(!Number.isInteger(x)||x<4||x>9)return;r.minusX=x;refreshVisuals(id);return;}
       if(el.dataset.areaX!==undefined){const x=Number(el.value);if(!Number.isInteger(x)||x<1||x>6)return;r.areaX=x;refreshConceptModel(id);return;}
       noteAction();
@@ -533,7 +533,7 @@
     const keys={V1:['linear'],D1:['rewrite'],C4:['table'],C6:['left','right','step'],C9:['m'],C10:['model'],FN:['temp'],FP:['origin'],FE:['step'],FG:['faster'],S3:['meetN','meetC']};
     return (keys[id]??Object.keys(score.parts)).every(key=>score.parts[key]===true);
   }
-  function explanationAnchors(id){if(id==='C6')return window.ClueveraReasoning.counterexampleAnchors;if(integrated.handles(id))return integrated.anchors(id);return state.adaptiveItems[id]?[state.adaptiveItems[id].anchor]:window.ClueveraReasoning.anchors(id);}
+  function explanationAnchors(id){if(id==='C6')return window.QuidenceReasoning.counterexampleAnchors;if(integrated.handles(id))return integrated.anchors(id);return state.adaptiveItems[id]?[state.adaptiveItems[id].anchor]:window.QuidenceReasoning.anchors(id);}
   function submit(override) {
     const id=current(),r=ensure(id),a=override?{...override}:collect();
     if(explanationAnchors(id).length&&!Object.prototype.hasOwnProperty.call(a,"why"))a.why="";
@@ -545,8 +545,8 @@
     const at=clock();r.attempts.push({at,answer:structuredClone(a),score:result.score,hintsShown:r.hints.length,support: supportSnapshot(r)});
     r.answer=a;r.draft=null;r.score=result.score;
     rememberRaw(r);
-    r.reason=Object.prototype.hasOwnProperty.call(a,"why")?(id==='C6'?window.ClueveraReasoning.counterexample(a.why,result.score.correct):integrated.handles(id)?integrated.reasoning(id,a,result.score):state.adaptiveItems[id]?window.ClueveraAdaptive.reasoning(state.adaptiveItems[id],a.why,result.score.correct):window.ClueveraReasoning.evaluate(id,a.why,reasonObjectiveCorrect(id,result.score),{answer:a})):null;
-    if(id==='S4'&&!(a.why??'').trim()&&result.score.correct){r.reason={points:2,max:2,connection:1,connectionMax:1,status:'Provisional credit',matched:window.ClueveraReasoning.anchors(id),anchors:window.ClueveraReasoning.anchors(id),contradicted:false,objectiveConflict:false,reviewReasons:[],method:'structured_boundary_checks_bs02',evidenceSpans:[]};r.reasonSource='Submitted costs show both chosen groups fit and both next players exceed $90.';}
+    r.reason=Object.prototype.hasOwnProperty.call(a,"why")?(id==='C6'?window.QuidenceReasoning.counterexample(a.why,result.score.correct):integrated.handles(id)?integrated.reasoning(id,a,result.score):state.adaptiveItems[id]?window.QuidenceAdaptive.reasoning(state.adaptiveItems[id],a.why,result.score.correct):window.QuidenceReasoning.evaluate(id,a.why,reasonObjectiveCorrect(id,result.score),{answer:a})):null;
+    if(id==='S4'&&!(a.why??'').trim()&&result.score.correct){r.reason={points:2,max:2,connection:1,connectionMax:1,status:'Provisional credit',matched:window.QuidenceReasoning.anchors(id),anchors:window.QuidenceReasoning.anchors(id),contradicted:false,objectiveConflict:false,reviewReasons:[],method:'structured_boundary_checks_bs02',evidenceSpans:[]};r.reasonSource='Submitted costs show both chosen groups fit and both next players exceed $90.';}
     r.review=r.reason?.status??"Not applicable";
     if(['QP','QN'].includes(id))r.quadraticRoute=integrated.route(id,result.score);
     if(r.feedback==="immediate"&&!result.score.correct){
@@ -594,7 +594,7 @@
     if(state.index>=state.queue.length){state.phase="report";renderReport()}else renderQuestion();
   }
   function routeAdaptive(anchor){
-    const adaptive=window.ClueveraAdaptive;if(!adaptive?.checkpoints[anchor])return;
+    const adaptive=window.QuidenceAdaptive;if(!adaptive?.checkpoints[anchor])return;
     const r=state.records[anchor],decision=adaptive.select(anchor,r);if(!decision)return;
     if(state.queue.filter(id=>id.startsWith('F')).length>=3)return;
     if(decision.mode==='stretch'&&!state.includeStretch)return;
@@ -725,7 +725,7 @@
   }
   function sessionExport(){
     preserveReviewDrafts();
-    return {version:'0.6',quadratic_activity:{ready:state.quadraticReady,unlocked:state.quadraticUnlocked,decisions:structuredClone(state.quadraticDecisions)},base_version:'0.4.0',interface_variant:'Cluevera main',adaptive_policy_version:'bounded-reviewed-branches-0.6',adaptive_decisions:structuredClone(state.adaptiveDecisions),adaptive_items:structuredClone(state.adaptiveItems),session_id:state.sessionId,exported_at:new Date().toISOString(),events:structuredClone(state.events),reviewer_decisions:structuredClone(state.reviewed),reviewer_drafts:structuredClone(state.reviewDrafts),records:structuredClone(state.records),findings:findings(),markdown:sessionMarkdown()};
+    return {version:'0.6',quadratic_activity:{ready:state.quadraticReady,unlocked:state.quadraticUnlocked,decisions:structuredClone(state.quadraticDecisions)},base_version:'0.4.0',interface_variant:'Quidence main',adaptive_policy_version:'bounded-reviewed-branches-0.6',adaptive_decisions:structuredClone(state.adaptiveDecisions),adaptive_items:structuredClone(state.adaptiveItems),session_id:state.sessionId,exported_at:new Date().toISOString(),events:structuredClone(state.events),reviewer_decisions:structuredClone(state.reviewed),reviewer_drafts:structuredClone(state.reviewDrafts),records:structuredClone(state.records),findings:findings(),markdown:sessionMarkdown()};
   }
   function downloadFile(contents,type,filename){
     const blob=new Blob([contents],{type}),url=URL.createObjectURL(blob),link=document.createElement('a');
@@ -734,7 +734,7 @@
   }
   function downloadSession(){
     try{
-      downloadFile(JSON.stringify(sessionExport(),null,2),'application/json',`cluevera-session-${state.sessionId}.json`);
+      downloadFile(JSON.stringify(sessionExport(),null,2),'application/json',`quidence-session-${state.sessionId}.json`);
       const message='Session record download requested. Check your browser downloads. Saved reviews and any unsaved review drafts are included separately.';
       reportNotice(message);
     }catch{reportNotice('The download could not start. Please try again in a full browser tab.',true);}
@@ -760,7 +760,7 @@
   }
   function sessionMarkdown(){
     const quote=s=>String(s??'').split('\n').map(line=>'> '+line).join('\n');
-    let out=`# Cluevera · Algebra learning report\n\nSession: ${state.sessionId}\n\n## Request for an AI tutor\n\n${window.ClueveraReportStore?.HANDOFF??'Read my questions and work, check the calculations and reasoning, then teach one next idea.'}\n\n`;
+    let out=`# Quidence · Algebra learning report\n\nSession: ${state.sessionId}\n\n## Request for an AI tutor\n\n${window.QuidenceReportStore?.HANDOFF??'Read my questions and work, check the calculations and reasoning, then teach one next idea.'}\n\n`;
     for(const f of findings())out+=`## ${f.title}\n\n${f.evidence}\n\nNext: ${f.action}\n\n`;
     for(const id of state.queue){const r=state.records[id];if(!r)continue;const q=r.questionSnapshot??questionContext(id);out+=`## ${itemLabel(id)} · ${q.title}\n\nQuestion: ${q.prompt}\n\n### My work\n\n${quote(responseText(r))}\n\n${quote(r.answer?.why||r.draft?.why||r.reasonSource||'No written explanation entered.')}\n\n### Feedback\n\n${feedbackText(r)}\n\n`;
       if(r.complete!==null&&!r.skip)out+=`Reference: ${answers[id]}\n\n`;
@@ -771,8 +771,8 @@
   }
   function printableReport(){
     const all=state.queue.map(id=>state.records[id]).filter(Boolean);
-    const body=`<header><h1>Cluevera · Algebra learning report</h1><p class="report-meta">Session ${esc(state.sessionId)}</p><p>${all.filter(r=>r.complete!==null&&!r.skip).length} submitted · ${all.filter(r=>r.notStudied).length} not yet studied · ${all.filter(r=>r.skip&&!r.notStudied).length} skipped · ${state.queue.filter(id=>state.records[id]?.complete==null).length} not submitted</p></header><section><h2>Useful next steps</h2>${findings().map(f=>`<div class="report-feedback"><h3>${esc(f.title)}</h3><p>${esc(f.evidence)}</p><p>Next: ${esc(f.action)}</p></div>`).join('')}</section><h2>Questions, your work and feedback</h2>${all.map(r=>{const q=r.questionSnapshot??questionContext(r.id);return`<section class="report-item"><h3>${esc(itemLabel(r.id))} · ${esc(q.title)}</h3><p class="question-text">Question: ${esc(q.prompt)}</p><div class="student-work">Your work\n${esc(responseText(r))}\n${esc(r.complete===null?r.draft?.why??'':r.answer?.why||r.reasonSource||'No written explanation entered.')}</div><div class="report-feedback"><p style="white-space:pre-wrap">${esc(feedbackText(r))}</p>${r.complete!==null&&!r.skip?`<p>Reference: ${esc(answers[r.id])}</p>`:''}</div></section>`;}).join('')}<p class="report-meta">Written reasoning is reviewed provisionally. This short check is not a complete measure of the subject. The downloadable record keeps all submissions, support and review history.</p>`;
-    return window.ClueveraReportTools.documentHtml('Cluevera · Session report',body);
+    const body=`<header><h1>Quidence · Algebra learning report</h1><p class="report-meta">Session ${esc(state.sessionId)}</p><p>${all.filter(r=>r.complete!==null&&!r.skip).length} submitted · ${all.filter(r=>r.notStudied).length} not yet studied · ${all.filter(r=>r.skip&&!r.notStudied).length} skipped · ${state.queue.filter(id=>state.records[id]?.complete==null).length} not submitted</p></header><section><h2>Useful next steps</h2>${findings().map(f=>`<div class="report-feedback"><h3>${esc(f.title)}</h3><p>${esc(f.evidence)}</p><p>Next: ${esc(f.action)}</p></div>`).join('')}</section><h2>Questions, your work and feedback</h2>${all.map(r=>{const q=r.questionSnapshot??questionContext(r.id);return`<section class="report-item"><h3>${esc(itemLabel(r.id))} · ${esc(q.title)}</h3><p class="question-text">Question: ${esc(q.prompt)}</p><div class="student-work">Your work\n${esc(responseText(r))}\n${esc(r.complete===null?r.draft?.why??'':r.answer?.why||r.reasonSource||'No written explanation entered.')}</div><div class="report-feedback"><p style="white-space:pre-wrap">${esc(feedbackText(r))}</p>${r.complete!==null&&!r.skip?`<p>Reference: ${esc(answers[r.id])}</p>`:''}</div></section>`;}).join('')}<p class="report-meta">Written reasoning is reviewed provisionally. This short check is not a complete measure of the subject. The downloadable record keeps all submissions, support and review history.</p>`;
+    return window.QuidenceReportTools.documentHtml('Quidence · Session report',body);
   }
   function printReport(){
     preserveReviewDrafts();
@@ -786,7 +786,7 @@
     }catch{reportNotice('The print view could not open. Use Download printable report below, then open that file in your browser.',true);}
   }
   function downloadPrintable(){
-    try{downloadFile(printableReport(),'text/html',`cluevera-report-${state.sessionId}.html`);reportNotice('Printable report download requested. Open the HTML file in your browser, then choose Print / save as PDF.');}
+    try{downloadFile(printableReport(),'text/html',`quidence-report-${state.sessionId}.html`);reportNotice('Printable report download requested. Open the HTML file in your browser, then choose Print / save as PDF.');}
     catch{reportNotice('The printable report could not download. Please try again in a full browser tab.',true);}
   }
   function resetSession(){
@@ -803,7 +803,7 @@
     return `<article class="card report-card"><h2>Independent work and visual support</h2><p>Opening a visual is a choice, not proof that it was needed. A draft is not a submitted result. Hiding a visual does not erase having seen it. Sports Day support carries across its connected steps.</p>${rows?`<ul>${rows}</ul>`:'<p>No optional visual models were opened in this session.</p>'}<p>Next check: use a new example with the helper initially closed. Compare the independent attempt with any later supported attempt before choosing a teaching approach.</p></article>`;
   }
   function adaptivePathReview(){
-    const decisions=Object.values(state.adaptiveItems).map(task=>state.adaptiveDecisions.filter(d=>d.key===task.variant_id&&d.id===window.ClueveraAdaptive.checkpoints[task.source_anchor]).at(-1)).filter(Boolean);
+    const decisions=Object.values(state.adaptiveItems).map(task=>state.adaptiveDecisions.filter(d=>d.key===task.variant_id&&d.id===window.QuidenceAdaptive.checkpoints[task.source_anchor]).at(-1)).filter(Boolean);
     return `<article class="card report-card"><h2>How your next checks were chosen</h2><p>These short checks use earlier submitted components, retries and recorded support. Time and unfamiliar explanation wording do not create ability labels. The original ten core activities remain common reference points. Q11 adds an equation check; P4 records quadratic work or a not-yet-studied response.</p>${decisions.length?`<ol class="adaptive-path">${decisions.map(d=>{const r=state.records[d.id];return `<li><strong>${esc(titles[d.anchor])} → ${esc(titles[d.id])}</strong><p>${esc(d.reason)} ${!r||r.complete===null?'This check is not yet submitted.':r.skip?'This check was skipped; evidence is missing.':r.score?.correct?'The new answer components matched.':'The new components need another check.'}</p></li>`;}).join('')}</ol>`:'<p>No tailored check has been selected yet. Continue from a saved core activity to collect a next check.</p>'}<p>This is an experimental branching policy, not a validated mastery estimate. The record keeps the source submission and selected variant for review.</p></article>`;
   }
   const reviewMessage=k=>reviewMessages[k]??'A reviewer should check the meaning.';
@@ -840,18 +840,18 @@
     document.querySelector('#download-before-restart').onclick=downloadSession;
     document.querySelector('#confirm-restart').onclick=()=>{dialog.close();resetSession();};
     saveProgress();
-    if(window.ClueveraReportStore){const saved=window.ClueveraReportStore.save('aa01',{...sessionExport(),reportText:app.innerText||app.textContent||'',taskContext:Object.values(state.records).map(r=>({id:r.id,title:titles[r.id],reasonAnchors:explanationAnchors(r.id),reference:r.complete!==null?answers[r.id]:null,prompt:r.questionSnapshot?.prompt??questionContext(r.id).prompt}))},state.sessionId);window.ClueveraReportStore.appendNotice(app,saved);}
+    if(window.QuidenceReportStore){const saved=window.QuidenceReportStore.save('aa01',{...sessionExport(),reportText:app.innerText||app.textContent||'',taskContext:Object.values(state.records).map(r=>({id:r.id,title:titles[r.id],reasonAnchors:explanationAnchors(r.id),reference:r.complete!==null?answers[r.id]:null,prompt:r.questionSnapshot?.prompt??questionContext(r.id).prompt}))},state.sessionId);window.QuidenceReportStore.appendNotice(app,saved);}
     window.scrollTo({top:keepPosition?scrollY:0,behavior:keepPosition?'auto':'smooth'});
   }
 
   function registerPageTools() {
     const ctx=document.modelContext;if(!ctx?.registerTool)return;const lifecycle=new AbortController();window.addEventListener?.('pagehide',()=>lifecycle.abort(),{once:true});
     const add=tool=>{try{Promise.resolve(ctx.registerTool(tool,{signal:lifecycle.signal})).catch(()=>{})}catch{}};
-    add({name:"read_cluevera_session",title:"Read Cluevera session",description:"Read the current activity and session phase without changing answers.",inputSchema:{type:"object",properties:{},additionalProperties:false},annotations:{readOnlyHint:true},execute:()=>({phase:state.phase,activityId:state.phase==="assessment"&&!state.quadraticGate?current():null,title:state.phase==="assessment"?titles[current()]:null,completed:Object.keys(state.records).filter(id=>state.records[id].complete!==null).length,total:state.queue.length})});
-    add({name:"start_cluevera_session",title:"Start Cluevera session",description:"Open the first activity when no submitted answer exists. The page already opens on the first activity.",inputSchema:{type:"object",properties:{},additionalProperties:false},annotations:{readOnlyHint:false},execute:()=>{if(Object.values(state.records).some(r=>r.attempts.length||r.skip))throw Error("Session has already started.");goto(0);return {phase:state.phase,activityId:current()}}});
-    add({name:"submit_cluevera_answer",title:"Submit Cluevera answer",description:"Submit all fields for the current activity, using the same scoring and feedback as the visible Save or Check button. Numeric values may be signed.",inputSchema:{type:"object",properties:{activityId:{type:"string"},answer:{type:"object"}},required:["activityId","answer"],additionalProperties:false},annotations:{readOnlyHint:false},execute:({activityId,answer})=>{if(state.quadraticGate||state.phase!=="assessment"||activityId!==current()||state.records[activityId]?.complete!==null&&state.records[activityId]?.complete!==undefined)throw Error("Activity is not open.");if(!answer||typeof answer!=="object"||Array.isArray(answer)||check(activityId,answer).missing.length)throw Error("Answer is missing a required field.");submit(answer);const r=state.records[activityId];return {activityId,accepted:true,complete:r.complete!==null,objectiveCorrect:r.feedback==="immediate"?(r.score?.correct??false):null,feedbackMode:r.feedback}}});
-    add({name:"skip_cluevera_activity",title:"Skip Cluevera activity",description:"Mark the current activity as missing evidence and move to the next.",inputSchema:{type:"object",properties:{activityId:{type:"string"}},required:["activityId"],additionalProperties:false},annotations:{readOnlyHint:false},execute:({activityId})=>{if(state.quadraticGate||state.phase!=="assessment"||activityId!==current()||state.records[activityId]?.complete!==null&&state.records[activityId]?.complete!==undefined)throw Error("Activity is not open.");document.querySelector("#skip").click();return {phase:state.phase,nextActivityId:state.phase==="assessment"?current():null}}});
-    add({name:"continue_cluevera_session",title:"Continue Cluevera session",description:"After a correct warm-up or saved answer, show the next activity or final report.",inputSchema:{type:"object",properties:{},additionalProperties:false},annotations:{readOnlyHint:false},execute:()=>{if(state.quadraticGate||state.phase!=="assessment"||state.records[current()]?.complete===null)throw Error("Complete or skip the current activity first.");advance();return {phase:state.phase,activityId:state.phase==="assessment"&&!state.quadraticGate?current():null}}});
+    add({name:"read_quidence_session",title:"Read Quidence session",description:"Read the current activity and session phase without changing answers.",inputSchema:{type:"object",properties:{},additionalProperties:false},annotations:{readOnlyHint:true},execute:()=>({phase:state.phase,activityId:state.phase==="assessment"&&!state.quadraticGate?current():null,title:state.phase==="assessment"?titles[current()]:null,completed:Object.keys(state.records).filter(id=>state.records[id].complete!==null).length,total:state.queue.length})});
+    add({name:"start_quidence_session",title:"Start Quidence session",description:"Open the first activity when no submitted answer exists. The page already opens on the first activity.",inputSchema:{type:"object",properties:{},additionalProperties:false},annotations:{readOnlyHint:false},execute:()=>{if(Object.values(state.records).some(r=>r.attempts.length||r.skip))throw Error("Session has already started.");goto(0);return {phase:state.phase,activityId:current()}}});
+    add({name:"submit_quidence_answer",title:"Submit Quidence answer",description:"Submit all fields for the current activity, using the same scoring and feedback as the visible Save or Check button. Numeric values may be signed.",inputSchema:{type:"object",properties:{activityId:{type:"string"},answer:{type:"object"}},required:["activityId","answer"],additionalProperties:false},annotations:{readOnlyHint:false},execute:({activityId,answer})=>{if(state.quadraticGate||state.phase!=="assessment"||activityId!==current()||state.records[activityId]?.complete!==null&&state.records[activityId]?.complete!==undefined)throw Error("Activity is not open.");if(!answer||typeof answer!=="object"||Array.isArray(answer)||check(activityId,answer).missing.length)throw Error("Answer is missing a required field.");submit(answer);const r=state.records[activityId];return {activityId,accepted:true,complete:r.complete!==null,objectiveCorrect:r.feedback==="immediate"?(r.score?.correct??false):null,feedbackMode:r.feedback}}});
+    add({name:"skip_quidence_activity",title:"Skip Quidence activity",description:"Mark the current activity as missing evidence and move to the next.",inputSchema:{type:"object",properties:{activityId:{type:"string"}},required:["activityId"],additionalProperties:false},annotations:{readOnlyHint:false},execute:({activityId})=>{if(state.quadraticGate||state.phase!=="assessment"||activityId!==current()||state.records[activityId]?.complete!==null&&state.records[activityId]?.complete!==undefined)throw Error("Activity is not open.");document.querySelector("#skip").click();return {phase:state.phase,nextActivityId:state.phase==="assessment"?current():null}}});
+    add({name:"continue_quidence_session",title:"Continue Quidence session",description:"After a correct warm-up or saved answer, show the next activity or final report.",inputSchema:{type:"object",properties:{},additionalProperties:false},annotations:{readOnlyHint:false},execute:()=>{if(state.quadraticGate||state.phase!=="assessment"||state.records[current()]?.complete===null)throw Error("Complete or skip the current activity first.");advance();return {phase:state.phase,activityId:state.phase==="assessment"&&!state.quadraticGate?current():null}}});
   }
   restoreProgress();
   app.addEventListener('input',scheduleSave);
@@ -863,7 +863,7 @@
   registerPageTools();
   if(savingBlocked){
     app.innerHTML=`<section class="card"><h1>Your saved progress needs attention.</h1><p>${esc(savedNotice)}</p><div class="actions"><button id="recover-download" class="secondary">Download saved progress</button><button id="recover-replace" class="primary">Start a new session</button></div></section>`;
-    document.querySelector('#recover-download').onclick=()=>downloadFile(window.localStorage.getItem(sessionStore.KEY),'application/json','Cluevera_Algebra_Unreadable_Progress.json');
+    document.querySelector('#recover-download').onclick=()=>downloadFile((window.QuidenceStorage||window.localStorage).getItem(sessionStore.KEY),'application/json','Quidence_Algebra_Unreadable_Progress.json');
     document.querySelector('#recover-replace').onclick=()=>{savingBlocked=false;resetSession();};
   }else if(state.phase==='report')renderReport();else if(state.quadraticGate)renderQuadraticGate();else renderQuestion();
 })();

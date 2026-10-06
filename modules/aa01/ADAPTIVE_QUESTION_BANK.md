@@ -1,6 +1,6 @@
 # Reviewed adaptive question bank · Beta 0.4.1
 
-All prompts are newly composed within Cluevera; no PDF wording or diagram is copied. Standard mathematical concepts and common item types are not claimed as exclusive. Provenance is a design record, not comprehensive legal clearance. All student-visible text is English.
+All prompts are newly composed within Quidence; no PDF wording or diagram is copied. Standard mathematical concepts and common item types are not claimed as exclusive. Provenance is a design record, not comprehensive legal clearance. All student-visible text is English.
 
 Five source checkpoints choose from 18 reviewed variants. Bridge = missing or mismatching components; confirm = prior support, retries or a stated conflict; stretch = first objective result matched without optional support. These are task-selection purposes, not student labels. Each served item keeps its source event and variant. Unknown subjective wording remains reviewable rather than an automatic zero.
 
@@ -16,7 +16,7 @@ Response forms: number plus a short explanation.
 
 Optional model: optional_number_line_preview; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## N-distance — Compare distances from zero
 
@@ -30,7 +30,7 @@ Response forms: choice plus a short explanation.
 
 Optional model: optional_number_line_preview; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## N-confirm — A new negative-number check
 
@@ -44,7 +44,7 @@ Response forms: choice plus a short explanation.
 
 Optional model: optional_number_line_preview; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## N-stretch — Compare two representations
 
@@ -58,7 +58,7 @@ Response forms: choice plus a short explanation.
 
 Optional model: optional_number_line_preview; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## R-bridge — Find one repeated unit
 
@@ -72,7 +72,7 @@ Response forms: number plus a short explanation.
 
 Optional model: optional_equal_unit_model; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## R-confirm — Use a new running pace
 
@@ -86,7 +86,7 @@ Response forms: number plus a short explanation.
 
 Optional model: optional_equal_unit_model; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## R-stretch — Distance instead of laps
 
@@ -100,7 +100,7 @@ Response forms: number, number plus a short explanation.
 
 Optional model: optional_equal_unit_model; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## E-bridge — Count every term
 
@@ -114,7 +114,7 @@ Response forms: choice plus a short explanation.
 
 Optional model: optional_area_model; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## E-confirm — A new expanded expression
 
@@ -128,7 +128,7 @@ Response forms: number, number plus a short explanation.
 
 Optional model: optional_area_model; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## E-stretch — Change addition to subtraction
 
@@ -142,7 +142,7 @@ Response forms: choice, number plus a short explanation.
 
 Optional model: optional_area_model; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## F-start — Locate the starting value
 
@@ -158,7 +158,7 @@ Response forms: choice plus a short explanation.
 
 Optional model: optional_coordinate_graph; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## F-rate — Separate change from start
 
@@ -174,7 +174,7 @@ Response forms: number plus a short explanation.
 
 Optional model: optional_coordinate_graph; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## F-confirm — A new table-to-rule check
 
@@ -190,7 +190,7 @@ Response forms: number, number plus a short explanation.
 
 Optional model: optional_coordinate_graph; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## F-stretch — Build a rule from a movement
 
@@ -204,7 +204,7 @@ Response forms: number, number plus a short explanation.
 
 Optional model: optional_coordinate_graph; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## M-bridge — Separate once from each time
 
@@ -218,7 +218,7 @@ Response forms: choice, number plus a short explanation.
 
 Optional model: optional_cost_blocks; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## M-substitute — Check a supplied rule
 
@@ -232,7 +232,7 @@ Response forms: number plus a short explanation.
 
 Optional model: optional_cost_blocks; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## M-confirm — New fees, same structure
 
@@ -246,7 +246,7 @@ Response forms: number, number plus a short explanation.
 
 Optional model: optional_cost_blocks; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.
 
 ## M-stretch — Find a whole-number limit
 
@@ -260,4 +260,4 @@ Response forms: number, number, number plus a short explanation.
 
 Optional model: optional_cost_blocks; initially closed.
 
-Source: self-created within Cluevera.
+Source: self-created within Quidence.

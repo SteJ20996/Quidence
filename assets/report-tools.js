@@ -1,4 +1,4 @@
-(function(root,factory){const api=factory(root);if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraReportTools=api;})(typeof window==='object'?window:globalThis,root=>{
+(function(root,factory){const api=factory(root);if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceReportTools=api;})(typeof window==='object'?window:globalThis,root=>{
 'use strict';
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const quote=s=>String(s??'').split('\n').map(x=>'> '+x).join('\n');
@@ -11,9 +11,11 @@ function openPrint(html){
  // invoke another window's modal print dialog from the activity page.
  return true;
 }
+// Rebrand generated headings for display only; never rewrite saved student work.
+function reportText(text){return String(text).replace(/^(#{1,4}\s+)Cluevera(?=\s*[·:]|\s*$)/gm,'$1Quidence');}
 function markdown(subject,payload,request=''){
- const text=payload.markdown||payload.reportText||'';
- let out=`# Cluevera · ${subject}\n\n`+(request?`## Request for an AI tutor\n\n${request}\n\n`:'');
+ const text=reportText(payload.markdown||payload.reportText||'');
+ let out=`# Quidence · ${subject}\n\n`+(request?`## Request for an AI tutor\n\n${request}\n\n`:'');
  out+=text?String(text)+'\n\n':'The complete question, answer and support record is included below.\n\n';
  // Retain the complete portable record when a module only provides prose.
  if(!payload.markdown&&!String(text).startsWith('#')){
@@ -23,7 +25,7 @@ function markdown(subject,payload,request=''){
  return out;
 }
 function printable(subject,payload,request=''){
- return documentHtml('Cluevera · '+subject,`<header><h1>${escape(subject)}</h1><p class="report-meta">Cluevera learning report</p></header>${request?`<section class="report-feedback"><h2>Next conversation</h2><p>${escape(request)}</p></section>`:''}<section>${markdownBody(payload.markdown||payload.reportText||'The complete learning record is available in your Markdown export.')}</section>`);
+ return documentHtml('Quidence · '+subject,`<header><h1>${escape(subject)}</h1><p class="report-meta">Quidence learning report</p></header>${request?`<section class="report-feedback"><h2>Next conversation</h2><p>${escape(request)}</p></section>`:''}<section>${markdownBody(reportText(payload.markdown||payload.reportText||'The complete learning record is available in your Markdown export.'))}</section>`);
 }
 function markdownBody(text){
  const lines=String(text).split('\n'),out=[];let quoteLines=[],code=false,codeLines=[];
@@ -59,5 +61,5 @@ function attach(host,subject,payload,request=''){
   try{status.textContent=openPrint(printable(subject,payload,request))?'Your report opened in a new tab. Use Print / save as PDF there.':'The report tab was blocked. Allow pop-ups or copy the Markdown report.';}catch{status.textContent='The report tab could not open. Copy your Markdown report below.';}
  };
 }
-return{escape,quote,styles,documentHtml,openPrint,markdown,markdownBody,printable,copy,attach};
+return{escape,quote,reportText,styles,documentHtml,openPrint,markdown,markdownBody,printable,copy,attach};
 });

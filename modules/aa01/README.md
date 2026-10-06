@@ -1,4 +1,4 @@
-# Cluevera · Math Discovery Beta 0.6
+# Quidence · Math Discovery Beta 0.6
 
 Current development is in the GitHub subject hub. The interface originated in Beta_Style02; its archive and earlier releases remain historical sources.
 
@@ -29,7 +29,7 @@ See [the feedback review](../../FEEDBACK_REVIEW_2026-10-05.md) for exact changes
 ## Source and deployment
 
 Buildless HTML/CSS/JavaScript in `dist/`, linked from the GitHub subject hub. Publishing the repository changes does not deploy or alter the earlier private Site.
-Math prompts were composed within the Cluevera project. Q6 and P3 were revised following student feedback. The larger mixed-source PDF bank is not copied into this prototype.
+Math prompts were composed within the Quidence project. Q6 and P3 were revised following student feedback. The larger mixed-source PDF bank is not copied into this prototype.
 
 ## Limits
 
