@@ -150,7 +150,7 @@ app.addEventListener('input',event=>{
 app.addEventListener('change',event=>{if(event.target.dataset.lab){E.log(state,'graph_explored',{lesson:lesson().id,control:event.target.dataset.lab,settings:{...state.labs[state.lessonIndex]}});save();}});
 function download(name,content,mime){const url=URL.createObjectURL(new Blob([content],{type:mime})),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function markdown(){
- let s='# Visual Calculus\n\n'+`Session started: ${state.createdAt}\n\n`+'Initial predictions and checks after instruction are separate observations. Optional explanations need human review.\n\n';
+ let s='# Calculus\n\n'+`Session started: ${state.createdAt}\n\n`+'Initial predictions and checks after instruction are separate observations. Optional explanations need human review.\n\n';
  for(const l of C.LESSONS){s+=`## ${l.short}\n\n`;for(const t of [l.predict,...l.checks]){s+=`### ${t===l.predict?'Initial prediction':'Fresh question'}: ${t.prompt}\n\n`;state.records[t.id].submissions.forEach((r,i)=>{s+=`Attempt ${i+1}: ${answerText(t,r.answer)}\n\nResult: ${resultLabel(r.result)}\n\nSupport: lesson seen=${r.support.lessonSeen}; earlier feedback=${r.support.feedbackSeen}; other help reported=${r.support.otherHelp}\n\n`;if(r.answer.explanation)s+=`Explanation (not automatically scored):\n\n${r.answer.explanation.split('\n').map(line=>'> '+line).join('\n')}\n\n`;});s+=`${t.explanation}\n\n`;}s+=`Next step: ${l.next}\n\n`;}
  return s;
 }

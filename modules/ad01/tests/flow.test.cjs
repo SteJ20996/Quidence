@@ -34,7 +34,7 @@ test('whole lesson flow gates blank answers, records predictions, restores draft
  h.choose('limit4');h.input('explanation','<img src=x onerror=alert(1)>');h.submit();const r=harness(h.map);assert.match(r.app.innerHTML,/&lt;img/);r.click('next');r.choose('none');r.submit();r.click('next');assert.match(r.app.innerHTML,/Your first saved prediction/);assert.deepEqual(r.saved().records.p1.submissions.map(s=>s.answer.choices),[['4'],['2']]);
  r.click('revise',0);r.choose('limit1');r.input('otherHelp',true);r.submit();assert.equal(r.saved().records.c1.submissions[1].support.feedbackSeen,true);r.click('next');r.click('next');
  for(let i=1;i<4;i++){r.click('continue');finishLesson(r,i);}r.click('continue');assert.equal(r.saved().view,'summary');assert.equal(JSON.parse(r.map.get('cluevera_saved_reports_v1')).items[0].module,'ad01');assert.ok(r.app.all().some(x=>x.attrs.role==='status'&&x.textContent.includes('report copy')));
- r.click('export-json');r.click('export-md');assert.equal(r.downloads.length,2);assert.equal(Object.keys(JSON.parse(await r.blobs[0].text()).records).length,12);assert.match(await r.blobs[1].text(),/# Visual Calculus/);assert.equal(harness(r.map).saved().view,'summary');
+ r.click('export-json');r.click('export-md');assert.equal(r.downloads.length,2);assert.equal(Object.keys(JSON.parse(await r.blobs[0].text()).records).length,12);assert.match(await r.blobs[1].text(),/# Calculus/);assert.equal(harness(r.map).saved().view,'summary');
 });
 test('real app handlers change lab settings and calculations without submitting graph explorations',()=>{
  const h=harness();h.click('open',1);h.choose('unsure');h.submit();h.click('next');h.lab('kind','absolute');h.lab('a',0);h.lab('h',.02);h.lab('side',-1);h.lab('showDerivative',true);

@@ -1,6 +1,6 @@
-# FLOW review: Linear Algebra, Calculus and Pre-calculus
+# FLOW review: eight mathematics subjects
 
-This change addresses the two FLOW issue lists supplied on 7 October 2026. The uploaded answer histories are used locally for compatibility checks and are not included in the repository.
+This change addresses the FLOW issue lists and the later five-subject audit supplied on 7 October 2026. The later attachment/review details and remaining issues are in [FIVE_SUBJECT_REVIEW_2026-10-07.md](FIVE_SUBJECT_REVIEW_2026-10-07.md), with publication/source actions in [IP_REVIEW_2026-10-07.md](IP_REVIEW_2026-10-07.md). The uploaded answer histories are used locally for compatibility checks and are not included in the repository.
 
 ## Evidence and limits
 
@@ -33,7 +33,7 @@ FLOW reported correct references after separately recalculating the answers. Its
 
 ## History and restoration
 
-Previously served diagnostic and project definitions are retained in `challenge-bank-v1.js` and `project-bank-v1.js`. New sessions use version 2; existing sessions hydrate against the definitions they actually received. Original prompts, expected values, submitted work, feedback-exposure flags and stored outcomes remain available. Opening a report under the revised presentation may append a new report snapshot; older snapshots are retained.
+Previously served diagnostic and project definitions are retained in the version 1 and version 2 archive files for each bank. New sessions use version 3; existing sessions hydrate against the definitions they actually received. Original prompts, expected values, submitted work, feedback-exposure flags and stored outcomes remain available. Opening a report under the revised presentation may append a new report snapshot; older snapshots are retained.
 
 The numeric rule is intended to collect mathematical evidence rather than test formatting accuracy. It does not grade intermediate calculations or written understanding. The complete present set of non-integer numeric fields was checked against the displayed two-decimal rule, with incorrect nearby values and exact-fraction/integer controls. Future questions involving tiny values or special precision requirements need a reviewed field-specific policy rather than assuming this tolerance fits every mathematical task.
 
@@ -41,10 +41,10 @@ Backup import does not merge conflicting portfolios. A record group may contain 
 
 ## Verification
 
-- Full repository regression: 165 Node test entries pass, alongside the existing Algebra workspace checks and source-inventory consistency check. These are programmatic/DOM-fixture checks, not native browser certification.
+- Full repository regression: 174 Node test entries pass, alongside the existing Algebra workspace checks and source-inventory consistency check. These are programmatic/DOM-fixture checks, not native browser certification.
 - Diagnostic references: 40 tasks and 156 components recalculated by the separate Python verifier. Rational operations are exact; the exponential maximum uses double precision with analytic derivative signs and endpoint comparisons.
 - Project references: 16 projects, 123 numeric components, 6 formula components and 2 drawing tasks checked by the separate verifier and project tests.
-- Both uploaded backups restore exact raw storage strings: the first has 3 complete sessions/3 reports and 29 attempts; the expanded backup has 9 complete sessions/9 reports and 71 attempts. Inputs and stored submissions remain unchanged during hydration.
+- Both uploaded backups restore exact raw storage strings: the first has 3 complete sessions/3 reports and 29 attempts; the expanded backup has 9 complete sessions/9 reports and 71 attempts. The later eight-subject backup restores 20 complete sessions/20 reports and 116 attempts; its eleven individual JSON exports match the saved sessions. Inputs and stored submissions remain unchanged during hydration.
 - Targeted regression covers decimals from both FLOW lists, lazy session creation, history versions, neutral option restoration, answer-revealing diagrams, repeated advice and conflict inspection.
 - SVGs for the reported vector, secant and line-label issues were rendered and visually inspected at 375px and 620px. Geometry scale/label checks also cover 240px and 520px. The environment has no installed Chromium executable; no new native-browser run is claimed.
 
@@ -53,7 +53,7 @@ The rebuilt source ledger records changed definitions and their archived depende
 ## Next FLOW pass
 
 1. Recheck the reported failures in these three subjects using a clean browser profile and the revised branch. Include correct two/four-decimal answers, exact fractions, nearby wrong values, negative values, missing parts and incorrect choices.
-2. Cover Statistics and Geometry next, then the remaining school courses. Exercise conditional probability denominators, weighted estimates, interval endpoints, angle conventions, equal geometric units and drawing controls.
+2. Recheck the five-subject fixes: Geometry SVG/PDF/Markdown package, mobile Statistics table, distinct Algebra I parameter system and constrained design. Verify earlier sessions still use their original definitions.
 3. Run the untested further-foundation and lesson/visual routes. State the route and question count explicitly instead of claiming the whole subject is finished.
 4. Use valid formulas, concise explanations, alternative methods, incorrect-but-fluent prose and ambiguous reasoning. Check that explanation review stays separate from fixed-answer matches; unresolved meaning should lead to a targeted follow-up.
 5. Test restore into empty, identical and conflicting workspaces; verify cancellation, exact drafts, earlier attempts and feedback-view flags. Use synthetic records for shared screenshots.

@@ -49,7 +49,7 @@ npm start
 | --- | --- |
 | `assets/challenge-bank.js`、`diagnostics/` | 8 科中高难度诊断题与入口 |
 | `assets/foundation-engine.js`、`assets/foundation-app.js` | 共用检查、历史保存与报告流程；新题使用独立记录空间 |
-| `assets/project-bank.js` | 16 个原创多步骤情境项目 |
+| `assets/project-bank.js` | 16 个为 Quidence 编写的多步骤情境项目，来源审核待完成 |
 | `assets/project-tools.js` | 有界多项式检查与几何构造工具 |
 | `projects/` | 独立项目入口与保存 |
 | `review/project-math-audit.json` | 从情境数据独立推导的答案参照 |

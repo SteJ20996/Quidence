@@ -76,7 +76,8 @@ original=(F('46.20')-3)/(1+F(8,100))/(1-F(20,100));discount=original*F(20,100);t
 R['pa-c02']={'original':original,'discount':discount,'tax':tax};assert original-discount+tax+3==F('46.20')
 rate=F(1,6)+F(1,4)-F(1,12);R['pa-c03']={'rate':rate,'time':1/rate,'amount':rate*F(3,2)}
 k=F(6,F(3,2)*4-3);R['pa-c04']={'boys':3*k,'girls':4*k,'total':7*k+6};assert (3*k+6)/(4*k)==F(3,2)
-R['a1-c01']={key:R['la-c01'][key]for key in ['k','x','y','changed']}
+exceptional=F(8,2);unique=solve([[3,2],[6,8]],[11,2+18]);assert exceptional+18==2*11 and 23!=2*11
+R['a1-c01']={'k':exceptional,'x':unique[0],'y':unique[1],'changed':'none'}
 lo,hi=F(-5+3,2),F(5+3,2);R['a1-c02']={'lower':lo,'upper':hi,'closed':yn(abs(2*lo-3)==5 and abs(2*hi-3)==5),'test':yn(abs(2*(-2)-3)<=5)}
 sides=quadratic(1,-28//2,45);R['a1-c03']={'b':-14,'c':45,'long':max(sides),'short':min(sides)};assert 2*sum(sides)==28 and sides[0]*sides[1]==45
 h=F(12-4,4-2);R['a1-c04']={'hours':h,'cost':12+2*h,'a':max(x for x in range(9)if 12+2*x<=25),'b':max(x for x in range(9)if 4+4*x<=25)}

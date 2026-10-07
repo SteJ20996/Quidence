@@ -29,7 +29,7 @@ test('complete workflow: blank gates, unsaved edits, history, resume, feedback a
  await click(page,'revise',0);await choose(page,'limit1');await page.locator('#answer-form').evaluate(f=>f.requestSubmit());assert.equal((await saved(page)).records.c1.submissions[1].support.feedbackSeen,true);await click(page,'next');await click(page,'next');
  await click(page,'continue');await finish(page,1);await click(page,'continue');await finish(page,2);await click(page,'continue');await finish(page,3);await click(page,'continue');assert.equal((await saved(page)).view,'summary');
  const [json]=await Promise.all([page.waitForEvent('download'),click(page,'export-json')]);const out=JSON.parse(fs.readFileSync(await json.path(),'utf8'));assert.equal(Object.keys(out.records).length,12);assert.deepEqual(out.records.p1.submissions.map(s=>s.answer.choices),[['4'],['2']]);
- const [md]=await Promise.all([page.waitForEvent('download'),click(page,'export-md')]);assert.match(fs.readFileSync(await md.path(),'utf8'),/AD01 · Visual Calculus/);
+ const [md]=await Promise.all([page.waitForEvent('download'),click(page,'export-md')]);assert.match(fs.readFileSync(await md.path(),'utf8'),/# Calculus/);
  await page.reload();assert.equal((await saved(page)).view,'summary');assert.equal(errors.length,0,errors.join('\n'));await context.close();
 });
 test('graph controls update real SVGs and numbers without changing saved answers or losing focus',async()=>{

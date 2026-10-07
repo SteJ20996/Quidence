@@ -45,9 +45,9 @@ put('pa-p01',dict(concentrate=concentrate,fraction=fraction,cups=whole*F(9,10)/F
 distance=(F(7,2)+4)*F(2,5);walk=distance/3*60;elapsed=walk+24;deadline=90
 put('pa-p02',dict(distance=distance,elevation=80+135-90,climb=135,walking=walk,elapsed=elapsed,spare=deadline-elapsed,newSpeed=(distance+F(1,2))/F(deadline-24)*60),'Map length versus height; clock arithmetic; solve a reverse speed constraint.')
 put('a1-p01',dict(minimum=ceil(F(90,20-12)),surplus=20*18-(90+12*18),freeMinimum=ceil(F(90+3*20,20-12)),adults=solve([[1,1],[18,14]],[20,328])[0],students=solve([[1,1],[18,14]],[20,328])[1],balance=328-(90+12*20)), 'Solve linear and integer inequalities; recover a ticket mixture and verify both totals.', {'cost':['90','12']})
-roots=(F(6),F(9));assert all(x*(30-2*x)==108 for x in roots)
-vertex=F(30,4);shape=F(30,4)
-put('a1-p02',dict(root1=roots[0],root2=roots[1],constraint=shape,low=roots[0],high=min(roots[1],shape),maximum=vertex*(30-2*vertex)), 'Factor the area boundary, intersect inequalities, then compare a concave quadratic on the feasible interval.', {'length':['30','-2'],'area':['0','30','-2']})
+roots=(F(5),F(10));assert all(x*(30-2*x)==100 for x in roots)
+vertex=F(30,4);shape=F(30,2+3);constrained=min(vertex,shape);assert 30-2*vertex<3*vertex and 30-2*constrained>=3*constrained
+put('a1-p02',dict(root1=roots[0],root2=roots[1],constraint=shape,low=roots[0],high=min(roots[1],shape),maximum=constrained*(30-2*constrained)), 'Factor the area boundary, intersect inequalities, and reject the inadmissible unconstrained vertex.', {'length':['30','-2'],'area':['0','30','-2']})
 
 # Geometry from transformations, cross products and exact median coordinates.
 l,p,c=[list(map(F,q)) for q in [[1,1],[9,1],[1,7]]]

@@ -1,0 +1,67 @@
+{
+  "source": "Synthetic regression scenarios written for Quidence, October 7, 2026. No student transcription is retained in this fixture.",
+  "notes": "The flags are synthetic test inputs, not human labels of understanding or diagnostic-validity evidence.",
+  "visible_selections": {
+    "C1": {
+      "point": -1.5,
+      "near": "-0.5"
+    }
+  },
+  "explanations": [
+    {
+      "item_id": "C4",
+      "response": "I assumed both tables use one fixed multiplier because they list corresponding x and y values.",
+      "objective_correct_status": false
+    },
+    {
+      "item_id": "C6",
+      "response": "2(x+3)=2x+6, so 2x+6=14.",
+      "objective_correct_status": true
+    },
+    {
+      "item_id": "C9",
+      "response": "The change is minus one in y for each plus one in x.",
+      "objective_correct_status": true
+    },
+    {
+      "item_id": "C10",
+      "response": "At zero visits the cost is 12 dollars, so the 12 dollar fee is fixed.",
+      "objective_correct_status": true
+    },
+    {
+      "item_id": "S1",
+      "response": "The totals become equal at nine players; the plan with the smaller rate then grows more slowly.",
+      "objective_correct_status": true
+    },
+    {
+      "item_id": "S3",
+      "response": "I would reuse the earlier comparison but have not checked these values.",
+      "objective_correct_status": false
+    },
+    {
+      "item_id": "S4",
+      "response": "The budget inequality gives at most 22 players for A and 16 for B.",
+      "objective_correct_status": true
+    },
+    {
+      "item_id": "S5",
+      "response": "For a larger group I would compare the rates and the starting charges.",
+      "objective_correct_status": true
+    },
+    {
+      "item_id": "S6",
+      "response": "The larger group should choose the second plan.",
+      "objective_correct_status": true
+    },
+    {
+      "item_id": "FP",
+      "response": "The first line starts at zero; the other starts at four even with no visits.",
+      "objective_correct_status": true
+    },
+    {
+      "item_id": "FN",
+      "response": "Starting at minus two and moving four left ends at minus six.",
+      "objective_correct_status": true
+    }
+  ]
+}

@@ -2,9 +2,11 @@
 'use strict';
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const quote=s=>String(s??'').split('\n').map(x=>'> '+x).join('\n');
-const styles=`*{box-sizing:border-box}body{max-width:850px;margin:28px auto;padding:0 24px;color:#203347;font:14px/1.5 system-ui,sans-serif}h1{font-size:24px;line-height:1.2}h2{font-size:18px;margin:22px 0 10px}h3{font-size:15px;margin:12px 0 6px}p{margin:6px 0}section{margin:12px 0}.report-item{border-top:1px solid #cad6e1;padding:10px 0;break-inside:avoid}.question-text{color:#2147a0}.student-work{color:#203347;border-left:3px solid #6689c0;padding:8px 12px;white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f6fc}.report-feedback{color:#096357;border-left:3px solid #408879;padding:8px 12px;background:#eff7f4}.needs-check{color:#8b460e}ul{margin:7px 0;padding-left:22px}li{margin:4px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}summary{font-weight:650}details{margin:8px 0}.toolbar{border-bottom:1px solid #cad6e1;padding-bottom:16px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}button{font:inherit;padding:10px 16px;border:1px solid #447568;border-radius:7px;background:white;color:#203347;cursor:pointer}.report-meta{font-size:11px;color:#536678}h2,h3{break-after:avoid}a{color:#2147a0}@page{margin:14mm}@media print{body{max-width:none;margin:0;padding:0;font-size:10.5pt;line-height:1.4}.toolbar{display:none}h1{font-size:19pt}h2{font-size:13pt}h3{font-size:11pt}.student-work,.report-feedback{background:transparent}p,li{orphans:3;widows:3}}`;
+const styles=`*{box-sizing:border-box}body{max-width:850px;margin:28px auto;padding:0 24px;color:#203347;font:14px/1.5 system-ui,sans-serif}h1{font-size:24px;line-height:1.2}h2{font-size:18px;margin:22px 0 10px}h3{font-size:15px;margin:12px 0 6px}p{margin:6px 0}section{margin:12px 0}.report-item{border-top:1px solid #cad6e1;padding:10px 0;break-inside:avoid}.question-text{color:#2147a0}.student-work{color:#203347;border-left:3px solid #6689c0;padding:8px 12px;white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f6fc}.report-feedback{color:#096357;border-left:3px solid #408879;padding:8px 12px;background:#eff7f4}.needs-check{color:#8b460e}ul{margin:7px 0;padding-left:22px}li{margin:4px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}summary{font-weight:650}details{margin:8px 0}.toolbar{border-bottom:1px solid #cad6e1;padding-bottom:16px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}button{font:inherit;padding:10px 16px;border:1px solid #447568;border-radius:7px;background:white;color:#203347;cursor:pointer}.report-meta{font-size:11px;color:#536678}h2,h3{break-after:avoid}.report-drawing{margin:18px 0;break-inside:avoid}.report-drawing svg{display:block;width:100%;max-width:360px;height:auto}.report-drawing figcaption{font-weight:600;margin-bottom:8px}a{color:#2147a0}@page{margin:14mm}@media print{body{max-width:none;margin:0;padding:0;font-size:10.5pt;line-height:1.4}.toolbar{display:none}h1{font-size:19pt}h2{font-size:13pt}h3{font-size:11pt}.student-work,.report-feedback{background:transparent}p,li{orphans:3;widows:3}}`;
 // Only this fixed script is permitted by the server CSP hash. Student text is escaped.
 const PRINT_SCRIPT="document.querySelector('[data-print-report]').addEventListener('click',function(){window.print();});";
+function drawingEntries(payload){const p=root.QuidenceProjectTools||(typeof module==='object'&&module.exports?require('./project-tools.js'):null);return p?p.reportDrawings(payload):[];}
+function drawingFigure(d){const p=root.QuidenceProjectTools||(typeof module==='object'&&module.exports?require('./project-tools.js'):null);return'<figure class="report-drawing"><figcaption>'+escape(d.title)+'</figcaption>'+p.svg(d.spec,d.drawing)+'<p>'+escape(p.fieldTypes.drawing.text(d.spec,d.drawing))+'</p></figure>';}
 function documentHtml(title,body){return`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escape(title)}</title><style>${styles}</style></head><body><div class="toolbar"><button type="button" data-print-report>Print / save as PDF</button><p>Choose Save as PDF. Close this tab to return to your activity.</p></div>${body}<script>${PRINT_SCRIPT}</script></body></html>`;}
 function openPrint(html){
  const tab=root.open('','_blank');if(!tab)return false;
@@ -19,6 +21,9 @@ function markdown(subject,payload,request=''){
  const text=reportText(payload.markdown||payload.reportText||'');
  let out=`# Quidence · ${subject}\n\n`+(request?`## Request for an AI tutor\n\n${request}\n\n`:'');
  out+=text?String(text)+'\n\n':'The complete question, answer and support record is included below.\n\n';
+ const allDrawings=drawingEntries(payload),drawings=allDrawings.filter(d=>!out.includes(']('+d.filename+')'));
+ if(drawings.length)out+='## Student drawings\n\n'+drawings.map(d=>'!['+d.title.replace(/[\[\]\n]/g,' ')+']('+d.filename+')\n\n').join('');
+ if(allDrawings.length)out+='The SVG files are included in Download report with drawings. Keep them beside this Markdown file to display the images. The PDF report includes the diagrams directly.\n\n';
  // Retain the complete portable record when a module only provides prose.
  if(!payload.markdown&&!String(text).startsWith('#')){
   const record=JSON.stringify(payload,null,2);const fence='`'.repeat(Math.max(3,...[...record.matchAll(/`+/g)].map(x=>x[0].length+1)));
@@ -27,10 +32,14 @@ function markdown(subject,payload,request=''){
  return out;
 }
 function printable(subject,payload,request=''){
- return documentHtml('Quidence · '+subject,`<header><h1>${escape(subject)}</h1><p class="report-meta">Quidence learning report</p></header>${request?`<section class="report-feedback"><h2>Next conversation</h2><p>${escape(request)}</p></section>`:''}<section>${markdownBody(reportText(payload.markdown||payload.reportText||'The complete learning record is available in your Markdown export.'))}</section>`);
+ return documentHtml('Quidence · '+subject,`<header><h1>${escape(subject)}</h1><p class="report-meta">Quidence learning report</p></header>${request?`<section class="report-feedback"><h2>Next conversation</h2><p>${escape(request)}</p></section>`:''}<section>${markdownBody(reportText(payload.markdown||payload.reportText||'The complete learning record is available in your Markdown export.'),drawingEntries(payload))}</section>`);
 }
-function markdownBody(text){
- const lines=String(text).split('\n'),out=[];let quoteLines=[],code=false,codeLines=[];
+function packageFiles(subject,payload,request=''){
+ const p=root.QuidenceProjectTools||(typeof module==='object'&&module.exports?require('./project-tools.js'):null);
+ return [{name:'Quidence_Report.md',content:markdown(subject,payload,request)},{name:'Quidence_Report.html',content:printable(subject,payload,request)},...drawingEntries(payload).map(d=>({name:d.filename,content:p.svg(d.spec,d.drawing)}))];
+}
+function markdownBody(text,drawings=[]){
+ const lines=String(text).split('\n'),out=[],used=new Set();let quoteLines=[],code=false,codeLines=[];
  const flush=()=>{if(quoteLines.length){out.push('<div class="student-work">'+escape(quoteLines.join('\n'))+'</div>');quoteLines=[];}};
  for(const line of lines){
   if(/^`{3,}/.test(line)){flush();if(code){out.push('<pre class="student-work">'+escape(codeLines.join('\n'))+'</pre>');codeLines=[];}code=!code;continue;}
@@ -38,9 +47,10 @@ function markdownBody(text){
   if(/^> ?/.test(line)){quoteLines.push(line.replace(/^> ?/,''));continue;}
   flush();const heading=line.match(/^(#{1,4})\s+(.+)$/);
   if(heading){const level=Math.min(3,heading[1].length);out.push(`<h${level}>${escape(heading[2])}</h${level}>`);}
+  else if(/^!\[/.test(line)&&drawings.some(d=>line.endsWith(']('+d.filename+')'))){const d=drawings.find(d=>line.endsWith(']('+d.filename+')'));out.push(drawingFigure(d));used.add(d.filename);}
   else if(line.trim()){const cls=/^(?:Reference|Next|Feedback|Result|Local review|Current component)/i.test(line)?'report-feedback':/^(?:Question|Reasoning prompt)/i.test(line)?'question-text':/^(?:Attempt|Student explanation|Explanation)/i.test(line)?'student-work':'';out.push(`<p${cls?' class="'+cls+'"':''}>${escape(line)}</p>`);}
  }
- flush();if(codeLines.length)out.push('<pre class="student-work">'+escape(codeLines.join('\n'))+'</pre>');return out.join('\n');
+ flush();if(codeLines.length)out.push('<pre class="student-work">'+escape(codeLines.join('\n'))+'</pre>');const remaining=drawings.filter(d=>!used.has(d.filename));if(remaining.length)out.push('<h2>Student drawings</h2>'+remaining.map(drawingFigure).join(''));return out.join('\n');
 }
 async function copy(text,target){
  try{if(root.navigator?.clipboard?.writeText){await root.navigator.clipboard.writeText(text);return true;}}catch{}
@@ -50,7 +60,7 @@ async function copy(text,target){
 function attach(host,subject,payload,request=''){
  if(!root.document||!host?.appendChild)return;
  const box=root.document.createElement('section');box.className='report-handoff';
- box.innerHTML='<h3>Continue with your learning record</h3><div class="report-handoff-actions"><button type="button" data-report-copy>Copy Markdown report</button><button type="button" data-report-print>Open PDF report</button><a href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT ↗</a><a href="https://claude.ai/" target="_blank" rel="noopener">Open Claude ↗</a></div><p>Review the copied record and remove names, school, contact details and other personal information before sharing. Nothing is sent to an external tutor by Quidence. ChatGPT requires age 13 or the local minimum age, and parent or guardian permission under 18. Claude’s consumer service requires age 18 or the higher local minimum. Check the provider’s current terms. You can review with a teacher or keep working here.</p><p data-report-status role="status"></p><label data-report-fallback hidden>Markdown report<textarea rows="8" readonly></textarea></label>';
+ box.innerHTML='<h3>Continue with your learning record</h3><div class="report-handoff-actions"><button type="button" data-report-copy>Copy Markdown report</button><button type="button" data-report-print>Open PDF report</button><a href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT ↗</a><a href="https://claude.ai/" target="_blank" rel="noopener">Open Claude ↗</a></div><p>Review the copied record and remove names, school, contact details and other personal information before sharing. Nothing is sent to an external tutor by Quidence. ChatGPT requires age 13 or the local minimum age, and parent or guardian permission under 18. Claude’s consumer service requires age 18 or the higher local minimum. Provider terms checked October 7, 2026. ChatGPT and Claude are products of OpenAI and Anthropic; Quidence is not affiliated with either provider. Check the provider’s current terms. You can review with a teacher or keep working here.</p><p data-report-status role="status"></p><label data-report-fallback hidden>Markdown report<textarea rows="8" readonly></textarea></label>';
  host.appendChild(box);
  // Simple test DOMs may not implement nested querying.
  if(!box.querySelector)return;
@@ -63,5 +73,5 @@ function attach(host,subject,payload,request=''){
   try{status.textContent=openPrint(printable(subject,payload,request))?'Your report opened in a new tab. Use Print / save as PDF there.':'The report tab was blocked. Allow pop-ups or copy the Markdown report.';}catch{status.textContent='The report tab could not open. Copy your Markdown report below.';}
  };
 }
-return{escape,quote,reportText,styles,PRINT_SCRIPT,documentHtml,openPrint,markdown,markdownBody,printable,copy,attach};
+return{escape,quote,reportText,styles,PRINT_SCRIPT,documentHtml,openPrint,markdown,markdownBody,printable,packageFiles,copy,attach};
 });

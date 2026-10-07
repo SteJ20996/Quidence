@@ -130,9 +130,10 @@ function markdown(s){
  const scope=scopeReview(s);out+='## Scope and evidence limits\n\n'+scope.interpretation+'\n\nNot checked in these '+tasks(s).length+' '+unit+':\n'+scope.notChecked.map(x=>'- '+x).join('\n')+'\n\nSupplied information affecting interpretation:\n'+(scope.suppliedInformation.length?scope.suppliedInformation.map(x=>'- '+tasks(s).find(t=>t.id===x.task).title+': '+x.note).join('\n'):'No separate supplied-answer condition is flagged here. The full prompts remain above each answer; they still define the support and limits of the evidence.')+'\n\n';
  const followups=nextChecks(s);out+='## Possible next checks\n\n'+(followups.length?followups.map(o=>'- '+o.title+': '+o.followupReasons.join(' ')+' Next: '+o.next).join('\n'):'No specific follow-up was selected from the fixed checks, reported support, or saved local reviews. Unreviewed written reasons and untested topics still need evidence.')+'\n\n';
  out+='## Answer and explanation history\n\n';
- for(const t of tasks(s)){
+ for(const[i,t]of tasks(s).entries()){
   const r=s.records[t.id];out+='### '+t.title+' · '+t.groupName+'\n\n'+t.prompt+'\n\n';
   if(t.steps)out+=t.steps.map(step=>'#### '+step.title+'\n\n'+step.prompt+'\n').join('\n')+'\n';
+  if(settings.projects){let draw=0;for(const c of reviewedComponents(s,t))if(c.drawing&&c.drawingSpec)out+='![Student construction: '+c.label.replace(/[\[\]\n]/g,' ')+'](Quidence_Drawing_'+(i+1)+'_'+(++draw)+'.svg)\n\n';}
   if(t.table)out+='Given table: '+JSON.stringify(t.table)+'\n\n';if(t.matrix)out+='Given matrix: '+JSON.stringify(t.matrix)+'\n\n';if(t.referenceVisual)out+='Reference diagram description: '+t.referenceVisual.description+'\n\n';if(t.visual)out+='Graph/table description: '+t.visual.description+'\n'+(t.visual.kind==='game'?'Payoffs: '+JSON.stringify(t.visual)+'\n':'')+'\n';
   out+='Reasoning prompt: '+t.reason+'\n\n';
   out+='Current component checks:\n'+reviewedComponents(s,t).map(x=>'- '+x.label+': '+x.state+(x.skill?' · '+x.skill:'')+(x.feedback?' · '+x.feedback:'')+(x.reviewCriteria?.length?' · review criteria: '+x.reviewCriteria.join('; '):'')+(x.selection?' · correct selections: '+x.selection.correct.join(', ')+'; extra selections: '+x.selection.extra.join(', ')+'; missing selections: '+x.selection.missing.join(', '):'')).join('\n')+'\n\n';

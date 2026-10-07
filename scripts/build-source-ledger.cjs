@@ -10,7 +10,7 @@ function build(){
   items.push({id,family,module,taskId:task.id,title:task.title||task.prompt,bankVersion:extra.bankVersion||task.version||null,availability:module==='aa01'||active.has(module)?'active':'historical-only',fingerprint:digest(JSON.stringify(stable(task))),fingerprintScope:'task definition excluding provenance label',sourceFiles:sourceFiles.map(file=>({path:file,sha256:digest(fs.readFileSync(path.join(root,file)))})),sourceReview:{status:'not-cleared',reviewer:null,evidence:[],next:'Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed.'},mathematicsReview:{status:'not-human-certified',automatedReference:extra.automatedReference||null},...extra});
  }
  for(const[family,file,audit]of [['diagnostic','assets/challenge-bank.js','review/challenge-math-audit.json'],['project','assets/project-bank.js','review/project-math-audit.json'],['foundation','assets/foundation-bank.js',null],['followup','assets/foundation-extension.js',null]]){
-  const bank=require(path.join(root,file));for(const[module,m]of Object.entries(bank.MODULES))for(const task of m.tasks)add(family,module,task,[file,...(bank.HISTORY?[file.replace('-bank.js','-bank-v1.js')]:[])],{bankVersion:bank.VERSION,automatedReference:audit});
+  const bank=require(path.join(root,file));for(const[module,m]of Object.entries(bank.MODULES))for(const task of m.tasks)add(family,module,task,bank.SOURCE_FILES||(family==='foundation'?[file,'assets/subject-foundations.js']:[file]),{bankVersion:bank.VERSION,automatedReference:audit});
  }
  const school=require('../assets/school-course-content.js');
  for(const module of [...school.IDS,'ad01','ae01','af01']){

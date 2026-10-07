@@ -1,0 +1,2250 @@
+{
+  "schema": "quidence-source-preliminary-1",
+  "date": "2026-10-07",
+  "status": "draft-only-not-rights-clearance",
+  "scope": "40 diagnostic tasks and 16 projects in current bank version 3",
+  "humanContributionObserved": "User requested varied mathematical evidence, California contexts, flexible explanation review and current fixes. This is a product-direction record, not proof that the user authored every expressive element.",
+  "interpretation": "No item receives human sign-off, permission or ownership assurance from this file. The separate 308-item ledger remains not-cleared.",
+  "items": [
+    {
+      "ledgerId": "diagnostic:ab01:la-c01",
+      "taskId": "la-c01",
+      "title": "A parameter changes the solution set",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "6703f6d63d418da999cbecfa5783dc9e95104090722a129c62bc11c5984c4582",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ab01:la-c02",
+      "taskId": "la-c02",
+      "title": "A complete solution, not just one vector",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "f31e2b81d0b5843844b6897d4ca214b5fcf4f3e6b13680a0942ae4ed186f2ae4",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ab01:la-c03",
+      "taskId": "la-c03",
+      "title": "Compose and then undo two maps",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "42f52c7f7d433b800d30433ff6f15310c07ea09415196bcfe1b4ae9fa485de59",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ab01:la-c04",
+      "taskId": "la-c04",
+      "title": "The same map in a different basis",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "539151d341affaa5fdaed75d9cac0b40a00eab28f599e16fffe3250ea5da71e2",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ab01:la-c05",
+      "taskId": "la-c05",
+      "title": "Project and test the residual",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "91ef92117af179eb09ea809461077459170b2b37c9f1b3de005ff6e209c16e49",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ab01:la-c06",
+      "taskId": "la-c06",
+      "title": "Fit a line without pretending it is exact",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "c261edca701c8ed58f82383a5a927488c89b2d1a09d5d3c52137e8380c1e748d",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ab01:la-c07",
+      "taskId": "la-c07",
+      "title": "Eigenvectors are more than coordinate-wise ratios",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "b23453e0cbed0e9fac504f460c8ebf7ab6c68d3408a25030c8c2f144b377023e",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ab01:la-c08",
+      "taskId": "la-c08",
+      "title": "Area change and orientation are different signs",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "571eb5d4b5c31869f0a37d9713ae7c77739a0df16736d679e13725a7448427e8",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ab01:la-c09",
+      "taskId": "la-c09",
+      "title": "An unreachable target still has a closest image",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "23024c36819588c6f58165d9745974798111b05a4bc06862f5357528b95f86df",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ab01:la-c10",
+      "taskId": "la-c10",
+      "title": "A translation hidden inside a map",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "c8647aaa76cc602c6fe3cdca18af433d9e27554a015e69c8ee3e9a42972b3c8a",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ab01:la-c11",
+      "taskId": "la-c11",
+      "title": "A zero determinant does not finish the analysis",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "8674d6b6d72d21ccf8835f62bf5fe0171bb791103b29438e66d4fbaabca8a16e",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ab01:la-c12",
+      "taskId": "la-c12",
+      "title": "Subspace tests must survive addition",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "ce9c4728bab46107f0cf0aac520cfd96613a93461c3080b4dd8582191a041370",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ad01:ca-c01",
+      "taskId": "ca-c01",
+      "title": "Continuity is only the first condition",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "e8b9b69806d0d593f6962c80b1e8b4e76218be1d6804d9661f9a3da527c90ae4",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ad01:ca-c02",
+      "taskId": "ca-c02",
+      "title": "Find a global maximum with endpoints",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "b8051ce2d3f571b569aff693500072e0d0a72c290fd9086ddd8e062cfab28fbb",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ad01:ca-c03",
+      "taskId": "ca-c03",
+      "title": "Distance needs the internal sign changes",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "0a5550f983c81f30d2fcab2a90dd6e2135b6e982ca3da1202a4a2589ba6f5bd4",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ad01:ca-c04",
+      "taskId": "ca-c04",
+      "title": "The accumulation maximum is not the tallest point",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "9c497bcc96b139c9c37f8b08b189028de86436c79d5173f89a93d57b6ff8911d",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Supplied audit noted a conventional accumulation-from-piecewise-graph pattern resembling examination tasks. No exact source match was established; compare any known inspirations, including graph coordinates and question order.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ae01:st-c01",
+      "taskId": "st-c01",
+      "title": "Reverse a flag probability carefully",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "d8134bed664639c759ebf3a6d26ae827b899477ffbf3f37b52d744045812a886",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ae01:st-c02",
+      "taskId": "st-c02",
+      "title": "Group comparisons can reverse when combined",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "206127111661b9800ddee132900e80164fec61f5bbecf91493b616fe6fbea6a8",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ae01:st-c03",
+      "taskId": "st-c03",
+      "title": "Compute variance, then transform it",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "7dfeb98ee312b30e331265c949aea0dfd132702202fc62956e1384f299ed8868",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:ae01:st-c04",
+      "taskId": "st-c04",
+      "title": "Fit, inspect a residual, and interpret r²",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "6865a41d0a00da8e2f7e5d4f5d21ec07ccca0ad7a6c147d77bce77c566fa8769",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:af01:pc-c01",
+      "taskId": "pc-c01",
+      "title": "Both composition domains need a fresh check",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "058671d94d7ecf9a11ce449b01a6cc4a696f2a70fdf176f6d62028f858dceaa3",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:af01:pc-c02",
+      "taskId": "pc-c02",
+      "title": "Return from a quadratic to every angle",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "35bed5531f896dcaba9703f85605e78bf5206cf6648df4cdb76444639ee1d4b1",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:af01:pc-c03",
+      "taskId": "pc-c03",
+      "title": "A cancelled factor leaves a hole",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "9c2d8648c67915bc42d04e72be847b6b22cae638cd1476bcfa4fd7a55f4b3ea5",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:af01:pc-c04",
+      "taskId": "pc-c04",
+      "title": "Interpret a periodic model across a full cycle",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "7e382471b12babe6337bef934f2db895e236a364f10c95f0e768fc4184915c6e",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:algebra-1:a1-c01",
+      "taskId": "a1-c01",
+      "title": "When elimination loses a pivot",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "7947034d2de119aee3866e1f4fb24ddabf3e7f3387aaed3f4a93568fb44f1095",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Parameter system revised to avoid repeating Linear Algebra; exceptional and contradictory cases independently recomputed.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:algebra-1:a1-c02",
+      "taskId": "a1-c02",
+      "title": "An absolute-value bound needs two sides",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "f5968fa5481abac5bde17c6c14e7c98d40e7c5a17583767fe043f1b0bebbf695",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:algebra-1:a1-c03",
+      "taskId": "a1-c03",
+      "title": "A quadratic comes from a geometric constraint",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "f1bb2efbf0dca384aaf861b2c70a0bbb2109e5be1f28a24beecd64d89b8f808f",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:algebra-1:a1-c04",
+      "taskId": "a1-c04",
+      "title": "Choose a rule over a whole interval",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "6a66f45cb6dc3189029e49ee3ed858da873cddab904c4f35c296956211bf3a46",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:algebra-2:a2-c01",
+      "taskId": "a2-c01",
+      "title": "Solve without losing the forbidden inputs",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "26bd76206dc233bd78a27dae16d30c7555265d81b9405b8c3c6df24346dc0c72",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:algebra-2:a2-c02",
+      "taskId": "a2-c02",
+      "title": "A product equation can invent a log solution",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "639b51220572d4cbb11fd791de04f1beb7b3f63258ac583cecdf7006b6b8378a",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:algebra-2:a2-c03",
+      "taskId": "a2-c03",
+      "title": "Multiplicity controls a sign change",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "df2d3b973a69f0aa901dfaaf213ee4aa43d2524d7718e199168a7086ddd492fb",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:algebra-2:a2-c04",
+      "taskId": "a2-c04",
+      "title": "An exponential substitution still has a domain",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "1c758702493efefda7a6319f5cec5c18dd10fd1cecea0ebbdc7f233e00cb7afb",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:geometry:ge-c01",
+      "taskId": "ge-c01",
+      "title": "Coordinates must support a similarity claim",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "89cdf0f835cf8e53217ff8c986c297d32832c028f0d9f7f82ee1d998e550c7f3",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Student stimulus withholds D/E/DE; completed reference retains them. Figure audit completed for the current renderer.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:geometry:ge-c02",
+      "taskId": "ge-c02",
+      "title": "An altitude splits the hypotenuse",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "892e7060159d7a67feaa549de7782d62baa0d34cab88a8693dd5c1a219064608",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:geometry:ge-c03",
+      "taskId": "ge-c03",
+      "title": "Cutting a cone uses a cubic scale",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "2359ea9c0e5b673474921da4916a4bd60f02c0ec55f64bb8ccd7a1e3f00df3fc",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:geometry:ge-c04",
+      "taskId": "ge-c04",
+      "title": "A tangent and a secant describe one power",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "a71d0c92bb436d4871b85b36bc1d14db985256e0428047b4a43f58c7a5a49c78",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:pre-algebra:pa-c01",
+      "taskId": "pa-c01",
+      "title": "Remove a mixture, then dilute it",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "2cdeedf30ddb3bdf1dd62a37dfdbb3a47b02b8e7746fe23ceb709feea4606feb",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:pre-algebra:pa-c02",
+      "taskId": "pa-c02",
+      "title": "Recover a price through two changing bases",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "643bfd83d8433c88c24087ea6eb4d3d6aef2ef0466bfb6e6ad55418686741673",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:pre-algebra:pa-c03",
+      "taskId": "pa-c03",
+      "title": "Add filling rates, not filling times",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "32ed369669fb25aa13e54fe401f9f5defd3fb873a6578281c3a46923eb15c15c",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "diagnostic:pre-algebra:pa-c04",
+      "taskId": "pa-c04",
+      "title": "Find the counts behind a changed ratio",
+      "bankVersion": "quidence-challenges-3",
+      "reviewedFingerprint": "0abc285c3c0911899841d9ddbc561f0347e35715a8403fd5bba861b720bba9f6",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/challenge-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:ab01:la-p01",
+      "taskId": "la-p01",
+      "title": "Three sensors cannot all be right",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "fbc477a13ea42b6522a3bad9feed54005c9bbf050905acc182f9140ff0f45502",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:ab01:la-p02",
+      "taskId": "la-p02",
+      "title": "A route map that stretches before it turns",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "b14b3b8d9bcd4b82a3769d812c071b0313b6375e4a3f2b9c4edb3641323b1ca1",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:ad01:ca-p01",
+      "taskId": "ca-p01",
+      "title": "The rider turns back twice",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "4527e61220680f8603f01803f0a59799eb34b05903d9132142ab50e82e1608f3",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:ad01:ca-p02",
+      "taskId": "ca-p02",
+      "title": "What does the solar inverter throw away?",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "636ca35f8009e4b41229b697e1ad4c671b99131a903faba04d4d6e8a96b3bb9e",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:ae01:st-p01",
+      "taskId": "st-p01",
+      "title": "Same riders, two training routines",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "6c861cebdf91f11fda92309f09c29ed971eb3f5ae204f937cbd8d32e74423de0",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Population mean claim made explicit; observed positive differences are descriptive, not a second significance test.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:ae01:st-p02",
+      "taskId": "st-p02",
+      "title": "Equal sample sizes, unequal coastline",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "2713b244821c52433acf9e18b37abac1974e24bee755a3f95a00c7b58a0e752d",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "New version uses generic coastal sector names with invented-data notice; historical definitions retain their original wording.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:af01:pc-p01",
+      "taskId": "pc-p01",
+      "title": "A tide-shaped model with two crossings",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "cadff6a81cbbd1c116a6f9e1c0f8d5205c8add1a7c0146f41842af13451ab6e5",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:af01:pc-p02",
+      "taskId": "pc-p02",
+      "title": "Find the trail connector, not the wrong bearing",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "198c0c2a9497a89c659a9c2bdbf5e9f3f36162a4afcaa4ac4077de4f4e6aeeb8",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:algebra-1:a1-p01",
+      "taskId": "a1-p01",
+      "title": "A basketball trip that almost balances",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "1b05cd0817102a5682572cb8125f66ffe0c53fdf342eeef210287d64b23e2543",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:algebra-1:a1-p02",
+      "taskId": "a1-p02",
+      "title": "Design shade beside a community court",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "6091cfa69286f3621c4e46edc6ab2538159e9a86a1dcd21ce0af99ea3b7d427b",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Constraint revised so unconstrained vertex is inadmissible. Derivation and alternative feasible layouts recorded.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:algebra-2:a2-p01",
+      "taskId": "a2-p01",
+      "title": "Two times at hoop height",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "42043c2fb4bb0410e4d7558a9799873c7af1f0370e895884d66c738524db6b24",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:algebra-2:a2-p02",
+      "taskId": "a2-p02",
+      "title": "Which classroom decay model fits your question?",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "52c97a2ff0f9d4a0ac6132ec4689c8f0171d03962a5d6b5ecb88fac5002a1b4b",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:geometry:ge-p01",
+      "taskId": "ge-p01",
+      "title": "Survey a coastal picnic space",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "e6d87f31fd6e064cc5472dc7fd2053c1168b6eb6c27ca559e15ae778193b8e1f",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:geometry:ge-p02",
+      "taskId": "ge-p02",
+      "title": "Rotate a cycling route and check a shortcut",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "7c0640bd61a728074139da6ef7cee0403251bfb382c97a718f84aef4113aed03",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:pre-algebra:pa-p01",
+      "taskId": "pa-p01",
+      "title": "Can the running club serve everyone?",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "c16504273193cf17380e2c23db0bffd87154ac9d39ecf1028577eebc39e4194c",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    },
+    {
+      "ledgerId": "project:pre-algebra:pa-p02",
+      "taskId": "pa-p02",
+      "title": "A field-trip map and a bus deadline",
+      "bankVersion": "quidence-projects-3",
+      "reviewedFingerprint": "511bce71265595d91b55f09a3b823f5d636e07f79f9f852607a9b5fd46249576",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        }
+      ],
+      "status": "preliminary-not-cleared",
+      "preparedBy": "Codex AI-assisted implementation review",
+      "date": "2026-10-07",
+      "humanReviewer": null,
+      "humanAuthorshipRecord": null,
+      "permissionEvidence": [],
+      "sourceComparison": {
+        "status": "not-completed",
+        "knownOriginalDocuments": [],
+        "evidenceAvailable": "Repository definitions and user-supplied audit claims; no complete third-party source corpus or authorship history.",
+        "limit": "Search non-matches, code generation and common mathematics do not establish rights clearance."
+      },
+      "implementationNotes": "Current definition inventoried and its fixed mathematics checked where covered by the automated reference. No rights conclusion follows.",
+      "mathematics": {
+        "reference": "review/project-math-audit.json",
+        "status": "automated-checked-not-human-certified"
+      },
+      "next": "A human reviewer must record known inspirations and expressive contributions, compare prompt/data/solution/figures with those sources, and retain any permission evidence. Recheck if this fingerprint changes."
+    }
+  ]
+}

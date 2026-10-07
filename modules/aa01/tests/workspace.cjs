@@ -74,12 +74,12 @@ if(require.main===module){
  const all=load();for(const id of [...all.api.state.queue,'FN','FP','FE','FG','FM','FB']){
   const html=all.api.form(id);assert(!html.includes('undefined'),id);for(const key of all.api.required[id].filter(k=>k!=='why'))assert(html.includes(`data-n="${key}"`)||html.includes(`data-choice="${key}"`)||html.includes(`data-line="${key}"`)||html.includes(`data-slider="${key}"`),`${id} field ${key}`);
  }
- // Replay available prior student explanations exactly; objective flags are from the prior screenshots.
- const fixture=JSON.parse(fs.readFileSync(path.join(__dirname,'previous-response-fixture.json'),'utf8'));
+ // Synthetic regression inputs; these are not student labels or evidence of diagnostic validity.
+ const fixture=JSON.parse(fs.readFileSync(path.join(__dirname,'synthetic-response-fixture.json'),'utf8'));
  const replay=fixture.explanations.map(row=>({id:row.item_id,...all.reason.evaluate(row.item_id,row.response,row.objective_correct_status)}));assert.equal(replay.length,11);assert.equal(replay.find(r=>r.id==='C10').points,2);assert.equal(replay.find(r=>r.id==='S6').points,null);
  // Representative valid/invalid tool paths through the registered action interface (mocked registry only).
  const page=load();assert.equal(page.tools.size,5);assert.throws(()=>page.tools.get('submit_quidence_answer').execute({activityId:'C2',answer:{}}));
  const accepted=page.tools.get('submit_quidence_answer').execute({activityId:'C1',answer:{point:-1.5,near:'-0.5'}});assert.equal(accepted.objectiveCorrect,true);page.tools.get('continue_quidence_session').execute({});assert.equal(page.api.state.queue[page.api.state.index],'C2');page.tools.get('submit_quidence_answer').execute({activityId:'C2',answer:{token:-8,end:-8}});page.tools.get('continue_quidence_session').execute({});assert.equal(page.tools.get('submit_quidence_answer').execute({activityId:'C3',answer:{one:2.5,two:5,five:12.5,rate:2.5}}).objectiveCorrect,null);
- console.log(JSON.stringify({result:'passed',scope:'DOM-shape and state checks; browser layout and native APIs unverified',checks:['C1 selections and timer','signed decimal/fraction inputs','navigation preserves drafts and excludes inactive time','table/graph and inequality views','four-view project with embedded S6','carried graph values','budget proof without redundant prose','revision invalidates old credit','early report preserves pending work','23 reachable activity forms','11 previous explanations replayed','tool action guards and delayed feedback']}));
+ console.log(JSON.stringify({result:'passed',scope:'DOM-shape and state checks; browser layout and native APIs unverified',checks:['C1 selections and timer','signed decimal/fraction inputs','navigation preserves drafts and excludes inactive time','table/graph and inequality views','four-view project with embedded S6','carried graph values','budget proof without redundant prose','revision invalidates old credit','early report preserves pending work','23 reachable activity forms','11 synthetic explanations checked','tool action guards and delayed feedback']}));
 }
 

@@ -1,7 +1,7 @@
 (function(root){
 'use strict';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));let sequence=0;
-function table(t){return'<div class="f-table-wrap"><table><thead><tr>'+t.headers.map(h=>'<th scope="col">'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+t.rows.map(row=>'<tr>'+row.map(v=>'<td>'+esc(v)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';}
+function table(t){return'<p class="f-table-scroll-hint">Swipe or scroll sideways to view every column. Keyboard users can focus the table and use the left and right arrows.</p><div class="f-table-wrap" tabindex="0" role="region" aria-label="Data table. Scroll horizontally to view all columns."><table><thead><tr>'+t.headers.map(h=>'<th scope="col">'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+t.rows.map(row=>'<tr>'+row.map(v=>'<td>'+esc(v)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';}
 function matrix(values){return'<div class="f-matrix" role="img" aria-label="Matrix rows: '+esc(values.map(r=>r.join(', ')).join('; '))+'"><table aria-hidden="true">'+values.map(row=>'<tr>'+row.map(v=>'<td>'+esc(v)+'</td>').join('')+'</tr>').join('')+'</table></div>';}
 function game(v){return'<figure class="f-game"><figcaption>'+esc(v.description)+'</figcaption>'+table({headers:['A row / B column',...v.cols],rows:v.rows.map((r,i)=>[r,...v.payoffs[i].map(pair=>'('+pair.join(', ')+')')])})+'</figure>';}
 function plot(v,width=520){
