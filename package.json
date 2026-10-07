@@ -7,6 +7,7 @@
   },
   "scripts": {
     "start": "node backend/server.cjs",
+    "build:static": "node scripts/build-static-release.cjs",
     "test": "node scripts/test-all.cjs",
     "test:sync": "node --test tests/backend-sync.test.cjs tests/sync-client.test.cjs tests/security.test.cjs",
     "test:projects": "node --test tests/projects.test.cjs",

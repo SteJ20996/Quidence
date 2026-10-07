@@ -32,8 +32,18 @@ function markdown(subject,payload,request=''){
  return out;
 }
 function printable(subject,payload,request=''){
- return documentHtml('Quidence · '+subject,`<header><h1>${escape(subject)}</h1><p class="report-meta">Quidence learning report</p></header>${request?`<section class="report-feedback"><h2>Next conversation</h2><p>${escape(request)}</p></section>`:''}<section>${markdownBody(reportText(payload.markdown||payload.reportText||'The complete learning record is available in your Markdown export.'),drawingEntries(payload))}</section>`);
+ // Older snapshots may not have prose. Print their complete preserved record,
+ // rather than silently producing a page without the questions and answers.
+ const text=payload.markdown||payload.reportText||markdown(subject,payload);
+ return documentHtml('Quidence · '+subject,`<header><h1>${escape(subject)}</h1><p class="report-meta">Quidence learning report</p></header>${request?`<section class="report-feedback"><h2>Next conversation</h2><p>${escape(request)}</p></section>`:''}<section>${markdownBody(reportText(text),drawingEntries(payload))}</section>`);
 }
+function summaryBody(subject,payload,standalone=true){
+ const brief=payload.studentSummary;if(!brief||!Array.isArray(brief.matched)||!Array.isArray(brief.checks))return'';
+ const list=items=>'<ul>'+items.map(x=>'<li><strong>'+escape(x.title)+'</strong>: '+escape(x.detail)+(x.next?'<p>'+escape(x.next)+'</p>':'')+'</li>').join('')+'</ul>';
+ const h=standalone?'h2':'h3',title=standalone?'<h1>'+escape(subject)+' · Your next conversation</h1>':'<h3>Your next conversation</h3>';
+ return'<header>'+title+'<p class="report-meta">Quidence student summary · '+escape(payload.check||'')+'</p></header><section><'+h+'>Matching answer components</'+h+'>'+(brief.matched.length?list(brief.matched):'<p>No matching fixed components are available in this record.</p>')+'<'+h+'>One or two things to check next</'+h+'>'+(brief.checks.length?list(brief.checks):'<p>No specific next check was selected. Ask about a new task before making a broader claim.</p>')+'</section><section><'+h+'>How to read this summary</'+h+'><p>Matching fixed answers do not verify the explanation or establish mastery. Unreviewed reasoning is missing verification, not an established mistake.</p><p>'+escape(brief.selection)+'</p><p>The full report retains the questions, calculations, drawings, original explanations, support context and earlier attempts. Read that evidence with your teacher or tutor before choosing a learning priority.</p></section>';
+}
+function printableSummary(subject,payload){const body=summaryBody(subject,payload);return body?documentHtml('Quidence · '+subject+' · Student summary',body):null;}
 function packageFiles(subject,payload,request=''){
  const p=root.QuidenceProjectTools||(typeof module==='object'&&module.exports?require('./project-tools.js'):null);
  return [{name:'Quidence_Report.md',content:markdown(subject,payload,request)},{name:'Quidence_Report.html',content:printable(subject,payload,request)},...drawingEntries(payload).map(d=>({name:d.filename,content:p.svg(d.spec,d.drawing)}))];
@@ -60,11 +70,12 @@ async function copy(text,target){
 function attach(host,subject,payload,request=''){
  if(!root.document||!host?.appendChild)return;
  const box=root.document.createElement('section');box.className='report-handoff';
- box.innerHTML='<h3>Continue with your learning record</h3><div class="report-handoff-actions"><button type="button" data-report-copy>Copy Markdown report</button><button type="button" data-report-print>Open PDF report</button><a href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT ↗</a><a href="https://claude.ai/" target="_blank" rel="noopener">Open Claude ↗</a></div><p>Review the copied record and remove names, school, contact details and other personal information before sharing. Nothing is sent to an external tutor by Quidence. ChatGPT requires age 13 or the local minimum age, and parent or guardian permission under 18. Claude’s consumer service requires age 18 or the higher local minimum. Provider terms checked October 7, 2026. ChatGPT and Claude are products of OpenAI and Anthropic; Quidence is not affiliated with either provider. Check the provider’s current terms. You can review with a teacher or keep working here.</p><p data-report-status role="status"></p><label data-report-fallback hidden>Markdown report<textarea rows="8" readonly></textarea></label>';
+ box.innerHTML='<h3>Discuss your work with a teacher or tutor</h3><div class="report-handoff-actions">'+(payload.studentSummary?'<button type="button" data-report-summary>Open student summary PDF</button>':'')+'<button type="button" data-report-copy>Copy Markdown report</button><button type="button" data-report-print>Open full PDF report</button><a href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT ↗</a><a href="https://claude.ai/" target="_blank" rel="noopener">Open Claude ↗</a></div><p>Review the copied record and remove names, school, contact details and other personal information before sharing. Nothing is sent to an external tutor by Quidence. ChatGPT requires age 13 or the local minimum age, and parent or guardian permission under 18. Claude’s consumer service requires age 18 or the higher local minimum. Provider terms checked October 7, 2026. ChatGPT and Claude are products of OpenAI and Anthropic; Quidence is not affiliated with either provider. Check the provider’s current terms. You can review with a teacher or keep working here.</p><p data-report-status role="status"></p><label data-report-fallback hidden>Markdown report<textarea rows="8" readonly></textarea></label>';
  host.appendChild(box);
  // Simple test DOMs may not implement nested querying.
  if(!box.querySelector)return;
  const status=box.querySelector('[data-report-status]'),fallback=box.querySelector('[data-report-fallback]'),area=box.querySelector('textarea');
+ const summaryButton=box.querySelector('[data-report-summary]');if(summaryButton)summaryButton.onclick=()=>{try{const html=printableSummary(subject,payload);status.textContent=html&&openPrint(html)?'Your summary opened in a separate tab. Print it there; the full report keeps all evidence.':'The summary tab could not open. Use the full report below.';}catch{status.textContent='The summary could not open. Use the full report below.';}};
  box.querySelector('[data-report-copy]').onclick=async()=>{
   const ok=await copy(markdown(subject,payload,request),area);fallback.hidden=ok;
   status.textContent=ok?'Markdown copied. Paste it into your AI tutor conversation.':'Use your device’s Copy command on the selected Markdown below.';
@@ -73,5 +84,5 @@ function attach(host,subject,payload,request=''){
   try{status.textContent=openPrint(printable(subject,payload,request))?'Your report opened in a new tab. Use Print / save as PDF there.':'The report tab was blocked. Allow pop-ups or copy the Markdown report.';}catch{status.textContent='The report tab could not open. Copy your Markdown report below.';}
  };
 }
-return{escape,quote,reportText,styles,PRINT_SCRIPT,documentHtml,openPrint,markdown,markdownBody,printable,packageFiles,copy,attach};
+return{escape,quote,reportText,styles,PRINT_SCRIPT,documentHtml,openPrint,markdown,markdownBody,printable,summaryBody,printableSummary,packageFiles,copy,attach};
 });

@@ -11,6 +11,7 @@ function create(storage,policy=P){
  const physical=key=>Object.hasOwn(policy.KEYS,key)&&owner?'cluevera_user_'+owner+':'+key:key;
  const adapter={getItem:key=>{check();return storage.getItem(physical(key));},setItem:(key,value)=>{check();storage.setItem(physical(key),value);},removeItem:key=>{check();storage.removeItem(physical(key));}};
  function exportWork(){return{schema:SCHEMA,exportedAt:new Date().toISOString(),records:Object.fromEntries(keys(storage).filter(k=>managed(k,policy)).map(k=>[k,storage.getItem(k)]))};}
+ function usage(){const list=keys(storage).filter(k=>managed(k,policy));return{groups:list.length,estimatedBytes:list.reduce((n,k)=>n+2*(k.length+(storage.getItem(k)||'').length),0)};}
  function token(){return Date.now()+':'+Math.random().toString(36).slice(2);}
  function clear(){const id=token();storage.setItem(GENERATION,'clearing:'+id);try{for(const key of keys(storage).filter(k=>managed(k,policy)))storage.removeItem(key);}finally{storage.setItem(GENERATION,'ready:'+id);}}
  function inspectBackup(backup){
@@ -27,7 +28,7 @@ function create(storage,policy=P){
   try{for(const[k,v]of entries)if(storage.getItem(k)===null){added.push(k);storage.setItem(k,v);}}catch(e){for(const key of added)storage.removeItem(key);throw Error('The backup could not be restored. Check browser storage space; your previous records are kept.');}finally{storage.setItem(GENERATION,'ready:'+id);}
   return counts;
  }
- return{adapter,exportWork,clear,inspectBackup,restore,check,blocked:()=>blocked};
+ return{adapter,exportWork,usage,clear,inspectBackup,restore,check,blocked:()=>blocked};
 }
 function mount(window){
  const document=window.document,policy=window.QuidenceSyncPolicy,script=document.currentScript?.src;if(!document||!policy)return;
@@ -42,16 +43,23 @@ function mount(window){
   const status=document.getElementById('local-record-status');if(!status)return;
   if(!controller){status.textContent='Browser storage is unavailable. Use the activity’s report download while the page is open.';return;}
   if(controller.blocked())status.textContent='Saved workspace information could not be read. You can still export the original records before clearing them.';
+  function showUsage(){const target=document.getElementById('local-storage-usage');if(!target)return;try{const u=controller.usage();target.textContent=u.groups+' record groups · approximately '+(u.estimatedBytes/1048576).toFixed(2)+' MiB of local record text. This estimate counts UTF-16 characters; it is not the browser’s remaining quota.'+(u.estimatedBytes>=2*1048576?' Keep a downloaded backup before doing more work; browser capacity varies.':'');}catch{target.textContent='The local storage estimate is unavailable. Keep a downloaded backup.';}}
+  showUsage();
+  document.getElementById('local-optimize')?.addEventListener('click',()=>{
+   const result=window.QuidenceReportStore?.compact(controller.adapter);
+   status.textContent=!result?'Report optimization is unavailable. Reload this page.':!result.ok?result.error:result.changed?'Saved report copies optimized. Every version, timestamp and original answer is kept; only duplicate signature text was replaced.':'Saved report copies already use the compact format.';
+   showUsage();
+  });
   document.getElementById('local-export').addEventListener('click',()=>{
    try{const blob=new window.Blob([JSON.stringify(controller.exportWork(),null,2)],{type:'application/json'}),url=window.URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='quidence-local-records-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();a.remove();window.setTimeout(()=>window.URL.revokeObjectURL(url),1000);status.textContent='Download requested. Check your Downloads folder and keep the file somewhere private. The original browser records remain.';}catch{status.textContent='The download could not start. Keep your activity open and use its own report export.';}
   });
   document.getElementById('local-clear').addEventListener('click',()=>{
    if(!window.confirm('Delete all Quidence learning records and local backups from this browser? Download anything you want to keep first. Downloaded files must be deleted separately.'))return;
-   try{controller.clear();status.textContent='Quidence learning records were removed from this browser. Remove downloaded files and clipboard contents separately on a shared device. Reload before starting new work.';document.getElementById('local-clear').disabled=true;}catch{status.textContent='Clearing could not finish. Close activity tabs and remove this site’s data in your browser settings before leaving a shared device.';}
+   try{controller.clear();status.textContent='Quidence learning records were removed from this browser. Remove downloaded files and clipboard contents separately on a shared device. Reload before starting new work.';document.getElementById('local-clear').disabled=true;showUsage();}catch{status.textContent='Clearing could not finish. Close activity tabs and remove this site’s data in your browser settings before leaving a shared device.';}
   });
   document.getElementById('local-import').addEventListener('change',async event=>{
    const file=event.target.files?.[0];if(!file)return;
-   try{if(file.size>64*1024*1024)throw Error('This backup is too large for this restore tool. Keep the file and use a smaller device backup.');const backup=JSON.parse(await file.text()),counts=controller.inspectBackup(backup);if(counts.conflicting)throw Error('Backup checked: '+counts.total+' record groups; '+counts.conflicting+' differ from this browser. Nothing was restored. Use a separate browser profile to view it safely. To replace your work instead, download your current backup before clearing browser records.');if(!window.confirm('Restore '+counts.missing+' missing record groups? '+counts.identical+' identical groups are already here. This backup can contain private answers; existing different records will not be overwritten.'))return;controller.restore(backup);status.textContent='Backup restored locally: '+counts.missing+' record groups added; '+counts.identical+' identical groups kept. Reload before continuing a course.';}catch(e){status.textContent=e.message||'This backup could not be read. Your current records are kept.';}finally{event.target.value='';}
+   try{if(file.size>64*1024*1024)throw Error('This backup is too large for this restore tool. Keep the file and use a smaller device backup.');const backup=JSON.parse(await file.text()),counts=controller.inspectBackup(backup);if(counts.conflicting)throw Error('Backup checked: '+counts.total+' record groups; '+counts.conflicting+' differ from this browser. Nothing was restored. Use a separate browser profile to view it safely. To replace your work instead, download your current backup before clearing browser records.');if(!window.confirm('Restore '+counts.missing+' missing record groups? '+counts.identical+' identical groups are already here. This backup can contain private answers; existing different records will not be overwritten.'))return;controller.restore(backup);status.textContent='Backup restored locally: '+counts.missing+' record groups added; '+counts.identical+' identical groups kept. Reload before continuing a course.';showUsage();}catch(e){status.textContent=e.message||'This backup could not be read. Your current records are kept.';}finally{event.target.value='';}
   });
  });
 }

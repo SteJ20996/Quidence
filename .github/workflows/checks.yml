@@ -1,0 +1,28 @@
+name: Quidence checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  local-records-and-mathematics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+      - name: Recompute authored mathematics references
+        run: |
+          python3 scripts/audit-challenges.py
+          python3 scripts/audit-projects.py
+          git diff --exit-code -- review/challenge-math-audit.json review/project-math-audit.json
+      - name: Check activities, record preservation and source inventory
+        run: npm test
+      - name: Build the public static bundle
+        run: npm run build:static
