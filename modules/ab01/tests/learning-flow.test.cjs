@@ -9,7 +9,7 @@ function harness(saved,{saving=true,start=true,hash=''}={}){
  const document={body,getElementById:id=>body.querySelector('#'+id),querySelector:s=>body.querySelector(s),querySelectorAll:s=>body.querySelectorAll(s),createElement:t=>new Element(t),modelContext:{registerTool(t,options){registry[t.name]=t;options?.signal.addEventListener('abort',()=>{if(registry[t.name]===t)delete registry[t.name];});}}};
  const context={AbortController,performance:{now:()=>0},requestAnimationFrame:f=>(frames.push(f),frames.length),cancelAnimationFrame(){},document,localStorage:{getItem:k=>store.get(k)||null,setItem(k,v){if(!saving)throw Error('Saving denied');store.set(k,v);}},crypto,structuredClone,console,Blob,URL:{createObjectURL:b=>(blobs.push(b),'blob:test'),revokeObjectURL(){}},setTimeout:f=>(timers.push(f),timers.length),clearTimeout(){},window:{location:{hash,pathname:'/',search:''},scrollTo(){},matchMedia:()=>({matches:true})}};
  context.window.document=document;context.window.localStorage=context.localStorage;vm.createContext(context);vm.runInContext(fs.readFileSync(require('node:path').join(__dirname,'../../../assets/report-store.js'),'utf8'),context);
- for(const file of ['matrix-guide-engine.js','matrix-guide.js','learning-engine.js','student-materials.js','learning-advice.js','learning.js'])vm.runInContext(fs.readFileSync('dist/'+file,'utf8'),context);
+ for(const file of ['matrix-methods.js','matrix-guide-engine.js','matrix-guide.js','learning-engine.js','student-materials.js','learning-advice.js','learning.js'])vm.runInContext(fs.readFileSync('dist/'+file,'utf8'),context);
  if(start&&!registry.read_ab01_learning.execute({}).blockedLoad&&registry.read_ab01_learning.execute({}).phase==='intro'&&!hash)document.getElementById('begin-learning').click();
  return{document,registry,store,blobs,frames,timers,E:context.window.AB01Learning,state:()=>JSON.parse(store.get(KEY)),read:()=>registry.read_ab01_learning.execute({}),stage:a=>registry.stage_ab01_learning_answer.execute(a),submit:()=>registry.submit_ab01_learning_answer.execute({}),show:i=>registry.show_matrix_walkthrough_step.execute({step:i}),click:id=>{const e=document.getElementById(id);assert(e,'Missing '+id);e.click();},input(id,value){const e=document.getElementById(id);assert(e,'Missing '+id);e.value=String(value);e.oninput({target:e});}};
 }
@@ -40,7 +40,7 @@ function answerPhase(h,phase){for(const t of h.E.TASKS[phase]){h.stage(canonical
  assert.equal(h.submit().ok,false);h.stage({values:[2,-1]});h.submit();h.click('next');
  h.click('skip');h.click('not-studied');
  assert.equal(h.state().stage,'lesson');assert.equal(h.state().records['pre-2'].status,'skipped');assert.equal(h.state().records['pre-3'].status,'not-studied');
- assert.throws(()=>h.show(6),'The guide page tool must follow the same prediction gate as the visible buttons.');
+ assert.equal(h.document.getElementById('matrix-methods').hidden,true);assert.throws(()=>h.show(6),'The guide page tool must follow the same prediction gate as the visible buttons.');
  for(let i=0;i<4;i++)h.show(i);
  assert.equal(h.document.getElementById('guide-next').disabled,true);
  h.click('checkpoint-submit');assert.equal(h.state().lesson.checkpoint.attempts.length,0);
@@ -50,7 +50,7 @@ function answerPhase(h,phase){for(const t of h.E.TASKS[phase]){h.stage(canonical
  assert.equal(h.state().lesson.checkpoint.attempts[1].support.priorFeedback,true);
  assert.equal(h.state().lesson.checkpoint.attempts[1].support.hint,true);
  h=harness(h.store.get(KEY));assert.equal(h.read().phase,'lesson');assert.equal(h.registry.read_matrix_walkthrough.execute({}).step,3,'Resume the viewed step.');
- for(let i=4;i<7;i++)h.show(i);
+ for(let i=4;i<7;i++)h.show(i);assert.equal(h.document.getElementById('matrix-methods').hidden,false);assert(h.document.getElementById('matrix-methods').innerHTML.includes('Three inputs, two outputs'));
  h.input('checkpoint-y','');assert(h.document.getElementById('lesson-next').disabled);h.click('lesson-next');assert.equal(h.state().stage,'lesson');
  h.input('checkpoint-y',2);h.click('checkpoint-submit');h.click('lesson-next');
  assert.equal(h.state().stage,'practice');assert.equal(h.registry.show_matrix_walkthrough_step,undefined,'Dispose lesson tools when leaving the lesson.');
@@ -64,7 +64,7 @@ function answerPhase(h,phase){for(const t of h.E.TASKS[phase]){h.stage(canonical
  assert.equal(h.state().stage,'post');assert.equal(h.document.getElementById('hint'),null);assert.equal(h.document.getElementById('task-feedback'),null);
  h.click('matrix-link');h.stage({values:[-1,0]});h.submit();h.click('next');
  assert.equal(h.state().records['post-1'].submissions[0].support.moduleOpenedInPhase,true);
- h.stage({values:[5,1],choice:0});h.submit();assert.equal(h.read().evidence.post[1].last,undefined);h.click('next');h.click('skip');
+ h.stage({values:[5,1],choice:0,explanation:'2*2+1*1=5; 0*2+1*1=1'});h.submit();assert.equal(h.read().evidence.post[1].last,undefined);h.click('next');h.click('skip');
  assert.equal(h.state().stage,'report');assert.equal(JSON.parse(h.store.get('cluevera_saved_reports_v1')).items[0].module,'ab01');
  const originalAnswers=JSON.stringify(h.state().records),practice=h.document.querySelector('[data-coach-review="coefficients"]'),solution=h.document.querySelector('[data-coach-solution="coefficients"]');
  practice.open=true;practice.ontoggle();solution.open=true;solution.ontoggle();
@@ -74,14 +74,15 @@ function answerPhase(h,phase){for(const t of h.E.TASKS[phase]){h.stage(canonical
  assert(h.document.getElementById('start-delayed').disabled);h.click('start-delayed');assert.equal(h.state().stage,'report');
  h.click('export-json');const full=JSON.parse(await h.blobs.at(-1).text());
  assert.equal(full.learningAdvice.version,'matrix-advice-0.2.1');assert(full.learningAdvice.priorityTargetIds.includes('coefficients'));assert(h.document.getElementById('learning-app').innerHTML.includes('numerical output matched but the coefficient choice did not'));
- assert.equal(full.project,'AB01');assert.equal(full.version,'2');assert.equal(full.taskDefinitions.length,10);
+ assert.equal(full.project,'AB01');assert.equal(full.version,'2');assert.equal(full.taskDefinitions.length,8);assert(full.taskDefinitions.every(t=>!t.id.startsWith('delay-')));assert.equal(full.pendingLaterCheck.referenceSolutionsIncluded,false);
  assert.equal(full.phaseEvidence.pre[1].status,'skipped');assert.equal(full.phaseEvidence.pre[2].status,'not-studied');
  assert.equal(full.phaseEvidence.practice[0].first['Column coordinates'],false);assert.equal(full.phaseEvidence.practice[0].last['Column coordinates'],true);
- assert.equal(full.phaseEvidence.post[1].last['Output calculation'],true);assert.equal(full.phaseEvidence.post[1].last['Preserved coefficients'],false);
+ assert.equal(full.records['post-2'].answer.explanation,'2*2+1*1=5; 0*2+1*1=1');assert.equal(Object.keys(full.phaseEvidence.post[1].last).length,2,'Free reasoning is preserved for review, not graded by keywords.');assert.equal(full.phaseEvidence.post[1].last['Output calculation'],true);assert.equal(full.phaseEvidence.post[1].last['Preserved coefficients'],false);
  assert.equal(full.phaseEvidence.post[2].last,null);assert.equal(full.lesson.checkpoint.attempts.length,3);
  assert(full.records['practice-2'].submissions[0].answer.explanation.includes('counts'));
  assert(full.records['practice-2'].submissions[0].support.otherHelpReported);
  h.click('export-md');const md=await h.blobs.at(-1).text();assert(md.includes('# Linear Algebra Foundations'));assert(md.includes('Submission 2'));assert(md.includes('human review'));assert(md.includes('## Suggested next steps'));assert(md.includes('original coefficients'));
+ for(const task of h.E.TASKS.delayed){assert(!md.includes(task.prompt));assert(!md.includes(task.solution));assert(!h.document.getElementById('learning-app').innerHTML.includes(task.solution));}
  const oldPost=JSON.stringify(h.state().records['post-2']);
  const saved=h.state();saved.completedAt=new Date(Date.now()-86400001).toISOString();h=harness(JSON.stringify(saved));
  assert.equal(h.document.getElementById('start-delayed').disabled,false);h.click('start-delayed');assert.equal(h.state().stage,'delayed');
@@ -89,11 +90,13 @@ function answerPhase(h,phase){for(const t of h.E.TASKS[phase]){h.stage(canonical
  assert.equal(JSON.stringify(h.state().records['post-2']),oldPost,'A delayed check must preserve earlier responses.');
  assert(h.document.getElementById('start-delayed').disabled);assert.equal(h.store.get(LEGACY),'untouched legacy record');
  h=harness(h.store.get(KEY));assert.equal(h.state().stage,'report');assert.equal(h.read().evidence.delayed[1].last['Output calculation'],true);
+ h.click('export-json');const laterExport=JSON.parse(await h.blobs.at(-1).text());assert.equal(laterExport.taskDefinitions.length,10);assert.equal(laterExport.pendingLaterCheck.referenceSolutionsIncluded,true);assert.equal(laterExport.pendingLaterCheck.count,0);assert.equal(laterExport.records['delay-1'].submissions[0].support.referenceExposurePossible,false);
  const completed=h.store.get(KEY);h.click('orientation-link');assert.equal(h.read().view,'orientation');assert.equal(h.state().stage,'report');
  h.click('begin-learning');assert.equal(h.state().stage,'report');assert.equal(h.read().view,'report');
  h=harness(completed,{hash:'#start'});assert.equal(h.read().view,'orientation');assert.equal(h.state().stage,'report');h.click('begin-learning');assert.equal(h.state().stage,'report');
- const oldSession=JSON.parse(completed);delete oldSession.orientationViewedAt;oldSession.priorExposure=oldSession.priorExposure.filter(e=>e.module!=='applications');
- h=harness(JSON.stringify(oldSession));assert.equal(h.state().stage,'report','A pre-orientation Beta 0.2 session must still resume.');
+ const oldSession=JSON.parse(completed);delete oldSession.orientationViewedAt;delete oldSession.reportReferencePolicy;oldSession.priorExposure=oldSession.priorExposure.filter(e=>e.module!=='applications');
+ h=harness(JSON.stringify(oldSession));assert.equal(h.state().stage,'report','A pre-orientation Beta 0.2 session must still resume.');assert.equal(JSON.stringify(h.state().records),JSON.stringify(oldSession.records));h.click('export-json');const legacyExport=JSON.parse(await h.blobs.at(-1).text());assert(legacyExport.learningAdvice.targets.find(t=>t.id==='calculation').evidence.some(e=>e.phase==='delayed'&&e.referenceExposurePossible));assert(h.document.getElementById('learning-app').innerHTML.includes('prior reference-answer exposure unclear'));
+ const legacyPending=JSON.parse(completed);delete legacyPending.reportReferencePolicy;delete legacyPending.delayedCompletedAt;delete legacyPending.records['delay-1'];delete legacyPending.records['delay-2'];h=harness(JSON.stringify(legacyPending));h.click('start-delayed');answerPhase(h,'delayed');assert(h.state().records['delay-1'].submissions[0].support.referenceExposurePossible);assert.equal(JSON.stringify(h.state().records['post-2']),oldPost);
  h=harness(undefined,{start:false,hash:'#applications'});assert.equal(h.read().view,'applications');assert(h.state().priorExposure.some(e=>e.module==='applications'));
 
  h=harness();completePre(h);h.show(3);h.click('reset');h.click('cancel-reset');assert.equal(h.state().stage,'lesson');

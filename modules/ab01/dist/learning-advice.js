@@ -9,11 +9,11 @@ const TARGETS=[
  {id:'negative',name:'Use a negative coefficient',scope:'Extension',dimensions:['Output calculation','Negative coefficient meaning'],tasks:['post-3'],action:'Practice reversing one column contribution.',reminder:'A coefficient of −1 means subtract one copy of that column. A negative coefficient and a negative matrix entry are separate pieces of information.',check:'Use A = [[2, 1], [0, 1]] and v = (1, −1). Write the combination and explain the minus sign.',solution:'1(2, 0) − 1(1, 1) = (1, −1). The second column contribution is reversed.',next:'Check another negative coefficient when this extension is part of your class. If it has not been taught yet, keep it as a later direction.'}
 ];
 const extraHelp=s=>!!(s?.systemHint||s?.feedbackBeforeThisSubmission||s?.otherHelpReported||s?.moduleOpenedInPhase);
-function observe(records,t){return t.tasks.map(id=>{
+function observe(records,t,referencePolicy){return t.tasks.map(id=>{
  const r=records[id],last=r?.submissions?.at(-1),first=r?.submissions?.[0];
  const score=r?.status==='submitted'?last?.score:null;
  const entries=score?Object.entries(score).filter(([d])=>t.dimensions.includes(d)):[];
- return{taskId:id,phase:r?.stage||(/^(post|delay)-/.test(id)?id.startsWith('delay')?'delayed':'post':id.startsWith('practice')?'practice':'pre'),status:r?.status||'missing',dimensions:entries.map(([dimension,matched])=>({dimension,matched})),matched:entries.length?entries.every(([,v])=>v===true):null,first:entries.length?Object.fromEntries(Object.entries(first?.score||{}).filter(([d])=>t.dimensions.includes(d))):null,support:last?.support||null,additionalHelp:extraHelp(last?.support),revisedFromMismatch:entries.some(([d,v])=>v===true&&first?.score?.[d]===false),submissions:r?.submissions?.length||0};
+ return{taskId:id,phase:r?.stage||(/^(post|delay)-/.test(id)?id.startsWith('delay')?'delayed':'post':id.startsWith('practice')?'practice':'pre'),status:r?.status||'missing',dimensions:entries.map(([dimension,matched])=>({dimension,matched})),matched:entries.length?entries.every(([,v])=>v===true):null,first:entries.length?Object.fromEntries(Object.entries(first?.score||{}).filter(([d])=>t.dimensions.includes(d))):null,support:last?.support||null,referenceExposurePossible:id.startsWith('delay-')&&(last?.support?.referenceExposurePossible===true||referencePolicy!=='later-reference-hidden-1'),additionalHelp:extraHelp(last?.support),revisedFromMismatch:entries.some(([d,v])=>v===true&&first?.score?.[d]===false),submissions:r?.submissions?.length||0};
  });}
 function classify(t,evidence){
  const submitted=evidence.filter(e=>e.matched!==null),fresh=submitted.filter(e=>e.phase==='post'||e.phase==='delayed');
@@ -29,12 +29,13 @@ function classify(t,evidence){
  }
  const passed=fresh.filter(e=>e.matched),failed=fresh.filter(e=>!e.matched);
  if(failed.length)return{status:passed.length?'mixed':'recheck',label:passed.length?'Responses differ across fresh tasks':'A fresh response needs another look',priority:t.scope==='Extension'?2:0,why:passed.length?'Some fresh responses matched and others did not. Keep those differences visible and check the same connection in another example.':'At least one fresh response did not match this connection. Focus on this part of the lesson before adding more topics.'};
+ if(fresh.some(e=>e.referenceExposurePossible))return{status:'exposure-unknown',label:'Later responses: prior answer exposure unclear',priority:2,why:'An older report may have included these later-check solutions before the responses were recorded. Keep these as review observations; they do not establish performance on unseen tasks.'};
  if(fresh.some(e=>e.additionalHelp))return{status:'supported',label:'Fresh responses matched with extra help recorded',priority:2,why:'The submitted fresh responses matched, and additional help or learning material was recorded during the check. Try a different example with that condition clearly stated.'};
  if(fresh.some(e=>e.revisedFromMismatch))return{status:'revised',label:'Matched after an answer revision',priority:2,why:'A later submission matched after an earlier mismatch on the same task. That revision is useful; a different task can check whether the method carries over.'};
  return{status:'fresh-match',label:'Matched on the submitted fresh tasks',priority:3,why:'The submitted fresh responses matched this connection without additional help recorded at submission. Use varied examples before treating it as consistently established.'};
 }
 function plan(state){
- const targets=TARGETS.map((t,order)=>{const evidence=observe(state.records||{},t),result=classify(t,evidence);let why=result.why;
+ const targets=TARGETS.map((t,order)=>{const evidence=observe(state.records||{},t,state.reportReferencePolicy),result=classify(t,evidence);let why=result.why;
   if(t.id==='coefficients'&&evidence.some(e=>e.taskId==='post-2'&&e.matched===false&&state.records['post-2']?.submissions?.at(-1)?.score?.['Output calculation']===true))why+=' In post-2, the numerical output matched but the coefficient choice did not. Check the explanation separately from the arithmetic.';
   if(t.id==='calculation'&&evidence.some(e=>e.taskId==='post-2'&&e.matched===false&&state.records['post-2']?.submissions?.at(-1)?.score?.['Preserved coefficients']===true))why+=' In post-2, the coefficient choice matched but the output did not. Check the two component sums and their signs.';
   return{...t,...result,why,order,evidence};
