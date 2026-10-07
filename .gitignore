@@ -2,6 +2,7 @@
 node_modules/
 .DS_Store
 *.log
+/static-release/
 
 # Credentials and original-platform configuration
 .env

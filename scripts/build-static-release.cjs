@@ -1,0 +1,62 @@
+'use strict';
+const fs = require('node:fs');
+const path = require('node:path');
+const {CONTENT_SECURITY_POLICY} = require('../backend/security.cjs');
+const root = path.resolve(__dirname, '..');
+const roots = ['index.html', 'assets', 'account', 'data-use', 'records', 'reports',
+  'foundations', 'diagnostics', 'projects',
+  ...['pre-algebra', 'algebra-1', 'geometry', 'algebra-2'].map(id => 'courses/' + id),
+  ...['aa01', 'ab01', 'ad01', 'ae01', 'af01'].map(id => 'modules/' + id + '/dist')];
+const types = /\.(?:html|js|css|svg|png|ico|webmanifest)$/;
+const excluded = new Set(['assets/account-app.js', 'assets/sync-client.js']);
+function allowed(file) {
+  return types.test(file) && !excluded.has(file) &&
+    !file.split('/').some(part => part.startsWith('.')) &&
+    !file.startsWith('modules/ab01/dist/beta01/') &&
+    (!file.startsWith('modules/aa01/dist/sketch-lab/') || file.endsWith('/math.js'));
+}
+function files() {
+  const found = [];
+  function walk(file) {
+    const absolute = path.join(root, file), stat = fs.lstatSync(absolute);
+    if (stat.isSymbolicLink()) throw Error('Release sources must not be symlinks: ' + file);
+    if (stat.isDirectory()) {
+      for (const name of fs.readdirSync(absolute).sort()) walk(file + '/' + name);
+    } else if (allowed(file)) found.push(file);
+  }
+  roots.forEach(walk);
+  return found.sort();
+}
+function validateLinks(list) {
+  const included = new Set(list);
+  for (const file of list.filter(name => name.endsWith('.html'))) {
+    const text = fs.readFileSync(path.join(root, file), 'utf8');
+    for (const [, reference] of text.matchAll(/(?:src|href)="([^"]+)"/g)) {
+      if (/^(?:[a-z]+:|\/\/|#)/i.test(reference)) continue;
+      const url = new URL(reference.replace(/&amp;/g, '&'), 'https://release.test/' + file);
+      let target = decodeURIComponent(url.pathname).slice(1);
+      if (target.endsWith('/') || !target) target += 'index.html';
+      if (!included.has(target)) throw Error('Missing release link: ' + file + ' → ' + target);
+    }
+  }
+}
+function headers() {
+  return '/*\n  Content-Security-Policy: ' + CONTENT_SECURITY_POLICY +
+    '\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: same-origin' +
+    '\n  X-Frame-Options: SAMEORIGIN\n  Cache-Control: no-cache\n';
+}
+function build(output = path.join(root, 'static-release')) {
+  // Refuse to mix a fresh public bundle with files left by an earlier build.
+  if (fs.existsSync(output)) throw Error('Use an empty output directory for the static release.');
+  const list = files();
+  validateLinks(list);
+  for (const file of list) {
+    const target = path.join(output, file);
+    fs.mkdirSync(path.dirname(target), {recursive: true});
+    fs.copyFileSync(path.join(root, file), target);
+  }
+  fs.writeFileSync(path.join(output, '_headers'), headers());
+  return {files: list.length, output};
+}
+if (require.main === module) console.log(JSON.stringify(build()));
+module.exports = {files, validateLinks, headers, build};

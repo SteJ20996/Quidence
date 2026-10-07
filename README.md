@@ -1,5 +1,7 @@
 # Quidence · Theoretical and Applied Mathematics
 
+**当前状态与下一步审核以 [CURRENT_STATUS.md](CURRENT_STATUS.md) 为准。其他带日期的审核文件保留当时的验证范围。**
+
 公测已暂停账户与云端同步，新学习记录仅保存在当前浏览器。所有活动页提供 [保存、恢复与删除记录](records/) 入口，公用设备离开前应清除本地记录和下载文件。默认 `npm start` 不开启账户 API 或打开学生数据库；开发测试中的 `accountsEnabled: true` 不用于公测。当前规则见 [LOCAL_ONLY_REVIEW.md](LOCAL_ONLY_REVIEW.md)。
 
 主页现在专注 8 个数学学科，统计学保留；经济学和博弈论不再提供课程活动。
@@ -27,21 +29,17 @@
 
 ## 本地运行
 
-只测试课程与题目，可在项目根目录运行：
-
-```sh
-python3 -m http.server 8000 --bind 127.0.0.1
-```
-
-打开 <http://127.0.0.1:8000/>。线代新题可直接打开 <http://127.0.0.1:8000/diagnostics/?module=ab01>。未登录的进度仍保存在当前浏览器。
-
-测试账号同步需 Node.js 24.19 或更新的 24.x：
+使用 Node.js 24.19 或更新的 24.x 在本地运行：
 
 ```sh
 npm start
 ```
 
-打开 <http://127.0.0.1:3000/> 和 <http://127.0.0.1:3000/account/>。不需要安装第三方 npm 依赖。公开跨设备使用需要同一 HTTPS 地址和持久数据库；本仓库代码尚未部署线上账号服务。部署见 [BACKEND_SYNC_REVIEW.md](BACKEND_SYNC_REVIEW.md)。
+打开 <http://127.0.0.1:3000/>，线代诊断入口为 <http://127.0.0.1:3000/diagnostics/?module=ab01>。默认服务器仅提供允许的网页文件，账户和云同步 API 返回暂停状态，不打开学生数据库。无需安装第三方 npm 依赖。
+
+静态托管前运行 `npm run build:static`，只发布生成的 `static-release/`，不要发布整个仓库。脚本要求输出目录不存在，避免旧文件混入新包。生成的 `_headers` 适用于 Cloudflare Pages 静态响应；其他托管方须等效配置安全响应头。这个命令只准备文件，不部署网站，不表示来源审核已经通过。详见 [OVERALL_REVIEW_2026-10-07.md](OVERALL_REVIEW_2026-10-07.md)。
+
+`npm test` 检查记录保护、题目数学、DOM 流程和来源清单；GitHub Actions 自动执行这些检查及发布包构建。真实浏览器端到端覆盖和 macOS/iPad 实测仍待完成。账户相关代码仅供开发测试，不能据此重开公测账户。
 
 ## 主要位置
 
