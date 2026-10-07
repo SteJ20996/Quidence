@@ -23,5 +23,12 @@ state.records['post-2']=record('post-2',{values:[0,0],choice:1});state.records['
 p=A.plan(state);assert.equal(find(p,'calculation').status,'mixed','A later match must not erase a different earlier fresh-task result.');
 state.records['post-2'].status='skipped';assert.equal(find(A.plan(state),'calculation').status,'fresh-match','A skipped current response is not an incorrect submission.');
 const before=JSON.stringify(state);A.plan(state);assert.equal(JSON.stringify(state),before,'Suggestions must not rewrite answer records or scores.');
+delete state.reportReferencePolicy;
+const legacyBefore=JSON.stringify(state.records);
+assert.equal(find(A.plan(state),'calculation').status,'exposure-unknown');
+assert.equal(JSON.stringify(state.records),legacyBefore,'Uncertain legacy exposure must not rewrite original submissions.');
+state.reportReferencePolicy='later-reference-hidden-1';
+state.records['delay-1'].submissions[0].support.referenceExposurePossible=true;
+assert.equal(find(A.plan(state),'calculation').status,'exposure-unknown');
 assert.equal(p.priorityTargetIds.length,2);assert(p.courseConnection.includes('do not predict an exam grade'));
 console.log('PASS: missing versus incorrect evidence, supported versus fresh responses, calculation/meaning mismatches, revision history, mixed later evidence, task-level grouping, priorities and record preservation.');

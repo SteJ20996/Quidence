@@ -1,7 +1,7 @@
 # Quidence main development conventions
 
 - This checkout is the active Beta 0.6 product. Beta_Style02 is archived; do not sync changes back to its Site or checkout without an explicit user request.
-- Keep all beta/student-facing text in English. Keep AA01 in the footer only. Preserve signed numeric input, timing, draft/history integrity, optional support and private audience.
+- Keep all beta/student-facing text in English. Use Quidence in student-facing branding; retain internal project IDs only where technical compatibility requires them. Preserve signed numeric input, timing, draft/history integrity, optional support and private audience.
 - Retain eleven core questions with different answer forms. The user-approved Q6 counterexample replaces the repeated distribution task; P3 now uses 5(x−3). Q11 is the integrated equation model. P4 readiness is a primary check-in: record “not yet studied” without failure evidence, or open the quadratic stages while preserving source records. Sports Day remains one project in four views, with the claim inside Explore; S5 is archived.
 - Save exact unfinished input and immutable history locally. Never silently overwrite unreadable saved progress. Use a detached report page with an explicit print button; do not automatically print the live activity page.
 - Supplementary visual models start closed, with an accessible optional entry. Required graph-reading or graphical-response stimuli remain visible. Preserve support snapshots and pre-help drafts; an opened helper is not proof of necessity or a learning style.
