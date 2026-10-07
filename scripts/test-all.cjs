@@ -13,3 +13,7 @@ const sync = spawnSync(process.execPath, ['--test', path.join(__dirname,'../test
 const diagnostic = spawnSync(process.execPath, ['--test', path.join(__dirname,'../tests/challenges.test.cjs')], {stdio:'inherit'});if(diagnostic.status!==0)process.exit(diagnostic.status??1);
 
 const projects = spawnSync(process.execPath, ['--test',path.join(__dirname,'../tests/projects.test.cjs')], {stdio:'inherit'});if(projects.status!==0)process.exit(projects.status??1);
+
+const hardening=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/brand-compat.test.cjs'),path.join(__dirname,'../tests/security.test.cjs'),path.join(__dirname,'../tests/csp.test.cjs'),path.join(__dirname,'../tests/local-records.test.cjs'),path.join(__dirname,'../tests/explanation-policy.test.cjs'),path.join(__dirname,'../tests/account-ui.test.cjs')],{stdio:'inherit'});if(hardening.status!==0)process.exit(hardening.status??1);
+
+const inventory=spawnSync(process.execPath,[path.join(__dirname,"build-source-ledger.cjs"),"--check"],{stdio:"inherit"});if(inventory.status!==0)process.exit(inventory.status??1);

@@ -53,7 +53,7 @@ test('reviewed revisions preserve feedback exposure and block summary until save
 });
 test('saving failure continues in memory; corrupt records are preserved through cancel',()=>{
  const denied=harness(new Map(),true);assert.match(denied.note.textContent,/unavailable/);denied.click('start');denied.choose('b');denied.submit();denied.click('next');assert.match(denied.app.innerHTML,/STEP 1 OF 4/);
- const map=new Map([[E.SCHEMA,'{corrupt']]),h=harness(map);assert.match(h.app.innerHTML,/kept unchanged/);assert.equal(map.get(E.SCHEMA),'{corrupt');h.click('raw');assert.equal(h.downloads[0].name,'Cluevera_Game_Theory_Saved_Record.json');h.click('reset-blocked');assert.equal(h.document.getElementById('reset-dialog').open,true);h.click('cancel-reset');assert.equal(map.get(E.SCHEMA),'{corrupt');h.click('reset-blocked');h.click('confirm-reset');assert.equal(h.saved().schema,E.SCHEMA);assert.equal(h.saved().view,'orientation');
+ const map=new Map([[E.SCHEMA,'{corrupt']]),h=harness(map);assert.match(h.app.innerHTML,/kept unchanged/);assert.equal(map.get(E.SCHEMA),'{corrupt');h.click('raw');assert.equal(h.downloads[0].name,'Quidence_Game_Theory_Saved_Record.json');h.click('reset-blocked');assert.equal(h.document.getElementById('reset-dialog').open,true);h.click('cancel-reset');assert.equal(map.get(E.SCHEMA),'{corrupt');h.click('reset-blocked');h.click('confirm-reset');assert.equal(h.saved().schema,E.SCHEMA);assert.equal(h.saved().view,'orientation');
 });
 test('all course dashboard links and AC01 local assets resolve within the project',()=>{
  const root=path.resolve(__dirname,'../../..'),hub=fs.readFileSync(path.join(root,'index.html'),'utf8');

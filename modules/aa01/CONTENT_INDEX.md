@@ -1,6 +1,6 @@
 # Content inventory · Main Beta 0.6
 
-Grounded in the current Cluevera_Beta04_Questions_Projects_Activities.md (Library ID libfile_3f5950b001c4819185816c4434b0db38, created 2026-10-01), its C1–C10 / S1–S6 / FN–FB sections, and the selected bs02 implementation. The prior inventory described mixed response forms, not ten multiple-choice-only items.
+Grounded in the current Quidence_Beta04_Questions_Projects_Activities.md (Library ID libfile_3f5950b001c4819185816c4434b0db38, created 2026-10-01), its C1–C10 / S1–S6 / FN–FB sections, and the selected bs02 implementation. The prior inventory described mixed response forms, not ten multiple-choice-only items.
 
 | Inventory | In the current product |
 |---|---|
@@ -14,7 +14,7 @@ Grounded in the current Cluevera_Beta04_Questions_Projects_Activities.md (Librar
 
 The base journey is 19 activity nodes (11 core + 5 steps inside Sports Day + 2 geometry activities + the P4 readiness/positive-stage entry). “Not yet studied” completes the readiness check-in without failure evidence. A ready student answers the positive quadratic stage and receives a negative sign stage when its route selects confirmation or contrast. All other extra checks share a limit of three. Clean first responses without help do not trigger stretch practice unless the student requests it. Direct navigation and partial review remain available; the report records which primary entries are complete.
 
-Sources: existing C/S/F prompts are project-composed content. New adaptive variants are newly composed within Cluevera using standard mathematics, with their prompt, answer and reason anchor in ADAPTIVE_QUESTION_BANK.md. No external PDF question wording or diagram was incorporated into this revision. These provenance descriptions do not claim exclusive ownership or comprehensive legal clearance.
+Sources: existing C/S/F prompts are project-composed content. New adaptive variants are newly composed within Quidence using standard mathematics, with their prompt, answer and reason anchor in ADAPTIVE_QUESTION_BANK.md. No external PDF question wording or diagram was incorporated into this revision. These provenance descriptions do not claim exclusive ownership or comprehensive legal clearance.
 
 ## Visible primary entries in 0.6
 

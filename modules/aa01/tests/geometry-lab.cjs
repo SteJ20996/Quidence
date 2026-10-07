@@ -32,14 +32,14 @@ surface.onpointerdown({button:0,pointerId:7,clientX:50,clientY:50});surface.onpo
 surface.onpointermove({pointerId:7,clientX:90,clientY:65});assert.notEqual(r.solidView.yaw,yaw);surface.onpointerup({pointerId:7});
 let prevented=false;surface.onkeydown({key:'Home',preventDefault(){prevented=true;}});assert(prevented);assert.equal(r.solidView.zoom,1);assert.equal(r.solidView.stage,2);
 const slider=h.q('[data-solid-x]');slider.value='5';slider.fire('input');assert.equal(r.solidView.x,5);
-for(const[k,v]of Object.entries({quad:16,linear:88,constant:120,volume2:360}))h.input(k,v);h.text('40x + 48x = 88x.');h.q('#submit').click();assert.equal(r.score.correct,true);assert.equal(r.reason.points,2);
+for(const[k,v]of Object.entries({quad:16,linear:88,constant:120,volume2:360}))h.input(k,v);h.text('40x + 48x = 88x.');h.q('#submit').click();assert.equal(r.score.correct,true);assert.equal(r.reason.points,null);assert.equal(r.reason.patternCandidate.points,2);
 assert.equal(h.api.state.events.at(-1).support.visual_state.x,5);assert(h.api.state.events.at(-1).objective_components.every(c=>c.support_level==='hinted'));
 const completed=r.complete;h.q('[data-solid-action="left"]').click();assert.equal(r.complete,completed);assert.equal(r.score.correct,true);h.api.goto(0);h.api.goto(h.api.state.queue.indexOf('V1'));assert.equal(h.api.collect().volume2,360);assert.equal(r.solidView.x,5);
 h.api.goto(h.api.state.queue.indexOf('D1'));h.q('[data-optional-visual="subtraction-model"]').click();const d=h.api.state.records.D1;
 for(const x of [4,7,9]){
  const s=h.q('[data-minus-x]');s.value=String(x);s.fire('input');const svg=h.q('#minus-diagram').innerHTML;assert(!/NaN|Infinity/.test(svg));assert(svg.includes('width="81" height="135"'));assert(svg.includes(`width="${(x-3)*27}" height="135"`));assert(svg.includes('Remaining area = whole area − removed area'));assert(svg.includes(`the kept width is ${x-3}`));assert(svg.includes(`class="model-small">= ${x-3}</text>`));
 }
-h.choose('rewrite','5x-15');h.input('areaAt7',20);h.text('The removed strip is 3 wide and 5 tall, so its area is 15.');h.q('#submit').click();assert.equal(d.score.correct,true);assert.equal(d.reason.points,2);
+h.choose('rewrite','5x-15');h.input('areaAt7',20);h.text('The removed strip is 3 wide and 5 tall, so its area is 15.');h.q('#submit').click();assert.equal(d.score.correct,true);assert.equal(d.reason.points,null);assert.equal(d.reason.patternCandidate.points,2);
 assert.equal(h.reason.evaluate('D1','I subtract only 2 because the removed area is 2.',true).status,'Needs review');
 assert.equal(h.reason.evaluate('V1','I used the shape somehow.',true).points,null);
 assert.equal(h.reason.evaluate('D1','',true).points,null);

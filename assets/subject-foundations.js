@@ -41,5 +41,5 @@ af01:{title:'Pre-calculus foundations',scope:'Selected algebra, function domains
  task('af-f15',4,'Interpret a logarithm and its domain','Find log₂32. For real log₂(x − 1), choose the domain.',[number('log','log₂32',5),choice('domain','Domain for log₂(x − 1)',[['gt','x > 1'],['ge','x ≥ 1'],['all','All real x']],'gt')],'Explain the exponent question and why the logarithm argument must be positive.','2⁵ = 32, so log₂32 = 5. The argument x − 1 must be positive, giving x > 1.','Connect logarithms to exponents and preserve their positive-input restriction.')
 ]}
 };
-if(typeof module==='object'&&module.exports)module.exports=MODULES;else root.ClueveraSubjectFoundations=MODULES;
+if(typeof module==='object'&&module.exports)module.exports=MODULES;else root.QuidenceSubjectFoundations=MODULES;
 })(typeof window==='undefined'?globalThis:window);

@@ -188,9 +188,9 @@ const MODULES={
   'An accumulation function’s direction of change follows the sign of its integrand.')
  ]}
 };
-Object.assign(MODULES,typeof module==='object'&&module.exports?require('./subject-foundations.js'):(root.ClueveraSubjectFoundations||{}));
-for(const [module,definition] of Object.entries(MODULES))for(const t of definition.tasks){t.module=module;t.groupName=definition.groups[t.group];t.provenance='Newly composed Cluevera foundation item; standard mathematical ideas and original diagrams.';}
+Object.assign(MODULES,typeof module==='object'&&module.exports?require('./subject-foundations.js'):(root.QuidenceSubjectFoundations||{}));
+for(const [module,definition] of Object.entries(MODULES))for(const t of definition.tasks){t.module=module;t.groupName=definition.groups[t.group];t.provenance='Composed for Quidence using standard mathematical ideas; source clearance has not been independently verified.';}
 const api={VERSION:'cluevera-foundations-1',MODULES};
-if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraFoundationBank=api;
+if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceFoundationBank=api;
 })(typeof window==='undefined'?globalThis:window);
 

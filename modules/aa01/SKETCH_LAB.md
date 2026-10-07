@@ -11,7 +11,7 @@ The user supplied two new handwritten design sketches on October 2, 2026 (Americ
 - IMG_CD2F2C2B-9104-4A8C-B7FD-8D89D8EC412A.jpeg: the equation box/unit restoration and grouping proposal.
 - IMG_AAFCCD7E-461F-4E44-AEB9-58C37758E6E7.jpeg: positive/negative square functions and a separate quadratic-formula derivation.
 
-The page uses original SVGs and locally composed interface text; it does not publish the scanned notes. D01 and D08 are the project-composed candidate IDs in Cluevera_Beta04_Questions_Projects_Activities.md. Their earlier B01/B08 inspiration references in the mixed-source PDF remain uncertain. The new design sketches do not resolve rights in that earlier material. Preserve this distinction; no comprehensive copyright-clearance claim.
+The page uses original SVGs and locally composed interface text; it does not publish the scanned notes. D01 and D08 are the project-composed candidate IDs in Quidence_Beta04_Questions_Projects_Activities.md. Their earlier B01/B08 inspiration references in the mixed-source PDF remain uncertain. The new design sketches do not resolve rights in that earlier material. Preserve this distinction; no comprehensive copyright-clearance claim.
 
 ## Equation: 4x − 3 = 9
 

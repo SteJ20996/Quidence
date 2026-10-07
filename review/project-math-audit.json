@@ -1,5 +1,5 @@
 {
-  "audit": "Independent scenario computations; no authored answer key imported. Exact fractions where rational, mathematical square roots for irrational quantities. Text understanding is not auto-scored.",
+  "audit": "Separately implemented scenario computations (project-authored, not independent human certification); no authored answer key imported. Exact fractions where rational, mathematical square roots for irrational quantities. Text understanding is not auto-scored.",
   "questions": {
     "pa-p01": {
       "numbers": {

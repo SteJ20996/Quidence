@@ -1,4 +1,4 @@
-(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraReasonEvidence=api;})(typeof window==='object'?window:globalThis,()=>{
+(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceReasonEvidence=api;})(typeof window==='object'?window:globalThis,()=>{
 'use strict';
 function normalize(raw){return String(raw??'').toLowerCase().replace(/[−–—]/g,'-').replace(/[×·]/g,'*').replace(/÷/g,'/').replace(/²/g,'^2').replace(/\$(?=\s*\d)/g,'').replace(/\bone more\b/g,'1 more').replace(/\s+/g,' ').trim();}
 // A small arithmetic/polynomial parser, not eval or a language-model grader.

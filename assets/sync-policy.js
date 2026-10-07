@@ -1,5 +1,6 @@
 (function(root){
 'use strict';
+// Legacy persistence identifiers are intentionally retained; see BRAND_MIGRATION.md.
 const KEYS={
  cluevera_project_portfolio_v1:{label:"Field projects",schema:"cluevera_project_portfolio_v1"},
  cluevera_challenge_portfolio_v1:{label:'Diagnostic challenges',schema:'cluevera_challenge_portfolio_v1'},
@@ -21,5 +22,5 @@ const KEYS={
 };
 const MAX_RECORD_BYTES=2*1024*1024;
 function valid(key,value){if(!Object.hasOwn(KEYS,key)||typeof value!=='string'||value.length>MAX_RECORD_BYTES)return false;try{const v=JSON.parse(value);return !!v&&typeof v==='object'&&!Array.isArray(v)&&(KEYS[key].schema===undefined||v.schema===KEYS[key].schema);}catch{return false;}}
-const api={KEYS,MAX_RECORD_BYTES,valid};if(typeof module==='object'&&module.exports)module.exports=api;else root.ClueveraSyncPolicy=api;
+const api={KEYS,MAX_RECORD_BYTES,valid};if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceSyncPolicy=api;
 })(typeof window==='undefined'?globalThis:window);

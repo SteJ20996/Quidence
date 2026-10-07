@@ -21,7 +21,7 @@ function summaryHtml(){return `<section class="summary-heading"><p class="eyebro
 function render(focus=false){
  if(blocked){app.innerHTML=`<section class="card recovery"><h1>Your saved session needs attention.</h1><p>It could not be read and has been kept unchanged. Download a copy before replacing it.</p><div class="actions">${button('raw','Download saved record','primary')}${button('reset-blocked','Replace with a new session')}</div></section><dialog id="reset-dialog"><h2>Replace the unreadable Game Theory record?</h2><p>Download the saved record first if you want to keep it.</p><div class="actions">${button('cancel-reset','Keep it')}${button('confirm-reset','Replace record','primary')}</div></dialog>`;return;}
  app.innerHTML=nav()+(state.view==='orientation'?orientation():state.view==='summary'?summaryHtml():`<section class="lesson-heading"><p class="eyebrow">LESSON ${state.lessonIndex+1} OF 4</p><h1>${esc(lesson().title)}</h1><p class="muted">${esc(lesson().goal)}</p>${path()}</section>`+(state.stage==='learn'?learnHtml():state.stage==='review'?reviewHtml():taskHtml(currentTask())));
- if(state.view==='summary'&&window.ClueveraReportStore){const saved=window.ClueveraReportStore.save('ac01',E.exportRecord(state),state.createdAt);window.ClueveraReportStore.appendNotice(app,saved);}
+ if(state.view==='summary'&&window.QuidenceReportStore){const saved=window.QuidenceReportStore.save('ac01',E.exportRecord(state),state.createdAt);window.QuidenceReportStore.appendNotice(app,saved);}
  const form=document.getElementById('answer-form');if(form)form.addEventListener('submit',e=>{e.preventDefault();const t=currentTask();if(E.submit(state,t.id,state.stage)){notice='Answer saved. Continue when you are ready.';save();render();document.querySelector('[data-action="next"]').focus();}else{notice='Choose an answer or “I’m not sure yet,” then save it.';document.getElementById('answer-status').textContent=notice;}});
  save();if(focus){const heading=app.querySelector('h1');if(heading){heading.tabIndex=-1;heading.focus();}window.scrollTo({top:0,behavior:'instant'});}
 }
@@ -34,7 +34,7 @@ function download(name,content,mime){const url=URL.createObjectURL(new Blob([con
 function markdown(){let s='# Game Theory Foundations\n\n'+`Session started: ${state.createdAt}\n\n`+'Initial predictions and checks after instruction are separate observations. This is not a course grade or a validated mastery score. Optional explanations need human review.\n\n';for(const l of C.LESSONS){s+=`## ${l.title}\n\n`;for(const t of [l.predict,...l.checks]){s+=`### ${t===l.predict?'Initial prediction':'Fresh question'}: ${t.prompt}\n\n`;state.records[t.id].submissions.forEach((r,i)=>{s+=`Attempt ${i+1}: ${answerText(t,r.answer)}\n\nResult: ${resultLabel(r.result)}\n\nSupport: lesson seen=${r.support.lessonSeen}; earlier feedback=${r.support.feedbackSeen}; other help reported=${r.support.otherHelp}\n\n`;if(r.answer.explanation)s+=`Explanation (not automatically scored):\n\n${r.answer.explanation.split('\n').map(line=>'> '+line).join('\n')}\n\n`;});s+=`${t.explanation}\n\n`;}s+=`Next step: ${l.next}\n\n`;}return s;}
 app.addEventListener('click',event=>{
  const b=event.target.closest('[data-action]');if(!b||b.disabled)return;const action=b.dataset.action,i=Number(b.dataset.index);notice='';
- if(action==='raw'){download('Cluevera_Game_Theory_Saved_Record.json',raw,'application/json');return;}
+ if(action==='raw'){download('Quidence_Game_Theory_Saved_Record.json',raw,'application/json');return;}
  if(['reset','reset-blocked'].includes(action)){document.getElementById('reset-dialog').showModal();return;}
  if(action==='cancel-reset'){document.getElementById('reset-dialog').close();return;}
  if(action==='confirm-reset'){state=E.fresh();blocked=false;raw='';step=0;lab=[0,0];render(true);return;}
@@ -55,9 +55,9 @@ app.addEventListener('click',event=>{
  else if(action==='relearn'){state.stage='learn';step=0;lab=[...lesson().start];}
  else if(action==='revise'){state.stage='check';state.questionIndex=i;}
  else if(action==='continue'){if(E.allDone(state)){state.view='summary';}else{const next=state.lessonIndex<3?state.lessonIndex+1:C.LESSONS.findIndex((_,j)=>!E.lessonDone(state,j));openLesson(next);return;}}
- else if(action==='export-json'){download('Cluevera_Game_Theory_Answer_History.json',JSON.stringify(E.exportRecord(state),null,2),'application/json');return;}
- else if(action==='export-md'){download('Cluevera_Game_Theory_Learning_Summary.md',markdown(),'text/markdown');return;}
- else if(action==='print'){try{const ok=window.ClueveraReportTools.openPrint(window.ClueveraReportTools.printable(document.title,{markdown:markdown()}));notice=ok?'The report opened in a new tab. Print / save as PDF there.':'Allow pop-ups or download the readable report.';}catch{notice='The report tab could not open. Download the readable report.';}render();return;}
+ else if(action==='export-json'){download('Quidence_Game_Theory_Answer_History.json',JSON.stringify(E.exportRecord(state),null,2),'application/json');return;}
+ else if(action==='export-md'){download('Quidence_Game_Theory_Learning_Summary.md',markdown(),'text/markdown');return;}
+ else if(action==='print'){try{const ok=window.QuidenceReportTools.openPrint(window.QuidenceReportTools.printable(document.title,{markdown:markdown()}));notice=ok?'The report opened in a new tab. Print / save as PDF there.':'Allow pop-ups or download the readable report.';}catch{notice='The report tab could not open. Download the readable report.';}render();return;}
  else return;
  const localAction=state.stage==='learn'&&['step','prev-step','next-step','switch-a','switch-b'].includes(action);
  render(!localAction);

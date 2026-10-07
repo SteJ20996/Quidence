@@ -4,13 +4,13 @@ const C=window.AD01Content,E=window.AD01Engine,M=window.AD01Math,G=window.AD01Gr
 const app=document.getElementById('app'),KEY=E.SCHEMA;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let state=E.fresh(),saving=true,blocked=false,raw='',notice='',step=0,motion=null,motionFrame=0;
-try{raw=localStorage.getItem(KEY)||'';if(raw){const loaded=E.hydrate(JSON.parse(raw));if(loaded)state=loaded;else blocked=true;}}
+try{raw=(window.QuidenceStorage||window.localStorage).getItem(KEY)||'';if(raw){const loaded=E.hydrate(JSON.parse(raw));if(loaded)state=loaded;else blocked=true;}}
 catch{if(raw)blocked=true;else saving=false;}
 const lesson=()=>C.LESSONS[state.lessonIndex];
 const currentTask=()=>state.view==='lesson'?(state.stage==='predict'?lesson().predict:state.stage==='check'?lesson().checks[state.questionIndex]:null):null;
 const button=(action,label,cls='',extra='')=>`<button class="btn ${cls}" data-action="${action}" ${extra}>${label}</button>`;
 function save(){
- if(!blocked)try{localStorage.setItem(KEY,JSON.stringify(state));}catch{saving=false;}
+ if(!blocked)try{(window.QuidenceStorage||window.localStorage).setItem(KEY,JSON.stringify(state));}catch{saving=false;}
  document.getElementById('storage-note').textContent=saving?'Progress stays in this browser. No account needed.':'Browser saving is unavailable. Keep this tab open to finish.';
 }
 function nav(){return`<nav class="lesson-nav" aria-label="Calculus lessons">${button('home','Start here','quiet')}${C.LESSONS.map((l,i)=>`<button class="lesson-link ${state.view==='lesson'&&state.lessonIndex===i?'active':''}" data-action="open" data-index="${i}" ${state.view==='lesson'&&state.lessonIndex===i?'aria-current="page"':''}><span class="lesson-number">${E.lessonDone(state,i)?'✓':i+1}</span>${esc(l.short)}</button>`).join('')}${button('summary','My summary','quiet',E.allDone(state)?'':'disabled')}</nav>`;}
@@ -120,7 +120,7 @@ function render(focus=false){
  stopMotion('navigation',false);
  if(blocked){app.innerHTML=`<section class="card recovery"><h1>Your saved session needs attention.</h1><p>It could not be read and has been kept unchanged. Download a copy before replacing it.</p><div class="actions">${button('raw','Download saved record','primary')}${button('reset-blocked','Replace with a new session')}</div></section><dialog id="reset-dialog"><h2>Replace the unreadable Calculus record?</h2><p>Download the record first if you want to keep it.</p><div class="actions">${button('cancel-reset','Keep it')}${button('confirm-reset','Replace record','primary')}</div></dialog>`;return;}
  app.innerHTML=nav()+(state.view==='orientation'?orientation():state.view==='summary'?summaryHtml():`<section class="lesson-heading"><p class="eyebrow">LESSON ${state.lessonIndex+1} OF 4</p><h1>${esc(lesson().title)}</h1><p class="muted">${esc(lesson().goal)}</p>${phases()}</section>`+(state.stage==='learn'?learnHtml():state.stage==='review'?reviewHtml():taskHtml(currentTask())));
- if(state.view==='summary'&&window.ClueveraReportStore){const saved=window.ClueveraReportStore.save('ad01',E.exportRecord(state),state.createdAt);window.ClueveraReportStore.appendNotice(app,saved);}
+ if(state.view==='summary'&&window.QuidenceReportStore){const saved=window.QuidenceReportStore.save('ad01',E.exportRecord(state),state.createdAt);window.QuidenceReportStore.appendNotice(app,saved);}
  const form=document.getElementById('answer-form');if(form)form.addEventListener('submit',e=>{e.preventDefault();const t=currentTask();if(E.submit(state,t.id,state.stage)){notice='Answer saved. Continue when you are ready.';save();render();document.querySelector('[data-action="next"]').focus();}else{notice='Choose an answer or “I’m not sure yet,” then save it.';document.getElementById('answer-status').textContent=notice;}});
  updateExplorer();save();
  if(focus){const heading=app.querySelector('h1');if(heading){heading.tabIndex=-1;heading.focus();}window.scrollTo({top:0,behavior:'instant'});}
@@ -156,7 +156,7 @@ function markdown(){
 }
 app.addEventListener('click',event=>{
  const b=event.target.closest('[data-action]');if(!b||b.disabled)return;const action=b.dataset.action,i=Number(b.dataset.index);notice='';
- if(action==='raw'){download('Cluevera_Calculus_Saved_Record.json',raw,'application/json');return;}
+ if(action==='raw'){download('Quidence_Calculus_Saved_Record.json',raw,'application/json');return;}
  if(action==='reset-blocked'){document.getElementById('reset-dialog').showModal();return;}
  if(action==='cancel-reset'){document.getElementById('reset-dialog').close();return;}
  if(action==='confirm-reset'){state=E.fresh();blocked=false;raw='';step=0;render(true);return;}
@@ -179,9 +179,9 @@ app.addEventListener('click',event=>{
  else if(action==='relearn'){state.stage='learn';step=0;}
  else if(action==='revise'){state.stage='check';state.questionIndex=i;}
  else if(action==='continue'){if(E.allDone(state))state.view='summary';else{const next=state.lessonIndex<3?state.lessonIndex+1:C.LESSONS.findIndex((_,j)=>!E.lessonDone(state,j));openLesson(next);return;}}
- else if(action==='export-json'){download('Cluevera_Calculus_Answer_History.json',JSON.stringify(E.exportRecord(state),null,2),'application/json');return;}
- else if(action==='export-md'){download('Cluevera_Calculus_Learning_Summary.md',markdown(),'text/markdown');return;}
- else if(action==='print'){try{const ok=window.ClueveraReportTools.openPrint(window.ClueveraReportTools.printable(document.title,{markdown:markdown()}));notice=ok?'The report opened in a new tab. Print / save as PDF there.':'Allow pop-ups or download the readable report.';}catch{notice='The report tab could not open. Download the readable report.';}render();return;}
+ else if(action==='export-json'){download('Quidence_Calculus_Answer_History.json',JSON.stringify(E.exportRecord(state),null,2),'application/json');return;}
+ else if(action==='export-md'){download('Quidence_Calculus_Learning_Summary.md',markdown(),'text/markdown');return;}
+ else if(action==='print'){try{const ok=window.QuidenceReportTools.openPrint(window.QuidenceReportTools.printable(document.title,{markdown:markdown()}));notice=ok?'The report opened in a new tab. Print / save as PDF there.':'Allow pop-ups or download the readable report.';}catch{notice='The report tab could not open. Download the readable report.';}render();return;}
  else return;
  const local=state.stage==='learn'&&['step','prev-step','next-step'].includes(action);
  render(!local);if(local){const h=app.querySelector('h2');h.tabIndex=-1;h.focus();}

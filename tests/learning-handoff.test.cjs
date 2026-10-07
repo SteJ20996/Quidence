@@ -4,7 +4,7 @@ const root=path.resolve(__dirname,'..'),Goals=require('../assets/hub-goals.js'),
 function harness({clipboard=true,blocked=false,map=new Map()}={}){
  const host=new Element('html');host.innerHTML=fs.readFileSync(path.join(root,'index.html'),'utf8');
  const document={getElementById:id=>host.querySelector('#'+id),querySelectorAll:s=>host.querySelectorAll(s),createElement:tag=>new Element(tag)};
- const storage={getItem:k=>map.get(k)||null,setItem:(k,v)=>map.set(k,v)},copied=[],tabs=[];
+ const storage={getItem:k=>map.has(k)?map.get(k):null,setItem:(k,v)=>map.set(k,v)},copied=[],tabs=[];
  const window={document,localStorage:storage,location:{href:'https://example.test/?stage=high',search:'?stage=high'},history:{state:null,replaceState(){}},addEventListener(){},navigator:{clipboard:{writeText:async text=>{if(!clipboard)throw Error('denied');copied.push(text);}}},open(){if(blocked)return null;const tab={opener:window,document:{open(){},write(s){tab.html=s;},close(){}},focus(){},print(){throw Error('Must not call print from the opener');}};tabs.push(tab);return tab;}};
  // Preserve independent filter and learning-entry listeners in this test DOM.
  for(const el of host.all()){el.listeners={};el.addEventListener=(type,cb)=>{(el.listeners[type]??=[]).push(cb);el.events[type]=event=>Promise.all(el.listeners[type].map(fn=>fn(event)));};}
@@ -24,12 +24,24 @@ test('copy failure keeps a selected Markdown fallback and never automatically se
  const h=harness({clipboard:false});await h.q('goal-copy').events.click();assert.equal(h.q('goal-markdown').hidden,false);assert(h.q('goal-markdown').selected);assert.match(h.q('goal-markdown').value,/# My learning request/);assert.match(h.q('goal-status').textContent,/Copy command/);assert.equal(h.tabs.length,0);
 });
 test('saved reports can be included with the selected subject and exact response history',async()=>{
- const h=harness();h.window.ClueveraReportStore.save('aa01',{markdown:'# Algebra\n\nQuestion: solve 4x-3=9\n\n> My step: add 3 to both sides.'},'sample',h.window.localStorage);
+ const h=harness();h.window.QuidenceReportStore.save('aa01',{markdown:'# Algebra\n\nQuestion: solve 4x-3=9\n\n> My step: add 3 to both sides.'},'sample',h.window.localStorage);
  const loaded=harness({map:h.map});const option=loaded.q('goal-report').querySelectorAll('option').find(o=>o.value==='aa01:sample');assert(option);loaded.q('goal-report').value=option.value;await loaded.q('goal-copy').events.click();assert.match(loaded.copied[0],/My step: add 3/);assert.match(loaded.copied[0],/solve 4x-3=9/);
 });
 test('print reports are detached and manual; Markdown rendering escapes student HTML',()=>{
- const h=harness(),T=h.window.ClueveraReportTools,html=T.printable('Algebra',{markdown:'# A check\n\nQuestion: test a claim\n\n> <script>alert(1)</script>\n\nReference: check the two values'});
+ const h=harness(),T=h.window.QuidenceReportTools,html=T.printable('Algebra',{markdown:'# A check\n\nQuestion: test a claim\n\n> <script>alert(1)</script>\n\nReference: check the two values'});
  assert(T.openPrint(html));assert.equal(h.tabs[0].opener,null);assert.match(h.tabs[0].html,/question-text/);assert.match(h.tabs[0].html,/student-work/);assert.match(h.tabs[0].html,/report-feedback/);assert.match(h.tabs[0].html,/&lt;script&gt;/);assert.doesNotMatch(h.tabs[0].html,/<script>alert/);
- const blocked=harness({blocked:true});assert.equal(blocked.window.ClueveraReportTools.openPrint(html),false);
+ const blocked=harness({blocked:true});assert.equal(blocked.window.QuidenceReportTools.openPrint(html),false);
  assert.match(Tools.markdown('Legacy',{records:{a:{answer:2}}}),/Complete learning record/);
+});
+
+test('unreadable saved requests stay byte-for-byte intact through rendering and edits',async()=>{
+ for(const raw of ['{broken','{"schema":"unknown","text":"Do not erase me"}','']){
+  const map=new Map([[Goals.KEY,raw]]),h=harness({map});
+  assert.equal(map.get(Goals.KEY),raw);assert.match(h.q('goal-status').textContent,/original is kept/);
+  h.q('learning-goal').value='new draft';h.q('learning-goal').events.input({target:h.q('learning-goal')});
+  assert.equal(map.get(Goals.KEY),raw);
+  await h.click(h.q('goal-original'));assert.equal(h.q('goal-markdown').value,raw);
+  h.window.confirm=()=>false;await h.click(h.q('goal-reset'));assert.equal(map.get(Goals.KEY),raw);
+  h.window.confirm=()=>true;await h.click(h.q('goal-reset'));assert.equal(JSON.parse(map.get(Goals.KEY)).text,'new draft');
+ }
 });

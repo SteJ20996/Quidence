@@ -44,5 +44,5 @@
   function plan(id,answer){const error=validate(id,answer);if(error)return {error};const result=grade(id,answer);return {result,route:route(id,result)};}
   const api={functions,number,close,value,reason,validate,grade,route,vertex,plan};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;
-  root.ClueveraSketch=api;
+  root.QuidenceSketch=api;
 })(typeof window!=='undefined'?window:globalThis);

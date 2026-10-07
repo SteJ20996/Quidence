@@ -1,4 +1,4 @@
-# Cluevera main development conventions
+# Quidence main development conventions
 
 - This checkout is the active Beta 0.6 product. Beta_Style02 is archived; do not sync changes back to its Site or checkout without an explicit user request.
 - Keep all beta/student-facing text in English. Keep AA01 in the footer only. Preserve signed numeric input, timing, draft/history integrity, optional support and private audience.

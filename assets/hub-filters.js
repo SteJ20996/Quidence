@@ -32,5 +32,5 @@ function mount(document,window){
  return{render,restore};
 }
 const api={STAGES,DIRECTIONS,SUBJECTS,normalize,matches,fromSearch,toSearch,mount};
-if(typeof module==='object'&&module.exports)module.exports=api;else{root.ClueveraHubFilters=api;mount(root.document,root);}
+if(typeof module==='object'&&module.exports)module.exports=api;else{root.QuidenceHubFilters=api;mount(root.document,root);}
 })(typeof window==='undefined'?globalThis:window);

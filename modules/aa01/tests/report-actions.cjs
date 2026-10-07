@@ -64,7 +64,7 @@ function load(){
   h.submit('C4');assert.equal(h.api.state.reviewed.length,1);assert.equal(h.api.state.records.C4.verifiedReason.points,2);
   assert.equal(h.forms.get('C4').elements.credit.value,'2');assert.equal(h.forms.get('C4').elements.note.value,'Correct meaning <fee> & reasoning.');
   assert.equal(h.forms.get('C10').elements.note.value,'Keep this unsaved draft.');assert.equal(h.forms.get('C10').elements.credit.value,'1');
-  assert.equal(h.scrolls.at(-1).top,420);assert(h.app.innerHTML.includes('Original automatic suggestion'));
+  assert.equal(h.scrolls.at(-1).top,420);assert(h.app.innerHTML.includes('Earlier detector record'));
   h.click('review-mode');assert.equal(h.forms.size,0);h.click('review-mode');assert.equal(h.forms.get('C10').elements.note.value,'Keep this unsaved draft.');
   h.forms.get('C4').elements.note.value='   ';h.submit('C4');assert.equal(h.api.state.reviewed.length,1);assert(h.forms.get('C4').error.textContent);
   h.forms.get('C4').elements.credit.value='99';h.forms.get('C4').elements.note.value='Invalid credit';h.submit('C4');assert.equal(h.api.state.reviewed.length,1);

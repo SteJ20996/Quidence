@@ -1,0 +1,507 @@
+{
+  "sourceCommit": "a4e568041aafe0ffc125c263dbe1e8078fefddfb",
+  "note": "Synthetic records made by the pre-rename engine; no student data.",
+  "foundation": {
+    "schema": "cluevera_foundation_portfolio_v1",
+    "bankVersion": "cluevera-foundations-1",
+    "modules": {
+      "aa01": {
+        "active": null,
+        "sessions": []
+      },
+      "ab01": {
+        "active": "2026-10-06T18:47:17.858Z-2-tf34tvn",
+        "sessions": [
+          {
+            "id": "2026-10-06T18:47:17.856Z-1-sal68gb",
+            "module": "ab01",
+            "bankVersion": "cluevera-foundations-1",
+            "createdAt": "2026-10-06T18:47:17.857Z",
+            "view": "task",
+            "index": 0,
+            "records": {
+              "ab-f01": {
+                "draft": {
+                  "values": {
+                    "x": "3",
+                    "y": "2"
+                  },
+                  "explanation": "My own explanation from before the rename.",
+                  "unsure": false,
+                  "otherHelp": false
+                },
+                "status": "submitted",
+                "submissions": [
+                  {
+                    "at": "2026-10-06T18:47:17.857Z",
+                    "answer": {
+                      "values": {
+                        "x": "3",
+                        "y": "2"
+                      },
+                      "explanation": "My own explanation from before the rename.",
+                      "unsure": false,
+                      "otherHelp": false
+                    },
+                    "objective": {
+                      "state": "matched",
+                      "parts": {
+                        "x": true,
+                        "y": true
+                      }
+                    },
+                    "feedbackSeen": false,
+                    "taskVersion": "cluevera-foundations-1"
+                  }
+                ],
+                "reviews": [
+                  {
+                    "submission": 1,
+                    "points": 2,
+                    "note": "The student explained this particular connection.",
+                    "at": "2026-10-06T18:47:17.858Z"
+                  }
+                ]
+              },
+              "ab-f02": {
+                "draft": {
+                  "values": {
+                    "x": "",
+                    "y": ""
+                  },
+                  "explanation": "I still need to compare two approaches.\nKeep my draft exactly.",
+                  "unsure": false,
+                  "otherHelp": false
+                },
+                "status": "draft",
+                "submissions": [],
+                "reviews": []
+              }
+            },
+            "events": [
+              {
+                "type": "answer_saved",
+                "at": "2026-10-06T18:47:17.858Z",
+                "task": "ab-f01",
+                "submission": 1
+              }
+            ]
+          },
+          {
+            "id": "2026-10-06T18:47:17.858Z-2-tf34tvn",
+            "module": "ab01",
+            "bankVersion": "cluevera-foundation-followups-1",
+            "createdAt": "2026-10-06T18:47:17.858Z",
+            "view": "task",
+            "index": 0,
+            "records": {
+              "ab-x01": {
+                "draft": {
+                  "values": {
+                    "ab": "yes",
+                    "abRows": "2",
+                    "abCols": "2",
+                    "ba": "yes",
+                    "baRows": "3",
+                    "baCols": "3"
+                  },
+                  "explanation": "My own explanation from before the rename.",
+                  "unsure": false,
+                  "otherHelp": false
+                },
+                "status": "submitted",
+                "submissions": [
+                  {
+                    "at": "2026-10-06T18:47:17.858Z",
+                    "answer": {
+                      "values": {
+                        "ab": "yes",
+                        "abRows": "2",
+                        "abCols": "2",
+                        "ba": "yes",
+                        "baRows": "3",
+                        "baCols": "3"
+                      },
+                      "explanation": "My own explanation from before the rename.",
+                      "unsure": false,
+                      "otherHelp": false
+                    },
+                    "objective": {
+                      "state": "matched",
+                      "parts": {
+                        "ab": true,
+                        "abRows": true,
+                        "abCols": true,
+                        "ba": true,
+                        "baRows": true,
+                        "baCols": true
+                      }
+                    },
+                    "feedbackSeen": false,
+                    "taskVersion": "cluevera-foundation-followups-1"
+                  }
+                ],
+                "reviews": [
+                  {
+                    "submission": 1,
+                    "points": 2,
+                    "note": "The student explained this particular connection.",
+                    "at": "2026-10-06T18:47:17.858Z"
+                  }
+                ]
+              },
+              "ab-x02": {
+                "draft": {
+                  "values": {
+                    "defined": "",
+                    "input": "",
+                    "output": ""
+                  },
+                  "explanation": "I still need to compare two approaches.\nKeep my draft exactly.",
+                  "unsure": false,
+                  "otherHelp": false
+                },
+                "status": "draft",
+                "submissions": [],
+                "reviews": []
+              }
+            },
+            "events": [
+              {
+                "type": "answer_saved",
+                "at": "2026-10-06T18:47:17.858Z",
+                "task": "ab-x01",
+                "submission": 1
+              }
+            ],
+            "check": "followup"
+          }
+        ]
+      },
+      "ac01": {
+        "active": null,
+        "sessions": []
+      },
+      "ad01": {
+        "active": null,
+        "sessions": []
+      },
+      "ae01": {
+        "active": null,
+        "sessions": []
+      },
+      "af01": {
+        "active": null,
+        "sessions": []
+      }
+    }
+  },
+  "challenge": {
+    "schema": "cluevera_challenge_portfolio_v1",
+    "bankVersion": "cluevera-challenges-1",
+    "modules": {
+      "ab01": {
+        "active": "2026-10-06T18:47:17.858Z-1-wviactj",
+        "sessions": [
+          {
+            "id": "2026-10-06T18:47:17.858Z-1-wviactj",
+            "module": "ab01",
+            "bankVersion": "cluevera-challenges-1",
+            "createdAt": "2026-10-06T18:47:17.858Z",
+            "view": "task",
+            "index": 0,
+            "records": {
+              "la-c01": {
+                "draft": {
+                  "values": {
+                    "k": "3",
+                    "original": "many",
+                    "x": "3",
+                    "y": "0",
+                    "changed": "none"
+                  },
+                  "explanation": "My own explanation from before the rename.",
+                  "unsure": false,
+                  "otherHelp": false,
+                  "notStudied": false
+                },
+                "status": "submitted",
+                "submissions": [
+                  {
+                    "at": "2026-10-06T18:47:17.858Z",
+                    "answer": {
+                      "values": {
+                        "k": "3",
+                        "original": "many",
+                        "x": "3",
+                        "y": "0",
+                        "changed": "none"
+                      },
+                      "explanation": "My own explanation from before the rename.",
+                      "unsure": false,
+                      "otherHelp": false,
+                      "notStudied": false
+                    },
+                    "objective": {
+                      "state": "matched",
+                      "parts": {
+                        "k": true,
+                        "original": true,
+                        "x": true,
+                        "y": true,
+                        "changed": true
+                      }
+                    },
+                    "feedbackSeen": false,
+                    "taskVersion": "cluevera-challenges-1"
+                  }
+                ],
+                "reviews": [
+                  {
+                    "submission": 1,
+                    "points": 2,
+                    "note": "The student explained this particular connection.",
+                    "at": "2026-10-06T18:47:17.858Z"
+                  }
+                ]
+              }
+            },
+            "events": [
+              {
+                "type": "answer_saved",
+                "at": "2026-10-06T18:47:17.858Z",
+                "task": "la-c01",
+                "submission": 1
+              }
+            ]
+          }
+        ]
+      },
+      "pre-algebra": {
+        "active": null,
+        "sessions": []
+      },
+      "algebra-1": {
+        "active": null,
+        "sessions": []
+      },
+      "geometry": {
+        "active": null,
+        "sessions": []
+      },
+      "algebra-2": {
+        "active": null,
+        "sessions": []
+      },
+      "af01": {
+        "active": null,
+        "sessions": []
+      },
+      "ad01": {
+        "active": null,
+        "sessions": []
+      },
+      "ae01": {
+        "active": null,
+        "sessions": []
+      }
+    }
+  },
+  "projects": {
+    "schema": "cluevera_project_portfolio_v1",
+    "bankVersion": "cluevera-projects-1",
+    "modules": {
+      "pre-algebra": {
+        "active": null,
+        "sessions": []
+      },
+      "algebra-1": {
+        "active": null,
+        "sessions": []
+      },
+      "geometry": {
+        "active": "2026-10-06T18:47:17.858Z-1-d01t1gt",
+        "sessions": [
+          {
+            "id": "2026-10-06T18:47:17.858Z-1-d01t1gt",
+            "module": "geometry",
+            "bankVersion": "cluevera-projects-1",
+            "createdAt": "2026-10-06T18:47:17.858Z",
+            "view": "task",
+            "index": 0,
+            "records": {
+              "ge-p01": {
+                "draft": {
+                  "values": {
+                    "map": {
+                      "points": {
+                        "M": [
+                          5,
+                          1
+                        ],
+                        "N": [
+                          1,
+                          4
+                        ],
+                        "G": [
+                          3.6666666666666665,
+                          3
+                        ]
+                      },
+                      "edges": [
+                        [
+                          "M",
+                          "N"
+                        ]
+                      ]
+                    },
+                    "gridArea": "24",
+                    "realArea": "2400",
+                    "midline": "50",
+                    "smallArea": "600",
+                    "similarity": "The map and calculation agree; I used the midpoint.",
+                    "centroid": "The map and calculation agree; I used the midpoint."
+                  },
+                  "explanation": "My own explanation from before the rename.",
+                  "unsure": false,
+                  "otherHelp": false,
+                  "notStudied": false
+                },
+                "status": "submitted",
+                "submissions": [
+                  {
+                    "at": "2026-10-06T18:47:17.859Z",
+                    "answer": {
+                      "values": {
+                        "map": {
+                          "points": {
+                            "M": [
+                              5,
+                              1
+                            ],
+                            "N": [
+                              1,
+                              4
+                            ],
+                            "G": [
+                              3.6666666666666665,
+                              3
+                            ]
+                          },
+                          "edges": [
+                            [
+                              "M",
+                              "N"
+                            ]
+                          ]
+                        },
+                        "gridArea": "24",
+                        "realArea": "2400",
+                        "midline": "50",
+                        "smallArea": "600",
+                        "similarity": "The map and calculation agree; I used the midpoint.",
+                        "centroid": "The map and calculation agree; I used the midpoint."
+                      },
+                      "explanation": "My own explanation from before the rename.",
+                      "unsure": false,
+                      "otherHelp": false,
+                      "notStudied": false
+                    },
+                    "objective": {
+                      "state": "review",
+                      "parts": {
+                        "map": true,
+                        "gridArea": true,
+                        "realArea": true,
+                        "midline": true,
+                        "smallArea": true,
+                        "similarity": null,
+                        "centroid": null
+                      }
+                    },
+                    "feedbackSeen": false,
+                    "taskVersion": "cluevera-projects-1"
+                  }
+                ],
+                "reviews": [
+                  {
+                    "submission": 1,
+                    "points": 2,
+                    "note": "The student explained this particular connection.",
+                    "at": "2026-10-06T18:47:17.859Z"
+                  }
+                ],
+                "partReviews": [
+                  {
+                    "field": "similarity",
+                    "submission": 1,
+                    "points": 2,
+                    "note": "This is a review of the original submitted explanation.",
+                    "at": "2026-10-06T18:47:17.859Z"
+                  }
+                ]
+              },
+              "ge-p02": {
+                "draft": {
+                  "values": {
+                    "route": {
+                      "points": {
+                        "U": [
+                          6,
+                          0
+                        ]
+                      },
+                      "edges": []
+                    },
+                    "walk": "",
+                    "direct": "",
+                    "area": "",
+                    "shortcut": "",
+                    "tangent": "",
+                    "circleReason": ""
+                  },
+                  "explanation": "Unfinished drawing with one point.",
+                  "unsure": false,
+                  "otherHelp": false,
+                  "notStudied": false
+                },
+                "status": "draft",
+                "submissions": [],
+                "reviews": [],
+                "partReviews": []
+              }
+            },
+            "events": [
+              {
+                "type": "answer_saved",
+                "at": "2026-10-06T18:47:17.859Z",
+                "task": "ge-p01",
+                "submission": 1
+              }
+            ]
+          }
+        ]
+      },
+      "algebra-2": {
+        "active": null,
+        "sessions": []
+      },
+      "af01": {
+        "active": null,
+        "sessions": []
+      },
+      "ad01": {
+        "active": null,
+        "sessions": []
+      },
+      "ae01": {
+        "active": null,
+        "sessions": []
+      },
+      "ab01": {
+        "active": null,
+        "sessions": []
+      }
+    }
+  }
+}

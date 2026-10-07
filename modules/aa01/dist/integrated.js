@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const M=window.ClueveraSketch;
+  const M=window.QuidenceSketch;
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const handles=id=>['C11','QP','QN'].includes(id);
   const functionId=id=>id==='QN'?'negative':'positive';
@@ -65,5 +65,5 @@
     if(key==='vertex')return {observed:{x:a.vx,y:a.vy},expected:{x:f.h,y:f.k}};
     return {observed:key==='extremum'?a.kind:a[key],expected:key==='extremum'?f.kind:f[key]};
   }
-  window.ClueveraIntegrated={handles,functionId,anchors,check,reasoning,form,preview,componentEvidence,reasonText,equationDrawing,stageCaption,route:(id,score)=>M.route(functionId(id),score)};
+  window.QuidenceIntegrated={handles,functionId,anchors,check,reasoning,form,preview,componentEvidence,reasonText,equationDrawing,stageCaption,route:(id,score)=>M.route(functionId(id),score)};
 })();
