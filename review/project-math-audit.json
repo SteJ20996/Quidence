@@ -50,12 +50,12 @@
     },
     "a1-p02": {
       "numbers": {
-        "root1": "6",
-        "root2": "9",
-        "constraint": "15/2",
-        "low": "6",
-        "high": "15/2",
-        "maximum": "225/2"
+        "root1": "5",
+        "root2": "10",
+        "constraint": "6",
+        "low": "5",
+        "high": "6",
+        "maximum": "108"
       },
       "formulas": {
         "length": [
@@ -69,7 +69,7 @@
         ]
       },
       "drawings": {},
-      "method": "Factor the area boundary, intersect inequalities, then compare a concave quadratic on the feasible interval."
+      "method": "Factor the area boundary, intersect inequalities, and reject the inadmissible unconstrained vertex."
     },
     "ge-p01": {
       "numbers": {
@@ -306,8 +306,8 @@
         "a22": "0",
         "tx": "-2",
         "ty": "6",
-        "inputX": "3",
-        "inputY": "2",
+        "inputX": "1",
+        "inputY": "4",
         "det": "2",
         "area": "6.0",
         "c1": "5/2",

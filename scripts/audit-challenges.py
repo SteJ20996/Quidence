@@ -65,9 +65,9 @@ R['la-c08']={'det':det2(A),'before':original,'after':after,'orientation':yn(det2
 A=[[1,2],[2,4]];c,p,r=projection([1,2],[3,5]);assert dot(r,[1,2])==0;R['la-c09']={'consistent':yn(classify(A,[3,5])!='none'),'p1':p[0],'p2':p[1],'unique':yn(rank(A)==2)}
 def affine(v,k):return [2*v[0]+v[1]+k,v[0]-v[1]]
 u=[1,0];v=[0,1];R['la-c10']={'k':0,'sumInput':affine([x+y for x,y in zip(u,v)],2)[0],'sumOutput':affine(u,2)[0]+affine(v,2)[0]}
-def param(k):return [[1,2,1],[0,k-1,2],[0,0,k+2]]
-assert (1-1)*(1+2)==0 and (-2-1)*(-2+2)==0
-A=param(1);R['la-c11']={'singular':['minus2','one'],'rank':rank(A),'nullity':3-rank(A),'consistent':yn(classify(A,[0,0,1])!='none')}
+def param(k):return [[1,2,1],[0,k-1,2],[0,0,k-1]]
+assert (1-1)**2==0 and (-2-1)**2!=0
+A=param(1);R['la-c11']={'singular':['one'],'rank':rank(A),'nullity':3-rank(A),'consistent':yn(classify(A,[0,0,1])!='none')}
 assert sum([0,0,0])!=1 and [1,0,0][0]*[1,0,0][1]==0 and [0,1,0][0]*[0,1,0][1]==0 and 1*1!=0
 R['la-c12']={'spaces':['s1','s4'],'d1':3-rank([[1,1,1]]),'d4':rank([[1,2,3],[2,4,6]])}
 conc,water=F(3,4),F(1,2);retained=1-F(2,5);left=conc*retained;volume=(conc+water)*retained+F(1,4)
@@ -76,7 +76,8 @@ original=(F('46.20')-3)/(1+F(8,100))/(1-F(20,100));discount=original*F(20,100);t
 R['pa-c02']={'original':original,'discount':discount,'tax':tax};assert original-discount+tax+3==F('46.20')
 rate=F(1,6)+F(1,4)-F(1,12);R['pa-c03']={'rate':rate,'time':1/rate,'amount':rate*F(3,2)}
 k=F(6,F(3,2)*4-3);R['pa-c04']={'boys':3*k,'girls':4*k,'total':7*k+6};assert (3*k+6)/(4*k)==F(3,2)
-R['a1-c01']={key:R['la-c01'][key]for key in ['k','x','y','changed']}
+exceptional=F(8,2);unique=solve([[3,2],[6,8]],[11,2+18]);assert exceptional+18==2*11 and 23!=2*11
+R['a1-c01']={'k':exceptional,'x':unique[0],'y':unique[1],'changed':'none'}
 lo,hi=F(-5+3,2),F(5+3,2);R['a1-c02']={'lower':lo,'upper':hi,'closed':yn(abs(2*lo-3)==5 and abs(2*hi-3)==5),'test':yn(abs(2*(-2)-3)<=5)}
 sides=quadratic(1,-28//2,45);R['a1-c03']={'b':-14,'c':45,'long':max(sides),'short':min(sides)};assert 2*sum(sides)==28 and sides[0]*sides[1]==45
 h=F(12-4,4-2);R['a1-c04']={'hours':h,'cost':12+2*h,'a':max(x for x in range(9)if 12+2*x<=25),'b':max(x for x in range(9)if 4+4*x<=25)}
@@ -105,7 +106,9 @@ R['pc-c03']={'holeX':1,'holeY':F(1+1,1-2),'vertical':2,'horizontal':1,'zero':-1}
 R['pc-c04']={'period':F(2,F(1,6)),'middle':F(F(1,2),F(1,6)),'minimum':5-3,'time':F(1,F(1,6))}
 a,b=solve([[1,1],[2,0]],[2,3]);R['ca-c01']={'a':a,'b':b,'derivative':2*a}
 # Product rule: (x²e^-x)' = e^-x(2x-x²); signs on either side of its interior root prove the maximum.
-assert 2*1-1**2>0 and 2*3-3**2<0;R['ca-c02']={'x':2,'m':2**2,'c':2*3-3**2}
+from math import exp
+maximum=4*exp(-2)
+assert 2*1-1**2>0 and 2*3-3**2<0 and maximum>16*exp(-4)>0;R['ca-c02']={'x':2,'m':maximum,'c':2*3-3**2}
 contributions=[integral_poly([3,-4,1],a,b)for a,b in [(0,1),(1,3),(3,4)]];net=sum(contributions)
 R['ca-c03']={'net':net,'distance':sum(abs(x)for x in contributions),'position':5+net}
 knots=[(0,2),(1,0),(2,-2),(4,0),(6,2)];areas=[F(b-a)*(F(ya)+F(yb))/2 for(a,ya),(b,yb)in zip(knots,knots[1:])];values=[F(0)]
@@ -119,5 +122,5 @@ R['st-c03']={'mean':mean,'variance':var,'newMean':newmean,'newVariance':newvar};
 xs=[1,2,3];ys=[2,1,4];alpha,beta,residual=regression(xs,ys);ymean=F(sum(ys),len(ys));sst=sum((F(y)-ymean)**2 for y in ys)
 R['st-c04']={'b':beta,'a':alpha,'residual':residual[1],'r2':1-dot(residual,residual)/sst}
 assert len(R)==40
-output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, and statistical identities. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,F))else value for field,value in answers.items()}for key,answers in R.items()}}
+output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
 path=Path(__file__).resolve().parents[1]/'review'/'challenge-math-audit.json';path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(output,indent=2)+'\n');print(json.dumps({'questions':len(R),'components':sum(len(x)for x in R.values()),'output':str(path)}))

@@ -1,5 +1,5 @@
 {
-  "method": "Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, and statistical identities. Authored answer keys are not imported.",
+  "method": "Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.",
   "questions": {
     "la-c01": {
       "k": "3",
@@ -73,7 +73,6 @@
     },
     "la-c11": {
       "singular": [
-        "minus2",
         "one"
       ],
       "rank": "2",
@@ -109,9 +108,9 @@
       "total": "20"
     },
     "a1-c01": {
-      "k": "3",
-      "x": "3",
-      "y": "0",
+      "k": "4",
+      "x": "4",
+      "y": "-1/2",
       "changed": "none"
     },
     "a1-c02": {
@@ -215,7 +214,7 @@
     },
     "ca-c02": {
       "x": "2",
-      "m": "4",
+      "m": "0.5413411329464508",
       "c": "-3"
     },
     "ca-c03": {

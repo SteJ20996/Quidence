@@ -1,6 +1,6 @@
 # Geometry lab · Beta 0.6
 
-All student-facing text is English. Both activities were composed for this project; no external question-bank text was copied.
+All student-facing text is English. Both activities were composed for this project with AI assistance; source comparison and rights review remain pending.
 
 ## V1 · Four parts of a volume
 

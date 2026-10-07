@@ -38,7 +38,7 @@ function mount(document,window){
  function render(){
   for(const button of host.querySelectorAll('[data-learning-subject]'))button.setAttribute('aria-pressed',String(button.dataset.learningSubject===goal.subject));
   document.getElementById('goal-subject-label').textContent=SUBJECTS[goal.subject].title;
-  course.href=SUBJECTS[goal.subject].course;foundation.hidden=!SUBJECTS[goal.subject].foundation;if(SUBJECTS[goal.subject].foundation)foundation.href=SUBJECTS[goal.subject].foundation;else foundation.removeAttribute('href');
+  course.href=SUBJECTS[goal.subject].course;foundation.hidden=!SUBJECTS[goal.subject].foundation;foundation.textContent=SUBJECTS[goal.subject].foundationLabel||'Complete a foundation check →';if(SUBJECTS[goal.subject].foundation)foundation.href=SUBJECTS[goal.subject].foundation;else foundation.removeAttribute('href');
   report.innerHTML='<option value="">Start with my question only</option>'+reports.filter(r=>r.module===goal.subject||(['pre-algebra','algebra-1'].includes(goal.subject)&&r.module==='aa01')).map(r=>'<option value="'+window.QuidenceReportTools.escape(r.id)+'">'+window.QuidenceReportTools.escape(new Date(r.versions.at(-1).savedAt).toLocaleString())+' · '+window.QuidenceReportTools.escape(r.versions.at(-1).payload.check||'learning report')+'</option>').join('');
   text.value=goal.text;area.hidden=true;persist();
  }

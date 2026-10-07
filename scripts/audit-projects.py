@@ -45,9 +45,9 @@ put('pa-p01',dict(concentrate=concentrate,fraction=fraction,cups=whole*F(9,10)/F
 distance=(F(7,2)+4)*F(2,5);walk=distance/3*60;elapsed=walk+24;deadline=90
 put('pa-p02',dict(distance=distance,elevation=80+135-90,climb=135,walking=walk,elapsed=elapsed,spare=deadline-elapsed,newSpeed=(distance+F(1,2))/F(deadline-24)*60),'Map length versus height; clock arithmetic; solve a reverse speed constraint.')
 put('a1-p01',dict(minimum=ceil(F(90,20-12)),surplus=20*18-(90+12*18),freeMinimum=ceil(F(90+3*20,20-12)),adults=solve([[1,1],[18,14]],[20,328])[0],students=solve([[1,1],[18,14]],[20,328])[1],balance=328-(90+12*20)), 'Solve linear and integer inequalities; recover a ticket mixture and verify both totals.', {'cost':['90','12']})
-roots=(F(6),F(9));assert all(x*(30-2*x)==108 for x in roots)
-vertex=F(30,4);shape=F(30,4)
-put('a1-p02',dict(root1=roots[0],root2=roots[1],constraint=shape,low=roots[0],high=min(roots[1],shape),maximum=vertex*(30-2*vertex)), 'Factor the area boundary, intersect inequalities, then compare a concave quadratic on the feasible interval.', {'length':['30','-2'],'area':['0','30','-2']})
+roots=(F(5),F(10));assert all(x*(30-2*x)==100 for x in roots)
+vertex=F(30,4);shape=F(30,2+3);constrained=min(vertex,shape);assert 30-2*vertex<3*vertex and 30-2*constrained>=3*constrained
+put('a1-p02',dict(root1=roots[0],root2=roots[1],constraint=shape,low=roots[0],high=min(roots[1],shape),maximum=constrained*(30-2*constrained)), 'Factor the area boundary, intersect inequalities, and reject the inadmissible unconstrained vertex.', {'length':['30','-2'],'area':['0','30','-2']})
 
 # Geometry from transformations, cross products and exact median coordinates.
 l,p,c=[list(map(F,q)) for q in [[1,1],[9,1],[1,7]]]
@@ -97,7 +97,7 @@ put('st-p02',dict(mainMean=mean(main),pocketMean=mean(pocket),pooledMean=mean(ma
 a=[[1,1],[1,-1],[2,0]];b=[5,4,6];x,r,sse=ls(a,b,[1,1,1]);wx,wr,wsse=ls(a,b,[1,1,F(1,4)])
 assert det(a[:2])!=0 and b[2]!=b[0]+b[1]
 put('la-p01',dict(rank=2,x=x[0],y=x[1],r1=r[0],r2=r[1],r3=r[2],sse=sse,weightedX=wx[0],weightedY=wx[1],weightedError=wsse), 'Independent elimination of AᵀWA systems; exact residuals and weighted orthogonality under both metrics.')
-r=[[0,-1],[1,0]];s=[[2,0],[0,1]];t=mm(r,s);w=[3,2];tw=mv(t,w);recovered=solve(t,tw);tc=solve([[1,1],[1,-1]],tw);wc=solve([[1,1],[1,-1]],w);twice=mv(t,tw)
+r=[[0,-1],[1,0]];s=[[2,0],[0,1]];t=mm(r,s);w=[3,2];tw=mv(t,w);recovered=solve(t,[-4,2]);tc=solve([[1,1],[1,-1]],tw);wc=solve([[1,1],[1,-1]],w);twice=mv(t,tw)
 vertices=[[0,0],[3,0],[3,2]];area=abs(signed_area(vertices));mappedarea=abs(signed_area([mv(t,z) for z in vertices]));assert mappedarea==abs(det(t))*area
 put('la-p02',dict(a11=t[0][0],a12=t[0][1],a21=t[1][0],a22=t[1][1],tx=tw[0],ty=tw[1],inputX=recovered[0],inputY=recovered[1],det=det(t),area=mappedarea,c1=wc[0],c2=wc[1],outC1=tc[0],outC2=tc[1],twiceX=twice[0],twiceY=twice[1]), 'Independent composition, inverse solve, transformed shoelace area and basis solves; check T²=-2I.')
 

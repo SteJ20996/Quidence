@@ -27,6 +27,13 @@ test('backup restores exact raw records locally, refuses overwrite and unsupport
  assert.throws(()=>Local.create(storage()).restore({schema:Local.SCHEMA,records:{unrelated_widget:'overwrite'}}),/unsupported/);
  const fail=storage();const write=fail.setItem;fail.setItem=(k,v)=>{if(k===Local.META)throw Error('quota');write(k,v);};assert.throws(()=>Local.create(fail).restore(backup),/could not be restored/);assert.equal(fail.getItem(KEY),null);
 });
+test('backup inspection reports missing, identical and conflicting records without writing or merging',()=>{
+ const s=storage([[KEY,'keep my response'],['cluevera_saved_reports_v1','same reports']]),c=Local.create(s),before=[...s.map];
+ const backup={schema:Local.SCHEMA,records:{[KEY]:'different response',cluevera_saved_reports_v1:'same reports',cluevera_foundation_portfolio_v1:'new foundation work'}};
+ assert.deepEqual(c.inspectBackup(backup),{total:3,missing:1,identical:1,conflicting:1});assert.deepEqual([...s.map],before);
+ assert.throws(()=>c.restore(backup),/different records/);assert.deepEqual([...s.map],before);
+ delete backup.records[KEY];assert.deepEqual(c.restore(backup),{total:2,missing:1,identical:1,conflicting:0});assert.equal(s.getItem(KEY),'keep my response');assert.equal(s.getItem('cluevera_foundation_portfolio_v1'),'new foundation work');
+});
 test('browser local-record controls never fetch and implement download, cancel and confirmed deletion',async()=>{
  const body=new Element('body');body.innerHTML=fs.readFileSync(path.join(root,'records/index.html'),'utf8');const q=id=>body.querySelector('#'+id),s=storage([[KEY,'private unfinished response']]),downloads=[],listeners={},docListeners={};
  const document={currentScript:{src:'https://example.test/assets/local-records.js'},body,getElementById:q,createTextNode:text=>({textContent:text}),createElement:tag=>{const e=new Element(tag);e.style={};e.remove=()=>{};e.click=()=>downloads.push(e.download);return e;},addEventListener:(event,fn)=>docListeners[event]=fn};body.prepend=()=>{};
