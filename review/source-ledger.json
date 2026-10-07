@@ -1,6 +1,6 @@
 {
   "schema": "quidence-source-review-1",
-  "date": "2026-10-06",
+  "date": "2026-10-07",
   "status": "inventory-only",
   "interpretation": "No item is cleared by generation, mathematical tests, a fingerprint or an originality label. Human contribution, source comparison and any required permission remain unverified. Review records must be retained separately when this snapshot is rebuilt.",
   "scope": "Active structured task banks, course checks, matrix learning tasks, adaptive algebra and visual-algebra main prompts. Retired foundation/followup definitions retained and marked historical-only. Not a complete inventory of tutorial prose, all interactive matrix guides, external links, logos or archived files.",
@@ -569,14 +569,18 @@
       "module": "ab01",
       "taskId": "la-c01",
       "title": "A parameter changes the solution set",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "6703f6d63d418da999cbecfa5783dc9e95104090722a129c62bc11c5984c4582",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -597,14 +601,18 @@
       "module": "ab01",
       "taskId": "la-c02",
       "title": "A complete solution, not just one vector",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "f31e2b81d0b5843844b6897d4ca214b5fcf4f3e6b13680a0942ae4ed186f2ae4",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -625,14 +633,18 @@
       "module": "ab01",
       "taskId": "la-c03",
       "title": "Compose and then undo two maps",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "42f52c7f7d433b800d30433ff6f15310c07ea09415196bcfe1b4ae9fa485de59",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -653,14 +665,18 @@
       "module": "ab01",
       "taskId": "la-c04",
       "title": "The same map in a different basis",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "539151d341affaa5fdaed75d9cac0b40a00eab28f599e16fffe3250ea5da71e2",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -681,14 +697,18 @@
       "module": "ab01",
       "taskId": "la-c05",
       "title": "Project and test the residual",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "91ef92117af179eb09ea809461077459170b2b37c9f1b3de005ff6e209c16e49",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -709,14 +729,18 @@
       "module": "ab01",
       "taskId": "la-c06",
       "title": "Fit a line without pretending it is exact",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "c261edca701c8ed58f82383a5a927488c89b2d1a09d5d3c52137e8380c1e748d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -737,14 +761,18 @@
       "module": "ab01",
       "taskId": "la-c07",
       "title": "Eigenvectors are more than coordinate-wise ratios",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "b23453e0cbed0e9fac504f460c8ebf7ab6c68d3408a25030c8c2f144b377023e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -765,14 +793,18 @@
       "module": "ab01",
       "taskId": "la-c08",
       "title": "Area change and orientation are different signs",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
-      "fingerprint": "a8dfb7f5cf6f88b4a2cb2414290ae7ebcfdcb51bf260bd86f57fa9abe44e1ffd",
+      "fingerprint": "571eb5d4b5c31869f0a37d9713ae7c77739a0df16736d679e13725a7448427e8",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -793,14 +825,18 @@
       "module": "ab01",
       "taskId": "la-c09",
       "title": "An unreachable target still has a closest image",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "23024c36819588c6f58165d9745974798111b05a4bc06862f5357528b95f86df",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -821,14 +857,18 @@
       "module": "ab01",
       "taskId": "la-c10",
       "title": "A translation hidden inside a map",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "c8647aaa76cc602c6fe3cdca18af433d9e27554a015e69c8ee3e9a42972b3c8a",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -849,14 +889,18 @@
       "module": "ab01",
       "taskId": "la-c11",
       "title": "A zero determinant does not finish the analysis",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
-      "fingerprint": "b334c5449b6c9ecff66efd1400aefef7f736f6d444d73bab3cd84f51d09a6730",
+      "fingerprint": "8674d6b6d72d21ccf8835f62bf5fe0171bb791103b29438e66d4fbaabca8a16e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -877,14 +921,18 @@
       "module": "ab01",
       "taskId": "la-c12",
       "title": "Subspace tests must survive addition",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "ce9c4728bab46107f0cf0aac520cfd96613a93461c3080b4dd8582191a041370",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -905,14 +953,18 @@
       "module": "ad01",
       "taskId": "ca-c01",
       "title": "Continuity is only the first condition",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "e8b9b69806d0d593f6962c80b1e8b4e76218be1d6804d9661f9a3da527c90ae4",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -933,14 +985,18 @@
       "module": "ad01",
       "taskId": "ca-c02",
       "title": "Find a global maximum with endpoints",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
-      "fingerprint": "993b4cdb9ac6cdb9cfa79a2786d4a415a4943fd6ee276614b79bd5de0be99416",
+      "fingerprint": "b8051ce2d3f571b569aff693500072e0d0a72c290fd9086ddd8e062cfab28fbb",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -961,14 +1017,18 @@
       "module": "ad01",
       "taskId": "ca-c03",
       "title": "Distance needs the internal sign changes",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "0a5550f983c81f30d2fcab2a90dd6e2135b6e982ca3da1202a4a2589ba6f5bd4",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -989,14 +1049,18 @@
       "module": "ad01",
       "taskId": "ca-c04",
       "title": "The accumulation maximum is not the tallest point",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "9c497bcc96b139c9c37f8b08b189028de86436c79d5173f89a93d57b6ff8911d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1017,14 +1081,18 @@
       "module": "ae01",
       "taskId": "st-c01",
       "title": "Reverse a flag probability carefully",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "d8134bed664639c759ebf3a6d26ae827b899477ffbf3f37b52d744045812a886",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1045,14 +1113,18 @@
       "module": "ae01",
       "taskId": "st-c02",
       "title": "Group comparisons can reverse when combined",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "206127111661b9800ddee132900e80164fec61f5bbecf91493b616fe6fbea6a8",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1073,14 +1145,18 @@
       "module": "ae01",
       "taskId": "st-c03",
       "title": "Compute variance, then transform it",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "7dfeb98ee312b30e331265c949aea0dfd132702202fc62956e1384f299ed8868",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1101,14 +1177,18 @@
       "module": "ae01",
       "taskId": "st-c04",
       "title": "Fit, inspect a residual, and interpret r²",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "6865a41d0a00da8e2f7e5d4f5d21ec07ccca0ad7a6c147d77bce77c566fa8769",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1129,14 +1209,18 @@
       "module": "af01",
       "taskId": "pc-c01",
       "title": "Both composition domains need a fresh check",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "058671d94d7ecf9a11ce449b01a6cc4a696f2a70fdf176f6d62028f858dceaa3",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1157,14 +1241,18 @@
       "module": "af01",
       "taskId": "pc-c02",
       "title": "Return from a quadratic to every angle",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
-      "fingerprint": "19b3acbed144a583ee6483ca4b61fbc38fd437085659c71815bc9976d60b4d4d",
+      "fingerprint": "35bed5531f896dcaba9703f85605e78bf5206cf6648df4cdb76444639ee1d4b1",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1185,14 +1273,18 @@
       "module": "af01",
       "taskId": "pc-c03",
       "title": "A cancelled factor leaves a hole",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "9c2d8648c67915bc42d04e72be847b6b22cae638cd1476bcfa4fd7a55f4b3ea5",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1213,14 +1305,18 @@
       "module": "af01",
       "taskId": "pc-c04",
       "title": "Interpret a periodic model across a full cycle",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "7e382471b12babe6337bef934f2db895e236a364f10c95f0e768fc4184915c6e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1241,14 +1337,18 @@
       "module": "algebra-1",
       "taskId": "a1-c01",
       "title": "When elimination loses a pivot",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "934bf010718028e2694b35e4a10da3d68ee34f35519c325c30f66d74f4a22c54",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1269,14 +1369,18 @@
       "module": "algebra-1",
       "taskId": "a1-c02",
       "title": "An absolute-value bound needs two sides",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "f5968fa5481abac5bde17c6c14e7c98d40e7c5a17583767fe043f1b0bebbf695",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1297,14 +1401,18 @@
       "module": "algebra-1",
       "taskId": "a1-c03",
       "title": "A quadratic comes from a geometric constraint",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "f1bb2efbf0dca384aaf861b2c70a0bbb2109e5be1f28a24beecd64d89b8f808f",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1325,14 +1433,18 @@
       "module": "algebra-1",
       "taskId": "a1-c04",
       "title": "Choose a rule over a whole interval",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "6a66f45cb6dc3189029e49ee3ed858da873cddab904c4f35c296956211bf3a46",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1353,14 +1465,18 @@
       "module": "algebra-2",
       "taskId": "a2-c01",
       "title": "Solve without losing the forbidden inputs",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "26bd76206dc233bd78a27dae16d30c7555265d81b9405b8c3c6df24346dc0c72",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1381,14 +1497,18 @@
       "module": "algebra-2",
       "taskId": "a2-c02",
       "title": "A product equation can invent a log solution",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "639b51220572d4cbb11fd791de04f1beb7b3f63258ac583cecdf7006b6b8378a",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1409,14 +1529,18 @@
       "module": "algebra-2",
       "taskId": "a2-c03",
       "title": "Multiplicity controls a sign change",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "df2d3b973a69f0aa901dfaaf213ee4aa43d2524d7718e199168a7086ddd492fb",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1437,14 +1561,18 @@
       "module": "algebra-2",
       "taskId": "a2-c04",
       "title": "An exponential substitution still has a domain",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "1c758702493efefda7a6319f5cec5c18dd10fd1cecea0ebbdc7f233e00cb7afb",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1465,14 +1593,18 @@
       "module": "geometry",
       "taskId": "ge-c01",
       "title": "Coordinates must support a similarity claim",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "e718d15c95d338160fbfdb9b6ef2cc04b3898e2e5b84b54bc524aa776be292cf",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1493,14 +1625,18 @@
       "module": "geometry",
       "taskId": "ge-c02",
       "title": "An altitude splits the hypotenuse",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "892e7060159d7a67feaa549de7782d62baa0d34cab88a8693dd5c1a219064608",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1521,14 +1657,18 @@
       "module": "geometry",
       "taskId": "ge-c03",
       "title": "Cutting a cone uses a cubic scale",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "2359ea9c0e5b673474921da4916a4bd60f02c0ec55f64bb8ccd7a1e3f00df3fc",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1549,14 +1689,18 @@
       "module": "geometry",
       "taskId": "ge-c04",
       "title": "A tangent and a secant describe one power",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "a71d0c92bb436d4871b85b36bc1d14db985256e0428047b4a43f58c7a5a49c78",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1577,14 +1721,18 @@
       "module": "pre-algebra",
       "taskId": "pa-c01",
       "title": "Remove a mixture, then dilute it",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "2cdeedf30ddb3bdf1dd62a37dfdbb3a47b02b8e7746fe23ceb709feea4606feb",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1605,14 +1753,18 @@
       "module": "pre-algebra",
       "taskId": "pa-c02",
       "title": "Recover a price through two changing bases",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "643bfd83d8433c88c24087ea6eb4d3d6aef2ef0466bfb6e6ad55418686741673",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1633,14 +1785,18 @@
       "module": "pre-algebra",
       "taskId": "pa-c03",
       "title": "Add filling rates, not filling times",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "32ed369669fb25aa13e54fe401f9f5defd3fb873a6578281c3a46923eb15c15c",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -1661,14 +1817,18 @@
       "module": "pre-algebra",
       "taskId": "pa-c04",
       "title": "Find the counts behind a changed ratio",
-      "bankVersion": "cluevera-challenges-1",
+      "bankVersion": "quidence-challenges-2",
       "availability": "active",
       "fingerprint": "0abc285c3c0911899841d9ddbc561f0347e35715a8403fd5bba861b720bba9f6",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "ed51b79726b9bacf3e93a4a0f96226999330efa128e34c57aeb551de735772cf"
+          "sha256": "8f821e28f0938d696b4ee33cf31bcbd2f8015caad184f39f5d369edd6b968958"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
         }
       ],
       "sourceReview": {
@@ -8259,14 +8419,18 @@
       "module": "ab01",
       "taskId": "la-p01",
       "title": "Three sensors cannot all be right",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "6b6b8ae652ac0f8ba977b6033c336c004345a7c30a6b8306a9580fed7a43bc5d",
+      "fingerprint": "1f868633b94a4361d9c12f71e9ba1b3977387bd4e4e92a0f5b40c1eb6ebd69e2",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {
@@ -8287,14 +8451,18 @@
       "module": "ab01",
       "taskId": "la-p02",
       "title": "A route map that stretches before it turns",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "3a4f020c453a3e037166b06e94a4969a95a05ea54cb01de3768162bf48247b63",
+      "fingerprint": "da8075a3e7154ed019786895b6ae8a96cf7641a49f1058cbc592cc3778d23741",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {
@@ -8315,14 +8483,18 @@
       "module": "ad01",
       "taskId": "ca-p01",
       "title": "The rider turns back twice",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "0af3cb9ac304bf12d22c91cfb791148343ef0b2bcc4649132f5bc448b1ae8d5c",
+      "fingerprint": "6f7c6840d207345b655e3bb2c42f342a16ca7e0314e5b22d2e25f8c043ecfe74",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {
@@ -8343,14 +8515,18 @@
       "module": "ad01",
       "taskId": "ca-p02",
       "title": "What does the solar inverter throw away?",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "25d83c99d7de0575dea190c81980fe4b09b5dbd256128e20d2c5c1c378757f45",
+      "fingerprint": "84603b9bf4cdd740e0607ee45aab9b7f96f61c46da5ba75a75861f8ebbe13540",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {
@@ -8371,14 +8547,18 @@
       "module": "ae01",
       "taskId": "st-p01",
       "title": "Same riders, two training routines",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "345d939fe8194be8cfc528fe52c87883a1179cc557f18e75c34ec5a45035ea07",
+      "fingerprint": "be1a35d808b29301b478c95b522338d0c769de3121249bd44b7a3d12224381fe",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {
@@ -8399,14 +8579,18 @@
       "module": "ae01",
       "taskId": "st-p02",
       "title": "Equal sample sizes, unequal coastline",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "9b151e28af3e44889d1df9520f5ccb4911a8623cedddf4809fd8a11655d4f122",
+      "fingerprint": "0776abbfb36c81647bca520c5b23ab463774e4752381f5eb2916a75d869f841e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {
@@ -8427,14 +8611,18 @@
       "module": "af01",
       "taskId": "pc-p01",
       "title": "A tide-shaped model with two crossings",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "f02b1e611f068d57448a7f5e9bb76f87bbda4287681ab4e47f62560d4083ea6d",
+      "fingerprint": "216ac9a3d174b87ade165e6902ce78d185a61962b3a69d1da5de36a2b4b8137d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {
@@ -8455,14 +8643,18 @@
       "module": "af01",
       "taskId": "pc-p02",
       "title": "Find the trail connector, not the wrong bearing",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "ab00f4a107813b209951495d003a6da2f05f64d12f19465e5c1b9294bca99734",
+      "fingerprint": "3803c764f6938dcf245bff1b2f56ea9528176d122f4a29a9734d62a5b41ba14c",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {
@@ -8483,14 +8675,18 @@
       "module": "algebra-1",
       "taskId": "a1-p01",
       "title": "A basketball trip that almost balances",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "edfd3d3810176a00ec9d48d54788283c616a8d104bf0c5cc7783089a6a6f6dc2",
+      "fingerprint": "d1f2a929985d33d26a9162ed357faa55d8c4a817a8793461acc66bcfc8ad5386",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {
@@ -8511,14 +8707,18 @@
       "module": "algebra-1",
       "taskId": "a1-p02",
       "title": "Design shade beside a community court",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "8ae6279d689d07626277408d1cd774e62139851f37c1024bf333e157a67fc4e7",
+      "fingerprint": "486177dd306bef4f0f712b4cee98c0c2a300bbc2611c545725eb4d7802da3274",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {
@@ -8539,14 +8739,18 @@
       "module": "algebra-2",
       "taskId": "a2-p01",
       "title": "Two times at hoop height",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "feb9d7eebc5b2b9754a0f9b534f5e89ba347e4c96c60d8b797eef56cd7b175ef",
+      "fingerprint": "4e9f727470b4b1f62d473a228c110c593993e529793eaec061ab3e1931ef3ff9",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {
@@ -8567,14 +8771,18 @@
       "module": "algebra-2",
       "taskId": "a2-p02",
       "title": "Which classroom decay model fits your question?",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "6cd1bd741e31233ee159d6ecde14c66717aedbd1d73ded995b47f8ae98103358",
+      "fingerprint": "59cbfe940f21169cfc732732f8a733a3f24bd812fd8fd0048ec76354ba6b9a30",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {
@@ -8595,14 +8803,18 @@
       "module": "geometry",
       "taskId": "ge-p01",
       "title": "Survey a coastal picnic space",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "b982c463bce7fd8b560aa977167619bdf5afa9bd29d8abd4a935e5bed7b823ac",
+      "fingerprint": "14beb71bdb2147e40be3cefe124fab625710781fda6661e0e5d1f27557e2112d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {
@@ -8623,14 +8835,18 @@
       "module": "geometry",
       "taskId": "ge-p02",
       "title": "Rotate a cycling route and check a shortcut",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "5f95843a4da6dfd0693c211b0a71aab208d6f15d04b9a1ca79a11567290afe0a",
+      "fingerprint": "9bfaf36ea42480ce0bf2df135bff1c71b0cd2541a8660e657b2799ac148b39dd",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {
@@ -8651,14 +8867,18 @@
       "module": "pre-algebra",
       "taskId": "pa-p01",
       "title": "Can the running club serve everyone?",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "53124fc4df5c0fc0f52bd430d859d03364664e818cf4f50f05ac69e9438bc443",
+      "fingerprint": "db4fcbffce642cb2a9090d3404d38b885eaf66429d26cca8e064bec05b80c1aa",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {
@@ -8679,14 +8899,18 @@
       "module": "pre-algebra",
       "taskId": "pa-p02",
       "title": "A field-trip map and a bus deadline",
-      "bankVersion": "cluevera-projects-1",
+      "bankVersion": "quidence-projects-2",
       "availability": "active",
-      "fingerprint": "99af714088683ca6c5432c0083ef4977011251dda1e9af7294543ca23d04ec26",
+      "fingerprint": "9f8a349e0e55088d9d9c8537f4f121b01ab0a563ee79d57c8a9d5d6b851dc01e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "e201e64212aa90fb3c10f11d60eaebd60afb88e02d24dad6d2bd402ceb51707c"
+          "sha256": "f2ea1ac11328997d9b2c0af5660b732f988fb269cf1358ba35368db495e5ae72"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
         }
       ],
       "sourceReview": {

@@ -13,14 +13,21 @@ function create(storage,policy=P){
  function exportWork(){return{schema:SCHEMA,exportedAt:new Date().toISOString(),records:Object.fromEntries(keys(storage).filter(k=>managed(k,policy)).map(k=>[k,storage.getItem(k)]))};}
  function token(){return Date.now()+':'+Math.random().toString(36).slice(2);}
  function clear(){const id=token();storage.setItem(GENERATION,'clearing:'+id);try{for(const key of keys(storage).filter(k=>managed(k,policy)))storage.removeItem(key);}finally{storage.setItem(GENERATION,'ready:'+id);}}
- function restore(backup){
+ function inspectBackup(backup){
   if(!backup||backup.schema!==SCHEMA||!backup.records||typeof backup.records!=='object'||Array.isArray(backup.records))throw Error('Choose a Quidence local-record backup. Other exports can be read separately.');
   const entries=Object.entries(backup.records);if(!entries.length||entries.length>10000||entries.some(([k,v])=>!managed(k,policy)||typeof v!=='string'))throw Error('This backup has an unsupported record. Your current records are kept.');
-  if(entries.some(([k,v])=>storage.getItem(k)!==null&&storage.getItem(k)!==v))throw Error('This browser has different records. Download them first, then clear learning records before restoring this backup.');
+  const counts={total:entries.length,missing:0,identical:0,conflicting:0};
+  for(const[k,v]of entries){const saved=storage.getItem(k);counts[saved===null?'missing':saved===v?'identical':'conflicting']++;}
+  return counts;
+ }
+ function restore(backup){
+  const counts=inspectBackup(backup),entries=Object.entries(backup.records);
+  if(counts.conflicting)throw Error('This browser has different records in '+counts.conflicting+' record group(s). Nothing was restored. Use a separate browser profile to view this backup without changing your current work, or download your current backup before clearing and replacing records.');
   const id=token(),added=[];storage.setItem(GENERATION,'clearing:'+id);
   try{for(const[k,v]of entries)if(storage.getItem(k)===null){added.push(k);storage.setItem(k,v);}}catch(e){for(const key of added)storage.removeItem(key);throw Error('The backup could not be restored. Check browser storage space; your previous records are kept.');}finally{storage.setItem(GENERATION,'ready:'+id);}
+  return counts;
  }
- return{adapter,exportWork,clear,restore,check,blocked:()=>blocked};
+ return{adapter,exportWork,clear,inspectBackup,restore,check,blocked:()=>blocked};
 }
 function mount(window){
  const document=window.document,policy=window.QuidenceSyncPolicy,script=document.currentScript?.src;if(!document||!policy)return;
@@ -44,7 +51,7 @@ function mount(window){
   });
   document.getElementById('local-import').addEventListener('change',async event=>{
    const file=event.target.files?.[0];if(!file)return;
-   try{if(file.size>64*1024*1024)throw Error('This backup is too large for this restore tool. Keep the file and use a smaller device backup.');const backup=JSON.parse(await file.text());if(!window.confirm('Restore this backup on this browser? It can contain private answers. Existing different records will not be overwritten.'))return;controller.restore(backup);status.textContent='Backup restored locally. Reload before continuing a course.';}catch(e){status.textContent=e.message||'This backup could not be read. Your current records are kept.';}finally{event.target.value='';}
+   try{if(file.size>64*1024*1024)throw Error('This backup is too large for this restore tool. Keep the file and use a smaller device backup.');const backup=JSON.parse(await file.text()),counts=controller.inspectBackup(backup);if(counts.conflicting)throw Error('Backup checked: '+counts.total+' record groups; '+counts.conflicting+' differ from this browser. Nothing was restored. Use a separate browser profile to view it safely. To replace your work instead, download your current backup before clearing browser records.');if(!window.confirm('Restore '+counts.missing+' missing record groups? '+counts.identical+' identical groups are already here. This backup can contain private answers; existing different records will not be overwritten.'))return;controller.restore(backup);status.textContent='Backup restored locally: '+counts.missing+' record groups added; '+counts.identical+' identical groups kept. Reload before continuing a course.';}catch(e){status.textContent=e.message||'This backup could not be read. Your current records are kept.';}finally{event.target.value='';}
   });
  });
 }

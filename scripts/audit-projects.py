@@ -97,7 +97,7 @@ put('st-p02',dict(mainMean=mean(main),pocketMean=mean(pocket),pooledMean=mean(ma
 a=[[1,1],[1,-1],[2,0]];b=[5,4,6];x,r,sse=ls(a,b,[1,1,1]);wx,wr,wsse=ls(a,b,[1,1,F(1,4)])
 assert det(a[:2])!=0 and b[2]!=b[0]+b[1]
 put('la-p01',dict(rank=2,x=x[0],y=x[1],r1=r[0],r2=r[1],r3=r[2],sse=sse,weightedX=wx[0],weightedY=wx[1],weightedError=wsse), 'Independent elimination of AᵀWA systems; exact residuals and weighted orthogonality under both metrics.')
-r=[[0,-1],[1,0]];s=[[2,0],[0,1]];t=mm(r,s);w=[3,2];tw=mv(t,w);recovered=solve(t,tw);tc=solve([[1,1],[1,-1]],tw);wc=solve([[1,1],[1,-1]],w);twice=mv(t,tw)
+r=[[0,-1],[1,0]];s=[[2,0],[0,1]];t=mm(r,s);w=[3,2];tw=mv(t,w);recovered=solve(t,[-4,2]);tc=solve([[1,1],[1,-1]],tw);wc=solve([[1,1],[1,-1]],w);twice=mv(t,tw)
 vertices=[[0,0],[3,0],[3,2]];area=abs(signed_area(vertices));mappedarea=abs(signed_area([mv(t,z) for z in vertices]));assert mappedarea==abs(det(t))*area
 put('la-p02',dict(a11=t[0][0],a12=t[0][1],a21=t[1][0],a22=t[1][1],tx=tw[0],ty=tw[1],inputX=recovered[0],inputY=recovered[1],det=det(t),area=mappedarea,c1=wc[0],c2=wc[1],outC1=tc[0],outC2=tc[1],twiceX=twice[0],twiceY=twice[1]), 'Independent composition, inverse solve, transformed shoelace area and basis solves; check T²=-2I.')
 
