@@ -8,9 +8,14 @@
   "scripts": {
     "start": "node backend/server.cjs",
     "build:static": "node scripts/build-static-release.cjs",
+    "version:activities": "node scripts/version-activity-assets.cjs",
+    "test:browser": "node scripts/test-activity-browser.cjs",
     "test": "node scripts/test-all.cjs",
     "test:sync": "node --test tests/backend-sync.test.cjs tests/sync-client.test.cjs tests/security.test.cjs",
     "test:projects": "node --test tests/projects.test.cjs",
     "test:diagnostics": "node --test tests/challenges.test.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
   }
 }

@@ -238,3 +238,7 @@ test('activity navigation follows all ten subjects and preserves unfinished work
   h.controller.select('af01');h.controller.select('ab01');assert.equal(JSON.stringify(h.controller.current().records),before);assert(h.host.querySelector('[data-f-action="report"]').disabled);assert.equal(h.host.querySelector('[data-f-field="'+field.id+'"]').value,'123/7');
  }
 });
+
+test('published activity documents and their incoming links use current resource fingerprints',()=>{
+ assert.doesNotThrow(()=>require('../scripts/version-activity-assets.cjs').versionActivities(true));
+});

@@ -111,6 +111,7 @@ npm start
 | `EADDRINUSE`，3000 端口已占用 | 先检查是否已经开过服务器，直接访问已有地址；要重启时先在原终端按 Ctrl+C。确需换端口时使用下方命令 |
 | 网页无法连接 | 检查终端是否还在运行、是否显示报错，以及地址是否为 `http://127.0.0.1:3000/` |
 | 换了地址后看不到记录 | 回到原来的浏览器资料夹和原地址；按需在那里导出备份，再到新地址手动恢复 |
+| 更新后项目页还是旧样式，或页头与导航不一致 | 停止原服务器，完整更新同一个程序目录，再运行 `npm start` 并从主页重新进入。必要时用 Cmd+Shift+R（macOS）或 Ctrl+Shift+R（Windows）强制刷新；无需清除网站数据。入口和资源现在带内容版本，更新 URL 不会更换记录来源 |
 
 临时改用 3001 端口，macOS Terminal：
 
@@ -131,7 +132,19 @@ npm.cmd start
 
 静态托管前运行 `npm run build:static`，只发布生成的 `static-release/`，不要发布整个仓库。脚本要求输出目录不存在，避免旧文件混入新包。生成的 `_headers` 适用于 Cloudflare Pages 静态响应；其他托管方须等效配置安全响应头。这个命令只准备文件，不部署网站，不表示来源审核已经通过。详见 [OVERALL_REVIEW_2026-10-07.md](OVERALL_REVIEW_2026-10-07.md)。
 
-`npm test` 检查记录保护、题目数学、DOM 流程和来源清单；GitHub Actions 自动执行这些检查及发布包构建。真实浏览器端到端覆盖和 macOS/iPad 实测仍待完成。账户相关代码仅供开发测试，不能据此重开公测账户。
+`npm test` 检查记录保护、题目数学、DOM 流程、活动资源版本和来源清单；GitHub Actions 自动执行这些检查、发布包构建及 Chromium 活动页检查。macOS/iPad、Safari、Firefox 和打印交互仍需实测。账户相关代码仅供开发测试，不能据此重开公测账户。
+
+修改活动页、共用资源或重新生成主页/课程页后，先运行 `npm run version:activities`，并提交更新的 HTML。该脚本按实际文件内容更新基础检查、检查、项目页的 CSS/JS URL，以及主页和课程页的活动入口；不修改题目或学生记录。
+
+浏览器检查仅需开发依赖，日常 `npm start` 仍可直接运行：
+
+```sh
+npm ci
+npx playwright install chromium
+npm run test:browser
+```
+
+此检查在隔离浏览器中运行，覆盖十科项目/检查页的四种屏幕宽度、草稿刷新与切科目、新标签页及旧 HTTP 缓存升级，不读取个人浏览器记录。Linux 缺少系统依赖时使用 `npx playwright install --with-deps chromium`。
 
 ## 主要位置
 
