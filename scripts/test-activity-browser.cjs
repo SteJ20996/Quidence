@@ -54,6 +54,8 @@ async function run() {
     assert.equal(await cached.evaluate(() => window.staleActivityAsset), undefined);
     await cacheContext.close();
 
+    await checkHomepage(browser, origin, capture, errors, failures);
+
     let pages = 0, drafts = 0;
     for (const width of [1440, 768, 375, 320]) {
       const context = await browser.newContext({viewport: {width, height: 1000}}), page = await context.newPage();
@@ -109,6 +111,94 @@ async function run() {
     if (browser) await browser.close();
     await new Promise(resolve => server.close(resolve));
   }
+}
+
+async function checkHomepage(browser, origin, capture, errors, failures) {
+  const request = 'I want to understand how a graph connects to an equation, and practise solving homework step by step.';
+  let reports = 0;
+  for (const width of [1440, 768, 375, 320]) {
+    const context = await browser.newContext({viewport: {width, height: width > 760 ? 1350 : 900}}), page = await context.newPage();
+    page.on('pageerror', error => errors.push(error.message));
+    page.on('requestfailed', r => failures.push(r.url() + ': ' + r.failure()?.errorText));
+    page.on('response', r => {if (r.status() >= 400) failures.push(r.url() + ': ' + r.status());});
+    await page.goto(origin + '/');
+    assert.equal(await page.locator('.preview-subject').textContent(), 'Mathematics & Science');
+    assert.equal(await page.locator('#goal-include-report').isChecked(), false);
+    await page.locator('[data-learning-subject="algebra-1"]').click();
+    await page.locator('#learning-goal').fill(request);
+    await page.locator('#goal-include-report').check();
+    await page.reload();
+    assert.equal(await page.locator('#learning-goal').inputValue(), request);
+    assert.equal(await page.locator('#goal-include-report').isChecked(), true);
+    assert.equal(await page.locator('.feedback-email').getAttribute('href'), 'mailto:hello@quidence.com?subject=Quidence%20website%20feedback');
+    await checkPageWidth(page, width, 'homepage');
+    for (const selector of ['.goal-report-option', '.feedback-email']) {
+      const box = await page.locator(selector).boundingBox();
+      assert(box.height >= 44 && box.x >= 0 && box.x + box.width <= width, selector + ' remains usable');
+    }
+    if (capture && [1440, 375].includes(width)) {
+      await page.evaluate(() => scrollTo(0, 0));
+      await page.screenshot({path: path.join(capture, 'home-' + width + '.png')});
+      await page.locator('.learning-request').screenshot({path: path.join(capture, 'learning-request-' + width + '.png')});
+      await page.locator('.feedback-section').screenshot({path: path.join(capture, 'feedback-' + width + '.png')});
+    }
+    // Consent applies to the selected subject, while the exact draft stays available.
+    await page.locator('[data-learning-subject="geometry"]').click();
+    assert.equal(await page.locator('#goal-include-report').isChecked(), false);
+    assert.equal(await page.locator('#learning-goal').inputValue(), request);
+    await page.locator('[data-learning-subject="algebra-1"]').click();
+    if ([1440, 375].includes(width)) {
+      for (const className of ['challenge-link', 'project-link']) {
+        await page.goto(origin + '/');
+        await page.locator('#learning-goal').fill(request);
+        await page.locator('#goal-include-report').check();
+        const activity = await page.locator('[data-subject="algebra-1"] .' + className).getAttribute('href');
+        await page.goto(origin + '/' + activity);
+        await page.locator('[data-f-action="resume"]').click();
+        const count = className === 'project-link' ? 2 : 4;
+        for (let i = 0; i < count; i++) {
+          await page.locator('[data-f-unsure]').check();
+          await page.locator('[data-f-explanation]').fill('I need help relating the quantities and the graph.');
+          await page.locator('[data-f-answer] button[type="submit"]').click();
+          await page.locator('[data-f-action="next"]').click();
+        }
+        await page.locator('.report-learning-focus').waitFor();
+        assert.equal(await page.locator('.report-learning-focus .student-work').textContent(), request);
+        await checkPageWidth(page, width, 'report with learning focus');
+        if (capture && className === 'challenge-link') await page.locator('.report-learning-focus').screenshot({path: path.join(capture, 'report-focus-' + width + '.png')});
+        const [download] = await Promise.all([page.waitForEvent('download'), page.locator('[data-f-action="export-json"]').click()]);
+        const record = JSON.parse(fs.readFileSync(await download.path(), 'utf8'));
+        assert.equal(record.learningRequest.text, request);
+        const [full] = await Promise.all([page.waitForEvent('popup'), page.locator('[data-report-print]').click()]);
+        await full.waitForLoadState();
+        assert.equal(await full.locator('.report-learning-focus .student-work').textContent(), request);
+        await full.close();
+        const [summary] = await Promise.all([page.waitForEvent('popup'), page.locator('[data-report-summary]').click()]);
+        await summary.waitForLoadState();
+        assert.equal(await summary.locator('.report-learning-focus .student-work').textContent(), request);
+        await summary.close();
+        await page.goto(origin + '/');
+        await page.locator('#learning-goal').fill('<script>window.goalTextExecuted=true</script>\nA later request.');
+        await page.goto(origin + '/' + activity);
+        assert.equal(await page.locator('.report-learning-focus .student-work').textContent(), request);
+        await page.goto(origin + '/reports/');
+        const module = record.session.module;
+        await page.locator('[data-r-action="open"][data-report="' + module + ':' + record.session.id + '"]').click();
+        assert.equal(await page.locator('.report-learning-focus .student-work').textContent(), request);
+        assert.equal(await page.evaluate(() => window.goalTextExecuted), undefined);
+        await checkPageWidth(page, width, 'saved report with learning focus');
+        reports++;
+      }
+    }
+    console.log('Homepage and learning request checks: ' + width + 'px passed.');
+    await context.close();
+  }
+  console.log(JSON.stringify({homepageWidths: 4, completedReportFlows: reports, savedContextAndExports: 'passed'}));
+}
+
+async function checkPageWidth(page, width, label) {
+  assert.equal(await page.evaluate(() => innerWidth), width);
+  assert(await page.evaluate(() => document.documentElement.scrollWidth) <= width + 1, label + ' must not overflow horizontally');
 }
 
 async function checkLayout(page, width, label) {

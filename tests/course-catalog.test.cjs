@@ -33,9 +33,22 @@ test('mathematics and physics entry links resolve and retired subjects cannot st
  const root=path.resolve(__dirname,'..'),html=fs.readFileSync(path.join(root,'index.html'),'utf8');assert.equal(Catalog.GROUPS.length,3);assert.equal(Object.keys(Catalog.COURSES).length,10);assert.equal(Object.values(Catalog.COURSES).filter(c=>!c.planned).length,10);
  for(const[id,c]of Object.entries(Catalog.COURSES)){const dir=path.join(root,c.course),page=fs.readFileSync(path.join(dir,'index.html'),'utf8');assert.match(html,new RegExp('data-subject="'+id+'"'));for(const[,link]of page.matchAll(/(?:href|src)="([^"]+)"/g))if(!/^(https?:|data:|#)/.test(link))assert.ok(fs.existsSync(path.resolve(dir,link.split(/[?#]/)[0])),id+' '+link);}
  const macro=fs.readFileSync(path.join(root,'courses/macroeconomics/index.html'),'utf8');assert.match(macro,/no longer offered/);assert.doesNotMatch(macro,/course-app.js|content.js|data-action="start"/);
- assert.deepEqual(Goals.hydrate({schema:Goals.KEY,subject:'aa01',text:'Keep my old request.'}),{subject:'algebra-1',text:'Keep my old request.'});assert.equal(Goals.hydrate({schema:Goals.KEY,subject:'macroeconomics',text:'x'}),null);assert.equal(Goals.prompt({subject:'microeconomics',text:'Old request'}),'');
+ assert.deepEqual(Goals.hydrate({schema:Goals.KEY,subject:'aa01',text:'Keep my old request.'}),{subject:'algebra-1',text:'Keep my old request.',includeInReport:false});assert.equal(Goals.hydrate({schema:Goals.KEY,subject:'macroeconomics',text:'x'}),null);assert.equal(Goals.prompt({subject:'microeconomics',text:'Old request'}),'');
 });
 test('new covers are deterministic and course page generation is repeatable',()=>{
  const root=path.resolve(__dirname,'..'),pages=require('../scripts/build-course-pages.cjs'),illustrations=require('../scripts/build-course-illustrations.cjs');for(const[id,svg]of Object.entries(illustrations.covers()))assert.equal(fs.readFileSync(path.join(root,'assets/illustrations',id+'.svg'),'utf8'),svg);
  const before=C.IDS.map(id=>fs.readFileSync(path.join(root,'courses',id,'index.html'),'utf8'));pages.build();assert.deepEqual(C.IDS.map(id=>fs.readFileSync(path.join(root,'courses',id,'index.html'),'utf8')),before);const home=fs.readFileSync(path.join(root,'index.html'),'utf8');require('../scripts/build-course-home.cjs').build();assert.equal(fs.readFileSync(path.join(root,'index.html'),'utf8'),home);
+});
+
+test('lesson reports and every download use the opted-in learning request saved with the report',async()=>{
+ for(const id of ['algebra-1','physics-1']){
+  const request='Relate the picture to the equation.\n  Keep my wording.',map=new Map([['cluevera_learning_goal_v1',JSON.stringify({schema:'cluevera_learning_goal_v1',subject:id,text:request,includeInReport:true})]]),h=harness(id,map);
+  h.click('start');for(let i=0;i<h.C.LESSONS.length;i++){finish(h,i);h.click('continue');}
+  const item=S.read(h.window.localStorage).data.items.find(x=>x.module===id);assert.equal(item.versions[0].payload.learningRequest.text,request);assert(h.app.all().some(x=>x.innerHTML.includes('Your learning focus')));
+  h.click('export-json');assert.equal(JSON.parse(await h.blobs.at(-1).text()).learningRequest.text,request);
+  h.click('export-md');assert((await h.blobs.at(-1).text()).includes('>   Keep my wording.'));
+  h.click('print');assert.match(h.window.preview.html,/Your learning focus/);
+  map.set('cluevera_learning_goal_v1',JSON.stringify({schema:'cluevera_learning_goal_v1',subject:id,text:'Changed later',includeInReport:true}));
+  const reopened=harness(id,map);reopened.click('export-json');assert.equal(JSON.parse(await reopened.blobs.at(-1).text()).learningRequest.text,request);
+ }
 });

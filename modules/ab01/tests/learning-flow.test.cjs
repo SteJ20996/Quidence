@@ -8,7 +8,7 @@ function harness(saved,{saving=true,start=true,hash=''}={}){
  if(saved!==undefined)store.set(KEY,saved);
  const document={body,getElementById:id=>body.querySelector('#'+id),querySelector:s=>body.querySelector(s),querySelectorAll:s=>body.querySelectorAll(s),createElement:t=>new Element(t),modelContext:{registerTool(t,options){registry[t.name]=t;options?.signal.addEventListener('abort',()=>{if(registry[t.name]===t)delete registry[t.name];});}}};
  const context={AbortController,performance:{now:()=>0},requestAnimationFrame:f=>(frames.push(f),frames.length),cancelAnimationFrame(){},document,localStorage:{getItem:k=>store.get(k)||null,setItem(k,v){if(!saving)throw Error('Saving denied');store.set(k,v);}},crypto,structuredClone,console,Blob,URL:{createObjectURL:b=>(blobs.push(b),'blob:test'),revokeObjectURL(){}},setTimeout:f=>(timers.push(f),timers.length),clearTimeout(){},window:{location:{hash,pathname:'/',search:''},scrollTo(){},matchMedia:()=>({matches:true})}};
- context.window.document=document;context.window.localStorage=context.localStorage;vm.createContext(context);vm.runInContext(fs.readFileSync(require('node:path').join(__dirname,'../../../assets/report-store.js'),'utf8'),context);
+ context.window.document=document;context.window.localStorage=context.localStorage;vm.createContext(context);vm.runInContext(fs.readFileSync(require('node:path').join(__dirname,'../../../assets/report-tools.js'),'utf8'),context);vm.runInContext(fs.readFileSync(require('node:path').join(__dirname,'../../../assets/report-store.js'),'utf8'),context);
  for(const file of ['matrix-methods.js','matrix-guide-engine.js','matrix-guide.js','learning-engine.js','student-materials.js','learning-advice.js','learning.js'])vm.runInContext(fs.readFileSync('dist/'+file,'utf8'),context);
  if(start&&!registry.read_ab01_learning.execute({}).blockedLoad&&registry.read_ab01_learning.execute({}).phase==='intro'&&!hash)document.getElementById('begin-learning').click();
  return{document,registry,store,blobs,frames,timers,E:context.window.AB01Learning,state:()=>JSON.parse(store.get(KEY)),read:()=>registry.read_ab01_learning.execute({}),stage:a=>registry.stage_ab01_learning_answer.execute(a),submit:()=>registry.submit_ab01_learning_answer.execute({}),show:i=>registry.show_matrix_walkthrough_step.execute({step:i}),click:id=>{const e=document.getElementById(id);assert(e,'Missing '+id);e.click();},input(id,value){const e=document.getElementById(id);assert(e,'Missing '+id);e.value=String(value);e.oninput({target:e});}};
@@ -64,6 +64,7 @@ function answerPhase(h,phase){for(const t of h.E.TASKS[phase]){h.stage(canonical
  assert.equal(h.state().stage,'post');assert.equal(h.document.getElementById('hint'),null);assert.equal(h.document.getElementById('task-feedback'),null);
  h.click('matrix-link');h.stage({values:[-1,0]});h.submit();h.click('next');
  assert.equal(h.state().records['post-1'].submissions[0].support.moduleOpenedInPhase,true);
+ h.store.set('cluevera_learning_goal_v1',JSON.stringify({schema:'cluevera_learning_goal_v1',subject:'ab01',text:'Connect matrix columns to the picture.',includeInReport:true}));
  h.stage({values:[5,1],choice:0,explanation:'2*2+1*1=5; 0*2+1*1=1'});h.submit();assert.equal(h.read().evidence.post[1].last,undefined);h.click('next');h.click('skip');
  assert.equal(h.state().stage,'report');assert.equal(JSON.parse(h.store.get('cluevera_saved_reports_v1')).items[0].module,'ab01');
  const originalAnswers=JSON.stringify(h.state().records),practice=h.document.querySelector('[data-coach-review="coefficients"]'),solution=h.document.querySelector('[data-coach-solution="coefficients"]');
@@ -73,7 +74,7 @@ function answerPhase(h,phase){for(const t of h.E.TASKS[phase]){h.stage(canonical
  h.click('coach-directions');assert.equal(h.read().view,'applications');h.click('materials-back');h.click('begin-learning');assert.equal(h.state().stage,'report');
  assert(h.document.getElementById('start-delayed').disabled);h.click('start-delayed');assert.equal(h.state().stage,'report');
  h.click('export-json');const full=JSON.parse(await h.blobs.at(-1).text());
- assert.equal(full.learningAdvice.version,'matrix-advice-0.2.1');assert(full.learningAdvice.priorityTargetIds.includes('coefficients'));assert(h.document.getElementById('learning-app').innerHTML.includes('numerical output matched but the coefficient choice did not'));
+ assert.equal(full.learningRequest.text,'Connect matrix columns to the picture.');assert.equal(full.learningAdvice.version,'matrix-advice-0.2.1');assert(full.learningAdvice.priorityTargetIds.includes('coefficients'));assert(h.document.getElementById('learning-app').innerHTML.includes('numerical output matched but the coefficient choice did not'));
  assert.equal(full.project,'AB01');assert.equal(full.version,'2');assert.equal(full.taskDefinitions.length,8);assert(full.taskDefinitions.every(t=>!t.id.startsWith('delay-')));assert.equal(full.pendingLaterCheck.referenceSolutionsIncluded,false);
  assert.equal(full.phaseEvidence.pre[1].status,'skipped');assert.equal(full.phaseEvidence.pre[2].status,'not-studied');
  assert.equal(full.phaseEvidence.practice[0].first['Column coordinates'],false);assert.equal(full.phaseEvidence.practice[0].last['Column coordinates'],true);
@@ -81,7 +82,7 @@ function answerPhase(h,phase){for(const t of h.E.TASKS[phase]){h.stage(canonical
  assert.equal(full.phaseEvidence.post[2].last,null);assert.equal(full.lesson.checkpoint.attempts.length,3);
  assert(full.records['practice-2'].submissions[0].answer.explanation.includes('counts'));
  assert(full.records['practice-2'].submissions[0].support.otherHelpReported);
- h.click('export-md');const md=await h.blobs.at(-1).text();assert(md.includes('# Linear Algebra Foundations'));assert(md.includes('Submission 2'));assert(md.includes('human review'));assert(md.includes('## Suggested next steps'));assert(md.includes('original coefficients'));
+ h.click('export-md');const md=await h.blobs.at(-1).text();assert(md.includes('# Linear Algebra Foundations'));assert(md.includes('## Your learning focus'));assert(md.includes('Connect matrix columns to the picture.'));assert(md.includes('Submission 2'));assert(md.includes('human review'));assert(md.includes('## Suggested next steps'));assert(md.includes('original coefficients'));
  for(const task of h.E.TASKS.delayed){assert(!md.includes(task.prompt));assert(!md.includes(task.solution));assert(!h.document.getElementById('learning-app').innerHTML.includes(task.solution));}
  const oldPost=JSON.stringify(h.state().records['post-2']);
  const saved=h.state();saved.completedAt=new Date(Date.now()-86400001).toISOString();h=harness(JSON.stringify(saved));

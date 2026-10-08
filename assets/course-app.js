@@ -133,6 +133,7 @@ app.addEventListener('input',event=>{
 });
 app.addEventListener('change',event=>{if(event.target.dataset.lab){E.log(state,'graph_explored',{lesson:lesson().id,control:event.target.dataset.lab,settings:{...state.labs[state.lessonIndex]}});save();}});
 function download(name,content,mime){const url=URL.createObjectURL(new Blob([content],{type:mime})),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function reportPayload(){const payload={...E.exportRecord(state),reportText:markdown()};return window.QuidenceReportStore.prepare(C.MODULE,payload,state.createdAt);}
 function markdown(){
  let s='# '+C.TITLE+'\n\n'+`Session started: ${state.createdAt}\n\n`+'Initial predictions and checks after instruction are separate observations. Required explanations need human review. Fixed choices do not establish subject mastery.\n\n';
  s+='AI tutor request: '+window.QuidenceReportStore.HANDOFF+'\n\nScope: '+C.scope+'\n\n';
@@ -164,9 +165,9 @@ app.addEventListener('click',event=>{
  else if(action==='relearn'){state.stage='learn';step=0;}
  else if(action==='revise'){state.stage='check';state.questionIndex=i;}
  else if(action==='continue'){if(E.allDone(state))state.view='summary';else{const next=state.lessonIndex<lessonCount-1?state.lessonIndex+1:C.LESSONS.findIndex((_,j)=>!E.lessonDone(state,j));openLesson(next);return;}}
- else if(action==='export-json'){download('Quidence_'+C.TITLE.replace(/\W+/g,'_')+'_Answer_History.json',JSON.stringify(E.exportRecord(state),null,2),'application/json');return;}
- else if(action==='export-md'){download('Quidence_'+C.TITLE.replace(/\W+/g,'_')+'_Learning_Summary.md',markdown(),'text/markdown');return;}
- else if(action==='print'){try{const ok=window.QuidenceReportTools.openPrint(window.QuidenceReportTools.printable(document.title,{markdown:markdown()}));notice=ok?'The report opened in a new tab. Print / save as PDF there.':'Allow pop-ups or download the readable report.';}catch{notice='The report tab could not open. Download the readable report.';}render();return;}
+ else if(action==='export-json'){download('Quidence_'+C.TITLE.replace(/\W+/g,'_')+'_Answer_History.json',JSON.stringify(reportPayload(),null,2),'application/json');return;}
+ else if(action==='export-md'){download('Quidence_'+C.TITLE.replace(/\W+/g,'_')+'_Learning_Summary.md',window.QuidenceReportTools.markdown(C.TITLE,reportPayload()),'text/markdown');return;}
+ else if(action==='print'){try{const ok=window.QuidenceReportTools.openPrint(window.QuidenceReportTools.printable(document.title,reportPayload()));notice=ok?'The report opened in a new tab. Print / save as PDF there.':'Allow pop-ups or download the readable report.';}catch{notice='The report tab could not open. Download the readable report.';}render();return;}
  else return;
  const local=state.stage==='learn'&&['step','prev-step','next-step'].includes(action);
  render(!local);if(local){const h=app.querySelector('h2');h.tabIndex=-1;h.focus();}

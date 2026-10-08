@@ -45,3 +45,49 @@ test('unreadable saved requests stay byte-for-byte intact through rendering and 
   h.window.confirm=()=>true;await h.click(h.q('goal-reset'));assert.equal(JSON.parse(map.get(Goals.KEY)).text,'new draft');
  }
 });
+
+test('report opt-in persists, legacy requests remain opted out, and a different subject needs its own opt-in',async()=>{
+ const map=new Map([[Goals.KEY,JSON.stringify({schema:Goals.KEY,subject:'algebra-1',text:'Keep my exact request.\n  Spaces matter.'})]]),h=harness({map});
+ assert.equal(h.q('goal-include-report').checked,false);
+ h.q('goal-include-report').checked=true;await h.change(h.q('goal-include-report'));
+ assert.equal(JSON.parse(map.get(Goals.KEY)).includeInReport,true);
+ assert.equal(harness({map}).q('goal-include-report').checked,true);
+ await h.click(h.host.querySelector('[data-learning-subject="geometry"]'));
+ assert.equal(h.q('learning-goal').value,'Keep my exact request.\n  Spaces matter.');
+ assert.equal(h.q('goal-include-report').checked,false);assert.equal(JSON.parse(map.get(Goals.KEY)).includeInReport,false);
+ assert.equal(Goals.hydrate({schema:Goals.KEY,subject:'geometry',text:'x',includeInReport:'yes'}),null);
+});
+
+test('only a nonblank opted-in request for the matching subject becomes report context',()=>{
+ const S=require('../assets/report-store.js'),map=new Map(),storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)},payload={markdown:'# Original evidence\n\n> My answer: 4'};
+ const goal=(subject,text,includeInReport)=>map.set(Goals.KEY,JSON.stringify({schema:Goals.KEY,subject,text,includeInReport}));
+ goal('geometry','Use a diagram.',false);assert.equal(S.save('geometry',payload,'off',storage).payload.learningRequest,undefined);
+ goal('algebra-1','Help with equations.',true);assert.equal(S.save('geometry',payload,'other',storage).payload.learningRequest,undefined);
+ goal('geometry',' \n ',true);assert.equal(S.save('geometry',payload,'empty',storage).payload.learningRequest,undefined);
+ goal('geometry','  Use a diagram.\nKeep these spaces.  ',true);
+ const saved=S.save('geometry',payload,'on',storage);assert.equal(saved.payload.learningRequest.text,'  Use a diagram.\nKeep these spaces.  ');
+ assert.equal(saved.payload.markdown,payload.markdown);assert.equal(payload.learningRequest,undefined);
+ assert.equal(S.save('aa01',payload,'unrelated-school',storage).payload.learningRequest,undefined);
+ goal('algebra-1','Compare two equation methods.',true);assert.equal(S.save('aa01',payload,'shared-school',storage).payload.learningRequest.subject,'algebra-1');
+ map.set(Goals.KEY,'{unreadable');assert.equal(S.save('geometry',payload,'corrupt',storage).payload.learningRequest,undefined);assert.equal(map.get(Goals.KEY),'{unreadable');
+});
+
+test('saved contexts are immutable across request edits, opt-out, reopens and legacy reports',()=>{
+ const S=require('../assets/report-store.js'),map=new Map(),storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)};
+ const goal=(text,on=true)=>map.set(Goals.KEY,JSON.stringify({schema:Goals.KEY,subject:'ab01',text,includeInReport:on}));
+ const work={markdown:'Original matrix work',answer:1};goal('My first focus');const first=S.save('ab01',work,'session',storage),raw=map.get(S.KEY),snapshot=JSON.stringify(first.payload);
+ goal('My changed focus');assert.equal(S.save('ab01',work,'session',storage).changed,false);assert.equal(map.get(S.KEY),raw);
+ assert.equal(S.prepare('ab01',work,'session',storage).learningRequest.text,'My first focus');
+ const revised=S.save('ab01',{...work,answer:2},'session',storage);assert.equal(revised.payload.learningRequest.text,'My changed focus');
+ goal('Keep this out',false);S.save('ab01',{...work,answer:3},'session',storage);
+ const versions=S.read(storage).data.items[0].versions;assert.equal(versions.length,3);assert.equal(JSON.stringify(versions[0].payload),snapshot);assert.equal(versions[2].payload.learningRequest,undefined);
+ goal('Legacy report must stay unchanged',false);S.save('ab01',work,'legacy',storage);goal('New focus');const before=map.get(S.KEY);
+ assert.equal(S.prepare('ab01',work,'legacy',storage).learningRequest,undefined);assert.equal(S.save('ab01',work,'legacy',storage).changed,false);assert.equal(map.get(S.KEY),before);
+});
+
+test('learning criteria reach readable exports, printable reports, summaries and drawing packages safely',()=>{
+ const text='<script>alert("goal")</script>\n```\nExact student wording & spaces.',payload={markdown:'# Evidence\n\n> Original answer',learningRequest:{schema:'quidence_report_learning_request_v1',subject:'geometry',text,capturedAt:'2026-10-08T00:00:00Z'},studentSummary:{matched:[],checks:[],selection:'Review the original work.'}};
+ assert.match(Tools.markdown('Geometry',payload),/criterion in this report/);assert(Tools.markdown('Geometry',payload).includes(Tools.quote(text)));
+ for(const html of [Tools.printable('Geometry',payload),Tools.printableSummary('Geometry',payload)]){assert.match(html,/Your learning focus/);assert.match(html,/&lt;script&gt;/);assert.doesNotMatch(html,/<script>alert/);assert.match(html,/does not change fixed answer checks/);}
+ const files=Tools.packageFiles('Geometry',payload);assert(files[0].content.includes(Tools.quote(text)));assert.match(files[1].content,/Your learning focus/);
+});

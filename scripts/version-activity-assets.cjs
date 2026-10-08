@@ -4,6 +4,7 @@ const path = require('node:path');
 const {createHash} = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const entries = ['foundations/index.html', 'diagnostics/index.html', 'projects/index.html'];
+const reportAssets = new Set(['assets/hub.css', 'assets/hub-goals.js', 'assets/report-tools.js', 'assets/report-tools.css', 'assets/report-store.js', 'assets/report-viewer.js', 'assets/course-app.js', 'modules/aa01/dist/app.js', 'modules/ab01/dist/learning.js', 'modules/ad01/dist/app.js']);
 const digest = content => createHash('sha256').update(content).digest('hex').slice(0, 12);
 function versionActivities(check = false) {
   const updates = new Map();
@@ -23,7 +24,14 @@ function versionActivities(check = false) {
   const publicHTML = require('./build-static-release.cjs').files().filter(file => file.endsWith('.html'));
   for (const file of publicHTML) {
     const source = updates.get(file) ?? fs.readFileSync(path.join(root, file), 'utf8');
-    const html = source.replace(/href="([^"?]*\b(foundations|diagnostics|projects)\/\?[^" ]*)"/g, (_, reference, route) => {
+    const html = source.replace(/(src|href)="([^"?]+\.(?:js|css))(?:\?[^" ]*)?"/g, (match, attr, reference) => {
+      const resolved = path.resolve(root, path.dirname(file), reference);
+      if (!reportAssets.has(path.relative(root, resolved))) return match;
+      const hash = digest(fs.readFileSync(resolved));
+      // Keep the original Algebra activity's public release version and pin its content too.
+      const query = path.relative(root, resolved) === 'modules/aa01/dist/app.js' ? 'v=0.6&amp;asset=' + hash : 'v=' + hash;
+      return attr + '="' + reference + '?' + query + '"';
+    }).replace(/href="([^"?]*\b(foundations|diagnostics|projects)\/\?[^" ]*)"/g, (_, reference, route) => {
       const url = new URL(reference.replaceAll('&amp;', '&'), 'https://quidence.test/' + file);
       url.searchParams.set('v', routeVersions[route]);
       return 'href="' + reference.split('?')[0] + '?' + url.searchParams.toString().replaceAll('&', '&amp;') + '"';
