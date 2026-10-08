@@ -220,3 +220,21 @@ test('the given LA triangle labels O U V at every supported width without reveal
  }
  assert.equal(JSON.stringify(t),before);
 });
+test('activity navigation follows all ten subjects and preserves unfinished work when switching subjects',()=>{
+ const catalog=require('../assets/course-catalog.js');
+ for(const kind of ['diagnostic','project']){
+  const h=harness(kind);
+  for(const [id,c]of Object.entries(catalog.COURSES)){
+   h.controller.select(id);const links=h.host.querySelectorAll('[data-f-mode]');
+   assert.equal(links.length,3);const mode=kind==='project'?'projects':'check';
+   for(const link of links){const url=new URL(link.attrs.href,'https://quidence.test/'+(kind==='project'?'projects':'diagnostics')+'/');
+    assert.equal(link.attrs['aria-current']==='page',link.dataset.fMode===mode);
+    if(link.dataset.fMode==='learn')assert.equal(url.pathname,'/'+c.course);else assert.equal(url.searchParams.get('module'),id);
+    if(link.dataset.fMode!==mode){assert.equal(link.attrs.target,'_blank');assert.equal(link.attrs.rel,'noopener');}
+   }
+   assert.equal(h.host.querySelector('#f-subject').value,id);
+  }
+  h.controller.select('ab01');h.click('resume');const t=h.engine.task(h.controller.current()),field=t.fields.find(f=>f.kind==='number');h.input(field.id,'123/7');const before=JSON.stringify(h.controller.current().records);
+  h.controller.select('af01');h.controller.select('ab01');assert.equal(JSON.stringify(h.controller.current().records),before);assert(h.host.querySelector('[data-f-action="report"]').disabled);assert.equal(h.host.querySelector('[data-f-field="'+field.id+'"]').value,'123/7');
+ }
+});
