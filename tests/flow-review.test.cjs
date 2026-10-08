@@ -153,7 +153,8 @@ test('Calculus point labels have a white outline, clear offsets, and retain func
   assert.match(html,new RegExp('viewBox="0 0 '+width+' 280"'));
  }
  const h=harness('foundation');h.controller.select('ad01');h.click('resume');h.click('jump',4);
- assert.match(h.host.innerHTML,/checks the meaning of derivative notation, not calculating a tangent slope independently/);
+ assert.match(h.host.innerHTML,/supplied tangent slope to connect derivative notation with local change/);
+ assert.match(h.engine.scopeReview(h.controller.current()).suppliedInformation.find(x=>x.task==='ad-f05').note,/checks the meaning of derivative notation, not calculating a tangent slope independently/);
 });
 test('three-choice displays balance correct positions within each block and stay stable after reload',()=>{
  let checked=0;
@@ -198,4 +199,24 @@ test('saved earlier numeric snapshots carry a precision notice without rewriting
  const h=harness(),p=h.engine.fresh(),s=h.engine.createSession(p,'ab01'),t=h.engine.task(s),a=canonical(h.engine,t);h.engine.edit(s,t,a);h.engine.submit(s,t);h.engine.last(s,t).numericPolicy=h.engine.LEGACY_NUMERIC_POLICY;
  S.save('ab01',h.engine.portable(s),s.id,h.storage);const before=h.storage.getItem(S.KEY),viewer=new Element('main');h.window.QuidenceReportViewer.mount(viewer,{storage:h.storage});
  viewer.events.click({target:viewer.querySelector('[data-r-action="open"]')});assert.match(viewer.innerHTML,/earlier numeric precision rule/);assert.equal(h.storage.getItem(S.KEY),before);
+});
+test('properly grouped thousands work with scientific notation and units while malformed commas are rejected',()=>{
+ for(const [text,value]of [['3,000',3000],['1,234.50',1234.5],['-1,234e2',-123400],['6,000×10^3',6000000],['1,000/2,000',0.5]])assert.equal(F.numeric(text),value);
+ assert(F.numberMatches({answer:3000,label:'Energy (J)'},'3,000 J',F.NUMERIC_POLICY));
+ for(const text of ['3,00','3,0000','1,2,345','12,34.5','1,234,','3,14','1 000'])assert.equal(F.numeric(text),null,text);
+});
+test('authored corrections appear in questions and reports without changing definitions or original student wording',()=>{
+ const h=harness('project');h.controller.select('ad01');const definition=JSON.stringify(PB.MODULES.ad01.tasks);h.click('resume');h.click('jump',1);
+ assert.doesNotMatch(h.host.innerHTML,/non-rational numerical answers round final numeric answers/);assert.match(h.host.innerHTML,/For irrational results, round only the final answer/);
+ h.click('jump',0);h.click('intro');h.finish();h.click('jump',0);h.input('direction','I travelled a metre. My modelling notes are unchanged.');h.submit();h.click('next');h.click('next');
+ const md=h.engine.markdown(h.controller.current());assert.match(md,/I travelled a metre\. My modelling notes are unchanged/);assert.doesNotMatch(md,/total distance travelled|non-rational numerical answers round final numeric answers/);assert.equal(JSON.stringify(PB.MODULES.ad01.tasks),definition);assert(h.engine.studentSummary(h.controller.current()).checks.every(x=>!x.detail.includes('Read the open responses')));
+ const further=harness('foundation');further.controller.select('aa01');further.click('followup');further.click('resume');assert.match(further.host.innerHTML,/3\/4 liter/);assert.doesNotMatch(further.host.innerHTML,/3\/4 litre/);
+ const metadata=harness('project');metadata.controller.select('algebra-2');assert.match(metadata.host.innerHTML,/Analyze a basketball arc|Quadratic modeling/);assert.doesNotMatch(metadata.host.innerHTML,/Analyse|modelling/);
+});
+test('the given LA triangle labels O U V at every supported width without revealing its image or changing definitions',()=>{
+ const t=D.MODULES.ab01.tasks.find(t=>t.id==='la-c08'),before=JSON.stringify(t);
+ for(const width of [240,375,520,620]){const html=G.visual(t,width);for(const name of ['O','U','V'])assert.match(html,new RegExp('class="f-point-label"[^>]*>'+name+'<'));
+  assert.equal((html.match(/class="f-dot"/g)||[]).length,3);assert.doesNotMatch(html,/data-polygon="mapped"/);
+ }
+ assert.equal(JSON.stringify(t),before);
 });

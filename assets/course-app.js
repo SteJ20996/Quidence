@@ -3,15 +3,17 @@
 const C=window.QuidenceCourseContent,E=window.QuidenceCourseEngine,G=window.QuidenceCourseGraphs;
 const app=document.getElementById('app'),KEY=E.SCHEMA;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let state=E.fresh(),saving=true,blocked=false,raw='',notice='',step=0,motion=null,motionFrame=0;
+let state=E.fresh(),saving=true,blocked=false,raw='',hasStored=false,notice='',step=0,motion=null,motionFrame=0;
 try{raw=(window.QuidenceStorage||window.localStorage).getItem(KEY)||'';if(raw){const loaded=E.hydrate(JSON.parse(raw));if(loaded)state=loaded;else blocked=true;}}
 catch{if(raw)blocked=true;else saving=false;}
+hasStored=!!raw;
 const lesson=()=>C.LESSONS[state.lessonIndex];
 const currentTask=()=>state.view==='lesson'?(state.stage==='predict'?lesson().predict:state.stage==='check'?lesson().checks[state.questionIndex]:null):null;
 const button=(action,label,cls='',extra='')=>`<button class="btn ${cls}" data-action="${action}" ${extra}>${label}</button>`;
 function save(){
- if(!blocked)try{(window.QuidenceStorage||window.localStorage).setItem(KEY,JSON.stringify(state));}catch{saving=false;}
- document.getElementById('storage-note').textContent=saving?'Progress stays in this browser. No account needed.':'Browser saving is unavailable. Keep this tab open to finish.';
+ const started=hasStored||state.view!=='orientation'||Object.keys(state.records).length>0||state.events.length>0;
+ if(!blocked&&started)try{(window.QuidenceStorage||window.localStorage).setItem(KEY,JSON.stringify(state));hasStored=true;}catch{saving=false;}
+ document.getElementById('storage-note').textContent=!saving?'Browser saving is unavailable. Keep this tab open to finish.':hasStored?'Progress stays in this browser. No account needed.':'When you start, progress will be saved in this browser. No account needed.';
 }
 function nav(){return`<nav class="lesson-nav" aria-label="Subject lessons">${button('home','Start here','quiet')}${C.LESSONS.map((l,i)=>`<button class="lesson-link ${state.view==='lesson'&&state.lessonIndex===i?'active':''}" data-action="open" data-index="${i}" ${state.view==='lesson'&&state.lessonIndex===i?'aria-current="page"':''}><span class="lesson-number">${E.lessonDone(state,i)?'✓':i+1}</span>${esc(l.short)}</button>`).join('')}${button('summary','My summary','quiet',E.allDone(state)?'':'disabled')}</nav>`;}
 function phases(){return`<ol class="phase-path" aria-label="Current lesson phases">${[['predict','First thought'],['learn','Explore & learn'],['check','Fresh questions'],['review','Feedback']].map(([id,name])=>`<li class="${state.stage===id?'current':''}" ${state.stage===id?'aria-current="step"':''}>${name}</li>`).join('')}</ol>`;}
@@ -141,7 +143,7 @@ app.addEventListener('click',event=>{
  if(action==='raw'){download('Quidence_'+C.TITLE.replace(/\W+/g,'_')+'_Saved_Record.json',raw,'application/json');return;}
  if(action==='reset-blocked'){document.getElementById('reset-dialog').showModal();return;}
  if(action==='cancel-reset'){document.getElementById('reset-dialog').close();return;}
- if(action==='confirm-reset'){state=E.fresh();blocked=false;raw='';step=0;render(true);return;}
+ if(action==='confirm-reset'){state=E.fresh();blocked=false;raw='';hasStored=true;step=0;render(true);return;}
  if(blocked)return;
  if(action==='play-motion'){playMotion();return;}
  stopMotion('navigation',false);

@@ -13,6 +13,32 @@ const Policy = require('../assets/sync-policy.js');
 const empty = {VERSION: 'none', MODULES: {}};
 const close = (a, b) => assert(Math.abs(a-b) < 1e-9, a + ' != ' + b);
 
+test('opening shared course introductions creates no empty portfolio, while starting and explicit recovery still save', () => {
+  const ids = [...require('../assets/school-course-content.js').IDS, 'ae01', 'af01', 'physics'];
+  for (const id of ids) {
+    const map = new Map([['other-course', 'keep this record']]);
+    const h = harness(id, map);
+    assert.equal(map.has(h.E.SCHEMA), false);
+    h.click('home');
+    assert.equal(map.has(h.E.SCHEMA), false);
+    h.click('start');
+    assert.equal(h.saved().view, 'lesson');
+    h.input('explanation', 'Δx = xfinal − xinitial; keep this draft.');
+    h.click('home');
+    const resumed = harness(id, map);
+    resumed.click('start');
+    assert.equal(resumed.app.querySelector('[name="explanation"]').value, 'Δx = xfinal − xinitial; keep this draft.');
+    const legacy = new Map([[h.E.SCHEMA, JSON.stringify(h.E.fresh())]]);
+    const old = harness(id, legacy);
+    assert(old.E.hydrate(old.saved()), 'An existing orientation record remains readable');
+    const unreadable = new Map([[h.E.SCHEMA, '{unreadable'], ['other-course', 'keep this record']]);
+    const recovery = harness(id, unreadable);
+    recovery.click('reset-blocked'); recovery.click('confirm-reset');
+    assert(recovery.E.hydrate(recovery.saved()), 'An explicitly confirmed reset replaces the unreadable record');
+    assert.equal(unreadable.get('other-course'), 'keep this record');
+  }
+});
+
 test('physics models preserve signed motion, force balance, energy balance, and fixed-speed wavelength relations', () => {
   const motion = Models.values(0, {start: 5, velocity: -3});
   assert.deepEqual(motion, {end: 5-3*4, displacement: -3*4, distance: 3*4, acceleration: 0});
