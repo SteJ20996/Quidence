@@ -8,9 +8,10 @@
 
 /* The activity shell aligns navigation with the course content. */
 .f-activity-page{margin:0;background:#f5f7fb;color:#142236;font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.f-activity-page,.f-activity-page *{box-sizing:border-box}
 .f-site-header{background:#fff;border-bottom:1px solid #dbe3ee}
 .f-header-inner{box-sizing:border-box;max-width:1120px;margin:auto;min-height:80px;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.f-brand{display:inline-flex;align-items:center;gap:11px;color:#142236;text-decoration:none;font-size:23px;font-weight:750;letter-spacing:-.025em}
+.f-brand{display:inline-flex;align-items:center;gap:11px;min-height:44px;color:#142236;text-decoration:none;font-size:23px;font-weight:750;letter-spacing:-.025em}
 .f-brand-mark{display:grid;place-items:center;width:36px;height:36px;background:#142236;color:#fff;border-radius:10px;font-size:20px}
 .f-saved-reports{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 14px;border:1px solid #dbe3ee;border-radius:10px;color:#354961;text-decoration:none;font-size:14px;font-weight:600}
 .f-site-header a:focus-visible{outline:3px solid #db8600;outline-offset:3px}

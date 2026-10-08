@@ -26,3 +26,9 @@ jobs:
         run: npm test
       - name: Build the public static bundle
         run: npm run build:static
+      - name: Install browser test dependencies
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Check activity layouts, drafts and cached-version upgrades in Chromium
+        run: npm run test:browser

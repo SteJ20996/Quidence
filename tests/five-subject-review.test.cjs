@@ -45,5 +45,6 @@ test('the current publication removes AP promotion, the unused old logo and scre
 
 test('the shared school foundation entry names its actual coverage without pretending to cover Geometry or Algebra II',()=>{
  const C=require('../assets/course-catalog.js').COURSES;for(const id of ['pre-algebra','algebra-1']){assert.equal(C[id].foundation,'foundations/?module=aa01');assert.match(C[id].foundationLabel,/Shared Pre-Algebra \/ Algebra I/);}for(const id of ['geometry','algebra-2'])assert.equal(C[id].foundation,undefined);
- const home=fs.readFileSync('index.html','utf8');assert.equal((home.match(/href="foundations\/\?module=aa01"/g)||[]).length,2);
+ const home=fs.readFileSync('index.html','utf8'),links=[...home.matchAll(/href="([^"]+)"/g)].map(([,href])=>new URL(href.replaceAll('&amp;','&'),'https://quidence.test/'));
+ assert.equal(links.filter(url=>url.pathname==='/foundations/'&&url.searchParams.get('module')==='aa01').length,2);
 });

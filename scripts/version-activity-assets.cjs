@@ -1,0 +1,39 @@
+'use strict';
+const fs = require('node:fs');
+const path = require('node:path');
+const {createHash} = require('node:crypto');
+const root = path.resolve(__dirname, '..');
+const entries = ['foundations/index.html', 'diagnostics/index.html', 'projects/index.html'];
+const digest = content => createHash('sha256').update(content).digest('hex').slice(0, 12);
+function versionActivities(check = false) {
+  const updates = new Map();
+  const uiVersion = digest(['foundation.css', 'foundation-app.js', 'project.css']
+    .map(file => fs.readFileSync(path.join(root, 'assets', file))).join('\n'));
+  for (const file of entries) {
+    const source = fs.readFileSync(path.join(root, file), 'utf8');
+    const html = source.replace(/<html\b[^>]*>/, tag => tag.replace(/\sdata-activity-version="[^"]*"/, '').replace(/>$/, ' data-activity-version="' + uiVersion + '">'))
+      .replace(/(src|href)="(\.\.\/assets\/[^"?]+\.(?:js|css))(?:\?[^" ]*)?"/g, (_, attr, reference) => {
+        const hash = digest(fs.readFileSync(path.resolve(root, path.dirname(file), reference)));
+        return attr + '="' + reference + '?v=' + hash + '"';
+      });
+    updates.set(file, html);
+  }
+  // Change the document URL too: an old cached project document cannot request new assets.
+  const routeVersions = Object.fromEntries(entries.map(file => [file.split('/')[0], digest(updates.get(file))]));
+  const publicHTML = require('./build-static-release.cjs').files().filter(file => file.endsWith('.html'));
+  for (const file of publicHTML) {
+    const source = updates.get(file) ?? fs.readFileSync(path.join(root, file), 'utf8');
+    const html = source.replace(/href="([^"?]*\b(foundations|diagnostics|projects)\/\?[^" ]*)"/g, (_, reference, route) => {
+      const url = new URL(reference.replaceAll('&amp;', '&'), 'https://quidence.test/' + file);
+      url.searchParams.set('v', routeVersions[route]);
+      return 'href="' + reference.split('?')[0] + '?' + url.searchParams.toString().replaceAll('&', '&amp;') + '"';
+    });
+    updates.set(file, html);
+  }
+  const changed = [...updates].filter(([file, content]) => fs.readFileSync(path.join(root, file), 'utf8') !== content);
+  if (check && changed.length) throw Error('Activity URLs are out of date. Run npm run version:activities (' + changed.map(([file]) => file).join(', ') + ').');
+  if (!check) for (const [file, content] of changed) fs.writeFileSync(path.join(root, file), content);
+  return {changed: changed.length, uiVersion};
+}
+if (require.main === module) console.log(JSON.stringify(versionActivities(process.argv.includes('--check'))));
+module.exports = {versionActivities};
