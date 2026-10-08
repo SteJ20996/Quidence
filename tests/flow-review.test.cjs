@@ -33,9 +33,32 @@ test('the reported projection and regression decimals match under the displayed 
 test('the rounding rule covers non-integer number fields across all four shared check families',()=>{
  let checked=0;
  for(const bank of [B,require('../assets/foundation-extension.js'),D,PB])for(const m of Object.values(bank.MODULES))for(const t of m.tasks)for(const f of t.fields.filter(f=>f.kind==='number'&&!Number.isInteger(f.answer))){
-  assert(F.numberMatches(f,f.answer.toFixed(2),F.NUMERIC_POLICY),t.id+' '+f.id);checked++;
+  const places=Math.max(2,1-Math.floor(Math.log10(Math.abs(f.answer))));
+  assert(F.numberMatches(f,f.answer.toFixed(places),F.NUMERIC_POLICY),t.id+' '+f.id);checked++;
  }
  assert(checked>19);
+});
+test('written precision rejects nearby wrong small numbers and safely reads scientific notation and requested units',()=>{
+ const check=(answer,value,label='Value')=>F.numberMatches({answer,label},value,F.NUMERIC_POLICY);
+ for(const value of ['0.035','0.04','1/25','0.00','0'])assert(!check(1/27,value),value);
+ for(const value of ['1/27','0.037','0.0370','3.7e-2','3.7×10^(-2)'])assert(check(1/27,value),value);
+ assert(!check(0.0049,'0.00'));assert(check(0.0049,'0.0049'));assert(check(0.0049,'4.9e-3'));
+ assert(!check(6.67e-11,'0'));assert(!check(6.67e-11,'6e-11'));assert(check(6.67e-11,'6.67×10^-11'));
+ assert(check(3e8,'3e8 m/s','Speed (m/s)'));assert(!check(3e8,'3e8 m/s²','Speed (m/s)'));
+ assert(!check(2,'2.00000001'));assert(!check(2,'2 kg','Force (N)'));
+ for(const value of ['1e999','1e-999','1e-308/1e308','Infinity','NaN','1/0','alert(1)','6.67×10^(-11','3+4'])assert.equal(F.numeric(value),null,value);
+ const s=E.createSession(E.fresh(),'physics'),t=E.tasks(s).find(t=>t.id==='ph-c06'),a=canonical(E,t);
+ Object.assign(a.values,{wavelength:'4 m',period:'3.3e-1 s',newWavelength:'2 m',echoDistance:'1.7×10^2 m'});
+ E.edit(s,t,a);assert(E.submit(s,t).ok);assert.equal(E.last(s,t).objective.state,'matched');
+});
+test('previous broad-tolerance outcomes remain importable and are flagged for precision review without rewriting them',()=>{
+ const p=E.fresh(),s=E.createSession(p,'geometry'),t=E.tasks(s).find(t=>t.id==='ge-c03'),a=canonical(E,t);
+ a.values.fraction='0.035';E.edit(s,t,a);E.submit(s,t);
+ const old=E.last(s,t);old.numericPolicy=F.LEGACY_NUMERIC_POLICY;old.objective=E.evaluate(t,a,F.LEGACY_NUMERIC_POLICY);
+ assert(old.objective.parts.fraction);const before=JSON.stringify(old);
+ assert(E.hydrate(p));assert.equal(JSON.stringify(E.last(s,t)),before);
+ assert.equal(E.observations(s).find(o=>o.id===t.id).components.find(c=>c.id==='fraction').state,'rounding-review');
+ E.submit(s,t);assert.equal(E.last(s,t).objective.parts.fraction,false);assert.equal(JSON.stringify(s.records[t.id].submissions[0]),before);
 });
 test('legacy strict outcomes remain immutable and are distinguished from current precision checks',()=>{
  const p=E.fresh(),s=E.createSession(p,'ab01'),t=E.tasks(s).find(t=>t.id==='la-c05'),a=canonical(E,t);a.values.c='1.1111';a.values.r1='0.89';
@@ -56,7 +79,7 @@ test('subject names and relative subject order agree across the three available 
  const lists=[];
  for(const kind of ['foundation','diagnostic','project']){
   const h=harness(kind),menu=h.host.querySelector('#f-subject');
-  const ids=menu.children.filter(x=>x.tagName==='option').map(x=>x.value);
+  const ids=menu.children.filter(x=>x.tagName==='OPTION').map(x=>x.value);
   lists.push(ids.filter(id=>['af01','ad01','ae01','ab01'].includes(id)));
   assert.match(h.host.innerHTML,/>Linear Algebra<\/option>/);assert.doesNotMatch(h.host.innerHTML,/>Linear algebra foundations<\/option>/);
  }
@@ -131,4 +154,48 @@ test('Calculus point labels have a white outline, clear offsets, and retain func
  }
  const h=harness('foundation');h.controller.select('ad01');h.click('resume');h.click('jump',4);
  assert.match(h.host.innerHTML,/checks the meaning of derivative notation, not calculating a tangent slope independently/);
+});
+test('three-choice displays balance correct positions within each block and stay stable after reload',()=>{
+ let checked=0;
+ for(const kind of ['foundation','diagnostic']){const h=harness(kind),menu=h.host.querySelector('#f-subject'),ids=menu.children.filter(x=>x.tagName==='OPTION').map(x=>x.value);
+ for(const id of ids)for(const check of ['entry',...(kind==='foundation'&&h.window.QuidenceFoundationExtension.MODULES[id]?['followup']:[])]){
+  h.controller.select(id);h.click('intro');if(check==='followup')h.click('followup');h.click('resume');const slots=[];
+  for(const [index,t]of h.engine.tasks(h.controller.current()).entries())for(const f of t.fields.filter(f=>f.kind==='choice'&&f.options.length===3)){
+   h.click('jump',index);const options=h.host.querySelectorAll('[data-f-field="'+f.id+'"]'),order=options.map(x=>Number(x.dataset.fOption));
+   assert.deepEqual([...order].sort(),[0,1,2]);slots.push(order.indexOf(f.options.findIndex(o=>o.value===f.answer)));
+   const reloaded=harness(kind,h.map);reloaded.controller.select(id);
+   assert.deepEqual(reloaded.host.querySelectorAll('[data-f-field="'+f.id+'"]') .map(x=>Number(x.dataset.fOption)),order);
+   h.fill(t);h.submit();assert.equal(h.engine.last(h.controller.current(),t).objective.parts[f.id],true);checked++;
+  }
+  for(let i=0;i+2<slots.length;i+=3)assert.deepEqual(slots.slice(i,i+3).sort(),[0,1,2]);
+ }}
+ assert(checked>=23);
+});
+test('Geometry C labels sit outside the triangle at narrow and wide widths',()=>{
+ const t=D.MODULES.geometry.tasks.find(t=>t.id==='ge-c01'),[a,b]=t.visual.points.find(p=>p[2]==='C');
+ for(const width of [240,375,520,620]){const html=G.visual(t,width),[,w,h]=html.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/).map(Number),v=t.visual;
+  const pointX=48+(a-v.xmin)/(v.xmax-v.xmin)*(w-68),pointY=22+(v.ymax-b)/(v.ymax-v.ymin)*(h-64);
+  const label=html.match(/<text class="f-point-label" x="([^"]+)" y="([^"]+)"[^>]*>C<\/text>/);assert(label);
+  assert(Number(label[1])<pointX);assert(Number(label[2])<pointY);assert.match(label[0],/text-anchor="end"/);
+ }
+});
+test('overflow tables show an edge cue until the last column and release observers on rerender',()=>{
+ const source=fs.readFileSync(path.join(root,'assets/foundation-graphs.js'),'utf8'),observers=[];
+ const window={ResizeObserver:class{constructor(callback){this.callback=callback;this.boxes=[];this.disconnected=false;observers.push(this);}observe(box){this.boxes.push(box);}disconnect(){this.disconnected=true;}}};
+ vm.runInNewContext(source,{window});const edge={hidden:true},box={scrollWidth:650,clientWidth:375,scrollLeft:0,parentElement:{querySelector:()=>edge},addEventListener(name,fn){this[name]=fn;}},host={querySelectorAll:()=>[box]};
+ window.QuidenceFoundationGraphs.prepareTables(host);assert.equal(edge.hidden,false);box.scrollLeft=275;box.scroll();assert.equal(edge.hidden,true);
+ box.scrollLeft=0;box.clientWidth=700;observers[0].callback();assert.equal(edge.hidden,true);
+ box.clientWidth=375;window.QuidenceFoundationGraphs.prepareTables(host);assert(observers[0].disconnected);assert.equal(edge.hidden,false);
+ host.querySelectorAll=()=>[];window.QuidenceFoundationGraphs.prepareTables(host);assert(observers[1].disconnected);
+ const table=G.visual({table:{headers:['A','B attempts'],rows:[[1,2]]}});assert.match(table,/data-table-edge/);assert.match(table,/Swipe or scroll sideways/);
+});
+test('current Statistics sector names agree while archived definitions retain their original text',()=>{
+ const current=PB.MODULES.ae01.tasks.find(t=>t.id==='st-p02'),legacy=PB.HISTORY['quidence-projects-3']||PB.HISTORY['cluevera-projects-3'];
+ assert.doesNotMatch(JSON.stringify(current),/\bMain\b/);assert.match(JSON.stringify(current),/Longshore/);assert(legacy);
+ assert.match(JSON.stringify(legacy.ae01.tasks.find(t=>t.id==='st-p02')),/\bMain\b/);
+});
+test('saved earlier numeric snapshots carry a precision notice without rewriting their original report',()=>{
+ const h=harness(),p=h.engine.fresh(),s=h.engine.createSession(p,'ab01'),t=h.engine.task(s),a=canonical(h.engine,t);h.engine.edit(s,t,a);h.engine.submit(s,t);h.engine.last(s,t).numericPolicy=h.engine.LEGACY_NUMERIC_POLICY;
+ S.save('ab01',h.engine.portable(s),s.id,h.storage);const before=h.storage.getItem(S.KEY),viewer=new Element('main');h.window.QuidenceReportViewer.mount(viewer,{storage:h.storage});
+ viewer.events.click({target:viewer.querySelector('[data-r-action="open"]')});assert.match(viewer.innerHTML,/earlier numeric precision rule/);assert.equal(h.storage.getItem(S.KEY),before);
 });

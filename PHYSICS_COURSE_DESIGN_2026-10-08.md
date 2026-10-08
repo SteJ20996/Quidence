@@ -96,7 +96,7 @@
 
 ## 判定、隐私与来源
 
-- 数值采用现有的最终答案小数规则；题目提示保留单位，明确特殊常量和理想化条件。
+- 数值使用第二轮回归后的精度规则：精确数或分数，或正确舍入的最终小数（至少两位小数和两位有效数字）；非零小量不能舍入成零。支持 `3e8`、`6.67×10^-11`，可选单位必须与字段指定单位一致，暂不自动做单位换算。整数答案须精确。旧数学提交保留原精度版本。
 - 解释不自动给理解分，也不按字数、关键词或英语表达完整度推断掌握。复核应看物理关系、数据、单位、系统、假设和验证是否成立。缺少证据与错误概念分开。
 - 全部记录仍只保存在本地；物理学习记录加入导出、备份和删除清单。没有开启账户、上传、机器学习或研究数据收集。
 - 数学题库旧版本完整冻结；旧会话迁移只补一个空的 Physics 记录入口，原提交、时间、解释及判定不变。
@@ -111,12 +111,13 @@
 | 科学质量 | 固定数值另行重算，单位、符号、系统假设逐题明确 | 教师对科学表达及模型限制的专业复核 |
 | 本地记录 | 完成课程、检查与项目的自动化 UI 流程和历史兼容检查 | macOS/iPad 真实浏览器保存、备份、恢复和打印体验 |
 | 主页布局 | Science 下单独提供 Physics；原数学入口保留 | 是否认可增加这个独立分组 |
-| 上线与合并 | 可运行的审核分支与发布清单 | 审核此范围后再决定合并/发布；尚未把线上介绍页改成已有物理服务 |
+| 上线与合并 | 可运行的审核分支与发布清单；用户已同意合并 | 正式域名发布、教师审核及真实浏览器复测仍需核对；合并不等于线上介绍页已更新 |
 
 ## 官方依据（核对日期 2026-10-08）
 
 - California Department of Education：[CA NGSS 标准入口](https://www.cde.ca.gov/ci/pl/ngssstandards.asp)。
 - California Department of Education：[高中物理科学标准 PDF](https://www.cde.ca.gov/ci/pl/documents/ngsshsphyicalscidci.pdf)。引用编号与关联分析，未复制官方教学实例或图。
 - California Department of Education：[2016 Science Framework](https://www.cde.ca.gov/ci/sc/cf/cascienceframework2016.asp)，尤其 [Chapter 8](https://www.cde.ca.gov/ci/sc/cf/documents/scifwchapter8.pdf) 的高中课程组织与本地排序说明。
+- NextGenScience / WestEd：[Trademarks and Copyright](https://www.nextgenscience.org/ngss-trademarks-and-copyright/ngss-trademarks-and-copyright)。官方商业使用指引要求样稿预审，并规定名称的星号/脚注与标志限制。公开物理页面本次先改为描述性“California high-school physical-science standards”，保留标准编号与课程边界；没有使用标准组织 Logo，也不声称已获许可或完整对齐认证。日后若重新使用该品牌名称，需要按当时官方指引核对。
 
 把课程做出来或加入主页不等于已发生商标申请所需的商业使用。商标范围和使用证据应按实际提供的服务另行核对；本次课程设计不替代该判断。

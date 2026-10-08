@@ -11,14 +11,22 @@ function content(payload){return JSON.stringify(payload,(key,value)=>['exported_
 // A small storage fingerprint, not a security hash or proof of equal reports.
 // Equality always compares the actual normalized content, including legacy copies.
 function signature(text){let hash=2166136261;for(let i=0;i<text.length;i++)hash=Math.imul(hash^text.charCodeAt(i),16777619);return'compact-v2:'+text.length+':'+(hash>>>0).toString(16);}
+// Check reports contain the original session as well as derived presentation.
+// A regenerated summary or report-view event is not a new student response.
+function sameWork(a,b){
+ if(!a?.session?.records||!b?.session?.records)return content(a)===content(b);
+ const stable=p=>JSON.stringify({schema:p.schema,kind:p.kind,bankVersion:p.bankVersion,session:Object.fromEntries(Object.entries(p.session).filter(([k])=>!['view','index','events'].includes(k)))});
+ return stable(a)===stable(b);
+}
 function save(module,payload,sessionId,storage){
  if(!SUBJECTS[module]||!payload||typeof payload!=='object')return{ok:false,error:'The report could not be saved.'};
  try{storage=storage||(root.QuidenceStorage||root.localStorage);const result=read(storage);if(!result.ok)return result;const data=result.data;
   const session=String(sessionId||payload.session?.id||payload.session_id||payload.sessionId||payload.state?.sessionId||payload.state?.id||payload.id||'current-session');
   const id=module+':'+session,text=content(payload),hash=signature(text);let item=data.items.find(x=>x.id===id);
-  if(item&&content(item.versions.at(-1).payload)===text)return{ok:true,id,changed:false,module,payload};
+  if(item&&sameWork(item.versions.at(-1).payload,payload))return{ok:true,id,changed:false,module,payload};
   if(!item){item={id,module,subject:SUBJECTS[module],sessionId:session,versions:[]};data.items.push(item);}
   item.versions.push({savedAt:new Date().toISOString(),signature:hash,payload:clone(payload)});
+  for(const existing of data.items)for(const version of existing.versions)version.signature=signature(content(version.payload));
   if((storage.getItem(KEY)||'')!==result.raw)return{ok:false,error:'Saved reports changed in another tab. Reload before saving; your activity record is kept.'};
   storage.setItem(KEY,JSON.stringify(data));return{ok:true,id,changed:true,module,payload};
  }catch{return{ok:false,error:'Your report is open, but it could not be saved in this browser. Download a copy.'};}

@@ -135,7 +135,7 @@
     eyebrow: 'PHYSICS · INTRODUCTORY LESSONS', headline: 'Notice the motion.\nTest the model.',
     lead: 'Explore everyday physical systems with graphs, simple algebra, and evidence. Save a first thought, compare a model, then explain a new situation.',
     prerequisite: 'Designed for grades 9–10. Use ratios, signed numbers, and simple equations; no calculus needed.',
-    scope: 'Four starting units connected to selected California high-school NGSS expectations. This is a supplementary introduction, not a complete Physics or Physics of the Universe course. Numerical examples are invented models.',
+    scope: 'Four starting units connected to selected California high-school physical-science standards. This is a supplementary introduction, not a complete Physics or Physics of the Universe course. Numerical examples are invented models.',
     bridge: {href: '../../projects/?module=physics', label: 'Try two physics field projects →'},
     reportsHref: '../../reports/',
     LESSONS: specs.map((spec, i) => {
