@@ -733,9 +733,10 @@
     link.href=url;link.download=filename;link.hidden=true;
     try{document.body.appendChild(link);link.click();}finally{link.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);}
   }
+  function reportPayload(){const payload=sessionExport();return window.QuidenceReportStore?.prepare?.('aa01',payload,state.sessionId)||payload;}
   function downloadSession(){
     try{
-      downloadFile(JSON.stringify(sessionExport(),null,2),'application/json',`quidence-session-${state.sessionId}.json`);
+      downloadFile(JSON.stringify(reportPayload(),null,2),'application/json',`quidence-session-${state.sessionId}.json`);
       const message='Session record download requested. Check your browser downloads. Saved reviews and any unsaved review drafts are included separately.';
       reportNotice(message);
     }catch{reportNotice('The download could not start. Please try again in a full browser tab.',true);}
@@ -773,7 +774,7 @@
   function printableReport(){
     const all=state.queue.map(id=>state.records[id]).filter(Boolean);
     const body=`<header><h1>Quidence · Algebra learning report</h1><p class="report-meta">Session ${esc(state.sessionId)}</p><p>${all.filter(r=>r.complete!==null&&!r.skip).length} submitted · ${all.filter(r=>r.notStudied).length} not yet studied · ${all.filter(r=>r.skip&&!r.notStudied).length} skipped · ${state.queue.filter(id=>state.records[id]?.complete==null).length} not submitted</p></header><section><h2>Useful next steps</h2>${findings().map(f=>`<div class="report-feedback"><h3>${esc(f.title)}</h3><p>${esc(f.evidence)}</p><p>Next: ${esc(f.action)}</p></div>`).join('')}</section><h2>Questions, your work and feedback</h2>${all.map(r=>{const q=r.questionSnapshot??questionContext(r.id);return`<section class="report-item"><h3>${esc(itemLabel(r.id))} · ${esc(q.title)}</h3><p class="question-text">Question: ${esc(q.prompt)}</p><div class="student-work">Your work\n${esc(responseText(r))}\n${esc(r.complete===null?r.draft?.why??'':r.answer?.why||r.reasonSource||'No written explanation entered.')}</div><div class="report-feedback"><p style="white-space:pre-wrap">${esc(feedbackText(r))}</p>${r.complete!==null&&!r.skip?`<p>Reference: ${esc(answers[r.id])}</p>`:''}</div></section>`;}).join('')}<p class="report-meta">Written reasoning is reviewed provisionally. This short check is not a complete measure of the subject. The downloadable record keeps all submissions, support and review history.</p>`;
-    return window.QuidenceReportTools.documentHtml('Quidence · Session report',body);
+    return window.QuidenceReportTools.documentHtml('Quidence · Session report',body.replace('</header>','</header>'+window.QuidenceReportTools.learningRequestHtml(reportPayload())));
   }
   function printReport(){
     preserveReviewDrafts();

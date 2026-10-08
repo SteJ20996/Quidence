@@ -3,7 +3,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),crypto=require('node:crypto'),path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const decode=s=>s.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,'&');
-function load(){
+function load(goal){
   const nodes=new Map(),forms=new Map(),downloads=[],blobs=new Map(),timers=[],scrolls=[];
   let popupBlocked=false,downloadBlocked=false,printThrows=false,preview=null;
   class Element{
@@ -45,6 +45,7 @@ function load(){
     if(popupBlocked)return null;
     preview={opener:window,html:'',printCount:0,document:{open(){},write(html){preview.html=html;},close(){}},focus(){},print(){if(printThrows)throw Error('printing unavailable');this.printCount++;}};return preview;
   }};
+  if(goal){const S=require('../../../assets/report-store.js'),map=new Map([['cluevera_learning_goal_v1',JSON.stringify(goal)]]),storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)};window.QuidenceReportStore={prepare:(m,p,id)=>S.prepare(m,p,id,storage),save:(m,p,id)=>S.save(m,p,id,storage),appendNotice(){}};}
   const URL={createObjectURL(blob){const id='blob:'+blobs.size;blobs.set(id,blob);return id;},revokeObjectURL:id=>blobs.delete(id)};
   const context={window,document,crypto,structuredClone,Date,Blob,URL,setInterval(){},setTimeout:(callback,delay)=>timers.push({callback,delay}),console};vm.createContext(context);
   vm.runInContext(fs.readFileSync(path.join(root,'../../assets/report-tools.js'),'utf8'),context);
@@ -78,6 +79,7 @@ function load(){
   h.click('restart');assert(h.nodes.get('#restart-dialog').open);assert.equal(h.api.state.sessionId,originalSession);h.click('keep-report');assert(!h.nodes.get('#restart-dialog').open);assert.equal(h.api.state.reviewed.length,2);
   h.click('restart');h.setDownloadBlocked(true);h.click('download-before-restart');assert(h.nodes.get('#restart-status').textContent.includes('could not'));h.setDownloadBlocked(false);h.click('download-before-restart');assert(h.nodes.get('#restart-dialog').open);assert.equal(h.api.state.sessionId,originalSession);h.click('confirm-restart');
   assert.equal(h.api.state.phase,'assessment');assert.notEqual(h.api.state.sessionId,originalSession);assert.equal(Object.keys(h.api.state.records).length,1);assert.equal(h.api.state.reviewed.length,0);assert.equal(Object.keys(h.api.state.reviewDrafts).length,0);assert.equal(h.api.state.queue.length,19);
+  const focused=load({schema:'cluevera_learning_goal_v1',subject:'algebra-1',text:'Explain the equation with a diagram.\n  Keep my wording.',includeInReport:true});focused.click('download');assert.equal(JSON.parse(await focused.downloads.at(-1).blob.text()).learningRequest.text,'Explain the equation with a diagram.\n  Keep my wording.');focused.click('print');assert(focused.preview.html.includes('Your learning focus'));assert(focused.preview.html.includes('Keep my wording.'));
   console.log(JSON.stringify({result:'passed',checks:['review drafts survive save and toggle','saved review prefilled','0/1/2 credit validation','JSON includes saved reviews and separate drafts','expanded printable report','popup and print failure feedback','download failure feedback','restart cancel/download/confirm'],scope:'callback-level; native browser print/download behavior remains unverified'}));
 })().catch(error=>{console.error(error);process.exitCode=1;});
 

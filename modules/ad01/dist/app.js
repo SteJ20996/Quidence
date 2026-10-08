@@ -149,6 +149,7 @@ app.addEventListener('input',event=>{
 });
 app.addEventListener('change',event=>{if(event.target.dataset.lab){E.log(state,'graph_explored',{lesson:lesson().id,control:event.target.dataset.lab,settings:{...state.labs[state.lessonIndex]}});save();}});
 function download(name,content,mime){const url=URL.createObjectURL(new Blob([content],{type:mime})),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function reportPayload(){return window.QuidenceReportStore.prepare('ad01',E.exportRecord(state),state.createdAt);}
 function markdown(){
  let s='# Calculus\n\n'+`Session started: ${state.createdAt}\n\n`+'Initial predictions and checks after instruction are separate observations. Optional explanations need human review.\n\n';
  for(const l of C.LESSONS){s+=`## ${l.short}\n\n`;for(const t of [l.predict,...l.checks]){s+=`### ${t===l.predict?'Initial prediction':'Fresh question'}: ${t.prompt}\n\n`;state.records[t.id].submissions.forEach((r,i)=>{s+=`Attempt ${i+1}: ${answerText(t,r.answer)}\n\nResult: ${resultLabel(r.result)}\n\nSupport: lesson seen=${r.support.lessonSeen}; earlier feedback=${r.support.feedbackSeen}; other help reported=${r.support.otherHelp}\n\n`;if(r.answer.explanation)s+=`Explanation (not automatically scored):\n\n${r.answer.explanation.split('\n').map(line=>'> '+line).join('\n')}\n\n`;});s+=`${t.explanation}\n\n`;}s+=`Next step: ${l.next}\n\n`;}
@@ -179,9 +180,9 @@ app.addEventListener('click',event=>{
  else if(action==='relearn'){state.stage='learn';step=0;}
  else if(action==='revise'){state.stage='check';state.questionIndex=i;}
  else if(action==='continue'){if(E.allDone(state))state.view='summary';else{const next=state.lessonIndex<3?state.lessonIndex+1:C.LESSONS.findIndex((_,j)=>!E.lessonDone(state,j));openLesson(next);return;}}
- else if(action==='export-json'){download('Quidence_Calculus_Answer_History.json',JSON.stringify(E.exportRecord(state),null,2),'application/json');return;}
- else if(action==='export-md'){download('Quidence_Calculus_Learning_Summary.md',markdown(),'text/markdown');return;}
- else if(action==='print'){try{const ok=window.QuidenceReportTools.openPrint(window.QuidenceReportTools.printable(document.title,{markdown:markdown()}));notice=ok?'The report opened in a new tab. Print / save as PDF there.':'Allow pop-ups or download the readable report.';}catch{notice='The report tab could not open. Download the readable report.';}render();return;}
+ else if(action==='export-json'){download('Quidence_Calculus_Answer_History.json',JSON.stringify(reportPayload(),null,2),'application/json');return;}
+ else if(action==='export-md'){download('Quidence_Calculus_Learning_Summary.md',window.QuidenceReportTools.markdown('Calculus',{...reportPayload(),markdown:markdown()}),'text/markdown');return;}
+ else if(action==='print'){try{const ok=window.QuidenceReportTools.openPrint(window.QuidenceReportTools.printable(document.title,{...reportPayload(),markdown:markdown()}));notice=ok?'The report opened in a new tab. Print / save as PDF there.':'Allow pop-ups or download the readable report.';}catch{notice='The report tab could not open. Download the readable report.';}render();return;}
  else return;
  const local=state.stage==='learn'&&['step','prev-step','next-step'].includes(action);
  render(!local);if(local){const h=app.querySelector('h2');h.tabIndex=-1;h.focus();}

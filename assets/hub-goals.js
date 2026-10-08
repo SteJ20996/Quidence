@@ -8,12 +8,12 @@ function prompt(goal,report=''){
  if(!SUBJECTS[goal.subject])return'';
  return`# My learning request\n\nBefore sharing: remove names, school, contact details and other personal information. Use only a tool you are allowed to use; younger learners should review with a parent or teacher.\n\nSubject: ${SUBJECTS[goal.subject].title}\n\nLearning goal or homework question:\n\n${String(goal.text||'Help me choose a useful starting point.').split('\n').map(s=>'> '+s).join('\n')}\n\nPlease first ask what I have tried and what is unclear. Read any work below, check my calculations and reasoning, then help me work through one step at a time. Accept a different valid approach. When I am ready, give one new example and adapt to my answer.\n\n${report?'## My saved learning report\n\n'+report:'If no report is attached, ask for my current work before drawing conclusions about my understanding.'}\n`;
 }
-function hydrate(value){const subject=value?.subject==='aa01'?'algebra-1':value?.subject;return value?.schema===KEY&&SUBJECTS[subject]&&typeof value.text==='string'&&value.text.length<=3000?{subject,text:value.text}:null;}
+function hydrate(value){const subject=value?.subject==='aa01'?'algebra-1':value?.subject;return value?.schema===KEY&&SUBJECTS[subject]&&typeof value.text==='string'&&value.text.length<=3000&&(value.includeInReport===undefined||typeof value.includeInReport==='boolean')?{subject,text:value.text,includeInReport:value.includeInReport===true}:null;}
 function mount(document,window){
  const host=document.getElementById('learning-entry');if(!host)return;
  const text=document.getElementById('learning-goal'),status=document.getElementById('goal-status'),course=document.getElementById('goal-course'),foundation=document.getElementById('goal-foundations'),copy=document.getElementById('goal-copy'),area=document.getElementById('goal-markdown'),report=document.getElementById('goal-report');
- const original=document.getElementById('goal-original'),reset=document.getElementById('goal-reset');
- let goal={subject:'pre-algebra',text:''},saving=true,reports=[],blocked=false,rawOriginal=null;
+ const original=document.getElementById('goal-original'),reset=document.getElementById('goal-reset'),include=document.getElementById('goal-include-report');
+ let goal={subject:'pre-algebra',text:'',includeInReport:false},saving=true,reports=[],blocked=false,rawOriginal=null;
  function blockedNotice(){status.textContent='The saved learning request could not be read. Its original is kept. You can copy it before explicitly starting a new saved request; new edits are not saved yet.';}
  try{
   rawOriginal=(window.QuidenceStorage||window.localStorage).getItem(KEY);
@@ -40,11 +40,12 @@ function mount(document,window){
   document.getElementById('goal-subject-label').textContent=SUBJECTS[goal.subject].title;
   course.href=SUBJECTS[goal.subject].course;foundation.hidden=!SUBJECTS[goal.subject].foundation;foundation.textContent=SUBJECTS[goal.subject].foundationLabel||'Complete a foundation check →';if(SUBJECTS[goal.subject].foundation)foundation.href=SUBJECTS[goal.subject].foundation;else foundation.removeAttribute('href');
   report.innerHTML='<option value="">Start with my question only</option>'+reports.filter(r=>r.module===goal.subject||(['pre-algebra','algebra-1'].includes(goal.subject)&&r.module==='aa01')).map(r=>'<option value="'+window.QuidenceReportTools.escape(r.id)+'">'+window.QuidenceReportTools.escape(new Date(r.versions.at(-1).savedAt).toLocaleString())+' · '+window.QuidenceReportTools.escape(r.versions.at(-1).payload.check||'learning report')+'</option>').join('');
-  text.value=goal.text;area.hidden=true;persist();
+  text.value=goal.text;if(include)include.checked=goal.includeInReport;area.hidden=true;persist();
  }
 
- for(const button of host.querySelectorAll('[data-learning-subject]'))button.addEventListener('click',()=>{goal.subject=button.dataset.learningSubject;status.textContent='';render();});
+ for(const button of host.querySelectorAll('[data-learning-subject]'))button.addEventListener('click',()=>{if(goal.subject!==button.dataset.learningSubject)goal.includeInReport=false;goal.subject=button.dataset.learningSubject;status.textContent='';render();});
  text.addEventListener('input',()=>{goal.text=text.value;persist();});
+ include?.addEventListener('change',()=>{goal.includeInReport=include.checked;persist();if(saving)status.textContent=goal.includeInReport?'Your request will be included in new reports for '+SUBJECTS[goal.subject].title+'. Earlier reports keep their original context.':'Your request will stay out of new reports. Earlier reports keep their original context.';});
  copy.addEventListener('click',async()=>{
   const item=reports.find(r=>r.id===report.value),saved=item?.versions.at(-1),record=saved?window.QuidenceReportTools.markdown(item.subject,saved.payload):'';
   const ok=await window.QuidenceReportTools.copy(prompt(goal,record),area);area.hidden=ok;
