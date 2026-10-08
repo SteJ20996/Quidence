@@ -1,6 +1,7 @@
 (function (root) {
   'use strict';
-  const step = (title, text, tryIt) => ({title, text, try: tryIt});
+  const activity = (predict, test, explain, hint = '') => ({predict, test, explain, hint});
+  const step = (title, text, investigation) => ({title, text, try: [investigation.predict, investigation.test, investigation.explain].join(' '), activity: investigation});
   const range = (name, label, min, max, step = 1) => ({name, label, min, max, step});
   const question = (id, prompt, labels, explanation, rotate) => {
     const options = labels.map((label, i) => ({id: String(i), label}));
@@ -13,10 +14,24 @@
       defaults: {velocity: 2, start: 4},
       controls: [range('velocity', 'Constant velocity (m/s)', -3, 3), range('start', 'Starting position (m)', 0, 8)],
       steps: [
-        step('Choose a reference and a direction.', 'Position tells where an object is relative to a chosen origin. Here the positive direction is east and time is in seconds. The height of a position graph is not the height of the ground.', 'Change the starting position without changing velocity. What changes on the graph?'),
-        step('Compare changes, not just positions.', 'For constant velocity, x = x₀ + vt. Velocity is the signed change in position divided by elapsed time. A negative slope means westward motion, even when position is positive.', 'Set velocity to −2 m/s. Compare the positions at 1 s and 3 s.'),
-        step('Separate distance from displacement.', 'Displacement is final position minus initial position. Distance counts the whole route and cannot be negative. For one constant-velocity segment, distance = |v|t. A trip that turns around needs the distances of all segments.', 'At −2 m/s for 4 s, compare displacement with distance.'),
-        step('Acceleration is a change in velocity.', 'A constant nonzero velocity has zero acceleration. In a position graph, a straight line means constant velocity; a changing slope indicates changing velocity. Average acceleration is Δv/Δt.', 'Set velocity to 0. Explain the horizontal graph and compare it with motion at a constant 3 m/s.')
+        step('Choose a reference and a direction.', 'Position tells where an object is relative to a chosen origin. Here the positive direction is east and time is in seconds. The height of a position graph is not the height of the ground.', activity(
+          'Keep velocity at +2 m/s. If the starting position changes from 0 m to 4 m, will the runner travel farther in 4 s?',
+          'Compare those two settings. Check the line, the final position, and the distance readout.',
+          'What changes, and what stays the same? Use the graph to support your prediction or revise it.')),
+        step('Compare changes, not just positions.', 'For constant velocity, x = x₀ + vt. Velocity is the signed change in position divided by elapsed time. Its sign describes direction; position describes location.', activity(
+          'Start at 8 m with velocity −2 m/s. Predict the positions at 1 s and 3 s. Can a runner be east of the origin while moving west?',
+          'Set those controls and use two points on the line to check your predicted positions.',
+          'Explain the difference between a positive position and a positive velocity. An equation or two marked points can be enough.')),
+        step('Separate distance from displacement.', 'Displacement is final position minus initial position. Distance counts the whole route and cannot be negative. For one constant-velocity segment, distance = |v|t. A trip that turns around needs the distances of all segments.', activity(
+          'Starting at 4 m, compare velocities +2 m/s and −2 m/s over 4 s. Predict which quantities will agree and which will differ.',
+          'Check both settings. Then sketch a separate trip: 4 m east followed by 4 m west. The straight-line control cannot draw that turnaround.',
+          'Compare distance and displacement for all three trips. What goes wrong with the claim that zero displacement means no travel?',
+          'For the return trip, add both segment lengths for distance; compare the final and initial positions for displacement.')),
+        step('Check what an end point can tell you.', 'A straight position–time line means constant velocity and zero acceleration in this model. Average acceleration is Δv/Δt. A final position alone does not tell you the earlier motion.', activity(
+          'Can two different constant-velocity trips both finish at x = 8 m after 4 s?',
+          'Find two settings with different starting positions and velocities that do this. Check their graphs and readouts.',
+          'Show why they share an end point but not the same motion. What extra time-stamped position would distinguish them? Why is acceleration zero in both model trips?',
+          'Use 8 = x₀ + 4v. Pick a starting position first, then solve for a velocity within the control range.'))
       ],
       questions: [
         ['A runner is 4 m east of an origin at t = 0 and 10 m east at t = 3 s. What is the average velocity?', ['+2 m/s', '+10/3 m/s', '+6 m/s'], '(10−4)/3 = +2 m/s. Subtract the starting position before dividing by time.'],
@@ -30,10 +45,23 @@
       defaults: {push: 6, resistance: 2, mass: 2},
       controls: [range('push', 'Eastward applied force (N)', 0, 12), range('resistance', 'Westward opposing force (N)', 0, 6), range('mass', 'Mass (kg)', 1, 4)],
       steps: [
-        step('Add forces on the same object.', 'Choose east as positive. An eastward applied force of 6 N and a westward force of 2 N give a net force of +4 N. Fnet = ma uses this total, not just the largest force.', 'Set the two force magnitudes equal. What happens to the net force?'),
-        step('Connect net force with acceleration.', 'For a 2 kg cart, +4 N gives a = 4/2 = +2 m/s². The sign describes acceleration, not necessarily the current direction of motion.', 'Double mass while keeping both forces fixed. How does acceleration change?'),
-        step('Balanced forces do not require rest.', 'A zero net force means zero acceleration in this model. A cart can then remain at rest or continue at a constant velocity. You need its initial velocity to predict which.', 'Make net force zero and explain why the force diagram alone cannot tell you the cart’s velocity.'),
-        step('Test a relationship fairly.', 'To test how force affects acceleration, keep mass fixed and vary net force. To test the effect of mass, keep net force fixed. Changing both can hide the relationship.', 'Find two settings with the same net force but different masses. Compare their accelerations.')
+        step('Add forces on the same object.', 'Choose east as positive. Add the signed horizontal forces on this cart to find Fnet. Fnet = ma uses this total, not just the largest force. Vertical forces balance in this model.', activity(
+          'Keep mass at 2 kg and the eastward force at 6 N. Predict the net force when the westward force is 2 N, then 6 N.',
+          'Compare both settings and the acceleration readout.',
+          'Why can the cart have two nonzero forces on it but zero acceleration?')),
+        step('Connect net force with acceleration.', 'Use a = Fnet/m. The sign describes acceleration, not necessarily the current direction of motion. To investigate mass, keep both horizontal forces fixed.', activity(
+          'Keep the eastward force at 6 N and westward force at 2 N. Predict how acceleration changes when mass goes from 2 kg to 4 kg.',
+          'Check those settings, then calculate acceleration independently from net force and mass.',
+          'Which variable did you change, and which did you hold fixed? Would this comparison tell you the cart’s current velocity?')),
+        step('Balanced forces do not require rest.', 'Zero net force means zero acceleration. To predict velocity, you also need an initial velocity. For a constant acceleration, v = v₀ + at; a force diagram alone supplies no v₀.', activity(
+          'With balanced forces, could one cart stay at rest while another keeps moving east?',
+          'Set both forces to 4 N and mass to 2 kg. On paper, use v₀ = 0 m/s for one cart and +3 m/s for the other; predict each velocity after 2 s.',
+          'Use the two cases to evaluate “balanced forces make every cart stop.” What information is missing from the force diagram?')),
+        step('Build a comparison that can test a claim.', 'To test the effect of mass, hold net force fixed. A changed force can compensate for a changed mass, so equal accelerations do not by themselves prove that mass has no effect.', activity(
+          'Can a 2 kg cart and a 4 kg cart have the same nonzero acceleration?',
+          'Build two control settings that do this. Then repeat the comparison with the same net force on both carts.',
+          'A friend uses your first pair to say “mass does not matter.” Which comparison tests that claim, and what evidence does it give?',
+          'Start from a = Fnet/m. For the first pair, keep the ratio equal; for the fair test, change only mass.'))
       ],
       questions: [
         ['A 2 kg cart has 8 N eastward and 2 N westward forces. What is its acceleration?', ['+3 m/s²', '+4 m/s²', '+5 m/s²'], 'Fnet = 8−2 = +6 N; a = 6/2 = +3 m/s².'],
@@ -47,10 +75,23 @@
       defaults: {power: 100, minutes: 10, efficiency: 80},
       controls: [range('power', 'Constant input power (W)', 50, 200, 25), range('minutes', 'Duration (min)', 5, 20, 5), range('efficiency', 'Useful conversion efficiency (%)', 50, 100, 10)],
       steps: [
-        step('Power measures an energy rate.', 'Energy is measured in joules (J). Power is measured in watts (W), with 1 W = 1 J/s. At constant power, transferred energy E = Pt, with time in seconds if the result is in joules.', 'Compare 100 W for 10 min with 200 W for 5 min. Do they transfer the same energy?'),
-        step('Keep the unit conversion visible.', 'Ten minutes is 600 seconds. At 100 W, E = 100×600 = 60,000 J. Alternatively, 100 W for 1/6 hour is 16⅔ Wh. One watt-hour is 3,600 J.', 'Change duration and check the energy in both J and Wh.'),
-        step('Useful output is part of the energy balance.', 'At 80% useful conversion, 60,000 J of input supplies 48,000 J of useful output. The other 12,000 J is transferred into other forms, such as thermal energy; it is not destroyed.', 'Keep input energy fixed and change efficiency. What must happen to the other output?'),
-        step('A model needs a system and assumptions.', 'This example assumes constant input power and efficiency, no storage change, and two output categories. Real devices can have variable power and efficiency. To check a real claim, measure those quantities instead of assuming the model is exact.', 'Name one observation that would make you revise the constant-power assumption.')
+        step('Power measures an energy rate.', 'Energy is measured in joules (J). Power is measured in watts (W), with 1 W = 1 J/s. At constant power, transferred energy E = Pt, with time in seconds if the result is in joules.', activity(
+          'Keep duration at 10 min and efficiency at 80%. Predict how input energy changes if power rises from 100 W to 200 W.',
+          'Compare both settings. Check the units as well as the numbers.',
+          'Why are power and transferred energy different quantities even though one controls the other here?')),
+        step('Different rates can deliver the same energy.', 'Use E = Pt with consistent units: seconds give J, hours give Wh. One watt-hour is 3,600 J. Neither the largest power nor the longest duration alone determines total energy.', activity(
+          'Which transfers more input energy: 100 W for 10 min or 200 W for 5 min? Keep efficiency fixed and predict before checking.',
+          'Compare the settings. Verify one case using seconds and J, then hours and Wh; use a calculator for the hour fraction if helpful.',
+          'What does this comparison show about the claim “a higher-power device always uses more energy”?')),
+        step('Account for every output.', 'Useful output = efficiency × input energy. With no stored-energy change, input = useful output + other output. The other output goes into forms such as thermal energy; it is not destroyed.', activity(
+          'Keep power at 100 W and duration at 10 min. If efficiency drops from 80% to 50%, predict how both output categories change.',
+          'Compare the settings and check that the two outputs add to the same input in each case.',
+          'How much energy shifts between the categories? Use the balance to evaluate “the less efficient device loses energy from existence.”')),
+        step('Design a fair efficiency comparison.', 'This model assumes constant power and efficiency, no storage change, and two output categories. Equal useful output does not by itself identify the input energy or efficiency. Measurements are needed to test a real device.', activity(
+          'Could two devices deliver the same useful energy in 10 min but use different input energies?',
+          'Keep duration at 10 min. Find two power/efficiency settings that do this; compare their useful, other, and input energies.',
+          'Which model device is more efficient, and what numbers support that claim? What would you measure to check a real claim like this?',
+          'Use useful energy = (efficiency/100) × power × time. Choose efficiencies of 100% and 50%, then look for suitable powers.'))
       ],
       questions: [
         ['A 50 W device operates at constant power for 4 min. How much energy does it transfer?', ['12,000 J', '200 J', '12,000 W'], '4 min = 240 s; E = 50×240 = 12,000 J.'],
@@ -64,10 +105,23 @@
       defaults: {speed: 8, frequency: 2},
       controls: [range('speed', 'Wave speed in the model medium (m/s)', 4, 12, 2), range('frequency', 'Source frequency (Hz)', 1, 4)],
       steps: [
-        step('Read the axes before reading a wave.', 'This picture is displacement versus position at one instant for an ideal transverse wave. Wavelength λ is the distance between neighboring crests. This spatial picture alone does not show frequency.', 'Read the horizontal axis. Explain why its unit is meters rather than seconds.'),
-        step('Frequency counts cycles in time.', 'Frequency f is cycles per second, measured in hertz (Hz). Period T = 1/f is seconds per cycle. At 2 Hz, each cycle takes 0.5 s.', 'Double frequency. Compare the period with its original value.'),
-        step('Use v = fλ with a stated medium.', 'In this ideal model v = fλ. Holding speed fixed, doubling frequency halves wavelength. A different medium can change speed, so do not assume every wave has the same speed.', 'Keep speed at 8 m/s and compare wavelengths at 1, 2, and 4 Hz.'),
-        step('Signals travel; the picture is a model.', 'A vibrating source can send a signal through a medium. For an echo, sound travels to a reflector and back, so elapsed time includes both legs. Our transverse sketch is not a picture of air particles moving up and down in a sound wave.', 'With sound speed 340 m/s, explain the travel distance for an echo returning after 1 s.')
+        step('Read the axes before reading a wave.', 'This is displacement versus position at one instant for an ideal transverse wave. Wavelength λ is the distance between neighboring crests; the horizontal axis is not elapsed time.', activity(
+          'Set speed to 8 m/s and frequency to 2 Hz. Which distance on the picture should you measure for wavelength: crest to trough or crest to next crest?',
+          'Read two neighboring crest positions and subtract them. Compare with the wavelength readout.',
+          'Why is wavelength measured horizontally in meters, rather than vertically in centimeters or in seconds?')),
+        step('Frequency counts cycles in time.', 'Frequency f is cycles per second, measured in hertz (Hz). Period T = 1/f is seconds per cycle. Counting cycles at one fixed point uses time, unlike a spatial snapshot.', activity(
+          'Keep speed at 8 m/s. Predict how the time for four cycles changes when frequency goes from 1 Hz to 2 Hz.',
+          'Compare the period readouts and calculate four-cycle times as 4T. The static picture is not a timing measurement.',
+          'Why does a higher frequency require less time for the same number of cycles? Show the relationship with numbers or an equation.')),
+        step('Hold the medium fixed to test frequency.', 'In this ideal nondispersive model v = fλ. Holding medium speed fixed lets you investigate frequency and wavelength. Changing the medium can change speed, so state what stays fixed.', activity(
+          'Keep speed at 8 m/s. If frequency rises from 2 Hz to 4 Hz, predict what happens to wavelength and wave speed.',
+          'Check both settings, then use fλ to verify the speed in each case.',
+          'Does seeing twice as many crests prove faster travel? Use the two settings as evidence.')),
+        step('Challenge what one picture can prove.', 'A spatial snapshot alone does not determine frequency without timing or wave-speed information. Our transverse sketch is not a picture of sound particles moving up and down. An echo includes travel to a reflector and back, so its return time covers both legs.', activity(
+          'Could waves in two different model media have the same wavelength but different frequencies?',
+          'Find two speed/frequency settings with wavelength 4 m. Compare their pictures and period readouts.',
+          'If you received only one of those pictures, what extra measurement would distinguish the two frequencies? Explain why the picture alone is insufficient.',
+          'Use speed = 4 × frequency. Choose two frequencies for which the needed speed is within the control range.'))
       ],
       questions: [
         ['An ideal wave travels at 12 m/s with frequency 3 Hz. What is its wavelength?', ['4 m', '36 m', '0.25 m'], 'λ = v/f = 12/3 = 4 m.'],

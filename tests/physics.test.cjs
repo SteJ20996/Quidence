@@ -52,7 +52,17 @@ test('the complete physics lesson flow saves formulas and Chinese reasoning with
     const before = JSON.stringify(h.saved().records);
     const control = lesson.controls[0]; h.lab(control.name, control.max);
     assert.equal(JSON.stringify(h.saved().records), before);
-    for (let j = 0; j < 4; j++) h.click('next-step');
+    for (let j = 0; j < 4; j++) {
+      const activity = lesson.steps[j].activity;
+      const list = h.app.querySelector('[class="simple-list activity-list"]');
+      assert(list, 'The current activity has distinct prediction, test, and explanation prompts');
+      assert.equal(list.children.length, 3);
+      assert(h.app.innerHTML.indexOf('Predict first') < h.app.innerHTML.indexOf('Test and compare'));
+      assert(h.app.innerHTML.indexOf('Test and compare') < h.app.innerHTML.indexOf('Explain with evidence'));
+      assert.equal(!!h.app.querySelector('details'), !!activity.hint);
+      assert.equal(JSON.stringify(h.saved().records), before, 'Reading an activity is not an answer submission');
+      h.click('next-step');
+    }
     for (const task of lesson.checks) {
       h.choose(task.correct[0]); h.input('explanation', 'Δx/Δt; Fnet = ma; E = Pt。按题目条件核对。');
       h.submit(); h.click('next');
