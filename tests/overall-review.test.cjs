@@ -75,6 +75,9 @@ test('student summaries prioritize observed mismatches and keep all-correct expl
   }
   const brief = E.studentSummary(s);
   assert.equal(brief.matched.length, 3); assert.equal(brief.checks.length, 2);
+  assert.match(brief.overview,/57 answer components matched/);
+  assert.match(Tools.printableSummary('Linear Algebra',E.portable(s)),/57 answer components matched/);
+  assert.match(E.markdown(s),/57 answer components matched/);
   assert(brief.checks.every(x => x.detail.includes('not a demonstrated mistake')));
   const task = E.tasks(s).findLast(t => t.fields.some(f => f.kind === 'number'));
   const field = task.fields.find(f => f.kind === 'number'), answer = structuredClone(E.last(s, task).answer);

@@ -44,6 +44,7 @@ function sine(angle){const px=a=>50+a/360*445,py=y=>140-y*88;let d='';for(let a=
 function sampling(s){const dorm=s.sampling==='volunteer'?8:5;return table(['Group','Population (100)','Illustrative sample (10)'],[['Dorm residents',50,dorm],['Commuters',50,10-dorm]],'Illustrative counts, not a simulated random draw. Random samples can be unbalanced; the selection method is the evidence about design.');}
 function task(s){if(s.type==='course-model')return Models.model(s.course,s.index,s.settings).graph;if(s.type==='dots')return dots(s.values,s.caption);if(s.type==='table')return table(s.headers,s.rows,s.caption);if(s.type==='circle')return circle(s.angle);return plot(s);}
 function lab(module,index,s){
+ if(['physics-1','physics-2'].includes(module))return (typeof exports==='object'?require('./physics-foundation-models.js'):root.QuidencePhysicsFoundationModels).model(module,index,s);
  if(module==='physics')return (typeof exports==='object'?require('./physics-models.js'):root.QuidencePhysicsModels).model(index,s);
  if(['pre-algebra','algebra-1','geometry','algebra-2'].includes(module))return Models.model(module,index,s);
  if(module==='ae01'){

@@ -116,6 +116,22 @@ load=F(20+30+10); event=load*3; collection=F(100)*2*F(4,5)
 cloud_collection=F(50)*2*F(4,5); initial_storage=F(40); reserve=F(20)
 assert initial_storage+collection<=250 and initial_storage+collection-event==reserve
 put('ph-p02',dict(load=load,eventEnergy=event,collected=collection,final=initial_storage+collection-event,cloudCollected=cloud_collection,shortfall=event+reserve-initial_storage-cloud_collection,maxLoad=(initial_storage+cloud_collection-reserve)/3,duration=(initial_storage+cloud_collection-reserve)/load), 'Energy conservation in Wh, with efficiency applied once to collection, then capacity and reserve constraints solved independently.')
+# Physics 1 and 2 projects: solve independently from their scenario inputs.
+mass=F(3);v=F(6);delay=F(2,5);brake=F(9);a=-brake/mass;t=-v/a
+coast=v*delay;total=coast+v*t/2;fast=F(8);faster=fast*delay+mass*fast**2/(2*brake)
+minimum=mass*fast**2/(2*(9-fast*delay));joined=mass*v/(mass+1)
+assert fast*delay+mass*fast**2/(2*minimum)==9
+put('p1-p01',dict(acceleration=a,coast=coast,time=t,total=total,faster=faster,minimum=minimum,joined=joined,transfer=mass*v**2/2-(mass+1)*joined**2/2), 'Independent delay rectangle and braking triangle, force inequality, momentum and kinetic-energy balances.')
+mass=F(6,5);rho=1000;g=10;volume=F(2,1000);loaded=mass+F(1,2);overloaded=loaded+F(2,5)
+slope=F(9000-2000,1)/(F(9,10)-F(2,10));gauge=slope*F(13,10)
+assert slope*F(1,2)==5000
+put('p1-p02',dict(weight=mass*g,full=rho*g*volume,floating=mass/rho*1000,payload=loaded/rho*1000,maximum=rho*volume,support=overloaded*g-rho*g*volume,slope=slope,gauge=gauge,absolute=gauge+100000), 'Displaced mass and floating capacity; independent pressure slope and atmospheric reference.')
+mass=F(2);capacity=4000;budget=mass*capacity*(18-12);leak=F(90000,30*60);net=leak-40
+current=F(20,12)
+put('p2-p01',dict(budget=budget,leak=leak,temperature=12+F(90000,mass*capacity),net=net,minutes=budget/net/60,improved=leak*F(3,5)-40,current=current,charge=current*3600,energy=20*2), 'Independent thermal budget and rate comparison; separate electrical current, charge and Wh.')
+i1=F(6,12);i2=F(6,24);it=i1+i2;image=1/(F(1,10)-F(1,30));mag=-image/30
+h=F(414,100)*F(1,10**15);photon=h*6*10**14
+put('p2-p02',dict(i1=i1,i2=i2,total=it,resistance=6/it,power=6*it,expanded=6*(it+F(6,12)),image=image,magnification=mag,height=3*mag,nearer=1/(F(1,10)-F(1,20)),photon=photon,kinetic=photon-2,lower=h*4*10**14), 'Independent parallel current and power, reciprocal lens distances and signed scaling, photon threshold comparison.')
 target=Path(__file__).resolve().parent.parent/'review/project-math-audit.json'
 target.parent.mkdir(exist_ok=True);target.write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps({'projects':len(questions),'numericComponents':sum(len(q['numbers']) for q in questions.values()),'formulaComponents':sum(len(q['formulas']) for q in questions.values()),'drawings':sum(len(q['drawings']) for q in questions.values())}))

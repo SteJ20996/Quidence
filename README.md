@@ -4,18 +4,18 @@
 
 公测已暂停账户与云端同步，新学习记录仅保存在当前浏览器。所有活动页提供 [保存、恢复与删除记录](records/) 入口，公用设备离开前应清除本地记录和下载文件。默认 `npm start` 不开启账户 API 或打开学生数据库；开发测试中的 `accountsEnabled: true` 不用于公测。当前规则见 [LOCAL_ONLY_REVIEW.md](LOCAL_ONLY_REVIEW.md)。
 
-主页保留 8 个数学学科及统计学，另在 Science 分组增加面向 9–10 年级的 Physics 入门补充课程；经济学和博弈论不再提供课程活动。物理的标准关联与审核范围见 [课程设计稿](PHYSICS_COURSE_DESIGN_2026-10-08.md)。
+主页提供 8 个数学学科（含统计学），Science 分组拆成 Physics 1 Foundations 和 Physics 2 Foundations。物理按对应课程主题选取代数型入门内容，不规定统一开课年级，不宣称完整进阶课程或考试准备；范围与缺口见 [两课设计稿](PHYSICS_TRACKS_DESIGN_2026-10-08.md)。经济学和博弈论不再提供课程活动。
 
 | 分类 | 学科 | 检查题 |
 | --- | --- | ---: |
 | School Mathematics | Pre-Algebra、Algebra I、Geometry、Algebra II | 各 4 题 |
 | Further Mathematics | Pre-calculus、Calculus、Statistics | 各 4 题 |
 | Further Mathematics | Linear Algebra | 12 题 |
-| Science | Physics | 6 题（入门，公式提供） |
+| Science | Physics 1 Foundations、Physics 2 Foundations | 各 6 题（公式提供） |
 
-共 46 道检查题、179 个独立检查的答案分量。主页各课程卡及课程导航提供 **Test your understanding / Diagnostic challenges** 入口；可直接测试，不必先完成入门课。入门教学、旧基础检查和视觉活动仍可用于复习。Physics 的四个学习单元另含 12 个学习题，不并入这 46 道检查。
+当前主页共 52 道检查题、204 个独立检查的答案分量。主页每科均提供 **Test your understanding / Diagnostic challenges**，可以直接测试。物理两课另有 6/7 个学习单元，包含 18/21 个学习题和 24/28 个活动。原四单元 Physics 与第 4 版题库保留读取历史记录，不混入新课报告。
 
-共 18 个 California-inspired field projects，9 科各两个；包含 58 个分步问题、138 个数值输入、6 个模型公式、2 个几何构造和 45 个开放回应。项目不是选择题。主页每科的 **Explore two field projects** 可直接进入；数学项目保留内部 6.5/10 设计目标，物理项目按入门难度设计，均待试做校准，不公开未经校准的数值难度。
+当前共 20 个 California-inspired field projects，10 科各两个；包含 64 个阶段、162 个数值输入、6 个模型公式、2 个几何构造和 51 个开放回应。项目不是选择题。主页 **Explore two field projects** 可直接进入。内部挑战目标尚未由学生试做校准，不公开数值难度。
 
 几何可轻点放点、输入分数坐标、用按钮连线及撤销；答案和图形一起保存。等价多项式用系数核验，解释不按关键词、语法或长度自动判分。每小问有理解要点及可记录的本地复核；未审核的理解保留待复核。见 [PROJECTS_REVIEW.md](PROJECTS_REVIEW.md)。
 
@@ -48,16 +48,16 @@ npm start
 | --- | --- |
 | `assets/challenge-bank.js`、`diagnostics/` | 数学中高难度诊断与物理入门检查 |
 | `assets/foundation-engine.js`、`assets/foundation-app.js` | 共用检查、历史保存与报告流程；新题使用独立记录空间 |
-| `assets/project-bank.js`、`assets/physics-bank.js` | 18 个为 Quidence 编写的多步骤情境项目，来源审核待完成 |
+| `assets/project-bank.js`、`assets/physics-foundation-bank.js` | 20 个为 Quidence 编写的多步骤情境项目，来源审核待完成 |
 | `assets/project-tools.js` | 有界多项式检查与几何构造工具 |
 | `projects/` | 独立项目入口与保存 |
 | `review/project-math-audit.json` | 从情境数据独立推导的答案参照 |
 | `review/project-graphics.svg` | 给定图与独立审核的几何构造 |
 | `PROJECTS_REVIEW.md` | 逐项目审核、解释标准和验证范围 |
-| `review/challenge-math-audit.json` | 全 46 题另行复算的答案参照 |
+| `review/challenge-math-audit.json` | 52 道当前题及 6 道历史 Physics 题的复算答案参照 |
 | `scripts/audit-challenges.py` | 不读取题库答案的精确分数、消元、积分与统计验证 |
 | `review/challenge-graphics.svg` | 新图在 320px 和 520px 宽度下的审核页 |
-| `courses/`、`modules/aa01`、`ab01`、`ad01`、`ae01`、`af01` | 当前数学教学与视觉活动，另含 `courses/physics/` 物理入门 |
+| `courses/`、`modules/aa01`、`ab01`、`ad01`、`ae01`、`af01` | 当前数学教学与视觉活动，另含 `courses/physics-1/`、`courses/physics-2/`，旧 `courses/physics/` 保留历史读取 |
 | `foundations/`、`reports/` | 旧数学基础检查、保存的报告；历史记录保持兼容 |
 | `backend/`、`account/` | 账号及带版本冲突保护的跨设备同步 |
 | `archive/retired-subjects/` | 已退出产品的经济学与博弈论源文件；不属于当前课程 |
