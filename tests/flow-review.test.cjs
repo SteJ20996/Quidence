@@ -10,7 +10,7 @@ function harness(kind='diagnostic',map=new Map(),width=620){
  const storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)},body=new Element('body');
  const document={body,getElementById:id=>host.querySelector('#'+id),createElement:tag=>new Element(tag)};
  const window={document,localStorage:storage,navigator:{}},context=vm.createContext({window,document,Blob,URL:{createObjectURL:()=> 'blob:test',revokeObjectURL(){}},setTimeout:fn=>fn()});
- for(const file of ['challenge-bank-v1.js','challenge-bank-v2.js','challenge-bank-v3.js','physics-bank.js','challenge-bank-v4.js','physics-foundation-bank.js','challenge-bank.js','project-bank-v1.js','project-bank-v2.js','project-bank-v3.js','physics-bank.js','project-bank-v4.js','physics-foundation-bank.js','project-bank.js','project-tools.js','subject-foundations.js','foundation-bank.js','foundation-extension.js','foundation-engine.js','foundation-graphs.js','report-tools.js','report-store.js','foundation-app.js','report-viewer.js'])vm.runInContext(fs.readFileSync(path.join(root,'assets',file),'utf8'),context);
+ for(const file of ['challenge-bank-v1.js','challenge-bank-v2.js','challenge-bank-v3.js','physics-bank.js','challenge-bank-v4.js','physics-foundation-bank-v1.js','challenge-bank-v5.js','physics-foundation-bank.js','challenge-bank.js','project-bank-v1.js','project-bank-v2.js','project-bank-v3.js','physics-bank.js','project-bank-v4.js','physics-foundation-bank-v1.js','project-bank-v5.js','physics-foundation-bank.js','project-bank.js','project-tools.js','subject-foundations.js','foundation-bank.js','foundation-extension.js','foundation-engine.js','foundation-graphs.js','report-tools.js','report-store.js','foundation-app.js','report-viewer.js'])vm.runInContext(fs.readFileSync(path.join(root,'assets',file),'utf8'),context);
  const bank=kind==='project'?window.QuidenceProjectBank:kind==='foundation'?window.QuidenceFoundationBank:window.QuidenceChallengeBank;
  const engine=kind==='foundation'?window.QuidenceFoundationEngine:window.QuidenceFoundationEngine.forBank(bank,empty,{...settings,...(kind==='project'?{schema:'cluevera_project_portfolio_v1',projects:true,fieldTypes:window.QuidenceProjectTools.fieldTypes,checkTitle:'California-inspired field projects'}:{})});
  const controller=window.QuidenceFoundationApp.mount(host,{bank,engine,extension:kind==='foundation'?window.QuidenceFoundationExtension:empty,module:'ab01',storage});
@@ -34,7 +34,7 @@ test('the rounding rule covers non-integer number fields across all four shared 
  let checked=0;
  for(const bank of [B,require('../assets/foundation-extension.js'),D,PB])for(const m of Object.values(bank.MODULES))for(const t of m.tasks)for(const f of t.fields.filter(f=>f.kind==='number'&&!Number.isInteger(f.answer))){
   const places=Math.max(2,1-Math.floor(Math.log10(Math.abs(f.answer))));
-  assert(F.numberMatches(f,f.answer.toFixed(places),F.NUMERIC_POLICY),t.id+' '+f.id);checked++;
+  assert(F.numberMatches(f,f.precision==='significant'?f.answer.toPrecision(3):f.answer.toFixed(places),F.NUMERIC_POLICY),t.id+' '+f.id);checked++;
  }
  assert(checked>19);
 });

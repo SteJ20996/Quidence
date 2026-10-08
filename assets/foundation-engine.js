@@ -5,7 +5,7 @@ const B=typeof module==='object'&&module.exports?require('./foundation-bank.js')
 const X=typeof module==='object'&&module.exports?require('./foundation-extension.js'):root.QuidenceFoundationExtension;
 function build(B,X,settings={}){
 const SCHEMA=settings.schema||'cluevera_foundation_portfolio_v1',clone=v=>JSON.parse(JSON.stringify(v));
-const ENTRY_VERSIONS=[B.VERSION,...Object.keys(B.HISTORY||{})],LEGACY_NUMERIC_POLICY='decimal-final-2dp-1',NUMERIC_POLICY='written-precision-2';
+const ENTRY_VERSIONS=[B.VERSION,...Object.keys(B.HISTORY||{})],LEGACY_NUMERIC_POLICY='decimal-final-2dp-1',PREVIOUS_NUMERIC_POLICY='written-precision-2',NUMERIC_POLICY='written-precision-3';
 const SUBJECTS={aa01:'Secondary-school math',ab01:'Linear Algebra',ac01:'Game theory foundations',ad01:'Calculus',ae01:'Statistics',af01:'Pre-calculus','pre-algebra':'Pre-Algebra','algebra-1':'Algebra I',geometry:'Geometry','algebra-2':'Algebra II'};
 const subjectTitle=id=>SUBJECTS[typeof id==='string'?id:id.module]||B.MODULES[typeof id==='string'?id:id.module].title;
 // Standardize authored display text only; task definitions and student work stay intact.
@@ -50,9 +50,10 @@ function legacyNumeric(value){
 // A unit suffix is accepted only when it matches the unit requested by the field.
 const normalizeUnit=s=>s.replace(/\s/g,'').replace(/²/g,'^2').replace(/³/g,'^3').replace(/·/g,'*');
 function fieldUnit(f){return f.unit||f.label?.match(/\((m|m\/s|m\/s²|s|N|kg·m\/s|J|Wh|h|W|kg|Hz|cm|m²|°)\)\s*$/)?.[1]||null;}
-function numericReading(value,unit=null){
+function numericReading(value,unit=null,allowX=true){
  if(!['string','number'].includes(typeof value))return null;
  let s=String(value).trim().replace(/−/g,'-');if(s.length>80)return null;
+ if(allowX)s=s.replace(/([+-]?(?:\d+(?:\.\d*)?|\.\d+))\s*[xX]\s*(?=10\s*\^)/g,'$1×');
  s=s.replace(/([+-]?(?:\d+(?:\.\d*)?|\.\d+))\s*[×*]\s*10\s*\^\s*(?:\(([+-]?\d{1,3})\)|([+-]?\d{1,3}))/g,(_,a,b,c)=>a+'e'+(b||c));
  const atom='[+-]?(?:\\d{1,3}(?:,\\d{3})+(?:\\.\\d*)?|\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d{1,3})?';
  const match=s.match(new RegExp('^('+atom+'(?:\\s*/\\s*'+atom+')?)(.*?)$'));if(!match)return null;
@@ -61,21 +62,28 @@ function numericReading(value,unit=null){
  const values=tokens.map(x=>{const [mantissa,exponent='0']=x.toLowerCase().split('e');if(Math.abs(Number(exponent))>308)return NaN;const n=Number(x);return n===0&&/[1-9]/.test(mantissa)?NaN:n;});
  const n=values.length===1?values[0]:values[0]/values[1];if(!Number.isFinite(n)||n===0&&values[0]!==0)return null;
  const [mantissa,exponent='0']=tokens[0].toLowerCase().split('e');
- return{value:n,fraction:tokens.length===2,places:(mantissa.split('.')[1]?.length||0)-Number(exponent)};
+ const digits=mantissa.replace(/[-+.]/g,'').replace(/^0+/,'');
+ const significant=(mantissa.includes('.')?digits:digits.replace(/0+$/,'')).length;
+ return{value:n,fraction:tokens.length===2,places:(mantissa.split('.')[1]?.length||0)-Number(exponent),significant};
 }
 function numeric(value,unit=null){return numericReading(value,unit)?.value??null;}
 function minimumPlaces(answer){return answer===0?2:Math.max(2,1-Math.floor(Math.log10(Math.abs(answer))));}
-function currentNumberMatches(f,value){
- const read=numericReading(value,fieldUnit(f));if(!read||!Number.isFinite(f.answer))return false;
+function currentNumberMatches(f,value,previous=false){
+ const read=numericReading(value,fieldUnit(f),!previous);if(!read||!Number.isFinite(f.answer))return false;
  const n=read.value;if(n===f.answer)return true;
- if(Number.isInteger(f.answer)||n===0)return false;
+ const physics=!previous&&f.precision==='significant';
+ if(!physics&&Number.isInteger(f.answer)||n===0)return false;
  const scale=Math.abs(f.answer),strict=Math.max(8*Number.EPSILON*scale,Math.min(f.absoluteTolerance??1e-8*scale,1e-8*scale));
  if(Math.abs(n-f.answer)<=strict)return true;
- if(read.fraction||read.places<minimumPlaces(f.answer))return false;
- const significant=read.places+Math.floor(Math.log10(scale))+1;
- if(significant<2||significant>100)return false;
+ if(read.fraction||!physics&&read.places<minimumPlaces(f.answer))return false;
+ const significant=physics?read.significant:read.places+Math.floor(Math.log10(scale))+1;
+ if(significant<(physics?(f.significantFigures||3):2)||significant>100)return false;
  const rounded=Number(f.answer.toPrecision(significant));
- return Math.abs(n-rounded)<=8*Number.EPSILON*Math.max(Math.abs(n),Math.abs(rounded));
+ const epsilon=8*Number.EPSILON*Math.max(Math.abs(n),Math.abs(rounded));
+ if(Math.abs(n-rounded)<=epsilon)return true;
+ // Binary storage must not choose a required tie convention at a true midpoint.
+ const halfStep=10**(Math.floor(Math.log10(scale))-significant+1)/2;
+ return physics&&Math.abs(Math.abs(n-f.answer)-halfStep)<=epsilon;
 }
 function fresh(){return{schema:SCHEMA,bankVersion:B.VERSION,modules:Object.fromEntries(Object.keys(B.MODULES).map(id=>[id,{active:null,sessions:[]}]))};}
 function session(portfolio,module){const m=portfolio.modules[module];return m?.sessions.find(s=>s.id===m.active)||null;}
@@ -103,14 +111,15 @@ function validate(t,a,policy=NUMERIC_POLICY){
  if(!validDraft(t,a))return'An answer could not be read. Please check the fields.';
  if(!a.explanation.trim())return'Add your reasoning, a calculation, or where you got stuck before saving.';
  if(a.unsure||a.notStudied)return'';
- for(const f of t.fields){const v=a.values[f.id];if(f.kind==='number'&&!(settings.projects&&v.trim()==='')&&(policy===NUMERIC_POLICY?numeric(v,fieldUnit(f)):legacyNumeric(v))===null)return'Enter a number, fraction, or scientific notation'+(fieldUnit(f)?' with no unit or the requested '+fieldUnit(f)+' unit':'')+' for '+f.label+'.';if(f.kind==='choice'&&!v)return'Choose an answer for '+f.label+'.';if(f.kind==='multi'&&!v.length)return'Select at least one answer for '+f.label+'.';}
+ for(const f of t.fields){const v=a.values[f.id];if(f.kind==='number'&&!(settings.projects&&v.trim()==='')&&([NUMERIC_POLICY,PREVIOUS_NUMERIC_POLICY].includes(policy)?numericReading(v,fieldUnit(f),policy===NUMERIC_POLICY)?.value??null:legacyNumeric(v))===null)return'Enter a number, fraction, or scientific notation'+(fieldUnit(f)?' with no unit or the requested '+fieldUnit(f)+' unit':'')+' for '+f.label+'.';if(f.kind==='choice'&&!v)return'Choose an answer for '+f.label+'.';if(f.kind==='multi'&&!v.length)return'Select at least one answer for '+f.label+'.';}
  return'';
 }
-function numberMatches(f,value,policy){if(policy===NUMERIC_POLICY)return currentNumberMatches(f,value);const n=legacyNumeric(value);if(n===null)return false;const base=Math.max(f.absoluteTolerance||0,1e-8*Math.max(1,Math.abs(f.answer)));const rounding=policy===LEGACY_NUMERIC_POLICY&&!String(value).includes('/')&&!Number.isInteger(f.answer)?0.005:0,epsilon=policy===LEGACY_NUMERIC_POLICY?Number.EPSILON*Math.max(1,Math.abs(f.answer)):0;return Math.abs(n-f.answer)<=Math.max(base,rounding)+epsilon;}
+function precisionField(t,f){return /^physics-[12]$/.test(t.module)?{...f,precision:'significant',significantFigures:3}:f;}
+function numberMatches(f,value,policy){if([NUMERIC_POLICY,PREVIOUS_NUMERIC_POLICY].includes(policy))return currentNumberMatches(f,value,policy===PREVIOUS_NUMERIC_POLICY);const n=legacyNumeric(value);if(n===null)return false;const base=Math.max(f.absoluteTolerance||0,1e-8*Math.max(1,Math.abs(f.answer)));const rounding=policy===LEGACY_NUMERIC_POLICY&&!String(value).includes('/')&&!Number.isInteger(f.answer)?0.005:0,epsilon=policy===LEGACY_NUMERIC_POLICY?Number.EPSILON*Math.max(1,Math.abs(f.answer)):0;return Math.abs(n-f.answer)<=Math.max(base,rounding)+epsilon;}
 function evaluate(t,a,policy){
  if(a.notStudied)return{state:'not-studied',parts:{}};
  if(a.unsure)return{state:'unsure',parts:{}};
- const parts={};for(const f of t.fields){const v=a.values[f.id];if(settings.fieldTypes?.[f.kind]){parts[f.id]=settings.fieldTypes[f.kind].check(f,v);continue;}if(settings.projects&&v.trim()===''){parts[f.id]=null;continue;}parts[f.id]=f.kind==='number'?numberMatches(f,v,policy):f.kind==='multi'?JSON.stringify([...v].sort())===JSON.stringify([...f.answer].sort()):v===f.answer;}
+ const parts={};for(const f of t.fields){const v=a.values[f.id];if(settings.fieldTypes?.[f.kind]){parts[f.id]=settings.fieldTypes[f.kind].check(f,v);continue;}if(settings.projects&&v.trim()===''){parts[f.id]=null;continue;}parts[f.id]=f.kind==='number'?numberMatches(precisionField(t,f),v,policy):f.kind==='multi'?JSON.stringify([...v].sort())===JSON.stringify([...f.answer].sort()):v===f.answer;}
  if(settings.projects)return{state:Object.values(parts).some(v=>v===false)?'recheck':t.fields.some(f=>parts[f.id]===null&&(f.kind==='drawing'?settings.fieldTypes.drawing.check(f,a.values[f.id])===null:!a.values[f.id].trim()))?'partial':Object.values(parts).some(v=>v===null)?'review':'matched',parts};
  return{state:Object.values(parts).every(Boolean)?'matched':'recheck',parts};
 }
@@ -133,7 +142,7 @@ function reviewPart(s,t,field,points,note){
 function latestPartReview(s,t,field){if(!last(s,t))return null;const r=s.records[t.id];return r?.partReviews?.filter(x=>x.submission===r.submissions.length&&x.field===field).at(-1)||null;}
 function componentChecks(t,a){return t.fields.map(f=>{
  let state=!a?'missing':a.answer.notStudied?'not-studied':a.answer.unsure?'unsure':a.objective.parts[f.id]===null?(f.kind==='drawing'?!Object.keys(a.answer.values[f.id].points).length:!a.answer.values[f.id].trim())?'missing':'review':a.objective.parts[f.id]?'matched':'recheck';
- if(a&&['matched','recheck'].includes(state)&&f.kind==='number'&&a.numericPolicy!==NUMERIC_POLICY&&a.objective.parts[f.id]!==numberMatches(f,a.answer.values[f.id],NUMERIC_POLICY))state='rounding-review';
+ if(a&&['matched','recheck'].includes(state)&&f.kind==='number'&&a.numericPolicy!==NUMERIC_POLICY&&a.objective.parts[f.id]!==numberMatches(precisionField(t,f),a.answer.values[f.id],NUMERIC_POLICY))state='rounding-review';
  const result={id:f.id,label:f.label,state};if(state==='rounding-review')result.feedback='This saved result used an earlier precision rule. Its original outcome is retained; recheck the preserved calculation under the current rule before drawing a conclusion.';if(settings.projects){result.answer=settings.fieldTypes?.[f.kind]?.text(f,a?.answer.values[f.id])??(a?.answer.values[f.id]||'not entered');if(f.kind==='drawing'&&a){result.drawing=settings.fieldTypes.drawing.valid(f,a.answer.values[f.id])?clone(a.answer.values[f.id]):null;result.drawingSpec={id:f.id,label:f.label,board:clone(f.board)};if(!a.answer.unsure&&!a.answer.notStudied)result.constructionParts=settings.fieldTypes.drawing.parts(f,a.answer.values[f.id]);}result.reviewCriteria=f.reviewCriteria||[];if(state==='review')result.feedback=f.kind==='drawing'?'Construction is incomplete; inspect the preserved points and segments rather than treating missing construction as incorrect.':f.kind==='formula'?'Expression preserved for review; it is outside the bounded polynomial checker.':'Review the mathematical meaning of this response; no keyword, grammar, or length score is assigned.';}
  if(f.skill){result.skill=f.skill;if(state==='recheck'){const upstream=(f.dependsOn||[]).filter(id=>a.objective.parts[id]===false&&!(!a.numericPolicy&&numberMatches(t.fields.find(x=>x.id===id),a.answer.values[id],NUMERIC_POLICY)));result.feedback=upstream.length?'Recheck after '+upstream.map(id=>t.fields.find(x=>x.id===id).label).join(', ')+'. This result may follow from an earlier value; it is not separate evidence of another weakness.':f.onMismatch;}if(state==='not-studied')result.feedback='Not studied yet; this is readiness information, not evidence of a failed concept.';}
  if(a&&!a.answer.unsure&&!a.answer.notStudied&&f.kind==='multi'){const selected=a.answer.values[f.id];result.selection={correct:selected.filter(v=>f.answer.includes(v)).map(v=>f.options.find(o=>o.value===v).label),extra:selected.filter(v=>!f.answer.includes(v)).map(v=>f.options.find(o=>o.value===v).label),missing:f.answer.filter(v=>!selected.includes(v)).map(v=>f.options.find(o=>o.value===v).label)};}
@@ -207,7 +216,7 @@ function hydrate(value){
    for(const [id,r]of Object.entries(s.records)){
     const t=tasks(s).find(t=>t.id===id);
     if(!t||!object(r)||!validDraft(t,r.draft)||!['draft','submitted'].includes(r.status)||!Array.isArray(r.submissions)||!Array.isArray(r.reviews)||r.status==='submitted'&&!r.submissions.length)return null;
-    for(const a of r.submissions)if(!object(a)||(a.numericPolicy!==undefined&&![NUMERIC_POLICY,LEGACY_NUMERIC_POLICY].includes(a.numericPolicy))||a.taskVersion!==s.bankVersion||validate(t,a.answer,a.numericPolicy||'legacy-strict')||typeof a.feedbackSeen!=='boolean'||!Number.isFinite(Date.parse(a.at))||JSON.stringify(a.objective)!==JSON.stringify(evaluate(t,a.answer,a.numericPolicy)))return null;
+    for(const a of r.submissions)if(!object(a)||(a.numericPolicy!==undefined&&![NUMERIC_POLICY,PREVIOUS_NUMERIC_POLICY,LEGACY_NUMERIC_POLICY].includes(a.numericPolicy))||a.taskVersion!==s.bankVersion||validate(t,a.answer,a.numericPolicy||'legacy-strict')||typeof a.feedbackSeen!=='boolean'||!Number.isFinite(Date.parse(a.at))||JSON.stringify(a.objective)!==JSON.stringify(evaluate(t,a.answer,a.numericPolicy)))return null;
     if(r.status==='submitted'&&JSON.stringify(r.draft)!==JSON.stringify(r.submissions.at(-1).answer))return null;
     if(r.partReviews!==undefined&&(!settings.projects||!Array.isArray(r.partReviews)||r.partReviews.some(x=>!object(x)||!t.fields.some(f=>f.id===x.field)||!Number.isInteger(x.submission)||x.submission<1||x.submission>r.submissions.length||![null,0,1,2].includes(x.points)||typeof x.note!=='string'||!x.note.trim()||x.note.length>2000||!Number.isFinite(Date.parse(x.at)))))return null;
     if(r.reviews.some(x=>!object(x)||!Number.isInteger(x.submission)||x.submission<1||x.submission>r.submissions.length||![null,0,1,2].includes(x.points)||typeof x.note!=='string'||!x.note.trim()||x.note.length>2000||!Number.isFinite(Date.parse(x.at))))return null;
@@ -218,7 +227,7 @@ function hydrate(value){
  const migrated=clone(value);for(const id of Object.keys(B.MODULES))if(!migrated.modules[id])migrated.modules[id]={active:null,sessions:[]};
  return migrated;
 }
-const api={settings,SCHEMA,NUMERIC_POLICY,LEGACY_NUMERIC_POLICY,subjectTitle,authoredText,displayTask,studentTaskNote,numberMatches,numeric,minimumPlaces,fresh,session,createSession,definition,checkName,tasks,task,blank,record,edit,validate,evaluate,submit,last,done,review,latestReview,reviewPart,latestPartReview,observations,componentChecks,evidenceSummary,studentSummary,scopeReview,nextChecks,portable,answerText,markdown,hydrate};
+const api={settings,SCHEMA,NUMERIC_POLICY,PREVIOUS_NUMERIC_POLICY,LEGACY_NUMERIC_POLICY,subjectTitle,authoredText,displayTask,studentTaskNote,numberMatches,numeric,minimumPlaces,fresh,session,createSession,definition,checkName,tasks,task,blank,record,edit,validate,evaluate,submit,last,done,review,latestReview,reviewPart,latestPartReview,observations,componentChecks,evidenceSummary,studentSummary,scopeReview,nextChecks,portable,answerText,markdown,hydrate};
 return api;
 }
 const api=build(B,X);api.forBank=build;
