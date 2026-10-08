@@ -19,6 +19,7 @@ function build(){
  }
  const physics=require('../courses/physics/content.js');
  for(const lesson of physics.LESSONS)for(const task of [lesson.predict,...lesson.checks])add('lesson','physics',task,['courses/physics/content.js','assets/physics-models.js'],{bankVersion:physics.VERSION});
+ for(const module of ['physics-1','physics-2']){const physics=require('../courses/'+module+'/content.js');for(const lesson of physics.LESSONS)for(const task of [lesson.predict,...lesson.checks])add('lesson',module,task,['courses/'+module+'/content.js','assets/physics-foundation-content.js','courses/physics/content.js','assets/physics-foundation-models.js'],{bankVersion:physics.VERSION});}
  const linear=require('../modules/ab01/dist/learning-engine.js');for(const[stage,tasks]of Object.entries(linear.TASKS))for(const task of tasks)add('matrix-'+stage,'ab01',task,['modules/ab01/dist/learning-engine.js']);
  const adaptive=require('../modules/aa01/dist/adaptive.js');for(const[id,task]of Object.entries(adaptive.tasks))add('algebra-adaptive','aa01',{id,...task},['modules/aa01/dist/adaptive.js','modules/aa01/dist/app.js']);
  const h=require('../modules/aa01/tests/workspace.cjs').load({expose:'window.testOnly={state,goto};'}),api=h.api;

@@ -4,12 +4,13 @@ const defaultBank=root.QuidenceFoundationBank,defaultExtension=root.QuidenceFoun
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function mount(host,options={}){
  const B=options.bank||defaultBank,X=options.extension||defaultExtension,E=options.engine||defaultEngine;
- const visible=Object.fromEntries(Object.entries(B.MODULES).filter(([id])=>id!=='ac01'));const challenge=!!E.settings.challenge,projects=!!E.settings.projects,P=root.QuidenceProjectTools;const boardUndo=new Map(),boardSelection=new Map();let pendingTap=null;
+ const visible=Object.fromEntries(Object.entries(B.MODULES).filter(([id])=>id!=='ac01'&&id!=='physics'));const challenge=!!E.settings.challenge,projects=!!E.settings.projects,P=root.QuidenceProjectTools;const boardUndo=new Map(),boardSelection=new Map();let pendingTap=null;
  let selected=visible[options.module]?options.module:Object.keys(visible)[0],portfolio=E.fresh(),notice='',blocked=false,raw='',saving=true;
  const key=options.key||E.SCHEMA;let storage;
  try{storage=options.storage||(root.QuidenceStorage||root.localStorage);raw=storage.getItem(key)||'';if(raw){const loaded=E.hydrate(JSON.parse(raw));if(loaded)portfolio=loaded;else blocked=true;}}
  catch{if(raw)blocked=true;else saving=false;}
- const previews=new Map(),order=['pre-algebra','algebra-1','geometry','algebra-2','aa01','af01','ad01','ae01','ab01','physics'];
+ if(B.MODULES.physics&&(options.module==='physics'||portfolio.modules.physics?.sessions.length)){visible.physics=B.MODULES.physics;if(options.module==='physics')selected='physics';}
+ const previews=new Map(),order=['pre-algebra','algebra-1','geometry','algebra-2','aa01','af01','ad01','ae01','ab01','physics-1','physics-2','physics'];
  function preview(check='entry'){return E.createSession(E.fresh(),selected,check);}
  const current=()=>previews.get(selected)||E.session(portfolio,selected)||(()=>{const s=preview();previews.set(selected,s);return s;})();
  function activate(s=current()){const m=portfolio.modules[selected];if(!m.sessions.some(x=>x.id===s.id)){s.createdAt=new Date().toISOString();m.sessions.push(s);m.active=s.id;previews.delete(selected);}return s;}

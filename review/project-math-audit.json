@@ -349,6 +349,73 @@
       "formulas": {},
       "drawings": {},
       "method": "Energy conservation in Wh, with efficiency applied once to collection, then capacity and reserve constraints solved independently."
+    },
+    "p1-p01": {
+      "numbers": {
+        "acceleration": "-3",
+        "coast": "12/5",
+        "time": "2",
+        "total": "42/5",
+        "faster": "208/15",
+        "minimum": "480/29",
+        "joined": "9/2",
+        "transfer": "27/2"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Independent delay rectangle and braking triangle, force inequality, momentum and kinetic-energy balances."
+    },
+    "p1-p02": {
+      "numbers": {
+        "weight": "12",
+        "full": "20",
+        "floating": "6/5",
+        "payload": "17/10",
+        "maximum": "2",
+        "support": "1",
+        "slope": "10000",
+        "gauge": "13000",
+        "absolute": "113000"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Displaced mass and floating capacity; independent pressure slope and atmospheric reference."
+    },
+    "p2-p01": {
+      "numbers": {
+        "budget": "48000",
+        "leak": "50",
+        "temperature": "93/4",
+        "net": "10",
+        "minutes": "80",
+        "improved": "-10",
+        "current": "5/3",
+        "charge": "6000",
+        "energy": "40"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Independent thermal budget and rate comparison; separate electrical current, charge and Wh."
+    },
+    "p2-p02": {
+      "numbers": {
+        "i1": "1/2",
+        "i2": "1/4",
+        "total": "3/4",
+        "resistance": "8",
+        "power": "9/2",
+        "expanded": "15/2",
+        "image": "15",
+        "magnification": "-1/2",
+        "height": "-3/2",
+        "nearer": "20",
+        "photon": "621/250",
+        "kinetic": "121/250",
+        "lower": "207/125"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Independent parallel current and power, reciprocal lens distances and signed scaling, photon threshold comparison."
     }
   }
 }

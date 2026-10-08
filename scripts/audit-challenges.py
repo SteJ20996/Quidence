@@ -1,6 +1,6 @@
 """Separate exact-arithmetic recomputation; does not read authored answer keys. Both implementations were produced in this project, not independently certified by a human reviewer."""
 from fractions import Fraction as F
-from math import isqrt, sqrt
+from math import isqrt, sqrt, pi
 from pathlib import Path
 import json
 
@@ -135,6 +135,30 @@ R['ph-c04']={'potential':potential,'kinetic':kinetic,'speed':speed}
 joules=120*15*60; watt_hours=F(joules,3600)
 R['ph-c05']={'joules':joules,'wattHours':watt_hours,'runtime':watt_hours/20,'cloudRuntime':F(60*15,60)/20}
 R['ph-c06']={'wavelength':F(12,3),'period':F(1,3),'newWavelength':F(12,6),'echoDistance':F(340*1,2)}
-assert len(R)==46
+# Two foundation tracks: recompute from invented scenario data using separate arithmetic.
+a=F(0-4,2);positive_area=F(4+0,2)*2;negative_area=F(0-4,2)*2
+R['p1-c01']=dict(acceleration=a,force=2*a,displacement=positive_area+negative_area,distance=positive_area-negative_area)
+m1,m2,v1,v2=3,1,2,-2;p=m1*v1+m2*v2;vf=F(p,m1+m2);initial=F(m1*v1**2+m2*v2**2,2)
+R['p1-c02']=dict(momentum=p,velocity=vf,initial=initial,decrease=initial-F(m1+m2,2)*vf**2)
+u=F(3,2)*10*4;k=u-12
+R['p1-c03']=dict(potential=u,kinetic=k,speed=sqrt(2*k/F(3,2)),power=F(24,3))
+i=2*F(1,2)**2;torque=F(1,2)*3
+R['p1-c04']=dict(inertia=i,torque=torque,alpha=torque/i,omega=F(8,10)*2/F(2,10))
+period=2*pi*sqrt(F(1,16));energy=16*F(1,5)**2/2
+R['p1-c05']=dict(period=period,energy=energy,newEnergy=energy*4,mass=64*F(1,16))
+fb=1000*10*F(2,1000);weight=3*10
+R['p1-c06']=dict(pressure=1000*10*F(6,5),buoyancy=fb,weight=weight,support=weight-fb)
+R['p2-c01']=dict(heat=F(1,2)*2000*(24-18),kelvin=24+F(27315,100),internal=120-35)
+source=F(1,10**6);probe=F(-2,10**6);distance=F(3,10);electric=9*10**9*source/distance**2;potential=9*10**9*source/distance
+R['p2-c02']=dict(field=electric,force=probe*electric,potential=potential,energy=probe*potential)
+rs=6+3;rp=1/(F(1,6)+F(1,3))
+R['p2-c03']=dict(seriesR=rs,seriesI=F(12,rs),parallelR=rp,parallelI=12/rp,branch=F(12,6))
+magnetic=F(2,10**6)*4*F(3,10);flux=F(5,100)*F(2,10)
+R['p2-c04']=dict(force=magnetic,flux=flux,emf=flux/F(2,10))
+image=1/(F(1,12)-F(1,36));magnification=-image/36
+R['p2-c05']=dict(image=image,magnification=magnification,height=4*magnification,wavelength=F(18,6),echo=340*F(8,10)/2)
+h=F(414,100)*F(1,10**15);photon=h*(8*10**14)
+R['p2-c06']=dict(photon=photon,kinetic=photon-2,threshold=2/h,brighter=photon)
+assert len(R)==58
 output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
 path=Path(__file__).resolve().parents[1]/'review'/'challenge-math-audit.json';path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(output,indent=2)+'\n');print(json.dumps({'questions':len(R),'components':sum(len(x)for x in R.values()),'output':str(path)}))

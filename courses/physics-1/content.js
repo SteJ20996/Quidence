@@ -1,0 +1,1 @@
+(function(root){'use strict';const C=typeof module==='object'&&module.exports?require('../../assets/physics-foundation-content.js'):root.QuidencePhysicsFoundationContent;const course=C.create('physics-1');if(typeof module==='object'&&module.exports)module.exports=course;else root.QuidenceCourseContent=course;})(typeof window==='undefined'?globalThis:window);
