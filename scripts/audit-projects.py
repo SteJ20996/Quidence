@@ -102,6 +102,20 @@ vertices=[[0,0],[3,0],[3,2]];area=abs(signed_area(vertices));mappedarea=abs(sign
 put('la-p02',dict(a11=t[0][0],a12=t[0][1],a21=t[1][0],a22=t[1][1],tx=tw[0],ty=tw[1],inputX=recovered[0],inputY=recovered[1],det=det(t),area=mappedarea,c1=wc[0],c2=wc[1],outC1=tc[0],outC2=tc[1],twiceX=twice[0],twiceY=twice[1]), 'Independent composition, inverse solve, transformed shoelace area and basis solves; check T²=-2I.')
 
 result={'audit':'Separately implemented scenario computations (project-authored, not independent human certification); no authored answer key imported. Exact fractions where rational, mathematical square roots for irrational quantities. Text understanding is not auto-scored.','questions':questions}
+# Physics: two separately derived model balances, preserving every old reference.
+mass=F(2); delay=F(1,2); initial=F(4); force=F(4)
+acceleration=-force/mass; stop_time=-initial/acceleration
+delay_distance=initial*delay; total=delay_distance+initial*stop_time/2
+fast=F(6); fast_total=fast*delay+mass*fast**2/(2*force)
+limit=F(8); minimum_force=mass*fast**2/(2*(limit-fast*delay))
+revised=fast*delay+mass*fast**2/(2*8)
+assert fast*delay+mass*fast**2/(2*minimum_force)==limit
+assert revised<limit and total==6 and fast_total==12
+put('ph-p01',dict(acceleration=acceleration,delayDistance=delay_distance,stopTime=stop_time,totalDistance=total,fastDistance=fast_total,minimumForce=minimum_force,revisedDistance=revised), 'Constant acceleration gives triangular velocity-time area; independently include the rectangular controller-delay area and solve the force constraint.')
+load=F(20+30+10); event=load*3; collection=F(100)*2*F(4,5)
+cloud_collection=F(50)*2*F(4,5); initial_storage=F(40); reserve=F(20)
+assert initial_storage+collection<=250 and initial_storage+collection-event==reserve
+put('ph-p02',dict(load=load,eventEnergy=event,collected=collection,final=initial_storage+collection-event,cloudCollected=cloud_collection,shortfall=event+reserve-initial_storage-cloud_collection,maxLoad=(initial_storage+cloud_collection-reserve)/3,duration=(initial_storage+cloud_collection-reserve)/load), 'Energy conservation in Wh, with efficiency applied once to collection, then capacity and reserve constraints solved independently.')
 target=Path(__file__).resolve().parent.parent/'review/project-math-audit.json'
 target.parent.mkdir(exist_ok=True);target.write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps({'projects':len(questions),'numericComponents':sum(len(q['numbers']) for q in questions.values()),'formulaComponents':sum(len(q['formulas']) for q in questions.values()),'drawings':sum(len(q['drawings']) for q in questions.values())}))

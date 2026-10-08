@@ -22,7 +22,8 @@ test('table data stays intact and its horizontal scroll region is keyboard acces
  const table=D.MODULES.ae01.tasks[1].table,html=G.table(table);assert.match(html,/tabindex="0"/);assert.match(html,/Scroll horizontally/);assert.match(html,/B attempts/);for(const row of table.rows)for(const value of row)assert(html.includes(String(value)));
 });
 test('coordinate display is bounded while saved construction precision and distinct error reasons are retained',()=>{
- const f=B.MODULES.geometry.tasks[0].fields.find(f=>f.kind==='drawing'),v=P.place(f,P.emptyDrawing(),'G','11/3','3');assert.equal(v.points.G[0],11/3);assert.match(P.fieldTypes.drawing.text(f,v),/3\.6667/);assert.doesNotMatch(P.fieldTypes.drawing.text(f,v),/66666666/);
+ const f=B.MODULES.geometry.tasks[0].fields.find(f=>f.kind==='drawing'),v=P.place(f,P.emptyDrawing(),'G','11/3','3');assert.equal(v.points.G[0],11/3);assert.match(P.fieldTypes.drawing.text(f,v),/11\/3/);assert.doesNotMatch(P.fieldTypes.drawing.text(f,v),/66666666/);
+ const legacy=structuredClone(v);delete legacy.raw;assert.match(P.fieldTypes.drawing.text(f,legacy),/3\.6667/);assert.doesNotMatch(P.fieldTypes.drawing.text(f,legacy),/66666666/);
  assert.match(P.placementError(f,'G','13','3'),/Keep x between/);assert.match(P.placementError(f,'G','bad','3'),/number or fraction/);assert.match(P.connectionError(v,'G','G'),/different points/);assert.match(P.connectionError(v,'M','N'),/Place M and N/);
 });
 test('print exports include the student drawing rather than substituting a reference, and reject unsafe specifications',()=>{

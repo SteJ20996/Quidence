@@ -1,6 +1,6 @@
 """Separate exact-arithmetic recomputation; does not read authored answer keys. Both implementations were produced in this project, not independently certified by a human reviewer."""
 from fractions import Fraction as F
-from math import isqrt
+from math import isqrt, sqrt
 from pathlib import Path
 import json
 
@@ -121,6 +121,20 @@ data=list(map(F,[1,2,4,5]));mean=sum(data)/len(data);var=sum((x-mean)**2 for x i
 R['st-c03']={'mean':mean,'variance':var,'newMean':newmean,'newVariance':newvar};assert newvar==4*var
 xs=[1,2,3];ys=[2,1,4];alpha,beta,residual=regression(xs,ys);ymean=F(sum(ys),len(ys));sst=sum((F(y)-ymean)**2 for y in ys)
 R['st-c04']={'b':beta,'a':alpha,'residual':residual[1],'r2':1-dot(residual,residual)/sst}
-assert len(R)==40
+# Physics scenarios are recomputed from stated inputs, not authored answer keys.
+positions=[0,6,12,12,8]; times=[0,2,4,6,8]
+displacement=positions[-1]-positions[0]
+distance=sum(abs(b-a) for a,b in zip(positions,positions[1:]))
+R['ph-c01']={'displacement':displacement,'distance':distance,'velocity':F(displacement,times[-1]),'speed':F(distance,times[-1]),'lastVelocity':F(positions[-1]-positions[-2],times[-1]-times[-2])}
+R['ph-c02']={'net':9-3,'acceleration':F(9-3,3),'coast':5+0*2}
+momentum=2*3+1*0; velocity=F(momentum,2+1)
+R['ph-c03']={'momentum':momentum,'finalVelocity':velocity,'initialEnergy':F(2*3**2,2),'finalEnergy':F(2+1,2)*velocity**2}
+potential=2*10*3; kinetic=potential-24; speed=sqrt(2*kinetic/2)
+assert speed==6 and kinetic+24==potential
+R['ph-c04']={'potential':potential,'kinetic':kinetic,'speed':speed}
+joules=120*15*60; watt_hours=F(joules,3600)
+R['ph-c05']={'joules':joules,'wattHours':watt_hours,'runtime':watt_hours/20,'cloudRuntime':F(60*15,60)/20}
+R['ph-c06']={'wavelength':F(12,3),'period':F(1,3),'newWavelength':F(12,6),'echoDistance':F(340*1,2)}
+assert len(R)==46
 output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
 path=Path(__file__).resolve().parents[1]/'review'/'challenge-math-audit.json';path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(output,indent=2)+'\n');print(json.dumps({'questions':len(R),'components':sum(len(x)for x in R.values()),'output':str(path)}))

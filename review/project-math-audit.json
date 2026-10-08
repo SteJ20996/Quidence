@@ -320,6 +320,35 @@
       "formulas": {},
       "drawings": {},
       "method": "Independent composition, inverse solve, transformed shoelace area and basis solves; check T\u00b2=-2I."
+    },
+    "ph-p01": {
+      "numbers": {
+        "acceleration": "-2",
+        "delayDistance": "2",
+        "stopTime": "2",
+        "totalDistance": "6",
+        "fastDistance": "12",
+        "minimumForce": "36/5",
+        "revisedDistance": "15/2"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Constant acceleration gives triangular velocity-time area; independently include the rectangular controller-delay area and solve the force constraint."
+    },
+    "ph-p02": {
+      "numbers": {
+        "load": "60",
+        "eventEnergy": "180",
+        "collected": "160",
+        "final": "20",
+        "cloudCollected": "80",
+        "shortfall": "80",
+        "maxLoad": "100/3",
+        "duration": "5/3"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Energy conservation in Wh, with efficiency applied once to collection, then capacity and reserve constraints solved independently."
     }
   }
 }

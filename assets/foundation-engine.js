@@ -5,7 +5,7 @@ const B=typeof module==='object'&&module.exports?require('./foundation-bank.js')
 const X=typeof module==='object'&&module.exports?require('./foundation-extension.js'):root.QuidenceFoundationExtension;
 function build(B,X,settings={}){
 const SCHEMA=settings.schema||'cluevera_foundation_portfolio_v1',clone=v=>JSON.parse(JSON.stringify(v));
-const ENTRY_VERSIONS=[B.VERSION,...Object.keys(B.HISTORY||{})],NUMERIC_POLICY='decimal-final-2dp-1';
+const ENTRY_VERSIONS=[B.VERSION,...Object.keys(B.HISTORY||{})],LEGACY_NUMERIC_POLICY='decimal-final-2dp-1',NUMERIC_POLICY='written-precision-2';
 const SUBJECTS={aa01:'Secondary-school math',ab01:'Linear Algebra',ac01:'Game theory foundations',ad01:'Calculus',ae01:'Statistics',af01:'Pre-calculus','pre-algebra':'Pre-Algebra','algebra-1':'Algebra I',geometry:'Geometry','algebra-2':'Algebra II'};
 const subjectTitle=id=>SUBJECTS[typeof id==='string'?id:id.module]||B.MODULES[typeof id==='string'?id:id.module].title;
 const unit=settings.projects?'projects':'questions';
@@ -28,12 +28,43 @@ CONDITIONS.af01=[{task:'af-f09',note:'The difference-quotient form is supplied. 
 const stamp=()=>new Date().toISOString();
 let sequence=0;
 const object=v=>!!v&&typeof v==='object'&&!Array.isArray(v);
-function numeric(value){
+function legacyNumeric(value){
  if(typeof value!=='string'&&typeof value!=='number')return null;
  const s=String(value).trim().replace(/−/g,'-');
  if(s.length>80||!/^[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:\s*\/\s*[-+]?(?:\d+(?:\.\d*)?|\.\d+))?$/.test(s))return null;
  const parts=s.split('/').map(Number),n=parts.length===1?parts[0]:parts[0]/parts[1];
  return Number.isFinite(n)?n:null;
+}
+// Read bounded numeric notation, never JavaScript or arbitrary expressions.
+// A unit suffix is accepted only when it matches the unit requested by the field.
+const normalizeUnit=s=>s.replace(/\s/g,'').replace(/²/g,'^2').replace(/³/g,'^3').replace(/·/g,'*');
+function fieldUnit(f){return f.unit||f.label?.match(/\((m|m\/s|m\/s²|s|N|kg·m\/s|J|Wh|h|W|kg|Hz|cm|m²|°)\)\s*$/)?.[1]||null;}
+function numericReading(value,unit=null){
+ if(!['string','number'].includes(typeof value))return null;
+ let s=String(value).trim().replace(/−/g,'-');if(s.length>80)return null;
+ s=s.replace(/([+-]?(?:\d+(?:\.\d*)?|\.\d+))\s*[×*]\s*10\s*\^\s*(?:\(([+-]?\d{1,3})\)|([+-]?\d{1,3}))/g,(_,a,b,c)=>a+'e'+(b||c));
+ const atom='[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d{1,3})?';
+ const match=s.match(new RegExp('^('+atom+'(?:\\s*/\\s*'+atom+')?)(.*?)$'));if(!match)return null;
+ const suffix=match[2].trim();if(suffix&&(!unit||normalizeUnit(suffix)!==normalizeUnit(unit)))return null;
+ const tokens=match[1].split('/').map(x=>x.trim());
+ const values=tokens.map(x=>{const [mantissa,exponent='0']=x.toLowerCase().split('e');if(Math.abs(Number(exponent))>308)return NaN;const n=Number(x);return n===0&&/[1-9]/.test(mantissa)?NaN:n;});
+ const n=values.length===1?values[0]:values[0]/values[1];if(!Number.isFinite(n)||n===0&&values[0]!==0)return null;
+ const [mantissa,exponent='0']=tokens[0].toLowerCase().split('e');
+ return{value:n,fraction:tokens.length===2,places:(mantissa.split('.')[1]?.length||0)-Number(exponent)};
+}
+function numeric(value,unit=null){return numericReading(value,unit)?.value??null;}
+function minimumPlaces(answer){return answer===0?2:Math.max(2,1-Math.floor(Math.log10(Math.abs(answer))));}
+function currentNumberMatches(f,value){
+ const read=numericReading(value,fieldUnit(f));if(!read||!Number.isFinite(f.answer))return false;
+ const n=read.value;if(n===f.answer)return true;
+ if(Number.isInteger(f.answer)||n===0)return false;
+ const scale=Math.abs(f.answer),strict=Math.max(8*Number.EPSILON*scale,Math.min(f.absoluteTolerance??1e-8*scale,1e-8*scale));
+ if(Math.abs(n-f.answer)<=strict)return true;
+ if(read.fraction||read.places<minimumPlaces(f.answer))return false;
+ const significant=read.places+Math.floor(Math.log10(scale))+1;
+ if(significant<2||significant>100)return false;
+ const rounded=Number(f.answer.toPrecision(significant));
+ return Math.abs(n-rounded)<=8*Number.EPSILON*Math.max(Math.abs(n),Math.abs(rounded));
 }
 function fresh(){return{schema:SCHEMA,bankVersion:B.VERSION,modules:Object.fromEntries(Object.keys(B.MODULES).map(id=>[id,{active:null,sessions:[]}]))};}
 function session(portfolio,module){const m=portfolio.modules[module];return m?.sessions.find(s=>s.id===m.active)||null;}
@@ -47,7 +78,7 @@ function createSession(portfolio,module,check='entry'){
 }
 const definition=s=>s.bankVersion===X.VERSION?X.MODULES[s.module]:(B.HISTORY?.[s.bankVersion]||B.MODULES)[s.module];
 const tasks=s=>definition(s).tasks;
-const checkName=s=>settings.checkTitle||(s.bankVersion===X.VERSION?'Further foundation check':'Entry foundation check');
+const checkName=s=>definition(s)?.checkTitle||settings.checkTitle||(s.bankVersion===X.VERSION?'Further foundation check':'Entry foundation check');
 const task=s=>tasks(s)[s.index];
 function blank(t){return{values:Object.fromEntries(t.fields.map(f=>[f.id,settings.fieldTypes?.[f.kind]?.blank?.()??(f.kind==='multi'?[]:'')])),explanation:'',unsure:false,otherHelp:false,...(settings.challenge?{notStudied:false}:{})};}
 function record(s,t){return s.records[t.id]||(s.records[t.id]={draft:blank(t),status:'draft',submissions:[],reviews:[],...(settings.projects?{partReviews:[]}: {})});}
@@ -57,14 +88,14 @@ function validDraft(t,a){
  if(Object.keys(a.values).some(k=>!t.fields.some(f=>f.id===k)))return false;
  return t.fields.every(f=>{const v=a.values[f.id];if(settings.fieldTypes?.[f.kind])return settings.fieldTypes[f.kind].valid(f,v);return f.kind==='multi'?Array.isArray(v)&&v.every(x=>typeof x==='string'&&f.options.some(o=>o.value===x))&&new Set(v).size===v.length:typeof v==='string'&&v.length<=80&&(f.kind==='number'||v===''||f.options.some(o=>o.value===v));});
 }
-function validate(t,a){
+function validate(t,a,policy=NUMERIC_POLICY){
  if(!validDraft(t,a))return'An answer could not be read. Please check the fields.';
  if(!a.explanation.trim())return'Add your reasoning, a calculation, or where you got stuck before saving.';
  if(a.unsure||a.notStudied)return'';
- for(const f of t.fields){const v=a.values[f.id];if(f.kind==='number'&&!(settings.projects&&v.trim()==='')&&numeric(v)===null)return'Enter a number, decimal, or fraction for '+f.label+'.';if(f.kind==='choice'&&!v)return'Choose an answer for '+f.label+'.';if(f.kind==='multi'&&!v.length)return'Select at least one answer for '+f.label+'.';}
+ for(const f of t.fields){const v=a.values[f.id];if(f.kind==='number'&&!(settings.projects&&v.trim()==='')&&(policy===NUMERIC_POLICY?numeric(v,fieldUnit(f)):legacyNumeric(v))===null)return'Enter a number, fraction, or scientific notation'+(fieldUnit(f)?' with no unit or the requested '+fieldUnit(f)+' unit':'')+' for '+f.label+'.';if(f.kind==='choice'&&!v)return'Choose an answer for '+f.label+'.';if(f.kind==='multi'&&!v.length)return'Select at least one answer for '+f.label+'.';}
  return'';
 }
-function numberMatches(f,value,policy){const n=numeric(value);if(n===null)return false;const base=Math.max(f.absoluteTolerance||0,1e-8*Math.max(1,Math.abs(f.answer)));const rounding=policy===NUMERIC_POLICY&&!String(value).includes('/')&&!Number.isInteger(f.answer)?0.005:0,epsilon=policy===NUMERIC_POLICY?Number.EPSILON*Math.max(1,Math.abs(f.answer)):0;return Math.abs(n-f.answer)<=Math.max(base,rounding)+epsilon;}
+function numberMatches(f,value,policy){if(policy===NUMERIC_POLICY)return currentNumberMatches(f,value);const n=legacyNumeric(value);if(n===null)return false;const base=Math.max(f.absoluteTolerance||0,1e-8*Math.max(1,Math.abs(f.answer)));const rounding=policy===LEGACY_NUMERIC_POLICY&&!String(value).includes('/')&&!Number.isInteger(f.answer)?0.005:0,epsilon=policy===LEGACY_NUMERIC_POLICY?Number.EPSILON*Math.max(1,Math.abs(f.answer)):0;return Math.abs(n-f.answer)<=Math.max(base,rounding)+epsilon;}
 function evaluate(t,a,policy){
  if(a.notStudied)return{state:'not-studied',parts:{}};
  if(a.unsure)return{state:'unsure',parts:{}};
@@ -91,8 +122,8 @@ function reviewPart(s,t,field,points,note){
 function latestPartReview(s,t,field){if(!last(s,t))return null;const r=s.records[t.id];return r?.partReviews?.filter(x=>x.submission===r.submissions.length&&x.field===field).at(-1)||null;}
 function componentChecks(t,a){return t.fields.map(f=>{
  let state=!a?'missing':a.answer.notStudied?'not-studied':a.answer.unsure?'unsure':a.objective.parts[f.id]===null?(f.kind==='drawing'?!Object.keys(a.answer.values[f.id].points).length:!a.answer.values[f.id].trim())?'missing':'review':a.objective.parts[f.id]?'matched':'recheck';
- if(state==='recheck'&&f.kind==='number'&&!a.numericPolicy&&numberMatches(f,a.answer.values[f.id],NUMERIC_POLICY))state='rounding-review';
- const result={id:f.id,label:f.label,state};if(state==='rounding-review')result.feedback='This decimal fits the current rounding rule. The earlier strict result is kept unchanged; review precision before inferring a mathematical difficulty.';if(settings.projects){result.answer=settings.fieldTypes?.[f.kind]?.text(f,a?.answer.values[f.id])??(a?.answer.values[f.id]||'not entered');if(f.kind==='drawing'&&a){result.drawing=settings.fieldTypes.drawing.valid(f,a.answer.values[f.id])?clone(a.answer.values[f.id]):null;result.drawingSpec={id:f.id,label:f.label,board:clone(f.board)};if(!a.answer.unsure&&!a.answer.notStudied)result.constructionParts=settings.fieldTypes.drawing.parts(f,a.answer.values[f.id]);}result.reviewCriteria=f.reviewCriteria||[];if(state==='review')result.feedback=f.kind==='drawing'?'Construction is incomplete; inspect the preserved points and segments rather than treating missing construction as incorrect.':f.kind==='formula'?'Expression preserved for review; it is outside the bounded polynomial checker.':'Review the mathematical meaning of this response; no keyword, grammar, or length score is assigned.';}
+ if(a&&['matched','recheck'].includes(state)&&f.kind==='number'&&a.numericPolicy!==NUMERIC_POLICY&&a.objective.parts[f.id]!==numberMatches(f,a.answer.values[f.id],NUMERIC_POLICY))state='rounding-review';
+ const result={id:f.id,label:f.label,state};if(state==='rounding-review')result.feedback='This saved result used an earlier precision rule. Its original outcome is retained; recheck the preserved calculation under the current rule before drawing a conclusion.';if(settings.projects){result.answer=settings.fieldTypes?.[f.kind]?.text(f,a?.answer.values[f.id])??(a?.answer.values[f.id]||'not entered');if(f.kind==='drawing'&&a){result.drawing=settings.fieldTypes.drawing.valid(f,a.answer.values[f.id])?clone(a.answer.values[f.id]):null;result.drawingSpec={id:f.id,label:f.label,board:clone(f.board)};if(!a.answer.unsure&&!a.answer.notStudied)result.constructionParts=settings.fieldTypes.drawing.parts(f,a.answer.values[f.id]);}result.reviewCriteria=f.reviewCriteria||[];if(state==='review')result.feedback=f.kind==='drawing'?'Construction is incomplete; inspect the preserved points and segments rather than treating missing construction as incorrect.':f.kind==='formula'?'Expression preserved for review; it is outside the bounded polynomial checker.':'Review the mathematical meaning of this response; no keyword, grammar, or length score is assigned.';}
  if(f.skill){result.skill=f.skill;if(state==='recheck'){const upstream=(f.dependsOn||[]).filter(id=>a.objective.parts[id]===false&&!(!a.numericPolicy&&numberMatches(t.fields.find(x=>x.id===id),a.answer.values[id],NUMERIC_POLICY)));result.feedback=upstream.length?'Recheck after '+upstream.map(id=>t.fields.find(x=>x.id===id).label).join(', ')+'. This result may follow from an earlier value; it is not separate evidence of another weakness.':f.onMismatch;}if(state==='not-studied')result.feedback='Not studied yet; this is readiness information, not evidence of a failed concept.';}
  if(a&&!a.answer.unsure&&!a.answer.notStudied&&f.kind==='multi'){const selected=a.answer.values[f.id];result.selection={correct:selected.filter(v=>f.answer.includes(v)).map(v=>f.options.find(o=>o.value===v).label),extra:selected.filter(v=>!f.answer.includes(v)).map(v=>f.options.find(o=>o.value===v).label),missing:f.answer.filter(v=>!selected.includes(v)).map(v=>f.options.find(o=>o.value===v).label)};}
  return result;
@@ -110,7 +141,7 @@ function evidenceSummary(s){const obs=observations(s),parts=obs.flatMap(o=>o.com
 function nextChecks(s){return observations(s).flatMap(o=>{
  const a=last(s,tasks(s).find(t=>t.id===o.id)),reasons=[];
  if(o.status==='recheck'){const groups=new Map();for(const c of o.components.filter(c=>c.state==='recheck')){const text=c.feedback||'Recheck '+c.label+'.';groups.set(text,[...(groups.get(text)||[]),c.label]);}for(const[text,labels]of groups)reasons.push(text+(labels.length>1?' Affected components: '+labels.join(', ')+'.':''));}
- if(o.components.some(c=>c.state==='rounding-review'))reasons.push('An earlier decimal check used a stricter precision rule. Review the preserved calculation; rounding alone does not establish a knowledge gap.');
+ if(o.components.some(c=>c.state==='rounding-review'))reasons.push('An earlier answer used a different precision rule. Review the preserved calculation before inferring a knowledge gap or verified accuracy.');
  if(o.status==='not-studied')reasons.push('This topic was marked not studied. Check prerequisites before attempting another diagnostic; do not interpret it as a demonstrated weakness.');
  if(settings.projects&&o.components.some(c=>c.state==='review'||c.state==='missing'))reasons.push('Read the open responses and missing parts before interpreting the fixed checks. Accept equivalent methods; ask a targeted follow-up about an unclear mathematical connection.');
  if(settings.projects)for(const c of o.components.filter(c=>c.review?.points===0||c.review?.points===1)){const f=tasks(s).find(t=>t.id===o.id).fields.find(f=>f.id===c.id);reasons.push('Local mathematical review of '+c.label+' identifies '+(c.review.points===0?'a connection to revise':'a remaining connection')+'. '+(f.followup||'Ask for an independent check using another representation.'));}
@@ -153,18 +184,18 @@ function markdown(s){
  return out+'These are task observations. All original explanations and earlier attempts remain available for review.\n';
 }
 function hydrate(value){
- if(!object(value)||value.schema!==SCHEMA||!ENTRY_VERSIONS.includes(value.bankVersion)||!object(value.modules)||Object.keys(value.modules).some(id=>!B.MODULES[id])||(settings.challenge?Object.keys(B.MODULES):['aa01','ab01','ac01','ad01']).some(id=>!value.modules[id])||!settings.challenge&&Object.keys(value.modules).length!==4&&Object.keys(value.modules).length!==Object.keys(B.MODULES).length)return null;
+ if(!object(value)||value.schema!==SCHEMA||!ENTRY_VERSIONS.includes(value.bankVersion)||!object(value.modules)||Object.keys(value.modules).some(id=>!B.MODULES[id])||(settings.challenge?Object.keys(B.HISTORY?.[value.bankVersion]||B.MODULES):['aa01','ab01','ac01','ad01']).some(id=>!value.modules[id])||!settings.challenge&&Object.keys(value.modules).length!==4&&Object.keys(value.modules).length!==Object.keys(B.MODULES).length)return null;
  const ids=new Set();
  for(const [module,m]of Object.entries(value.modules)){
   if(!object(m)||!Array.isArray(m.sessions)||!(m.active===null||typeof m.active==='string'))return null;
   if(m.active!==null&&!m.sessions.some(s=>s?.id===m.active))return null;
   for(const s of m.sessions){
-   if(!object(s)||typeof s.id!=='string'||ids.has(s.id)||s.module!==module||(s.bankVersion===X.VERSION&&!X.MODULES[module])||![...ENTRY_VERSIONS,X.VERSION].includes(s.bankVersion)||(s.bankVersion===X.VERSION?s.check!=='followup':s.check!==undefined&&s.check!=='entry')||!Number.isFinite(Date.parse(s.createdAt))||!['intro','task','report'].includes(s.view)||!Number.isInteger(s.index)||s.index<0||s.index>=tasks(s).length||!object(s.records)||!Array.isArray(s.events)||s.events.some(e=>!object(e)||typeof e.type!=='string'||!Number.isFinite(Date.parse(e.at))))return null;
+   if(!object(s)||typeof s.id!=='string'||ids.has(s.id)||s.module!==module||(s.bankVersion===X.VERSION&&!X.MODULES[module])||![...ENTRY_VERSIONS,X.VERSION].includes(s.bankVersion)||(s.bankVersion===X.VERSION?s.check!=='followup':s.check!==undefined&&s.check!=='entry')||!Number.isFinite(Date.parse(s.createdAt))||!['intro','task','report'].includes(s.view)||!definition(s)||!Number.isInteger(s.index)||s.index<0||s.index>=tasks(s).length||!object(s.records)||!Array.isArray(s.events)||s.events.some(e=>!object(e)||typeof e.type!=='string'||!Number.isFinite(Date.parse(e.at))))return null;
    ids.add(s.id);
    for(const [id,r]of Object.entries(s.records)){
     const t=tasks(s).find(t=>t.id===id);
     if(!t||!object(r)||!validDraft(t,r.draft)||!['draft','submitted'].includes(r.status)||!Array.isArray(r.submissions)||!Array.isArray(r.reviews)||r.status==='submitted'&&!r.submissions.length)return null;
-    for(const a of r.submissions)if(!object(a)||(a.numericPolicy!==undefined&&a.numericPolicy!==NUMERIC_POLICY)||a.taskVersion!==s.bankVersion||validate(t,a.answer)||typeof a.feedbackSeen!=='boolean'||!Number.isFinite(Date.parse(a.at))||JSON.stringify(a.objective)!==JSON.stringify(evaluate(t,a.answer,a.numericPolicy)))return null;
+    for(const a of r.submissions)if(!object(a)||(a.numericPolicy!==undefined&&![NUMERIC_POLICY,LEGACY_NUMERIC_POLICY].includes(a.numericPolicy))||a.taskVersion!==s.bankVersion||validate(t,a.answer,a.numericPolicy||'legacy-strict')||typeof a.feedbackSeen!=='boolean'||!Number.isFinite(Date.parse(a.at))||JSON.stringify(a.objective)!==JSON.stringify(evaluate(t,a.answer,a.numericPolicy)))return null;
     if(r.status==='submitted'&&JSON.stringify(r.draft)!==JSON.stringify(r.submissions.at(-1).answer))return null;
     if(r.partReviews!==undefined&&(!settings.projects||!Array.isArray(r.partReviews)||r.partReviews.some(x=>!object(x)||!t.fields.some(f=>f.id===x.field)||!Number.isInteger(x.submission)||x.submission<1||x.submission>r.submissions.length||![null,0,1,2].includes(x.points)||typeof x.note!=='string'||!x.note.trim()||x.note.length>2000||!Number.isFinite(Date.parse(x.at)))))return null;
     if(r.reviews.some(x=>!object(x)||!Number.isInteger(x.submission)||x.submission<1||x.submission>r.submissions.length||![null,0,1,2].includes(x.points)||typeof x.note!=='string'||!x.note.trim()||x.note.length>2000||!Number.isFinite(Date.parse(x.at))))return null;
@@ -175,7 +206,7 @@ function hydrate(value){
  const migrated=clone(value);for(const id of Object.keys(B.MODULES))if(!migrated.modules[id])migrated.modules[id]={active:null,sessions:[]};
  return migrated;
 }
-const api={settings,SCHEMA,NUMERIC_POLICY,subjectTitle,numberMatches,numeric,fresh,session,createSession,definition,checkName,tasks,task,blank,record,edit,validate,evaluate,submit,last,done,review,latestReview,reviewPart,latestPartReview,observations,componentChecks,evidenceSummary,studentSummary,scopeReview,nextChecks,portable,answerText,markdown,hydrate};
+const api={settings,SCHEMA,NUMERIC_POLICY,LEGACY_NUMERIC_POLICY,subjectTitle,numberMatches,numeric,minimumPlaces,fresh,session,createSession,definition,checkName,tasks,task,blank,record,edit,validate,evaluate,submit,last,done,review,latestReview,reviewPart,latestPartReview,observations,componentChecks,evidenceSummary,studentSummary,scopeReview,nextChecks,portable,answerText,markdown,hydrate};
 return api;
 }
 const api=build(B,X);api.forBank=build;

@@ -251,6 +251,41 @@
       "a": "1/3",
       "residual": "-4/3",
       "r2": "3/7"
+    },
+    "ph-c01": {
+      "displacement": "8",
+      "distance": "16",
+      "velocity": "1",
+      "speed": "2",
+      "lastVelocity": "-2"
+    },
+    "ph-c02": {
+      "net": "6",
+      "acceleration": "2",
+      "coast": "5"
+    },
+    "ph-c03": {
+      "momentum": "6",
+      "finalVelocity": "2",
+      "initialEnergy": "9",
+      "finalEnergy": "6"
+    },
+    "ph-c04": {
+      "potential": "60",
+      "kinetic": "36",
+      "speed": "6.0"
+    },
+    "ph-c05": {
+      "joules": "108000",
+      "wattHours": "30",
+      "runtime": "3/2",
+      "cloudRuntime": "3/4"
+    },
+    "ph-c06": {
+      "wavelength": "4",
+      "period": "1/3",
+      "newWavelength": "2",
+      "echoDistance": "170"
     }
   }
 }

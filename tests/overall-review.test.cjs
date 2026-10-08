@@ -44,6 +44,18 @@ test('report optimization retains unreadable originals and preserves the prior v
   s.setItem = () => {throw Error('quota');};
   assert.equal(Store.compact(s).ok, false); assert.equal(s.getItem(Store.KEY), before);
 });
+test('an upgraded check report does not duplicate unchanged work under a quota, but a real review change saves a new version', () => {
+  const s=storage(), payload={schema:'check',kind:'diagnostic-challenge',bankVersion:'old',session:{id:'one',module:'ab01',createdAt:'2026-10-07T00:00:00Z',view:'report',index:0,events:[],records:{task:{draft:{explanation:'Exact original work'},submissions:[{answer:{value:'11/3'}}],reviews:[]}}},markdown:'Legacy report\n'.repeat(800)};
+  Store.save('ab01',payload,'one',s);const data=Store.read(s).data;data.items[0].versions[0].signature=JSON.stringify(payload);s.setItem(Store.KEY,JSON.stringify(data));
+  const before=s.getItem(Store.KEY),limit=before.length+10,write=s.setItem;
+  s.setItem=(key,value)=>{if(value.length>limit)throw Error('quota');write(key,value);};
+  const regenerated=structuredClone(payload);regenerated.markdown+='New presentation\n';regenerated.studentSummary={title:'A student summary'};regenerated.session.index=1;regenerated.session.events.push({type:'report_opened'});
+  for(let i=0;i<20;i++){const result=Store.save('ab01',regenerated,'one',s);assert(result.ok);assert.equal(result.changed,false);}
+  assert.equal(s.getItem(Store.KEY),before);assert.equal(Store.read(s).data.items[0].versions.length,1);
+  regenerated.session.records.task.reviews.push({points:1,note:'A real local review'});
+  assert(Store.save('ab01',regenerated,'one',s).ok);const after=Store.read(s).data.items[0].versions;
+  assert.equal(after.length,2);assert.deepEqual(after[0].payload,payload);assert(after.every(v=>v.signature.length<50));
+});
 test('local text estimates include old workspace copies without uploading or changing raw backup data', () => {
   const key = 'cluevera_saved_reports_v1', ownerKey = 'cluevera_user_old:' + key;
   const s = storage([[key, 'α'.repeat(100)], [ownerKey, 'legacy report'], ['unrelated', 'keep']]);
