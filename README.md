@@ -28,15 +28,105 @@
 - 原始解释、未提交草稿、提交历史和本地人工解释审核保留。匹配数值不等于解释通过，也不自动等于学科掌握程度。
 - 每科题集是独立抽样，并非完整课程或经过学生数据标定的诊断量表。难度标记是设计目标；详见 [MATH_DIAGNOSTICS_REVIEW.md](MATH_DIAGNOSTICS_REVIEW.md)。
 
-## 本地运行
+## 本地启动与访问教程（无需账户登录）
 
-使用 Node.js 24.19 或更新的 24.x 在本地运行：
+这里的“本地登录”指在自己的电脑上启动 Quidence，再用浏览器打开。当前无需注册、用户名或密码；账户和云同步仍暂停。默认服务器不打开学生数据库，学习记录保存在浏览器里。
+
+### 1. 安装 Node.js
+
+从 [Node.js 官方下载页](https://nodejs.org/en/download)选择 **24.x LTS**，版本至少为 **24.19.0**，低于 25；这与 `package.json` 的要求一致。也可在[官方 24.x 版本列表](https://nodejs.org/en/download/archive/v24)选择相应安装包。CI 使用 24.19.0。
+
+- macOS：选 macOS 安装包；Apple Silicon 机器选兼容 arm64 的版本，Intel 机器选 x64。
+- Windows：选 Windows 安装包，按自己电脑的架构选择。安装包包含 npm。
+
+安装后重新打开 **Terminal**（macOS）或 **Windows Terminal / PowerShell**（Windows），分别检查：
+
+```sh
+node -v
+npm -v
+```
+
+`node -v` 应显示 `v24.19.0` 或更新的 `v24.x`。本项目无需安装第三方 npm 依赖，可以直接启动。
+
+### 2. 获取最新版程序并进入文件夹
+
+打开 [GitHub 仓库](https://github.com/SteJ20996/AA01)，确认分支为 **main**，点击 **Code → Download ZIP** 并解压。不要在 ZIP 内直接操作。解压后找到包含 `package.json`、`README.md`、`assets/` 和 `backend/` 的文件夹。
+
+如果解压在 Downloads，文件夹名为 `AA01-main`，使用以下命令；如果放在其他位置，请替换成实际路径。
+
+macOS Terminal：
+
+```sh
+cd ~/Downloads/AA01-main
+```
+
+Windows PowerShell：
+
+```powershell
+cd "$env:USERPROFILE\Downloads\AA01-main"
+```
+
+已经用 Git 克隆过的读者，可以在自己的仓库文件夹内确认分支为 main，再用 `git pull --ff-only` 更新。若有本地修改或更新失败，先保留自己的修改，不要用强制重置代替更新。
+
+### 3. 启动本地服务器
+
+在上一步的程序根目录运行：
 
 ```sh
 npm start
 ```
 
-打开 <http://127.0.0.1:3000/>，线代诊断入口为 <http://127.0.0.1:3000/diagnostics/?module=ab01>。默认服务器仅提供允许的网页文件，账户和云同步 API 返回暂停状态，不打开学生数据库。无需安装第三方 npm 依赖。
+看到 `Quidence server listening on port 3000` 后，保持这个终端窗口运行。浏览器打开下面的 HTTP 地址；默认只供本机访问，无需绑定正式域名。
+
+| 页面 | 本地地址 |
+| --- | --- |
+| 主页 | <http://127.0.0.1:3000/> |
+| 线性代数诊断 | <http://127.0.0.1:3000/diagnostics/?module=ab01> |
+| Physics 1 Foundations | <http://127.0.0.1:3000/courses/physics-1/> |
+| Physics 2 Foundations | <http://127.0.0.1:3000/courses/physics-2/> |
+| 已保存报告 | <http://127.0.0.1:3000/reports/> |
+| 备份、恢复和删除记录 | <http://127.0.0.1:3000/records/> |
+
+从主页选科目即可开始。不需要进入 `/account/`；该页面只说明账户暂停。不要双击 `index.html` 代替服务器，也不要把本地地址写成 `https://127.0.0.1:3000/`。
+
+### 4. 下次继续、备份和退出
+
+下次先在同一程序目录运行 `npm start`，再用**同一个浏览器资料夹和同一个地址**打开网页。未提交草稿和已有报告会在浏览器允许保存时继续保留；留意页面上的保存失败提示。
+
+`127.0.0.1:3000`、`localhost:3000`、其他端口和正式网站是不同的存储来源。换浏览器、资料夹、设备或网址不会自动同步记录；无痕窗口和清除网站数据也可能删除记录。
+
+需要备份时，在 `/records/` 点击 **Download local-record backup**，确认 JSON 文件已下载并私密保存。在另一浏览器或设备启动程序后，可用 **Restore a local-record backup** 手动恢复。已有不同记录时，恢复会停止，当前不会合并两份历史。
+
+退出时，在运行服务器的终端按 **Control+C / Ctrl+C**。停止服务器不会主动删除浏览器记录。公用设备离开前，先按需备份，再在 `/records/` 点击 **Delete learning records from this browser** 并确认；另外清理下载文件、剪贴板副本和打开的报告页。本地记录没有账户密码保护，同一浏览器资料夹的使用者可能查看它们。
+
+### 5. 常见问题
+
+| 现象 | 处理方法 |
+| --- | --- |
+| `node` 或 `npm` 找不到 | 安装上述 Node.js 24.x，然后重新打开终端，检查 `node -v` 和 `npm -v` |
+| `ENOENT`，找不到 `package.json` | 当前目录不对；进入解压后的程序根目录，再运行 `npm start` |
+| `node:sqlite` 找不到或运行版本不符 | 核对 `node -v`，改用至少 24.19.0、低于 25 的 Node.js；无需另装 SQLite |
+| PowerShell 提示 `npm.ps1` 无法执行 | 在同一目录改用 `npm.cmd start`，无需为此关闭系统的脚本执行限制 |
+| `EADDRINUSE`，3000 端口已占用 | 先检查是否已经开过服务器，直接访问已有地址；要重启时先在原终端按 Ctrl+C。确需换端口时使用下方命令 |
+| 网页无法连接 | 检查终端是否还在运行、是否显示报错，以及地址是否为 `http://127.0.0.1:3000/` |
+| 换了地址后看不到记录 | 回到原来的浏览器资料夹和原地址；按需在那里导出备份，再到新地址手动恢复 |
+
+临时改用 3001 端口，macOS Terminal：
+
+```sh
+PORT=3001 npm start
+```
+
+Windows PowerShell：
+
+```powershell
+$env:PORT = '3001'
+npm.cmd start
+```
+
+此时打开 <http://127.0.0.1:3001/>。换端口不会搬移原来 3000 端口的浏览器记录。Windows 的设置会留在当前 PowerShell 会话中，改回 3000 前运行 `Remove-Item Env:PORT`，或关闭该终端后重新打开。
+
+## 发布与开发检查
 
 静态托管前运行 `npm run build:static`，只发布生成的 `static-release/`，不要发布整个仓库。脚本要求输出目录不存在，避免旧文件混入新包。生成的 `_headers` 适用于 Cloudflare Pages 静态响应；其他托管方须等效配置安全响应头。这个命令只准备文件，不部署网站，不表示来源审核已经通过。详见 [OVERALL_REVIEW_2026-10-07.md](OVERALL_REVIEW_2026-10-07.md)。
 
