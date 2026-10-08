@@ -15,7 +15,7 @@
   function model(index, s) {
     const v = values(index, s);
     if (index === 0) return {
-      graph: M.cartesian('Position at constant velocity', [{label: 'x = ' + s.start + ' + (' + s.velocity + ')t', fn: t => s.start + s.velocity * t}], {xmin: 0, xmax: 4, ymin: -12, ymax: 20, xlabel: 'Time (s)', ylabel: 'Position (m)', left: 110, ylabelX: 30}),
+      graph: M.cartesian('Position at constant velocity', [{label: 'x = ' + s.start + ' + (' + s.velocity + ')t', fn: t => s.start + s.velocity * t}], {xmin: 0, xmax: 4, ymin: -12, ymax: 24, yticks: [-12,-6,0,6,12,18,24], xlabel: 'Time (s)', ylabel: 'Position (m)', left: 110, ylabelX: 30}),
       readout: 'At 4 s: position ' + v.end + ' m · Displacement ' + v.displacement + ' m · Distance ' + v.distance + ' m',
       formula: 'x = x₀ + vt; constant velocity ' + s.velocity + ' m/s gives a = 0 m/s².',
       note: 'A position–time graph, not a map of a hill. Only one constant-velocity segment is modeled.'

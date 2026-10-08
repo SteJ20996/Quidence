@@ -5,3 +5,11 @@
 .course-model-legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;margin-top:14px}.course-model-graph .tick{font-size:16px}.course-model-graph .axis-label{font-size:18px}@media(max-width:620px){.course-model-graph .tick{font-size:24px}.course-model-graph .axis-label{font-size:24px}}
 
 .try-note .activity-list{margin:12px 0;padding-left:22px}.try-note .activity-list li{margin:14px 0;overflow-wrap:anywhere}.try-note .activity-label{display:block;font-weight:600;margin-bottom:4px}.try-note .activity-hint summary{padding:12px 0;min-height:44px}.try-note .activity-hint p{margin:4px 0 12px;overflow-wrap:anywhere}
+
+/* Bound wide model tables to their column, including 375px phones. */
+.learning-grid>*,.explorer,#lab-graphs,.graph-figure,.table-wrap{min-width:0;max-width:100%}
+.table-wrap{overflow-x:auto;overscroll-behavior-x:contain}
+.lab-readout,.formula-box{min-width:0}
+@media(max-width:620px){.graph-figure .summary-table{min-width:0;width:100%;table-layout:fixed}.graph-figure .summary-table th,.graph-figure .summary-table td{white-space:normal;overflow-wrap:anywhere;padding:10px 7px}.graph-figure .summary-table th:first-child{width:62%}}
+
+.course-legacy-note{max-width:1120px;margin:16px auto;padding:12px 20px;background:#eaf0f7;color:#263c5b}

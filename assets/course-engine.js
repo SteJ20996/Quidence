@@ -4,6 +4,15 @@ function create(C){
 const SCHEMA=C.MODULE+'_beta01_session_v1',clone=x=>JSON.parse(JSON.stringify(x));
 const tasks=C.LESSONS.flatMap(l=>[l.predict,...l.checks]);
 const TASKS=Object.fromEntries(tasks.map(t=>[t.id,t]));
+// Only presentation is shuffled. Stored choices retain their original content IDs.
+function choiceOptions(state,task){
+ let seed=2166136261;
+ for(const c of C.MODULE+'|'+state.createdAt+'|'+task.id)seed=Math.imul(seed^c.charCodeAt(0),16777619)>>>0;
+ const options=[...task.options];
+ const random=()=>{seed=(seed+0x6D2B79F5)>>>0;let n=seed;n=Math.imul(n^(n>>>15),n|1);n^=n+Math.imul(n^(n>>>7),n|61);return((n^(n>>>14))>>>0)/4294967296;};
+ for(let i=options.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[options[i],options[j]]=[options[j],options[i]];}
+ return options.map((option,i)=>({option,value:'option-'+i})).concat({option:{id:'unsure',label:'I’m not sure yet'},value:'unsure'});
+}
 function defaultLabs(){return C.LESSONS.map(l=>clone(l.defaults));}
 function validLabs(labs){
  if(!Array.isArray(labs)||labs.length!==C.LESSONS.length)return false;
@@ -66,7 +75,7 @@ function exportRecord(state){
  if(!allDone(state))throw new Error('Finish all '+C.LESSONS.length+' lessons before exporting the complete report.');
  return{...clone(state),taskDefinitions:clone(C.LESSONS),note:'Initial predictions and checks after instruction are separate observations. Revisions and help remain in history. Required explanations need human review; fixed choices alone do not establish understanding. No validated mastery, behavior, effort, or AI-use inference.'};
 }
-const api={SCHEMA,TASKS,defaultLabs,validLabs,valid,score,fresh,record,update,submit,log,lessonDone,allDone,last,hydrate,exportRecord};
+const api={SCHEMA,TASKS,choiceOptions,defaultLabs,validLabs,valid,score,fresh,record,update,submit,log,lessonDone,allDone,last,hydrate,exportRecord};
 return api;
 }
 if(typeof module==='object'&&module.exports)module.exports={create};else root.QuidenceCourseEngine=create(root.QuidenceCourseContent);

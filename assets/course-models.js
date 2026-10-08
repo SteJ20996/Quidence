@@ -4,13 +4,13 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const fmt=n=>Number(n.toFixed(3)).toString();
 let serial=0;
 function graphic(title,description,body){const id='model-'+(++serial);return`<figure class="graph-figure"><svg class="calculus-graph course-model-graph" viewBox="0 0 520 300" role="img" aria-labelledby="${id}-t ${id}-d"><title id="${id}-t">${esc(title)}</title><desc id="${id}-d">${esc(description)}</desc>${body}</svg><figcaption>${esc(description)}</figcaption></figure>`;}
-function table(title,headers,rows,note){return`<figure class="graph-figure"><div class="table-wrap"><table class="summary-table"><caption>${esc(title)}</caption><thead><tr>${headers.map(x=>`<th scope="col">${esc(x)}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((x,i)=>`<${i?'td':'th scope="row"'}>${esc(x)}</${i?'td':'th'}>`).join('')}</tr>`).join('')}</tbody></table></div><figcaption>${esc(note)}</figcaption></figure>`;}
-function cartesian(title,series,{xmin=0,xmax=12,ymin=0,ymax=12,xlabel='x',ylabel='y',point,left=70,ylabelX=12}={}){
+function table(title,headers,rows,note){return`<figure class="graph-figure"><div class="table-wrap"><table class="summary-table"><caption>${esc(title)}</caption><thead><tr>${headers.map(x=>`<th scope="col">${esc(x)}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((x,i)=>`<${i?'td':'th scope="row"'}>${esc(x)}</${i?'td':'th'}>`).join('')}</tr>`).join('')}</tbody></table></div>${note?`<figcaption>${esc(note)}</figcaption>`:''}</figure>`;}
+function cartesian(title,series,{xmin=0,xmax=12,ymin=0,ymax=12,xlabel='x',ylabel='y',point,left=70,ylabelX=12,xticks,yticks}={}){
  const px=x=>left+(x-xmin)/(xmax-xmin)*(470-left),py=y=>240-(y-ymin)/(ymax-ymin)*195,clip='model-clip-'+(++serial);
  let b=`<defs><clipPath id="${clip}"><rect x="${left}" y="45" width="${470-left}" height="195"/></clipPath></defs>`;
  const ticks=(lo,hi)=>{const step=(hi-lo)/4;let values=Array.from({length:5},(_,i)=>lo+step*i);if(lo<0&&hi>0&&!values.some(x=>Math.abs(x)<1e-9)){values=values.filter((x,i)=>i===0||i===4||Math.abs(x)>step*.6);values.push(0);}return values.sort((a,b)=>a-b);};
- for(const x of ticks(xmin,xmax))b+=`<path d="M${px(x)} 45V240" stroke="#e4e8ef"/><text x="${px(x)}" y="262" text-anchor="middle" class="tick">${fmt(x)}</text>`;
- for(const y of ticks(ymin,ymax))b+=`<path d="M${left} ${py(y)}H470" stroke="#e4e8ef"/><text x="${left-10}" y="${py(y)+4}" text-anchor="end" class="tick">${fmt(y)}</text>`;
+ for(const x of (xticks||ticks(xmin,xmax)))b+=`<path d="M${px(x)} 45V240" stroke="#e4e8ef"/><text x="${px(x)}" y="262" text-anchor="middle" class="tick">${fmt(x)}</text>`;
+ for(const y of (yticks||ticks(ymin,ymax)))b+=`<path d="M${left} ${py(y)}H470" stroke="#e4e8ef"/><text x="${left-10}" y="${py(y)+4}" text-anchor="end" class="tick">${fmt(y)}</text>`;
  b+=`<path d="M${left} 45V240H470" fill="none" stroke="#8391a5"/>`;
  if(ymin<0&&ymax>0)b+=`<path data-zero-axis="y" d="M${left} ${py(0)}H470" stroke="#8391a5"/>`;
  if(xmin<0&&xmax>0)b+=`<path data-zero-axis="x" d="M${px(0)} 45V240" stroke="#8391a5"/>`;
