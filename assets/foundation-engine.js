@@ -47,7 +47,7 @@ function createSession(portfolio,module,check='entry'){
 }
 const definition=s=>s.bankVersion===X.VERSION?X.MODULES[s.module]:(B.HISTORY?.[s.bankVersion]||B.MODULES)[s.module];
 const tasks=s=>definition(s).tasks;
-const checkName=s=>settings.checkTitle||(s.bankVersion===X.VERSION?'Further foundation check':'Entry foundation check');
+const checkName=s=>definition(s)?.checkTitle||settings.checkTitle||(s.bankVersion===X.VERSION?'Further foundation check':'Entry foundation check');
 const task=s=>tasks(s)[s.index];
 function blank(t){return{values:Object.fromEntries(t.fields.map(f=>[f.id,settings.fieldTypes?.[f.kind]?.blank?.()??(f.kind==='multi'?[]:'')])),explanation:'',unsure:false,otherHelp:false,...(settings.challenge?{notStudied:false}:{})};}
 function record(s,t){return s.records[t.id]||(s.records[t.id]={draft:blank(t),status:'draft',submissions:[],reviews:[],...(settings.projects?{partReviews:[]}: {})});}
@@ -153,13 +153,13 @@ function markdown(s){
  return out+'These are task observations. All original explanations and earlier attempts remain available for review.\n';
 }
 function hydrate(value){
- if(!object(value)||value.schema!==SCHEMA||!ENTRY_VERSIONS.includes(value.bankVersion)||!object(value.modules)||Object.keys(value.modules).some(id=>!B.MODULES[id])||(settings.challenge?Object.keys(B.MODULES):['aa01','ab01','ac01','ad01']).some(id=>!value.modules[id])||!settings.challenge&&Object.keys(value.modules).length!==4&&Object.keys(value.modules).length!==Object.keys(B.MODULES).length)return null;
+ if(!object(value)||value.schema!==SCHEMA||!ENTRY_VERSIONS.includes(value.bankVersion)||!object(value.modules)||Object.keys(value.modules).some(id=>!B.MODULES[id])||(settings.challenge?Object.keys(B.HISTORY?.[value.bankVersion]||B.MODULES):['aa01','ab01','ac01','ad01']).some(id=>!value.modules[id])||!settings.challenge&&Object.keys(value.modules).length!==4&&Object.keys(value.modules).length!==Object.keys(B.MODULES).length)return null;
  const ids=new Set();
  for(const [module,m]of Object.entries(value.modules)){
   if(!object(m)||!Array.isArray(m.sessions)||!(m.active===null||typeof m.active==='string'))return null;
   if(m.active!==null&&!m.sessions.some(s=>s?.id===m.active))return null;
   for(const s of m.sessions){
-   if(!object(s)||typeof s.id!=='string'||ids.has(s.id)||s.module!==module||(s.bankVersion===X.VERSION&&!X.MODULES[module])||![...ENTRY_VERSIONS,X.VERSION].includes(s.bankVersion)||(s.bankVersion===X.VERSION?s.check!=='followup':s.check!==undefined&&s.check!=='entry')||!Number.isFinite(Date.parse(s.createdAt))||!['intro','task','report'].includes(s.view)||!Number.isInteger(s.index)||s.index<0||s.index>=tasks(s).length||!object(s.records)||!Array.isArray(s.events)||s.events.some(e=>!object(e)||typeof e.type!=='string'||!Number.isFinite(Date.parse(e.at))))return null;
+   if(!object(s)||typeof s.id!=='string'||ids.has(s.id)||s.module!==module||(s.bankVersion===X.VERSION&&!X.MODULES[module])||![...ENTRY_VERSIONS,X.VERSION].includes(s.bankVersion)||(s.bankVersion===X.VERSION?s.check!=='followup':s.check!==undefined&&s.check!=='entry')||!Number.isFinite(Date.parse(s.createdAt))||!['intro','task','report'].includes(s.view)||!definition(s)||!Number.isInteger(s.index)||s.index<0||s.index>=tasks(s).length||!object(s.records)||!Array.isArray(s.events)||s.events.some(e=>!object(e)||typeof e.type!=='string'||!Number.isFinite(Date.parse(e.at))))return null;
    ids.add(s.id);
    for(const [id,r]of Object.entries(s.records)){
     const t=tasks(s).find(t=>t.id===id);

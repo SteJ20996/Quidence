@@ -5,18 +5,18 @@ const fmt=n=>Number(n.toFixed(3)).toString();
 let serial=0;
 function graphic(title,description,body){const id='model-'+(++serial);return`<figure class="graph-figure"><svg class="calculus-graph course-model-graph" viewBox="0 0 520 300" role="img" aria-labelledby="${id}-t ${id}-d"><title id="${id}-t">${esc(title)}</title><desc id="${id}-d">${esc(description)}</desc>${body}</svg><figcaption>${esc(description)}</figcaption></figure>`;}
 function table(title,headers,rows,note){return`<figure class="graph-figure"><div class="table-wrap"><table class="summary-table"><caption>${esc(title)}</caption><thead><tr>${headers.map(x=>`<th scope="col">${esc(x)}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((x,i)=>`<${i?'td':'th scope="row"'}>${esc(x)}</${i?'td':'th'}>`).join('')}</tr>`).join('')}</tbody></table></div><figcaption>${esc(note)}</figcaption></figure>`;}
-function cartesian(title,series,{xmin=0,xmax=12,ymin=0,ymax=12,xlabel='x',ylabel='y',point}={}){
- const px=x=>70+(x-xmin)/(xmax-xmin)*400,py=y=>240-(y-ymin)/(ymax-ymin)*195,clip='model-clip-'+(++serial);
- let b=`<defs><clipPath id="${clip}"><rect x="70" y="45" width="400" height="195"/></clipPath></defs>`;
+function cartesian(title,series,{xmin=0,xmax=12,ymin=0,ymax=12,xlabel='x',ylabel='y',point,left=70,ylabelX=12}={}){
+ const px=x=>left+(x-xmin)/(xmax-xmin)*(470-left),py=y=>240-(y-ymin)/(ymax-ymin)*195,clip='model-clip-'+(++serial);
+ let b=`<defs><clipPath id="${clip}"><rect x="${left}" y="45" width="${470-left}" height="195"/></clipPath></defs>`;
  const ticks=(lo,hi)=>{const step=(hi-lo)/4;let values=Array.from({length:5},(_,i)=>lo+step*i);if(lo<0&&hi>0&&!values.some(x=>Math.abs(x)<1e-9)){values=values.filter((x,i)=>i===0||i===4||Math.abs(x)>step*.6);values.push(0);}return values.sort((a,b)=>a-b);};
  for(const x of ticks(xmin,xmax))b+=`<path d="M${px(x)} 45V240" stroke="#e4e8ef"/><text x="${px(x)}" y="262" text-anchor="middle" class="tick">${fmt(x)}</text>`;
- for(const y of ticks(ymin,ymax))b+=`<path d="M70 ${py(y)}H470" stroke="#e4e8ef"/><text x="60" y="${py(y)+4}" text-anchor="end" class="tick">${fmt(y)}</text>`;
- b+='<path d="M70 45V240H470" fill="none" stroke="#8391a5"/>';
- if(ymin<0&&ymax>0)b+=`<path data-zero-axis="y" d="M70 ${py(0)}H470" stroke="#8391a5"/>`;
+ for(const y of ticks(ymin,ymax))b+=`<path d="M${left} ${py(y)}H470" stroke="#e4e8ef"/><text x="${left-10}" y="${py(y)+4}" text-anchor="end" class="tick">${fmt(y)}</text>`;
+ b+=`<path d="M${left} 45V240H470" fill="none" stroke="#8391a5"/>`;
+ if(ymin<0&&ymax>0)b+=`<path data-zero-axis="y" d="M${left} ${py(0)}H470" stroke="#8391a5"/>`;
  if(xmin<0&&xmax>0)b+=`<path data-zero-axis="x" d="M${px(0)} 45V240" stroke="#8391a5"/>`;
  series.forEach((s,j)=>{let d='',previous=null;for(let i=0;i<=240;i++){const x=xmin+(xmax-xmin)*i/240,y=s.fn(x);if(y===null||!Number.isFinite(y)){previous=null;continue;}const split=s.gap!==undefined&&previous!==null&&(previous-s.gap)*(x-s.gap)<=0;d+=(previous===null||split?'M':'L')+fmt(px(x))+' '+fmt(py(y))+' ';previous=x;}b+=`<path d="${d}" clip-path="url(#${clip})" fill="none" stroke="${j?'#087f76':'#6542c0'}" stroke-width="3" ${j?'stroke-dasharray="7 4"':''}/>`;});
  if(point&&point.every(Number.isFinite)&&point[0]>=xmin&&point[0]<=xmax&&point[1]>=ymin&&point[1]<=ymax)b+=`<circle cx="${px(point[0])}" cy="${py(point[1])}" r="5" fill="#a84324"/>`;
- b+=`<text x="270" y="291" text-anchor="middle" class="axis-label">${esc(xlabel)}</text><text x="12" y="145" transform="rotate(-90 12 145)" text-anchor="middle" class="axis-label">${esc(ylabel)}</text>`;
+ b+=`<text x="270" y="291" text-anchor="middle" class="axis-label">${esc(xlabel)}</text><text x="${ylabelX}" y="145" transform="rotate(-90 ${ylabelX} 145)" text-anchor="middle" class="axis-label">${esc(ylabel)}</text>`;
  return '<div class="course-model-legend">'+series.map((s,j)=>'<span>'+ (j?'Dashed: ':'Solid: ')+esc(s.label)+'</span>').join('')+'</div>'+graphic(title,title+'. '+series.map(s=>s.label).join('; ')+'. Axes: '+xlabel+', '+ylabel+'.',b);
 }
 const market=shift=>({price:6+shift/2,quantity:6+shift/2});

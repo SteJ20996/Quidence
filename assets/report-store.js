@@ -1,7 +1,7 @@
 (function(root){
 'use strict';
 // Legacy persistence identifiers are intentionally retained; see BRAND_MIGRATION.md.
-const KEY='cluevera_saved_reports_v1',SUBJECTS={aa01:'Secondary-school math',ab01:'Linear Algebra',ac01:'Game theory foundations',ad01:'Calculus',ae01:'Statistics',af01:'Pre-calculus','pre-algebra':'Pre-Algebra','algebra-1':'Algebra I',geometry:'Geometry','algebra-2':'Algebra II',microeconomics:'Microeconomics'};
+const KEY='cluevera_saved_reports_v1',SUBJECTS={aa01:'Secondary-school math',ab01:'Linear Algebra',ac01:'Game theory foundations',ad01:'Calculus',ae01:'Statistics',af01:'Pre-calculus','pre-algebra':'Pre-Algebra','algebra-1':'Algebra I',geometry:'Geometry','algebra-2':'Algebra II',microeconomics:'Microeconomics',physics:'Physics'};
 const clone=v=>JSON.parse(JSON.stringify(v));
 function displaySubject(item){return SUBJECTS[item.module]||item.subject;}
 function fresh(){return{schema:KEY,items:[]};}

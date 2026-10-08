@@ -12,7 +12,7 @@ test('pre-rename portfolios resume exact drafts, bank versions, submissions, rev
  const F=require('../assets/foundation-engine.js'),B=require('../assets/challenge-bank.js'),PB=require('../assets/project-bank.js'),T=require('../assets/project-tools.js'),fixtures=require('./fixtures/legacy-portfolios.json');
  const challenge=F.forBank(B,{VERSION:'challenge-no-followup',MODULES:{}},{schema:'cluevera_challenge_portfolio_v1',challenge:true});
  const projects=F.forBank(PB,{VERSION:'projects-no-followup',MODULES:{}},{schema:'cluevera_project_portfolio_v1',challenge:true,projects:true,fieldTypes:T.fieldTypes});
- for(const [kind,engine]of [['foundation',F],['challenge',challenge],['projects',projects]])assert.deepEqual(engine.hydrate(fixtures[kind]),fixtures[kind],kind);
+ for(const [kind,engine]of [['foundation',F],['challenge',challenge],['projects',projects]]){const expected=structuredClone(fixtures[kind]);if(kind!=='foundation')expected.modules.physics={active:null,sessions:[]};assert.deepEqual(engine.hydrate(fixtures[kind]),expected,kind);}
 });
 test('legacy persistence protocols remain readable and historical payloads stay exact',()=>{
  assert.equal(Algebra.KEY,'cluevera_algebra_progress_v06');assert.equal(Reports.KEY,'cluevera_saved_reports_v1');

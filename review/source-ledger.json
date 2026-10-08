@@ -1,6 +1,6 @@
 {
   "schema": "quidence-source-review-1",
-  "date": "2026-10-07",
+  "date": "2026-10-08",
   "status": "inventory-only",
   "interpretation": "No item is cleared by generation, mathematical tests, a fingerprint or an originality label. Human contribution, source comparison and any required permission remain unverified. Review records must be retained separately when this snapshot is rebuilt.",
   "scope": "Active structured task banks, course checks, matrix learning tasks, adaptive algebra and visual-algebra main prompts. Retired foundation/followup definitions retained and marked historical-only. Not a complete inventory of tutorial prose, all interactive matrix guides, external links, logos or archived files.",
@@ -569,14 +569,14 @@
       "module": "ab01",
       "taskId": "la-c01",
       "title": "A parameter changes the solution set",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "6703f6d63d418da999cbecfa5783dc9e95104090722a129c62bc11c5984c4582",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -585,6 +585,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -605,14 +613,14 @@
       "module": "ab01",
       "taskId": "la-c02",
       "title": "A complete solution, not just one vector",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "f31e2b81d0b5843844b6897d4ca214b5fcf4f3e6b13680a0942ae4ed186f2ae4",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -621,6 +629,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -641,14 +657,14 @@
       "module": "ab01",
       "taskId": "la-c03",
       "title": "Compose and then undo two maps",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "42f52c7f7d433b800d30433ff6f15310c07ea09415196bcfe1b4ae9fa485de59",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -657,6 +673,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -677,14 +701,14 @@
       "module": "ab01",
       "taskId": "la-c04",
       "title": "The same map in a different basis",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "539151d341affaa5fdaed75d9cac0b40a00eab28f599e16fffe3250ea5da71e2",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -693,6 +717,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -713,14 +745,14 @@
       "module": "ab01",
       "taskId": "la-c05",
       "title": "Project and test the residual",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "91ef92117af179eb09ea809461077459170b2b37c9f1b3de005ff6e209c16e49",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -729,6 +761,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -749,14 +789,14 @@
       "module": "ab01",
       "taskId": "la-c06",
       "title": "Fit a line without pretending it is exact",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "c261edca701c8ed58f82383a5a927488c89b2d1a09d5d3c52137e8380c1e748d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -765,6 +805,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -785,14 +833,14 @@
       "module": "ab01",
       "taskId": "la-c07",
       "title": "Eigenvectors are more than coordinate-wise ratios",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "b23453e0cbed0e9fac504f460c8ebf7ab6c68d3408a25030c8c2f144b377023e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -801,6 +849,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -821,14 +877,14 @@
       "module": "ab01",
       "taskId": "la-c08",
       "title": "Area change and orientation are different signs",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "571eb5d4b5c31869f0a37d9713ae7c77739a0df16736d679e13725a7448427e8",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -837,6 +893,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -857,14 +921,14 @@
       "module": "ab01",
       "taskId": "la-c09",
       "title": "An unreachable target still has a closest image",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "23024c36819588c6f58165d9745974798111b05a4bc06862f5357528b95f86df",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -873,6 +937,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -893,14 +965,14 @@
       "module": "ab01",
       "taskId": "la-c10",
       "title": "A translation hidden inside a map",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "c8647aaa76cc602c6fe3cdca18af433d9e27554a015e69c8ee3e9a42972b3c8a",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -909,6 +981,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -929,14 +1009,14 @@
       "module": "ab01",
       "taskId": "la-c11",
       "title": "A zero determinant does not finish the analysis",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "8674d6b6d72d21ccf8835f62bf5fe0171bb791103b29438e66d4fbaabca8a16e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -945,6 +1025,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -965,14 +1053,14 @@
       "module": "ab01",
       "taskId": "la-c12",
       "title": "Subspace tests must survive addition",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "ce9c4728bab46107f0cf0aac520cfd96613a93461c3080b4dd8582191a041370",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -981,6 +1069,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1001,14 +1097,14 @@
       "module": "ad01",
       "taskId": "ca-c01",
       "title": "Continuity is only the first condition",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "e8b9b69806d0d593f6962c80b1e8b4e76218be1d6804d9661f9a3da527c90ae4",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1017,6 +1113,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1037,14 +1141,14 @@
       "module": "ad01",
       "taskId": "ca-c02",
       "title": "Find a global maximum with endpoints",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "b8051ce2d3f571b569aff693500072e0d0a72c290fd9086ddd8e062cfab28fbb",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1053,6 +1157,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1073,14 +1185,14 @@
       "module": "ad01",
       "taskId": "ca-c03",
       "title": "Distance needs the internal sign changes",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "0a5550f983c81f30d2fcab2a90dd6e2135b6e982ca3da1202a4a2589ba6f5bd4",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1089,6 +1201,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1109,14 +1229,14 @@
       "module": "ad01",
       "taskId": "ca-c04",
       "title": "The accumulation maximum is not the tallest point",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "9c497bcc96b139c9c37f8b08b189028de86436c79d5173f89a93d57b6ff8911d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1125,6 +1245,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1145,14 +1273,14 @@
       "module": "ae01",
       "taskId": "st-c01",
       "title": "Reverse a flag probability carefully",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "d8134bed664639c759ebf3a6d26ae827b899477ffbf3f37b52d744045812a886",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1161,6 +1289,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1181,14 +1317,14 @@
       "module": "ae01",
       "taskId": "st-c02",
       "title": "Group comparisons can reverse when combined",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "206127111661b9800ddee132900e80164fec61f5bbecf91493b616fe6fbea6a8",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1197,6 +1333,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1217,14 +1361,14 @@
       "module": "ae01",
       "taskId": "st-c03",
       "title": "Compute variance, then transform it",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "7dfeb98ee312b30e331265c949aea0dfd132702202fc62956e1384f299ed8868",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1233,6 +1377,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1253,14 +1405,14 @@
       "module": "ae01",
       "taskId": "st-c04",
       "title": "Fit, inspect a residual, and interpret r²",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "6865a41d0a00da8e2f7e5d4f5d21ec07ccca0ad7a6c147d77bce77c566fa8769",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1269,6 +1421,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1289,14 +1449,14 @@
       "module": "af01",
       "taskId": "pc-c01",
       "title": "Both composition domains need a fresh check",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "058671d94d7ecf9a11ce449b01a6cc4a696f2a70fdf176f6d62028f858dceaa3",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1305,6 +1465,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1325,14 +1493,14 @@
       "module": "af01",
       "taskId": "pc-c02",
       "title": "Return from a quadratic to every angle",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "35bed5531f896dcaba9703f85605e78bf5206cf6648df4cdb76444639ee1d4b1",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1341,6 +1509,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1361,14 +1537,14 @@
       "module": "af01",
       "taskId": "pc-c03",
       "title": "A cancelled factor leaves a hole",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "9c2d8648c67915bc42d04e72be847b6b22cae638cd1476bcfa4fd7a55f4b3ea5",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1377,6 +1553,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1397,14 +1581,14 @@
       "module": "af01",
       "taskId": "pc-c04",
       "title": "Interpret a periodic model across a full cycle",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "7e382471b12babe6337bef934f2db895e236a364f10c95f0e768fc4184915c6e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1413,6 +1597,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1433,14 +1625,14 @@
       "module": "algebra-1",
       "taskId": "a1-c01",
       "title": "When elimination loses a pivot",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "7947034d2de119aee3866e1f4fb24ddabf3e7f3387aaed3f4a93568fb44f1095",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1449,6 +1641,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1469,14 +1669,14 @@
       "module": "algebra-1",
       "taskId": "a1-c02",
       "title": "An absolute-value bound needs two sides",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "f5968fa5481abac5bde17c6c14e7c98d40e7c5a17583767fe043f1b0bebbf695",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1485,6 +1685,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1505,14 +1713,14 @@
       "module": "algebra-1",
       "taskId": "a1-c03",
       "title": "A quadratic comes from a geometric constraint",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "f1bb2efbf0dca384aaf861b2c70a0bbb2109e5be1f28a24beecd64d89b8f808f",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1521,6 +1729,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1541,14 +1757,14 @@
       "module": "algebra-1",
       "taskId": "a1-c04",
       "title": "Choose a rule over a whole interval",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "6a66f45cb6dc3189029e49ee3ed858da873cddab904c4f35c296956211bf3a46",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1557,6 +1773,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1577,14 +1801,14 @@
       "module": "algebra-2",
       "taskId": "a2-c01",
       "title": "Solve without losing the forbidden inputs",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "26bd76206dc233bd78a27dae16d30c7555265d81b9405b8c3c6df24346dc0c72",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1593,6 +1817,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1613,14 +1845,14 @@
       "module": "algebra-2",
       "taskId": "a2-c02",
       "title": "A product equation can invent a log solution",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "639b51220572d4cbb11fd791de04f1beb7b3f63258ac583cecdf7006b6b8378a",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1629,6 +1861,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1649,14 +1889,14 @@
       "module": "algebra-2",
       "taskId": "a2-c03",
       "title": "Multiplicity controls a sign change",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "df2d3b973a69f0aa901dfaaf213ee4aa43d2524d7718e199168a7086ddd492fb",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1665,6 +1905,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1685,14 +1933,14 @@
       "module": "algebra-2",
       "taskId": "a2-c04",
       "title": "An exponential substitution still has a domain",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "1c758702493efefda7a6319f5cec5c18dd10fd1cecea0ebbdc7f233e00cb7afb",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1701,6 +1949,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1721,14 +1977,14 @@
       "module": "geometry",
       "taskId": "ge-c01",
       "title": "Coordinates must support a similarity claim",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "89cdf0f835cf8e53217ff8c986c297d32832c028f0d9f7f82ee1d998e550c7f3",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1737,6 +1993,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1757,14 +2021,14 @@
       "module": "geometry",
       "taskId": "ge-c02",
       "title": "An altitude splits the hypotenuse",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "892e7060159d7a67feaa549de7782d62baa0d34cab88a8693dd5c1a219064608",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1773,6 +2037,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1793,14 +2065,14 @@
       "module": "geometry",
       "taskId": "ge-c03",
       "title": "Cutting a cone uses a cubic scale",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "2359ea9c0e5b673474921da4916a4bd60f02c0ec55f64bb8ccd7a1e3f00df3fc",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1809,6 +2081,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1829,14 +2109,14 @@
       "module": "geometry",
       "taskId": "ge-c04",
       "title": "A tangent and a secant describe one power",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "a71d0c92bb436d4871b85b36bc1d14db985256e0428047b4a43f58c7a5a49c78",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1845,6 +2125,278 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "review/challenge-math-audit.json"
+      },
+      "automatedReference": "review/challenge-math-audit.json"
+    },
+    {
+      "id": "diagnostic:physics:ph-c01",
+      "family": "diagnostic",
+      "module": "physics",
+      "taskId": "ph-c01",
+      "title": "The runner returns partway",
+      "bankVersion": "quidence-challenges-4",
+      "availability": "active",
+      "fingerprint": "23fb6e4af40e081b37742637d36a851154aeba596a3b2e81e400dd6094dc2bac",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "review/challenge-math-audit.json"
+      },
+      "automatedReference": "review/challenge-math-audit.json"
+    },
+    {
+      "id": "diagnostic:physics:ph-c02",
+      "family": "diagnostic",
+      "module": "physics",
+      "taskId": "ph-c02",
+      "title": "Does the data support the force model?",
+      "bankVersion": "quidence-challenges-4",
+      "availability": "active",
+      "fingerprint": "92a1893af50cb5b03a7523109c82530467372277b25a78fbda6d09c020092b6c",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "review/challenge-math-audit.json"
+      },
+      "automatedReference": "review/challenge-math-audit.json"
+    },
+    {
+      "id": "diagnostic:physics:ph-c03",
+      "family": "diagnostic",
+      "module": "physics",
+      "taskId": "ph-c03",
+      "title": "Two carts join; not everything is conserved",
+      "bankVersion": "quidence-challenges-4",
+      "availability": "active",
+      "fingerprint": "24b2cc0b27999c5aca2c6cdd84a792b2b3aa5cae968a73df9a4f2067076260fb",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "review/challenge-math-audit.json"
+      },
+      "automatedReference": "review/challenge-math-audit.json"
+    },
+    {
+      "id": "diagnostic:physics:ph-c04",
+      "family": "diagnostic",
+      "module": "physics",
+      "taskId": "ph-c04",
+      "title": "A rolling model with an energy transfer",
+      "bankVersion": "quidence-challenges-4",
+      "availability": "active",
+      "fingerprint": "d79772dc4f3b941d64f588f08e6db4dc0951dc9a4dbbdf9b3f02cb5a407d746d",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "review/challenge-math-audit.json"
+      },
+      "automatedReference": "review/challenge-math-audit.json"
+    },
+    {
+      "id": "diagnostic:physics:ph-c05",
+      "family": "diagnostic",
+      "module": "physics",
+      "taskId": "ph-c05",
+      "title": "Watts are not watt-hours",
+      "bankVersion": "quidence-challenges-4",
+      "availability": "active",
+      "fingerprint": "52480684d29f0744f32f69400595295b4ce051bd9fee2ee34f050ec461f8ec89",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "review/challenge-math-audit.json"
+      },
+      "automatedReference": "review/challenge-math-audit.json"
+    },
+    {
+      "id": "diagnostic:physics:ph-c06",
+      "family": "diagnostic",
+      "module": "physics",
+      "taskId": "ph-c06",
+      "title": "One wave, two kinds of distance",
+      "bankVersion": "quidence-challenges-4",
+      "availability": "active",
+      "fingerprint": "2d07bdbc31b60714f52e88a471f5cb50e19a7a64ec9ce5d061e4b0fb40ca3706",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1865,14 +2417,14 @@
       "module": "pre-algebra",
       "taskId": "pa-c01",
       "title": "Remove a mixture, then dilute it",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "2cdeedf30ddb3bdf1dd62a37dfdbb3a47b02b8e7746fe23ceb709feea4606feb",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1881,6 +2433,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1901,14 +2461,14 @@
       "module": "pre-algebra",
       "taskId": "pa-c02",
       "title": "Recover a price through two changing bases",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "643bfd83d8433c88c24087ea6eb4d3d6aef2ef0466bfb6e6ad55418686741673",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1917,6 +2477,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1937,14 +2505,14 @@
       "module": "pre-algebra",
       "taskId": "pa-c03",
       "title": "Add filling rates, not filling times",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "32ed369669fb25aa13e54fe401f9f5defd3fb873a6578281c3a46923eb15c15c",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1953,6 +2521,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -1973,14 +2549,14 @@
       "module": "pre-algebra",
       "taskId": "pa-c04",
       "title": "Find the counts behind a changed ratio",
-      "bankVersion": "quidence-challenges-3",
+      "bankVersion": "quidence-challenges-4",
       "availability": "active",
       "fingerprint": "0abc285c3c0911899841d9ddbc561f0347e35715a8403fd5bba861b720bba9f6",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "6c135305e94544162c8ec1499c2e836e4b947ab931af23fd5bc285ca2dc949d3"
+          "sha256": "1b76af70e543f6e3b2212d53927d088580fe450849f448916c2fccef9f93eeca"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1989,6 +2565,14 @@
         {
           "path": "assets/challenge-bank-v2.js",
           "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -5740,11 +6324,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -5775,11 +6359,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -5810,11 +6394,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -5845,11 +6429,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -5880,11 +6464,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -5915,11 +6499,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -5950,11 +6534,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -5985,11 +6569,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6020,11 +6604,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6055,11 +6639,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6090,11 +6674,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6125,11 +6709,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6160,11 +6744,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6195,11 +6779,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6230,11 +6814,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6265,11 +6849,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6300,11 +6884,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6335,11 +6919,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6370,11 +6954,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6405,11 +6989,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6440,11 +7024,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6475,11 +7059,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6510,11 +7094,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6545,11 +7129,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6580,11 +7164,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6615,11 +7199,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6650,11 +7234,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6685,11 +7269,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6720,11 +7304,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6755,11 +7339,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6790,11 +7374,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6825,11 +7409,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6860,11 +7444,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6895,11 +7479,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6930,11 +7514,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -6965,11 +7549,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7000,11 +7584,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7035,11 +7619,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7070,11 +7654,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7105,11 +7689,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7140,11 +7724,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7175,11 +7759,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7210,11 +7794,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7245,11 +7829,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7280,11 +7864,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7315,11 +7899,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7350,11 +7934,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7385,11 +7969,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7420,11 +8004,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7455,11 +8039,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7490,11 +8074,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7525,11 +8109,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7560,11 +8144,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7595,11 +8179,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7630,11 +8214,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7665,11 +8249,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7700,11 +8284,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7735,11 +8319,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7770,11 +8354,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7805,11 +8389,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7840,11 +8424,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7875,11 +8459,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7910,11 +8494,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7945,11 +8529,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -7980,11 +8564,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8015,11 +8599,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8050,11 +8634,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8085,11 +8669,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8120,11 +8704,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8155,11 +8739,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8190,11 +8774,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8225,11 +8809,383 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:physics:physics-1-0",
+      "family": "lesson",
+      "module": "physics",
+      "taskId": "physics-1-0",
+      "title": "A runner is 4 m east of an origin at t = 0 and 10 m east at t = 3 s. What is the average velocity?",
+      "bankVersion": "physics-intro-1",
+      "availability": "active",
+      "fingerprint": "c533182b44975c7f036497af5457012f3a92c81329891e9b85aa48302d378ecd",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "courses/physics/content.js",
+          "sha256": "74912f8d6d804f787e4c2357357e737b5e3fa93aabd8558eb6c8fb1c93b9bcbe"
+        },
+        {
+          "path": "assets/physics-models.js",
+          "sha256": "bccf46e238e46f9baf04c38c43d39f8d008195fb946f1371af881d6009f1f21f"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:physics:physics-1-1",
+      "family": "lesson",
+      "module": "physics",
+      "taskId": "physics-1-1",
+      "title": "A runner moves from x = 8 m to x = 2 m in 3 s at constant velocity. Which pair is correct?",
+      "bankVersion": "physics-intro-1",
+      "availability": "active",
+      "fingerprint": "19de7bb719359aa1c6cf67d6e12876c42841923fb111ddec019d900de33e292f",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "courses/physics/content.js",
+          "sha256": "74912f8d6d804f787e4c2357357e737b5e3fa93aabd8558eb6c8fb1c93b9bcbe"
+        },
+        {
+          "path": "assets/physics-models.js",
+          "sha256": "bccf46e238e46f9baf04c38c43d39f8d008195fb946f1371af881d6009f1f21f"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:physics:physics-1-2",
+      "family": "lesson",
+      "module": "physics",
+      "taskId": "physics-1-2",
+      "title": "A runner travels 12 m east, then 5 m west. What are distance and displacement?",
+      "bankVersion": "physics-intro-1",
+      "availability": "active",
+      "fingerprint": "0fb2c4d68a16e773c9b9d2600741cb298709c978474c785315019f7845d09456",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "courses/physics/content.js",
+          "sha256": "74912f8d6d804f787e4c2357357e737b5e3fa93aabd8558eb6c8fb1c93b9bcbe"
+        },
+        {
+          "path": "assets/physics-models.js",
+          "sha256": "bccf46e238e46f9baf04c38c43d39f8d008195fb946f1371af881d6009f1f21f"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:physics:physics-2-0",
+      "family": "lesson",
+      "module": "physics",
+      "taskId": "physics-2-0",
+      "title": "A 2 kg cart has 8 N eastward and 2 N westward forces. What is its acceleration?",
+      "bankVersion": "physics-intro-1",
+      "availability": "active",
+      "fingerprint": "7dd5a48a67ab8e71269df45f2b539ba49e705a7fb8007e4d3bf30f91d6b99e27",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "courses/physics/content.js",
+          "sha256": "74912f8d6d804f787e4c2357357e737b5e3fa93aabd8558eb6c8fb1c93b9bcbe"
+        },
+        {
+          "path": "assets/physics-models.js",
+          "sha256": "bccf46e238e46f9baf04c38c43d39f8d008195fb946f1371af881d6009f1f21f"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:physics:physics-2-1",
+      "family": "lesson",
+      "module": "physics",
+      "taskId": "physics-2-1",
+      "title": "A cart already moves east at 3 m/s. Its net force remains zero for 2 s. What is its velocity after 2 s in this model?",
+      "bankVersion": "physics-intro-1",
+      "availability": "active",
+      "fingerprint": "2c019400d846c0ef95cd768873e400dd4caf15ef4e51dbae9d3b6e3ca47b9698",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "courses/physics/content.js",
+          "sha256": "74912f8d6d804f787e4c2357357e737b5e3fa93aabd8558eb6c8fb1c93b9bcbe"
+        },
+        {
+          "path": "assets/physics-models.js",
+          "sha256": "bccf46e238e46f9baf04c38c43d39f8d008195fb946f1371af881d6009f1f21f"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:physics:physics-2-2",
+      "family": "lesson",
+      "module": "physics",
+      "taskId": "physics-2-2",
+      "title": "Which comparison tests the effect of mass while holding net force fixed?",
+      "bankVersion": "physics-intro-1",
+      "availability": "active",
+      "fingerprint": "a3ef714bcfe0c1ecb6a132b0d92ea6351afa0a1e41a4f443bd8f7e700d76758b",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "courses/physics/content.js",
+          "sha256": "74912f8d6d804f787e4c2357357e737b5e3fa93aabd8558eb6c8fb1c93b9bcbe"
+        },
+        {
+          "path": "assets/physics-models.js",
+          "sha256": "bccf46e238e46f9baf04c38c43d39f8d008195fb946f1371af881d6009f1f21f"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:physics:physics-3-0",
+      "family": "lesson",
+      "module": "physics",
+      "taskId": "physics-3-0",
+      "title": "A 50 W device operates at constant power for 4 min. How much energy does it transfer?",
+      "bankVersion": "physics-intro-1",
+      "availability": "active",
+      "fingerprint": "1c828c61b79b18c4b2c4492c1b53b8d1e7f72b0ee08f3266967ef65b689b79ec",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "courses/physics/content.js",
+          "sha256": "74912f8d6d804f787e4c2357357e737b5e3fa93aabd8558eb6c8fb1c93b9bcbe"
+        },
+        {
+          "path": "assets/physics-models.js",
+          "sha256": "bccf46e238e46f9baf04c38c43d39f8d008195fb946f1371af881d6009f1f21f"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:physics:physics-3-1",
+      "family": "lesson",
+      "module": "physics",
+      "taskId": "physics-3-1",
+      "title": "Two constant-power lamps run for 30 min: one at 20 W and one at 40 W. Which comparison is correct?",
+      "bankVersion": "physics-intro-1",
+      "availability": "active",
+      "fingerprint": "8753cacf9f8084ac7a97252e5ea56f3fa51d1a0ede4bf1b6075842e05f3b93ff",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "courses/physics/content.js",
+          "sha256": "74912f8d6d804f787e4c2357357e737b5e3fa93aabd8558eb6c8fb1c93b9bcbe"
+        },
+        {
+          "path": "assets/physics-models.js",
+          "sha256": "bccf46e238e46f9baf04c38c43d39f8d008195fb946f1371af881d6009f1f21f"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:physics:physics-3-2",
+      "family": "lesson",
+      "module": "physics",
+      "taskId": "physics-3-2",
+      "title": "A converter receives 1,000 J and supplies 750 J of useful output, with no stored-energy change. What follows?",
+      "bankVersion": "physics-intro-1",
+      "availability": "active",
+      "fingerprint": "3a6fbf6e93293bafcd4821f7288918868cc253bc602bb05b99793aa1278c0630",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "courses/physics/content.js",
+          "sha256": "74912f8d6d804f787e4c2357357e737b5e3fa93aabd8558eb6c8fb1c93b9bcbe"
+        },
+        {
+          "path": "assets/physics-models.js",
+          "sha256": "bccf46e238e46f9baf04c38c43d39f8d008195fb946f1371af881d6009f1f21f"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:physics:physics-4-0",
+      "family": "lesson",
+      "module": "physics",
+      "taskId": "physics-4-0",
+      "title": "An ideal wave travels at 12 m/s with frequency 3 Hz. What is its wavelength?",
+      "bankVersion": "physics-intro-1",
+      "availability": "active",
+      "fingerprint": "a5c441b2daf6393ff6554b17357123c8fe84b8b618b3f0d47cd252f0314cd831",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "courses/physics/content.js",
+          "sha256": "74912f8d6d804f787e4c2357357e737b5e3fa93aabd8558eb6c8fb1c93b9bcbe"
+        },
+        {
+          "path": "assets/physics-models.js",
+          "sha256": "bccf46e238e46f9baf04c38c43d39f8d008195fb946f1371af881d6009f1f21f"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:physics:physics-4-1",
+      "family": "lesson",
+      "module": "physics",
+      "taskId": "physics-4-1",
+      "title": "In the same nondispersive medium, frequency changes from 2 Hz to 4 Hz while wave speed stays fixed. What happens to wavelength?",
+      "bankVersion": "physics-intro-1",
+      "availability": "active",
+      "fingerprint": "051b3d4877c436204cf780348c0cbc0b79f171ea9fc15e7cbd1c722ef4ab9be8",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "courses/physics/content.js",
+          "sha256": "74912f8d6d804f787e4c2357357e737b5e3fa93aabd8558eb6c8fb1c93b9bcbe"
+        },
+        {
+          "path": "assets/physics-models.js",
+          "sha256": "bccf46e238e46f9baf04c38c43d39f8d008195fb946f1371af881d6009f1f21f"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:physics:physics-4-2",
+      "family": "lesson",
+      "module": "physics",
+      "taskId": "physics-4-2",
+      "title": "An echo returns 2 s after a sound is emitted. Use sound speed 340 m/s. How far away is the reflector?",
+      "bankVersion": "physics-intro-1",
+      "availability": "active",
+      "fingerprint": "5fd38a7c2556cf60c46d9cd592b6850027088d8c49b555b09f7c6ec73be4be45",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "courses/physics/content.js",
+          "sha256": "74912f8d6d804f787e4c2357357e737b5e3fa93aabd8558eb6c8fb1c93b9bcbe"
+        },
+        {
+          "path": "assets/physics-models.js",
+          "sha256": "bccf46e238e46f9baf04c38c43d39f8d008195fb946f1371af881d6009f1f21f"
         }
       ],
       "sourceReview": {
@@ -8260,11 +9216,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8295,11 +9251,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8330,11 +9286,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8365,11 +9321,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8400,11 +9356,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8435,11 +9391,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8470,11 +9426,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8505,11 +9461,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8540,11 +9496,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8575,11 +9531,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8610,11 +9566,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8645,11 +9601,11 @@
         },
         {
           "path": "assets/course-models.js",
-          "sha256": "63d1d3b2c283507d04a1e919f099e85ed8346e374654470d2abb389687fba767"
+          "sha256": "21219174f3d6901ad69c48b3e73f0d5f772f95b5f811233064d4e3274bd90c21"
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "b7b901b93996601e9207b59551888565a2e26f01fa12b76738d81e8d01847101"
+          "sha256": "a01f3974ab82d27ec78e997840bc3dcc2e6919dbd0f92225e637b05600e548e8"
         }
       ],
       "sourceReview": {
@@ -8939,14 +9895,14 @@
       "module": "ab01",
       "taskId": "la-p01",
       "title": "Three sensors cannot all be right",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "fbc477a13ea42b6522a3bad9feed54005c9bbf050905acc182f9140ff0f45502",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -8955,6 +9911,14 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -8975,14 +9939,14 @@
       "module": "ab01",
       "taskId": "la-p02",
       "title": "A route map that stretches before it turns",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "b14b3b8d9bcd4b82a3769d812c071b0313b6375e4a3f2b9c4edb3641323b1ca1",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -8991,6 +9955,14 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -9011,14 +9983,14 @@
       "module": "ad01",
       "taskId": "ca-p01",
       "title": "The rider turns back twice",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "4527e61220680f8603f01803f0a59799eb34b05903d9132142ab50e82e1608f3",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -9027,6 +9999,14 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -9047,14 +10027,14 @@
       "module": "ad01",
       "taskId": "ca-p02",
       "title": "What does the solar inverter throw away?",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "636ca35f8009e4b41229b697e1ad4c671b99131a903faba04d4d6e8a96b3bb9e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -9063,6 +10043,14 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -9083,14 +10071,14 @@
       "module": "ae01",
       "taskId": "st-p01",
       "title": "Same riders, two training routines",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "6c861cebdf91f11fda92309f09c29ed971eb3f5ae204f937cbd8d32e74423de0",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -9099,6 +10087,14 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -9119,14 +10115,14 @@
       "module": "ae01",
       "taskId": "st-p02",
       "title": "Equal sample sizes, unequal coastline",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "2713b244821c52433acf9e18b37abac1974e24bee755a3f95a00c7b58a0e752d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -9135,6 +10131,14 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -9155,14 +10159,14 @@
       "module": "af01",
       "taskId": "pc-p01",
       "title": "A tide-shaped model with two crossings",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "cadff6a81cbbd1c116a6f9e1c0f8d5205c8add1a7c0146f41842af13451ab6e5",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -9171,6 +10175,14 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -9191,14 +10203,14 @@
       "module": "af01",
       "taskId": "pc-p02",
       "title": "Find the trail connector, not the wrong bearing",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "198c0c2a9497a89c659a9c2bdbf5e9f3f36162a4afcaa4ac4077de4f4e6aeeb8",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -9207,6 +10219,14 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -9227,14 +10247,14 @@
       "module": "algebra-1",
       "taskId": "a1-p01",
       "title": "A basketball trip that almost balances",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "1b05cd0817102a5682572cb8125f66ffe0c53fdf342eeef210287d64b23e2543",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -9243,6 +10263,14 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -9263,14 +10291,14 @@
       "module": "algebra-1",
       "taskId": "a1-p02",
       "title": "Design shade beside a community court",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "6091cfa69286f3621c4e46edc6ab2538159e9a86a1dcd21ce0af99ea3b7d427b",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -9279,6 +10307,14 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -9299,14 +10335,14 @@
       "module": "algebra-2",
       "taskId": "a2-p01",
       "title": "Two times at hoop height",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "42043c2fb4bb0410e4d7558a9799873c7af1f0370e895884d66c738524db6b24",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -9315,6 +10351,14 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -9335,14 +10379,14 @@
       "module": "algebra-2",
       "taskId": "a2-p02",
       "title": "Which classroom decay model fits your question?",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "52c97a2ff0f9d4a0ac6132ec4689c8f0171d03962a5d6b5ecb88fac5002a1b4b",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -9351,6 +10395,14 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -9371,14 +10423,14 @@
       "module": "geometry",
       "taskId": "ge-p01",
       "title": "Survey a coastal picnic space",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "e6d87f31fd6e064cc5472dc7fd2053c1168b6eb6c27ca559e15ae778193b8e1f",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -9387,6 +10439,14 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -9407,14 +10467,14 @@
       "module": "geometry",
       "taskId": "ge-p02",
       "title": "Rotate a cycling route and check a shortcut",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "7c0640bd61a728074139da6ef7cee0403251bfb382c97a718f84aef4113aed03",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -9423,6 +10483,102 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "review/project-math-audit.json"
+      },
+      "automatedReference": "review/project-math-audit.json"
+    },
+    {
+      "id": "project:physics:ph-p01",
+      "family": "project",
+      "module": "physics",
+      "taskId": "ph-p01",
+      "title": "Can the campus model cart stop in the marked zone?",
+      "bankVersion": "quidence-projects-4",
+      "availability": "active",
+      "fingerprint": "b3d8e3144f0c5dba1bf151031a01bd682ecd7edd5ef9a9e1ec1a0eb414f8f8b2",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "review/project-math-audit.json"
+      },
+      "automatedReference": "review/project-math-audit.json"
+    },
+    {
+      "id": "project:physics:ph-p02",
+      "family": "project",
+      "module": "physics",
+      "taskId": "ph-p02",
+      "title": "Can the school event keep its lights on?",
+      "bankVersion": "quidence-projects-4",
+      "availability": "active",
+      "fingerprint": "5e47d669d739ab46043c66b52cfc57f8128ff8f97d89930f621dacc740d54bc8",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/project-bank.js",
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
+        },
+        {
+          "path": "assets/project-bank-v1.js",
+          "sha256": "45aa74ee3e2c57573c5cf8b82e407dd1838e88aaf761792597f379a14199a859"
+        },
+        {
+          "path": "assets/project-bank-v2.js",
+          "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -9443,14 +10599,14 @@
       "module": "pre-algebra",
       "taskId": "pa-p01",
       "title": "Can the running club serve everyone?",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "c16504273193cf17380e2c23db0bffd87154ac9d39ecf1028577eebc39e4194c",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -9459,6 +10615,14 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
@@ -9479,14 +10643,14 @@
       "module": "pre-algebra",
       "taskId": "pa-p02",
       "title": "A field-trip map and a bus deadline",
-      "bankVersion": "quidence-projects-3",
+      "bankVersion": "quidence-projects-4",
       "availability": "active",
       "fingerprint": "511bce71265595d91b55f09a3b823f5d636e07f79f9f852607a9b5fd46249576",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/project-bank.js",
-          "sha256": "2eecf7a4e871dbba92fc8cde71d6acc84efff1631b8b418fb9f902815db45ac0"
+          "sha256": "8d8970d0e40c4cb18d9888a373205fe29884c5d1e6f81b56b9b940c0ddcc564b"
         },
         {
           "path": "assets/project-bank-v1.js",
@@ -9495,6 +10659,14 @@
         {
           "path": "assets/project-bank-v2.js",
           "sha256": "94f3014f2d83491a8f6b3406883406e3b47c1b16db9ca5549a0c4e27c5a0d21f"
+        },
+        {
+          "path": "assets/project-bank-v3.js",
+          "sha256": "c0d049cc0bc0eb738bb66263c397b0dfd637d6b946ebe66c43fecd5fdcee2176"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
         }
       ],
       "sourceReview": {
