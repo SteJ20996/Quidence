@@ -1,0 +1,972 @@
+270	Niños al inicio
+271	Factor de escala desconocido en una razón
+273	Niñas al inicio
+274	Un factor de escala común para la razón
+276	Total final
+277	Actualización de las cantidades reales
+278	Representa las cantidades iniciales con un mismo factor de escala. Comprueba las razones inicial y nueva usando las cantidades reales.
+279	Escribe las cantidades iniciales como 3k y 4k. Entonces (3k+6)/(4k) = 3/2, de donde k = 2. Las cantidades iniciales son 6 y 8; después de que se incorporen más niños, son 12 y 8, con un total de 20.
+280	Compara razones convirtiéndolas en cantidades con una incógnita común, en lugar de sumar directamente a los términos de la razón.
+282	Álgebra I
+283	Sistemas con parámetros, desigualdades compuestas, modelización cuadrática y comparación de costos
+284	Sistemas lineales, valor absoluto, factorización de cuadráticas y gráficas de funciones.
+285	Conjuntos de soluciones y condiciones
+286	Modelos y comparación de gráficas
+287	Un programa completo de Álgebra I, demostraciones generales y modelización independiente más allá de estos ejemplos
+288	Cuando la eliminación pierde un pivote
+289	Para 2x + ky = 6 y 4x + 6y = 12, encuentra el valor real de k que produce infinitas soluciones. Para k = 2, da la solución única. Con el valor excepcional de k, ¿cambiar 12 por 13 produciría una solución, ninguna solución o infinitas soluciones?
+290	k para infinitas soluciones
+291	Eliminación dependiente de un parámetro
+292	Resolución de un sistema
+293	Sistema modificado
+294	Identidad frente a contradicción
+295	Elimina x e interpreta la ecuación restante antes de dividir. Comprueba tu solución única en ambas ecuaciones.
+296	La eliminación da (6−2k)y = 0. Para k = 3, esto es una identidad y las rectas coinciden. Para k = 2, obliga a que y = 0, de donde x = 3. Cambiar el segundo miembro de la segunda ecuación cuando k = 3 da 0 = 1; por tanto, no hay solución.
+297	Distingue entre una intersección, una misma recta repetida y rectas paralelas al modificar el parámetro de un sistema.
+298	Una cota de valor absoluto necesita dos límites
+299	Resuelve |2x − 3| ≤ 5 para todos los valores reales de x. Da los límites inferior y superior y decide si ambos se incluyen. Un estudiante afirma que basta con x ≤ 4: ¿satisface x = −2 la desigualdad original?
+301	Límite inferior
+302	Desigualdad de valor absoluto con dos límites
+304	Límite superior
+306	¿Se incluyen ambos límites?
+307	Límites incluidos de una desigualdad
+309	¿Satisface x = −2 la desigualdad original?
+310	Comprobación de un conjunto de soluciones propuesto
+311	Expresa la condición de valor absoluto como dos desigualdades simultáneas y comprueba la respuesta propuesta, que tiene solo un límite.
+312	−5 ≤ 2x−3 ≤ 5 da −2 ≤ 2x ≤ 8; por tanto, −1 ≤ x ≤ 4. Ambos extremos satisfacen la igualdad. Para x = −2, el valor absoluto es 7, por lo que el conjunto con un solo límite incluye valores no válidos.
+313	Usa una nueva cota de valor absoluto y comprueba un punto fuera de cada extremo.
+314	Una ecuación cuadrática surge de una restricción geométrica
+315	Un rectángulo tiene un perímetro de 28 cm y un área de 45 cm². Sea x la longitud de uno de sus lados. Escribe x² + bx + c = 0 para las posibles longitudes de sus lados, indicando b y c; después, da las longitudes del lado mayor y del menor.
+316	Coeficiente b
+317	El perímetro como restricción sobre la suma de los lados
+318	Constante c
+319	El área como restricción sobre el producto
+321	Lado mayor (cm)
+322	Interpretación de ambas raíces
+324	Lado menor (cm)
+325	Obtén el otro lado a partir del perímetro, deduce el polinomio y comprueba que las longitudes sean positivas, así como el perímetro y el área.
+326	Los lados suman 14, así que x(14−x) = 45. Al reordenar, se obtiene x²−14x+45 = 0 = (x−5)(x−9). Los lados miden 5 y 9 cm; producen un perímetro de 28 y un área de 45.
+327	Construye una nueva ecuación cuadrática a partir de dos restricciones y descarta las raíces que no cumplan las condiciones geométricas.
+328	Elige una regla en todo un intervalo
+329	Para 0 ≤ h ≤ 8 horas, el plan A cuesta 12 + 2h dólares y el plan B cuesta 4 + 4h dólares. Encuentra las horas y el costo para los que ambos planes cuestan lo mismo. Con un presupuesto de $25 y un número entero de horas, encuentra el mayor h que puedes pagar con cada plan.
+331	Horas para las que los costos son iguales
+332	Intersección de modelos lineales
+334	Costo cuando los planes cuestan lo mismo ($)
+335	Sustitución del punto de intersección
+336	Mayor h entero con el plan A
+337	Desigualdad del presupuesto y restricción de número entero
+338	Mayor h entero con el plan B
+339	Muestra las ecuaciones o desigualdades. Comprueba la siguiente hora entera, además de la hora que elijas.
+340	12+2h = 4+4h da h = 4 y un costo de 20. A requiere h ≤ 6.5, así que el máximo entero es 6 (costo 24); 7 cuesta 26. B requiere h ≤ 5.25, así que el máximo es 5 (costo 24); 6 cuesta 28. Ambos máximos están en el intervalo indicado.
+341	Compara un nuevo par de modelos con cargo fijo, incluyendo un límite continuo y una restricción de número entero.
+342	Plan A
+343	Plan B
+344	El plan A es la línea azul continua; el plan B es la línea morada discontinua. El eje horizontal representa las horas; el vertical, el costo en dólares.
+345	Horas
+346	Costo ($)
+347	Geometría
+348	Semejanza en coordenadas, altura de un triángulo rectángulo, escalas de volumen y tangentes/secantes
+349	Área de triángulos, semejanza, relaciones pitagóricas, volumen de conos y relaciones entre tangentes y secantes.
+350	Triángulos y semejanza
+351	Escalas tridimensionales y círculos
+352	Un programa completo de demostraciones geométricas, construcciones, transformaciones y todos los teoremas sobre círculos
+353	Las coordenadas deben respaldar una afirmación de semejanza
+354	A = (0,0), B = (6,0), C = (2,4). D y E son los puntos medios de AB y AC. Encuentra el área del triángulo ABC, selecciona la longitud exacta DE y da área(ADE)/área(ABC). ¿Es DE paralelo a BC?
+356	Área de ABC
+357	Base y altura a partir de coordenadas
+359	Longitud exacta de DE
+363	Distancia entre puntos medios
+365	Razón de áreas ADE / ABC
+366	Escala del área frente a escala de la longitud
+368	¿Es DE paralelo a BC?
+369	Paralelismo a partir de las direcciones en coordenadas
+370	Calcula D y E, compara vectores de dirección o pendientes y explica por qué una razón de áreas no es la razón de longitudes.
+371	D = (3,0), E = (1,2), así que DE = √(4+4) = 2√2. BC = (−4,4) es el doble del vector de DE, (−2,2), por lo que los segmentos son paralelos. ABC tiene un área de 6×4/2 = 12. El triángulo de puntos medios tiene la mitad de la escala de longitud y un cuarto del área.
+372	Comprueba una nueva construcción con puntos medios en coordenadas usando tanto una relación vectorial como la escala del área.
+373	Triángulo ABC y su segmento medio DE. Las coordenadas de los vértices se dan en la pregunta; D y E son puntos medios.
+374	Una altura divide la hipotenusa
+375	La altura trazada desde el vértice del ángulo recto de un triángulo rectángulo divide su hipotenusa en segmentos de 9 cm y 16 cm. Encuentra la altura, el cateto menor, el cateto mayor y el área del triángulo.
+376	Altura (cm)
+377	Semejanza a lo largo de la altura de un triángulo rectángulo
+378	Cateto menor (cm)
+379	Relación entre un cateto y un segmento de la hipotenusa
+380	Cateto mayor (cm)
+381	Área (cm²)
+382	Dos fórmulas equivalentes para el área de un triángulo
+383	Identifica los triángulos semejantes y justifica las relaciones que usas. Comprueba los catetos con el teorema de Pitágoras y el área con dos elecciones de base y altura.
+384	La hipotenusa mide 25. La semejanza da h² = 9×16 = 144 y los cuadrados de los catetos 25×9 = 225 y 25×16 = 400. Por tanto, h = 12 y los catetos miden 15,20. El área es 25×12/2 = 15×20/2 = 150.
+385	Usa una nueva división de la hipotenusa y deduce una de las relaciones de semejanza, en lugar de solo citarla.
+386	Cortar un cono requiere una escala cúbica
+387	Un cono circular recto tiene una altura de 12 cm y un radio de 6 cm. Un plano paralelo a la base corta un cono menor de 4 cm de altura, medida desde el vértice original. Encuentra el radio del cono retirado, la fracción que representa de su volumen original y el volumen restante en la forma cπ cm³ (ingresa c).
+389	Radio del cono retirado (cm)
+390	Semejanza de secciones paralelas de un cono
+392	Volumen retirado / volumen original
+393	Escala cúbica del volumen
+394	Coeficiente c del volumen restante cπ cm³
+395	Resta de volúmenes
+396	Explica qué conos son semejantes, distingue las escalas lineal y de volumen y usa la altura correcta de cada cono.
+397	La escala lineal es 4/12 = 1/3, así que el radio retirado es 2 y la fracción de volumen es (1/3)³ = 1/27. El volumen original es 144π y el retirado es 16π/3, dejando 416π/3 cm³. El tronco de cono restante no puede tratarse como un cono de altura 8 y radio 6.
+398	Compara las escalas de longitud, área y volumen de una nueva sección paralela antes de aplicar una fórmula de volumen.
+399	Una tangente y una secante describen la misma potencia de un punto
+400	Un círculo tiene centro O y radio 5 cm. Un punto exterior P satisface OP = 13 cm. PT es tangente en T. Una secante que pasa por P y O corta el círculo en el punto cercano A y el lejano B, en el orden P,A,O,B. Encuentra PT, PA, PB y PA×PB.
+402	Radio perpendicular a una tangente
+404	Segmento cercano de la secante
+406	Segmento completo de la secante
+408	Relación tangente–secante
+409	Indica el ángulo recto usado para la tangente y explica por qué el producto de la secante usa todo PB, no solo AB.
+410	OT es perpendicular a PT, así que PT² = 13²−5² = 144 y PT = 12. Las distancias colineales, en el orden indicado, dan PA = 13−5 = 8 y PB = 13+5 = 18. Su producto, 144, es igual a PT²; usar AB = 10 en lugar de PB sería incorrecto.
+411	Interpreta una nueva configuración de secante e identifica el segmento exterior y el completo antes de multiplicar.
+413	Álgebra II
+414	Ecuaciones racionales y logarítmicas, multiplicidades y sustituciones exponenciales
+415	Factorización, restricciones del dominio, reglas de los logaritmos y ecuaciones exponenciales.
+416	Restricciones y soluciones extrañas
+417	Estructura polinómica y exponencial
+418	Raíces complejas, algoritmos polinómicos completos, cónicas, sucesiones y un programa completo de Álgebra II
+419	Resuelve sin olvidar los valores excluidos
+420	Resuelve (x+1)/(x−1) = (x−1)/(x+1) + 3/2 en los números reales. Da las soluciones menor y mayor y selecciona todos los valores excluidos por los denominadores originales.
+422	Solución menor
+423	Ecuación racional después de eliminar los denominadores
+425	Solución mayor
+427	Valores excluidos
+429	Restricciones del dominio original
+430	Indica las restricciones antes de multiplicar y comprueba cada raíz propuesta en la ecuación original.
+431	El dominio excluye −1 y 1. Al agrupar las fracciones, se obtiene 4x/(x²−1) = 3/2; por tanto, 3x²−8x−3 = 0 = (3x+1)(x−3). Tanto −1/3 como 3 pertenecen al dominio y satisfacen la ecuación original.
+432	Resuelve otra ecuación racional y distingue entre una raíz algebraica y un valor permitido en la ecuación original.
+433	Una ecuación de producto puede producir una solución logarítmica no válida
+434	Resuelve log₂(x−1) + log₂(x+3) = log₂12. Da la solución real y la otra raíz del polinomio obtenido al combinar los logaritmos. ¿Es esa otra raíz una solución de la ecuación original?
+436	Solución de la ecuación original
+437	Producto logarítmico y dominio
+439	Otra raíz del polinomio
+440	Identificación de una raíz extraña
+442	¿Es válida la otra raíz en la ecuación original?
+443	Cada argumento de un logaritmo debe ser positivo
+444	Indica las dos condiciones de positividad de los argumentos. Muestra la ecuación de producto y explica por qué un producto positivo por sí solo no basta para que existan dos logaritmos reales.
+445	Las condiciones originales requieren x > 1. Al combinar los logaritmos, se obtiene (x−1)(x+3) = 12, o x²+2x−15 = (x−3)(x+5) = 0. Solo x = 3 cumple el dominio; para −5 ambos argumentos son negativos, aunque su producto es positivo.
+446	Comprueba cada argumento logarítmico original después de resolver el polinomio combinado.
+447	La multiplicidad determina el cambio de signo
+448	Para P(x) = x³ − x² − 5x − 3, selecciona todos los ceros reales, da la multiplicidad del cero −1 y selecciona el conjunto completo donde P(x) > 0.
+450	Ceros reales
+452	Factorización completa
+454	Multiplicidad en −1
+455	Raíces repetidas
+457	Dónde P(x) > 0
+461	Tabla de signos y multiplicidad
+462	Factoriza y usa los signos de los factores a ambos lados de cada raíz. Explica qué cero produce un cambio de signo y cuál no.
+463	P(x) = (x+1)²(x−3). Sus ceros son −1 (doble) y 3 (simple). El factor elevado al cuadrado es positivo excepto en −1; por tanto, en los demás puntos el signo es el de x−3. P es positivo exactamente cuando x > 3 y no cambia de signo en −1.
+464	Construye una tabla de signos para un nuevo polinomio con raíces de multiplicidad par e impar.
+465	Una sustitución exponencial también tiene un dominio
+466	Resuelve 2^(2x) − 5·2^x + 4 = 0 para todos los valores reales de x. Da ambas soluciones en orden creciente. Un estudiante concluye, en cambio, que 2^x = 5 al ignorar el término constante: ¿es válida esa conclusión?
+467	Valor menor de x
+468	Sustitución exponencial
+469	Valor mayor de x
+470	Recuperación de la variable original
+471	¿Es válida la conclusión del estudiante?
+472	Conservación de todos los términos de la ecuación
+473	Introduce una nueva variable positiva, resuelve su polinomio y vuelve a x. Comprueba ambos resultados en la expresión original.
+474	Sea u = 2^x > 0. Entonces u²−5u+4 = (u−1)(u−4) = 0, así que u = 1 o 4. Estos valores dan x = 0 o 2. Tomar u = 5 haría que la expresión original fuera igual a 4 en lugar de 0.
+475	Resuelve un nuevo polinomio exponencial y descarta cualquier raíz de la sustitución que no sea positiva.
+476	Precálculo
+477	Dominios de composiciones, conjuntos de soluciones trigonométricas, características de funciones racionales y modelos periódicos
+478	Desigualdades, composición, valores del círculo unitario, funciones racionales y transformaciones trigonométricas.
+479	Dominios y estructura racional
+480	Ecuaciones y modelos trigonométricos
+481	Identidades generales, cónicas, sucesiones, coordenadas polares y todos los temas de precálculo
+482	Los dominios de ambas composiciones necesitan una nueva comprobación
+483	Sean f(t) = √(t−1) y g(x) = 1/(x−2), con valores de salida reales. El dominio de f∘g es un intervalo: da sus extremos inferior y superior e indica si se incluyen. Para g∘f, da el menor x permitido y el único x excluido por encima de ese límite.
+484	Extremo inferior de f∘g
+485	Restricciones combinadas del radical y del denominador
+486	Extremo superior de f∘g
+487	Análisis de signos de una desigualdad racional
+489	Inclusión de extremos de f∘g
+491	Inferior excluido, superior incluido
+493	Inferior incluido, superior excluido
+495	Ambos incluidos
+497	Ambos excluidos
+498	Comprobación de los límites
+500	Menor x permitido en g∘f
+501	Dominio de la función interior
+502	x excluido en g∘f
+503	Denominador exterior después de la composición
+504	Escribe ambas composiciones y comprueba los signos en cada intervalo definido por sus restricciones. No copies ninguno de los dominios originales sin comprobar la regla de la función exterior.
+505	Para f(g(x)), se requiere 1/(x−2)−1 = (3−x)/(x−2) ≥ 0 y x ≠ 2, de donde 2 < x ≤ 3. Para g(f(x)), se requiere x ≥ 1 y √(x−1) ≠ 2, por lo que se excluye x = 5. El límite x = 1 está permitido.
+506	Compara los dominios de dos nuevos órdenes de composición siguiendo el valor de entrada de la función exterior.
+507	Vuelve de una ecuación cuadrática a todos los ángulos
+508	Resuelve 2 sin²θ − sinθ − 1 = 0 en 0 ≤ θ < 2π. Selecciona todas las soluciones; las etiquetas de los ángulos son coeficientes de π.
+510	Soluciones θ
+516	Todos los cuadrantes después de una sustitución trigonométrica
+517	Factoriza en sinθ y después usa el intervalo indicado para enumerar todos los ángulos de cada valor admisible del seno.
+518	(2sinθ+1)(sinθ−1) = 0 da sinθ = −1/2 o 1. En este intervalo, −1/2 da 7π/6 y 11π/6, mientras que 1 da π/2. Exactamente esos tres ángulos resuelven la ecuación original.
+519	Resuelve un nuevo polinomio trigonométrico y distingue los valores algebraicos del seno de todos los ángulos correspondientes.
+520	Un factor cancelado deja un hueco
+521	Para R(x) = (x²−1)/(x²−3x+2), da las coordenadas x e y de su hueco removible, el valor de x de su asíntota vertical, el valor de y de su asíntota horizontal y su intersección con el eje x.
+523	Coordenada x del hueco
+524	Factor cancelado y dominio original
+526	Coordenada y del hueco
+527	Límite en un valor excluido
+529	x de la asíntota vertical
+530	Cero del denominador no cancelado
+532	y de la asíntota horizontal
+533	Comportamiento en los extremos
+534	Intersección con el eje x
+535	Cero permitido del numerador
+536	Factoriza ambos polinomios, conserva las exclusiones originales y explica por qué los dos valores excluidos tienen características distintas en la gráfica.
+537	R se simplifica a (x+1)/(x−2) solo para x ≠ 1,2. En x = 1, el límite de y es −2, lo que da el hueco (1,−2). En x = 2, el denominador sigue siendo cero mientras que el numerador no, lo que da una asíntota vertical. Los grados originales iguales dan la asíntota horizontal y = 1, y x = −1 es el cero permitido.
+538	Clasifica cada exclusión original como hueco o asíntota y comprueba las intersecciones resultantes.
+539	Interpreta un modelo periódico durante un ciclo completo
+540	Un modelo de altura es h(t) = 5 + 3 cos(πt/6), con t en horas y 0 ≤ t ≤ 12. Da su período, el primer momento en que h(t) = 5, la altura mínima y el primer momento en que ocurre ese mínimo.
+542	Período (horas)
+543	Frecuencia angular y período
+545	Primer momento a una altura de 5
+546	Fase y primera solución en el intervalo
+548	Altura mínima
+549	Línea media y amplitud
+550	Primer momento del mínimo (horas)
+551	Ubicación de un mínimo según la fase
+552	Identifica la línea media y la amplitud y después resuelve las condiciones angulares en el intervalo dado. Explica por qué el coeficiente de t no es el período.
+553	Un ciclo completo del coseno requiere (π/6)T = 2π, así que T = 12. El primer cero del coseno ocurre en el ángulo π/2, de donde t = 3. El mínimo es 5−3 = 2 y ocurre por primera vez en el ángulo π, de donde t = 6.
+554	Analiza un modelo periódico desplazado y comprueba la primera solución con su fase e intervalo.
+555	Cálculo
+556	Restricciones de derivabilidad, optimización, movimiento con signo y acumulación a partir de una gráfica
+557	Límites, continuidad, reglas de derivación, integrales definidas, extremos y el teorema fundamental del cálculo.
+558	Suavidad local y extremos
+559	Movimiento y acumulación
+560	Métodos generales de integración, cálculo multivariable, ecuaciones diferenciales y demostraciones rigurosas de límites
+561	La continuidad es solo la primera condición
+562	Define f(x) = ax² + b para x < 1 y f(x) = 3x − 1 para x ≥ 1. Encuentra a y b de modo que f sea derivable en x = 1 y después da f′(1).
+563	Igualación de derivadas laterales
+564	Continuidad en un punto de unión
+566	Derivada en el punto de unión
+567	Escribe por separado las condiciones de continuidad y de pendiente. Explica por qué satisfacer solo la condición de valor no permite establecer la derivabilidad.
+568	La continuidad requiere a+b = 2. La igualdad de pendientes laterales requiere 2a = 3, así que a = 3/2 y b = 1/2. La derivada común es 3. Estas condiciones también hacen que los cocientes incrementales coincidan en la unión.
+569	Elige constantes para una nueva función definida por partes comprobando tanto los límites de los valores como los de las derivadas.
+570	Encuentra un máximo global teniendo en cuenta los extremos
+571	En 0 ≤ x ≤ 4, sea f(x) = x²e^(−x). Da la coordenada x de su máximo global y m tal que el valor máximo sea m e^(−2). Da c tal que f′(3) = c e^(−3).
+572	x del máximo global
+573	Signo de la derivada y comparación de extremos
+574	Coeficiente m del máximo
+575	Valor en la entrada que maximiza la función
+576	Coeficiente c en f′(3)
+577	Reglas del producto y de la cadena
+578	Deriva, encuentra los puntos críticos interiores, compara los extremos y justifica el máximo mediante signos o valores.
+579	f′(x) = e^(−x)x(2−x). Es positiva en (0,2) y negativa en (2,4), así que el máximo global está en 2, con valor 4e^(−2), mayor que los valores de ambos extremos. En 3, la derivada es −3e^(−3). El extremo 0 tiene valor 0; una derivada nula por sí sola no identifica un máximo.
+580	Analiza un nuevo producto exponencial en un intervalo cerrado e incluye todos los extremos en el razonamiento.
+581	La distancia requiere considerar los cambios de signo interiores
+582	Una partícula tiene velocidad v(t) = t² − 4t + 3 metros por segundo para 0 ≤ t ≤ 4 segundos y empieza en la posición de 5 metros. Da su desplazamiento neto, la distancia total recorrida y la posición final.
+584	Desplazamiento neto (m)
+585	Integración con signo
+587	Distancia total (m)
+588	Integración del valor absoluto de la velocidad
+590	Posición final (m)
+591	Valor inicial más cambio neto
+592	Encuentra cada cambio de signo de la velocidad antes de integrar. Explica por qué la posición final y la distancia total son cantidades distintas.
+593	v = (t−1)(t−3), positiva en (0,1) y (3,4), y negativa en (1,3). Una antiderivada es t³/3−2t²+3t. Las tres contribuciones con signo son 4/3, −4/3, 4/3. El desplazamiento neto es 4/3, la distancia es 4 y la posición final es 5+4/3 = 19/3.
+594	Divide una nueva integral de movimiento en cada cero de la velocidad y compara el desplazamiento con signo con la distancia.
+595	El máximo de acumulación no es el punto más alto
+596	En [0,6], f es la gráfica continua y lineal por partes que une (0,2), (2,−2), (4,0), (6,2). Sea F(x) = ∫₀ˣ f(t) dt. Da la ubicación y el valor del máximo global de F, la ubicación y el valor de su mínimo global y F′(3).
+598	Ubicación del máximo: x
+599	Signo del integrando y extremos de acumulación
+601	Valor máximo de F
+602	Acumulación geométrica con signo
+604	Ubicación del mínimo: x
+606	Valor mínimo de F
+608	Teorema fundamental del cálculo
+609	Usa el signo de f para determinar cuándo F crece o decrece, calcula las regiones con signo necesarias y compara los extremos. Distingue f(3) de F(3).
+610	f cruza el cero en 1 y 4. F aumenta hasta x = 1, disminuye hasta 4 y después aumenta. F(1) = 1, F(2) = 0, F(4) = −2, F(6) = 0 y F(0) = 0. Por tanto, el máximo global es (1,1) y el mínimo es (4,−2). El teorema da F′(3) = f(3) = −1.
+611	Analiza un nuevo integrando que cambie de signo y predice su gráfica de acumulación antes de calcular las áreas.
+613	Gráfica de f, no de F: segmentos rectos unen los cuatro puntos indicados. El eje horizontal es t; el eje vertical es f(t).
+614	Estadística
+615	Inversión de probabilidades condicionales, agregación, dispersión muestral y diagnóstico de regresión
+616	Probabilidad condicional, tablas de doble entrada, varianza muestral, transformaciones y regresión por mínimos cuadrados.
+617	Probabilidad condicional y agregación
+618	Dispersión y regresión
+619	Distribuciones muestrales, intervalos de confianza, pruebas de hipótesis, series temporales y todos los supuestos del diseño de estudios
+620	Invierte con cuidado una probabilidad de detección
+621	Un lote contiene exactamente 1,000 componentes, de los cuales 100 son defectuosos. Una regla de detección marca el 90% de los componentes defectuosos y el 5% de los otros 900. Selecciona un componente marcado de manera uniforme. Encuentra el número de marcas falsas, el total de componentes marcados y la probabilidad de que sea defectuoso.
+623	Marcas falsas
+624	Grupo de referencia de los falsos positivos
+625	Total de componentes marcados
+626	Cantidades conjuntas entre grupos
+628	P(defectuoso dado que está marcado)
+629	Inversión de una probabilidad condicional
+630	Calcula las cantidades de ambos grupos e identifica el denominador de la selección entre componentes marcados. Explica por qué la respuesta no es 90%.
+631	Hay 90 componentes defectuosos marcados y 0.05×900 = 45 componentes no defectuosos marcados. De los 135 marcados en total, 90 son defectuosos, así que la probabilidad condicional es 90/135 = 2/3. La tasa del 90% está condicionada a los componentes defectuosos, no a los marcados.
+632	Usa nuevas tasas de base y distingue P(marcado | defectuoso) de P(defectuoso | marcado).
+633	Las comparaciones entre grupos pueden invertirse al combinarlos
+634	La tabla muestra los éxitos y el total de intentos de los métodos A y B en dos grupos de dificultad. Encuentra la tasa de éxito global de cada método. ¿Tiene A una tasa de éxito mayor en ambos grupos? ¿Demuestra la tabla por sí sola que A causa un resultado mejor?
+635	Tasa global de A
+636	Agregación ponderada
+637	Tasa global de B
+639	¿Es A mayor en ambos grupos?
+640	Comparación condicional frente a agregada
+642	¿Demuestra la tabla por sí sola causalidad?
+643	Factores de confusión y diseño del estudio
+644	Calcula las dos comparaciones dentro de los grupos y muestra los numeradores y denominadores globales. Explica las distintas distribuciones entre grupos y la información de diseño que falta.
+645	En el primer grupo, A tiene 18/20 = 0.90 frente a 80/100 = 0.80 de B; en el segundo, A tiene 10/100 = 0.10 frente a 1/20 = 0.05. En total, A tiene 28/120 = 7/30, mientras que B tiene 81/120 = 27/40. Sus distribuciones entre grupos de dificultad son distintas, lo que invierte la comparación agregada. No se indica asignación aleatoria ni control de factores de confusión.
+646	Compara nuevas tasas estratificadas y agrupadas antes de recomendar un método o hacer una afirmación causal.
+647	Grupo de dificultad
+648	Éxitos de A
+649	Intentos de A
+650	Éxitos de B
+651	Intentos de B
+652	Grupo 1
+653	Grupo 2
+654	Calcula la varianza y después transfórmala
+655	La muestra es 1, 2, 4, 5. Calcula su media y su varianza muestral (usando n−1). Transforma cada observación mediante Y = 2X−1. Da la nueva media y la nueva varianza muestral.
+657	Media de la muestra original
+658	Cálculo del centro de una muestra
+660	Varianza de la muestra original
+661	Desviaciones al cuadrado y divisor muestral
+663	Media transformada
+664	Transformación afín del centro
+666	Varianza muestral transformada
+667	Escala cuadrática de la varianza
+668	Calcula las desviaciones en lugar de usar una suma proporcionada. Explica por separado el efecto del desplazamiento y del factor 2.
+669	La media es 3, con desviaciones −2,−1,1,2 y suma de cuadrados 10. La varianza muestral es 10/3. Los datos transformados son 1,3,7,9, con media 5 y desviaciones −4,−2,2,4, cuya suma de cuadrados es 40. La varianza es 40/3; el desplazamiento cambia el centro, mientras que multiplicar por 2 multiplica la varianza por 4.
+670	Aplica otra transformación afín y comprueba la varianza directamente y también mediante la regla de escala.
+671	Ajusta, examina un residuo e interpreta r²
+672	Ajusta la regresión ordinaria por mínimos cuadrados con pesos iguales y = a + bx a (1,2), (2,1), (3,4). Da b, a, el residuo en x = 2 (observado menos ajustado) y r².
+673	Pendiente b
+674	Productos cruzados centrados en regresión
+675	Intercepto a
+676	Una recta ajustada que pasa por las medias muestrales
+678	Residuo en x = 2
+679	Signo del residuo
+680	Variación explicada frente a correlación
+681	Calcula las sumas centradas, comprueba que los residuos suman cero y explica qué describe r² sin tratarlo como un efecto causal ni como la fracción de predicciones correctas.
+682	Las medias son x̄ = 2 y ȳ = 7/3. Sxx = 2, Sxy = 2, Syy = 14/3. Por tanto, b = 1 y a = 1/3. En x = 2, el valor ajustado de y es 7/3, así que el residuo es −4/3. r² = Sxy²/(Sxx Syy) = 3/7. Los residuos son 2/3,−4/3,2/3. Esta es la proporción de la variación muestral de y explicada por el modelo lineal ajustado, no una relación causal.
+683	Ajusta un nuevo conjunto pequeño de datos y comprueba un residuo y la descomposición de la varianza antes de interpretar la correlación.
+684	Creado para Quidence; los permisos de las fuentes no se han verificado de forma independiente.
+689	El triángulo original OUV se muestra con unidades de coordenadas iguales. Su imagen no se mostrará hasta el informe; calcula el factor de área a partir de la transformación.
+690	Para Aₖ = [[1,2,1],[0,k−1,2],[0,0,k−1]], selecciona todos los valores reales de k que hacen que Aₖ sea singular. Para k = 1, da el rango, la nulidad e indica si A₁x = (0,0,1)ᵀ es compatible.
+691	El determinante es (k−1)², así que solo k = 1 produce una matriz singular. Para k = 1, las filas son (1,2,1), (0,0,2), (0,0,0). Las dos filas no nulas son independientes: rango 2, nulidad 1. Solo hay una entrada diagonal no nula, por lo que contar las entradas diagonales daría un rango incorrecto. La última ecuación es 0 = 1 para el vector objetivo indicado, así que el sistema es incompatible.
+692	En 0 ≤ x ≤ 4, sea f(x) = x²e^(−x). Da la coordenada x y el valor numérico de su máximo global. Da c tal que f′(3) = c e^(−3).
+693	Valor del máximo global
+694	Resuelve 2 sin²θ − sinθ − 1 = 0 en 0 ≤ θ < 2π. Selecciona todas las soluciones.
+696	Para 3x + ky = 11 y 6x + 8y = k + 18, encuentra el valor real de k que produce infinitas soluciones. Para k = 2, da la solución única. Con el valor excepcional de k, cambia solo el segundo miembro de la segunda ecuación a 23. ¿Tiene el sistema modificado una solución, ninguna solución o infinitas soluciones?
+697	Resta el doble de la primera ecuación: (8−2k)y=k−4. Para k=4, esto se convierte en 0=0 y ambas ecuaciones describen 3x+4y=11, por lo que hay infinitas soluciones. Para k=2, 4y=−2, así que y=−1/2 y x=4. Al sustituir, se obtiene 3×4+2×(−1/2)=11 y 6×4+8×(−1/2)=20. Para k=4 con el segundo miembro de la segunda ecuación igual a 23, la eliminación da 0=1, así que no hay solución.
+698	El triángulo ABC se muestra con unidades de coordenadas iguales. D, E y DE no se muestran; calcula las coordenadas de los puntos medios y justifica la relación entre sus direcciones.
+3799	, incluyendo las unidades y la cantidad de referencia. Conserva cualquier método válido que hayas usado.
+3800	Compara tu modelo con las relaciones indicadas. Se aceptan polinomios equivalentes, desarrollados o factorizados.
+3801	Lee el razonamiento original antes de decidir qué relación necesita otra pregunta.
+3802	proyecto · dificultad objetivo 6.5/10
+3803	Añade una conclusión breve, otra forma de comprobar tu resultado o lo que preguntarías después. Tus explicaciones paso a paso anteriores pueden usar ecuaciones, diagramas o palabras cotidianas.
+3804	Fracciones, conversiones de unidades, razones, porcentajes, números con signo y tiempo transcurrido.
+3805	Planifica cantidades e interpreta un mapa mediante dos proyectos inspirados en California
+3806	¿Puede el club de corredores atender a todos?
+3807	Un club ficticio de corredores de Orange County prepara 24 L de bebida con concentrado:agua = 1:4. Añade 6 L de agua. Durante el servicio se pierde uniformemente el diez por ciento de la bebida final preparada. Cada vaso contiene 150 mL. Hay 120 corredores; la razón entre las cantidades de corredores de 10 km y de 5 km es 2:3. El club planea dos vasos por corredor. Estos son datos de planificación, no consejos de hidratación.
+3808	1 · Sigue los cambios del total
+3809	Encuentra el volumen inicial de concentrado y la fracción de concentrado después de añadir agua.
+3811	Concentrado inicial (L)
+3812	Conversión de una razón en volúmenes de ingredientes
+3813	Un total de referencia que cambia
+3814	2 · Cuenta los vasos reales
+3815	Encuentra cuántos vasos completos puede servir la mezcla diluida después de la pérdida, cuántos corredores hay en el grupo de 10 km y cuántos vasos necesita todo el evento.
+3816	Vasos completos disponibles
+3817	Pérdida porcentual y conversión de litros a mililitros
+3819	Corredores de 10 km
+3820	Cantidad a partir de una razón entre partes
+3822	Total de vasos necesarios
+3823	Escala de una cantidad por persona
+3825	Explica la pérdida y la concentración
+3826	Distingue el volumen utilizable de la concentración.
+3827	Explica por qué una pérdida uniforme mantiene sin cambios la fracción de concentrado.
+3828	¿Qué cambiaría si solo se perdiera agua?
+3829	3 · Corrige el plan
+3830	Partiendo de la mezcla diluida de 30 L, conserva la misma concentración y considera la misma pérdida uniforme del 10% durante el servicio. Encuentra el volumen total que hay que preparar y el concentrado y agua adicionales que se deben añadir. No redondees los valores intermedios.
+3832	Volumen preparado necesario (L)
+3833	Cálculo inverso de un porcentaje de retención
+3835	Concentrado adicional (L)
+3836	Escala de una concentración fija de mezcla
+3838	Agua adicional (L)
+3839	Separación de un ingrediente del total
+3840	Comprueba tu plan de otra manera
+3841	Comprueba por separado la razón de ingredientes y los vasos utilizables finales.
+3842	Explica por qué añadir solo diez litros de agua no cumpliría la condición de concentración.
+3843	¿Puedes mostrar el plan con una tabla o una receta ajustada proporcionalmente?
+3844	El concentrado inicial es 24/5 = 4.8 L. Después de la dilución, su fracción es 4.8/30 = 4/25. La bebida utilizable es 27 L, lo que da 180 vasos. El grupo de mayor distancia tiene 120×2/5 = 48 corredores; todos los corredores necesitan 240 vasos. El volumen preparado debe ser (240×0.15)/0.9 = 40 L. Los 10 L adicionales deben contener 10×4/25 = 1.6 L de concentrado y 8.4 L de agua. La mezcla completa contiene 6.4/40 = 4/25 de concentrado; los 36 L utilizables dan exactamente 240 vasos.
+3845	Cambia el tamaño del vaso y la tasa de pérdida y después comprueba la receta y el volumen utilizable de forma independiente.
+3846	Un mapa de excursión y la hora límite del autobús
+3847	En un mapa ficticio de senderos de Irvine, 1 cm representa 0.4 km. El sendero de ida mide 3.5 cm y el sendero distinto de regreso mide 4 cm. El grupo empieza a una elevación de 80 m, sube 135 m y después baja 90 m. La rapidez de marcha es constante: 3 km/h. Hay dos descansos de 12 minutos cada uno. La caminata empieza a las 9:10; todos deben regresar a más tardar a las 10:40, cinco minutos antes de la salida del autobús.
+3848	1 · Interpreta de manera distinta la distancia y la altura
+3849	Encuentra la distancia total de marcha, la elevación final y el ascenso positivo total.
+3850	Distancia de marcha (km)
+3851	Escala del mapa y longitud total del recorrido
+3853	Elevación final (m)
+3854	Cambios de elevación con signo
+3856	Ascenso positivo total (m)
+3857	Cambio neto frente a ascenso acumulado
+3859	Explica las dos medidas de altura
+3860	Distingue la elevación final, el cambio neto y el ascenso total.
+3861	Un diagrama o un cálculo con signo puede aportar el razonamiento.
+3862	¿Empezar y terminar a la misma altura implicaría no haber subido?
+3863	2 · Construye el horario
+3864	Encuentra los minutos de marcha, los minutos totales de la excursión y los minutos disponibles antes de la hora límite de regreso de las 10:40.
+3866	Minutos de marcha
+3867	Distancia dividida entre rapidez con conversión de tiempo
+3869	Minutos totales de la excursión
+3870	Tiempo transcurrido, incluidos los descansos
+3872	Minutos disponibles antes de las 10:40
+3873	Conversión de una hora límite en tiempo transcurrido
+3874	3 · Evalúa un desvío tentador
+3875	Un desvío añade 0.5 km y ningún descanso adicional. Encuentra la rapidez constante necesaria para terminar ese recorrido más largo exactamente a las 10:40. Explica si mantener la rapidez original permite cumplir la hora límite. Da una razón razonable por la que este modelo de aula podría ser optimista.
+3877	Rapidez necesaria (km/h)
+3878	Cálculo inverso del tiempo disponible y rapidez fraccionaria
+3880	Explica tu decisión sobre el desvío y una limitación del modelo
+3881	Compara el recorrido más largo con la hora límite de regreso, incluyendo los descansos.
+3882	Nombra un supuesto incierto pertinente, como rapidez variable, retrasos o mediciones del mapa.
+3883	¿Cómo añadirías un margen de tiempo sin afirmar que el mapa predice todos los retrasos?
+3884	El recorrido es (3.5+4)×0.4 = 3 km. La elevación final es 80+135−90 = 125 m; el ascenso total es 135 m y el cambio neto es 45 m. La marcha dura 60 minutos; los descansos añaden 24, para un total de 84 minutos y un regreso a las 10:34. Hay 90 minutos entre las 9:10 y las 10:40, así que quedan 6 minutos. El desvío requiere recorrer 3.5 km en (90−24)/60 = 1.1 horas, así que la rapidez es 35/11 km/h. A 3 km/h, se necesitan 70+24 = 94 minutos y se regresa a las 10:44, cuatro minutos después de la hora límite de regreso.
+3885	Usa otra escala de mapa y otra hora límite y distingue el tiempo de marcha del tiempo transcurrido.
+3886	Modelos lineales, desigualdades, sistemas, cuadráticas e interpretación de restricciones prácticas.
+3887	Modela una salida deportiva y diseña un espacio con sombra
+3888	Una salida de baloncesto que casi cubre sus costos
+3889	Un club ficticio de baloncesto de Los Ángeles paga $90 para reservar el transporte y $12 por participante por el resto de la salida. Inicialmente, cada participante aporta $20. La capacidad es de 24 participantes. Después, considera un plan separado de entradas: $18 por adulto y $14 por estudiante; 20 entradas generan $328. Usa únicamente estos costos inventados.
+3890	1 · Construye y comprueba el primer plan
+3891	Sea n la cantidad total de participantes. Ingresa la fórmula del costo, el menor n entero que cubre el costo y el excedente cuando n = 18.
+3892	Costo C(n)
+3893	Modelización de costos fijos y variables
+3894	Cantidad mínima entera de participantes
+3895	Una desigualdad con una restricción de número entero
+3897	Excedente con 18 participantes ($)
+3898	Ingresos menos costos
+3900	Explica la decisión sobre el número entero de personas
+3901	Deduce la desigualdad en lugar de redondear al entero más cercano.
+3902	Comprueba la viabilidad según la capacidad de 24 personas.
+3903	¿Cubren 11 personas el costo? Muestra por qué.
+3904	2 · Ofrece tres plazas gratuitas
+3905	Ahora exactamente tres de los n participantes no pagan nada; los demás siguen pagando $20. Encuentra la nueva cantidad mínima total de participantes.
+3907	Cantidad total mínima con tres plazas gratuitas
+3908	Cambio de ingresos sin cambiar la cantidad usada para calcular costos
+3910	Explica el modelo modificado
+3911	Cobra a n−3 personas, pero sigue pagando los costos de n personas.
+3912	Muestra por qué sumar tres al mínimo original no basta.
+3913	¿Qué términos cuentan a todos y cuáles cuentan solo a quienes pagan?
+3914	3 · Recupera la combinación de entradas
+3915	Con el plan separado de entradas para adultos y estudiantes, encuentra ambas cantidades y el saldo neto después de pagar el mismo costo de salida para las 20 personas.
+3917	Entradas de adultos
+3918	Construcción y resolución de un sistema de dos ecuaciones
+3920	Entradas de estudiantes
+3921	Una restricción sobre la cantidad total
+3922	Saldo neto ($)
+3923	Interpretación de un resultado financiero con signo
+3925	Explica qué revela la comparación
+3926	Comprueba tanto el total de entradas como los ingresos.
+3927	Interpreta el saldo negativo sin confundir los ingresos con el excedente.
+3928	¿Podrían dos planes con el mismo número de participantes tener saldos distintos?
+3929	C(n)=90+12n y los ingresos son 20n. Cubrir el costo significa 8n≥90, así que n≥11.25 y el mínimo entero es 12, dentro de la capacidad. Para n=18, el excedente es 360−306=54. Con tres plazas gratuitas, 20(n−3)≥90+12n da n≥18.75, así que se necesitan 19 personas. Para el plan separado de entradas, a+s=20 y 18a+14s=328 dan a=12, s=8. El costo es 90+12×20=330 y el saldo es 328−330=−2.
+3930	Modifica un precio o el número de plazas gratuitas y justifica el nuevo umbral entero.
+3931	Diseña una zona de sombra junto a una cancha comunitaria
+3932	Una cancha comunitaria ficticia dispone de 30 m de barandilla temporal para tres lados de un rectángulo; una pared recta existente forma el cuarto lado. Los dos lados de profundidad iguales miden x metros y el lado largo mide L. Un diseño utilizable debe tener L al menos igual al doble de x. El grupo quiere un área de al menos 108 m². Considera que las longitudes pueden ajustarse de forma continua e ignora el grosor de la barandilla.
+3933	1 · Expresa el diseño matemáticamente
+3934	Ingresa L(x) y el área A(x).
+3935	Lado largo L(x)
+3936	Una restricción de perímetro
+3937	Área A(x)
+3938	Un modelo cuadrático de área
+3939	2 · Investiga el límite
+3940	Resuelve A(x)=108. Da las soluciones menor y mayor y después el mayor x permitido por L≥2x.
+3942	Valor menor de x en el límite de área (m)
+3943	Factorización de un modelo cuadrático
+3945	Valor mayor de x en el límite de área (m)
+3946	Conservación de ambas soluciones algebraicas
+3947	Mayor x permitido por L≥2x (m)
+3948	Expresión de una desigualdad de diseño
+3949	3 · Encuentra todos los diseños utilizables
+3950	Da el x mínimo y máximo que satisfacen tanto la condición de área como la de forma. Encuentra el área máxima alcanzable bajo esas condiciones.
+3952	x mínimo viable (m)
+3953	Intersección de dos conjuntos de soluciones
+3954	x máximo viable (m)
+3955	Área máxima alcanzable (m²)
+3956	Un máximo cuadrático en un intervalo restringido
+3958	Explica todo el intervalo viable
+3959	Usa el signo o la gráfica de la cuadrática para justificar un intervalo, no solo dos extremos.
+3960	Usa L≥2x para eliminar la parte no admisible.
+3961	Comprueba el máximo y sus dimensiones.
+3962	¿Por qué una raíz válida de una ecuación a veces no cumple el diseño?
+3963	4 · Hazlo utilizable
+3964	Propón un diseño concreto del intervalo viable y explica una ventaja y desventaja práctica de tu elección. Tu propuesta se revisa por sus matemáticas y su explicación, no por coincidir con una frase preferida.
+3965	Tu diseño y su ventaja y desventaja
+3966	Da longitudes que satisfagan las condiciones de barandilla, área y forma.
+3967	Indica una ventaja y desventaja significativa sin afirmar que este modelo resuelve los requisitos de construcción.
+3968	¿Puede otro diseño válido tener una profundidad distinta?
+3969	L=30−2x y A=30x−2x². A=108 se convierte en x²−15x+54=0 y da 6 y 9. A≥108 se cumple en [6,9]. La condición de forma 30−2x≥2x da x≤7.5; con longitudes positivas, el intervalo viable es [6,7.5]. La parábola aumenta hasta x=7.5, donde L=15 y A=112.5. Una propuesta como x=6, L=18, A=108 es válida; x=7, L=16, A=112 también lo es. Se aceptan muchas propuestas justificadas.
+3970	Cambia la cantidad de barandilla o el área mínima y muestra todo el intervalo viable, incluyendo las restricciones prácticas.
+3971	Coordenadas, área de triángulos, puntos medios, semejanza, triángulos rectángulos, escala y rotaciones.
+3972	Construye un levantamiento costero y un mapa de ciclismo rotado
+3973	Levanta un plano de una zona costera de picnic
+3974	En un mapa costero ficticio de Orange County, L=(1,1), P=(9,1) y C=(1,7) delimitan una zona triangular de picnic. Una unidad de cuadrícula equivale a 10 m en ambas direcciones. M y N son los puntos medios de LP y LC. G es el centroide del triángulo LPC. Usa el tablero de coordenadas para construir M, N, G y el segmento MN; el triángulo gris proporciona el contexto.
+3975	1 · Construye en lugar de elegir
+3976	Ubica los dos puntos medios y el centroide y después une M con N. Puedes tocar el tablero o escribir coordenadas, incluidas fracciones.
+3978	Tu construcción del levantamiento
+3979	Construcción de puntos medios, centroide y segmento
+3980	Compara cada punto construido con la relación que lo define; comprueba el segmento requerido. Se permite una pequeña tolerancia de coordenadas al colocar puntos con el puntero.
+3981	2 · Relaciona escala y área
+3982	Encuentra el área del triángulo grande en unidades de cuadrícula al cuadrado, su área real, la longitud MN en metros y el área del triángulo pequeño LMN en m².
+3984	Área LPC (unidades de cuadrícula²)
+3985	Área de un triángulo rectángulo
+3987	Área LPC (m²)
+3988	Elevar al cuadrado una escala de longitud
+3990	Longitud MN (m)
+3991	Semejanza de puntos medios y distancia pitagórica
+3993	Área LMN (m²)
+3994	Escala cuadrática de la semejanza
+3995	3 · Justifica dos relaciones distintas
+3996	Explica por qué el triángulo pequeño tiene un cuarto del área del grande. Explica cómo ubicaste G y por qué no es el punto medio de la hipotenusa.
+3998	Explica la comparación de áreas
+3999	Relaciona las longitudes reducidas a la mitad con la escala cuadrática del área.
+4000	Se acepta un segundo cálculo de área o una explicación geométrica.
+4001	¿Cómo cambiaría el área si los lados midieran un tercio?
+4003	Explica tu construcción del centroide
+4004	Usa el promedio de los tres vértices o la intersección de las medianas.
+4005	Distingue el centroide de un punto medio y relaciona el razonamiento con el punto dibujado.
+4006	¿Qué mediana podría comprobar tu punto de forma independiente?
+4007	Los catetos miden 8 y 6 unidades de cuadrícula, así que el área es 24 unidades de cuadrícula² = 2400 m². M=(5,1), N=(1,4) y G=((1+9+1)/3,(1+1+7)/3)=(11/3,3). MN tiene longitud √(4²+3²)=5 unidades=50 m. LMN tiene catetos de 4 y 3 y un área de 6 unidades² = 600 m², un cuarto de la de LPC. G también puede ubicarse en la intersección de las medianas; no es el punto medio (5,4) de PC.
+4008	Usa otro triángulo para ubicar los puntos medios y el centroide, comprobando por separado las coordenadas y la geometría.
+4009	Rota una ruta de ciclismo y comprueba un atajo
+4010	Un mapa ficticio de un parque usa 100 m por unidad de cuadrícula, por igual en ambos ejes. Los puntos de la ruta son A=(1,1), B=(7,1), C=(7,5). Rota toda la ruta 90° en sentido antihorario alrededor de O=(4,3), obteniendo U,V,W, respectivamente. Un elemento circular tiene centro O y radio de 2 unidades de cuadrícula. Trata los caminos como rectos y el círculo como un modelo geométrico ideal.
+4011	1 · Construye la ruta rotada
+4012	Construye U,V,W y une U–V y V–W en el tablero. No rotes alrededor del origen por accidente.
+4014	Tu ruta rotada
+4015	Rotación alrededor de un centro especificado
+4016	Traslada al centro de rotación, rota un desplazamiento y traslada de vuelta. Comprueba cada punto y las conexiones de la ruta.
+4017	2 · Compara el atajo
+4018	Encuentra AB+BC en metros, la distancia directa AC en metros y el área del triángulo ABC en m². Da AC redondeada al 0.01 m más cercano.
+4020	Suma de longitudes reales del recorrido
+4022	Distancia pitagórica del atajo
+4023	Área ABC (m²)
+4024	Escala del área y medición de un triángulo
+4026	Explica el atajo y la rotación
+4027	Distingue la longitud del recorrido de la magnitud del desplazamiento.
+4028	Explica por qué una rotación rígida cambia las coordenadas, pero conserva las longitudes y el área.
+4029	¿Sería válida la misma explicación con escalas horizontal y vertical distintas?
+4030	3 · Usa el elemento circular
+4031	Una tangente recta desde B toca el círculo en un punto T. Encuentra BT en metros y explica por qué el radio OT es perpendicular a BT.
+4032	Longitud tangente BT (m)
+4033	Relación de triángulo rectángulo entre radio y tangente
+4035	Explica el cálculo de la tangente
+4036	Usa OB² = OT² + BT² y comprueba que B esté fuera del círculo.
+4037	Indica la relación perpendicular entre radio y tangente, en lugar de tratar BT como OB−OT.
+4038	¿Qué falla si el punto inicial está dentro del círculo?
+4039	Resta O antes de rotar: (x−4,y−3) se transforma en (−(y−3),x−4). Al sumar O, se obtiene U=(6,0), V=(6,6), W=(2,6). AB+BC=(6+4)×100=1000 m; AC=√52×100≈721.11 m. El área del triángulo es (6×4)/2=12 unidades de cuadrícula²=120000 m². OB²=3²+(−2)²=13, OT²=4, así que BT=√9=3 unidades=300 m. OT es perpendicular a la tangente en T. La rotación conserva estas longitudes y el área.
+4040	Elige otro centro y comprueba las coordenadas transformadas usando las distancias que se conservan.
+4041	Modelización cuadrática, dominios de funciones, decaimiento exponencial, funciones racionales y operaciones inversas.
+4042	Analiza la trayectoria de un balón de baloncesto y compara dos modelos que cambian
+4043	Dos momentos a la altura del aro
+4044	En un vuelo ficticio de un balón de baloncesto, la rapidez horizontal es 6 m/s y la altura es una cuadrática h(t)=at²+bt+c en metros, con t en segundos. Tres mediciones son h(0)=2, h(0.5)=3, h(1)=3. Usa la cuadrática solo hasta su primer contacto con el suelo en un tiempo no negativo. Un aro está a 6 m horizontalmente del lanzamiento y a 3 m de altura. Esta trayectoria deliberadamente simplificada no es un vuelo físico medido.
+4045	1 · Recupera el modelo
+4046	Usa las tres mediciones para determinar h(t).
+4047	Altura h(t)
+4048	Reconstrucción de una cuadrática a partir de tres puntos de datos
+4050	Explica cómo las mediciones determinan el modelo
+4051	Usa tres condiciones independientes sobre a,b,c.
+4052	Comprueba el modelo resultante en los tres momentos.
+4053	¿Determinarían dos observaciones de altura cualquier cuadrática?
+4054	2 · Encuentra e interpreta alturas repetidas
+4055	Da los momentos anterior y posterior a una altura de 3 m. Encuentra el momento y la altura del máximo.
+4057	t anterior a 3 m (s)
+4058	Dos raíces con interpretaciones distintas
+4060	t posterior a 3 m (s)
+4062	Momento del máximo (s)
+4063	El vértice de una cuadrática
+4065	Altura máxima (m)
+4066	Evaluación de una cuadrática en su vértice
+4067	3 · Conserva el dominio físico
+4068	Encuentra el tiempo de contacto con el suelo y el alcance horizontal. Explica si el modelo llega al aro indicado a 3 m mientras sube o baja; justifícalo a partir del modelo, en lugar de elegir una palabra.
+4070	t de contacto con el suelo (s)
+4071	Selección de una raíz usando un dominio físico
+4072	Alcance horizontal (m)
+4073	Combinación de modelos horizontal y vertical
+4075	Explica el contacto con el aro y la raíz descartada
+4076	Compara el tiempo de recorrido horizontal con las raíces de altura.
+4077	Distingue subida y bajada usando el vértice, cambios de altura o una derivada.
+4078	Excluye la raíz negativa de contacto con el suelo del dominio de vuelo indicado.
+4079	¿Cómo podrían dos alturas iguales corresponder a direcciones de movimiento distintas?
+4080	c=2; 0.25a+0.5b=1 y a+b=1 dan a=−2,b=3. Por tanto, h=2+3t−2t². h=3 para t=0.5 y 1. El vértice está en t=3/4, con altura 25/8=3.125. Las raíces de contacto con el suelo son −0.5 y 2; el dominio físico indicado es [0,2]. El alcance horizontal es 6×2=12 m. El tiempo del aro es 6/6=1 s, donde h=3 y t es posterior al vértice, así que el balón está bajando.
+4081	Cambia la distancia horizontal sin cambiar el modelo de altura y analiza qué condición falla.
+4082	¿Qué modelo de decaimiento de aula responde a tu pregunta?
+4083	Un ejercicio ficticio de filtrado de aire interior usa un indicador adimensional, no umbrales de salud. El modelo C(t)=B+Aq^t, con t en horas, tiene valor base B=20, C(0)=100 y C(2)=60, con A>0 y 0<q<1. Compáralo con un modelo racional separado R(t)=120/(t+2)+10 para t≥0. Todos los valores son inventados; ninguno de los modelos predice la calidad real del aire.
+4084	1 · Identifica la exponencial
+4085	Encuentra A y el multiplicador horario q. Da q con cuatro decimales.
+4086	Separación del valor base y del exceso que disminuye
+4088	Multiplicador horario q
+4089	Conversión del paso temporal exponencial
+4090	Explica el cambio de dos horas
+4091	Compara el exceso sobre el valor base, no los valores totales de C.
+4092	Relaciona el multiplicador de dos horas con el de una hora.
+4093	¿Por qué 60/100 no es el multiplicador de decaimiento del exceso?
+4094	2 · Compara en el mismo momento
+4095	Encuentra C(4), R(4), el primer momento en que C llega a 30 y el primer momento en que R llega a 30.
+4096	Evaluación del decaimiento exponencial con un valor base
+4097	Evaluación de un modelo racional
+4098	Tiempo en que C llega a 30 (h)
+4099	Inversión del decaimiento exponencial
+4100	Tiempo en que R llega a 30 (h)
+4101	Inversión de un modelo racional
+4102	3 · Cuestiona una afirmación excesiva
+4103	Encuentra el límite del indicador de cada modelo cuando t aumenta. Explica por qué ajustar dos observaciones y un valor base indicado no establece que el modelo exponencial sea el mejor para todas las horas posteriores. ¿Puede C alcanzar su propio valor base en un t finito?
+4105	Límite de C
+4106	Una asíntota exponencial
+4108	Límite de R
+4109	Una asíntota racional
+4110	Explica si se puede alcanzar el valor base y qué evidencia respalda el modelo
+4111	Usa un exceso positivo para discutir si se puede alcanzar el valor base en un tiempo finito.
+4112	Distingue el ajuste a las condiciones proporcionadas de la validación de un proceso real.
+4113	Nombra evidencia adicional útil o una limitación pertinente de la modelización.
+4114	¿Qué observaciones posteriores permitirían distinguir los modelos?
+4115	A=100−20=80. De 60−20=80q², se obtiene q²=1/2 y q=1/√2≈0.7071. C(4)=20+80/4=40, mientras que R(4)=120/6+10=30. C=30 requiere q^t=1/8, de donde t=6. R=30 requiere t+2=6, de donde t=4. Los límites son 20 y 10. Para todo t finito, Aq^t>0, así que C>20. Coincidir con las condiciones proporcionadas no es una validación empírica de ninguno de los modelos.
+4116	Obtén un nuevo punto temporal hipotético y compara los residuos de los modelos sin tratar un ajuste como una ley universal.
+4117	Trigonometría en radianes, funciones periódicas, vectores, trigonometría inversa y dominios.
+4118	Interpreta un modelo costero periódico y triangula ubicaciones de senderos
+4119	Un modelo con forma de marea y dos cruces
+4120	Para un ejercicio costero de aula, h(t)=3+2cos(πt/6), donde h está en unidades de altura inventadas y t en horas después de un punto alto elegido. Trabaja en el intervalo cerrado [0,12]. Un sensor ficticio registra valores de 4 o más. Estos valores sintéticos no deben usarse para mareas, navegación ni acceso a playas.
+4121	1 · Interpreta todo el ciclo
+4122	Encuentra la línea media, la amplitud, el período, el valor mínimo y el valor máximo.
+4123	Línea media
+4124	Un desplazamiento vertical
+4125	Amplitud
+4126	Tamaño de la oscilación
+4127	Período (h)
+4128	Conversión de frecuencia a período en radianes
+4129	h mínimo
+4130	Un rango periódico
+4131	h máximo
+4132	2 · Encuentra todos los cruces
+4133	Da los dos momentos en [0,12] en los que h=4. Describe con palabras o notación de intervalos el conjunto completo de tiempos en los que h≥4.
+4135	Cruce anterior (h)
+4136	Una ecuación trigonométrica con todas las soluciones pertinentes
+4138	Cruce posterior (h)
+4139	Una segunda solución en un período
+4141	Explica todo el intervalo de registro del sensor
+4142	Usa ambos cruces y el signo de la función entre ellos.
+4143	Incluye correctamente los extremos 0,2,10,12.
+4144	Un bosquejo con etiquetas es tan válido como la notación de intervalos.
+4145	¿Qué omite la primera salida de arcocoseno de una calculadora?
+4146	3 · Desplaza el punto alto
+4147	Un segundo ciclo sintético tiene la misma amplitud, línea media y período, pero su punto alto ocurre en t=3 en lugar de 0. Escribe un modelo en cualquier forma equivalente y da su primer punto bajo después de t=3.
+4149	Primer momento de un punto bajo después de t=3 (h)
+4150	Un desplazamiento de fase y medio período
+4152	Tu modelo desplazado y su justificación
+4153	Coloca un máximo en t=3 conservando la amplitud, la línea media y el período.
+4154	Se acepta una representación equivalente con seno o coseno.
+4155	Comprueba un máximo y un punto bajo.
+4156	¿Podría una fórmula de seno de aspecto distinto describir la misma curva?
+4157	La línea media es 3, la amplitud 2, el período 2π/(π/6)=12 y el rango [1,5]. h=4 significa cos(πt/6)=1/2, lo que da t=2 y 10 en [0,12]. h≥4 se cumple en [0,2]∪[10,12]. Un modelo desplazado es 3+2cos(π(t−3)/6); un modelo equivalente con seno es 3+2sin(πt/6). Su primer punto bajo después del máximo en 3 está en 9.
+4158	Usa otro umbral y otro desplazamiento de fase, conservando todos los cruces en el intervalo indicado.
+4159	Encuentra el enlace entre senderos, sin confundir la dirección
+4160	En un bosquejo ficticio de senderos del sur de California, O es el origen. A está a 8 km al este de O. B está a 6 km de O, a 60° en sentido antihorario desde el este. Un enlace va directamente de A a B. Aquí todos los ángulos se miden en sentido antihorario desde el este, no en sentido horario desde el norte. Usa expresiones exactas en tu razonamiento; ingresa respuestas numéricas con cuatro decimales.
+4161	1 · Expresa las ubicaciones en coordenadas
+4162	Da las coordenadas x e y de B. Después calcula la distancia directa AB.
+4163	Coordenada x de B (km)
+4164	Descomposición de un vector en componentes
+4165	Coordenada y de B (km)
+4166	Componentes trigonométricas
+4167	Distancia AB (km)
+4168	Desplazamiento entre extremos y ley de cosenos
+4169	2 · Elige la dirección correcta
+4170	Da el ángulo del enlace de A a B, en grados en [0,360), y el tiempo de recorrido a una rapidez constante de 4 km/h.
+4172	Ángulo de A a B (grados)
+4173	Una arcotangente con el cuadrante correcto
+4174	Tiempo del enlace (h)
+4175	Conversión de distancia a tiempo
+4177	Explica la dirección del enlace
+4178	Resta las coordenadas iniciales de las coordenadas de destino.
+4179	Usa los signos de ambas componentes del desplazamiento para elegir un cuadrante.
+4180	Distingue el ángulo del origen a B del ángulo de A a B.
+4181	¿Por qué una simple razón de arcotangente puede dar el cuadrante incorrecto?
+4182	3 · Comprueba con una segunda representación
+4183	Rota ambos vectores dibujados 60° en sentido horario alrededor de O, manteniendo los ejes fijos. Da las coordenadas de B rotado. Explica otra forma de comprobar AB e identifica qué deja fuera un modelo de enlace en línea recta.
+4185	Coordenada x de B rotado (km)
+4186	Rotación de una dirección polar
+4188	Coordenada y de B rotado (km)
+4190	Segunda comprobación de distancia y limitación del modelo
+4191	Comprueba AB usando la ley de cosenos u otro cálculo geométrico equivalente.
+4192	Usa la rotación como comprobación que conserva la longitud.
+4193	Reconoce que el terreno o la accesibilidad del camino quedan fuera de este modelo de línea recta.
+4194	¿Rotar todo el bosquejo cambia la distancia entre las ubicaciones?
+4195	A=(8,0), B=(6cos60°,6sin60°)=(3,3√3). B−A=(−5,3√3), así que AB=√(25+27)=√52≈7.2111 km. El ángulo es atan2(3√3,−5)≈133.8979°, en el cuadrante II. El tiempo es √52/4≈1.8028 h. La ley de cosenos da AB²=8²+6²−2×8×6cos60°=52. La rotación de B 60° en sentido horario da (6,0) y conserva las distancias cuando se aplica a ambos puntos.
+4196	Cambia una ubicación a otro cuadrante y comprueba la dirección usando ambas componentes en lugar de una sola razón.
+4197	Derivadas, integrales definidas, acumulación con signo, extremos y unidades coherentes.
+4198	Reconstruye el movimiento de ciclismo y analiza la potencia solar limitada
+4199	El ciclista cambia de dirección dos veces
+4200	Un modelo sintético de entrenamiento para una pista de ciclismo de California tiene velocidad v(t)=t²−6t+8 m/s, donde t se mide en minutos en [0,5]. La velocidad positiva corresponde a la dirección hacia delante. La posición empieza en 0 m. La variable temporal y las unidades de velocidad son distintas de manera intencional: ten en cuenta la conversión al integrar y derivar.
+4201	1 · Encuentra los cambios de dirección
+4202	Da los dos momentos de velocidad cero y explica la dirección en cada intervalo entre ellos.
+4204	Primer momento de velocidad cero (min)
+4205	Factorización y cambios de signo de la velocidad
+4207	Segundo momento de velocidad cero (min)
+4208	Explica la dirección y los cambios de sentido
+4209	Usa los signos de la velocidad en [0,2), (2,4) y (4,5].
+4210	No uses el signo de la aceleración para decidir la dirección del movimiento.
+4211	¿Puede un ciclista moverse hacia atrás mientras acelera hacia delante?
+4212	2 · Recupera la posición
+4213	Ingresa una fórmula de posición s(t) en metros. Encuentra el desplazamiento final y la distancia total recorrida.
+4214	Posición s(t) (m)
+4215	Integración con una condición inicial y conversión de tiempo
+4216	Desplazamiento final (m)
+4217	Acumulación con signo
+4218	Valor absoluto de la velocidad en intervalos de signo
+4220	Explica distancia frente a desplazamiento
+4221	Divide la integral donde la velocidad cambia de signo.
+4222	Ten en cuenta los 60 segundos de cada minuto.
+4223	Mantén la distancia no negativa y conserva el signo del desplazamiento.
+4224	¿Podrían posiciones inicial y final iguales significar que no hubo recorrido?
+4225	3 · Compara tasas
+4226	Da la velocidad media, la rapidez media y la aceleración en t=1 minuto en m/s². Redondea a cuatro decimales solo si es necesario.
+4228	Velocidad media (m/s)
+4229	Desplazamiento dividido entre los segundos transcurridos
+4231	Rapidez media (m/s)
+4232	Distancia dividida entre los segundos transcurridos
+4233	Aceleración en t=1 (m/s²)
+4234	Derivación con una unidad temporal convertida
+4235	4 · Comprueba todo el intervalo
+4236	Da la mayor posición alcanzada en [0,5] y los dos momentos en que se alcanza. Explica por qué comprobar solo los momentos estacionarios es incompleto.
+4238	Mayor posición (m)
+4239	Extremos de posición en un intervalo cerrado
+4241	Primer momento del máximo (min)
+4242	Extremos interiores frente a extremos del intervalo
+4244	Último momento del máximo (min)
+4246	Explica la comparación de máximos
+4247	Compara las posiciones en los dos momentos de velocidad cero y en ambos extremos del intervalo.
+4248	Conserva los empates en lugar de descartar un máximo situado en un extremo.
+4249	¿Cómo cambiaría la respuesta si el intervalo terminara antes?
+4250	s(t)=60∫₀ᵗ(u²−6u+8)du=20t³−180t²+480t. La velocidad es positiva antes de 2, negativa entre 2 y 4 y positiva después de 4. Las posiciones en 0,2,4,5 minutos son 0,400,320,400 m. El desplazamiento es 400 m; la distancia es 400+80+80=560 m. En 300 segundos, la velocidad media es 4/3 m/s y la rapidez media es 28/15 m/s. La aceleración en m/s² es (2t−6)/60, lo que da −1/15 en t=1. La posición máxima de 400 m se alcanza en t=2 y 5.
+4251	Usa otro extremo o velocidad y vuelve a calcular los intervalos de signo, la conversión de unidades y las comparaciones de extremos.
+4252	¿Qué descarta el inversor solar?
+4253	Un sistema solar comunitario hipotético del sur de California tiene potencia modelada P(t)=12t−t² kW durante 0≤t≤10 horas después de un inicio elegido. Un inversor entrega Q(t)=min(P(t),30) kW. El modelo es inventado y no afirma nada sobre la luz solar real. La energía es la integral temporal de la potencia. Para respuestas numéricas no racionales, da cuatro decimales.
+4254	1 · Encuentra la potencia máxima
+4255	Da el momento del máximo, la potencia bruta máxima y la potencia bruta al final, en t=10. Explica por qué importan los extremos.
+4256	Momento del máximo (h)
+4257	Derivada y optimización en un intervalo cerrado
+4259	Potencia bruta máxima (kW)
+4260	Evaluación de un punto estacionario
+4262	Potencia bruta en 10 (kW)
+4263	Comprobación de un extremo del intervalo
+4265	Explica la comparación del máximo
+4266	Usa el signo de una derivada o un razonamiento exacto equivalente.
+4267	Compara el punto estacionario con ambos extremos.
+4268	Distingue un máximo de potencia de un máximo de energía total.
+4269	¿Es el valor más alto de potencia la energía total?
+4270	2 · Mide la energía sin limitación
+4271	Ingresa una fórmula de acumulación de energía E(T)=∫₀ᵀP(t)dt válida para 0≤T≤10. Encuentra la energía total sin limitación y su potencia media.
+4272	E(T) sin limitación (kWh)
+4273	Una función de acumulación con su valor inicial
+4275	Energía sin limitación (kWh)
+4276	Integración definida
+4278	Potencia media sin limitación (kW)
+4279	Valor medio integral
+4280	3 · Encuentra el intervalo de recorte
+4281	Da los dos momentos en que P=30 y calcula la energía entregada después del recorte.
+4283	Límite anterior del recorte (h)
+4284	Resolución de una ecuación de umbral
+4286	Límite posterior del recorte (h)
+4288	Energía entregada (kWh)
+4289	Integración de una función limitada
+4291	Explica la integral con recorte
+4292	Identifica dónde P supera el límite.
+4293	Integra el exceso eliminado o divide correctamente la integral de energía entregada.
+4294	Distingue las unidades de potencia de las unidades de energía.
+4295	¿Por qué limitar la energía total a 30 sería una operación distinta?
+4296	4 · Interpreta una sensibilidad
+4297	Encuentra E′(8) y explica qué predice para una pequeña ampliación del intervalo de observación sin limitación. Indica la diferencia entre una derivada exacta y una cantidad finita de energía durante una hora adicional.
+4299	Teorema fundamental y sensibilidad local
+4301	Explica la predicción local
+4302	Relaciona E′(8) con P(8).
+4303	Usa 32 multiplicado por un pequeño cambio en horas como aproximación local.
+4304	No afirmes que la potencia se mantiene constante durante toda una hora adicional.
+4305	¿Cómo podrías calcular la energía exacta de la hora 8 a la hora 9?
+4306	P′=12−2t; en t=6, P=36, mientras que las potencias de los extremos son 0 y 20. E(T)=6T²−T³/3 y E(10)=800/3 kWh, con potencia media de 80/3 kW. P=30 en 6±√6≈3.5505,8.4495. El exceso eliminado es ∫₋√6^√6(6−u²)du=8√6; la energía entregada es 800/3−8√6≈247.0707 kWh. E′(8)=P(8)=32 kW da una aproximación local ΔE≈32ΔT para un ΔT pequeño, no una cantidad exacta para una hora completa.
+4307	Cambia el límite y explica cuándo existe recorte antes de dividir una integral.
+4308	Datos pareados, varianza muestral, error estándar, intervalos t proporcionados, estimaciones ponderadas y cantidades condicionales.
+4309	Compara tiempos de ciclismo pareados y estima un estudio costero estratificado
+4310	Los mismos ciclistas, dos rutinas de entrenamiento
+4311	Seis ciclistas voluntarios ficticios prueban cada uno las rutinas A y B en un recorrido comparable. El orden se asigna aleatoriamente dentro de cada ciclista; supón que las diferencias pareadas son independientes entre ciclistas y tienen una distribución aproximadamente normal. Se muestran los tiempos en minutos. Define d=A−B. Para este ejercicio, usa el valor crítico t del 95% proporcionado, 2.571, para 5 grados de libertad. Los voluntarios no se seleccionaron aleatoriamente de todos los ciclistas de California.
+4312	1 · Conserva los pares
+4313	Calcula la media de las diferencias pareadas y la varianza muestral de las diferencias usando n−1. Explica por qué tratar las dos columnas como grupos independientes pierde información.
+4314	Media de d (min)
+4315	Diferencias pareadas y dirección de un efecto
+4316	Varianza muestral de d (min²)
+4317	Cálculo de la dispersión pareada con n−1
+4319	Explica el emparejamiento
+4320	Calcula las diferencias dentro de cada ciclista antes de medir la variación.
+4321	Explica el papel de las diferencias entre ciclistas sin exigir una frase estadística preferida.
+4322	¿Convertiría el orden aleatorio por sí solo a los ciclistas en dos muestras independientes?
+4323	2 · Construye el intervalo
+4324	Calcula el error estándar y los extremos inferior y superior del intervalo. Usa el valor crítico proporcionado sin redondear cantidades intermedias; da cuatro decimales.
+4325	Error estándar (min)
+4326	Dispersión muestral frente a incertidumbre de la media
+4327	Extremo inferior del intervalo del 95% (min)
+4328	Un intervalo t pareado
+4329	Extremo superior del intervalo del 95% (min)
+4331	Explica el intervalo y su dirección
+4332	Interpreta un A−B positivo como tiempos menores con B.
+4333	Describe la incertidumbre sobre la media de las diferencias pareadas.
+4334	No lo trates como una predicción de que cada ciclista mejora.
+4335	¿Qué ciclista observado impide afirmar que todos mejoran?
+4336	3 · Evalúa la afirmación
+4337	Encuentra el número de diferencias observadas positivas. Escribe una conclusión cuidadosa e identifica un supuesto de diseño o una limitación de población que investigarías antes de hacer una afirmación más amplia.
+4338	Número de diferencias observadas positivas
+4339	Un resultado individual frente a un resultado medio
+4341	Tu conclusión y seguimiento
+4342	Conserva la distinción entre una mejora media y todos los resultados individuales.
+4343	Discute la limitación del muestreo de voluntarios o un supuesto pertinente del diseño cruzado.
+4344	No deduzcas, solo a partir del nivel de confianza, una probabilidad de que esta media poblacional fija esté dentro del intervalo calculado.
+4345	¿Qué evidencia adicional respaldaría una afirmación sobre una población más amplia de ciclistas?
+4346	Las diferencias son 2,4,1,3,0,2; la media es 2. Las desviaciones al cuadrado suman 10, así que la varianza muestral es 10/5=2 min². SE=√(2/6)=1/√3≈0.5774 min. Con el valor crítico proporcionado, el intervalo es 2±2.571/√3≈[0.5156,3.4844] min. Cinco diferencias observadas son positivas y una es cero. El intervalo positivo para la media respalda una media positiva de A−B bajo los supuestos indicados, no una mejora para cada ciclista ni la representatividad de todos los ciclistas de California.
+4347	Usa un nuevo conjunto de datos pareados y discute cómo el emparejamiento, la dispersión y el muestreo cambian la conclusión.
+4348	Ciclista
+4349	A (min)
+4350	B (min)
+4351	Tamaños de muestra iguales, longitudes de costa distintas
+4352	Un estudio ficticio de basura divide una costa de 3 km en Main Beach (2 km) y Pocket Beach (1 km). Cada estrato se divide en segmentos de 100 m que no se superponen. Se seleccionan uniformemente tres segmentos sin reemplazo en cada estrato; la tabla muestra todas las cantidades de basura y el subconjunto de plástico. Trata las medias muestrales de cada estrato como estimadores de basura por segmento de 100 m. No se usan mediciones reales de playas.
+4353	1 · Distingue cantidades y tasas
+4354	Encuentra la cantidad media muestral de basura en cada estrato y la media ingenua al agrupar los seis segmentos muestreados.
+4356	Media de Main Beach (objetos/100 m)
+4357	Medias muestrales de los estratos
+4359	Media de Pocket Beach (objetos/100 m)
+4361	Media ingenua agrupada (objetos/100 m)
+4362	Una media muestral no ponderada
+4363	2 · Estima toda la costa
+4364	Estima el total de objetos de basura, el total de objetos de plástico y la fracción de plástico en la población estimada de toda la costa. Usa las longitudes de los estratos, no los tamaños de muestra iguales.
+4365	Total estimado de basura
+4366	Pesos de expansión de una muestra estratificada
+4368	Total estimado de plástico
+4369	Un subconjunto estimado con los mismos pesos de los estratos
+4370	Fracción estimada de plástico de toda la costa
+4371	Una razón de totales ponderados
+4373	Explica tu ponderación
+4374	Usa veinte y diez segmentos de población.
+4375	Distingue una media de muestra agrupada de una estimación ponderada por la longitud de costa.
+4376	Usa una razón de totales expandidos para la fracción estimada de plástico.
+4377	¿Qué pasaría si los dos estratos tuvieran longitudes iguales?
+4378	3 · Invierte con cuidado una probabilidad condicional
+4379	Usando solo las cantidades observadas en la muestra, encuentra P(plástico | basura de Pocket Beach) y P(Pocket Beach | basura de plástico). Selecciona uniformemente un objeto individual de basura observado para cada cálculo condicional que corresponda.
+4381	P(plástico | Pocket)
+4382	El grupo condicionante como denominador
+4384	P(Pocket | plástico)
+4385	Inversión de una cantidad condicional
+4386	Explica los dos denominadores
+4387	Usa la basura de Pocket como un grupo de referencia y el plástico observado como el otro.
+4388	Distingue estas probabilidades de objetos muestrales de las estimaciones expandidas de población.
+4389	¿Puede invertir las palabras de una probabilidad condicional dejar su denominador sin cambios?
+4390	4 · Cuestiona el marco de muestreo
+4391	Describe un problema de cobertura realista y un plan de muestreo mejor. Una respuesta útil puede diferir de la referencia si el razonamiento matemático y de muestreo es sólido.
+4393	Tu preocupación sobre la cobertura y tu plan mejorado
+4394	Identifica cómo una omisión o el acceso podrían afectar sistemáticamente el marco.
+4395	Sugiere una forma de mejorar la cobertura o de definir honestamente la población objetivo limitada.
+4396	No afirmes que la ponderación corrige todos los tipos de falta de respuesta o de áreas omitidas.
+4397	¿Qué pasa si los segmentos inaccesibles nunca pueden ser seleccionados?
+4398	Las cantidades de Main suman 36 y las de Pocket 12, así que las medias son 12 y 4. La media ingenua agrupada es 48/6=8. Hay 20 segmentos de Main y 10 de Pocket; el total estimado de basura es 20×12+10×4=280. La media de plástico de Main es (5+9+10)/3=8; la de Pocket es (0+1+2)/3=1. El plástico estimado es 20×8+10×1=170, con fracción 170/280=17/28. En la muestra observada, P(plástico|Pocket)=3/12=1/4; P(Pocket|plástico)=3/27=1/9. Un plan debe abordar las omisiones del marco y la falta de respuesta por separado de la ponderación por estratos.
+4399	Usa otras longitudes de estratos y compara las cantidades condicionales de la muestra con las estimaciones ponderadas de población.
+4400	Estrato
+4401	Segmento
+4402	Todos los objetos
+4403	Objetos de plástico
+4404	Main
+4405	Pocket
+4406	Modelos matriciales, rango, mínimos cuadrados, residuos ponderados, composición, inversas y coordenadas en una base.
+4407	Concilia sensores incompatibles y transforma un mapa de ciclismo
+4408	Tres sensores no pueden tener razón a la vez
+4409	Una demostración ficticia de un huerto comunitario de California tiene dos cantidades ocultas x,y y tres modelos de sensores: r₁=x+y, r₂=x−y, r₃=2x. El vector observado es b=(5,4,6)ᵀ. Trata las lecturas como datos de aula adimensionales, no como mediciones operativas. Residuo significa observado menos ajustado. Primero ajusta los tres con pesos iguales para los errores cuadrados y después reduce solo el peso del sensor 3 a 1/4.
+4410	1 · Evalúa el modelo antes de ajustarlo
+4411	Da rank(A), donde A tiene filas (1,1),(1,−1),(2,0). Explica si existe una solución exacta y cómo las lecturas revelan la incompatibilidad.
+4412	Rango de la matriz de sensores
+4413	Independencia de las columnas del modelo
+4415	Explica la compatibilidad exacta
+4416	Reconoce que r₃ debería ser igual a r₁+r₂ en este modelo.
+4417	Relaciona la relación incumplida entre lecturas con el espacio columna.
+4418	No confundas tener rango columna completo con ser compatible para cualquier vector objetivo.
+4419	¿Qué cambio de lectura haría que el sistema tuviera una solución exacta?
+4420	2 · Encuentra y comprueba el ajuste con pesos iguales
+4421	Da x,y, cada residuo y la suma de residuos cuadrados. Explica cómo puedes comprobar la optimalidad sin limitarte a nombrar una fórmula.
+4422	x ajustado con pesos iguales
+4423	Construcción de las ecuaciones normales de mínimos cuadrados
+4424	y ajustado con pesos iguales
+4425	Residuo del sensor 1
+4426	Observado menos ajustado
+4427	Residuo del sensor 2
+4428	Residuo del sensor 3
+4429	Suma de errores cuadrados con pesos iguales
+4430	Una norma de residuos no ponderada
+4432	Explica la comprobación del ajuste
+4433	Comprueba que el residuo sea ortogonal a ambas columnas de diseño.
+4434	Relaciona esta condición con la minimización de la función objetivo de errores cuadrados.
+4435	¿Qué productos escalares no serían cero en un ajuste propuesto no óptimo?
+4436	3 · Cambia el supuesto de confianza
+4437	Con pesos 1,1,1/4, encuentra x,y ajustados y la función objetivo ponderada de errores cuadrados. Explica por qué comparar directamente el nuevo valor objetivo ponderado con el antiguo valor no ponderado no demuestra que el segundo modelo ajuste mejor según la misma métrica.
+4439	x ajustado ponderado
+4440	Una función objetivo de mínimos cuadrados modificada
+4442	y ajustado ponderado
+4444	Suma ponderada de errores cuadrados
+4445	Aplicación de pesos a los residuos cuadrados
+4446	Explica el cambio de confianza y la comparación
+4447	Usa pesos sobre los residuos cuadrados o un modelo equivalente con filas escaladas.
+4448	Explica por qué el x ajustado se acerca a la concordancia con las dos primeras lecturas.
+4449	Distingue las dos funciones objetivo antes de comparar sus valores.
+4450	¿Cómo compararías ambos vectores ajustados según una misma métrica de error?
+4451	A tiene rango 2, pero la tercera fila es la suma de las dos primeras y 6≠5+4, así que Ax=b es incompatible. AᵀA=diag(6,2) y Aᵀb=(21,1), lo que da (x,y)=(7/2,1/2). Las lecturas ajustadas son (4,3,7), el residuo es (1,1,−1) y SSE=3; los productos escalares de ambas columnas con el residuo son cero. Para W=diag(1,1,1/4), AᵀWA=diag(3,2) y AᵀWb=(12,1), lo que da (4,1/2). Los residuos (1/2,1/2,−2) dan SSE ponderada=1/4+1/4+(1/4)×4=3/2. No deben compararse funciones objetivo distintas como si usaran escalas idénticas.
+4452	Cambia el peso de un sensor y después compara ambos ajustes propuestos según la misma función objetivo indicada.
+4453	Un mapa de ruta que se estira antes de girar
+4454	Una ilustración hipotética de una ruta de ciclismo empieza con los vértices de un triángulo (0,0),(3,0),(3,2). Primero se aplica un estiramiento horizontal S=diag(2,1), seguido de una rotación de 90° en sentido antihorario R=[[0,−1],[1,0]]. Sean T=RS y w=(3,2)ᵀ. Usa también la base C=((1,1)ᵀ,(1,−1)ᵀ). Todas las unidades son unidades abstractas de mapa.
+4455	1 · Conserva el orden de las operaciones
+4456	Da las cuatro entradas de T por filas y las dos coordenadas de T(w). Explica por qué invertir las operaciones cambia la transformación.
+4457	T: fila 1, columna 1
+4458	T: fila 1, columna 2
+4459	T: fila 2, columna 1
+4460	T: fila 2, columna 2
+4461	Primera coordenada de T(w)
+4462	Imagen de un vector bajo una composición
+4463	Segunda coordenada de T(w)
+4465	Explica el orden mediante una comprobación
+4466	Aplica el estiramiento y la rotación en el orden indicado.
+4467	Da un contraejemplo o una comparación de matrices que muestre que el orden puede importar.
+4468	¿Qué entrada haría visiblemente distintos RS y SR?
+4469	2 · Recupera y mide
+4470	Dado el punto transformado q=(−2,6)ᵀ, recupera su preimagen. Encuentra det(T) y el área del triángulo imagen. Explica la orientación y el uso del valor absoluto del determinante para el área.
+4472	Primera coordenada de la preimagen
+4473	Inversión de una transformación compuesta
+4475	Segunda coordenada de la preimagen
+4477	Área del triángulo imagen (unidades²)
+4478	Escala del área mediante el valor absoluto del determinante
+4480	Explica la orientación y el área
+4481	Distingue el signo del determinante del área geométrica positiva.
+4482	Comprueba el área original y los vértices transformados o el factor del determinante.
+4483	¿Haría un determinante negativo que el área fuera negativa?
+4484	3 · Cambia las coordenadas y después repite la transformación
+4485	Da las dos coordenadas de w y de T(w) en la base C. Finalmente, da las coordenadas estándar de T²(w) y explica por qué las coordenadas pueden cambiar sin cambiar el punto subyacente.
+4486	Primera coordenada de [w]C
+4487	Coordenadas en una base no estándar
+4488	Segunda coordenada de [w]C
+4490	Primera coordenada de [T(w)]C
+4491	Cambio de coordenadas de salida
+4493	Segunda coordenada de [T(w)]C
+4495	Primera coordenada de T²(w)
+4496	Composición de una transformación consigo misma
+4498	Segunda coordenada de T²(w)
+4500	Explica coordenadas frente a puntos
+4501	Reconstruye un punto a partir de sus coordenadas en C y de los vectores de la base.
+4502	Distingue una entrada en coordenadas estándar de una entrada en coordenadas de la base.
+4503	Comprueba T²=−2I o calcula dos aplicaciones de manera coherente.
+4504	¿Podrías multiplicar la T estándar por [w]C sin cambiar su representación?
+4505	T=RS=[[0,−1],[2,0]], así que T(w)=(−2,6). SR=[[0,−2],[1,0]] es distinto, por ejemplo en (1,0). La inversa transforma (q₁,q₂) en (q₂/2,−q₁), recuperando (3,2). det(T)=2 conserva la orientación y multiplica el área original del triángulo, 3, por 2 para obtener 6. Las coordenadas en C son ((x+y)/2,(x−y)/2), así que [w]C=(5/2,1/2) y [T(w)]C=(2,−4). T²=−2I, así que T²(w)=(−6,−4). Un punto y sus listas de coordenadas son objetos distintos.
+4506	Cambia el orden o la base y comprueba por separado la reconstrucción, el orden inverso y el área.
+4507	Dos proyectos de campo distintos
+4508	Un programa completo del curso o transferencia independiente a todos los contextos nuevos
+4509	Calibración empírica de dificultad y evaluación semántica automática del razonamiento escrito
+4511	Matemáticas aplicadas
+4512	Da q redondeado a al menos dos decimales
+4513	redondea las respuestas numéricas finales a al menos dos decimales
+4514	al menos dos decimales
+4515	Dado el punto transformado q=(−4,2)ᵀ, recupera su preimagen y compruébala aplicando T. Encuentra det(T) y el área del triángulo imagen. Explica la orientación y el uso del valor absoluto del determinante para el área.
+4516	recuperando (3,2).
+4517	recuperando (1,4) a partir de q=(−4,2). Comprobación: T(1,4)=(−4,2), que es una imagen distinta de T(w).
+4519	Una cancha comunitaria ficticia dispone de 30 m de barandilla temporal para tres lados de un rectángulo; una pared recta existente forma el cuarto lado. Los dos lados de profundidad iguales miden x metros y el lado largo mide L. Un diseño utilizable debe tener L al menos igual al triple de x. El grupo quiere un área de al menos 100 m². Considera que las longitudes pueden ajustarse de forma continua e ignora el grosor de la barandilla.
+4520	Resuelve A(x)=100. Da las soluciones menor y mayor y después el mayor x permitido por L≥3x.
+4521	Mayor x permitido por L≥3x (m)
+4522	Usa L≥3x para eliminar la parte no admisible.
+4523	L=30−2x y A=30x−2x². A=100 da x²−15x+50=0, con raíces 5 y 10. A≥100 se cumple en [5,10]. La condición de forma 30−2x≥3x da x≤6; con longitudes positivas, el intervalo viable es [5,6]. El vértice sin restricciones x=7.5 no es admisible porque L=15<3×7.5. El área aumenta en todo el intervalo viable, así que el máximo restringido es 108 m² en x=6, L=18. Los diseños x=5, L=20, A=100 y x=5.5, L=19, A=104.5 también cumplen; muchas propuestas justificadas son válidas.
+4524	3 · Evalúa la afirmación y sus límites
+4525	Evalúa la afirmación de que la rutina B reduce el tiempo medio: la media de d=A−B es positiva. Usa el intervalo de confianza del paso 2. Cuenta las diferencias observadas positivas para describir a los ciclistas individuales, no como una prueba de significación separada. Indica un supuesto de diseño o una limitación de población que investigarías antes de hacer una afirmación más amplia.
+4526	Sector Longshore
+4527	Sector Cove
+4528	Cove
+4534	Longshore

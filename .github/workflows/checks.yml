@@ -32,3 +32,5 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Check activity layouts, drafts and cached-version upgrades in Chromium
         run: npm run test:browser
+      - name: Check bilingual layouts, complete reports and original answer preservation
+        run: npm run test:localization:browser

@@ -148,7 +148,7 @@ app.addEventListener('input',event=>{
  document.getElementById('answer-status').textContent=notice;document.querySelector('[data-action="next"]').disabled=true;save();
 });
 app.addEventListener('change',event=>{if(event.target.dataset.lab){E.log(state,'graph_explored',{lesson:lesson().id,control:event.target.dataset.lab,settings:{...state.labs[state.lessonIndex]}});save();}});
-function download(name,content,mime){const url=URL.createObjectURL(new Blob([content],{type:mime})),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function download(name,content,mime){if(mime==='text/markdown') content=window.QuidenceI18n?.markdown(content)||content;const url=URL.createObjectURL(new Blob([content],{type:mime})),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function reportPayload(){return window.QuidenceReportStore.prepare('ad01',E.exportRecord(state),state.createdAt);}
 function markdown(){
  let s='# Calculus\n\n'+`Session started: ${state.createdAt}\n\n`+'Initial predictions and checks after instruction are separate observations. Optional explanations need human review.\n\n';

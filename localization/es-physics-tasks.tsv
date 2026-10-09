@@ -1,0 +1,729 @@
+2617	Elaborado para Quidence con datos de situaciones inventadas; los permisos de uso de las fuentes no se han verificado de manera independiente.
+2618	, incluidas las unidades y el modelo indicado. Conserva cualquier método válido que hayas utilizado.
+2619	Revisa el significado físico del razonamiento original. Una fórmula o un diagrama puede ser suficiente.
+2620	Evidencia sobre movimiento y fuerza
+2621	Cantidad de movimiento y energía
+2622	Potencia y ondas
+2623	Física
+2624	Evaluación introductoria de física
+2625	Seis comprobaciones introductorias sobre movimiento, fuerza neta, cantidad de movimiento, energía, potencia y ondas
+2626	Números con signo, razones, ecuaciones sencillas y lectura de tablas. Se proporcionan las relaciones físicas necesarias.
+2627	Se indica una interpolación lineal entre las lecturas; la distancia calculada depende de ella.
+2628	Usa el valor g=10 m/s² estipulado para este modelo de clase y las transferencias de energía indicadas.
+2629	Se proporcionan las fórmulas y las velocidades de propagación de las ondas. Estas tareas comprueban su uso e interpretación, en lugar de la memorización de fórmulas.
+2630	Dinámica en dos dimensiones, movimiento circular, campos eléctricos y magnéticos, circuitos, investigaciones térmicas e integración de ciencias de la Tierra y del espacio
+2631	Desempeño práctico en el laboratorio, experimentos diseñados de manera independiente y el conjunto completo de expectativas de ciencias para la escuela secundaria de California
+2632	El corredor regresa parte del camino
+2633	Un ejercicio ficticio en una pista escolar de California presenta las posiciones de la tabla; el este es positivo. La posición cambia linealmente entre lecturas consecutivas. Calcula el desplazamiento, la distancia total, la velocidad media, la rapidez media durante los 8 s completos y la velocidad de 6 a 8 s. Usa velocidad media = desplazamiento/tiempo y rapidez media = distancia/tiempo.
+2635	Desplazamiento (m)
+2636	Posición final menos posición inicial
+2637	Sumar las longitudes de todos los tramos
+2638	Velocidad media durante 8 s (m/s)
+2639	Desplazamiento con signo dividido entre tiempo
+2641	Rapidez media durante 8 s (m/s)
+2642	Distancia total dividida entre tiempo
+2644	Velocidad de 6 a 8 s (m/s)
+2645	Dirección a partir de un cambio de posición con signo
+2646	Muestra los cambios con signo o anota un esquema de posición frente al tiempo. Explica por qué difieren los dos promedios y qué ocurrió de 4 a 6 s.
+2647	Los cambios de los tramos son +6,+6,0,−4 m. El desplazamiento es 8−0=8 m; la distancia es 6+6+0+4=16 m. La velocidad media es 8/8=+1 m/s y la rapidez media es 16/8=2 m/s. La última velocidad es (8−12)/(8−6)=−2 m/s. De 4 a 6 s, la posición permanece en 12 m, por lo que el corredor está en reposo en este modelo.
+2648	Usa una nueva tabla de posiciones por tramos con un punto de cambio de dirección diferente. Comprueba la distancia por separado del desplazamiento.
+2649	Tiempo (s)
+2650	Posición hacia el este (m)
+2651	¿Los datos respaldan el modelo de fuerza?
+2652	Se muestran tres ensayos inventados con carritos. Usa Fnet = ma. Un nuevo carrito de 3 kg tiene una fuerza motriz de 9 N hacia el este y una fuerza opuesta de 3 N hacia el oeste. Calcula su fuerza neta y su aceleración. En otro ensayo, un carrito se mueve inicialmente a +5 m/s y tiene fuerza neta cero durante 2 s. Calcula su velocidad final. Elige el este como dirección positiva.
+2653	Fuerza neta del nuevo carrito (N)
+2654	Combinar las fuerzas con signo sobre un objeto
+2656	Aceleración del nuevo carrito (m/s²)
+2657	Usar la fuerza neta en lugar de la fuerza motriz
+2659	Velocidad final en el ensayo con fuerza neta cero (m/s)
+2660	Fuerzas equilibradas y velocidad constante
+2661	Usa dos comparaciones adecuadas entre ensayos para explicar cómo la fuerza y la masa afectan la aceleración. Explica por qué una fuerza neta cero no obliga a detenerse al carrito que se mueve en el otro ensayo.
+2662	Los ensayos A y B mantienen fija la masa: duplicar la fuerza neta duplica la aceleración. Los ensayos B y C mantienen fija la fuerza: duplicar la masa reduce la aceleración a la mitad. Para el nuevo carrito, Fnet=9−3=+6 N y a=6/3=+2 m/s². En el otro ensayo, con fuerza cero, la aceleración es cero, por lo que la velocidad permanece en +5 m/s.
+2663	Identifica una comparación justa en los nuevos datos antes de hacer una afirmación sobre la fuerza o la masa.
+2664	Ensayo
+2665	Masa (kg)
+2666	Fuerza neta hacia el este (N)
+2667	Aceleración (m/s²)
+2668	Dos carritos se unen; no todo se conserva
+2669	En una pista horizontal ideal, un carrito de 2 kg que se mueve hacia el este a 3 m/s se une a un carrito de 1 kg en reposo. Se enganchan y se mueven juntos. El impulso externo neto horizontal durante la unión es despreciable. Usa la cantidad de movimiento p=mv, la conservación de la cantidad de movimiento total y la energía cinética K=mv²/2. Calcula la cantidad de movimiento total inicial, la velocidad final común, la energía cinética inicial y la energía cinética final.
+2671	Cantidad de movimiento total inicial (kg·m/s)
+2672	Cantidad de movimiento total con signo
+2674	Velocidad final común (m/s)
+2675	Cantidad de movimiento compartida por la masa combinada
+2677	Energía cinética inicial (J)
+2678	Energía cinética antes de la unión
+2680	Energía cinética final (J)
+2681	Energía cinética de los dos carritos unidos
+2682	Explica qué cantidad total se conserva bajo el supuesto indicado. Explica la diferencia de energía cinética sin afirmar que la energía se destruye.
+2683	La cantidad de movimiento inicial es 2×3+1×0=6 kg·m/s. La masa combinada es 3 kg, por lo que la velocidad final es +2 m/s. La K inicial es 2×3²/2=9 J; la K final es 3×2²/2=6 J. La energía cinética disminuye en 3 J, que se transfieren a deformación, energía térmica y/o sonido. La cantidad de movimiento total se conserva bajo el supuesto de impulso externo despreciable; la energía cinética no tiene por qué conservarse.
+2684	Prueba una nueva colisión en una dimensión con velocidades iniciales con signo y define el sistema antes de aplicar la conservación.
+2685	Un modelo de rodamiento con transferencia de energía
+2686	Un objeto idealizado de 2 kg se suelta desde el reposo a una altura vertical de 3 m sobre su nivel final. Usa g=10 m/s² para este modelo de clase. Su energía potencial gravitatoria inicial es U=mgh. Se transfieren exactamente 24 J a energía térmica del objeto y de la pista para cuando llega al nivel final. No hay otras transferencias de energía ni rotación. Usa K=mv²/2. Calcula la U inicial, la K final y la rapidez final.
+2688	Energía potencial inicial respecto al nivel final (J)
+2689	Un modelo de energía gravitatoria con un nivel de referencia
+2691	Tener en cuenta la energía térmica indicada
+2692	Rapidez final (m/s)
+2693	Resolver la relación de energía cinética
+2694	Escribe un balance de energía que incluya el término térmico. Explica por qué sumar los 24 J a la energía cinética o afirmar que desaparecieron sería incoherente.
+2695	U=2×10×3=60 J. El balance de energía es 60=K+24, por lo que K=36 J. Con K=(2/2)v², v²=36; la rapidez es 6 m/s. Incluir el objeto, la Tierra y la pista en el modelo permite tener en cuenta la energía gravitatoria, cinética y térmica.
+2696	Compara dos nuevos balances de energía e identifica el límite del sistema y el nivel de referencia.
+2697	Los vatios no son vatios-hora
+2698	En un evento escolar inventado, una fuente suministra una potencia eléctrica útil constante de 120 W durante 15 min y almacena toda esa energía sin pérdidas adicionales. Después, una lámpara de 20 W usa únicamente esta energía almacenada a potencia constante. Usa E=Pt, 1 min=60 s y 1 Wh=3,600 J. Calcula la energía acumulada en J y Wh y la duración de funcionamiento de la lámpara en horas. Si la fuente suministrara solo 60 W durante los mismos 15 min, calcula la nueva duración.
+2700	Energía acumulada (J)
+2701	Minutos convertidos a segundos en E=Pt
+2703	Energía acumulada (Wh)
+2704	Energía en lugar de potencia instantánea
+2706	Duración de funcionamiento de la lámpara (h)
+2707	Energía almacenada dividida entre la potencia del dispositivo
+2709	Duración con una captación de 60 W (h)
+2710	Escalar la energía con una duración fija de captación
+2711	Muestra un procedimiento con unidades coherentes y explica por qué 120 W no es la cantidad de energía almacenada. Identifica un supuesto ideal que comprobarías en un sistema real.
+2712	15 min=900 s=0.25 h. La energía es 120×900=108,000 J=120×0.25=30 Wh. La duración es 30 Wh/20 W=1.5 h. A 60 W, la energía es 15 Wh y la duración es 0.75 h. La potencia constante y el almacenamiento ideal son supuestos, no mediciones de un evento real.
+2713	Usa una tabla de potencia variable y suma la energía transferida en cada intervalo de potencia constante.
+2714	Una onda, dos tipos de distancia
+2715	En un medio ideal no dispersivo, una onda transversal se propaga a 12 m/s con una frecuencia de la fuente de 3 Hz. Usa v=fλ y T=1/f. Calcula la longitud de onda y el período. Si la frecuencia cambia a 6 Hz mientras la rapidez permanece fija, calcula la nueva longitud de onda. Por separado, el sonido se propaga a 340 m/s y su eco regresa después de 1 s. Calcula la distancia de ida hasta el reflector. Los períodos numéricos pueden expresarse como una fracción o redondearse a al menos dos decimales.
+2717	Longitud de onda inicial (m)
+2718	Rapidez de propagación dividida entre la frecuencia de la fuente
+2719	Período inicial (s)
+2720	Segundos por ciclo en lugar de ciclos por segundo
+2722	Longitud de onda a 6 Hz (m)
+2723	Relación entre frecuencia y longitud de onda a rapidez fija
+2725	Distancia de ida hasta el reflector (m)
+2726	Un eco incluye dos tramos de recorrido
+2727	Explica por qué cambiar la frecuencia aquí no duplica la rapidez. Muestra los dos tramos del recorrido del eco con palabras, ecuaciones o un esquema sencillo.
+2728	λ=12/3=4 m y T=1/3 s≈0.3333 s. A 6 Hz con la misma rapidez, λ=12/6=2 m. El eco recorre en total 340×1=340 m; la distancia de ida hasta el reflector es 170 m. La rapidez depende del medio/modelo indicado, mientras que la distancia del eco se calcula por separado como un recorrido de ida y vuelta.
+2729	Distingue una imagen de posiciones en un instante de un registro temporal y después compara ondas en dos medios.
+2730	Modela, comprueba y revisa
+2731	Resume tu decisión, muestra otra comprobación o indica qué sigue necesitando evidencia. Puedes usar ecuaciones, diagramas y explicaciones breves con palabras cotidianas.
+2732	Razones, cambios con signo, ecuaciones sencillas y elevar una rapidez al cuadrado. Se proporcionan todas las fórmulas físicas necesarias para el modelo.
+2733	Dos proyectos introductorios inspirados en California: un carrito modelo para el campus y un evento escolar con energía solar
+2734	Se proporcionan la fuerza constante, el retraso del controlador y las relaciones de velocidad; no se verifica el desempeño real de frenado.
+2735	Se proporcionan la potencia, la eficiencia, la capacidad y la reserva. Las conclusiones de diseño solo se aplican a este modelo energético inventado.
+2736	Seguridad de vehículos reales, instalación eléctrica, calibración experimental y validación completa del diseño de ingeniería
+2737	Curso completo de Física de secundaria de California, habilidades de laboratorio, campos, circuitos e integración de ciencias de la Tierra y del espacio
+2738	¿Puede el carrito modelo del campus detenerse en la zona marcada?
+2739	Un club escolar ficticio de California modela un carrito no tripulado de 2 kg en una pista horizontal. El este es positivo. Se mueve a +4 m/s cuando llega una señal de parada, continúa a la misma velocidad durante un retraso del controlador de 0.5 s y después recibe una fuerza neta de frenado constante de 4 N hacia el oeste hasta detenerse por primera vez. Las fuerzas verticales se equilibran. Ignora las demás fuerzas horizontales. Usa a=Fnet/m, tstop=(0−v₀)/a y distancia de frenado=(v₀+0)tstop/2. El límite de distancia marcado es 8 m desde la posición donde llega la señal. Se proporcionan datos sintéticos de ensayos solo para la fase de frenado.
+2740	1 · Separa el retraso del frenado
+2741	Calcula la aceleración de frenado con signo, la distancia durante el retraso, el tiempo de frenado y la distancia total desde la señal hasta la parada. Explica cómo la tabla respalda el modelo con masa fija.
+2742	Aceleración de frenado (m/s²)
+2743	Dirección de la fuerza neta y de la aceleración
+2745	Distancia durante el retraso (m)
+2746	Recorrido a velocidad constante antes del frenado
+2748	Tiempo de frenado únicamente (s)
+2749	Cambio de velocidad con aceleración constante
+2751	Distancia total desde la señal hasta la parada (m)
+2752	Sumar las distancias independientes del retraso y del frenado
+2754	Evidencia de los ensayos de frenado
+2755	Compara ensayos con la misma masa y rapidez inicial mientras cambia la fuerza neta de frenado.
+2756	Usa el cambio de velocidad medido durante un tiempo para calcular la aceleración; no cuentes el retraso del controlador como tiempo de frenado.
+2757	¿Qué datos necesitarías si la fuerza de frenado variara con el tiempo?
+2758	2 · Cambia la rapidez y conserva el modelo
+2759	Ahora la señal llega a +6 m/s, con la misma masa, retraso y fuerza de frenado de 4 N. Calcula la distancia total de parada. Conservando el retraso de 0.5 s, calcula la magnitud mínima de la fuerza neta de frenado constante que permitiría cumplir el límite de 8 m a +6 m/s. Considera que la magnitud de la fuerza se puede ajustar de forma continua.
+2761	Distancia total a +6 m/s con frenado de 4 N (m)
+2762	Separar la dependencia lineal del retraso y la dependencia cuadrática del frenado
+2764	Magnitud mínima de la fuerza de frenado a +6 m/s (N)
+2765	Resolver una restricción de distancia con una fuerza positiva
+2767	Explica la comparación de rapidez
+2768	Ten en cuenta tanto la distancia durante el retraso como la distancia de frenado.
+2769	Explica por qué no es válido multiplicar toda la distancia original de parada por 6/4.
+2770	Identifica los supuestos necesarios para la conclusión de 8 m.
+2771	¿Qué cambia si se duplica el retraso del controlador en lugar de la rapidez inicial?
+2772	3 · Propón y comprueba una revisión
+2773	Comprueba una fuerza neta de frenado propuesta de 8 N a +6 m/s con el retraso original: calcula la distancia total de parada. Propón tu propia modificación de fuerza/retraso, verifica el límite de 8 m mediante un cálculo y nombra una medición necesaria antes de confiar en un carrito real. Puede funcionar más de una propuesta.
+2775	Distancia total a +6 m/s con frenado de 8 N (m)
+2776	Verificar un modelo modificado frente a una restricción
+2778	Tu revisión y la evidencia
+2779	Especifica una fuerza y/o un retraso del controlador y verifica el cálculo completo de distancia.
+2780	Compara con el límite de distancia, incluido el retraso.
+2781	Nombra una incertidumbre o medición pertinente; no afirmes que un modelo demuestra la seguridad real.
+2782	¿Podría funcionar reducir el retraso sin aumentar la fuerza de frenado?
+2783	Inicialmente, a=−4/2=−2 m/s². La distancia durante el retraso es 4×0.5=2 m. El tiempo de frenado es 2 s y la distancia de frenado es 4 m, para un total de 6 m. Los ensayos dan aceleraciones de −2 y −4 m/s², coherentes con Fnet=ma para la misma masa. A 6 m/s, la distancia durante el retraso es 3 m, el tiempo de frenado es 3 s, la distancia de frenado es 9 m y el total es 12 m. Para una magnitud de fuerza B>0, la distancia de frenado es mv₀²/(2B)=36/B, por lo que 3+36/B≤8 requiere B≥7.2 N. Con B=8 N, la distancia de frenado es 4.5 m y el total es 7.5 m. Como alternativa, B=7.2 N cumple exactamente el límite; muchas fuerzas mayores o combinaciones suficientemente modificadas pueden funcionar dentro de este modelo ideal. Una medición del retraso, la variación de la fuerza, la tracción o un ensayo repetido de frenado podría poner a prueba un carrito real.
+2784	Prueba nuevos valores de masa, retraso y rapidez. Compara un cálculo del área en una gráfica de velocidad frente al tiempo con el procedimiento de aceleración constante.
+2785	v inicial (m/s)
+2786	v final (m/s)
+2787	Tiempo de frenado (s)
+2788	Fuerza neta hacia el oeste (N)
+2789	¿Puede el evento escolar mantener encendidas sus luces?
+2790	Un evento escolar ficticio de California utiliza una luz de 20 W, un altavoz de 30 W y un controlador de 10 W durante 3 h. Una batería almacena inicialmente 40 Wh de energía utilizable y debe conservar al menos 20 Wh después del evento. Antes del evento, un panel idealizado entrega una potencia eléctrica constante de 100 W durante 2 h; el 80% de esa energía se convierte en energía almacenada utilizable. Se ignoran todas las demás pérdidas y la capacidad de almacenamiento utilizable es de 250 Wh. La batería puede suministrar la potencia indicada de los dispositivos. Usa E(Wh)=P(W)×t(h). Estos valores son inventados, no una guía de cableado ni de selección de equipos.
+2791	1 · Haz el balance de energía
+2792	Calcula la potencia total del evento, la energía del evento, la energía acumulada utilizable y la energía final de la batería. Explica la función del factor del 80% y de la reserva de 20 Wh.
+2794	Potencia total del evento (W)
+2795	Sumar las potencias de los dispositivos que funcionan simultáneamente
+2797	Energía del evento (Wh)
+2798	Potencia multiplicada por la duración del evento
+2800	Energía acumulada utilizable (Wh)
+2801	Eficiencia aplicada una sola vez a la energía captada
+2802	Energía utilizable final de la batería (Wh)
+2803	Almacenamiento inicial más captación menos consumo
+2805	Tu balance de energía
+2806	Usa almacenamiento inicial + captación utilizable − consumo del evento.
+2807	Aplica el 80% a la energía del panel, no repetidamente a la energía utilizable de la batería.
+2808	Comprueba la reserva y el supuesto de capacidad de almacenamiento.
+2809	¿Adónde va la parte de la energía del panel que no se almacena?
+2810	2 · Prueba un escenario nublado
+2811	Supón que la potencia del panel es de solo 50 W durante las mismas 2 h, con la misma eficiencia. Calcula la energía acumulada utilizable y la energía utilizable adicional necesaria para que todos los dispositivos funcionen durante 3 h manteniendo la reserva de 20 Wh. Calcula la potencia total constante máxima del evento durante 3 h en este escenario nublado. Da una fracción exacta o redondea la respuesta final a al menos dos decimales.
+2813	Captación utilizable en condiciones nubladas (Wh)
+2814	Cambiar la generación en lugar de la potencia de los dispositivos
+2816	Energía utilizable adicional necesaria (Wh)
+2817	La reserva forma parte del requisito energético
+2819	Potencia total máxima del evento en condiciones nubladas (W)
+2820	Resolver una restricción de energía para obtener la potencia
+2822	Explica el límite en condiciones nubladas
+2823	Incluye el almacenamiento inicial y la reserva final.
+2824	Una energía final prevista negativa significa que el evento completo no puede realizarse, no que una batería almacene físicamente energía negativa.
+2825	Distingue un límite de potencia de un requisito de energía.
+2826	Si el evento dura 2 h, ¿cómo cambia la potencia permitida?
+2827	3 · Diseña un plan y una prueba
+2828	Con la captación en condiciones nubladas y la potencia original de 60 W de los dispositivos, calcula la mayor duración posible del evento conservando la reserva. Después, propón un plan modificado para el evento (duración, dispositivos o generación utilizable), calcula la energía final de la batería e indica qué datos recopilarías para poner a prueba el modelo. Da una fórmula reutilizable de balance de energía o un plan sencillo de hoja de cálculo/tabla; también se acepta una descripción verbal del cálculo.
+2830	Mayor duración del evento a 60 W (h)
+2831	Energía utilizable disponible dividida entre la potencia constante de los dispositivos
+2833	Tu plan modificado y tu prueba
+2834	Especifica las cantidades y unidades y verifica las restricciones de reserva y capacidad.
+2835	Proporciona una relación reutilizable de energía inicial + acumulada − consumida, un plan de tabla/hoja de cálculo o un razonamiento equivalente.
+2836	Nombra una medición pertinente y compara la evidencia que aporta con los supuestos de potencia y eficiencia constantes.
+2837	¿Qué mediciones permiten distinguir una generación insuficiente de una potencia inesperadamente alta de los dispositivos?
+2838	La potencia total es 20+30+10=60 W; la energía del evento es 60×3=180 Wh. La captación útil es 100×2×0.8=160 Wh. La energía almacenada antes del evento es 200 Wh, inferior a la capacidad; la energía final es 40+160−180=20 Wh, exactamente la reserva. A 50 W, la captación es 80 Wh. La energía utilizable adicional necesaria es 180+20−40−80=80 Wh. La potencia máxima durante tres horas es (40+80−20)/3=100/3 W≈33.3333 W. A 60 W, la mayor duración es 100/60=5/3 h≈1.6667 h. Un plan modificado de tres horas usa 30 W en total: la energía final es 40+80−90=30 Wh. También pueden funcionar otros cambios justificados. Un modelo reutilizable es energía utilizable final = energía utilizable inicial + eficiencia×potencia del panel×horas de captación − potencia de los dispositivos×horas del evento, sujeto a la capacidad y la reserva. Los registros reales de potencia y las mediciones del almacenamiento utilizable podrían poner a prueba los supuestos.
+2839	Usa intervalos de potencia medidos o recién inventados y construye una tabla que actualice la energía almacenada con el tiempo.
+2841	Comprueba el modelo indicado, el signo y las unidades. Conserva cualquier parte válida de tu método.
+2842	Comprueba el significado matemático y físico; una ecuación o un esquema claro puede ser suficiente.
+2843	Modelos y datos
+2844	Conservación y comparaciones
+2845	Interpretación y límites
+2846	Modela, pon a prueba y revisa
+2847	Muestra otra comprobación o explica qué cambiaría tu decisión. Puedes usar una fórmula, una oración breve o un diagrama.
+2848	Seis comprobaciones introductorias con varias partes; se proporcionan las fórmulas y el razonamiento necesita revisión
+2849	Números con signo, fracciones, ecuaciones, gráficas y las lecciones introductorias. Sin cálculo diferencial ni integral.
+2850	Cobertura completa de cursos avanzados o exámenes, desempeño experimental independiente y validación del diseño de laboratorio
+2851	Las explicaciones sin revisar no verifican la comprensión; estas tareas solo examinan una muestra de los modelos indicados.
+2852	Un carrito cambia de dirección
+2853	Un carrito inventado de un club escolar tiene las velocidades de la tabla. La velocidad cambia linealmente entre lecturas. El este es positivo. Calcula la aceleración de 0–2 s, la fuerza neta sobre el carrito de 2 kg durante ese intervalo, el desplazamiento durante 0–4 s y la distancia durante 0–4 s. Usa a=Δv/Δt, Fnet=ma y el área con signo bajo una gráfica de velocidad frente al tiempo.
+2854	Aceleración de 0–2 s (m/s²)
+2855	Cambio de velocidad con signo
+2857	Fuerza neta de 0–2 s (N)
+2858	Fuerza neta en lugar de dirección de la velocidad
+2859	Desplazamiento de 0–4 s (m)
+2860	Área con signo en la gráfica de velocidad frente al tiempo
+2861	Distancia de 0–4 s (m)
+2862	Área en valor absoluto cuando la velocidad cambia de signo
+2863	Dibuja o describe dónde la velocidad pasa por cero. ¿Puede la aceleración dirigirse hacia el oeste mientras el carrito se mueve hacia el este?
+2864	La pendiente es (0−4)/2=−2 m/s², por lo tanto Fnet=−4 N. El área positiva de 0–2 s es 4 m y el área negativa de 2–4 s es −4 m. El desplazamiento es 0 m, pero la distancia es 8 m. Antes de 2 s, la velocidad se dirige hacia el este y la aceleración hacia el oeste.
+2865	Prueba otra gráfica de velocidad cuyo cruce por cero esté dentro de un intervalo.
+2866	Velocidad (m/s)
+2867	Una colisión con direcciones opuestas
+2868	En una pista ideal, un carrito de 3 kg que se mueve a +2 m/s se engancha con uno de 1 kg que se mueve a −2 m/s. El impulso externo neto horizontal es despreciable. Usa p=mv y K=mv²/2. Calcula la cantidad de movimiento total inicial, la velocidad de los carritos unidos, la energía cinética inicial y la disminución de energía cinética.
+2869	Cantidad de movimiento inicial (kg·m/s)
+2870	Cantidad de movimiento con signo de ambos carritos
+2871	Velocidad de los carritos unidos (m/s)
+2872	Cantidad de movimiento total conservada
+2874	Energías cinéticas positivas
+2876	Disminución de energía cinética (J)
+2877	Energía cinética inicial menos final
+2878	Nombra el sistema. Explica por qué la conservación de la cantidad de movimiento y de la energía cinética tiene resultados diferentes aquí.
+2879	p=3×2+1×(−2)=4. vf=4/4=1 m/s. Ki=(3×4+1×4)/2=8 J, Kf=4×1²/2=2 J. La disminución de 6 J se transfiere a otras formas de energía.
+2880	Compara dos colisiones con igual cantidad de movimiento y diferente masa total.
+2881	Un descenso con una transferencia medida
+2882	Un objeto modelo de 1.5 kg parte del reposo a 4 m sobre un nivel final elegido. Usa g=10 m/s². Exactamente 12 J se convierten en energía térmica al llegar a ese nivel, sin otras transferencias ni rotación. Usa U=mgh, K=mv²/2. Calcula la U inicial, la K final y la rapidez. Por separado, un motor suministra 24 J en 3 s; calcula su potencia media.
+2883	Energía gravitatoria inicial (J)
+2884	Nivel de referencia y mgh
+2885	Transferencia térmica en un balance de energía
+2886	Resolver una relación con la rapidez al cuadrado
+2888	Potencia media del motor en el caso separado (W)
+2889	Energía por unidad de tiempo
+2890	Explica qué formas de energía incluiste. Distingue el resultado de 8 m/s del de 8 W, aunque tengan el mismo número.
+2891	U=1.5×10×4=60 J. K=60−12=48 J. v²=2×48/1.5=64, por lo que la rapidez es 8 m/s. La potencia del motor es 24/3=8 W.
+2892	Cambia la masa manteniendo fijas la altura y la fracción de pérdida térmica.
+2893	Un brazo de palanca cumple dos funciones
+2894	Una masa puntual ideal de 2 kg se mantiene a un radio de 0.5 m mediante un soporte sin masa alrededor de un eje fijo. Actúa una fuerza tangencial perpendicular de 3 N. Usa I=mr², τ=rF, α=τ/I. Calcula I, τ y α. Por separado, un sistema sin momento de fuerza cambia I de 0.8 a 0.2 kg·m² con una rapidez angular inicial de 2 rad/s. Usa la conservación de Iω para calcular la rapidez angular final.
+2896	Momento de inercia de una masa puntual (kg·m²)
+2897	Distribución de masa respecto a un eje
+2899	Momento de fuerza aplicado (N·m)
+2900	Brazo de palanca perpendicular
+2901	Aceleración angular (rad/s²)
+2902	Momento de fuerza dividido entre momento de inercia
+2904	Rapidez final en el caso separado sin momento de fuerza (rad/s)
+2905	Conservar el momento angular
+2906	¿Por qué no se puede decir automáticamente que el experimento de masa puntual está libre de momento de fuerza? Muestra qué ecuación corresponde a cada situación.
+2907	I=2×0.5²=0.5; τ=0.5×3=1.5; α=1.5/0.5=3. Para el sistema separado con momento de fuerza cero, 0.8×2=0.2ωf, por lo que ωf=8.
+2908	Varía el radio con fuerza y masa fijas; comprueba tanto el momento de fuerza como el momento de inercia.
+2909	Mismo período, distinto oscilador
+2910	Un oscilador ideal de resorte tiene m=1 kg, k=16 N/m y amplitud de 0.2 m. Usa T=2π√(m/k) y E=kA²/2; usa el valor de π de la calculadora y redondea solo los decimales finales. Calcula el período y la energía mecánica. Si la amplitud se duplica con m y k fijas, calcula la nueva energía. Para un segundo oscilador con k=64 N/m, calcula la masa que da el período original.
+2911	El período depende de la masa y de la rigidez
+2913	Energía mecánica inicial (J)
+2914	Amplitud al cuadrado
+2916	Energía con el doble de amplitud (J)
+2917	Escalamiento de la energía
+2919	Masa del segundo oscilador (kg)
+2920	Igual razón m/k
+2921	Dibuja un ciclo o marca su intervalo de tiempo. Explica por qué un período igual no demuestra una energía igual.
+2922	T=2π√(1/16)=π/2≈1.5708 s. E=16×0.2²/2=0.32 J; duplicar la amplitud da E=1.28 J. Un período igual requiere m/64=1/16, por lo tanto m=4 kg.
+2923	Construye dos configuraciones con igual período e identifica una medición que permita distinguirlas.
+2924	La presión no es la fuerza de flotación
+2925	Un objeto rígido y sellado de volumen 0.002 m³ y masa 3 kg está totalmente sumergido en agua de densidad uniforme, ρ=1000 kg/m³, g=10 m/s². Los detalles de la profundidad de su parte superior no son necesarios para este cálculo ideal de flotación. En otro punto, a 1.2 m bajo la superficie, calcula la presión manométrica. Calcula la fuerza de flotación, el peso del objeto y la fuerza de soporte hacia arriba necesaria para mantenerlo en reposo. Usa pg=ρgh, Fb=ρgV y W=mg.
+2927	Presión manométrica en el punto indicado (Pa)
+2928	Presión a cierta profundidad
+2930	Fuerza de flotación (N)
+2931	Volumen desplazado
+2933	Peso del objeto (N)
+2934	Masa del objeto en lugar de masa desplazada
+2936	Fuerza de soporte necesaria hacia arriba (N)
+2937	Equilibrio de fuerzas verticales
+2938	Dibuja o describe las fuerzas sobre el objeto. ¿Cambiaría Fb si el mismo objeto rígido se bajara a mayor profundidad en este modelo?
+2939	pg=1000×10×1.2=12000 Pa. Fb=1000×10×0.002=20 N; W=3×10=30 N. Mantenerlo en reposo requiere un soporte de 10 N hacia arriba. El volumen totalmente sumergido y la densidad permanecen fijos cuando cambia la profundidad.
+2940	Compara un objeto sumergido con soporte con uno que flota libremente.
+2941	Una muestra aislada térmicamente y un gas
+2942	Una muestra de 0.5 kg con c constante de 2000 J/kg·K se calienta de 18°C a 24°C, sin trabajo, cambio de fase ni pérdida de calor. Usa Q=mcΔT. Calcula el calor absorbido y la temperatura final en kelvin mediante T(K)=T(°C)+273.15. Por separado, un gas absorbe 120 J y realiza 35 J de trabajo; usa ΔU=Q−Wout para calcular su cambio de energía interna.
+2944	Calor absorbido por la muestra (J)
+2945	Diferencia de temperatura en lugar de temperatura absoluta
+2947	Temperatura absoluta final (K)
+2948	Referencia para convertir de Celsius a kelvin
+2950	Cambio de energía interna del gas en el caso separado (J)
+2951	Convención de signos de la primera ley
+2952	¿Qué supuestos distinguen la muestra del gas? Muestra por qué no es necesario sumar 273.15 a una diferencia de temperatura.
+2953	ΔT=24−18=6 K; Q=0.5×2000×6=6000 J. Tfinal=297.15 K. El gas tiene ΔU=120−35=85 J.
+2954	Compara potencias de calentamiento iguales aplicadas a masas y calores específicos diferentes.
+2955	Campo, carga de prueba y potencial
+2956	Una fuente puntual fija de +1 μC está 0.3 m a la izquierda de una pequeña carga de prueba. Elige la derecha como positiva y usa k=9×10⁹ N·m²/C². E=kQ/r², V=kQ/r respecto al infinito, F=qE y U=qV. La carga de prueba es −2 μC. Calcula E con signo, la fuerza sobre la carga de prueba con signo, el potencial y la energía potencial de la carga de prueba.
+2958	Campo con signo en la carga de prueba (N/C)
+2959	Dirección a partir de la fuente positiva
+2960	Fuerza con signo sobre la carga de prueba (N)
+2961	La carga de prueba negativa invierte la fuerza
+2962	Potencial respecto al infinito (V)
+2963	Potencial de la fuente fija
+2964	Energía potencial de la carga de prueba (J)
+2965	qV con signo
+2966	Si la carga de prueba pasa a ser cero, ¿cuáles de estas cantidades cambian? Puedes explicarlo con un diagrama o ecuaciones.
+2967	E=9×10⁹×10⁻⁶/0.3²=+100000 N/C. F=−2×10⁻⁶×100000=−0.2 N. V=30000 V; U=−2×10⁻⁶×30000=−0.06 J. El campo y el potencial de la fuente permanecen cuando la carga de prueba es cero.
+2968	Compara el campo eléctrico y el potencial al doble de la distancia de la fuente.
+2969	Una fuente, dos conexiones
+2970	Dos resistores óhmicos R1=6 Ω y R2=3 Ω se conectan a una fuente ideal de 12 V. Calcula la resistencia equivalente y la corriente total en serie. Después, calcula la resistencia equivalente, la corriente total y la corriente por R1 en paralelo. Usa la suma en serie, 1/Req=1/R1+1/R2 e I=V/R.
+2972	Resistencia equivalente en serie (Ω)
+2973	Resistencia en una única trayectoria
+2975	Corriente de la fuente en serie (A)
+2976	Corriente de la fuente en serie
+2978	Resistencia equivalente en paralelo (Ω)
+2979	Suma de los inversos de las resistencias
+2981	Corriente de la fuente en paralelo (A)
+2982	Suma de las corrientes de las ramas
+2984	Corriente por R1 en paralelo (A)
+2985	Voltaje entre los extremos de una rama
+2986	Usa un esquema con nodos o explica qué voltajes y corrientes son compartidos. ¿Por qué la corriente de la fuente en paralelo no es solo la corriente por R1?
+2987	En serie, Req=9 Ω e I=12/9=4/3 A. En paralelo, Req=2 Ω e I total=6 A; la corriente por R1 es 12/6=2 A y la corriente por R2 es 4 A.
+2988	Comprueba cómo la resistencia interna de una fuente real limitaría este resultado ideal.
+2989	La fuerza y el flujo no corresponden al mismo modelo
+2990	Una carga positiva de 2 μC se mueve hacia el este a 4 m/s en un campo de 0.3 T dirigido hacia dentro de la pantalla, perpendicular al movimiento. Usa F=qvB para calcular la magnitud de la fuerza. Por separado, un campo uniforme perpendicular a una sola espira de área 0.05 m² cambia de 0.1 a 0.3 T en 0.2 s. Usa |ΔΦ|=A|ΔB| y |emf|=|ΔΦ|/Δt. Calcula la magnitud del cambio de flujo y la magnitud de la fuerza electromotriz media.
+2991	Magnitud de la fuerza magnética (N)
+2992	qvB perpendicular y unidades de carga
+2994	Magnitud del cambio de flujo en el caso separado (Wb)
+2995	Cambio de flujo en lugar de flujo final
+2997	Magnitud de la fuerza electromotriz media en el caso separado (V)
+2998	Cambio de flujo dividido entre el tiempo transcurrido
+2999	Describe la dirección de la fuerza magnética. Explica por qué aquí no realiza trabajo directamente y por qué el valor final del flujo por sí solo no permite obtener la fuerza electromotriz.
+3000	F=2×10⁻⁶×4×0.3=2.4×10⁻⁶ N, dirigida al norte/hacia arriba. ΔΦ=0.05×(0.3−0.1)=0.01 Wb; |emf|=0.01/0.2=0.05 V. La dirección de la corriente inducida requiere una convención de orientación y un circuito.
+3001	Proporciona un nuevo registro de flujo frente al tiempo y explica cuándo la fuerza electromotriz inducida es cero.
+3002	Una lente, una onda y un recorrido de ida y vuelta
+3003	Para una lente convergente ideal, usa 1/f=1/u+1/v y m=−v/u. Con f=12 cm, u=36 cm y altura del objeto de +4 cm, calcula v, m con signo y la altura de la imagen. Por separado, una onda ideal se propaga a 18 m/s con frecuencia de 6 Hz; calcula la longitud de onda. Un eco, con rapidez del sonido de 340 m/s, regresa en 0.8 s; calcula la distancia de ida hasta el reflector.
+3004	Distancia de la imagen (cm)
+3005	Inversos de las distancias para una lente delgada
+3007	Aumento con signo
+3008	Orientación y tamaño
+3010	Altura de la imagen con signo (cm)
+3011	Aumento aplicado a la altura
+3012	Longitud de onda en el caso separado (m)
+3013	Período espacial
+3015	Distancia de ida del eco (m)
+3016	Tiempo de ida y vuelta
+3017	Describe la orientación y el tamaño de la imagen de la lente. Explica por qué el tiempo del eco no es el tiempo de ida y por qué una imagen espacial de una onda en un instante no proporciona directamente la frecuencia.
+3018	1/v=1/12−1/36=1/18; m=−18/36=−0.5; hi=−2 cm. λ=18/6=3 m; distancia de ida del eco=340×0.8/2=136 m.
+3019	Distingue los diagramas espaciales de los registros temporales antes de calcular tasas de cambio.
+3020	Un umbral de fotones y una afirmación sobre el brillo
+3021	Usa h=4.14×10⁻¹⁵ eV·s. La frecuencia de la luz es 8×10¹⁴ Hz; la función de trabajo del material es W=2 eV. En un modelo ideal de un solo fotón, Ephoton=hf, Kmax=hf−W cuando hf≥W y la frecuencia umbral f0=W/h. Calcula la energía del fotón, la energía cinética máxima y la frecuencia umbral. Duplicar el brillo a frecuencia fija cambia el número de fotones; calcula la nueva energía por fotón.
+3023	Energía del fotón (eV)
+3024	La frecuencia determina la energía por fotón
+3025	Energía cinética máxima del electrón (eV)
+3026	Balance de energía con la función de trabajo
+3028	Frecuencia umbral (Hz)
+3029	El umbral se obtiene de hf=W
+3031	Energía del fotón con el doble de brillo (eV)
+3032	El número de fotones es distinto de la energía del fotón
+3033	Compara cambiar la frecuencia con cambiar el brillo. ¿Por qué una energía cinética calculada negativa se interpreta como ausencia de emisión en lugar de un electrón emitido?
+3034	hf=4.14×10⁻¹⁵×8×10¹⁴=3.312 eV, Kmax=1.312 eV. f0≈4.8309179×10¹⁴ Hz. A frecuencia fija, cada fotón sigue teniendo 3.312 eV.
+3035	Comprueba un caso de menor frecuencia y mayor brillo frente al umbral antes de hacer una afirmación sobre un detector.
+3036	Dos proyectos con varias partes inspirados en California, con datos inventados y supuestos explícitos del modelo
+3037	Las ideas introductorias del área de estudio, razones, ecuaciones y lectura de gráficas; se proporcionan las fórmulas necesarias.
+3038	Validación de seguridad o ingeniería en el mundo real, un curso avanzado completo y habilidades prácticas de laboratorio
+3039	El razonamiento escrito necesita revisión; que los números coincidan no demuestra dominio.
+3040	Un carrito de un club escolar y una comprobación de colisión
+3041	Un carrito modelo inventado de 3 kg se mueve hacia el este a 6 m/s en una pista horizontal. Después de una señal de parada, continúa a velocidad constante durante 0.4 s y luego actúa una fuerza neta constante de −9 N hasta la primera parada. Usa a=Fnet/m, tstop=−v0/a y distancia de frenado=(v0+0)tstop/2. El límite de distancia marcado es 9 m. Este es un modelo de clase, no una recomendación de seguridad vehicular.
+3042	1 · Construye un modelo de parada con signo
+3043	Calcula la aceleración de frenado, la distancia a velocidad constante, el tiempo de frenado y la distancia total.
+3044	Fuerza neta y dirección
+3045	Distancia durante el retraso (m)
+3046	El retraso no es frenado
+3047	Cambio de velocidad
+3048	Distancia total de parada (m)
+3049	Sumar dos fases
+3051	Explica las dos fases
+3052	Distingue la aceleración cero durante el retraso de la aceleración negativa durante el frenado.
+3053	Usa una gráfica de velocidad o ecuaciones para mostrar ambas distancias recorridas.
+3054	¿Dónde aparecerían la señal de parada y el inicio del frenado en una gráfica de velocidad?
+3055	2 · Revisa un diseño con restricciones
+3056	Ahora la rapidez inicial es 8 m/s. Calcula la distancia total de parada con el mismo retraso y fuerza. Calcula la magnitud mínima de la fuerza de frenado constante que cumple 9 m, considerando que la fuerza se puede ajustar de forma continua.
+3058	Distancia a 8 m/s con frenado de 9 N (m)
+3059	Dependencia cuadrática del frenado
+3060	Magnitud mínima de la fuerza de frenado (N)
+3061	Distancia disponible después del retraso
+3063	Explica la restricción
+3064	Reserva la distancia durante el retraso antes de despejar la fuerza de frenado.
+3065	Justifica que aumentar la magnitud positiva de frenado disminuye la distancia restante.
+3066	¿Funciona simplemente multiplicar toda la distancia original de parada por 8/6?
+3067	3 · Usa otro tipo de evidencia
+3068	En otra prueba ideal, el carrito de 3 kg a +6 m/s se engancha con un carrito de 1 kg en reposo, con impulso externo horizontal despreciable. Usa p=mv y K=mv²/2. Calcula la rapidez de los carritos unidos y la energía cinética transferida a otras formas.
+3070	Rapidez de los carritos unidos en el caso separado (m/s)
+3071	Cantidad de movimiento total y masa total
+3073	Transferencia de energía cinética (J)
+3074	K inicial menos K final
+3076	Explica qué establecen las pruebas
+3077	Distingue el impulso externo de frenado de la colisión aislada del caso separado.
+3078	Nombra una medición real o un efecto de fuerza variable que el modelo de parada con fuerza constante omite.
+3079	¿Qué nuevo ensayo podría poner a prueba el supuesto sobre la fuerza a lo largo del tiempo?
+3080	a=−9/3=−3; distancia durante el retraso=6×0.4=2.4; tiempo de frenado=2; total=2.4+6=8.4 m. A 8 m/s, el total es 3.2+64/6≈13.8667 m. Para cumplir 9 m, la distancia de frenado disponible es 5.8 m y Fmin=3×64/(2×5.8)=480/29≈16.5517 N. Colisión del caso separado: vf=18/4=4.5 m/s; Ki=54 J y Kf=40.5 J, transferencia de 13.5 J.
+3081	Pon a prueba el modelo de parada con una nueva tabla de velocidades; analiza la incertidumbre antes de hacer una afirmación sobre un diseño real.
+3082	Un sensor flotante en una jornada costera inventada
+3083	Un club escolar de California modela un sensor sellado de masa 1.2 kg y volumen exterior de 2 L en agua de densidad uniforme de 1000 kg/m³. Usa g=10 m/s², 1 L=0.001 m³, Fb=ρgV y peso=mg. Desprecia la tensión superficial y el movimiento del agua. Se proporcionan lecturas sintéticas de presión para una prueba separada de profundidad.
+3084	1 · Compara dos fuerzas diferentes
+3085	Calcula el peso del sensor, la fuerza de flotación si está totalmente sumergido y el volumen desplazado en litros cuando flota libremente en reposo.
+3086	Peso del sensor (N)
+3087	Masa por g
+3089	Fuerza de flotación con inmersión total (N)
+3090	Volumen exterior desplazado
+3092	Volumen desplazado al flotar (L)
+3093	Equilibrio de fuerzas al flotar
+3095	Explica por qué el volumen es diferente
+3096	Usa peso=fuerza de flotación para el equilibrio al flotar.
+3097	Distingue el volumen exterior total del volumen desplazado con inmersión parcial.
+3098	¿Un cálculo basado solo en el volumen te diría si un objeto desconocido flota?
+3099	2 · Añade una carga y comprueba el límite
+3100	Añade 0.5 kg sin cambiar el volumen exterior. Calcula el nuevo volumen desplazado al flotar en litros y la masa total máxima que se puede sostener con 2 L desplazados. Otros 0.4 kg darían una masa total de 2.1 kg; calcula la fuerza de soporte hacia arriba necesaria para mantenerlo totalmente sumergido en reposo.
+3102	Volumen desplazado con una carga de 0.5 kg (L)
+3103	Balance de masa
+3105	Masa total límite (kg)
+3106	Flotación máxima con volumen exterior fijo
+3107	Soporte para una masa total de 2.1 kg (N)
+3108	Equilibrio de fuerzas con inmersión total
+3110	Explica el caso límite
+3111	Con exactamente 2 kg, el desplazamiento completo de agua equilibra el peso en este modelo ideal.
+3112	Explica por qué este límite no proporciona una reserva práctica para las olas, las filtraciones o los cambios de densidad.
+3113	¿Qué datos adicionales necesitarías para especificar un límite real de carga?
+3114	3 · Comprueba un modelo de presión de manera independiente
+3115	Las lecturas sintéticas de presión manométrica son 2000 Pa a 0.2 m, 5000 Pa a 0.5 m y 9000 Pa a 0.9 m. Calcula la pendiente de presión respecto a profundidad con la primera y la última lectura y la presión manométrica prevista a 1.3 m. La presión atmosférica es 100000 Pa en este modelo; calcula allí la presión total.
+3116	Pendiente de presión manométrica respecto a profundidad (Pa/m)
+3117	Cambio dividido entre cambio
+3119	Presión manométrica a 1.3 m (Pa)
+3120	Modelo lineal de profundidad
+3121	Presión total a 1.3 m (Pa)
+3122	Referencia atmosférica
+3124	Analiza la evidencia
+3125	Usa la lectura intermedia para comprobar la pendiente propuesta, en lugar de ajustar solo los extremos.
+3126	No deduzcas una fuerza de flotación mayor simplemente por una profundidad mayor para un volumen rígido fijo totalmente sumergido.
+3127	¿Estos datos ideales por sí solos podrían indicar la incertidumbre de medición de un instrumento real?
+3128	Peso=12 N; Fb con inmersión total=20 N. Al flotar, V=1.2/1000=0.0012 m³=1.2 L. Con la carga, V=1.7 L; masa límite con desplazamiento completo=2 kg. A 2.1 kg, soporte hacia arriba=21−20=1 N. Pendiente de presión=(9000−2000)/(0.9−0.2)=10000 Pa/m, el punto intermedio coincide, pg=13000 Pa y total=113000 Pa.
+3129	Compara el límite ideal del equilibrio de fuerzas con mediciones repetidas y una reserva indicada.
+3130	Un puesto de bebidas con aislamiento térmico para una jornada deportiva inventada
+3131	Un puesto inventado para una jornada deportiva de California contiene 2 kg de un líquido inicialmente a 12°C, con c constante de 4000 J/kg·K. El límite de temperatura es 18°C. Ignora los cambios de fase. Un ensayo sin enfriamiento activo muestra que entran 90000 J de calor en 30 minutos. Considera constante esa tasa de entrada de calor para este modelo. Un enfriador puede extraer energía térmica a 40 W mientras funciona y consume 20 W de potencia eléctrica.
+3132	1 · Establece un presupuesto térmico
+3133	Calcula la ganancia máxima de calor para llegar al límite de temperatura, la potencia de entrada de calor en el ensayo y la temperatura después de ese ensayo de 30 minutos sin enfriamiento.
+3135	Ganancia de calor permitida (J)
+3136	Presupuesto mcΔT
+3138	Potencia de entrada de calor (W)
+3139	Energía dividida entre segundos
+3141	Temperatura después del ensayo sin enfriamiento (°C)
+3142	Energía térmica dividida entre mc
+3144	Explica el ensayo
+3145	Distingue un aumento de temperatura del calor entrante y de la potencia.
+3146	Explica por qué un solo ensayo no demuestra que la tasa de entrada de calor permanezca constante a todas las temperaturas.
+3147	¿Qué mediciones adicionales podrían poner a prueba el supuesto de entrada constante de calor?
+3148	2 · Comprueba si el enfriamiento es suficiente
+3149	Mientras funciona el enfriador, calcula la potencia neta de ganancia de calor y el tiempo previsto en minutos para llegar a 18°C desde 12°C. Una modificación del aislamiento reduce la potencia de entrada de calor en un 40%, sin cambiar el enfriamiento; calcula la nueva potencia térmica neta, positiva para el calentamiento.
+3150	Potencia neta original de ganancia de calor (W)
+3151	Entrada menos extracción de calor
+3153	Tiempo hasta el límite con el enfriador original (min)
+3154	Presupuesto dividido entre potencia neta
+3156	Potencia térmica neta con aislamiento mejorado (W)
+3157	Signo de un balance modificado
+3159	Interpreta el resultado negativo
+3160	Una tasa negativa predice enfriamiento inicial en este modelo ideal de tasa constante, no una temperatura negativa.
+3161	No extrapoles indefinidamente tasas fijas ni afirmes una duración real garantizada.
+3162	¿Cuándo cambiarían esta predicción una entrada de calor dependiente de la temperatura o un termostato?
+3163	3 · Comprueba por separado la evidencia eléctrica
+3164	Una fuente ideal de 12 V alimenta el enfriador de 20 W. Usa P=VI. Calcula su corriente, la carga que pasa en una hora mediante carga=It y la energía eléctrica en Wh durante dos horas. No iguales la potencia eléctrica a la potencia de extracción térmica.
+3165	Corriente de la fuente del enfriador (A)
+3166	Potencia eléctrica y voltaje
+3168	Carga en una hora (C)
+3169	Corriente por segundos
+3170	Energía eléctrica en dos horas (Wh)
+3171	Potencia eléctrica por horas
+3173	Explica dos valores nominales de potencia
+3174	Distingue la entrada eléctrica de la energía térmica extraída, incluida la transferencia al entorno.
+3175	Explica por qué extraer 40 W de energía térmica con una entrada eléctrica de 20 W no implica automáticamente una violación de la conservación de la energía.
+3176	¿Qué transferencias de energía incluirías al considerar el enfriador completo?
+3177	Presupuesto de calor=2×4000×6=48000 J; potencia de entrada de calor=90000/1800=50 W; T final sin enfriamiento=12+90000/8000=23.25°C. Con el enfriador, potencia neta=10 W y tiempo=4800 s=80 min. Entrada de calor mejorada=30 W, potencia neta=−10 W. Corriente eléctrica=20/12=5/3 A, carga en una hora=6000 C, energía eléctrica en dos horas=40 Wh. El enfriador transfiere calor además de utilizar energía eléctrica.
+3178	Usa ensayos térmicos repetidos para revisar el modelo de entrada de calor; compara el flujo de energía del sistema completo.
+3179	Una estación óptica de conteo y su fuente de alimentación
+3180	Una feria escolar de ciencias ficticia de California modela una estación de conteo de dos ramas. Dispositivos óhmicos ideales de 12 Ω y 24 Ω están en paralelo con una fuente ideal de 6 V. Supón que los dispositivos siguen siendo óhmicos y que la fuente mantiene el voltaje. Una lente convergente ideal separada forma una imagen para el detector; se usa un modelo ideal de umbral de un solo fotón para analizar una fuente de luz. Estas son tres comprobaciones de diseño relacionadas, no una especificación de un detector real.
+3181	1 · Ten en cuenta todas las ramas
+3182	Calcula la corriente de cada rama, la corriente total, la resistencia equivalente y la potencia total. Se añade otra rama de 12 Ω en paralelo; calcula la nueva potencia total.
+3183	Corriente de la rama de 12 Ω (A)
+3184	Voltaje compartido en paralelo
+3185	Corriente de la rama de 24 Ω (A)
+3186	Resistencias diferentes
+3187	Corriente total original (A)
+3188	Suma de las corrientes de las ramas
+3190	Resistencia equivalente original (Ω)
+3191	Voltaje dividido entre corriente total
+3192	Potencia total original (W)
+3193	VI de la fuente
+3195	Potencia con la rama añadida de 12 Ω (W)
+3196	Una rama adicional a voltaje fijo
+3198	Explica el cambio del circuito
+3199	Las corrientes se suman en la fuente mientras el voltaje de las ramas permanece fijo en el modelo.
+3200	Identifica el supuesto de fuente ideal y explica por qué añadir una rama no reduce a la mitad el voltaje de todas las ramas.
+3201	¿Cómo podrían las mediciones de voltaje revelar una fuente no ideal?
+3202	2 · Ubica una imagen
+3203	La lente delgada ideal tiene f=10 cm, distancia del objeto u=30 cm y altura del objeto de +3 cm. Usa 1/f=1/u+1/v y m=−v/u. Calcula la distancia de la imagen, el aumento con signo y la altura de la imagen con signo. Para una segunda posición del objeto u=20 cm con la misma lente, calcula la distancia de la imagen.
+3204	Distancia original de la imagen (cm)
+3205	Inversos de las distancias de la lente
+3206	Aumento original con signo
+3207	Orientación de la imagen
+3208	Altura original de la imagen (cm)
+3209	Escalamiento de la altura
+3211	Distancia de la imagen para u=20 cm (cm)
+3212	Efecto de mover el objeto
+3214	Explica la comprobación óptica
+3215	Un aumento negativo indica inversión de la imagen, no una cantidad negativa de luz.
+3216	Explica por qué un plano fijo del detector puede necesitar ajustes después de cambiar la distancia del objeto.
+3217	¿Qué esquema de rayos comprobaría tu ecuación de manera independiente?
+3218	3 · Pon a prueba una afirmación sobre el brillo
+3219	Usa h=4.14×10⁻¹⁵ eV·s. Para una frecuencia de 6×10¹⁴ Hz y una función de trabajo del material de 2 eV, calcula la energía del fotón y Kmax. Después, la frecuencia es 4×10¹⁴ Hz mientras el brillo aumenta; calcula la nueva energía del fotón. Indica si el modelo ideal de un solo fotón predice emisión.
+3220	Energía original del fotón (eV)
+3221	hf con notación científica
+3222	Energía cinética máxima original (eV)
+3223	Balance del fotón
+3224	Energía del fotón a menor frecuencia (eV)
+3225	Frecuencia en lugar de brillo
+3226	Explica la decisión sobre el umbral
+3227	A 1.656 eV, por debajo de 2 eV, este modelo predice que no hay emisión por un solo fotón, incluso con mayor brillo.
+3228	Distingue el suministro de energía del circuito, la formación de la imagen de la lente y el umbral del fotón; ninguno por sí solo demuestra un conteo real confiable.
+3229	¿Qué mediciones de dispositivos reales faltan en estas tres comprobaciones ideales?
+3230	Corrientes de las ramas=6/12=0.5 y 6/24=0.25 A; total=0.75 A, Req=8 Ω, P=4.5 W. La rama añadida aporta 0.5 A y 3 W, para un total de 7.5 W. Lente: v=15 cm, m=−0.5, altura=−1.5 cm; con u=20 cm, v=20 cm. Las energías de los fotones son 2.484 y 1.656 eV; Kmax original=0.484 eV y la menor frecuencia está por debajo del umbral.
+3231	Comprueba cada supuesto de diseño con evidencia separada antes de tratar el modelo combinado como un instrumento que funciona.
+3759	Modelo de física desconocido
+3760	Posición a velocidad constante
+3761	Posición (m)
+3762	x = x₀ + vt; velocidad constante
+3763	m/s da a = 0 m/s².
+3764	Una gráfica de posición frente al tiempo, no un mapa de una colina. Solo se modela un tramo de velocidad constante.
+3768	Fuerza aplicada
+3769	N hacia el este
+3770	Fuerza opuesta
+3771	N hacia el oeste
+3772	Fuerzas horizontales sobre un carrito
+3773	Solo fuerzas horizontales. Las longitudes de las flechas usan la misma escala:
+3774	N hacia el este y
+3775	N hacia el oeste. Las fuerzas verticales se equilibran y se omiten.
+3776	Fnet =
+3777	N; a = Fnet/m.
+3778	Fuerzas horizontales ideales controladas de manera independiente. La fuerza opuesta está especificada, no se calcula automáticamente como fricción. El este es positivo; la velocidad inicial no se especifica.
+3779	Balance de energía de un convertidor
+3780	Energía (J)
+3781	Salida útil
+3782	Otras formas de energía de salida
+3783	Sin cambio de energía almacenada. La entrada equivale a la salida útil más las otras formas de energía de salida.
+3784	Wh) · Útil
+3785	J · Otras formas
+3786	E = P × (minutos × 60); salida útil = eficiencia × E.
+3787	La potencia y la eficiencia son constantes en este ejemplo. «Otra salida» no significa que la energía se destruya.
+3788	Una imagen espacial de una onda transversal ideal en un instante
+3789	Desplazamiento en un instante
+3790	Posición a lo largo del medio (m)
+3791	Desplazamiento (cm)
+3792	Rapidez
+3793	m/s · Frecuencia
+3794	Hz · Longitud de onda
+3795	Modelo ideal no dispersivo; la amplitud es 1 cm. La frecuencia la proporciona la fuente, no se deduce de una sola imagen espacial en un instante. No se necesita trigonometría para responder las preguntas.
+4542	· segmentos:
+4543	Elige un nombre de punto disponible.
+4544	Introduce un número o una fracción para ambas coordenadas.
+4545	Mantén x entre
+4546	y
+4547	, e y entre
+4548	Elige dos puntos diferentes para un segmento.
+4549	Coloca
+4550	antes de dibujar este segmento.
+4552	" viewBox="0 0 500 500" role="img" aria-label="Tablero de construcción con coordenadas:
+4553	Unidades de coordenadas iguales en ambos ejes. Los puntos y segmentos grises muestran el contexto dado; los puntos azules y segmentos continuos son la construcción del estudiante. Usa los controles de coordenadas como alternativa a tocar el tablero.
+4564	Elige un nombre de punto y toca la cuadrícula (se ajusta a ¼ de unidad), o escribe x e y para una construcción exacta. Se permiten fracciones. Usa el comando de segmento para conectar puntos.
+4565	Punto<select data-project-label
+4569	>Colocar / mover punto
+4570	Desde<select data-project-from
+4571	Hasta<select data-project-to
+4573	>Dibujar segmento
+4575	>Deshacer
+4577	>Borrar construcción
+4578	Las nuevas coordenadas escritas conservan tu fracción o decimal original. Las coordenadas anteriores sin una copia del texto original muestran hasta cuatro decimales.
+4580	Proyecto
+4581	Paquete de informe no compatible.
+4582	El paquete de informe es demasiado grande. Exporta el historial de respuestas en su lugar.
+5396	Movimiento y gráficas
+5397	Una gráfica empinada no es un sendero empinado.
+5398	Interpreta la posición, la velocidad con signo y la aceleración como cantidades diferentes.
+5399	Velocidad constante (m/s)
+5400	Posición inicial (m)
+5401	Elige una referencia y una dirección.
+5402	La posición indica dónde está un objeto respecto a un origen elegido. Aquí la dirección positiva es el este y el tiempo se mide en segundos. La altura de una gráfica de posición no es la altura del suelo.
+5403	Mantén la velocidad en +2 m/s. Si la posición inicial cambia de 0 m a 4 m, ¿recorrerá el corredor una distancia mayor en 4 s?
+5404	Compara esas dos configuraciones. Comprueba la recta, la posición final y la lectura de distancia.
+5405	¿Qué cambia y qué permanece igual? Usa la gráfica para respaldar tu predicción o revisarla.
+5406	Compara cambios, no solo posiciones.
+5407	Para velocidad constante, x = x₀ + vt. La velocidad es el cambio de posición con signo dividido entre el tiempo transcurrido. Su signo describe la dirección; la posición describe la ubicación.
+5408	Parte de 8 m con velocidad de −2 m/s. Predice las posiciones a 1 s y 3 s. ¿Puede un corredor estar al este del origen mientras se mueve hacia el oeste?
+5409	Ajusta esos controles y usa dos puntos de la recta para comprobar tus posiciones previstas.
+5410	Explica la diferencia entre una posición positiva y una velocidad positiva. Puede bastar una ecuación o dos puntos marcados.
+5411	Distingue la distancia del desplazamiento.
+5412	El desplazamiento es la posición final menos la posición inicial. La distancia cuenta todo el recorrido y no puede ser negativa. Para un tramo de velocidad constante, distancia = |v|t. Un recorrido con cambio de dirección requiere las distancias de todos los tramos.
+5413	Partiendo de 4 m, compara las velocidades de +2 m/s y −2 m/s durante 4 s. Predice qué cantidades coincidirán y cuáles serán diferentes.
+5414	Comprueba ambas configuraciones. Después, dibuja otro recorrido: 4 m hacia el este seguidos de 4 m hacia el oeste. El control de línea recta no puede dibujar ese cambio de dirección.
+5415	Compara la distancia y el desplazamiento de los tres recorridos. ¿Qué falla en la afirmación de que un desplazamiento cero significa que no hubo recorrido?
+5416	Para el recorrido de regreso, suma las longitudes de ambos tramos para obtener la distancia; compara las posiciones final e inicial para obtener el desplazamiento.
+5417	Comprueba qué puede decirte un punto final.
+5418	Una recta de posición frente al tiempo significa velocidad constante y aceleración cero en este modelo. La aceleración media es Δv/Δt. Una posición final por sí sola no te dice cómo fue el movimiento anterior.
+5419	¿Pueden dos recorridos distintos a velocidad constante terminar ambos en x = 8 m después de 4 s?
+5420	Encuentra dos configuraciones con posiciones iniciales y velocidades diferentes que hagan esto. Comprueba sus gráficas y lecturas.
+5421	Muestra por qué comparten un punto final, pero no el mismo movimiento. ¿Qué posición adicional con su instante de tiempo permitiría distinguirlos? ¿Por qué la aceleración es cero en ambos recorridos modelo?
+5422	Usa 8 = x₀ + 4v. Elige primero una posición inicial y después despeja una velocidad dentro del intervalo del control.
+5423	Un corredor está a 4 m al este de un origen en t = 0 y a 10 m al este en t = 3 s. ¿Cuál es la velocidad media?
+5424	(10−4)/3 = +2 m/s. Resta la posición inicial antes de dividir entre el tiempo.
+5425	Un corredor se mueve de x = 8 m a x = 2 m en 3 s a velocidad constante. ¿Qué par es correcto?
+5426	Velocidad −2 m/s; aceleración 0 m/s²
+5427	Velocidad +2 m/s; aceleración −2 m/s²
+5428	Velocidad −2 m/s; aceleración −2 m/s²
+5429	Velocidad = (2−8)/3 = −2 m/s. Permanece constante, por lo que la aceleración es cero.
+5430	Un corredor recorre 12 m hacia el este y después 5 m hacia el oeste. ¿Cuáles son la distancia y el desplazamiento?
+5431	Distancia 17 m; desplazamiento +7 m
+5432	Distancia 7 m; desplazamiento +17 m
+5433	Ambos son 17 m
+5434	La distancia suma longitudes: 12+5=17 m. El desplazamiento con signo es 12−5=+7 m.
+5435	Usa una nueva tabla de posiciones. Indica la dirección y las unidades antes de calcular una tasa de cambio.
+5436	Fuerzas y movimiento
+5437	¿Qué cambia realmente el movimiento?
+5438	Usa la fuerza neta y compara pruebas justas de Fnet = ma.
+5440	Fuerza aplicada hacia el este (N)
+5441	Fuerza opuesta hacia el oeste (N)
+5442	Suma las fuerzas sobre el mismo objeto.
+5443	Elige el este como positivo. Suma las fuerzas horizontales con signo sobre este carrito para calcular Fnet. Fnet = ma usa este total, no solo la fuerza mayor. Las fuerzas verticales se equilibran en este modelo.
+5444	Mantén la masa en 2 kg y la fuerza hacia el este en 6 N. Predice la fuerza neta cuando la fuerza hacia el oeste sea 2 N y después 6 N.
+5445	Compara ambas configuraciones y la lectura de aceleración.
+5446	¿Por qué el carrito puede tener dos fuerzas no nulas sobre él, pero aceleración cero?
+5447	Relaciona la fuerza neta con la aceleración.
+5448	Usa a = Fnet/m. El signo describe la aceleración, no necesariamente la dirección actual del movimiento. Para investigar la masa, mantén fijas ambas fuerzas horizontales.
+5449	Mantén la fuerza hacia el este en 6 N y la fuerza hacia el oeste en 2 N. Predice cómo cambia la aceleración cuando la masa pasa de 2 kg a 4 kg.
+5450	Comprueba esas configuraciones y después calcula la aceleración de manera independiente a partir de la fuerza neta y la masa.
+5451	¿Qué variable cambiaste y cuál mantuviste fija? ¿Esta comparación te diría la velocidad actual del carrito?
+5452	Las fuerzas equilibradas no requieren reposo.
+5453	Fuerza neta cero significa aceleración cero. Para predecir la velocidad, también necesitas una velocidad inicial. Para aceleración constante, v = v₀ + at; un diagrama de fuerzas por sí solo no proporciona v₀.
+5454	Con fuerzas equilibradas, ¿podría un carrito permanecer en reposo mientras otro sigue moviéndose hacia el este?
+5455	Ajusta ambas fuerzas a 4 N y la masa a 2 kg. En papel, usa v₀ = 0 m/s para un carrito y +3 m/s para el otro; predice la velocidad de cada uno después de 2 s.
+5456	Usa los dos casos para evaluar «las fuerzas equilibradas hacen que todos los carritos se detengan». ¿Qué información falta en el diagrama de fuerzas?
+5457	Construye una comparación que pueda poner a prueba una afirmación.
+5458	Para poner a prueba el efecto de la masa, mantén fija la fuerza neta. Un cambio de fuerza puede compensar un cambio de masa, por lo que aceleraciones iguales no demuestran por sí solas que la masa no tenga efecto.
+5459	¿Pueden un carrito de 2 kg y uno de 4 kg tener la misma aceleración no nula?
+5460	Construye dos configuraciones de controles que hagan esto. Después, repite la comparación con la misma fuerza neta sobre ambos carritos.
+5461	Un amigo usa tu primer par para decir «la masa no importa». ¿Qué comparación pone a prueba esa afirmación y qué evidencia aporta?
+5462	Parte de a = Fnet/m. Para el primer par, mantén igual la razón; para la prueba justa, cambia solo la masa.
+5463	Un carrito de 2 kg tiene fuerzas de 8 N hacia el este y 2 N hacia el oeste. ¿Cuál es su aceleración?
+5464	Fnet = 8−2 = +6 N; a = 6/2 = +3 m/s².
+5465	Un carrito ya se mueve hacia el este a 3 m/s. Su fuerza neta permanece en cero durante 2 s. ¿Cuál es su velocidad después de 2 s en este modelo?
+5466	Una fuerza neta cero significa que la velocidad no cambia; no significa que la velocidad sea cero.
+5467	¿Qué comparación pone a prueba el efecto de la masa manteniendo fija la fuerza neta?
+5468	2 kg con 6 N frente a 4 kg con 6 N
+5469	2 kg con 6 N frente a 4 kg con 12 N
+5470	2 kg con 6 N frente a 2 kg con 12 N
+5471	La primera comparación cambia solo la masa. Las aceleraciones son 3 y 1.5 m/s².
+5472	Dibuja o describe todas las fuerzas sobre un objeto y después calcula la fuerza neta con signo.
+5473	Energía y potencia
+5474	Misma energía. Distinta tasa de suministro.
+5475	Distingue la energía, la potencia, la duración y la eficiencia de conversión.
+5476	Potencia de entrada constante (W)
+5477	Duración (min)
+5479	Eficiencia de conversión útil (%)
+5480	La potencia mide una tasa de transferencia de energía.
+5481	La energía se mide en julios (J). La potencia se mide en vatios (W), con 1 W = 1 J/s. A potencia constante, la energía transferida E = Pt, con el tiempo en segundos si el resultado está en julios.
+5482	Mantén la duración en 10 min y la eficiencia en 80%. Predice cómo cambia la energía de entrada si la potencia aumenta de 100 W a 200 W.
+5483	Compara ambas configuraciones. Comprueba las unidades además de los números.
+5484	¿Por qué la potencia y la energía transferida son cantidades diferentes, aunque aquí una determine la otra?
+5485	Tasas diferentes pueden suministrar la misma energía.
+5486	Usa E = Pt con unidades coherentes: los segundos dan J y las horas dan Wh. Un vatio-hora equivale a 3,600 J. Ni la mayor potencia ni la mayor duración determinan por sí solas la energía total.
+5487	¿Qué transfiere más energía de entrada: 100 W durante 10 min o 200 W durante 5 min? Mantén fija la eficiencia y predice antes de comprobar.
+5488	Compara las configuraciones. Verifica un caso usando segundos y J, y después horas y Wh; usa una calculadora para la fracción de hora si te ayuda.
+5489	¿Qué muestra esta comparación sobre la afirmación «un dispositivo de mayor potencia siempre usa más energía»?
+5490	Ten en cuenta todas las salidas.
+5491	Salida útil = eficiencia × energía de entrada. Sin cambio de energía almacenada, entrada = salida útil + otras salidas. Las otras salidas se convierten en formas como energía térmica; no se destruyen.
+5492	Mantén la potencia en 100 W y la duración en 10 min. Si la eficiencia baja de 80% a 50%, predice cómo cambian ambas categorías de salida.
+5493	Compara las configuraciones y comprueba que las dos salidas sumen la misma entrada en cada caso.
+5494	¿Cuánta energía cambia de una categoría a la otra? Usa el balance para evaluar «el dispositivo menos eficiente hace que la energía deje de existir».
+5495	Diseña una comparación justa de eficiencia.
+5496	Este modelo supone potencia y eficiencia constantes, sin cambios de almacenamiento y con dos categorías de salida. Una salida útil igual no identifica por sí sola la energía de entrada ni la eficiencia. Se necesitan mediciones para poner a prueba un dispositivo real.
+5497	¿Podrían dos dispositivos suministrar la misma energía útil en 10 min, pero usar energías de entrada diferentes?
+5498	Mantén la duración en 10 min. Encuentra dos configuraciones de potencia/eficiencia que hagan esto; compara sus energías útil, de otras salidas y de entrada.
+5499	¿Qué dispositivo modelo es más eficiente y qué números respaldan esa afirmación? ¿Qué medirías para comprobar una afirmación real como esta?
+5500	Usa energía útil = (eficiencia/100) × potencia × tiempo. Elige eficiencias de 100% y 50% y después busca potencias adecuadas.
+5501	Un dispositivo de 50 W funciona a potencia constante durante 4 min. ¿Cuánta energía transfiere?
+5502	4 min = 240 s; E = 50×240 = 12,000 J.
+5503	Dos lámparas de potencia constante funcionan durante 30 min: una a 20 W y otra a 40 W. ¿Qué comparación es correcta?
+5504	La lámpara de 40 W transfiere el doble de energía en el mismo tiempo.
+5505	Transfieren la misma energía porque el tiempo es igual.
+5506	La lámpara de 40 W transfiere la mitad de energía.
+5507	E = Pt; para el mismo tiempo, duplicar la potencia duplica la energía transferida.
+5508	Un convertidor recibe 1,000 J y suministra 750 J de salida útil, sin cambios de energía almacenada. ¿Qué se deduce?
+5509	Eficiencia de 75%; 250 J se convierten en otras formas de energía de salida.
+5510	Eficiencia de 25%; 750 J se destruyen.
+5511	Eficiencia de 75%; la energía restante desaparece.
+5512	750/1000 = 75%. La conservación de la energía permite tener en cuenta los otros 250 J.
+5513	Escribe un balance de energía e indica si el tiempo está en segundos o en horas.
+5514	Ondas y señales
+5515	Más picos no significan automáticamente una propagación más rápida.
+5516	Relaciona la longitud de onda, la frecuencia y la rapidez sin necesidad de trigonometría.
+5517	Rapidez de la onda en el medio del modelo (m/s)
+5518	Frecuencia de la fuente (Hz)
+5519	Lee los ejes antes de interpretar una onda.
+5520	Se muestra el desplazamiento frente a la posición en un instante para una onda transversal ideal. La longitud de onda λ es la distancia entre crestas vecinas; el eje horizontal no es el tiempo transcurrido.
+5521	Ajusta la rapidez a 8 m/s y la frecuencia a 2 Hz. ¿Qué distancia de la imagen debes medir para obtener la longitud de onda: de una cresta a un valle o de una cresta a la siguiente?
+5522	Lee las posiciones de dos crestas vecinas y réstalas. Compara con la lectura de longitud de onda.
+5523	¿Por qué la longitud de onda se mide horizontalmente en metros, en lugar de verticalmente en centímetros o en segundos?
+5524	La frecuencia cuenta ciclos en el tiempo.
+5525	La frecuencia f es el número de ciclos por segundo, medido en hercios (Hz). El período T = 1/f es el tiempo en segundos por ciclo. Contar ciclos en un punto fijo usa tiempo, a diferencia de una imagen espacial en un instante.
+5526	Mantén la rapidez en 8 m/s. Predice cómo cambia el tiempo de cuatro ciclos cuando la frecuencia pasa de 1 Hz a 2 Hz.
+5527	Compara las lecturas de período y calcula los tiempos de cuatro ciclos como 4T. La imagen estática no es una medición de tiempo.
+5528	¿Por qué una frecuencia mayor requiere menos tiempo para el mismo número de ciclos? Muestra la relación con números o una ecuación.
+5529	Mantén fijo el medio para poner a prueba la frecuencia.
+5530	En este modelo ideal no dispersivo, v = fλ. Mantener fija la rapidez del medio te permite investigar la frecuencia y la longitud de onda. Cambiar el medio puede cambiar la rapidez, por lo que debes indicar qué permanece fijo.
+5531	Mantén la rapidez en 8 m/s. Si la frecuencia aumenta de 2 Hz a 4 Hz, predice qué ocurre con la longitud de onda y la rapidez de la onda.
+5532	Comprueba ambas configuraciones y después usa fλ para verificar la rapidez en cada caso.
+5533	¿Ver el doble de crestas demuestra una propagación más rápida? Usa las dos configuraciones como evidencia.
+5534	Cuestiona lo que puede demostrar una sola imagen.
+5535	Una imagen espacial en un instante por sí sola no determina la frecuencia sin información de tiempo o rapidez de la onda. Nuestro esquema transversal no representa partículas de sonido moviéndose hacia arriba y abajo. Un eco incluye el recorrido hasta un reflector y de regreso, por lo que su tiempo de retorno abarca ambos tramos.
+5536	¿Podrían ondas en dos medios modelo diferentes tener la misma longitud de onda, pero frecuencias diferentes?
+5537	Encuentra dos configuraciones de rapidez/frecuencia con longitud de onda de 4 m. Compara sus imágenes y lecturas de período.
+5538	Si recibieras solo una de esas imágenes, ¿qué medición adicional permitiría distinguir las dos frecuencias? Explica por qué la imagen por sí sola no es suficiente.
+5539	Usa rapidez = 4 × frecuencia. Elige dos frecuencias para las que la rapidez necesaria esté dentro del intervalo del control.
+5540	Una onda ideal se propaga a 12 m/s con frecuencia de 3 Hz. ¿Cuál es su longitud de onda?
+5541	En el mismo medio no dispersivo, la frecuencia cambia de 2 Hz a 4 Hz mientras la rapidez de la onda permanece fija. ¿Qué ocurre con la longitud de onda?
+5542	λ = v/f; a rapidez fija, el doble de frecuencia da la mitad de longitud de onda.
+5543	Un eco regresa 2 s después de emitir un sonido. Usa una rapidez del sonido de 340 m/s. ¿A qué distancia está el reflector?
+5544	El recorrido de ida y vuelta es 340×2 = 680 m. La distancia de ida es 340 m.
+5545	Compara una imagen espacial de una onda en un instante con un registro temporal en una posición.
+5547	FÍSICA · LECCIONES INTRODUCTORIAS
+5548	Observa el movimiento. Pon a prueba el modelo.
+5549	Explora sistemas físicos cotidianos con gráficas, álgebra sencilla y evidencia. Guarda una idea inicial, compara un modelo y después explica una situación nueva.
+5550	Diseñado para los grados 9–10. Usa razones, números con signo y ecuaciones sencillas; no se necesita cálculo diferencial ni integral.
+5551	Cuatro unidades iniciales relacionadas con una selección de estándares de ciencias físicas de secundaria de California. Esta es una introducción complementaria, no un curso completo de Física ni de Física del Universo. Los ejemplos numéricos son modelos inventados.
+5552	Prueba dos proyectos de campo de física →

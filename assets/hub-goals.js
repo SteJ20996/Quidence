@@ -26,7 +26,7 @@ function mount(document,window){
   try{(window.QuidenceStorage||window.localStorage).setItem(KEY,JSON.stringify({schema:KEY,...goal}));saving=true;}
   catch{saving=false;status.textContent='Browser saving is unavailable. Copy your request before leaving.';}
  }
- original?.addEventListener('click',()=>{area.hidden=false;area.value=rawOriginal;area.focus?.();area.select?.();blockedNotice();});
+ original?.addEventListener('click',()=>{area.removeAttribute('data-i18n-markdown');area.hidden=false;area.value=rawOriginal;area.focus?.();area.select?.();blockedNotice();});
  reset?.addEventListener('click',()=>{
   if(!window.confirm?.('Copy the saved original first. Replace it with your current learning request?'))return;
   try{
@@ -48,7 +48,8 @@ function mount(document,window){
  include?.addEventListener('change',()=>{goal.includeInReport=include.checked;persist();if(saving)status.textContent=goal.includeInReport?'Your request will be included in new reports for '+SUBJECTS[goal.subject].title+'. Earlier reports keep their original context.':'Your request will stay out of new reports. Earlier reports keep their original context.';});
  copy.addEventListener('click',async()=>{
   const item=reports.find(r=>r.id===report.value),saved=item?.versions.at(-1),record=saved?window.QuidenceReportTools.markdown(item.subject,saved.payload):'';
-  const ok=await window.QuidenceReportTools.copy(prompt(goal,record),area);area.hidden=ok;
+  const source=prompt(goal,record),output=window.QuidenceI18n?.markdownArea(area,source)||source;
+  const ok=await window.QuidenceReportTools.copy(output,area);area.hidden=ok;
   status.textContent=ok?'Learning request copied. Review it for personal details before sharing with your chosen tutor.':'Use your device’s Copy command on the selected request below.';
  });
  render();host.hidden=false;

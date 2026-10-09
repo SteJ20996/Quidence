@@ -1,0 +1,1316 @@
+7082	Registro de aprendizaje de vectores · 1
+7085	El progreso temporal permanece en este navegador.
+7086	No se puede guardar en el navegador. Exporta tu registro antes de cerrar.
+7087	Respuesta editada. Vuelve a enviarla para incluirla.
+7088	Completa todas las partes obligatorias. En una tarea con gráfico, mueve el punto o introduce primero sus coordenadas.
+7089	Respuesta guardada. Puedes modificarla antes de continuar.
+7090	Pista consultada. Vuelve a enviar la respuesta para registrar la ayuda utilizada.
+7091	Envía esta respuesta o elige Omitir por ahora.
+7092	Completa u omite esta tarea pendiente antes de terminar.
+7096	Objetivo w =
+7097	Tu punto final actual es
+7115	tu vector
+7119	Coordenada x del punto final
+7120	Coordenada y del punto final
+7127	Prueba coeficientes de −3 a 3 en incrementos de 0.5. Cambia al menos un control antes de enviar la respuesta.
+7137	Explica tu razonamiento (opcional)
+7138	Tu explicación se guarda para que la revise un docente. No se califica automáticamente.
+7139	Verificación breve
+7140	Una base para lo que viene después
+7141	Míralo desde otra perspectiva.
+7142	Empieza con un vector.
+7143	Una comprobación breve en una situación nueva. Estas tareas ayudan a completar la información que falta o aclarar indicios contradictorios.
+7144	Ocho tareas breves conectan movimiento, coordenadas y ecuaciones. Intenta resolverlas por tu cuenta; puedes consultar una pista si la necesitas.
+7145	COMPROBACIÓN
+7146	TAREA
+7147	Guardar modificación
+7148	Enviar respuesta
+7149	Pista consultada
+7150	Mostrar pista
+7151	Respuesta guardada. Recibirás comentarios después del diagnóstico.
+7152	Tarea omitida. Todavía puedes enviar una respuesta.
+7153	Construye una combinación
+7154	El plano de coordenadas
+7155	Tu resultado
+7156	Resultado actual
+7157	Tu punto final
+7158	Objetivo
+7159	Arrastra el punto naranja o haz clic en una intersección de la cuadrícula. También puedes introducir las coordenadas del punto final en los campos de respuesta.
+7160	La flecha naranja muestra au + bv. El punto delineado es tu objetivo. Los ejes cambian de escala cuando un resultado sale de la cuadrícula actual.
+7161	La franja tenue muestra la recta que siguen estas dos direcciones.
+7162	Lee el desplazamiento desde el inicio marcado hasta la punta de la flecha.
+7163	Cada paso de la cuadrícula tiene el valor indicado en su eje.
+7164	Comprobaciones breves
+7165	Tareas principales
+7166	completada
+7167	Tarea
+7168	sin comenzar
+7171	Ver informe de evidencias
+7172	Terminar tareas principales
+7173	Siguiente tarea
+7174	Cada comprobación breve se selecciona a partir de evidencias principales que faltan, son incorrectas o se contradicen. Se incluyen hasta cuatro comprobaciones.
+7175	Este es un diagnóstico, por lo que las respuestas se guardan sin revelar todavía si son correctas. Omitir una tarea significa que falta evidencia. Consultar una pista se registra como ayuda, incluso en tareas posteriores sobre el mismo concepto.
+7177	Omitir por ahora
+7180	registrado
+7188	Usa un punto final con coordenadas enteras de −6 a 6.
+7190	Elige un coeficiente de −3 a 3 en incrementos de 0.5.
+7196	Evidencia sin ayuda
+7197	Evidencia con ayuda
+7198	Condiciones de ayuda mixtas
+7200	Evidencias contradictorias
+7201	Necesita otra comprobación
+7202	Observaciones de tareas individuales; no son probabilidades validadas de dominio.
+7203	Las explicaciones abiertas requieren revisión humana.
+7204	Las respuestas a diferentes partes de una misma tarea están relacionadas; no son evidencias repetidas independientes.
+7205	El tiempo y los registros de interacción no permiten determinar el uso de IA, el esfuerzo ni la intención.
+7206	Los registros de aprendizaje permanecen en este navegador. Las cuentas y la sincronización en la nube están en pausa.
+7207	Componentes =
+7208	Opción:
+7209	no coincide
+7210	después de recibir ayuda
+7211	sin ayuda registrada
+7212	No hay una respuesta enviada para este concepto.
+7213	Los resultados difieren entre representaciones. Revisa las diferencias específicas antes de sacar una conclusión.
+7214	Respuestas correctas sin pistas registradas. Se necesitan tareas más variadas antes de afirmar que se domina el concepto.
+7215	La respuesta correcta se produjo después de consultar una pista sobre este concepto. A continuación, prueba una tarea nueva sin ayuda.
+7216	Este concepto tiene evidencias tanto antes como después de recibir ayuda. Mantén separadas esas condiciones.
+7217	Falta evidencia
+7218	Prueba una tarea breve antes de emitir un juicio. Omitir una tarea no demuestra una idea equivocada.
+7219	Empieza con un ejemplo resuelto y vuelve a comprobarlo con una representación diferente.
+7221	Explicación para revisar:
+7222	pista consultada
+7223	sin pista de la tarea
+7224	· Motivo del seguimiento:
+7225	Después de ayuda registrada
+7226	Sin ayuda registrada
+7227	Historial de envíos
+7228	envío(s) ·
+7229	Tu panorama de aprendizaje
+7230	Evidencias que dejan espacio para preguntas.
+7231	Lo que mostró esta sesión en cálculos, imágenes y significado. Una respuesta correcta es una observación, no un juicio definitivo de dominio.
+7232	Exportar informe legible
+7233	Exportar registro completo
+7234	Nueva sesión
+7235	Tareas respondidas
+7236	Respuestas con ayuda previa
+7237	Revisión docente
+7238	Explicación y transferencia
+7239	explicaciones guardadas para revisión. Su significado no se ha calificado automáticamente.
+7240	Las opciones y las respuestas numéricas se comprueban mediante reglas fijas. El sistema no infiere el esfuerzo ni el uso de IA a partir de la velocidad o los clics.
+7241	Siguientes pasos: construye una conexión a la vez
+7242	01 · Movimiento
+7243	Traslada una flecha
+7244	Dibuja el mismo vector desde dos puntos iniciales. Compara el punto final menos el inicial.
+7245	02 · Combinación
+7246	Usa la representación punta-cola
+7247	Suma dos movimientos y luego dibuja la flecha directa desde el origen hasta el resultado.
+7248	03 · Alcance
+7249	Pregunta qué puntos se pueden alcanzar
+7250	Compara dos flechas en una misma recta con dos flechas en direcciones independientes.
+7251	04 · Ecuaciones
+7252	Lee las componentes
+7253	Escribe una ecuación horizontal y una vertical para una combinación de vectores.
+7254	Revisa respuestas, modificaciones y explicaciones resueltas
+7255	Estas actividades utilizan tareas originales y reglas de calificación transparentes. Este panorama no es una puntuación validada de competencia. Tu registro actual permanece en este navegador; expórtalo para conservar una copia. Todavía no hay registros compartidos entre dispositivos ni memoria de aprendizaje a largo plazo.
+7259	Creado:
+7260	Completado:
+7261	Observaciones de tareas individuales, no una puntuación validada de dominio. Las explicaciones abiertas requieren revisión docente.
+7262	Omitida: falta evidencia
+7263	consultada
+7264	no consultada
+7265	Pista:
+7266	Explicación (revisión humana):
+7267	No se proporcionó una explicación escrita.
+7268	Explicación resuelta:
+7269	sin ayuda registrada
+7271	Esto reemplaza el registro actual del navegador. Exporta primero tu informe si quieres conservarlo.
+7272	Conservar esta sesión
+7274	Leer estado del diagnóstico
+7275	Leer la tarea actual y las observaciones guardadas del diagnóstico.
+7276	Se esperaba un objeto vacío.
+7277	Preparar una respuesta del diagnóstico
+7278	Completa la respuesta actual sin enviarla. No cambia de tarea ni revela si es correcta.
+7281	La sesión ha terminado.
+7283	Entrada de respuesta no válida.
+7284	Se requiere una respuesta completa.
+7285	El punto final debe ser un punto de la cuadrícula con coordenadas de −6 a 6.
+7286	Los coeficientes deben estar entre −3 y 3 en incrementos de 0.5.
+7287	Enviar respuesta del diagnóstico
+7288	Guarda la respuesta preparada para la tarea actual. No avanza a la siguiente tarea.
+7289	No se puede enviar esta entrada.
+7291	Coordenadas
+7292	Lee el movimiento
+7293	La flecha va de (0, 0) a (3, −2). Escribe sus componentes horizontal y vertical.
+7294	Componente horizontal
+7295	Componente vertical
+7296	Una componente describe un cambio: hacia la derecha es x positivo; hacia abajo es y negativo.
+7297	Desde el origen, desplázate 3 a la derecha y 2 hacia abajo. El vector es (3, −2).
+7298	Coloca el punto final
+7299	Un vector empieza en el origen. Coloca su punto final para que represente (3, −2).
+7300	Empieza en (0, 0). La primera componente controla el movimiento horizontal; la segunda, el vertical.
+7301	El punto final debe estar en x = 3, y = −2. Las coordenadas y las flechas describen el mismo movimiento.
+7303	Cálculo
+7304	Combina dos movimientos
+7305	Calcula u + v. Da las dos componentes del resultado.
+7306	Suma los cambios horizontales y luego los cambios verticales.
+7307	Continúa desde la punta
+7308	Desplázate 2 a la derecha y 1 hacia arriba. Desde esa nueva posición, desplázate 1 a la izquierda y 2 hacia arriba. Coloca el punto final del movimiento total.
+7309	El segundo movimiento empieza donde termina el primero. Sigue el cambio total desde el origen.
+7310	Después de ambos movimientos se llega a (1, 3). La flecha resultante va del origen a ese punto final.
+7312	Invierte y estira
+7313	Coloca el punto final de −2u. Luego elige la descripción que corresponde al cambio.
+7314	u = (1, 2)     Encuentra −2u
+7315	Misma dirección, el doble de longitud
+7316	Dirección opuesta, el doble de longitud
+7317	Dirección opuesta, la mitad de longitud
+7318	La magnitud de un escalar cambia la longitud. Un escalar negativo invierte la dirección.
+7319	−2u = (−2, −4). La flecha tiene el doble de longitud y apunta en dirección opuesta.
+7321	Construcción
+7322	Alcanza el objetivo
+7323	Usa los controles para encontrar a y b de modo que au + bv alcance w. Los coeficientes pueden ser positivos, cero o negativos.
+7324	Un coeficiente indica cuántas copias de un vector usar. Observa los totales de las dos componentes al cambiar a y b.
+7325	a = 2 y b = 1: 2(2, 1) + (1, 3) = (5, 5). Alcanzar un objetivo no demuestra que se puedan alcanzar todos los objetivos.
+7326	Puntos alcanzables
+7327	¿Puedes salir de la recta?
+7328	Aquí u = (1, 2) y v = (2, 4). ¿Hay coeficientes reales a y b que permitan obtener au + bv = (3, 5)? Elige la mejor explicación.
+7329	Sí. Dos flechas siempre permiten alcanzar cualquier punto.
+7330	No. Ambas flechas permanecen en y = 2x, pero (3, 5) está fuera de esa recta.
+7331	No. Solo se permiten coeficientes positivos.
+7332	Observa que v equivale a dos copias de u. ¿Qué relación deben cumplir x e y en cada combinación?
+7333	Cada combinación es (a + 2b, 2a + 4b), por lo que y = 2x. Cuando x = 3, esa recta tiene y = 6, no 5. Ni siquiera los coeficientes negativos permiten salir de ella.
+7334	Ecuaciones → vectores
+7335	Interpreta el sistema como movimiento
+7336	Estas ecuaciones describen los mismos dos coeficientes a y b. ¿Qué expresión vectorial representa el sistema?
+7337	Reúne los coeficientes de a de ambas ecuaciones para formar un vector. Haz lo mismo con b. Conserva el orden de las ecuaciones.
+7338	Los coeficientes de a son (1, 2); los de b son (2, 1); los términos del lado derecho son (4, 5). Por tanto, a(1, 2) + b(2, 1) = (4, 5).
+7339	Transferencia a un inicio desplazado
+7340	Una flecha se puede trasladar
+7341	Una flecha empieza en (−1, 1) y termina en (2, −1). ¿Cuáles son sus componentes?
+7342	Las componentes son el punto final menos el inicial. El punto final por sí solo no es el vector.
+7343	(2 − (−1), −1 − 1) = (3, −2). Cambiar dónde se dibuja una flecha no cambia sus componentes.
+7344	Cancelación
+7345	Un recorrido de ida y vuelta
+7346	Te desplazas según (2, −1) y luego según (−2, 1). ¿Dónde terminas respecto a tu punto inicial?
+7347	En (0, 0): los movimientos se cancelan.
+7348	En (4, −2): las longitudes se suman en la misma dirección.
+7349	En (−4, 2): el segundo movimiento se duplica.
+7350	Suma cada par de componentes. Los movimientos opuestos pueden cancelarse.
+7351	(2, −1) + (−2, 1) = (0, 0). El desplazamiento total es cero.
+7352	Multiplicación por cero
+7353	¿Qué hace el cero?
+7354	Para u = (2, −3), ¿qué afirmación describe correctamente 0u?
+7355	Es (0, 0), con longitud cero y sin dirección.
+7356	Es (2, −3), porque multiplicar por cero no cambia nada.
+7357	Es (−2, 3), porque el cero invierte la flecha.
+7358	Multiplica cada componente por cero. Un vector de longitud cero no tiene dirección.
+7359	0(2, −3) = (0, 0). Multiplicar por cero reduce el movimiento al origen.
+7360	Alcance sin restricciones
+7361	Dos direcciones independientes
+7362	Sean u = (1, 0) y v = (0, 1). Los coeficientes pueden ser cualquier número real. ¿Qué puntos puede alcanzar au + bv?
+7363	Solo puntos con x ≥ 0 e y ≥ 0.
+7364	Todos los puntos del plano, porque au + bv = (a, b).
+7365	Solo puntos donde x = y.
+7366	Prueba un coeficiente horizontal negativo. Luego piensa en elegir a y b por separado.
+7367	au + bv = (a, b). Como a y b pueden ser cualquier número real, se puede alcanzar cualquier punto del plano.
+7368	Vectores → ecuaciones
+7369	Convierte el movimiento en ecuaciones
+7370	¿Qué sistema corresponde a a(2, −1) + b(1, 3) = (4, 5)?
+7371	La primera ecuación describe las componentes horizontales. La segunda describe las verticales.
+7372	Horizontal: 2a + b = 4. Vertical: −a + 3b = 5. Es una representación diferente de la misma combinación.
+7373	Representación vectorial
+7374	Suma de vectores
+7375	Multiplicación por un escalar
+7376	Combinaciones lineales
+7377	Sistemas ↔ vectores
+7378	Álgebra lineal · Quidence
+7379	Fundamentos de álgebra lineal
+7380	Explorador de matrices
+7381	Esta actividad requiere JavaScript activado.
+7382	Aprende las direcciones. Conserva las cantidades.
+7383	El progreso temporal de la sesión permanece en este navegador.
+7386	Lee coordenadas y signos
+7387	Requisito previo
+7388	Significado de las coordenadas
+7390	Haz una comprobación breve de las direcciones antes de trabajar con matrices.
+7391	La componente x describe el cambio horizontal y la componente y, el vertical. Una x negativa apunta a la izquierda; una y negativa apunta hacia abajo.
+7392	Un movimiento es (−2, 3). Indica sus cambios horizontal y vertical y luego dibújalo desde dos puntos iniciales diferentes.
+7393	Los cambios son −2 horizontalmente y +3 verticalmente: 2 a la izquierda y 3 hacia arriba. Cambiar el punto inicial no cambia esas componentes.
+7394	Compara el punto final menos el inicial en ambos dibujos. Pide a tu docente que revise la explicación si los dibujos no coinciden.
+7396	Identifica las imágenes de las dos columnas
+7397	Objetivo de la lección
+7398	Coordenadas de las columnas
+7399	Significado de las nuevas direcciones
+7404	Comprueba por separado qué ocurre con cada dirección original.
+7405	La primera columna es la imagen de (1, 0). La segunda es la imagen de (0, 1). Lee cada columna de arriba abajo, incluidos sus signos.
+7406	Usa A = [[1, −2], [1, 1]]. Escribe la imagen de (1, 0) y la de (0, 1), y luego dibuja ambas.
+7407	La primera imagen es (1, 1). La segunda es (−2, 1): 2 a la izquierda y 1 hacia arriba.
+7408	Prueba una matriz diferente que incluya un cero y una entrada negativa. Nombra la dirección original antes de leer su imagen.
+7410	Explica qué cantidades permanecen iguales
+7411	Coeficientes de la combinación
+7412	Coeficientes conservados
+7417	Indica los coeficientes originales antes de hacer las sumas.
+7418	Para v = (x, y), Av utiliza x copias de la primera columna e y copias de la segunda. La matriz cambia las direcciones; la entrada proporciona los coeficientes.
+7419	Usa A = [[1, 0], [1, 2]] y v = (2, 1). Escribe la combinación de columnas antes de calcular Av.
+7420	Usa 2(1, 1) + 1(0, 2) = (2, 4). Los coeficientes son 2 y 1.
+7421	Usa otro par de entrada con la misma matriz. Explica por qué un cambio en una entrada de la matriz no cambia por sí solo los coeficientes de entrada.
+7423	Calcula las dos componentes de salida
+7424	Cálculo de la salida
+7425	Escribe las sumas horizontal y vertical en líneas separadas.
+7426	Para A = [[a, b], [c, d]] y v = (x, y), las componentes de salida son ax + by y cx + dy. Mantén los signos unidos a las entradas.
+7427	Usa A = [[2, −1], [1, 1]] y v = (1, 2). Encuentra Av y muestra los dos cálculos de componentes.
+7428	Horizontal: 2 × 1 + (−1) × 2 = 0. Vertical: 1 × 1 + 1 × 2 = 3. Av = (0, 3).
+7429	Comprueba el mismo resultado mediante la combinación de columnas. Incluye tanto la respuesta final como el método al practicar el trabajo de clase.
+7430	Usa un coeficiente negativo
+7431	Ampliación
+7432	Significado de un coeficiente negativo
+7434	Practica invertir la contribución de una columna.
+7435	Un coeficiente de −1 significa restar una copia de esa columna. Un coeficiente negativo y una entrada negativa de la matriz son datos distintos.
+7436	Usa A = [[2, 1], [0, 1]] y v = (1, −1). Escribe la combinación y explica el signo menos.
+7437	1(2, 0) − 1(1, 1) = (1, −1). La contribución de la segunda columna se invierte.
+7438	Comprueba otro coeficiente negativo cuando esta ampliación forme parte de tu clase. Si todavía no se ha enseñado, déjalo como tema para más adelante.
+7445	Un requisito previo por comprobar
+7446	No hay una respuesta enviada sobre coordenadas. Esto no demuestra una dificultad.
+7448	La respuesta inicial coincidió después de modificarla
+7449	La respuesta sobre coordenadas coincidió después de una discrepancia anterior en la misma tarea. Otra comprobación de direcciones puede ayudar a verificar el método.
+7451	Una respuesta inicial sobre la que construir
+7452	La respuesta sobre coordenadas coincidió en la comprobación inicial. Una tarea es una observación de partida, no una prueba de todas las habilidades con vectores.
+7453	Vuelve a comprobar este requisito previo
+7454	La respuesta enviada sobre coordenadas no coincidió. Una comprobación breve de signos y direcciones puede aclararlo antes de seguir trabajando con matrices.
+7456	Tema marcado como todavía no estudiado
+7457	Todavía se necesita una comprobación nueva
+7458	Todavía sin comprobar
+7459	Esta conexión tiene observaciones iniciales o de práctica, pero ninguna observación enviada de una tarea nueva. El éxito en la práctica se mantiene junto a la ayuda utilizada durante el aprendizaje.
+7460	No hay una respuesta nueva enviada para esta conexión. Omitir una tarea o no haber estudiado un tema significa que falta evidencia, no que la respuesta sea incorrecta.
+7462	Las respuestas difieren entre tareas nuevas
+7463	Una respuesta nueva necesita otra revisión
+7464	Algunas respuestas nuevas coincidieron y otras no. Mantén visibles esas diferencias y comprueba la misma conexión con otro ejemplo.
+7465	Al menos una respuesta nueva no coincidió en esta conexión. Céntrate en esta parte de la lección antes de añadir más temas.
+7467	Respuestas posteriores: no está claro si las respuestas se habían visto antes
+7468	Un informe anterior puede haber incluido las soluciones de estas comprobaciones posteriores antes de registrar las respuestas. Consérvalas como observaciones de revisión; no demuestran el desempeño en tareas no vistas previamente.
+7469	Las respuestas nuevas coincidieron con ayuda adicional registrada
+7470	Las respuestas nuevas enviadas coincidieron y se registró ayuda adicional o material de aprendizaje durante la comprobación. Prueba otro ejemplo indicando claramente esa condición.
+7471	Coincidió después de modificar la respuesta
+7472	Un envío posterior coincidió después de una discrepancia anterior en la misma tarea. Esa modificación es útil; otra tarea puede comprobar si el método se transfiere.
+7474	Coincidió en las tareas nuevas enviadas
+7475	Las respuestas nuevas enviadas coincidieron en esta conexión sin ayuda adicional registrada al enviarlas. Usa ejemplos variados antes de considerarla establecida de forma consistente.
+7476	En post-2, la salida numérica coincidió, pero la elección de coeficientes no. Comprueba la explicación por separado de la aritmética.
+7477	En post-2, la elección de coeficientes coincidió, pero la salida no. Comprueba las sumas de las dos componentes y sus signos.
+7478	Reglas basadas en respuestas y condiciones de ayuda registradas; son sugerencias para revisar, no una estimación validada de capacidad.
+7479	Lee las imágenes de las columnas, calcula Av y explica por qué se utilizan los coeficientes originales.
+7480	Continúa cambiando los números y las direcciones y luego pregunta a tu docente sobre combinar transformaciones o resolver Ax = b.
+7481	Comprueba primero las conexiones prioritarias de esta lección. Cuando puedas mostrar el método con distintos ejemplos, considera combinar transformaciones o resolver Ax = b.
+7482	Compara tu método y tu respuesta final con los criterios de tu docente para el trabajo de clase o los exámenes. Estas comprobaciones breves no predicen una nota de examen.
+7483	La práctica sugerida es una autocomprobación con solución resuelta. No se añade a las evidencias de evaluación de tareas nuevas.
+7484	Lee un vector
+7485	Un movimiento es (2, −1). ¿Cuánto cambian x e y?
+7486	Cambio en x
+7487	Cambio en y
+7488	Desplázate 2 a la derecha y 1 hacia abajo: x cambia en 2; y, en −1.
+7489	Lee las dos cantidades
+7490	Para v = (1, 2), ¿qué combinación del paso original a la derecha (1, 0) y del paso hacia arriba (0, 1) forma v?
+7491	1 copia de (1, 0) y 2 copias de (0, 1)
+7492	2 copias de (1, 0) y 1 copia de (0, 1)
+7493	1 copia de cada dirección
+7494	La primera coordenada es la cantidad de pasos a la derecha; la segunda es la cantidad de pasos hacia arriba.
+7495	Columnas de la matriz
+7496	Prueba una pregunta sobre matrices
+7497	Si ya has estudiado matrices, ¿a dónde lleva A el paso original hacia arriba (0, 1)? Puedes elegir «Todavía no estudiado».
+7498	Coordenada x del nuevo paso hacia arriba
+7499	Coordenada y del nuevo paso hacia arriba
+7500	A lleva (0, 1) a su segunda columna, (1, 0).
+7501	Encuentra una nueva dirección
+7502	Lee la segunda columna de A. ¿A dónde va un paso original hacia arriba (0, 1)?
+7503	Lee la segunda columna de arriba abajo. La entrada superior es la nueva componente x; la inferior es la nueva componente y.
+7504	La segunda columna es (2, 1). Un paso original hacia arriba se convierte en 2 a la derecha y 1 hacia arriba.
+7505	Salida y cantidades conservadas
+7506	Conserva las cantidades, cambia las direcciones
+7507	Usa la misma matriz con v = (1, 2). Predice Av y luego elige la explicación de las cantidades.
+7509	Usa 1 copia de la primera columna y 2 copias de la segunda.
+7510	La nueva segunda columna cambia la segunda cantidad de 2 a 1.
+7511	Usa 2 copias de la primera columna y 1 copia de la segunda.
+7512	La primera columna es (1, 0); la segunda es (2, 1). Conserva los coeficientes 1 y 2: 1(1, 0) + 2(2, 1).
+7513	1(1, 0) + 2(2, 1) = (5, 2). Las cantidades siguen siendo 1 y 2; las direcciones cambian.
+7514	Una dirección que apunta a la izquierda
+7515	¿A dónde lleva esta matriz el paso original hacia arriba (0, 1)? Da las nuevas componentes. No hay pistas del sistema en esta comprobación con una tarea nueva.
+7516	La segunda columna es (−1, 0), por lo que el paso original hacia arriba se convierte en 1 a la izquierda y 0 hacia arriba.
+7517	Nueva matriz, nuevas cantidades
+7518	Para v = (2, 1), encuentra Av y elige cómo se utilizan las dos columnas.
+7519	Usa 1 copia de la primera columna y 2 copias de la segunda.
+7520	Usa 2 copias de la primera columna y 1 copia de la segunda.
+7521	La matriz cambia las cantidades originales a 2 y 2.
+7522	2(2, 0) + 1(1, 1) = (5, 1). Los coeficientes originales son 2 y 1.
+7523	Transferencia del coeficiente negativo
+7524	Una cantidad negativa
+7525	Para v = (1, −1), encuentra Av y elige qué significa el coeficiente negativo. Si esta ampliación no te resulta familiar, puedes omitirla.
+7526	Usa 1 copia de la primera columna y resta 1 copia de la segunda.
+7527	Usa 1 copia de ambas columnas porque las cantidades no pueden ser negativas.
+7528	Una cantidad negativa convierte todo el vector de salida en cero.
+7529	(1, 0) − (1, 1) = (0, −1). Un coeficiente negativo invierte la contribución de esa columna.
+7530	Vuelve a la regla de las columnas
+7531	Usa v = (1, 2) para encontrar Av. Elige la regla que utilizaste.
+7532	1 copia de la primera columna más 2 copias de la segunda.
+7533	2 copias de la primera columna más 1 copia de la segunda.
+7534	Las columnas determinan nuevas cantidades, por lo que se ignoran las cantidades de entrada.
+7535	Transferencia de direcciones
+7536	Un paso hacia arriba con una parte hacia la izquierda
+7537	Usa v = (2, 1) para encontrar Av. ¿Qué nueva dirección reemplaza el paso original hacia arriba?
+7538	(1, 1): 1 a la derecha y 1 hacia arriba.
+7539	(−1, 1): 1 a la izquierda y 1 hacia arriba.
+7540	(0, 1): el paso original hacia arriba nunca cambia.
+7541	El nuevo paso hacia arriba es la segunda columna, (−1, 1). 2(1, 0) + (−1, 1) = (1, 1).
+7549	No se puede guardar en el navegador. Mantén abierta esta página para terminar y exportar tu informe.
+7550	Versión editada. Vuelve a enviarla para incluirla.
+7552	No hay una tarea activa.
+7553	Completa las coordenadas obligatorias y la opción de respuesta. Una coordenada en blanco no es cero.
+7554	Respuesta guardada. Lee los comentarios y luego modifica la respuesta o continúa.
+7555	Respuesta guardada. Recibirás comentarios después de esta comprobación.
+7556	Las pistas solo están disponibles en la práctica con ayuda.
+7557	Envía la respuesta u omite esta tarea antes de continuar.
+7558	Antes de aprender
+7559	Lección paso a paso
+7560	Práctica con ayuda
+7561	Tareas nuevas
+7562	Informe de evidencias
+7565	Matriz A
+7566	Una comprobación inicial breve.
+7567	Inténtalo con ayuda.
+7568	Usa la regla en situaciones nuevas.
+7569	Vuelve a la idea.
+7570	Intenta resolver estas tareas antes de la lección. Puedes omitir una pregunta desconocida o marcar un tema como todavía no estudiado. El informe final muestra si las respuestas son correctas.
+7571	Ya has visto el ejemplo. Aquí hay pistas y comentarios; su uso se registra por separado.
+7572	Estas son tareas nuevas después de la enseñanza. No se proporcionan pistas ni comentarios inmediatos sobre si las respuestas son correctas hasta terminar esta comprobación. Abrir la guía de aplicaciones se registra como contexto adicional de aprendizaje.
+7573	Esta es una comprobación posterior con tareas diferentes. No se proporcionan pistas inmediatas del sistema ni comentarios sobre si las respuestas son correctas hasta registrar ambas tareas.
+7574	No se pudo leer el registro guardado. Se ha conservado sin cambios. Descarga una copia antes de empezar una sesión nueva.
+7579	Encuentra Av
+7586	Todavía no estudiado
+7587	Respuesta guardada.
+7588	Tu respuesta coincide.
+7589	Una o más partes necesitan otra revisión.
+7590	Las modificaciones posteriores siguen a estos comentarios y se registran con esa ayuda.
+7591	Abrir la lección
+7592	Empezar tareas nuevas
+7593	Ver informe
+7594	Fundamentos de matrices
+7595	Esta explicación se guarda para que la revise un docente. No se puntúa automáticamente.
+7599	tareas registradas
+7602	Quizá haya que revisar las coordenadas: x describe el cambio hacia la izquierda o la derecha; y, hacia arriba o abajo. Un valor negativo significa izquierda para x o abajo para y. El diagnóstico de vectores está disponible en la navegación.
+7603	Lección paso a paso · ayuda educativa
+7604	Sigue cada movimiento.
+7605	Mantén visibles las cantidades originales. Detente para predecir antes de los dos movimientos diagonales.
+7607	Detente y predice · dentro de la lección
+7608	¿Qué aportan dos nuevos pasos hacia arriba?
+7609	El nuevo paso hacia arriba es (1, 1). Predice el total de dos copias antes de recorrer la ruta.
+7610	Cambio total hacia la derecha
+7613	Cambio total hacia arriba
+7615	Guardar predicción
+7621	Continuar a la práctica con ayuda
+7625	Predicción registrada.
+7626	Registra la predicción del Paso 4 antes de continuar.
+7629	Introduce ambas coordenadas. Un espacio en blanco no es cero.
+7636	Tu predicción coincide.
+7637	Esta es la combinación que debes comprobar.
+7638	Dos copias dan (1, 1) + (1, 1) = (2, 2): 2 a la derecha y 2 hacia arriba. Esta es una respuesta durante la enseñanza, no una referencia inicial independiente.
+7639	No hay respuesta enviada
+7640	Exposición previa a la enseñanza registrada
+7641	Antes de esta lección
+7642	Después de la enseñanza, sin pista inmediata del sistema
+7643	Comprobación posterior, sin pista inmediata del sistema
+7644	no está claro si la respuesta de referencia se había visto antes
+7645	pista de la tarea consultada
+7646	después de los comentarios sobre la tarea
+7647	material de aprendizaje u otro módulo abierto durante esta fase
+7648	No hay respuesta enviada
+7649	Coordenadas: (
+7650	No hay respuesta puntuada
+7651	Observaciones de cada fase, no una puntuación validada de dominio.
+7652	Los consejos de aprendizaje utilizan reglas explícitas basadas en las respuestas. No predicen notas de examen ni estiman la capacidad general.
+7653	La comprobación previa y las tareas nuevas son diferentes; sus resultados no demuestran una mejora de aprendizaje causada por la enseñanza.
+7654	Las partes de una misma tarea son observaciones relacionadas, no repeticiones independientes.
+7655	Las ecuaciones, los cálculos y los diagramas pueden justificar una respuesta sin palabras prescritas. El razonamiento abierto requiere revisión humana.
+7656	Las referencias de la comprobación posterior no se incluyen hasta que esta termina. Informes anteriores pueden haber mostrado esas respuestas; en ese caso, no se sabe con certeza si ya se habían visto.
+7657	Se registran la ayuda del sistema y otras ayudas declaradas por el estudiante; no se infieren el esfuerzo ni el uso de IA.
+7658	Las visitas a la lección registran los pasos mostrados, no la atención ni la comprensión.
+7659	La orientación explica la actividad. Los ejemplos de aplicación ofrecen exposición a la enseñanza; verlos no demuestra comprensión.
+7660	Sesión temporal local del navegador; no hay perfil de estudiante en la nube ni entre dispositivos.
+7661	Observaciones iniciales antes de la lección guiada. Los temas no estudiados y las tareas omitidas siguen indicando falta de evidencia.
+7662	Los primeros intentos y las modificaciones finales se mantienen separados. El éxito después de pistas o comentarios se registra con esa ayuda.
+7663	Observaciones de tareas nuevas después de la enseñanza. No había pistas inmediatas del sistema; aun así, se pueden declarar otras ayudas.
+7664	Observaciones de una sesión posterior tras al menos un día.
+7665	Todavía no estudiado · falta evidencia
+7666	Respuesta registrada
+7667	Primer envío:
+7668	envíos conservados.
+7669	Esto no demuestra una idea equivocada.
+7670	tareas respondidas
+7671	Respuesta registrada
+7672	Comprobación posterior
+7673	· falta evidencia
+7674	· ayuda adicional registrada
+7675	· el envío anterior fue diferente
+7676	Paso sugerido
+7677	¿Qué respuestas dieron lugar a esta sugerencia?
+7679	Prueba la práctica sugerida
+7681	Ver la autocomprobación resuelta
+7682	Primero esta lección
+7683	Ver sugerencias para todas las conexiones de la lección
+7684	Después de comprobar estas conexiones
+7685	Ver el mapa de aprendizaje más amplio
+7689	Durante la práctica con ayuda
+7690	Tareas nuevas después de la enseñanza
+7691	sin pista en el punto de comprobación
+7692	· comentarios anteriores consultados
+7693	Comprobación posterior completada:
+7694	Ya hay dos tareas nuevas disponibles. Las respuestas de la comprobación de hoy permanecerán en el registro.
+7695	Disponible un día después de la comprobación de tareas nuevas:
+7696	Reanudar comprobación posterior
+7697	Empezar comprobación posterior
+7698	Comprobación posterior ·
+7699	Sin completar. La pregunta y la explicación resuelta no aparecen en este informe hasta terminar la comprobación posterior.
+7700	Explicación para revisión humana:
+7701	· Versión de la tarea
+7702	Tu registro de aprendizaje
+7703	¿En qué debería trabajar ahora?
+7704	Empieza con dos acciones sugeridas para esta lección. Cada sugerencia muestra las respuestas registradas en que se basa.
+7705	La predicción dentro de la lección
+7706	intento(s) de predicción.
+7707	pasos vistos. La predicción se realizó después del contenido de la lección y se mantiene separada de las evidencias de tareas nuevas.
+7708	Vuelve a comprobar después de un intervalo
+7710	Revisa respuestas, modificaciones, ayudas y soluciones
+7711	Estas son observaciones de diferentes tareas y condiciones de aprendizaje. No son un porcentaje validado de dominio ni una medida causal de la mejora del aprendizaje. Las respuestas dentro de una misma tarea están relacionadas; las explicaciones escritas necesitan revisión docente. La velocidad, los clics y las visitas a los pasos no permiten determinar el esfuerzo ni el uso de IA. El registro es una sesión temporal local del navegador.
+7716	Inicio:
+7717	todavía no
+7718	Comprobación de tareas nuevas completada:
+7719	Acción sugerida:
+7720	Práctica:
+7721	Autocomprobación resuelta:
+7722	Siguiente dirección:
+7723	Quedan dos preguntas de la comprobación posterior. Sus enunciados y soluciones resueltas se mantienen ocultos hasta terminar esta comprobación.
+7724	Versión de la tarea:
+7725	Sin explicación escrita.
+7726	; pista
+7727	; comentarios previos
+7728	¿Empezar una nueva sesión de matrices?
+7729	Empezar de nuevo reemplaza la sesión actual de matrices en este navegador. Los informes completados se pueden exportar antes de empezar de nuevo. El registro del diagnóstico de vectores permanece separado.
+7730	Conservar la sesión actual
+7733	Leer sesión de aprendizaje de matrices
+7734	Lee la fase activa, la tarea y las observaciones guardadas de cada fase. No revela las respuestas de la tarea activa.
+7735	Disponible en el informe después de la comprobación.
+7736	Preparar una respuesta de aprendizaje de matrices
+7737	Completa la tarea activa sin enviarla ni cambiar de fase.
+7739	Respuesta no válida o tarea inactiva.
+7740	Completa las coordenadas numéricas y una opción válida cuando se requiera.
+7741	Enviar una respuesta de aprendizaje de matrices
+7742	Guarda la respuesta actual preparada con su fase y condiciones de ayuda. No avanza a la siguiente tarea.
+7744	Identidad
+7745	Ambas direcciones de la base permanecen en su lugar. Todos los vectores permanecen sin cambios.
+7746	Estiramiento
+7747	La dirección horizontal se duplica. La dirección vertical permanece sin cambios.
+7749	Rotar 90°
+7750	Todos los vectores giran 90° en sentido antihorario y conservan su longitud.
+7752	Reflexión
+7753	El plano se refleja respecto del eje y. La izquierda y la derecha intercambian posiciones.
+7755	Cizallamiento
+7756	La primera dirección de la base permanece en su lugar. La segunda se desplaza a la derecha e inclina las líneas verticales de la cuadrícula.
+7758	Colapso
+7759	Las imágenes de ambas direcciones de la base están en el eje x. Todo el plano colapsa sobre esa recta.
+7760	La matriz y el vector de entrada deben contener valores finitos de −3 a 3.
+7761	Matriz no válida.
+7762	La transición debe estar entre 0 y 1.
+7763	Empieza con 1 paso a la derecha y 2 pasos hacia arriba.
+7764	El vector (1, 2) indica dos cantidades: usa la dirección hacia la derecha una vez y la dirección hacia arriba dos veces.
+7765	La primera columna da el nuevo paso a la derecha.
+7766	Lee la primera columna de arriba abajo: (1, 0). Un paso original a la derecha se convierte en 1 paso a la derecha y 0 hacia arriba. Esta dirección permanece sin cambios.
+7767	Paso original a la derecha (1, 0) → nuevo paso a la derecha (1, 0)
+7768	La segunda columna da el nuevo paso hacia arriba.
+7769	Lee la segunda columna de arriba abajo: (1, 1). Un paso original hacia arriba se convierte en un movimiento diagonal: 1 paso a la derecha Y 1 paso hacia arriba.
+7770	Paso original hacia arriba (0, 1) → nuevo paso hacia arriba (1, 1)
+7771	Conserva las cantidades: 1 de la primera y 2 de la segunda.
+7772	Los números originales 1 y 2 siguen indicando cuántas copias usar. Sustituye las dos direcciones originales por sus nuevas direcciones.
+7774	Usa el nuevo paso a la derecha una vez.
+7775	Empieza en (0, 0). Haz el primer movimiento: 1 a la derecha y 0 hacia arriba. Llegas a (1, 0).
+7777	Usa el nuevo paso hacia arriba dos veces.
+7778	Cada nuevo paso hacia arriba añade 1 a la derecha y 1 hacia arriba. Primero: (1, 0) → (2, 1). Segundo: (2, 1) → (3, 2). Observa los dos movimientos por separado.
+7780	Cuenta los cambios finales horizontal y vertical.
+7781	El primer movimiento añadió 1 a la derecha. Los dos movimientos diagonales añadieron 2 más a la derecha y 2 hacia arriba. Total: 3 a la derecha y 2 hacia arriba.
+7783	Horizontal: 1 × 1 + 2 × 1 = 3 Vertical: 1 × 0 + 2 × 1 = 2
+7784	Paso o progreso de la guía no válido.
+7788	Paso 1 de 7
+7789	Direcciones originales · I
+7790	Nuevas direcciones · A
+7791	Primera columna: qué ocurre con 1 paso a la derecha.
+7792	Segunda columna: qué ocurre con 1 paso hacia arriba.
+7793	Vector de entrada: v = (1, 2).
+7794	Utiliza 1 copia de (1, 0) y 2 copias de (0, 1).
+7795	copia de la primera dirección
+7796	copias de la segunda dirección
+7797	Las dos columnas cambian las direcciones. Los coeficientes originales, 1 y 2, indican cuántas copias de cada nueva dirección usar. El gráfico empieza en el origen (0, 0); esta es la posición inicial, no el vector de entrada ni el número de un paso de la lección.
+7798	Primera dirección
+7799	Segunda dirección
+7800	Posición / resultado
+7801	Anterior
+7802	Reproducir todos los pasos
+7803	Usa Siguiente para leer a tu ritmo. La reproducción se detiene entre pasos; Pausa mantiene el diagrama actual.
+7804	Sigue la ruta original: un paso a la derecha y luego dos pasos hacia arriba.
+7805	Punto final original: (1, 2).
+7806	Primera columna (1, 0): el paso a la derecha permanece igual.
+7807	El paso original hacia arriba se desplaza hacia su nueva dirección.
+7808	Segunda columna (1, 1): un nuevo paso hacia arriba añade 1 a la derecha y 1 hacia arriba.
+7809	Usa 1 copia de (1, 0) y luego 2 copias de (1, 1).
+7810	Primer movimiento: usa el nuevo paso a la derecha una vez.
+7811	Después del primer movimiento: (1, 0).
+7812	Nuevo paso hacia arriba 1: añade 1 a la derecha y 1 hacia arriba.
+7813	Nuevo paso hacia arriba 2: añade otro 1 a la derecha y 1 hacia arriba.
+7814	Después de ambos movimientos diagonales: (3, 2).
+7815	Resultado final: 3 a la derecha y 2 hacia arriba, por lo que Av = (3, 2).
+7817	Paso
+7825	Pausa
+7844	original (0, 1)
+7845	paso hacia arriba en movimiento
+7849	1 a la derecha, 0 hacia arriba
+7852	3 a la derecha
+7854	El paso debe ser un número entero de 0 a 6.
+7855	Leer recorrido guiado de matrices
+7856	Lee el ejemplo fijo de enseñanza, el paso actual y el punto de comprobación del movimiento.
+7857	Mostrar un paso del recorrido guiado de matrices
+7858	Abre el ejemplo guiado y muestra un paso de enseñanza de 0 a 6. Detiene la reproducción automática.
+7859	Indica un paso de 0 a 6.
+7860	Registra la predicción de la lección antes de abrir este paso.
+7862	Cada fila de la matriz debe tener una entrada por componente de entrada.
+7863	Dos entradas, dos salidas
+7864	Dos entradas, tres salidas
+7865	Tres entradas, dos salidas
+7868	filas y
+7869	columnas:
+7870	matriz ·
+7871	componentes de entrada →
+7872	componentes de salida
+7873	La misma idea, escrita como fórmula
+7874	Si las columnas de A son a₁ y a₂ y la entrada es v = (v₁, v₂), entonces
+7875	Para A =
+7876	y v = (v₁, v₂):
+7877	La primera fila da la primera componente de salida; la segunda fila da la segunda. En general, una matriz m × n toma n componentes de entrada y produce m componentes de salida. La multiplicación de matrices requiere que la longitud de la entrada coincida con el número de columnas.
+7878	Estos son ejemplos de enseñanza, no preguntas puntuadas adicionales. Una fórmula correcta con suficientes pasos para justificar el resultado puede explicar tu método sin coincidir con una frase preferida.
+7879	Explorador de matrices · Quidence
+7880	EXPLORADOR DE MATRICES
+7881	Sigue las dos direcciones de la base. Observa cómo cambia todo el plano.
+7882	Solo práctica · los resultados permanecen en esta página.
+7885	Reproducir transición
+7896	, columna
+7897	De vectores a matrices
+7898	Observa qué ocurre con un paso a la derecha y dos hacia arriba y luego explora otras matrices.
+7899	Ejemplo paso a paso
+7900	Explorar matrices
+7901	Elige una transformación
+7902	Columna 1: Ae₁
+7903	Columna 2: Ae₂
+7904	Elige un vector de entrada
+7907	Arrastra el punto final naranja en el plano de entrada. Al 100%, arrastra cualquiera de los puntos finales de color de la base en el plano de salida para cambiar una columna de la matriz. Los arrastres se ajustan a incrementos de 0.5; los controles aceptan valores de −3 a 3.
+7908	Predice la salida antes de mostrarla
+7909	Para la matriz A seleccionada, predice Av.
+7910	Comprobar predicción
+7911	Para cada coordenada de salida, multiplica una fila de A por las componentes de v y suma. La primera columna es la imagen de (1, 0); la segunda es la imagen de (0, 1).
+7912	01 · Entrada
+7913	v = x e₁ + y e₂. Arrastra el punto naranja.
+7914	02 · Salida
+7915	Haz tu predicción para mostrar la cuadrícula y el vector transformados.
+7916	Primera dirección de la base
+7917	Segunda dirección de la base
+7918	Vector de entrada / salida
+7919	Cuadrado unitario
+7920	Transición
+7921	Vista final
+7922	La animación usa una mezcla lineal B(t) = (1 − t)I + tA. Los fotogramas intermedios son otras aplicaciones lineales; una rotación predefinida no sigue una trayectoria compuesta únicamente de rotaciones.
+7923	01 · Columnas
+7924	Lee dos destinos
+7925	La primera columna da Ae₁. La segunda da Ae₂. Una matriz registra qué ocurre con las dos direcciones de la base.
+7926	02 · Combinaciones
+7927	Conserva los mismos coeficientes
+7928	Si v = x e₁ + y e₂, entonces Av = x Ae₁ + y Ae₂. Los coeficientes permanecen iguales; las imágenes de la base cambian.
+7929	03 · Espacio
+7930	Observa rectas y área
+7931	Las aplicaciones lineales mantienen fijo el origen. Una matriz singular puede colapsar el plano sobre una recta o incluso un punto.
+7953	Salida
+7954	v transformado
+7955	plano; primera dirección de la base
+7956	; segunda dirección de la base
+7958	Introduce un número finito de −3 a 3 en cada campo de la matriz y del vector de entrada. Se muestra el último dibujo válido; la comprobación de predicciones está en pausa.
+7961	Matriz personalizada: sigue las imágenes de las columnas de color para comprender el cambio.
+7966	La salida difiere de tu predicción.
+7967	Se consultó una pista.
+7968	Introdujiste
+7969	Esto es práctica, no un juicio de dominio.
+7979	02 · Durante la transición
+7981	Predice la imagen de tu vector antes de mostrarla.
+7982	aplicación seleccionada A
+7983	mezcla actual B(t)
+7984	Los puntos finales de color se pueden arrastrar para cambiar A.
+7985	Usa Vista final para editar las imágenes de las columnas.
+7986	La
+7987	lleva v a
+7989	Establece la conexión
+7990	Las columnas de A son las imágenes de e₁ y e₂. Usa los coeficientes originales x e y para combinar esas imágenes.
+7991	Los mismos coeficientes, nuevas direcciones
+7992	En este fotograma de la animación
+7993	Mezcla actual B(t) = [
+7994	]. La salida final Av será
+7995	El cuadrado unitario colapsa al origen.
+7996	El cuadrado unitario colapsa a una recta.
+7997	La aplicación invierte la orientación.
+7998	La aplicación conserva la orientación.
+7999	Cada punto del plano tiene una preimagen única.
+8000	Las salidas están en una recta; muchas entradas comparten la misma salida.
+8001	Todas las entradas se llevan a (0, 0).
+8002	Se pierde información, por lo que esta aplicación no se puede invertir.
+8003	Las imágenes de las dos direcciones de la base son independientes.
+8004	En la transformación final, dos direcciones de entrada ya no proporcionan dos direcciones de salida independientes.
+8005	Salida x =
+8006	Salida y =
+8007	Cambio de área final
+8009	; factor de escala del área =
+8010	Puntos alcanzables finales
+8013	Usa un número finito de −3 a 3. Completa los campos no válidos antes de continuar.
+8016	Introduce ambas coordenadas de salida predichas. Un espacio en blanco no es cero.
+8018	Leer Explorador de matrices
+8019	Lee la matriz seleccionada, el vector de entrada, el progreso de la animación y el estado de la predicción. No devuelve una salida oculta.
+8022	Configurar Explorador de matrices
+8023	Establece la matriz seleccionada y el vector de entrada. Reinicia la animación y cualquier predicción de práctica.
+8024	Proporciona una matriz de cuatro entradas y un vector de dos componentes con valores finitos de −3 a 3.
+8025	Estirar horizontalmente
+8026	Todas las componentes horizontales se duplican. Las componentes verticales permanecen iguales.
+8027	Girar 90° en sentido horario
+8028	Una dirección hacia la derecha gira hacia abajo. Una dirección hacia arriba gira a la derecha.
+8030	Volver a mi actividad
+8031	Empezar la comprobación inicial de 3 preguntas
+8032	Empieza aquí · Álgebra lineal
+8033	Muestra tu punto de partida. Elige tu siguiente paso.
+8034	Usa esta comprobación junto con tu lección de matrices. Tus respuestas hacen visibles partes de tu método, de modo que el informe puede sugerir qué repasar y cómo comprobarlo con otro ejemplo.
+8035	¿Por qué empezamos con unas pocas preguntas?
+8036	Muestra lo que puedes calcular y explicar. Puedes elegir «Todavía no estudiado» para un tema nuevo. El objetivo de tu lección es leer las columnas de una matriz, calcular un vector transformado y explicar los coeficientes originales.
+8037	Descubre dónde se usa el álgebra lineal
+8038	Los ejemplos de aplicación incluyen explicaciones. Si los ves antes de responder, ese contexto de aprendizaje permanece junto a tus respuestas.
+8039	Otras actividades de esta materia
+8040	Esta lección de matrices tiene 3 preguntas iniciales, 2 de práctica, 3 nuevas, una predicción durante la lección y 2 preguntas opcionales de comprobación posterior. Es una ruta, no toda la materia.
+8041	· 8 tareas iniciales, con hasta 3 seguimientos opcionales.
+8042	· 15 preguntas de entrada y 8 preguntas adicionales en comprobaciones separadas.
+8043	· 12 problemas de varios pasos.
+8044	· 2 proyectos más amplios.
+8045	· enseñanza guiada y exploratoria.
+8046	Puedes elegir la ruta que necesitas; estas actividades no son una lista obligatoria.
+8047	¿A dónde pueden llevar estos fundamentos?
+8048	Cambia una imagen
+8049	Describe cómo giran o se estiran los puntos mediante la misma operación.
+8050	Organiza ecuaciones
+8051	Reúne varias ecuaciones y cantidades desconocidas en una relación matricial.
+8052	Sigue un cálculo de IA
+8053	Observa cómo una capa combina números de entrada utilizando pesos. Las lecciones posteriores lo conectan con modelos más grandes.
+8054	La materia pasa de imágenes bidimensionales a datos de muchas dimensiones. Esta actividad comienza con una pequeña parte visible de esa materia más amplia.
+8055	¿Qué sucede en esta actividad?
+8056	Comprobación inicial
+8057	Intenta resolver tres preguntas antes de la lección guiada. Los comentarios llegan después.
+8058	Observa los cambios, detente y haz una predicción.
+8059	Usa pistas y comentarios cuando te ayuden.
+8060	Prueba preguntas diferentes sin pistas inmediatas de la tarea.
+8061	Tu informe
+8062	Elige una prioridad sugerida, observa las respuestas en que se basa y prueba la práctica propuesta. Si quieres, vuelve tras al menos un día.
+8063	¿Qué me dirá el informe?
+8064	Registra tus respuestas, modificaciones y ayudas utilizadas. «Coincidió después de una pista» y «coincidió en una tarea nueva» describen condiciones de aprendizaje diferentes. Unas pocas respuestas no pueden demostrar todo lo que sabes.
+8065	En esta versión, todas las personas usan el mismo ejemplo guiado. El informe sugiere siguientes pasos específicos a partir de tus respuestas registradas. Úsalos junto con los objetivos de la lección de tu docente y sus criterios para el trabajo de clase o los exámenes. Las ramas avanzadas de abajo son un mapa de aprendizaje; en esta versión no son lecciones seleccionadas automáticamente por IA.
+8068	: vértices del triángulo
+8070	Coordenadas originales
+8071	Coordenadas transformadas
+8073	Cambia una figura
+8075	Conecta ecuaciones
+8077	Dentro de una capa de IA
+8079	Guía de aplicaciones · explicaciones opcionales
+8080	¿Qué nos permite hacer el álgebra lineal?
+8081	Prueba un ejemplo pequeño y luego descubre a dónde lleva la misma idea. Cada ejemplo es una conexión para explorar, no otra tarea puntuada.
+8082	Volver a la introducción
+8083	Fuentes y lecturas adicionales
+8084	Estos pequeños ejemplos se escribieron para Quidence. Los enlaces de abajo explican las ideas subyacentes.
+8085	MIT OpenCourseWare: álgebra lineal, ecuaciones, mínimos cuadrados y descomposiciones
+8086	PyTorch: capa lineal ponderada con sesgo
+8087	PyTorch: la activación ReLU
+8088	Curso intensivo de aprendizaje automático de Google: espacios de embeddings
+8089	Imprimir este ejemplo y mapa
+8091	Geometría y gráficos
+8092	La misma matriz actúa sobre cada punto.
+8093	Un triángulo se describe mediante tres pares de coordenadas. Aplica una matriz a cada par para cambiar el triángulo.
+8094	Un programa de gráficos puede repetir esta operación para muchos puntos.
+8095	Estos ejemplos giran y estiran respecto del origen. Mover una figura mediante un desplazamiento fijo requiere añadir una traslación o ampliar la representación de coordenadas.
+8097	Empieza con dos recibos.
+8098	Dos cuadernos y un bolígrafo cuestan $7. Un cuaderno y dos bolígrafos cuestan $5. Queremos los dos precios unitarios.
+8099	Nombra las incógnitas.
+8100	Sea n el precio de un cuaderno y p el de un bolígrafo. Cada recibo da una ecuación.
+8101	Organiza las cantidades.
+8102	La matriz guarda las cantidades compradas. El vector desconocido guarda los precios unitarios. El vector de salida guarda los totales de los recibos.
+8103	Comprueba una solución.
+8104	Si un cuaderno cuesta $3 y un bolígrafo cuesta $1, ambos totales de los recibos coinciden. Una solución debe satisfacer ambas ecuaciones.
+8105	Lee los recibos
+8106	Nombra las incógnitas
+8107	Usa una matriz
+8108	Comprueba los precios
+8110	Una relación matricial contiene ambas ecuaciones.
+8111	La multiplicación de matrices describe ambos totales a la vez. Más adelante, los métodos para resolver sistemas ayudan a recuperar cantidades desconocidas. Con datos que contienen ruido, los mínimos cuadrados buscan el mejor ajuste.
+8112	Sistemas de ecuaciones
+8113	Dos compras, los mismos precios unitarios desconocidos
+8114	Recibo
+8115	Cuadernos
+8116	Bolígrafos
+8117	Primero
+8118	Segundo
+8119	Describe la entrada con números.
+8120	Combina la entrada utilizando pesos.
+8121	Añade un sesgo.
+8122	Aplica una activación no lineal.
+8123	Usa el pequeño vector de entrada x = (1, 2). En aplicaciones reales, las entradas pueden ser características numéricas o representaciones aprendidas.
+8124	Cada salida combina los números de entrada con pesos diferentes. Una matriz organiza esos pesos.
+8125	El sesgo desplaza el resultado intermedio. Este paso añade un vector después de la multiplicación de matrices.
+8126	ReLU conserva los valores positivos y sustituye los negativos por cero. Esta operación adicional no es una multiplicación de matrices.
+8127	Números de entrada
+8128	Matriz de pesos
+8129	Añadir sesgo
+8130	Activación
+8131	Suma ponderada Wx
+8132	Resultado desplazado Wx + b
+8133	Salida activada
+8135	Redes neuronales · un pequeño ejemplo resuelto
+8136	Los pesos y el sesgo de aquí se eligieron para que la aritmética fuera visible. La salida es un vector intermedio. No hemos entrenado un modelo ni asignado un significado a sus dos números de salida.
+8137	¿Qué significa «profundo» aquí?
+8138	Una red neuronal profunda utiliza varias capas de procesamiento. Muchas capas combinan operaciones matriciales con otras operaciones, incluidas activaciones no lineales.
+8139	Una sucesión formada solo por multiplicaciones de matrices puede combinarse en un único producto matricial. Incluso con sesgos añadidos, una secuencia de pasos puramente afines sigue siendo afín. Las operaciones no lineales permiten funciones más variadas. Comprender una pequeña suma ponderada es una primera conexión útil; no es toda la red.
+8142	Un mapa de aprendizaje, no una lista obligatoria
+8143	Empieza por algo pequeño. Descubre las ramas más amplias.
+8144	La materia es amplia y algunas ideas posteriores requieren mucha práctica. Puedes empezar con vectores y una transformación visible sin aprender todas las ramas a la vez.
+8145	Lección actual de fundamentos
+8146	Fundamentos
+8147	Coordenadas, columnas, combinaciones de vectores y una matriz 2 × 2 que actúa sobre un vector.
+8148	Pregunta: «¿Qué cambió y qué permaneció igual?»
+8149	Ejemplos de esta guía
+8150	Conexiones
+8151	Transforma una figura, combina ecuaciones y sigue el cálculo de una capa neuronal.
+8152	Pregunta: «¿Dónde aparece la misma operación?»
+8153	Direcciones de aprendizaje posteriores
+8154	Mayor profundidad
+8155	Espacios de dimensiones superiores, productos escalares, proyecciones, mínimos cuadrados, vectores propios y descomposiciones de matrices.
+8156	Pregunta: «¿Qué estructura puede revelar esta operación?»
+8157	Posibles ramas después de los fundamentos
+8158	Rama
+8159	Una pregunta que ayuda a responder
+8160	Ideas para aprender más adelante
+8161	Gráficos y geometría
+8162	¿Cómo cambian muchas coordenadas a la vez?
+8163	Composición, inversas y sistemas de coordenadas
+8164	Datos y modelado
+8165	¿Qué relación se ajusta mejor a las mediciones?
+8166	Sistemas, proyecciones y mínimos cuadrados
+8167	Representaciones de IA
+8168	¿Cómo se pueden representar y comparar numéricamente palabras u otros datos?
+8169	Vectores de muchas dimensiones, embeddings, productos escalares y similitud
+8170	Aprendizaje profundo
+8171	¿Cómo cambian las características numéricas a través de las capas de procesamiento?
+8172	Matrices de pesos, sesgos, activaciones no lineales, entrenamiento y cálculo
+8173	Los embeddings suelen tener muchas dimensiones y una dimensión no tiene por qué tener un significado sencillo y comprensible para las personas. Las dos coordenadas de nuestro dibujo son una representación inicial, no un mapa literal del espacio interno de un modelo de IA.
+8174	Los ejemplos interactivos anteriores ya están disponibles. Las ramas más profundas son un mapa para aprender en el futuro; AB01 todavía no ofrece lecciones completas ni evaluación adaptativa para ellas.
+8175	Primero los vectores. Construye la imagen antes de los símbolos.
+8176	CÁLCULO VISUAL · CUATRO IDEAS CONECTADAS
+8177	Observa el cambio.
+8178	Observa lo que se acumula.
+8179	Mueve un punto, reduce un intervalo y construye un área. Conecta cada imagen con números y una fórmula y luego prueba la idea en una situación nueva.
+8180	¿Conoces las coordenadas y la pendiente de una recta? Puedes empezar aquí.
+8181	¿Necesitas repasar funciones o trigonometría? Explora Precálculo →
+8182	cambio + acumulación
+8183	Predice. Mueve. Explica.
+8184	Guarda una primera idea. Puedes responder «No estoy seguro».
+8185	Explora cuatro pasos breves con gráficos y controles deslizantes.
+8186	Responde dos preguntas nuevas y luego revisa los comentarios.
+8187	Los gráficos tienen descripciones textuales y lecturas numéricas. Todos los controles funcionan con un teclado. Las explicaciones son opcionales y se conservan para revisión.
+8188	De valores cercanos a la acumulación.
+8189	Una primera mirada al cálculo de una variable. No hace falta registrarse. Tu progreso y tus respuestas permanecen en este navegador; expórtalos después de las cuatro lecciones.
+8190	Usa este gráfico nuevo. Guarda ambas respuestas antes de ver los comentarios.
+8191	(opcional; se guarda para revisión)
+8193	Dirección de aproximación
+8194	Desde la izquierda (h < 0)
+8195	Desde la derecha (h > 0)
+8196	Ejemplo
+8197	Un hueco: cerca de 1, f(1) = 4
+8198	Un salto en 0
+8200	Log₁₀ de la distancia |x − objetivo|
+8201	Curva
+8202	Primer punto a
+8203	Distancia |h| entre los dos valores de x
+8206	Curva y punto inicial
+8207	Curva positiva: x², empezando en 0
+8208	Ejemplo con signo: x, empezando en −2
+8209	Extremo derecho b
+8210	Número de rectángulos de igual anchura n
+8212	Tomar la muestra de cada rectángulo en
+8213	Extremo izquierdo
+8214	Punto medio
+8215	Extremo derecho
+8216	Extremo de acumulación x
+8217	Anchura |h| del nuevo intervalo
+8222	┄ Secante
+8223	— Tangente
+8224	▧ Contribución positiva
+8225	▧ Contribución negativa
+8226	El control deslizante de distancia utiliza una escala logarítmica. Cada paso cambia la distancia proporcionalmente.
+8227	n rectángulos de igual anchura; aumentar n reduce cada anchura.
+8228	Los controles deslizantes muestran pasos finitos. Un límite requiere razonar sobre pasos distintos de cero arbitrariamente pequeños.
+8229	Restablecer este gráfico
+8230	MUEVE · COMPARA · EXPLICA
+8231	Pruébalo en el gráfico.
+8232	Observa el cambio y luego pausa o usa los controles.
+8233	● Función
+8234	de 4 pasos abiertos. Tómate tiempo para comparar los gráficos.
+8235	Distancia =
+8236	· Suma de rectángulos =
+8237	· Integral con signo =
+8238	· |error| =
+8239	· Área total =
+8241	TU RESUMEN DE CUATRO LECCIONES
+8242	Las predicciones iniciales y las preguntas después de la enseñanza son observaciones separadas. Estas actividades te dan puntos de partida para practicar, no una medida completa de la comprensión del cálculo.
+8243	El historial incluye primeros intentos, modificaciones, comentarios anteriores y ayudas declaradas. Las explicaciones se guardan y no se puntúan automáticamente.
+8244	¿Reemplazar el registro ilegible de Cálculo?
+8245	Elige una respuesta o «Todavía no estoy seguro» y luego guárdala.
+8246	Las predicciones iniciales y las comprobaciones después de la enseñanza son observaciones separadas. Las explicaciones opcionales necesitan revisión humana.
+8250	Límites
+8251	¿Qué sucede cerca de un punto?
+8252	Distingue una tendencia cercana del valor en el punto.
+8253	Acércate al punto.
+8254	Un límite describe el valor al que se aproxima f(x) cuando x se acerca a un objetivo. Mueve el control deslizante de distancia hacia cero. El punto móvil se acerca al objetivo sin llegar a él.
+8255	Usa ambas direcciones de aproximación. ¿A qué valor de y se aproxima el punto móvil?
+8256	Un punto relleno responde a otra pregunta.
+8257	Aquí f(x) = (x² − 1)/(x − 1) = x + 1 cuando x ≠ 1, y f(1) se define por separado como 4. Las salidas cercanas se aproximan a 2. El punto relleno en (1, 4) da el valor de la función; el círculo abierto en (1, 2) marca el punto que falta en la recta.
+8258	Compara el valor cercano de y con f(1). No tienen por qué coincidir.
+8259	Comprueba ambos lados.
+8260	Un límite bilateral debe coincidir desde la izquierda y desde la derecha. Cambia al ejemplo del salto: en x = 0, las salidas se aproximan a −1 desde la izquierda y a 1 desde la derecha. Como esos valores difieren, no hay límite bilateral allí.
+8261	Elige el ejemplo del salto y luego cambia la dirección de aproximación.
+8262	Conecta la imagen con la notación.
+8263	Para el ejemplo del hueco, limₓ→₁ f(x) = 2, aunque f(1) = 4. Un gráfico y una lista finita de valores cercanos sugieren un patrón. La expresión x + 1 justifica el límite exacto; un control deslizante por sí solo no es una demostración.
+8264	Vuelve al ejemplo del hueco y usa la distancia más pequeña. Explica la distinción en una frase.
+8266	El círculo abierto está en (1, 2) y el punto relleno en (1, 4). Cuando x se aproxima a 1 por ambos lados, ¿a qué se aproxima f(x)?
+8267	No hay límite bilateral
+8268	La recta cercana se aproxima a y = 2 por ambos lados. En cambio, el punto relleno indica f(1) = 4.
+8270	En este nuevo gráfico, el círculo abierto está en (2, 4) y f(2) = 1. ¿Qué afirmación es correcta?
+8272	El límite en 2 es 4, mientras que f(2) = 1.
+8274	El límite en 2 es 1, mientras que f(2) = 4.
+8275	El límite no puede existir porque hay un círculo abierto.
+8276	Para x ≠ 2, este gráfico sigue x + 2. Las salidas cercanas se aproximan a 4, mientras que el punto relleno separado da f(2) = 1.
+8278	En x = 0, este gráfico se aproxima a 0 desde la izquierda y a 3 desde la derecha. ¿Cuál es el límite bilateral?
+8279	No existe.
+8280	Los límites laterales son diferentes: 0 y 3. Ni el valor en el punto ni su promedio crean un límite bilateral.
+8281	Describe por separado el límite por la izquierda, el límite por la derecha y el valor de la función en un nuevo gráfico.
+8283	Derivadas
+8284	¿A qué velocidad cambia justo aquí?
+8285	Conecta la pendiente secante, la pendiente tangente y el cambio instantáneo.
+8286	Empieza con dos puntos.
+8287	Una recta secante une P = (a, f(a)) y Q = (a + h, f(a + h)). Su pendiente es Δy/Δx = [f(a + h) − f(a)]/h. Este es el cambio promedio por unidad de x en ese intervalo.
+8288	Mueve a y luego cambia la distancia |h|. Observa el triángulo y la pendiente secante.
+8289	Acerca el segundo punto.
+8290	Cuando h se aproxima a cero por ambos lados y las pendientes se aproximan a un solo valor, ese límite es f′(a), la derivada en a. Para f(x) = x², la pendiente secante es 2a + h, por lo que la pendiente tangente es exactamente 2a.
+8291	Mantén a fijo. Reduce |h| y compara las pendientes secante y tangente.
+8292	Lee el signo, no solo la inclinación.
+8293	Una derivada positiva significa que la función crece localmente; una derivada negativa significa que decrece localmente. Para x² en a = −1, f′(a) = −2. El valor de la función es 1, pero la pendiente es −2. Una tangente horizontal tiene pendiente cero.
+8294	Compara a = −1, 0 y 1. Si quieres, muestra el gráfico de la derivada f′(x) = 2x.
+8295	Un punto anguloso puede impedir que exista el límite.
+8296	Cambia a |x| y establece a = 0. Las secantes desde la izquierda tienen pendiente −1; desde la derecha, pendiente 1. No hay una única derivada en el punto anguloso. La continuidad por sí sola no garantiza una derivada.
+8297	Compara ambas direcciones en el punto anguloso. No se dibuja una tangente cuando la derivada no está definida.
+8299	El gráfico f(x) = x² decrece al pasar por x = −1. ¿Qué signo tiene allí la pendiente tangente?
+8300	Cero
+8301	La tangente desciende de izquierda a derecha. Su pendiente es f′(−1) = 2(−1) = −2, aunque f(−1) = 1.
+8303	Una tangente a f(x) = x³ en x = −1 sube 3 unidades por un avance horizontal de 1 unidad. ¿Cuánto vale f′(−1)?
+8305	La derivada es la pendiente tangente, 3/1 = 3. El valor de la función f(−1) = −1 responde a otra pregunta. El álgebra confirma f′(x) = 3x².
+8307	Para f(x) = |x| en x = 0, las pendientes se aproximan a −1 desde la izquierda y a 1 desde la derecha. ¿Existe f′(0)?
+8308	No: los dos límites de las pendientes difieren.
+8309	Sí: es su promedio, 0.
+8310	Sí: la pendiente por la derecha es 1.
+8311	La derivada requiere el mismo límite finito de las pendientes por ambos lados. En el punto anguloso de |x|, esos límites difieren, por lo que f′(0) no existe.
+8312	Dibuja dónde una curva tiene derivada positiva, negativa, cero o no definida y luego explica tus elecciones.
+8314	Integrales
+8315	¿En qué se acumulan los pequeños cambios?
+8316	Conecta las sumas de rectángulos con una integral definida y distingue la acumulación con signo del área total.
+8317	Un rectángulo, una pequeña contribución.
+8318	Un rectángulo usa una altura de muestra f(xᵢ) y una anchura Δx. Su producto estima la contribución en ese pequeño intervalo. Si el gráfico representa velocidad en metros por segundo y x es tiempo en segundos, el rectángulo tiene unidades de metros.
+8319	Elige la curva positiva y usa un número pequeño de rectángulos.
+8320	Suma las partes.
+8321	La suma Σ f(xᵢ)Δx estima la integral definida. Las reglas izquierda, derecha y del punto medio usan diferentes puntos de muestra. Cuando todas las anchuras se aproximan a cero, estas sumas convergen para las curvas continuas de aquí. Una partición más fina no tiene por qué reducir todos los posibles errores de aproximación en cada paso.
+8322	Cambia la regla de muestreo y luego aumenta n. Compara cada suma con la integral exacta.
+8323	Debajo del eje, las contribuciones son negativas.
+8324	La integral definida suma contribuciones con signo. Para f(x) = x en [−2, 2], las partes negativa y positiva se cancelan y dan 0. El área geométrica total es 4. Con velocidad, la integral es el desplazamiento; integrar el valor absoluto da la distancia recorrida.
+8325	Elige el ejemplo con signo. Compara la integral con signo con el área total.
+8326	Un límite da la acumulación exacta.
+8327	La integral ∫ₐᵇ f(x) dx es aquí el límite de las sumas de rectángulos. Para x² de 0 a 2, el valor exacto es 8/3. Más rectángulos ilustran la convergencia; la fórmula exacta procede de las matemáticas, no de una imagen finita.
+8328	Prueba las tres reglas de muestreo con n = 64. ¿Qué diferencias permanecen?
+8330	Para f(x) = x en [−2, 2], hay regiones de igual tamaño debajo y encima del eje. ¿Cuál es la integral con signo?
+8332	La contribución negativa es −2 y la positiva es 2. La integral con signo es 0; el área total es 4.
+8334	Una velocidad constante es 3 m/s desde t = 0 hasta t = 4 s. ¿Qué desplazamiento representa el área?
+8335	Altura × anchura = (3 m/s)(4 s) = 12 m. Una integral definida de la velocidad da el desplazamiento con signo.
+8337	La velocidad v(t) = t − 2 en [0, 4] tiene una contribución negativa de −2 m y una positiva de 2 m. ¿Qué par es correcto?
+8339	Desplazamiento: 0 m; distancia recorrida: 4 m.
+8341	Desplazamiento: 4 m; distancia recorrida: 0 m.
+8343	Ambos son 0 m.
+8344	El desplazamiento suma −2 + 2 = 0 m. La distancia suma sus magnitudes, 2 + 2 = 4 m.
+8345	Explica qué significan la altura, la anchura, el producto y el signo antes de calcular una integral.
+8347	La conexión
+8348	Observa cómo la acumulación se convierte en una curva nueva.
+8349	Descubre por qué la pendiente de una función de acumulación es igual a la función continua original.
+8350	Deja que se mueva el extremo.
+8351	Define A(x) = ∫₀ˣ f(t) dt. Ahora cada extremo x da un valor acumulado con signo. El primer gráfico muestra f(t) = t² − 1. El segundo muestra A(x) = x³/3 − x. Para x negativo, la integral invierte la orientación de 0 a x.
+8352	Mueve x. Compara la contribución sombreada del primer gráfico con A(x) del segundo.
+8353	Una franja delgada cambia la acumulación.
+8354	Cuando x cambia en un pequeño h, el cambio A(x + h) − A(x) es la contribución con signo del nuevo intervalo. Dividir entre h da el valor promedio de f en ese intervalo orientado.
+8355	Mantén x fijo y reduce |h|. Compara ΔA/h con f(x).
+8356	La pendiente coincide con la altura original.
+8357	El teorema fundamental del cálculo dice que A′(x) = f(x) donde f es continua. En x = 0, f(x) = −1, por lo que A decrece allí. En x = ±1, f(x) = 0, por lo que A tiene una tangente horizontal. Encima del eje, f hace que A crezca.
+8358	Mueve x por −1, 0 y 1. Relaciona la altura de f con la pendiente de A.
+8359	Dos perspectivas de la misma relación.
+8360	Las derivadas describen el cambio local; las integrales describen la acumulación con signo. Si F′ = f y f es continua en [a, b], entonces ∫ₐᵇ f(x) dx = F(b) − F(a). Cambiar el punto inicial de la acumulación añade una constante y no cambia su derivada.
+8361	Explica por qué A puede decrecer incluso cuando su valor es positivo.
+8363	A(x) = ∫₀ˣ f(t) dt, con f continua. En un punto donde f(x) = −1, ¿qué ocurre localmente con A?
+8364	A decrece; su pendiente es −1.
+8366	A crece; las integrales siempre crecen.
+8367	A debe tener valor cero.
+8368	A′(x) = f(x) = −1. Esto fija la pendiente de A en el punto, no el valor de A.
+8370	B(x) = ∫₁ˣ 2t dt = x² − 1. En x = 1.5, ¿cuál es la pendiente tangente B′(1.5)?
+8371	B′(x) = 2x, por lo que B′(1.5) = 3. El valor B(1.5) = 1.25 es la acumulación, no la pendiente.
+8373	Para A(x) = ∫₀ˣ (t² − 1) dt, ¿en qué intervalo abierto decrece A?
+8374	En todo el intervalo de −2 a 2
+8375	A′(x) = x² − 1 es negativa exactamente cuando −1 < x < 1. El signo de A por sí mismo no determina si A crece o decrece.
+8376	Usa el signo de f para predecir dónde su función de acumulación sube, baja y tiene tangentes horizontales.
+8378	Termina las cuatro lecciones antes de exportar el informe completo.
+8379	Las predicciones iniciales y las comprobaciones después de la enseñanza son observaciones separadas. Las modificaciones y las ayudas permanecen en el historial. Las explicaciones opcionales necesitan revisión humana. No se realizan inferencias validadas de dominio, comportamiento, esfuerzo ni uso de IA.
+8393	Punto móvil: x =
+8394	; límite por la derecha:
+8395	Un hueco y un valor de la función separado
+8396	Límites diferentes en un salto
+8399	No hay derivada en este punto anguloso.
+8400	Pendiente tangente
+8401	). Pendiente secante
+8402	· secante y tangente
+8404	La derivada f′(x) = 2x
+8405	La derivada de |x| fuera de 0
+8406	f′(x) = −1 para x < 0 y 1 para x > 0; f′(0) no está definida.
+8407	no definida en 0
+8408	· aproximación con rectángulos
+8409	rectángulos dan
+8410	Tasa original f(t) = t² − 1
+8411	El extremo es negativo, por lo que integrar de 0 a x invierte la orientación.
+8412	Acumulación orientada de 0 a
+8413	altura f(x)
+8415	Acumulación A(x) = x³/3 − x
+8416	Una tendencia cercana y un punto separado
+8417	Para x ≠ 1, el gráfico sigue x + 1. El círculo abierto es (1, 2); el punto relleno es (1, 4).
+8418	(1, 2) abierto
+8419	(1, 4) relleno
+8420	Un nuevo ejemplo de hueco
+8421	Para x ≠ 2, f(x) = x + 2. Círculo abierto (2, 4); punto relleno (2, 1).
+8422	(2, 4) abierto
+8423	(2, 1) relleno
+8424	Un nuevo ejemplo de salto
+8425	f(x) = 0 para x < 0; f(x) = 3 para x ≥ 0. Círculo abierto (0, 0); punto relleno (0, 3).
+8426	relleno
+8427	f(x) = x² cerca de x = −1
+8428	En (−1, 1), la curva desciende de izquierda a derecha; la recta verde es su tangente.
+8429	Una tangente a x³
+8430	P = (−1, −1). En su tangente, un avance horizontal de 1 llega a (0, 2), una subida de 3.
+8431	avance horizontal 1
+8432	subida 3
+8433	Un punto anguloso en x = 0
+8434	f(x) = |x| es continua en 0. Pendiente por la izquierda: −1; pendiente por la derecha: 1.
+8435	punto anguloso
+8436	Regiones iguales a lados opuestos del eje
+8437	f(x) = x en [−2, 2]. Una región triangular está debajo del eje y otra de igual tamaño está encima.
+8438	Velocidad constante
+8439	v(t) = 3 m/s en [0, 4 s]. El rectángulo sombreado tiene altura 3 y anchura 4.
+8440	La velocidad cambia de signo
+8441	v(t) = t − 2 m/s de 0 a 4 s. Las contribuciones con signo son −2 m y +2 m.
+8442	La acumulación B(x) = ∫₁ˣ 2t dt. El punto destacado es (1.5, 1.25).
+8443	Tasa original f(x) = x² − 1
+8444	La tasa continua es cero en −1 y 1, está debajo del eje entre ellos y encima fuera de ellos. f(0) = −1.
+8445	Activa JavaScript para usar las lecciones y los gráficos interactivos.
+8446	Observa el cambio. Construye la comprensión.
+8447	Se requiere un paso distinto de cero.
+8448	Configuración de rectángulos no válida.
+8449	Cada punto es una observación. Los valores repetidos se apilan verticalmente.
+8451	Datos y distribuciones
+8452	¿Qué muestra una distribución?
+8453	Identifica la variable, sus unidades y el patrón de las observaciones.
+8455	Datos ilustrativos
+8457	Un grupo central
+8459	Una cola larga a la derecha
+8461	Dos grupos
+8462	Añadir minutos a cada observación
+8463	Empieza por lo que se midió.
+8464	Una observación es un caso registrado. Una variable es lo que cambia entre casos. Los minutos de espera son cuantitativos; una categoría de medio de transporte es categórica. Un diagrama de puntos tiene sentido para los tiempos de espera medidos, con el eje horizontal en minutos.
+8465	Lee el eje horizontal y cuenta las observaciones antes de describir un patrón.
+8466	La frecuencia es una cantidad, no un valor medido.
+8467	Cada punto representa una observación. Tres puntos encima de 3 significan tres observaciones iguales a 3 minutos. El apilamiento vertical registra la frecuencia; no significa que el tiempo de espera sea 3 unidades mayor.
+8468	Selecciona un grupo central. ¿Qué valor aparece con mayor frecuencia?
+8469	Describe más que un centro.
+8470	Compara forma, centro, dispersión y valores inusuales. Una cola a la derecha se extiende hacia mediciones mayores. Dos grupos pueden sugerir conjuntos que vale la pena investigar; la imagen por sí sola no explica por qué se formaron.
+8471	Cambia entre los tres ejemplos. Describe la cola o los grupos sin inventar su causa.
+8472	Mantén visible la escala de medición.
+8473	Sumar el mismo número a cada observación desplaza la ubicación, pero conserva todas las distancias entre pares. Las alturas de los puntos cuentan repeticiones; ni la posición horizontal ni la altura de los puntos es una probabilidad si no se proporciona un denominador.
+8474	Desplaza los datos en 2. Explica qué cambia y qué permanece igual.
+8475	Estos son tiempos de espera en minutos. ¿Qué significan los tres puntos encima de 3?
+8476	Tres observaciones duraron 3 minutos cada una.
+8477	Una observación duró 9 minutos.
+8478	El tiempo de espera es la altura vertical del punto.
+8479	La posición horizontal da el tiempo medido; el apilamiento muestra cuántos casos tienen ese valor.
+8480	¿Cuántas observaciones son de como máximo 2 minutos?
+8481	Hay un punto en 1 y dos puntos en 2: tres observaciones en total.
+8482	¿Qué descripción corresponde a estas observaciones?
+8483	Un grupo central con una cola hacia valores mayores.
+8484	Un patrón simétrico alrededor de 4.
+8485	El tiempo más largo demuestra que alguien fue descuidado.
+8486	La mayoría de los tiempos están entre 2 y 5; los valores mayores extienden la cola derecha. El diagrama no demuestra una causa.
+8487	Compara dos distribuciones nuevas según su forma, centro, dispersión y unidades de medición.
+8489	Centro y dispersión
+8490	¿Qué resumen conserva la información importante?
+8491	Compara media, mediana y dispersión, incluida su sensibilidad a una observación grande.
+8493	Observación mayor (minutos)
+8494	La media reparte el total por igual.
+8495	La media es la suma dividida entre el número de observaciones. Para 1, 2, 2, 3, 12, el total es 20 en cinco casos, por lo que la media es 4. Una media no tiene por qué ser un valor observado.
+8496	Mueve la observación mayor. Observa tanto el total como la media.
+8497	La mediana utiliza la posición en los datos ordenados.
+8498	La mediana es la observación central de los datos ordenados, o el promedio de las dos centrales cuando la cantidad es par. En 1, 2, 2, 3, 12, la mediana es 2. Un máximo mayor puede elevar la media mientras el valor central permanece igual.
+8499	Explica por qué mover solo la mayor de estas nueve observaciones deja la mediana en 4.
+8500	Un centro no muestra toda la variación.
+8501	El rango es el máximo menos el mínimo. Dos conjuntos de datos pueden compartir una media o mediana, pero tener distintas dispersiones. La desviación estándar mide la dispersión alrededor de la media; sus fórmulas muestral y poblacional utilizan divisores diferentes. No la calculamos en estas lecciones.
+8502	Compara las observaciones menor y mayor y luego calcula el rango.
+8503	Elige un resumen adecuado para la pregunta.
+8504	Un centro resistente, como la mediana, puede describir un caso típico cuando hay una cola larga. La media sigue siendo útil para totales y promedios de todos los casos. Ninguna elección permite eliminar una observación inconveniente sin investigarla.
+8505	Describe una situación en la que la media y la mediana respondan a preguntas diferentes.
+8506	Para estos cinco valores, ¿qué par es correcto?
+8507	Media = 4; mediana = 2.
+8508	Media = 2; mediana = 2.
+8510	Media = 2; mediana = 4.
+8511	El total es 20, por lo que la media es 4. El valor central ordenado es 2.
+8512	Para 2, 4, 4, 6, ¿cuál es la mediana?
+8513	Hay cuatro valores, por lo que se promedian los dos centrales: (4 + 4)/2 = 4.
+8514	Sustituye 9 por 29 en este conjunto de datos. ¿Qué sucede?
+8515	La media y el rango aumentan; la mediana permanece en 4.
+8516	Todos los resúmenes aumentan en 20.
+8517	Solo aumenta la mediana.
+8518	Solo uno de los cinco valores aumenta en 20, por lo que la media aumenta en 4. El rango aumenta en 20. El valor central permanece en 4.
+8519	Encuentra dos conjuntos de datos con el mismo centro, pero distinta dispersión, y justifica qué resúmenes presentar.
+8521	Muestreo y causalidad
+8522	¿A quién se incluyó y qué se asignó?
+8523	Distingue la selección aleatoria, la asignación aleatoria y las afirmaciones causales sin fundamento.
+8524	Método de selección
+8525	Voluntarios contactados en una residencia estudiantil
+8526	Selección aleatoria de entre todos los estudiantes
+8528	Diseño del estudio
+8530	Observar hábitos de estudio existentes
+8531	Asignar aleatoriamente un método de estudio
+8532	Nombra la población objetivo.
+8533	Una muestra es el grupo medido; una población es el grupo que queremos describir. Una encuesta de voluntarios en una residencia puede excluir a quienes viajan al campus y a quienes no participan. Una muestra mayor no corrige por sí sola un marco de muestreo incompleto ni el sesgo de falta de respuesta.
+8534	Compara la población del campus con el grupo seleccionado ilustrativo. ¿Quién podría faltar?
+8535	La selección aleatoria se relaciona con la generalización.
+8536	La selección aleatoria de una lista adecuada de la población da a cada caso una probabilidad conocida de inclusión. Permite estimar características de la población, considerando todavía la incertidumbre del muestreo y la posible falta de respuesta. Una muestra que parece equilibrada no demuestra selección aleatoria; una muestra aleatoria no tiene por qué estar exactamente equilibrada.
+8537	Cambia el método de selección. Lee el método, no solo las alturas de las dos barras.
+8538	La asignación aleatoria se relaciona con la causalidad.
+8539	La asignación aleatoria determina quién recibe cada tratamiento. En un experimento bien realizado, ayuda a equilibrar factores de confusión y permite una comparación causal. No hace que los voluntarios sean representativos de todos los estudiantes. La selección aleatoria y la asignación aleatoria cumplen funciones diferentes.
+8540	Mantén la selección de voluntarios y cambia a asignación aleatoria. ¿Qué afirmación mejora y qué limitación permanece?
+8541	Una asociación requiere una afirmación cuidadosa.
+8542	Los estudiantes que eligen estudiar más horas también pueden diferir en preparación o motivación. Una relación entre horas y puntuaciones no aísla un efecto causal. La descripción de un estudio debe respaldar tanto la población prevista como la causa propuesta.
+8543	Explica por qué observar una diferencia no es lo mismo que asignar un tratamiento.
+8544	Una universidad pregunta solo a voluntarios de una residencia sobre el transporte al campus. ¿Puede esto describir de forma fiable a todos los estudiantes?
+8546	La selección puede excluir a quienes viajan al campus y a quienes no se ofrecen como voluntarios.
+8547	Sí, si responden al menos 100 personas.
+8549	Sí, ofrecerse como voluntario crea un experimento aleatorizado.
+8550	Los voluntarios de una residencia pueden diferir sistemáticamente de toda la población del campus. El tamaño de la muestra por sí solo no elimina el sesgo de selección.
+8551	Población del campus
+8552	Una población de ejemplo de 100 estudiantes; la encuesta se ofrece solo en una residencia.
+8553	Una escuela selecciona aleatoriamente una muestra de estudiantes y luego observa sus horas de sueño y puntuaciones existentes. ¿Qué se puede justificar?
+8555	Se pueden respaldar estimaciones de la población, pero las horas de sueño no se asignaron aleatoriamente.
+8556	La selección aleatoria demuestra que el sueño causa la diferencia de puntuaciones.
+8557	El muestreo aleatorio no aporta información útil.
+8558	El muestreo aleatorio se relaciona con la población. Esta comparación observacional todavía puede verse afectada por factores de confusión.
+8559	Selección
+8560	Tratamiento
+8561	Muestra aleatoria de la escuela
+8562	Hábitos de sueño existentes observados
+8563	No se asignó ningún horario de sueño.
+8564	Se asigna aleatoriamente a voluntarios a dos métodos de enseñanza. ¿Qué afirmación es la más cuidadosa?
+8565	Un ensayo bien realizado puede respaldar una comparación causal para sus participantes; generalizar a otros grupos requiere cuidado.
+8568	Esto es puramente observacional porque los participantes se ofrecieron como voluntarios.
+8569	Los métodos se asignaron aleatoriamente, mientras que la muestra participante sigue siendo voluntaria.
+8570	Reclutamiento
+8571	Asignación de método
+8572	Voluntarios
+8573	Asignación aleatoria a A o B
+8574	El reclutamiento y la asignación de tratamiento son pasos separados.
+8575	Para un estudio nuevo, nombra la población, el método de selección, la asignación de tratamiento y los posibles factores de confusión.
+8577	Probabilidad y condiciones
+8578	¿Qué grupo corresponde al denominador?
+8579	Distingue una intersección de una probabilidad condicional mediante una tabla de doble entrada.
+8581	Miembros del club que aprobaron
+8583	Grupo de referencia
+8584	Los 100 estudiantes
+8585	Solo los 20 miembros del club
+8586	Empieza con un experimento definido.
+8587	En este ejemplo, se selecciona uniformemente al azar un estudiante de los 100 enumerados. Todos tienen la misma probabilidad. Aquí es apropiado contar casos favorables y dividir entre casos totales; no se puede suponer que los resultados sean equiprobables en todos los experimentos.
+8588	Cuenta todos los estudiantes y luego quienes tanto se unieron al club como aprobaron.
+8589	Una intersección conserva el conjunto total original.
+8590	P(club y aprobar) utiliza los 100 estudiantes como denominador. Con 12 estudiantes en la intersección, es 12/100 = 0.12. La palabra «y» pide la superposición, no sumar las cantidades de los dos sucesos.
+8591	Mantén el grupo de referencia en todos los estudiantes y mueve el control de superposición.
+8592	Una condición cambia el grupo de referencia.
+8593	P(aprobar dado club) considera solo a los 20 miembros del club. Con 12 que aprobaron, es 12/20 = 0.60. El numerador puede permanecer igual mientras cambia el denominador. Las probabilidades condicionales en direcciones opuestas generalmente difieren.
+8594	Cambia el grupo de referencia a miembros del club y explica el denominador.
+8595	La independencia es una comparación.
+8596	Para sucesos cuya condición tiene probabilidad distinta de cero, la independencia significa P(aprobar dado club) = P(aprobar). Aquí aprobaron 30 de 100 estudiantes. Cuando aprueban 6 de los 20 miembros del club, ambas probabilidades son 0.30. Entonces, pertenecer al club y aprobar son independientes en esta tabla de ejemplo; esto no es una afirmación causal.
+8597	Establece la superposición en 6 y compara las probabilidades de aprobar condicional y general.
+8598	Se selecciona uniformemente al azar uno de estos 40 estudiantes. ¿Cuánto vale P(aprobar dado club)?
+8599	La condición limita el grupo de referencia a los 10 miembros del club. Seis de esos 10 aprobaron.
+8600	Las filas y columnas dividen a los mismos 40 estudiantes en celdas que no se superponen.
+8601	Se selecciona uniformemente al azar uno de estos 50 estudiantes. ¿Cuánto vale P(club y aprobar)?
+8602	Ocho estudiantes cumplen ambos sucesos; el grupo de referencia son los 50 estudiantes.
+8603	Una nueva tabla de 50 estudiantes.
+8604	En esta tabla, ¿son independientes aprobar y pertenecer al club?
+8605	Sí: P(aprobar dado club) = P(aprobar) = 1/2.
+8606	No: los sucesos no pueden superponerse si son independientes.
+8607	Sí: el club hizo que aprobara la mitad de sus miembros.
+8608	Entre los miembros del club aprobaron 5/10; en general aprobaron 20/40. Las probabilidades coinciden. La independencia permite la superposición y no implica causalidad.
+8609	Una nueva tabla de 40 estudiantes.
+8610	Usa una nueva tabla de doble entrada para comparar la probabilidad conjunta, las dos direcciones condicionales y la independencia.
+8612	FUNDAMENTOS DE ESTADÍSTICA · DATOS, DISEÑO E INCERTIDUMBRE
+8613	Lee los datos. Comprueba la afirmación.
+8614	Explora patrones, compara resúmenes y pregunta qué grupo describe una afirmación. Explica tus elecciones antes y después de cada lección.
+8615	¿Te sientes cómodo con fracciones y porcentajes? Puedes empezar aquí.
+8616	Temas seleccionados de estadística y probabilidad introductorias; los procedimientos de inferencia vienen después.
+8617	Comprobar fundamentos de estadística · 15 preguntas →
+8618	← Elige una materia ↗
+8619	Explora. Explica. Conecta.
+8621	Funciones y dominios
+8622	¿Qué entradas se permiten?
+8623	Interpreta una función como una regla de entrada y salida y conserva las restricciones del dominio.
+8624	Familia de funciones
+8625	Desplazamiento k
+8626	Una entrada tiene una salida.
+8627	Una función asigna exactamente una salida a cada entrada de su dominio. La misma salida puede proceder de varias entradas: x² da 4 tanto para 2 como para −2. Sigue siendo una función. Un gráfico con dos valores diferentes de y en un mismo x no es una función de x.
+8628	Elige una entrada y describe su salida, incluido el caso en que no está definida.
+8629	Las restricciones proceden de la regla.
+8630	Para salidas reales, √(x − k) requiere x − k ≥ 0, por lo que x ≥ k. En cambio, el recíproco 1/(x − k) requiere x ≠ k. El límite del dominio de una raíz cuadrada puede incluirse; un denominador cero se excluye.
+8631	Establece k = 1 y compara las dos reglas en x = 1 y x = 0.
+8632	La composición tiene un orden.
+8633	Si f(x) = 2x + 1 y g(x) = x², f(g(2)) = f(4) = 9, mientras que g(f(2)) = g(5) = 25. La regla interior actúa primero. Su salida debe ser una entrada permitida para la regla exterior.
+8634	Explica la diferencia entre las dos composiciones utilizando el valor intermedio.
+8635	Una inversa necesita recuperar la entrada de forma única.
+8636	Una función inversa recupera la entrada original. La función x² con todas las entradas reales no es inyectiva, por lo que no tiene función inversa en ese dominio. Restringir x a x ≥ 0 permite la inversa √x. Mantén visibles las restricciones al invertir o simplificar una regla.
+8637	Explica por qué una salida de 4 no identifica una entrada única para x² sin restricciones.
+8638	Para f(x) = √(x − 2) con valores reales, ¿qué entradas se permiten?
+8639	El radicando debe ser no negativo. x = 2 da √0 = 0, por lo que se incluye el límite del dominio.
+8640	Para f(x) = 1/(x + 3), ¿qué entrada se excluye?
+8641	No se excluye ninguna entrada.
+8642	En x = −3, el denominador es cero. Se permiten todas las demás entradas reales.
+8643	Sean f(x) = 3x − 1 y g(x) = x². ¿Cuánto vale f(g(2))?
+8644	Primero g(2) = 4 y luego f(4) = 12 − 1 = 11. Invertir el orden daría 25.
+8645	Regla
+8646	Aplica primero la función interior.
+8647	Comprueba los dominios de nuevas reglas radicales y racionales y luego sigue el valor intermedio de una composición.
+8649	Gráficos y transformaciones
+8650	¿Qué se mueve y qué cambia de forma?
+8651	Conecta f(x − h) y las transformaciones verticales con las características de un gráfico.
+8652	Multiplicador vertical a
+8653	−2: reflejar y estirar
+8654	−1: reflejar
+8655	1: escala original
+8656	2: estirar
+8657	Desplazamiento horizontal h
+8658	Desplazamiento vertical k
+8659	Usa una función base conocida.
+8660	La función base f(x) = x² tiene vértice (0, 0), es simétrica respecto de x = 0 y crece al alejarse de su mínimo. Relacionar una fórmula con estas características informa más que dibujar unos pocos puntos sin conexión.
+8661	Establece a = 1, h = 0, k = 0. Localiza el vértice de la función base.
+8662	Un cambio horizontal está dentro de la regla.
+8663	Para y = (x − h)², la entrada que se eleva al cuadrado es cero en x = h. Un h positivo desplaza el vértice a la derecha. El signo menos se explica resolviendo x − h = 0; no es una regla que se deba adivinar solo a partir del signo.
+8664	Mueve h a 2 y explica por qué el vértice está en x = 2.
+8665	Los cambios verticales están fuera.
+8666	Para y = a(x − h)² + k, k sube o baja todas las salidas. La magnitud |a| estira o comprime las distancias verticales respecto de y = k; un a negativo refleja el gráfico respecto de esa recta horizontal. El vértice permanece en (h, k) cuando a ≠ 0.
+8667	Mantén h y k fijos mientras cambias a de 1 a −2.
+8668	Las características ayudan a resolver ecuaciones e inecuaciones.
+8669	Los ceros aparecen donde y = 0. Para (x − 1)² − 4, el vértice es (1, −4) y los ceros son x = −1 y x = 3. Entre ellos, el gráfico está debajo del eje. Un gráfico sugiere estas características; la sustitución y el álgebra comprueban los valores exactos.
+8670	Establece h = 1 y k = −3. Predice la dirección del cambio antes de volver a mover k.
+8671	¿Cuál es el vértice de y = (x − 2)² + 1?
+8672	La parte elevada al cuadrado es mínima en x = 2, donde y = 1.
+8673	Comparado con y = x², ¿qué sucede en y = −2(x + 1)² + 3?
+8674	1 a la izquierda, 3 hacia arriba, reflejado y estirado verticalmente por un factor de 2.
+8675	1 a la derecha, 3 hacia arriba, sin reflexión.
+8676	1 a la izquierda, 3 hacia abajo y comprimido por un factor de 2.
+8677	x + 1 = x − (−1), por lo que h = −1. El +3 exterior desplaza hacia arriba; a = −2 refleja y estira.
+8678	¿Cuáles son los ceros de y = (x − 1)² − 9?
+8679	−2 y 4
+8680	1 y −9
+8681	−3 y 3
+8682	Establece (x − 1)² = 9. Entonces x − 1 = ±3, por lo que x = −2 o 4.
+8683	Describe una nueva función transformada mediante su vértice, eje, intersecciones y entradas permitidas.
+8685	Círculo unitario y trigonometría
+8686	¿Cómo se convierte un ángulo en una coordenada?
+8687	Conecta radianes, coordenadas del círculo unitario y periodicidad del seno y el coseno.
+8688	Ángulo θ (grados; sentido antihorario)
+8689	Los radianes miden la razón entre arco y radio.
+8690	Un radián es la longitud de arco dividida entre el radio. Un círculo completo es 2π radianes o 360°. Por tanto, 180° = π radianes y 90° = π/2. En cálculo, las fórmulas de derivación del seno y el coseno utilizan entradas en radianes.
+8691	Mueve a 90° y lee las medidas en grados y radianes.
+8692	Las coordenadas definen el seno y el coseno.
+8693	En el círculo unitario, el punto de ángulo θ es (cos θ, sin θ). El coseno es la coordenada horizontal; el seno es la vertical. En 90°, el punto es (0, 1). Un ángulo positivo gira en sentido antihorario desde el semieje x positivo.
+8694	Mueve a 180° y luego a 270°. Nombra las coordenadas horizontal y vertical.
+8695	Los cuadrantes determinan los signos.
+8696	En el cuadrante II, x es negativa e y es positiva, por lo que el coseno es negativo y el seno positivo. El radio permanece en 1, lo que da cos²θ + sin²θ = 1. Una coordenada negativa es una dirección, no un radio negativo.
+8697	Mueve a 120°. Explica ambos signos a partir de la posición del punto.
+8698	Una vuelta completa repite las coordenadas.
+8699	El seno y el coseno tienen período 2π radianes. En θ y θ + 2π, el punto del círculo unitario es el mismo. Dibujar la coordenada vertical frente al ángulo crea la curva del seno. La amplitud, el período y los desplazamientos pueden modelar después fenómenos repetitivos.
+8700	Compara 0° y 360°. Explica por qué dan el mismo seno y coseno.
+8701	En θ = 90° = π/2, ¿cuánto vale (cos θ, sin θ)?
+8702	El punto está en la parte superior del círculo unitario: coordenada horizontal 0 y vertical 1.
+8703	En θ = 180° = π, ¿qué par es correcto?
+8704	cos θ = −1; sin θ = 0.
+8705	cos θ = 0; sin θ = −1.
+8706	cos θ = 1; sin θ = 0.
+8707	El punto es (−1, 0), a la izquierda del círculo unitario.
+8708	¿Cómo se compara sin(θ + 2π) con sin θ?
+8709	Son iguales para todo θ real.
+8710	Siempre tienen signos opuestos.
+8711	Aumenta en 2π.
+8712	Añadir una vuelta completa devuelve la misma coordenada vertical. La periodicidad cambia la entrada sin sumar nada a la salida.
+8713	Convierte grados a radianes, predice los signos de los cuadrantes y explica un modelo periódico desplazado o estirado.
+8715	Exponenciales y logaritmos
+8716	¿El cambio es aditivo o multiplicativo?
+8717	Modela el crecimiento en intervalos de tiempo iguales con un factor y usa logaritmos para invertir la exponenciación.
+8718	Cantidad inicial A
+8719	Factor por unidad de tiempo r
+8720	0.5: reducir a la mitad
+8721	1.5: crecer un 50%
+8722	2: duplicar
+8723	Tiempo transcurrido t
+8724	Las diferencias iguales sugieren una regla lineal.
+8725	La secuencia 20, 30, 40 suma 10 cada vez. Una regla lineal es 20 + 10t. La secuencia 20, 40, 80 multiplica por 2 cada vez. Una regla exponencial es 20 × 2ᵗ. Compara diferencias y razones antes de elegir un modelo.
+8726	Compara la curva exponencial con la recta que coincide con su cantidad inicial y primer paso de tiempo.
+8727	Un cambio porcentual es un factor.
+8728	Crecer un 50% por unidad de tiempo multiplica por 1 + 0.50 = 1.5. Decrecer un 50% multiplica por 0.5. En y = Arᵗ, A es la cantidad en t = 0 y r es el factor de una unidad de tiempo; no es la cantidad añadida.
+8729	Establece r = 1.5 y compara t = 0, 1 y 2.
+8730	Un logaritmo pregunta por un exponente.
+8731	logᵣ(y/A) da el tiempo t en y = Arᵗ, para r > 0 y r ≠ 1 e y/A > 0. Para 20 × 2ᵗ = 160, necesitamos 2ᵗ = 8, por lo que t = log₂8 = 3. Los logaritmos invierten la exponenciación, no la multiplicación.
+8732	Establece A = 20 y r = 2. Encuentra el tiempo en que la cantidad es 160.
+8733	El cambio promedio prepara para el cálculo.
+8734	En [u, v], la tasa promedio es [f(v) − f(u)]/(v − u), con unidades de salida por unidad de tiempo. Para 20 × 2ᵗ en [0, 2], es (80 − 20)/2 = 30. Una tasa promedio cambiante motiva la pregunta sobre la tasa local en Cálculo visual; todavía no es una derivada.
+8735	Compara el cambio en la primera unidad con el cambio promedio en dos unidades.
+8736	La cantidad es 10, 20, 40 en los tiempos 0, 1, 2. ¿Qué regla coincide?
+8737	Las razones son ambas 2, por lo que la cantidad se duplica cada vez. La alternativa lineal da 30 en t = 2.
+8738	Tiempo t
+8739	Los tiempos están igualmente espaciados.
+8740	Una cantidad empieza en 40 y disminuye un 25% por hora. ¿Qué regla da la cantidad después de t horas?
+8743	Cada hora conserva el 75% de la cantidad anterior, por lo que el factor es 0.75.
+8744	Resuelve 3 × 2ᵗ = 24. ¿Cuánto vale t?
+8745	Divide entre 3 para obtener 2ᵗ = 8. Como 2³ = 8, t = log₂8 = 3.
+8746	Elige modelos lineales o exponenciales a partir de tablas nuevas, comprueba las unidades e invierte una regla de crecimiento con un logaritmo.
+8748	PRECÁLCULO · UN PUENTE HACIA EL CÁLCULO VISUAL
+8749	Conoce la función. Lee el gráfico.
+8750	Conecta reglas, entradas, gráficos, ángulos y crecimiento. Desarrolla los hábitos que usarás al estudiar cambio y acumulación.
+8751	¿Te sientes cómodo con ecuaciones y gráficos de coordenadas? Empieza aquí.
+8752	Fundamentos seleccionados de precálculo; otros temas de álgebra, identidades, cónicas, sucesiones y modelado completa vienen después.
+8753	¿Listo para explorar el cambio? Continúa a Cálculo visual →
+8218	limₓ→₁ f(x) = 2, mientras que f(1) = 4
+7597	>Usé otra ayuda para esta tarea. Esto se registra como contexto.
+7617	>Mostrar pista
+7619	>Suma (1, 1) y otro (1, 1). Suma por separado las partes horizontales y las verticales.
+8205	> Mostrar también el gráfico de la derivada

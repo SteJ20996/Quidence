@@ -1,0 +1,1089 @@
+1003	Tarea desconocida
+1005	Completa todas las
+1006	lecciones antes de exportar el informe completo.
+1007	Las predicciones iniciales y las comprobaciones después de la enseñanza son observaciones separadas. Las revisiones y la ayuda quedan en el historial. Las explicaciones requeridas necesitan revisión humana; las respuestas de opción fija por sí solas no demuestran comprensión. No se realizan inferencias validadas sobre dominio, conducta, esfuerzo ni uso de IA.
+1019	Cada punto representa una observación; el eje horizontal indica el tiempo de espera en minutos.
+1022	Tiempo de espera (minutos)
+1023	Los puntos apilados cuentan las observaciones
+1029	Diagrama de puntos de los tiempos de espera
+1030	minutos.
+1031	Valores:
+1049	tiempo t
+1050	; la línea verde azulada tiene el mismo valor inicial y el mismo cambio durante la primera unidad.
+1051	Morado: exponencial. Verde azulado: recta que coincide en el primer paso.
+1052	Lee la entrada horizontal y la salida vertical. La ventana de visualización puede ocultar partes lejanas de la curva.
+1057	cos θ =
+1058	sin θ =
+1059	(cos θ, sin θ)
+1060	Un punto en la circunferencia unitaria
+1061	Ángulo
+1062	grados; coordenada horizontal
+1063	; coordenada vertical
+1064	Ángulo en sentido antihorario
+1065	π radianes. Coordenadas (
+1066	). Se muestran valores redondeados.
+1069	Seno en función del ángulo
+1070	Un período completo de 0 a 360 grados, o de 0 a 2π radianes.
+1071	La altura del punto de la circunferencia se convierte en sin θ en esta gráfica del ángulo. Un período completo es 2π radianes.
+1073	Grupo
+1074	Población (100)
+1075	Muestra ilustrativa (10)
+1076	Estudiantes que viven en residencias universitarias
+1077	Estudiantes que viven fuera del campus
+1078	Recuentos ilustrativos, no una selección aleatoria simulada. Las muestras aleatorias pueden estar desequilibradas; el método de selección aporta la evidencia sobre el diseño.
+1084	· Mínimo =
+1085	· Máximo =
+1086	· Desplazamiento =
+1087	Posición horizontal = valor medido; puntos apilados = frecuencia.
+1088	Estos conjuntos de datos son ilustrativos. Su forma no establece su causa.
+1089	n = 9 · Total =
+1090	· Media =
+1091	· Mediana =
+1092	· Rango =
+1093	Media = total / n; mediana = valor central de los datos ordenados; rango = máximo − mínimo.
+1094	Solo cambia la observación más grande. La observación central de los datos ordenados sigue siendo 4.
+1096	selección aleatoria entre todos los estudiantes
+1097	voluntarios de las residencias universitarias
+1099	método asignado aleatoriamente
+1100	hábitos existentes observados
+1101	Selección:
+1102	· Diseño:
+1103	La selección aleatoria se refiere a la población de interés. La asignación aleatoria se refiere a la comparación de tratamientos.
+1104	Un ensayo aleatorizado bien realizado puede respaldar una comparación causal para los participantes. La forma de reclutarlos sigue limitando la generalización.
+1105	Los hábitos existentes pueden estar afectados por variables de confusión. El muestreo aleatorio por sí solo no aísla un efecto causal.
+1106	Aprobó
+1107	No aprobó
+1108	Total
+1109	Club
+1110	Sin club
+1111	Selecciona un estudiante del grupo de referencia indicado, con la misma probabilidad para cada estudiante.
+1113	20 miembros del club
+1114	los 100 estudiantes
+1115	Grupo de referencia:
+1116	· Fracción pertinente =
+1117	· P(aprobar) global = 0.3
+1118	P(aprobar | club) = intersección / total del club
+1119	P(aprobar y club) = intersección / todos los estudiantes
+1120	Compara P(aprobar | club) con P(aprobar) para comprobar la independencia. Ninguna de estas probabilidades establece causalidad.
+1121	· Dominio real:
+1122	Las entradas para las que la función no está definida no tienen salida graficada. Las ramas de la función recíproca no se conectan a través de la entrada excluida.
+1123	hacia abajo
+1124	Vértice = (
+1125	) · Eje de simetría x =
+1126	· Se abre
+1127	· Escala vertical |a| =
+1128	Un valor positivo de h mueve el vértice hacia la derecha. Todos los ajustes de este laboratorio tienen un multiplicador distinto de cero.
+1129	π radianes · cos θ =
+1130	· sin θ =
+1131	Punto de la circunferencia unitaria = (cos θ, sin θ); cos²θ + sin²θ = 1.
+1132	Los decimales mostrados están redondeados. Una vuelta completa suma 2π a la entrada en radianes y repite ambas coordenadas.
+1133	· Cantidad exponencial =
+1134	· Recta que coincide =
+1135	· Cambio en la primera unidad =
+1136	ᵗ; t = log en base
+1137	La recta comparte el valor inicial y el primer paso de tiempo. Sus valores posteriores no necesariamente coinciden con el modelo multiplicativo.
+1158	Discontinua:
+1159	Continua:
+1160	Los valores describen este ejemplo. Explica cómo la imagen respalda tu respuesta.
+1166	Inicio:
+1167	· Cambio:
+1168	· Final:
+1169	Cambio con signo en una recta numérica
+1170	Empieza en
+1171	; suma
+1172	; termina en
+1173	Inicio
+1174	· Cambio
+1175	· Final
+1180	de un entero
+1181	Partes iguales de un entero
+1182	partes sombreadas de
+1183	partes iguales.
+1184	Fracción =
+1185	· Decimal =
+1186	Una fracción compara una cantidad de partes iguales con las partes de un entero.
+1187	Precio unitario constante
+1188	Artículos
+1189	Costo total ($)
+1190	Sin cargo fijo. El costo por artículo se mantiene constante.
+1191	Precio unitario = $
+1192	· Cinco artículos cuestan $
+1193	Costo =
+1194	× número de artículos
+1195	Evalúa la misma expresión
+1196	Sustituye cada entrada antes de calcular. Puede haber filas repetidas cuando coincide una entrada.
+1197	Mantén una ecuación equilibrada
+1198	Operación
+1199	Ecuación equivalente
+1200	Restar 3
+1201	Dividir entre 2
+1202	Aplica la misma operación reversible a ambos lados.
+1203	Solución x =
+1204	· Sustitución:
+1205	Una regla lineal
+1206	Pendiente =
+1207	· Intersección con el eje y =
+1208	Cuando la entrada cambia en 1, la salida cambia en
+1209	Dos reglas lineales simultáneas
+1210	Intersección = (
+1211	Una expresión cuadrática factorizada
+1212	Ceros: x = 1 y x =
+1213	Un producto es cero cuando al menos uno de sus factores es cero.
+1214	Ángulos adyacentes que forman una línea recta
+1215	Un ángulo mide
+1216	grados. Su ángulo adyacente mide
+1217	grados.
+1220	Ángulos adyacentes:
+1221	° y
+1222	Los ángulos que forman una línea recta suman 180°.
+1223	Triángulo rectángulo con catetos perpendiculares
+1224	Catetos
+1225	y 4; hipotenusa
+1230	Para un triángulo rectángulo, a² + b² = c²; c está frente al ángulo recto.
+1231	Rectángulos semejantes
+1232	Medida
+1233	Original
+1234	A escala
+1235	Ancho
+1236	Altura
+1237	Perímetro
+1238	Área
+1239	Todas las longitudes correspondientes se multiplican por el mismo factor de escala positivo.
+1240	Factor de escala
+1241	· Factor del perímetro
+1242	· Factor del área
+1243	Las longitudes se multiplican por k; las áreas se multiplican por k².
+1244	Medición de un rectángulo
+1245	unidades y altura de 3 unidades. Área
+1246	unidades cuadradas; perímetro
+1247	unidades.
+1252	unidades
+1253	unidades cuadradas · Perímetro
+1254	A = ancho × altura; P = 2(ancho + altura).
+1255	Un polinomio cúbico con tres factores
+1256	Ceros: −1, 1,
+1257	Cada factor lineal distinto aporta un cero; las salidas lejanas pueden quedar fuera de la ventana.
+1258	Expresión racional original
+1259	Entrada
+1260	No definida
+1261	Regla simplificada: x +
+1262	, para x ≠
+1263	Cambio porcentual repetido
+1264	Tiempo (períodos)
+1265	Cantidad
+1266	Factor
+1267	Cantidad después de t períodos = 100 ×
+1268	Potencias y preguntas inversas
+1269	Exponente x
+1270	Lee una potencia de izquierda a derecha; un logaritmo pregunta por el exponente a partir de una salida positiva.
+1271	log en base
+1272	Modelo de curso desconocido:
+3233	Energía y cantidad de movimiento
+3234	¿Qué se conserva en una colisión?
+3235	Elige un sistema y distingue la cantidad de movimiento de la energía cinética.
+3237	Masa del carrito A (kg)
+3239	Velocidad del carrito A hacia el este (m/s)
+3241	Masa del carrito B (kg)
+3243	Velocidad con signo del carrito B (m/s)
+3244	Empieza por el sistema completo.
+3245	Los dos carritos se enganchan. Durante esta breve colisión, el impulso externo horizontal neto es despreciable. Toma el este como sentido positivo; suma las cantidades de movimiento con su signo.
+3246	Si el carrito B está en reposo, ¿aporta una cantidad de movimiento igual a cero aunque tenga masa?
+3247	Mantén A en 2 kg y +3 m/s. Compara un B en reposo de 1 kg con uno de 3 kg.
+3248	¿Qué cantidad inicial permanece fija y por qué cambia la rapidez de los carritos unidos?
+3249	Comprueba la energía cinética por separado.
+3250	La cantidad de movimiento p=mv y la energía cinética K=mv²/2 son cantidades distintas. El signo de la velocidad afecta a la cantidad de movimiento; elevarla al cuadrado elimina ese signo en K.
+3251	¿Qué ocurre cuando dos masas iguales llegan con +3 y −3 m/s y se enganchan?
+3252	Fija ambas masas en 2 kg y usa esas velocidades. Compara la energía inicial con la final.
+3253	Explica por qué la energía inicial no es cero aunque la cantidad de movimiento total y la velocidad final sean cero.
+3254	Usa un balance de energía.
+3255	La energía cinética puede convertirse en energía interna al engancharse los carritos. Incluir esa transferencia mantiene el balance de energía; no significa que se conserve la energía cinética.
+3256	¿Puedes elegir ajustes en los que no disminuya la energía cinética?
+3257	Da a ambos carritos la misma velocidad; después cambia solo la velocidad de B.
+3258	¿Por qué importa su movimiento relativo? Describe los límites de un modelo ideal de enganche.
+3259	Construye un contraejemplo de una regla sencilla.
+3260	Tener la misma cantidad de movimiento total no implica tener la misma energía cinética ni la misma velocidad final cuando la masa total es distinta.
+3261	¿Pueden dos configuraciones tener la misma cantidad de movimiento inicial, pero distintas velocidades después de unirse?
+3262	Usa A con 2 kg y +3 m/s y B en reposo con 1 kg; luego usa B con 4 kg.
+3263	Muestra las dos comprobaciones de la cantidad de movimiento y explica qué información adicional no proporciona un valor de cantidad de movimiento.
+3264	Mantén fijos los ajustes de A; cambia solo la masa del carrito en reposo.
+3265	Un carrito de 1 kg a +4 m/s se engancha con uno de 3 kg en reposo. El impulso externo horizontal es despreciable. ¿Cuál es su velocidad?
+3266	La cantidad de movimiento total es 4 kg·m/s y la masa total es 4 kg, por lo que vf=+1 m/s.
+3267	Dos carritos iguales de 2 kg que se mueven a +2 y −2 m/s se enganchan. ¿Qué par indica la cantidad de movimiento y la energía cinética finales?
+3268	0 kg·m/s y 0 J
+3269	0 kg·m/s y 8 J
+3270	8 kg·m/s y 0 J
+3271	Las cantidades de movimiento con signo se cancelan. La velocidad de los carritos unidos es cero. La energía cinética inicial K=8 J se transfiere a otras formas; no se destruye.
+3272	Un objeto ideal de 1 kg pierde 20 J de energía potencial gravitatoria mientras 5 J se convierten en energía térmica. Partió del reposo. ¿Cuál es su energía cinética final?
+3273	El balance del modelo es 20=K+5, por lo que K=15 J. Define un sistema que incluya la transferencia térmica.
+3274	Dibuja el límite de un sistema y después comprueba la cantidad de movimiento y la energía con ecuaciones separadas.
+3275	Rotación
+3276	El mismo empuje puede hacer girar las cosas de maneras distintas.
+3277	Relaciona el brazo de palanca, el momento de inercia, el momento de fuerza y el momento angular.
+3278	Fuerza perpendicular (N)
+3279	Radio (m)
+3280	Masa puntual (kg)
+3281	Rapidez angular (rad/s)
+3282	Identifica el eje y el brazo de palanca.
+3283	Para una fuerza perpendicular, la magnitud del momento de fuerza es τ=rF. Aplicar el mismo empuje más lejos del eje cambia el momento de fuerza.
+3284	Con la fuerza fija, ¿qué ocurre con el momento de fuerza cuando el radio se duplica?
+3285	Compara r=0.4 m y 0.8 m con F=4 N.
+3286	Explica por qué la fuerza por sí sola no describe un efecto de giro.
+3287	La distribución de masa también cambia.
+3288	Una masa puntual ideal sobre un soporte sin masa tiene I=mr². Cambiar el radio cambia tanto el momento de fuerza como el momento de inercia.
+3289	Cuando el radio se duplica con la masa y la fuerza fijas, ¿se duplica la aceleración angular?
+3290	Compara r=0.4 y 0.8 m y usa α=τ/I.
+3291	Explica por qué un mayor momento de fuerza puede ir acompañado de una menor aceleración angular.
+3292	La rapidez y la aceleración son distintas.
+3293	El momento angular es L=Iω en este modelo de eje fijo. Un momento de fuerza especificado da la aceleración angular, no una rapidez angular inicial.
+3294	Si solo cambias ω de 1 a 3 rad/s, ¿qué cantidades calculadas cambian?
+3295	Mantén fijos la masa, el radio y la fuerza; compara los ajustes.
+3296	Distingue el momento angular, el momento de fuerza y la aceleración angular en tu explicación.
+3297	Pregunta qué requiere la conservación.
+3298	Sin momento de fuerza externo, se conserva el momento angular. Si la masa se mueve hacia el eje, I puede disminuir mientras ω aumenta. El control de fuerza aplicada no representa ese experimento sin momento de fuerza externo.
+3299	Un sistema separado sin momento de fuerza externo reduce I a la mitad. ¿Cómo debe cambiar ω para mantener L fijo?
+3300	Comprueba L numéricamente en papel. Usa el control para comparar I en dos radios sin considerar que la fuerza aplicada sea cero.
+3301	Explica por qué «menor momento de inercia significa menor momento angular» necesita una condición sobre la rapidez angular.
+3302	Usa I₁ω₁=I₂ω₂, no α=τ/I, para la afirmación de conservación del sistema separado.
+3303	Una fuerza perpendicular de 6 N actúa a 0.5 m de un eje. ¿Cuál es la magnitud del momento de fuerza?
+3304	τ=rF=0.5×6=3 N·m. Este cálculo usa una fuerza perpendicular.
+3305	Una masa puntual mantiene la misma masa mientras su radio se duplica. ¿Cómo cambia I=mr²?
+3306	Se hace cuatro veces mayor.
+3307	Se hace dos veces mayor.
+3308	Permanece igual.
+3309	El radio está elevado al cuadrado, por lo que I cambia por un factor de 2²=4.
+3310	Con momento de fuerza externo igual a cero, un sistema cambia I de 4 a 2 kg·m². La ω inicial es 3 rad/s. ¿Cuál es la ω final?
+3311	6 rad/s
+3312	1.5 rad/s
+3313	3 rad/s
+3314	Conserva Iω: 4×3=2ωf, por lo tanto ωf=6 rad/s.
+3315	Compara los cambios en el momento de fuerza, el momento de inercia y el momento angular; indica qué condición mantienes fija.
+3316	Oscilaciones
+3317	Una oscilación más amplia no necesariamente tarda más.
+3318	Comprueba el período y la energía en un modelo ideal de resorte lineal.
+3320	Constante del resorte (N/m)
+3322	Amplitud (m)
+3323	Lee un ciclo en una gráfica de tiempo.
+3324	La curva de desplazamiento se repite después del período T. La amplitud mide el desplazamiento máximo; no es el tiempo transcurrido.
+3325	Si la amplitud se duplica, ¿estarán los máximos más separados en el tiempo?
+3326	Compara A=0.2 y 0.4 m con la misma masa y constante del resorte.
+3327	Señala un período horizontal y una amplitud vertical.
+3328	Cambia una causa a la vez.
+3329	Para una masa sobre un resorte horizontal ideal, T=2π√(m/k). No se modela amortiguamiento.
+3330	¿Cómo cambia T si la masa pasa de 1 a 4 kg con k fijo?
+3331	Mantén k=8 N/m y compara esas masas.
+3332	¿Por qué el factor de cambio del período es 2 en lugar de 4?
+3333	La energía tiene una dependencia distinta.
+3334	Si se suelta desde el reposo en x=A, la energía mecánica total es E=kA²/2. En el equilibrio, la energía es cinética aunque el desplazamiento sea cero.
+3335	¿Qué ocurre con la energía total cuando A se duplica?
+3336	Compara las amplitudes 0.2 y 0.4 m con k fijo.
+3337	Explica por qué un desplazamiento cero no necesariamente significa energía cero ni rapidez cero.
+3338	Construye períodos iguales con energías distintas.
+3339	Masas y constantes del resorte distintas pueden tener la misma razón m/k. Períodos iguales no implican osciladores idénticos.
+3340	¿Puedes encontrar dos sistemas con el mismo T, pero distinto E?
+3341	Usa (m,k)=(1,4) y (2,8), ambos con A=0.3 m.
+3342	¿Qué razón permanece fija y qué cantidad de energía cambia? ¿Qué medirías para distinguir los sistemas?
+3343	En un oscilador de resorte ideal, la amplitud se duplica mientras m y k permanecen fijos. ¿Qué ocurre con el período?
+3344	Se duplica.
+3345	Se reduce a la mitad.
+3346	T=2π√(m/k) no tiene un término de amplitud para un resorte lineal ideal.
+3347	La masa aumenta por un factor de 4 mientras k permanece fijo. ¿Qué ocurre con T?
+3348	Se cuadruplica.
+3349	T es proporcional a √m, por lo que √4=2.
+3350	En el equilibrio, un oscilador de resorte sin fricción tiene desplazamiento cero. ¿Qué ocurre con su energía mecánica?
+3351	Es cinética en ese instante.
+3352	Ha desaparecido.
+3353	Toda debe ser energía potencial gravitatoria.
+3354	La energía potencial del resorte respecto al equilibrio es cero, pero la rapidez y la energía cinética son máximas.
+3355	Usa una nueva gráfica para distinguir el período, la amplitud, la rapidez y la energía mecánica.
+3356	Fluidos
+3357	La profundidad del agua y la flotación son preguntas diferentes.
+3358	Usa la presión y el volumen desplazado sin confundirlos con el peso del objeto.
+3360	Densidad del líquido (kg/m³)
+3362	Profundidad (m)
+3364	Volumen desplazado al sumergirse por completo (L)
+3365	Compara la presión a dos profundidades.
+3366	En un líquido uniforme en reposo, la presión manométrica es ρgh. Se omite la presión atmosférica; g=10 m/s².
+3367	Con la misma densidad, ¿qué ocurre con la presión manométrica cuando la profundidad se duplica?
+3368	Compara h=0.6 y 1.2 m.
+3369	Explica por qué la presión manométrica no es la misma cantidad que la fuerza total sobre un objeto.
+3370	Determina la cantidad de líquido desplazado.
+3371	Un volumen V completamente sumergido experimenta una fuerza de flotación Fb=ρgV. Convierte los litros a metros cúbicos.
+3372	¿Desplazarán 2 L el doble de líquido que 1 L en este modelo?
+3373	Compara la lectura de la fuerza de flotación para ambos volúmenes.
+3374	Muestra la conversión de litros e identifica qué masa de líquido interviene.
+3375	Separa la profundidad de la fuerza de flotación.
+3376	Para un objeto rígido completamente sumergido en un líquido de densidad uniforme, aumentar la profundidad eleva la presión, pero no cambia el volumen desplazado.
+3377	¿Mover el mismo objeto al doble de profundidad duplica su fuerza de flotación?
+3378	Mantén fijos la densidad y el volumen y compara dos profundidades.
+3379	Explica cómo aumenta la presión mientras la fuerza de flotación permanece igual. ¿Qué supuesto importa?
+3380	Comprueba el equilibrio de un objeto flotante.
+3381	Un objeto que flota en reposo desplaza suficiente líquido para que Fb sea igual a su peso. El control de inmersión completa representa un caso separado.
+3382	Un objeto de 1 kg flota en agua de 1000 kg/m³. ¿Qué volumen desplazado se requiere?
+3383	Calcula en papel con g=10 y después compara el ajuste de fuerza de flotación para 1 L.
+3384	¿Por qué esto no significa que todo objeto de 1 L flote? ¿Qué información adicional sobre el objeto se necesita?
+3385	Iguala ρgV=mg y despeja V=m/ρ.
+3386	Con densidad del líquido fija, la presión manométrica a 2 m, comparada con la de 1 m, es:
+3387	El doble.
+3388	El cuádruple.
+3389	La misma.
+3390	ρgh es proporcional a la profundidad cuando la densidad es constante.
+3391	Un objeto completamente sumergido desplaza 0.003 m³ de agua con ρ=1000 kg/m³ y g=10 m/s². ¿Cuál es la fuerza de flotación?
+3392	Un objeto rígido completamente sumergido se mueve a mayor profundidad en un líquido uniforme e incompresible. Su volumen permanece fijo. ¿Qué ocurre con Fb?
+3393	Se duplica al doble de profundidad.
+3394	Se hace cero.
+3395	Fb=ρgV no tiene un término de profundidad bajo las condiciones indicadas.
+3396	Dibuja el peso y la fuerza de flotación por separado; después indica si el objeto flota o está completamente sumergido.
+3397	Calor y procesos térmicos
+3398	Más caliente no significa más energía.
+3399	Distingue la temperatura, la transferencia de calor y un balance de energía.
+3400	Masa de la muestra (kg)
+3402	Calor específico (J/kg·K)
+3403	Aumento de temperatura (K)
+3404	Compara cambios de temperatura iguales.
+3405	Para una muestra con calor específico constante y sin cambio de fase, Q=mcΔT. La temperatura por sí sola no es la energía interna total.
+3406	¿Necesitan las muestras de 1 kg y 2 kg la misma cantidad de calor para el mismo aumento de temperatura?
+3407	Mantén fijos c y ΔT; compara ambas masas.
+3408	Usa una ecuación para distinguir la temperatura, una propiedad intensiva, de una cantidad de calor transferido.
+3409	Comprueba la unidad y la diferencia.
+3410	Una diferencia de temperatura de 10°C equivale a 10 K. Las temperaturas absolutas difieren: T(K)=T(°C)+273.15.
+3411	¿Puedes introducir 20°C directamente en una fórmula que requiere temperatura absoluta?
+3412	Usa la temperatura final del modelo para calcular su valor en kelvin en papel.
+3413	Explica por qué cambiar la escala de temperatura no cambia el proceso físico de calentamiento.
+3414	Compara los materiales en las mismas condiciones.
+3415	Un c mayor requiere más calor para la misma masa y el mismo aumento de temperatura. La misma potencia del calentador no garantiza la misma temperatura final.
+3416	Con el mismo calor de entrada y la misma masa, ¿qué material tiene el mayor ΔT: c=1000 o c=2000?
+3417	Primero compara un mismo ΔT en el control; después despeja ΔT=Q/(mc) para un mismo Q en papel.
+3418	¿Por qué las comparaciones con ΔT igual y con Q igual responden preguntas diferentes?
+3419	Incluye el trabajo cuando sea necesario.
+3420	Nuestro control del calentador supone que no hay trabajo. En un sistema separado, ΔU=Q−Wout, donde Wout es el trabajo realizado por el sistema.
+3421	Si un gas absorbe 100 J y realiza 40 J de trabajo, ¿cuánto aumenta su energía interna?
+3422	Calcula el balance en papel; compáralo con el caso sin trabajo.
+3423	Explica por qué «todo el calor que entra eleva la temperatura» necesita supuestos sobre el trabajo y los cambios de fase.
+3424	Con c y ΔT fijos, ¿cómo cambia Q al duplicar la masa de la muestra?
+3425	Q=mcΔT es directamente proporcional a la masa.
+3426	Una muestra de 1 kg con c=2000 J/kg·K se calienta 5 K sin cambio de fase. ¿Cuánto calor entra?
+3427	Un sistema absorbe 80 J de calor y realiza 30 J de trabajo. Con ΔU=Q−Wout, ¿cuál es ΔU?
+3428	ΔU=80−30=+50 J; se debe indicar la convención de signos.
+3429	Compara los cambios de temperatura solo después de comprobar la masa, el material, el trabajo y los cambios de fase.
+3430	Campos eléctricos
+3431	El campo existe antes de que llegue la carga de prueba.
+3432	Distingue el campo eléctrico, el potencial eléctrico y la fuerza sobre una carga.
+3433	Carga de prueba (μC)
+3434	Distancia a la derecha de la carga fuente (m)
+3435	Separa la carga fuente de la carga de prueba.
+3436	La carga fuente está fija en +2 μC. En un punto a su derecha, el campo eléctrico apunta hacia la derecha. La fuerza es F=qE.
+3437	Si la carga de prueba cambia de signo, ¿se invierte el campo de la carga fuente fija?
+3438	Compara las cargas de prueba +2 y −2 μC en la misma posición.
+3439	Identifica qué dirección cambia y qué propiedad pertenece a la carga fuente.
+3440	Comprueba cómo cambia con la distancia.
+3441	Para esta carga fuente puntual, E=kQ/r² y V=kQ/r, con referencia en el infinito. k=9×10⁹ en unidades del SI.
+3442	Cuando r se duplica, ¿se reducen a la mitad tanto el campo como el potencial?
+3443	Compara r=0.4 y 0.8 m.
+3444	Usa dos razones para explicar las diferentes dependencias de la distancia.
+3445	Usa con cuidado una carga de prueba igual a cero.
+3446	Con q=0, la fuerza sobre la carga de prueba es cero, aunque el campo y el potencial de la carga fuente en ese punto siguen existiendo.
+3447	¿Puede una fuerza cero sobre una partícula de prueba sin carga demostrar que el campo eléctrico es cero?
+3448	Fija q=0 y compara las tres lecturas.
+3449	¿Qué información adicional sobre la carga de prueba se necesita antes de interpretar una fuerza cero?
+3450	Relaciona el potencial con la energía.
+3451	La energía potencial de una pequeña carga de prueba es U=qV. Acercar una carga de prueba positiva aumenta U; una carga de prueba negativa tiene un cambio de energía potencial de signo opuesto.
+3452	¿Cuál es ΔU para una carga de prueba de +1 μC que pasa de V=100 V a V=300 V?
+3453	Calcula en papel convirtiendo μC a C; después analiza una carga de prueba de −1 μC.
+3454	Separa el cambio de potencial del cambio de energía potencial; este último depende de la carga de prueba.
+3455	Una carga de prueba negativa se coloca a la derecha de una carga fuente positiva. ¿En qué dirección actúa su fuerza eléctrica?
+3456	Hacia la carga fuente.
+3457	Alejándose de la carga fuente.
+3458	Siempre es cero.
+3459	El campo apunta alejándose de la carga fuente positiva; una carga de prueba negativa experimenta una fuerza opuesta al campo.
+3460	La distancia a una carga puntual fija se duplica. ¿Qué ocurre con E?
+3461	Se reduce a la cuarta parte.
+3462	Se reduce a la mitad.
+3463	E∝1/r², por lo que el factor es 1/2².
+3464	Una carga de prueba de +2 μC está a un potencial eléctrico de +50 V respecto a la referencia elegida. ¿Cuánto vale qV?
+3465	Indica por separado la dirección del campo, el signo de la carga de prueba y el potencial de referencia antes de calcular la energía o la fuerza.
+3466	Circuitos
+3467	La conexión cambia la corriente.
+3468	Compara los circuitos en serie y en paralelo mediante la corriente, el voltaje y la potencia.
+3471	Voltaje de la fuente (V)
+3472	Resistencia R1 (Ω)
+3473	Resistencia R2 (Ω)
+3475	Conexión
+3476	En serie
+3477	En paralelo
+3478	Sigue el recorrido de la corriente.
+3479	Los resistores en serie comparten un único recorrido de corriente. Las ramas en paralelo tienen el mismo voltaje de la fuente. Se suponen cables ideales y una fuente de voltaje ideal.
+3480	Con R1=R2=6 Ω y 6 V, ¿qué conexión extrae más corriente de la fuente?
+3481	Compara la conexión en serie y en paralelo con esos ajustes.
+3482	Usa una resistencia equivalente e identifica dónde se divide la corriente.
+3483	Comprueba cada rama.
+3484	En paralelo, Ii=V/Ri. La corriente de la fuente es la suma de las corrientes de las ramas, no necesariamente la corriente de una de ellas.
+3485	Con R1=4 Ω y R2=8 Ω, ¿qué rama en paralelo tiene mayor corriente?
+3486	Compara ambas corrientes de rama y súmalas por separado.
+3487	¿Un voltaje igual requiere una corriente igual? Indica la condición que falta.
+3488	Compara la potencia con una fuente fija.
+3489	La potencia eléctrica total es P=VI. Una resistencia equivalente menor extrae más corriente de esta fuente ideal de voltaje constante.
+3490	¿Agregar una rama en paralelo reduce la potencia total extraída?
+3491	Compara en papel la carga original de un solo resistor de 6 Ω con dos cargas de 6 Ω en paralelo a 6 V.
+3492	Explica por qué la respuesta necesitaría nuevos supuestos si la fuente no pudiera mantener su voltaje.
+3493	Distingue la corriente del transferencia de carga.
+3494	La corriente estacionaria no desaparece dentro de un resistor. Se transfiere energía eléctrica mientras la carga sigue circulando por el circuito.
+3495	En serie, ¿puede un resistor consumir la mitad de la corriente antes de que llegue al siguiente resistor?
+3496	Compara las dos lecturas de corriente en serie con resistencias distintas.
+3497	Describe qué se transfiere y qué se conserva; usa P=VI para la transferencia de energía.
+3498	Dos resistores de 3 Ω están en serie conectados a una fuente ideal de 6 V. ¿Cuál es la corriente de la fuente?
+3499	Req=3+3=6 Ω, por lo que I=6/6=1 A.
+3500	Una rama de 6 Ω se conecta a una fuente de 12 V en paralelo con otra rama. ¿Cuál es su propia corriente?
+3501	No se puede calcular sin la otra resistencia.
+3502	El voltaje de la rama es 12 V; su corriente es 12/6=2 A bajo el supuesto de una fuente ideal.
+3503	En un circuito en serie en régimen estacionario, la corriente antes y después de un resistor es:
+3504	Menor después del resistor.
+3505	Cero después del resistor.
+3506	La carga no se acumula continuamente dentro del resistor; la corriente es estacionaria en todo el recorrido único.
+3507	Marca los nodos y recorridos; después comprueba la corriente de cada rama y la potencia total con sus unidades.
+3508	Magnetismo e inducción
+3509	Una fuerza magnética puede cambiar la dirección del movimiento sin aumentar la rapidez.
+3510	Separa la fuerza magnética, el flujo magnético y el cambio de flujo.
+3511	Carga positiva (μC)
+3512	Rapidez perpendicular a B (m/s)
+3513	Magnitud del campo magnético (T)
+3514	Área de la espira del modelo separado (m²)
+3515	Comprueba primero la geometría.
+3516	Una carga positiva se mueve hacia la derecha en un campo que entra en la pantalla. La fuerza magnética apunta hacia arriba. Para un movimiento perpendicular, F=qvB.
+3517	Si la rapidez se duplica mientras q y B permanecen fijos, ¿cómo cambia la magnitud de la fuerza?
+3518	Compara las rapideces de 2 y 4 m/s.
+3519	Describe tanto una relación de magnitudes como la dirección de la fuerza.
+3520	La dirección de la fuerza importa para el trabajo.
+3521	La fuerza magnética sobre una carga puntual ideal es perpendicular a la velocidad. Cambia su dirección, pero por sí sola no realiza trabajo.
+3522	¿Una fuerza magnética distinta de cero aumenta necesariamente la energía cinética?
+3523	Dibuja las direcciones de la velocidad y de la fuerza. Compara esto con una fuerza eléctrica paralela a la velocidad.
+3524	Explica por qué «existe una fuerza» no basta para decidir si aumenta la rapidez.
+3525	Describe el flujo a través de una superficie.
+3526	Para un campo uniforme perpendicular a la espira, |Φ|=BA. El modelo de la espira es independiente del de la carga en movimiento.
+3527	¿Puede obtenerse el mismo flujo con dos pares distintos de campo y área?
+3528	Compara B=0.2 T,A=0.08 m² con B=0.4 T,A=0.04 m².
+3529	Indica por qué el mismo flujo no implica la misma intensidad del campo.
+3530	La inducción requiere un cambio.
+3531	Un flujo constante distinto de cero no produce por sí solo una fuerza electromotriz inducida. Para una sola espira, |emf|=|ΔΦ|/Δt para el cambio promedio indicado.
+3532	¿Qué produce una mayor fuerza electromotriz promedio: un cambio de 0.02 Wb en 1 s o en 2 s?
+3533	Calcula ambos casos en papel. Un ajuste estático del control deslizante da el flujo, no su evolución temporal.
+3534	¿Qué información sobre el tiempo falta si alguien afirma inferir la fuerza electromotriz a partir de un solo valor de flujo?
+3535	La velocidad de una carga positiva es perpendicular a B. ¿Cómo cambia la magnitud de la fuerza al duplicar la rapidez con q y B fijos?
+3536	F=qvB para movimiento perpendicular.
+3537	Una fuerza magnética ideal permanece perpendicular a la velocidad de una carga puntual. El trabajo que realiza directamente es:
+3538	Cero.
+3539	Siempre positivo.
+3540	Siempre negativo.
+3541	La fuerza cambia la dirección de la velocidad, pero no tiene componente en la dirección del desplazamiento instantáneo.
+3542	Una sola espira tiene un flujo constante de 0.05 Wb. ¿Cuál es la fuerza electromotriz inducida por este flujo constante?
+3543	La inducción depende del cambio de flujo; un flujo constante tiene cambio cero.
+3544	Indica la geometría del campo y de la velocidad, y la evolución temporal del flujo, antes de hacer una afirmación sobre inducción.
+3545	Óptica geométrica
+3546	Ubica una imagen y después explica qué significa.
+3547	Usa un modelo de lente delgada e interpreta el aumento con signo.
+3549	Distancia focal de la lente convergente (cm)
+3550	Distancia del objeto real (cm)
+3551	Define las distancias desde la lente.
+3552	Para un objeto real situado más allá del foco de esta lente convergente ideal, 1/f=1/u+1/v. Aquí f,u,v son longitudes positivas en sus respectivos lados.
+3553	Con f=10 cm y u=20 cm, ¿dónde está la imagen?
+3554	Fija esos controles y comprueba la ecuación de la lente.
+3555	¿Por qué no debes medir la distancia del objeto desde el foco?
+3556	Lee el signo del aumento.
+3557	Para la convención de signos indicada, m=−v/u. Un m negativo significa imagen invertida, no brillo negativo. La altura del objeto es +2 cm.
+3558	Con u=2f, ¿la imagen está derecha o invertida y cuál es su tamaño?
+3559	Compara el diagrama y la altura con signo con f=10,u=20.
+3560	Explica cada signo y la magnitud del aumento.
+3561	Aleja más el objeto.
+3562	La posición y el tamaño de la imagen cambian juntos. El esquema usa escalas de dibujo horizontales y verticales distintas, indicadas en su descripción.
+3563	Con f fijo, ¿aumentar u también aumenta v?
+3564	Compara u=20 y 40 cm con f=10 cm.
+3565	Usa la ecuación y la lectura en lugar del ángulo aparente en píxeles.
+3566	Reconoce un límite del modelo.
+3568	¿Podrías extrapolar con confianza el control de imagen real a u=f?
+3569	Sustituye u=f en la ecuación en papel y observa en qué se convierte 1/v.
+3570	Explica el límite sin introducir un número finito inventado. ¿Qué nuevo diagrama ayudaría para u<f?
+3571	Una lente convergente ideal tiene f=10 cm y un objeto real en u=20 cm. ¿Cuánto vale v?
+3572	Una imagen real tiene m=−0.5. Comparada con el objeto, está:
+3573	Invertida y tiene la mitad de su altura.
+3574	Derecha y tiene la mitad de su altura.
+3575	Invertida y tiene el doble de su altura.
+3576	El signo indica la orientación; |m|=0.5 indica el tamaño.
+3577	En el modelo ideal de lente delgada, un objeto real está exactamente en u=f. La distancia de imagen prevista es:
+3578	No finita.
+3579	Exactamente f.
+3580	1/v=1/f−1/f=0. No hay una distancia de imagen finita en este caso ideal.
+3581	Indica la convención de distancias y comprueba tanto la ubicación de la imagen como el aumento con signo.
+3582	Fotones y umbrales
+3583	Una luz más brillante no supera todos los umbrales.
+3584	Usa un modelo de energía del fotón sin confundir la frecuencia con el brillo.
+3586	Frecuencia (×10¹⁴ Hz)
+3588	Función de trabajo del material (eV)
+3589	La energía por fotón depende de la frecuencia.
+3590	En este modelo, Ephoton=hf. Usamos h=4.14×10⁻¹⁵ eV·s. A una frecuencia fija, el brillo cambia el número de fotones, no la energía por fotón.
+3591	Si la frecuencia se duplica, ¿se duplica la energía del fotón?
+3592	Compara f=4 y 8 en el control.
+3593	Explica qué permanecería igual al cambiar solo el brillo.
+3594	Comprueba el umbral de un material.
+3595	Un solo fotón puede expulsar un electrón únicamente cuando hf≥W en el modelo ideal de un solo fotón. Por debajo del umbral, no se emiten electrones en este modelo.
+3596	¿Podría una luz suficientemente brillante con f=4×10¹⁴ Hz expulsar electrones de un material con W=3 eV en este modelo?
+3597	Fija esos valores y compara la energía con la función de trabajo.
+3598	¿Por qué un umbral de energía por fotón es distinto de un balance de energía total?
+3599	Ten en cuenta la energía del electrón emitido.
+3600	Por encima del umbral, la energía cinética máxima del electrón es Kmax=hf−W. La función de trabajo representa la energía mínima necesaria para salir del material.
+3601	Con f fijo por encima del umbral, ¿qué ocurre con Kmax cuando W aumenta?
+3602	Compara W=1 y 2 eV con f=8×10¹⁴ Hz.
+3603	Escribe un balance de energía y distingue un Kmax menor de la ausencia de emisión.
+3604	Respeta los límites del modelo.
+3605	Los materiales reales y los efectos de luz intensa necesitan más detalle. Esta actividad comprueba un modelo introductorio limitado, no la eficiencia de un detector real.
+3606	¿Pueden dos materiales distintos recibir los mismos fotones y tener resultados de emisión diferentes?
+3607	Con f=6×10¹⁴ Hz, compara W=2 y 3 eV.
+3608	Identifica un resultado que el modelo predice y una propiedad de un dispositivo real que no establece.
+3609	A una frecuencia fija, ¿cómo cambia la energía de cada fotón al aumentar el número de fotones?
+3610	Aumenta.
+3611	Disminuye.
+3612	E=hf depende de la frecuencia, no del número de fotones.
+3613	Un fotón tiene una energía de 3 eV y la función de trabajo del material es 2 eV. ¿Cuál es Kmax en este modelo ideal?
+3614	Kmax=3−2=1 eV.
+3615	La energía del fotón es 1.5 eV y la función de trabajo es 2 eV. ¿Qué predice el modelo ideal de un solo fotón?
+3616	No hay emisión de electrones.
+3617	Electrones con energía cinética de −0.5 eV.
+3618	Emisión con cualquier brillo.
+3619	La energía por fotón está por debajo del umbral. Una energía cinética negativa no es un resultado para un electrón emitido.
+3620	Compara la frecuencia y el umbral del material antes de analizar el brillo o el rendimiento del detector.
+3621	Trayecto de fundamentos de física desconocido
+3624	INTRODUCCIÓN A LA FÍSICA
+3625	Construye un modelo. Comprueba el movimiento.
+3626	Sigue la transferencia. Comprueba la evidencia.
+3627	Relaciona movimiento, fuerzas, energía, cantidad de movimiento, rotación, oscilaciones y fluidos mediante pequeñas comparaciones.
+3628	Amplía la mecánica con calor, campos eléctricos, circuitos, magnetismo, óptica, ondas y fotones.
+3629	Empieza por los fundamentos de mecánica.
+3630	Usa números con signo, razones, ecuaciones sencillas y gráficas. Se proporcionan las relaciones físicas; no se requiere cálculo diferencial ni integral.
+3631	Fundamentos introductorios seleccionados. Estas actividades no cubren un curso avanzado completo, un programa de laboratorio ni una secuencia de preparación para un examen.
+3632	Prueba la evaluación diagnóstica independiente de seis problemas →
+3636	Antes y después de que se enganchen dos carritos
+3637	Posiciones esquemáticas, no una simulación temporal. El este está a la derecha. Las flechas de velocidad comparten una escala de 14 píxeles por m/s; no hay flecha cuando la velocidad es cero.
+3638	Antes de engancharse · este →
+3639	Después de engancharse
+3640	Velocidad conjunta:
+3641	Radio y fuerza perpendicular respecto a un eje fijo
+3642	Vista superior. El radio usa 105 píxeles por m; las flechas de fuerza usan 8 píxeles por N. Un radio hacia la derecha y una fuerza tangencial hacia arriba producen un momento de fuerza antihorario.
+3643	El momento de fuerza antihorario es positivo
+3647	Eje fijo
+3648	Presión a cierta profundidad y líquido desplazado
+3649	Esquema sin escala. La sonda de presión y el objeto completamente sumergido están separados; no se controla la profundidad del objeto. No se especifican el peso ni la fuerza neta.
+3650	Superficie del líquido
+3653	Sonda: h =
+3654	Fuerza de flotación ↑
+3655	L desplazados
+3656	kg/m³ · La presión manométrica excluye la presión del aire
+3657	Calor transferido a una muestra
+3658	Esquema de flujo de energía, no una escala de temperatura ni de geometría. El calor entra en una muestra sin cambio de fase, trabajo ni pérdidas; todas las lecturas describen este modelo ideal.
+3659	Muestra:
+3660	Calor de entrada:
+3661	Campo de la carga fuente y fuerza sobre una carga de prueba con signo
+3662	La distancia se dibuja a 300 píxeles por m. Las flechas de dirección son esquemáticas y no representan escalas de magnitud. La carga fuente se mantiene fija por medios externos; la respuesta de la carga de prueba no la mueve.
+3663	La derecha es positiva
+3665	Carga fuente: +2 μC
+3666	Carga de prueba:
+3667	Fuerza →
+3668	← Fuerza
+3669	Circuito en serie o en paralelo
+3670	Los símbolos del circuito son esquemáticos y no están a escala. Los cables ideales conectados y una fuente de voltaje constante forman un circuito cerrado. Las ramas en paralelo comparten ambos nodos.
+3671	En serie · misma corriente en ambos resistores
+3672	En paralelo · mismo voltaje en ambas ramas
+3673	Fuerza magnética y una espira de flujo separada
+3674	Dos esquemas separados y sin escala. Las cruces indican un campo que entra en la pantalla. Una carga positiva se mueve hacia la derecha, con fuerza hacia arriba. Se muestra la magnitud del flujo de la espira; su campo es perpendicular.
+3675	Dos modelos distintos · B =
+3676	Carga positiva: qvB
+3677	Espira separada: |Φ| = BA
+3678	Energía del fotón comparada con una barrera de función de trabajo
+3679	Las barras de energía comparten una escala de 35 píxeles por eV y comienzan en cero. En el umbral, la emisión es posible con energía cinética máxima cero. Este esquema no muestra las trayectorias de los electrones.
+3680	Fotón:
+3681	Barrera:
+3682	Emisión posible · Kmax =
+3683	Por debajo del umbral · sin emisión
+3684	Modelo de fundamentos de física desconocido
+3685	A los 4 s: posición
+3686	m · Desplazamiento
+3687	m · Distancia
+3688	Fuerza neta
+3689	N · Aceleración
+3690	Longitud de onda
+3691	m · Período
+3692	Dos carritos se enganchan sobre una pista horizontal
+3693	Cantidad
+3694	Valor
+3695	Cantidad de movimiento total (kg·m/s)
+3696	Transferida a otras formas (J)
+3697	El este es positivo. El impulso externo horizontal es despreciable; ambos carritos se enganchan. La energía cinética puede transferirse a energía interna.
+3698	Una masa puntual gira alrededor de un centro fijo
+3699	Momento de inercia (kg·m²)
+3700	Momento de fuerza perpendicular (N·m)
+3701	Momento angular (kg·m²/s)
+3702	Masa puntual ideal y soporte sin masa; la fuerza aplicada es perpendicular al radio. Los valores antihorarios son positivos.
+3703	I = mr²; τ = rF; α = τ/I; L = Iω. Un momento de fuerza requiere un eje y un brazo de palanca.
+3704	Posición de un oscilador ideal de resorte horizontal
+3705	x(t) = A cos(2πt/T)
+3706	Período
+3707	s · Energía mecánica total
+3708	Un resorte lineal ideal sin amortiguamiento. Se suelta desde el reposo en x=A. En este modelo, cambiar la amplitud cambia la energía, pero no el período.
+3709	Presión y fuerza de flotación en un líquido en reposo
+3710	Presión manométrica a cierta profundidad (Pa)
+3711	Fuerza de flotación con inmersión completa (N)
+3712	Líquido uniforme e incompresible, g=10 m/s². La presión manométrica excluye la presión atmosférica. El volumen especificado es el volumen desplazado; el objeto permanece completamente sumergido.
+3713	pgauge = ρgh; Fb = ρgV; 1 L = 0.001 m³. La flotación requiere un balance de fuerzas separado.
+3714	Calentamiento sin cambio de fase
+3715	Calor transferido a la muestra (J)
+3716	Temperatura final (°C)
+3717	Comienza a 20°C. Calor específico constante, sin cambio de fase, sin trabajo y sin pérdida de calor al entorno.
+3718	Q = mcΔT. Un cambio de 1°C equivale a un cambio de 1 K; las temperaturas absolutas en Celsius y en kelvin difieren.
+3719	Campo de una carga puntual positiva fija
+3720	Campo, alejándose de la carga fuente (N/C)
+3721	Fuerza sobre la carga de prueba (N)
+3722	Carga fuente de +2 μC. La carga de prueba está a su derecha; la derecha es positiva. La carga fuente se mantiene fija mediante una restricción externa; este modelo ideal no calcula su movimiento como respuesta a la carga de prueba. Una fuerza negativa significa hacia la izquierda.
+3723	E = kQ/r²; V = kQ/r; F = qE; k = 9×10⁹ N·m²/C². El campo y el potencial no dependen de la carga de prueba.
+3724	Dos resistores y una fuente ideal de voltaje
+3725	Resistencia equivalente (Ω)
+3726	Corriente de la fuente (A)
+3727	Corriente por R1 (A)
+3728	Corriente por R2 (A)
+3729	Potencia total (W)
+3730	Solo dos resistores óhmicos, cables ideales y una fuente ideal de voltaje constante. Cambiar las conexiones cambia la resistencia total.
+3731	En serie: Req = R1+R2; en paralelo: 1/Req = 1/R1+1/R2. I = V/Req; P = VI.
+3732	Dos modelos magnéticos distintos
+3733	Flujo a través de una espira perpendicular al campo (Wb)
+3734	La carga positiva se mueve hacia la derecha; el campo entra en la pantalla, por lo que la fuerza apunta hacia arriba. El área de la espira se controla por separado. El flujo es BA únicamente porque el campo es uniforme y perpendicular.
+3735	Para movimiento perpendicular, F = qvB. Una fuerza magnética cambia la dirección de la velocidad y no realiza trabajo sobre la carga puntual ideal. |Φ| = BA; la inducción depende del CAMBIO de flujo.
+3740	Lente convergente
+3743	La imagen está en el lado opuesto y está invertida
+3744	Objeto e imagen real de una lente delgada
+3745	Las distancias horizontales usan 2 píxeles por cm; las alturas usan 20 píxeles por cm. Este es un esquema, no una construcción de rayos. El objeto está más allá del foco.
+3746	Distancia de la imagen
+3747	cm · Aumento
+3748	· Altura de la imagen
+3749	1/f = 1/u + 1/v; m = −v/u; altura del objeto = +2 cm.
+3750	Lente convergente delgada ideal con un objeto real en u>f. Este control no modela imágenes virtuales. Una altura de imagen negativa indica inversión.
+3751	Un fotón y un umbral fotoeléctrico
+3752	Emisión
+3753	Posible
+3754	No se emiten electrones
+3755	Energía cinética máxima del electrón si se emite (eV)
+3756	No corresponde
+3757	Modelo fotoeléctrico ideal de un solo fotón. La función de trabajo del material es fija para cada ajuste elegido. A una frecuencia fija, el brillo cambia el número de fotones, no la energía por fotón.
+3758	Ephoton = hf; h = 4.14×10⁻¹⁵ eV·s; Kmax = hf − W cuando hf ≥ W.
+4703	Números con signo
+4704	¿Qué significa un cambio con signo?
+4705	Separa el valor inicial, el cambio y el valor final.
+4706	Valor inicial
+4707	Cambio con signo
+4708	Identifica el punto de partida.
+4709	Un número con signo ubica un punto respecto al cero. En esta recta numérica, los números negativos están a la izquierda del cero.
+4710	Fija el valor inicial en −3 e identifica su distancia al cero.
+4711	Un signo también describe un cambio.
+4712	Sumar un cambio positivo mueve hacia la derecha; sumar uno negativo mueve hacia la izquierda. El cambio y el valor inicial son cantidades distintas.
+4713	Compara sumar 5 con sumar −5 desde el mismo punto de partida.
+4714	Mantén la expresión completa.
+4715	Empezar en −3 y sumar 5 termina en 2. Empezar en 3 y sumar −5 termina en −2. La magnitud por sí sola no determina el punto final.
+4716	Encuentra dos valores iniciales y cambios distintos que terminen en 0.
+4717	Comprueba una resta sumando el opuesto del número que se resta.
+4718	Restar −4 tiene el mismo efecto que sumar 4. Ambas operaciones deshacen un cambio de 4 hacia la izquierda.
+4719	Compara −2 − (−4) con −2 + 4 en papel.
+4720	Una temperatura empieza en −3°C y aumenta 5°C. ¿Cuál es la temperatura final?
+4721	−3 + 5 = 2. El aumento es un cambio, no la temperatura final.
+4722	Una cuenta empieza en 4 y cambia en −7. ¿Cuál es el valor final?
+4723	4 + (−7) = −3. El cambio cruza el cero.
+4724	Evalúa −2 − (−6).
+4725	Restar −6 es sumar 6: −2 + 6 = 4.
+4726	Usa un nuevo valor inicial con signo y un nuevo cambio; después explica el punto final y la dirección.
+4727	Fracciones
+4728	¿Qué se considera el mismo entero?
+4729	Usa partes iguales y compara fracciones que tengan el mismo entero de referencia.
+4731	Partes sombreadas
+4733	Partes iguales de un entero
+4734	Define un entero.
+4735	Una fracción compara las partes iguales seleccionadas con el número de partes iguales de un entero. Cambiar el entero de referencia cambia lo que mide la fracción.
+4736	Lee el denominador antes de contar las partes sombreadas.
+4737	Las fracciones equivalentes mantienen la cantidad.
+4738	Tres de cuatro partes iguales y seis de ocho partes iguales cubren la misma fracción de un entero que no cambia. Tanto el numerador como el denominador se multiplican por 2.
+4739	Compara 2/4 y 4/8 en papel.
+4740	La suma necesita unidades compatibles.
+4741	Para el mismo entero, 1/2 + 1/4 = 2/4 + 1/4 = 3/4. El denominador indica el tamaño de las partes; no se suma.
+4742	Explica por qué 2/6 no es la suma de 1/2 y 1/4.
+4743	La multiplicación puede describir una parte de otra parte.
+4744	La mitad de tres cuartos es 3/8 del entero original. Dividir cada cuarto por la mitad produce octavos.
+4745	Describe qué significa 1/2 × 3/4 antes de multiplicar.
+4746	¿Qué fracción equivale a 3/4 para el mismo entero?
+4747	Multiplica el numerador y el denominador por 2; la proporción no cambia.
+4748	Para el mismo entero, ¿cuánto es 1/3 + 1/6?
+4749	1/3 = 2/6, por lo que la suma es 3/6 = 1/2.
+4750	¿Qué fracción de un entero es la mitad de 2/3?
+4751	Solo 2/6 de un entero distinto
+4752	1/2 × 2/3 = 2/6 = 1/3 del entero original.
+4753	Dibuja un entero fijo y muestra fracciones equivalentes, una suma y una parte de otra parte.
+4754	Razones y tasas unitarias
+4755	¿Qué permanece constante en una relación proporcional?
+4756	Relaciona una razón, una tasa unitaria y una regla multiplicativa.
+4757	Precio por artículo ($)
+4758	Mantén las dos cantidades y sus unidades.
+4759	Una tasa unitaria indica cuánto de una cantidad corresponde a una unidad de otra. Aquí son dólares por artículo.
+4760	Lee el costo de exactamente un artículo.
+4761	Cambia la escala de ambas cantidades a la vez.
+4762	A $3 por artículo, dos artículos cuestan $6 y cinco cuestan $15. La razón entre costo y número de artículos no cambia.
+4763	Comprueba costo/artículos en dos filas.
+4764	Porcentaje significa por cada cien.
+4765	25% de 80 significa 25/100 × 80 = 20. El porcentaje indica una parte relativa, mientras que 20 es una cantidad.
+4766	Encuentra el 10% de 80 y después compáralo con el 25%.
+4767	Presta atención a un cargo inicial fijo.
+4768	Un cargo de entrega de $2 más $3 por artículo da costo = 2 + 3n. El costo total por artículo cambia entonces con n, de modo que el costo total no es proporcional al número de artículos.
+4769	Compara el costo total de uno y dos artículos cuando se agrega un cargo fijo.
+4770	Tres cuadernos cuestan $12 sin cargo fijo. ¿Cuál es el precio unitario?
+4771	$4 por cuaderno
+4772	$36 por cuaderno
+4773	$0.25 por cuaderno
+4774	12/3 = 4 dólares por cuaderno.
+4775	¿Cuánto es el 30% de 90?
+4776	¿Qué regla de costo total es proporcional al número de artículos n?
+4777	C/n = 5 permanece constante para n positivo y la regla no tiene cargo fijo.
+4778	Compara una regla de precio unitario con una regla que incluya un cargo fijo.
+4779	Expresiones
+4780	¿En qué se diferencia una expresión de una ecuación?
+4781	Sustituye valores, combina términos semejantes y respeta el orden de las operaciones.
+4782	Entrada x
+4783	Una expresión indica un cálculo.
+4784	2x + 3 es una expresión. Elegir x proporciona una entrada; no te pide resolver una ecuación.
+4785	Evalúala en x = 2.
+4786	Un coeficiente indica multiplicación.
+4787	2x significa 2 × x. Con x = −2, 2x + 3 = −4 + 3 = −1.
+4788	Prueba una entrada negativa y conserva su signo.
+4789	Combina términos con la misma parte variable.
+4790	3x + 2x = 5x, pero 3x + 2 no se puede combinar como 5x. La constante no representa otro x.
+4791	Compara 3x + 2x con 3x + 2 en x = 4.
+4792	Distribuye sobre todo el grupo.
+4793	2(x + 3) = 2x + 6 porque ambos términos dentro del paréntesis se multiplican por 2.
+4794	Usa x = 1 para comprobar ambas formas.
+4795	Evalúa 2x + 3 en x = 4.
+4796	Multiplica primero: 2 × 4 + 3 = 11.
+4797	¿Qué expresión equivale a 4a + 3a − 2 para todo a?
+4798	Los dos términos variables se combinan en 7a; la constante sigue siendo −2.
+4799	¿Qué expresión equivale a 3(y − 2) para todo y?
+4800	Multiplica ambos términos por 3: 3y − 6.
+4801	Evalúa dos expresiones equivalentes con una entrada positiva y una negativa.
+4802	Ecuaciones
+4803	¿Qué operaciones mantienen una ecuación equivalente?
+4804	Resuelve una ecuación lineal y verifica la solución en la original.
+4805	Solución de ejemplo x
+4806	La igualdad compara dos valores.
+4807	Una ecuación indica que dos expresiones tienen valores iguales. Una solución es una entrada que hace verdadera esta afirmación.
+4808	Lee ambos lados de la ecuación mostrada.
+4809	Deshaz la suma en ambos lados.
+4810	Para 2x + 3 = 11, resta 3 a ambos lados para obtener 2x = 8. Cambiar solo un lado no mantendría la igualdad.
+4811	Identifica la operación aplicada a ambos lados.
+4812	Deshaz la multiplicación por un coeficiente distinto de cero.
+4813	Divide ambos lados de 2x = 8 entre 2 para obtener x = 4. Aquí las operaciones reversibles conservan el conjunto de soluciones.
+4814	Elige otra solución de ejemplo y sigue ambos pasos.
+4815	Sustituye en la original.
+4816	Con x = 4, 2(4) + 3 = 11. Comprobar la original ayuda a detectar errores aritméticos o de signo.
+4817	Comprueba la solución elegida antes de continuar.
+4818	Resuelve 2x + 3 = 11.
+4819	Resta 3 y después divide entre 2; la sustitución da 11.
+4820	Resuelve 3x − 5 = 10.
+4821	Suma 5 a ambos lados: 3x = 15; divide entre 3.
+4822	Resuelve 4(x − 2) = 12.
+4823	Divide entre 4 para obtener x − 2 = 3 y después suma 2.
+4824	Resuelve una ecuación modificada por dos métodos válidos y comprueba ambos resultados.
+4825	Funciones lineales
+4826	¿Qué te indican la pendiente y la intersección con el eje?
+4827	Relaciona una regla, una gráfica y una tasa de cambio constante.
+4828	Intersección con el eje y: b
+4829	Lee una regla como entrada y salida.
+4830	En y = mx + b, cada x determina un y. Graficar los pares hace visible la relación.
+4831	Lee la salida cuando x = 0.
+4832	La intersección con el eje y es la salida en cero.
+4833	Con x = 0, mx se hace cero y y = b. El punto (0, b) es la intersección con el eje y.
+4834	Cambia b mientras mantienes m fijo.
+4835	La pendiente compara cambios.
+4836	La pendiente es el cambio en y dividido entre el cambio en x. Una pendiente de 2 significa que y aumenta 2 por cada aumento de 1 en x.
+4837	Cambia m y compara la dirección de la recta.
+4838	Una pendiente cero sigue definiendo una función.
+4839	Cuando m = 0, y = b es horizontal. Toda entrada tiene la misma salida; la gráfica no es una recta vertical.
+4840	Fija m = 0 y después compáralo con m = −1.
+4841	Para y = 3x − 2, ¿cuál es la intersección con el eje y?
+4842	Fija x = 0 para obtener y = −2.
+4843	Una recta pasa por (1, 2) y (4, 8). ¿Cuál es su pendiente?
+4844	¿Qué regla tiene una salida que disminuye 4 cuando la entrada aumenta 1?
+4845	El coeficiente −4 es el cambio constante de la salida por cada unidad de entrada.
+4846	Construye una recta a partir de una intersección con el eje y y una tasa; después verifica un segundo punto.
+4847	Sistemas
+4848	¿Qué significa una solución común?
+4849	Encuentra y comprueba un par que satisfaga dos ecuaciones a la vez.
+4850	Intersección de la segunda recta con el eje y
+4851	Dos ecuaciones imponen dos condiciones.
+4852	Un sistema pide un par (x, y) que satisfaga ambas ecuaciones. Una solución de solo una ecuación no basta.
+4853	Lee y = x + 2 y la segunda regla.
+4854	La intersección satisface ambas condiciones.
+4855	En un punto de cruce, el mismo x da el mismo y en ambas reglas. Para y = x + 2 y y = −x + 6, x = 2 y y = 4.
+4856	Comprueba ambas reglas en la intersección.
+4857	La sustitución compara las salidas.
+4858	Iguala x + 2 = −x + 6, reúne términos para obtener 2x = 4 y después x = 2. Sustituye para obtener y = 4.
+4859	Cambia la segunda intersección con el eje y y encuentra el nuevo par.
+4860	Un cruce no está garantizado.
+4861	Las rectas paralelas distintas no tienen una solución común. Las rectas idénticas tienen infinitos puntos comunes. Una ventana de gráfica por sí sola puede ocultar una intersección.
+4862	Compara y = x + 2 con y = x + 5 en papel.
+4863	Para y = x + 1 y y = −x + 5, ¿qué par satisface ambas ecuaciones?
+4864	x + 1 = −x + 5 da x = 2 y y = 3.
+4865	Resuelve x + y = 9 y x − y = 3.
+4866	Al sumar se obtiene 2x = 12; después y = 3. Se cumplen ambas ecuaciones originales.
+4867	¿Cuántas soluciones tienen y = 2x + 1 y y = 2x − 4?
+4868	Exactamente una
+4869	Infinitas
+4870	Las pendientes coinciden, pero las intersecciones con el eje y difieren; igualar las salidas daría 1 = −4.
+4871	Comprueba un par propuesto en cada ecuación original, incluyendo un ejemplo sin solución.
+4872	Raíces cuadráticas
+4873	¿Por qué un factor revela un cero?
+4874	Usa la propiedad del producto cero y distingue los ceros del vértice.
+4875	Segunda raíz
+4876	Un cero es una entrada cuya salida es cero.
+4877	Un cero de la gráfica está en el eje x. Es un valor de x, no necesariamente un punto de giro.
+4878	Identifica los dos cruces.
+4879	Un producto cero tiene un factor cero.
+4880	Para (x − 1)(x − 4) = 0, al menos un factor debe ser cero: x = 1 o x = 4.
+4881	Cambia la segunda raíz y examina los factores.
+4882	Conserva todas las raíces posibles.
+4883	x² − 9 = (x − 3)(x + 3), por lo que tanto 3 como −3 son raíces. Tomar solo la raíz cuadrada positiva pierde una solución.
+4884	Sustituye ambas raíces en x² − 9.
+4885	Comprueba la original y distingue el vértice.
+4886	Para una cuadrática con dos raíces distintas, la coordenada x del vértice está a medio camino entre sus valores de x. Su salida generalmente es distinta de cero.
+4887	Compara un cruce con el punto más bajo de esta parábola.
+4888	Resuelve (x − 2)(x − 5) = 0.
+4889	Solo x = 7
+4890	Solo x = 10
+4891	Cualquiera de los factores puede ser cero; ambas raíces pertenecen al conjunto de soluciones.
+4892	Resuelve x² = 16 en los números reales.
+4893	Solo x = 4
+4894	Solo x = 8
+4895	Tanto (−4)² como 4² son iguales a 16.
+4896	Para y = (x + 1)(x − 3), ¿qué afirmación describe los ceros?
+4897	La gráfica cruza el eje x en x = −1 y x = 3.
+4898	El vértice debe ser (−1, 3).
+4899	La intersección con el eje y es 3.
+4900	Iguala cada factor a cero. La intersección con el eje y es −3 y el vértice es un punto distinto.
+4901	Factoriza una nueva cuadrática, enumera todas las raíces y verifica por sustitución.
+4902	Ángulos
+4903	¿Qué relaciones determinan un ángulo desconocido?
+4904	Usa las relaciones de ángulos que forman una línea recta y de ángulos opuestos por el vértice, con sus razones.
+4905	Un ángulo adyacente (grados)
+4906	Identifica el vértice y las semirrectas que lo comparten.
+4907	Un ángulo describe el giro entre dos semirrectas con un extremo común. La medida del ángulo es independiente de la longitud con la que se dibujen las semirrectas.
+4908	Identifica el vértice antes de leer la medida.
+4909	Un giro que forma una línea recta mide 180 grados.
+4910	Dos ángulos adyacentes cuyas semirrectas exteriores forman una línea recta suman 180°. No cualquier par de ángulos adyacentes cumple esto.
+4911	Cambia un ángulo y encuentra el otro.
+4912	Los ángulos opuestos por el vértice son iguales.
+4913	Cuando dos rectas se cruzan, los ángulos opuestos son iguales. Cada uno es suplementario del mismo ángulo adyacente.
+4914	Dibuja dos rectas que se crucen y explica por qué coinciden las medidas de los ángulos opuestos.
+4915	Indica la condición geométrica.
+4916	Una razón como «parecen iguales» es menos sólida que identificar ángulos opuestos por el vértice o una línea recta. Los dibujos pueden no estar a escala.
+4917	Explica qué relación seguiría siendo válida si cambiara el dibujo.
+4918	Dos ángulos adyacentes forman una línea recta. Uno mide 65°. ¿Cuánto mide el otro?
+4919	La condición de línea recta da 180 − 65 = 115°.
+4920	Dos rectas se cruzan. Un ángulo mide 38°. ¿Cuánto mide su ángulo opuesto por el vértice?
+4921	Los ángulos opuestos por el vértice son iguales; 142° es el suplemento adyacente.
+4922	Dos ángulos son adyacentes, sin ninguna otra información. ¿Deben sumar 180°?
+4923	No; sus semirrectas exteriores deben formar una línea recta.
+4924	Sí; todos los ángulos adyacentes son suplementarios.
+4925	No; los ángulos adyacentes siempre suman 90°.
+4926	La adyacencia por sí sola no indica un giro que forme una línea recta.
+4927	Para un ángulo desconocido, identifica la relación y sus condiciones geométricas.
+4928	Triángulos
+4929	¿Cuándo se aplica la relación de Pitágoras?
+4930	Identifica un triángulo rectángulo, sus catetos y su hipotenusa.
+4931	Cateto horizontal
+4932	Identifica el ángulo recto.
+4933	La ecuación a² + b² = c² se aplica a un triángulo rectángulo, donde c está frente al ángulo de 90°.
+4934	Ubica la marca del ángulo recto.
+4935	Usa los cuadrados de las longitudes.
+4936	Con catetos de 3 y 4, c² = 9 + 16 = 25, por lo que c = 5 porque una longitud es positiva.
+4937	Cambia un cateto y compara c con ambos catetos.
+4938	Una hipotenusa no es otro cateto.
+4939	Cuando se conocen la hipotenusa y un cateto, resta el cuadrado del cateto conocido de c². Sumarlos daría la cantidad equivocada.
+4940	Para c = 13 y un cateto = 5, calcula el otro cateto.
+4941	Mantén separadas las relaciones entre ángulos del triángulo.
+4942	Los ángulos interiores de un triángulo euclidiano suman 180°. Por lo tanto, un triángulo rectángulo tiene dos ángulos agudos que suman 90°, pero sus valores individuales no tienen que ser iguales.
+4943	Da dos pares diferentes de ángulos agudos para triángulos rectángulos.
+4944	Un triángulo rectángulo tiene catetos de 6 y 8. ¿Cuál es su hipotenusa?
+4945	Un triángulo rectángulo tiene hipotenusa de 13 y un cateto de 5. ¿Cuál es el otro cateto?
+4946	El cuadrado del cateto desconocido es 169 − 25 = 144, por lo que su longitud es 12.
+4947	Un triángulo tiene ángulos de 47° y 68°. ¿Cuál es el tercer ángulo interior?
+4948	180 − 47 − 68 = 65°, usando la suma de ángulos del triángulo.
+4949	Identifica las cantidades conocidas y desconocidas del triángulo antes de elegir una relación.
+4950	Semejanza
+4951	¿Cómo cambian las longitudes y las áreas con la escala?
+4952	Usa longitudes correspondientes y factores de escala separados para la longitud y el área.
+4953	Factor de escala de longitud
+4954	Identifica las partes correspondientes.
+4955	Las figuras semejantes tienen ángulos correspondientes iguales y longitudes correspondientes proporcionales. La correspondencia determina qué razones se pueden comparar.
+4956	Lee en la tabla el ancho original y el ancho a escala.
+4957	Multiplica cada longitud por k.
+4958	Un factor de escala de longitud de 2 cambia un rectángulo de 3 por 2 a uno de 6 por 4. Su perímetro también se duplica.
+4959	Compara todas las razones de longitudes.
+4960	El área cambia por k al cuadrado.
+4961	Tanto el ancho como la altura se multiplican por k, de modo que su producto se multiplica por k². Duplicar las longitudes cuadruplica el área.
+4962	Compara k = 2 y k = 0.5.
+4963	La congruencia exige más que la semejanza.
+4964	Las figuras semejantes pueden diferir en tamaño. Las figuras congruentes tienen la misma forma y tamaño; sus longitudes correspondientes coinciden.
+4965	Explica qué tiene de especial k = 1.
+4966	Dos triángulos semejantes tienen lados correspondientes de 4 y 10. ¿Cuál es el factor de escala del primero al segundo?
+4967	Segundo/primero = 10/4 = 2.5.
+4968	Cada longitud de una figura se multiplica por 3. ¿Qué ocurre con su área?
+4969	Se multiplica por 9.
+4970	Se multiplica por 3.
+4971	Aumenta 6 unidades cuadradas.
+4972	El área tiene dos dimensiones de longitud, cada una multiplicada por 3.
+4973	¿Deben ser congruentes dos triángulos semejantes?
+4974	No; sus tamaños pueden diferir.
+4975	Sí; ángulos iguales obligan a tener longitudes iguales.
+4976	No; los triángulos semejantes nunca tienen ángulos iguales.
+4977	La semejanza fija la forma y las razones entre longitudes; la congruencia también fija el tamaño.
+4978	Identifica los lados correspondientes y después predice los cambios de longitud, perímetro y área.
+4979	Medición
+4980	¿Qué cantidad mide el cálculo?
+4981	Separa el área, el perímetro y el volumen y agrega las unidades correctas.
+4982	Ancho del rectángulo (unidades)
+4983	El perímetro mide el contorno.
+4984	Un rectángulo de ancho w y altura h tiene perímetro 2w + 2h, medido en unidades de longitud.
+4985	Recorre los cuatro lados del rectángulo.
+4986	El área mide la superficie cubierta.
+4987	El área del rectángulo es wh, medida en unidades cuadradas. La misma área puede corresponder a perímetros distintos.
+4988	Compara anchos de 4 y 6 con una altura fija.
+4989	Un triángulo usa la mitad de un rectángulo con la misma base y altura.
+4990	El área de un triángulo es bh/2 cuando h es perpendicular a la base elegida. Un lado inclinado no es automáticamente la altura.
+4991	Dibuja una altura perpendicular para un nuevo triángulo.
+4992	El volumen introduce una tercera dimensión de longitud.
+4993	Un prisma rectangular tiene volumen lwh en unidades cúbicas. Mantener visibles las unidades ayuda a distinguir una medida de contorno, de superficie y de un sólido.
+4994	Encuentra el volumen de un prisma de 2 por 3 por 4.
+4995	Un rectángulo mide 7 cm por 3 cm. ¿Cuál es su perímetro?
+4996	2(7 + 3) = 20 cm; 21 cm² es su área.
+4997	Un triángulo tiene base de 8 m y altura perpendicular de 5 m. ¿Cuál es su área?
+4998	8 × 5 / 2 = 20 metros cuadrados.
+4999	Un prisma rectangular mide 2 cm por 3 cm por 5 cm. ¿Cuál es su volumen?
+5000	Multiplica tres longitudes: 2 × 3 × 5 = 30 centímetros cúbicos.
+5001	Para una nueva figura, identifica si la pregunta pide una medida de contorno, de superficie o de volumen.
+5002	Factores de polinomios
+5003	¿Qué te indica un factor de un polinomio?
+5004	Relaciona los factores, las raíces y el número de ceros distintos.
+5005	Tercera raíz
+5006	Un factor describe una parte multiplicativa.
+5007	El producto (x + 1)(x − 1)(x − 3) es un polinomio cúbico porque su término de mayor potencia es x³.
+5008	Ubica cada factor y su cero.
+5009	Aplica la propiedad del producto cero.
+5010	Los ceros son −1, 1 y 3. Cambiar un factor cambia su raíz correspondiente.
+5011	Cambia la tercera raíz mientras mantienes fijas las otras.
+5012	Los factores repetidos no crean nuevas raíces distintas.
+5013	(x − 2)²(x + 1) tiene grado 3, pero solo dos raíces reales distintas: 2 y −1. La multiplicidad cuenta las repeticiones.
+5014	Enumera ambas raíces distintas y sus multiplicidades.
+5015	No todas las raíces tienen que ser reales.
+5016	x² + 1 no tiene ningún cero real porque x² es no negativo para x real. Tiene raíces complejas, que esta primera lección no desarrolla.
+5017	Explica por qué una gráfica sin cruce real no necesariamente es una función constante.
+5018	¿Cuáles son los ceros reales distintos de (x + 2)(x − 1)(x − 4)?
+5019	Solo −2, 4
+5020	Iguala cada factor a cero y conserva las tres raíces.
+5021	¿Cuántos ceros reales distintos tiene (x − 3)²(x + 1)?
+5022	Dos
+5023	Tres
+5024	Uno
+5025	La raíz 3 se repite, pero las raíces distintas son 3 y −1.
+5026	¿Qué polinomio no tiene ningún cero real?
+5027	Para x real, x² + 4 ≥ 4, por lo que no puede ser igual a cero.
+5028	Compara el grado de un polinomio, sus raíces distintas y sus factores repetidos.
+5029	Restricciones de expresiones racionales
+5030	¿Qué se mantiene después de cancelar?
+5031	Conserva las restricciones del dominio original al simplificar expresiones racionales.
+5032	Entrada excluida k
+5033	Un denominador no puede ser cero.
+5034	En (x² − 4)/(x − 2), la expresión original no está definida en x = 2.
+5035	Comprueba el denominador en la entrada central de la tabla.
+5036	Factoriza antes de cancelar.
+5037	x² − 4 = (x − 2)(x + 2). Para x ≠ 2, cancelar el factor común distinto de cero deja x + 2.
+5038	Lee la regla simplificada junto con la restricción.
+5039	Una regla equivalente necesita su dominio.
+5040	La recta sin restricciones y = x + 2 incluye (2, 4); la función racional original no. La fórmula simplificada no llena el hueco.
+5041	Compara la evaluación de la original con la evaluación de la recta sin restricciones.
+5042	Cancela factores en lugar de términos individuales.
+5043	En (x + 2)/x, x no es un factor común de todo el numerador. Para x distinto de cero, la regla es 1 + 2/x, no 2.
+5044	Prueba ambas expresiones en x = 2.
+5045	Simplifica (x² − 9)/(x − 3) en su dominio original.
+5046	x + 3, con x ≠ 3
+5047	x + 3, incluyendo x = 3
+5048	x − 3, con x ≠ 3
+5049	Factoriza el numerador; cancela solo para x ≠ 3, conservando esa exclusión.
+5050	En x = 4, ¿cuál es el valor de (x² − 16)/(x − 4)?
+5051	El denominador original es cero en 4, aunque x + 4 sea la regla simplificada en los demás puntos.
+5052	Para x ≠ 0, ¿qué regla equivale a (x + 5)/x?
+5053	Divide ambos términos del numerador entre x; no hay un factor x común que cancelar en x + 5.
+5054	Indica las exclusiones originales antes de simplificar; después comprueba una entrada excluida y una permitida.
+5055	Modelos exponenciales
+5056	¿Qué hace que el cambio porcentual sea multiplicativo?
+5057	Distingue un factor repetido de una diferencia fija repetida.
+5059	Factor por período
+5060	Identifica la cantidad inicial.
+5061	En y = 100bᵗ, la cantidad inicial en t = 0 es 100 porque b⁰ = 1.
+5062	Lee la gráfica en el tiempo 0.
+5063	Un porcentaje se convierte en un factor.
+5064	Un aumento del 20% conserva el 100% original y agrega un 20%, dando el factor 1.20. Una disminución del 20% da el factor 0.80.
+5065	Compara los ajustes de crecimiento y disminución.
+5066	Repite el factor en cada período.
+5067	Después de dos aumentos del 20%, 100 × 1.2² = 144. Sumar un 20 fijo dos veces da 140 y describe un modelo distinto.
+5068	Lee las cantidades en t = 1 y t = 2.
+5069	Indica los supuestos del modelo.
+5070	Un modelo de porcentaje constante supone el mismo cambio proporcional en cada período. Las cantidades reales pueden no seguirlo indefinidamente.
+5071	Da una situación en la que la tasa podría cambiar.
+5072	Una cantidad de 80 crece un 25% en cada período. ¿Cuánto vale después de dos períodos?
+5073	Una cantidad de 200 pierde el 10% de su valor actual cada hora. ¿Cuánto queda después de dos horas?
+5074	¿Qué regla representa una cantidad inicial de 50 que crece un 8% por período t?
+5075	1.08 es el factor multiplicativo que conserva el 100% y agrega un 8%.
+5076	Escribe la cantidad inicial y el factor antes de predecir una cantidad posterior.
+5077	Logaritmos
+5078	¿Qué exponente da esta salida?
+5079	Interpreta un logaritmo como una pregunta inversa y conserva su dominio.
+5081	Base b
+5082	Empieza con una pregunta sobre potencias.
+5083	2³ = 8 pregunta por la salida de un exponente conocido. log₂8 = 3 pregunta por el exponente que da 8.
+5084	Lee la tabla de potencias en ambas direcciones.
+5085	Mantén fija la base.
+5086	log₃27 = 3 porque 3³ = 27. Cambiar la base cambia la pregunta inversa.
+5087	Compara el mismo exponente con los distintos ajustes de base.
+5088	Mantén positivo el argumento.
+5089	Para logaritmos reales con base b > 0 y b ≠ 1, el argumento debe ser positivo. En log₂(x − 1), esto requiere x > 1.
+5090	Comprueba si x = 1 está permitido.
+5091	Una propiedad del producto no se convierte en una propiedad de la suma.
+5092	Para u y v positivos, log_b(uv) = log_b(u) + log_b(v). No hay una propiedad correspondiente que reemplace log_b(u + v) por esta suma.
+5093	Compara log₂(2 + 2) con log₂2 + log₂2 y después prueba 2 + 6.
+5094	¿Cuánto es log₃81?
+5095	3⁴ = 81, por lo que el logaritmo es 4.
+5096	¿Cuál es el dominio real de log₂(x − 5)?
+5097	Todos los x reales excepto 5
+5098	El argumento debe ser estrictamente positivo: x − 5 > 0.
+5099	¿Qué identidad se cumple para todos los u y v positivos?
+5100	log₂(uv) = log₂u + log₂v
+5101	log₂(u + v) = log₂u + log₂v
+5102	log₂(u/v) = log₂u / log₂v
+5103	La propiedad del producto se obtiene sumando exponentes. La propiedad del cociente resta logaritmos.
+5104	Convierte un logaritmo en una ecuación de potencia y comprueba las restricciones del argumento.
+5105	Dales sentido a los números.
+5106	Empieza con aritmética; explica qué representa cada número.
+5107	Cuatro lecciones introductorias sobre cambios con signo, fracciones, razonamiento proporcional y expresiones. No se cubren por completo las operaciones con enteros más allá de la suma, la división de fracciones ni los temas más amplios de la escuela intermedia.
+5108	Más actividades visuales de álgebra →
+5109	Relaciona ecuaciones con gráficas.
+5110	¿Te sientes cómodo con los números con signo y las expresiones? Empieza aquí.
+5111	Cuatro lecciones introductorias sobre ecuaciones, funciones lineales, sistemas y raíces cuadráticas. Las desigualdades, el análisis completo de cuadráticas y un programa completo de Álgebra I se abordarán más adelante.
+5112	Continúa con actividades visuales de álgebra →
+5113	Observa la relación. Da una razón.
+5114	Usa aritmética y ecuaciones sencillas para explicar una relación geométrica.
+5115	Cuatro lecciones introductorias sobre ángulos, triángulos, semejanza y medición. La demostración formal, las transformaciones, los círculos y la geometría de coordenadas se abordarán más adelante.
+5116	Repasa ecuaciones en Álgebra I →
+5117	Sigue los factores. Conserva el dominio.
+5118	Repasa primero las ecuaciones, las funciones y las raíces cuadráticas de Álgebra I.
+5119	Cuatro lecciones introductorias sobre factores de polinomios, restricciones de expresiones racionales, modelos exponenciales y logaritmos. Los métodos con números complejos, las sucesiones y el análisis completo de funciones se abordarán más adelante.
+5120	Continúa a Precálculo →
+5121	Curso desconocido
+5123	· LECCIONES INTRODUCTORIAS
+5124	Guarda una primera idea, explora un ejemplo y después explica tu respuesta a preguntas nuevas. Tu informe mantiene separadas las predicciones y el trabajo posterior.
