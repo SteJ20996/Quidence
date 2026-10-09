@@ -38,3 +38,5 @@
 @media(max-width:700px){.f-activity-nav .f-toolbar{gap:14px}.f-activity-nav .f-subject-picker{flex:1}.f-view-controls{margin-left:0}}
 @media(max-width:540px){.f-header-inner{min-height:72px;padding:14px;gap:12px}.f-brand{font-size:21px}.f-saved-reports{padding:9px 11px;font-size:13px}.f-activity-nav .f-toolbar{padding:14px;gap:12px}.f-activity-nav .f-all-subjects{flex:0 0 100%;min-height:44px;padding:0}.f-activity-nav .f-subject-picker{flex:1 0 100%}.f-view-controls{width:100%}.f-view-controls button{flex:1}.f-mode-nav{gap:5px;margin-top:12px}.f-mode-nav .f-mode-link{padding:10px 6px;gap:5px}.f-mode-wide{display:none}.f-mode-compact{display:inline}.f-nav-note{text-align:left}.f-page-footer{padding:20px 14px}}
 @media print{.f-site-header,.f-activity-nav,.f-page-footer{display:none}}
+
+.f-number-format{margin:20px 0;padding:18px;border:1px solid #b78325;border-radius:12px;background:#fff7e7;overflow-wrap:anywhere}.f-number-format h2{font-size:1.1rem}.f-answer-values{padding:12px;background:#f3f6fc;white-space:pre-wrap;overflow-wrap:anywhere}

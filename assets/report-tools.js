@@ -25,7 +25,11 @@ function markdown(subject,payload,request=''){
  const text=reportText(payload.markdown||payload.reportText||'');
  let out=`# Quidence · ${subject}\n\n`+(request?`## Request for an AI tutor\n\n${request}\n\n`:'');
  out+=learningRequestMarkdown(payload);
- out+=text?String(text)+'\n\n':'The complete question, answer and support record is included below.\n\n';
+ // Remove only the exact authored heading we just added; other report titles
+ // and quoted student lines are preserved.
+ const heading='# Quidence · '+subject;
+ const body=String(text).split('\n');if(body[0]===heading){body.shift();while(body[0]==='')body.shift();}
+ out+=text?body.join('\n')+'\n\n':'The complete question, answer and support record is included below.\n\n';
  const allDrawings=drawingEntries(payload),drawings=allDrawings.filter(d=>!out.includes(']('+d.filename+')'));
  if(drawings.length)out+='## Student drawings\n\n'+drawings.map(d=>'!['+d.title.replace(/[\[\]\n]/g,' ')+']('+d.filename+')\n\n').join('');
  if(allDrawings.length)out+='The SVG files are included in Download report with drawings. Keep them beside this Markdown file to display the images. The PDF report includes the diagrams directly.\n\n';

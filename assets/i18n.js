@@ -3,32 +3,112 @@
 const KEY='quidence_ui_locale_v1',normalize=s=>String(s??'').replace(/\s+/g,' ').trim();
 const protectedSelector='[data-no-translate],textarea,input,pre,code,blockquote,[contenteditable],.student-work,.f-quote,.f-answer-text';
 const textMemory=new WeakMap(),attributeMemory=new WeakMap(),imageMemory=new WeakMap();
-let locale='en',observer=null,pending=false,control=null,phraseIndex=null;
+let locale='en',observer=null,pending=false,control=null,catalogPromise=null,requestSequence=0;
+const missing=new Set(),sourceURL=root.document?.currentScript?.src;
 const markdownMemory=new WeakMap();
 const catalog=()=>root.QuidenceSpanish||{};
-function translate(key){
+const caption=source=>{const direct=catalog()[source]??catalog()[source+'.'];return direct===undefined?null:direct;};
+let quantitiesSource=null,quantities=[];
+// Only reviewed, complete formats are interpolated. An unknown sentence is
+// never assembled from translated words or arbitrary substrings.
+function template(key){
+ if(quantitiesSource!==root.QuidenceSpanishQuantities){quantitiesSource=root.QuidenceSpanishQuantities;quantities=(quantitiesSource||[]).map(([en,es])=>[new RegExp('^'+en.split('[n]').map(s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('([-−+]?\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)')+'$'),es]);}
+ for(const [pattern,output]of quantities){const m=key.match(pattern);if(m){let i=0;return output.replace(/\[n\]/g,()=>m[++i]);}}
+ const patterns=[
+  [/^Saved checks \((\d+)\)$/,m=>'Comprobaciones guardadas ('+m[1]+')'],
+  [/^(\d+) saved attempts?; earlier answers remain in your history\.$/,m=>m[1]+(m[1]==='1'?' intento guardado':' intentos guardados')+'; las respuestas anteriores permanecen en tu historial.'],
+  [/^(\d+) saved attempt\(s\)$/,m=>m[1]+(m[1]==='1'?' intento guardado':' intentos guardados')],
+  [/^(\d+) saved versions?$/,m=>m[1]+(m[1]==='1'?' versión guardada':' versiones guardadas')],
+  [/^(\d+)\/(\d+) saved$/,m=>m[1]+'/'+m[2]+' guardadas'],
+  [/^Reference answers appear after (?:all (\d+) responses|both responses) are saved\. Answer checks and explanation review stay separate\.$/,m=>'Las respuestas de referencia aparecen después de guardar '+(m[1]?'las '+m[1]+' respuestas':'ambas respuestas')+'. La comprobación de respuestas y la revisión de explicaciones se mantienen separadas.'],
+  [/^You can start these multi-step (projects|diagnostics) directly\. Mark unfamiliar topics not studied; that is different from a difficulty after learning\.$/,m=>'Puedes empezar directamente estos '+(m[1]==='projects'?'proyectos':'diagnósticos')+' de varios pasos. Marca como no estudiados los temas que no conoces; eso es distinto de tener una dificultad después de aprender.'],
+  [/^(?:QUESTION|Question) (\d+) OF (\d+)$/,m=>'Pregunta '+m[1]+' de '+m[2]],
+  [/^PROJECT (\d+) OF (\d+)$/,m=>'Proyecto '+m[1]+' de '+m[2]],
+  [/^LESSON (\d+) OF (\d+)$/,m=>'LECCIÓN '+m[1]+' DE '+m[2]],
+  [/^LESSON (\d+)$/,m=>'LECCIÓN '+m[1]],
+  [/^NEW SITUATION$/,()=> 'NUEVA SITUACIÓN'],
+  [/^NEW SITUATION · QUESTION (\d+) OF (\d+)$/,m=>'NUEVA SITUACIÓN · PREGUNTA '+m[1]+' DE '+m[2]],
+  [/^Attempt (\d+)$/,m=>'Intento '+m[1]],
+  [/^version (\d+)$/,m=>'versión '+m[1]],
+  [/^(\d+) (questions|projects)$/i,m=>m[1]+' '+(m[2].toLowerCase()==='projects'?'proyectos':'preguntas')],
+  [/^(\d+) (answer )?components? matched$/,m=>m[1]+' '+(m[1]==='1'?'componente coincide':'componentes coinciden')],
+  [/^(\d+) need another check$/,m=>m[1]+' '+(m[1]==='1'?'necesita':'necesitan')+' otra comprobación'],
+  [/^(\d+) uncertain$/,m=>m[1]+' '+(m[1]==='1'?'incierto':'inciertos')],
+  [/^(\d+) not studied$/,m=>m[1]+' sin estudiar'],
+  [/^(\d+) missing\.?$/,m=>m[1]+' '+(m[1]==='1'?'faltante':'faltantes')+'.'],
+  [/^(\d+) pending$/,m=>m[1]+' '+(m[1]==='1'?'pendiente':'pendientes')],
+  [/^(\d+) need revision$/,m=>m[1]+' '+(m[1]==='1'?'necesita revisión':'necesitan revisión')],
+  [/^(\d+) partly explained$/,m=>m[1]+' '+(m[1]==='1'?'parcialmente explicado':'parcialmente explicados')],
+  [/^(\d+) key connection explained\.?$/,m=>m[1]+' '+(m[1]==='1'?'conexión clave explicada':'conexiones clave explicadas')+'.'],
+  [/^(\d+) mathematical response parts awaiting review$/,m=>m[1]+' '+(m[1]==='1'?'parte de respuesta matemática pendiente':'partes de respuestas matemáticas pendientes')+' de revisión'],
+  [/^(\d+) responses locally reviewed\.?$/,m=>m[1]+' '+(m[1]==='1'?'respuesta revisada':'respuestas revisadas')+' localmente.'],
+  [/^(\d+) earlier precision checks awaiting review$/,m=>m[1]+' comprobaciones de precisión anteriores pendientes de revisión'],
+  [/^(\d+) earlier precision checks await review\. (\d+) response parts are open, missing, uncertain or not studied\. (\d+) whole-answer explanations await review\.$/,m=>m[1]+' comprobaciones de precisión anteriores pendientes de revisión. '+m[2]+' partes de respuesta están abiertas, faltantes, inciertas o sin estudiar. '+m[3]+' explicaciones completas están pendientes de revisión.'],
+  [/^These limits describe this (\d+)-question (.+)\. Matching components do not establish complete subject mastery\.$/,m=>{const title=caption(m[2])||caption(m[2][0].toUpperCase()+m[2].slice(1));return title?'Estos límites describen este diagnóstico de '+m[1]+' preguntas ('+title+'). La coincidencia de componentes no demuestra el dominio completo de la materia.':null;}],
+  [/^These limits describe these (two|\d+) California-inspired field projects\. Matching components do not establish complete subject mastery\.$/,m=>'Estos límites describen estos '+(m[1]==='two'?'dos':m[1])+' proyectos de campo inspirados en California. La coincidencia de componentes no demuestra el dominio completo de la materia.'],
+  [/^Whole-answer explanations awaiting review: (\d+) pending$/,m=>'Explicaciones completas pendientes de revisión: '+m[1]+' '+(m[1]==='1'?'pendiente':'pendientes')],
+  [/^(\d+) input components → (\d+) output components$/,m=>m[1]+' componentes de entrada → '+m[2]+' componentes de salida'],
+  [/^(\d+) × (\d+) matrix$/,m=>'Matriz '+m[1]+' × '+m[2]],
+  [/^(\d+) rows and (\d+) columns: (.+)$/,m=>m[1]+' '+(m[1]==='1'?'fila':'filas')+' y '+m[2]+' '+(m[2]==='1'?'columna':'columnas')+': '+m[3]],
+  [/^Position (\d+) of (\d+) between ([-\d.]+) and ([-\d.]+)$/,m=>'Posición '+m[1]+' de '+m[2]+' entre '+m[3]+' y '+m[4]],
+  [/^(\d+) \/ (\d+) recorded$/,m=>m[1]+' / '+m[2]+' registradas'],
+  [/^(\d+) parts saved or skipped$/,m=>m[1]+' partes guardadas u omitidas'],
+  [/^(\d+) record groups$/,m=>m[1]+' grupos de registros'],
+  [/^approximately ([\d.]+) MiB of local record text\. This estimate counts UTF-16 characters; it is not the browser’s remaining quota\.$/,m=>'aproximadamente '+m[1]+' MiB de texto de registros locales. Esta estimación cuenta caracteres UTF-16; no indica la cuota restante del navegador.'],
+  [/^Use ([A-Za-z]) as the variable\. Equivalent expanded or factored forms are accepted\. Unsupported notation is kept for review\.$/,m=>'Usa '+m[1]+' como variable. Se aceptan formas desarrolladas o factorizadas equivalentes. La notación no compatible se conserva para revisión.'],
+  [/^Whole-answer explanations awaiting review: (\d+); revision: (\d+); partial: (\d+); key connection explained: (\d+)\. Reviews concern only the current submitted attempt\.$/,m=>'Explicaciones completas pendientes de revisión: '+m[1]+'; por revisar: '+m[2]+'; parciales: '+m[3]+'; conexión clave explicada: '+m[4]+'. Las revisiones se refieren solo al intento enviado actual.'],
+  [/^Legs ([-\d.]+) and ([-\d.]+); hypotenuse ([-\d.]+)\. Equal drawing scale on both axes\.$/,m=>'Catetos '+m[1]+' y '+m[2]+'; hipotenusa '+m[3]+'. Ambos ejes del dibujo tienen la misma escala.'],
+  [/^Unit price = (.+)$/,m=>'Precio unitario = '+m[1]],
+  [/^Five items cost (.+)$/,m=>'Cinco artículos cuestan '+m[1]],
+  [/^Not checked in these (\d+) (questions|projects)$/,m=>'No comprobado en '+(m[2]==='projects'?'estos '+m[1]+' proyectos':'estas '+m[1]+' preguntas')],
+  [/^Matrix entry, row (\d+), column (\d+)$/,m=>'Entrada de la matriz, fila '+m[1]+', columna '+m[2]],
+  [/^TASK (\d+) \/ (\d+)$/,m=>'TAREA '+m[1]+' / '+m[2]],
+  [/^Task (\d+): (.+), (draft|not started|submitted)$/,m=>{const title=translate(m[2],false),status=translate(m[3],false);return title!==m[2]&&status!==m[3]?'Tarea '+m[1]+': '+title+', '+status:null;}],
+  [/^Matched components: (\d+); need another check: (\d+); uncertain: (\d+); not studied: (\d+); locally reviewed responses: (\d+); mathematical response parts awaiting review: (\d+); earlier precision checks awaiting review: (\d+); missing: (\d+)\. These are component counts, not a weighted grade or mastery estimate\.$/,m=>'Componentes que coinciden: '+m[1]+'; necesitan otra comprobación: '+m[2]+'; inciertos: '+m[3]+'; sin estudiar: '+m[4]+'; respuestas revisadas localmente: '+m[5]+'; partes de respuestas matemáticas pendientes de revisión: '+m[6]+'; comprobaciones de precisión anteriores pendientes de revisión: '+m[7]+'; faltantes: '+m[8]+'. Son conteos de componentes, no una calificación ponderada ni una estimación de dominio.'],
+  [/^(Input|Output) plane; first basis (.+); second basis (.+); (transformed )?v (.+)\. Both planes use the same scale: one unit is one coordinate unit\.$/,m=>(m[1]==='Input'?'Plano de entrada':'Plano de salida')+'; primer vector de la base '+m[2]+'; segundo vector de la base '+m[3]+'; '+(m[4]?'v transformado ':'v ')+m[5]+'. Ambos planos usan la misma escala: una unidad equivale a una unidad de coordenadas.'],
+  [/^Output ([xy]) = (.+)$/,m=>'Salida '+m[1]+' = '+m[2]],
+  [/^The selected map A sends v to (.+)\. Colored endpoints can be dragged to change A\.$/,m=>'La transformación A seleccionada lleva v a '+m[1]+'. Puedes arrastrar los extremos de colores para cambiar A.'],
+  [/^det\(A\) = ([-\d.]+); area scale = ([-\d.]+)\.$/,m=>'det(A) = '+m[1]+'; factor de escala del área = '+m[2]+'.'],
+  [/^!\[Student construction: (.+)\]\((Quidence_Drawing_\d+_\d+\.svg)\)$/,m=>{const title=translate(m[1],false);return title!==m[1]?'![Construcción del estudiante: '+title+']('+m[2]+')':null;}],
+  [/^Enter a number, fraction, or scientific notation( with no unit or the requested (.+) unit)? for (.+)\.$/,m=>{const label=translate(m[3]);return 'Ingresa un número, una fracción o notación científica '+(m[2]?'sin unidad o con la unidad solicitada ('+m[2]+') ':'')+'para '+label+'. Usa punto decimal y evita separadores de miles.';}],
+ ];
+ for(const [pattern,format]of patterns){const m=key.match(pattern);if(m){const out=format(m);if(out!==null)return out;}}
+ if(key.endsWith(' ✓')){const base=translate(key.slice(0,-2),false);if(base!==key.slice(0,-2))return base+' ✓';}
+ if(key.endsWith(':')){const base=translate(key.slice(0,-1),false);if(base!==key.slice(0,-1)||Object.hasOwn(catalog(),key.slice(0,-1)))return base+':';}
+ if(key.endsWith(' ·')){const base=translate(key.slice(0,-2),false);if(base!==key.slice(0,-2))return base+' ·';}
+ if(key.startsWith('· ')){const base=translate(key.slice(2),false);if(base!==key.slice(2))return '· '+base;}
+ if(key.endsWith(' (opens in a new tab)')){const base=translate(key.slice(0,-21),false);if(base!==key.slice(0,-21))return base+' (se abre en una pestaña nueva)';}
+ // A row composed of reviewed captions, counts, dates or mathematics is safe
+ // only when every caption is known. Never partly translate a row.
+ const safe=(part,out)=>out!==part||Object.hasOwn(catalog(),part)||quantities.some(([pattern])=>pattern.test(part))||!/[A-Za-z]{3}/.test(part)||/^\d{1,2} (?:ene|feb|mar|abr|may|jun|jul|ago|sep|oct|nov|dic)\b/i.test(part)||/^\d{4}-\d\d-\d\dT/.test(part);
+ for(const separator of [' · ','; '])if(key.includes(separator)){const parts=key.split(separator),outputs=parts.map(part=>translate(part,false));if(parts.every((part,i)=>safe(part,outputs[i])))return outputs.join(separator);}
+ for(const match of key.matchAll(/; /g)){const parts=[key.slice(0,match.index),key.slice(match.index+2)],outputs=parts.map(part=>translate(part,false));if(parts.every((part,i)=>safe(part,outputs[i])))return outputs.join('; ');}
+ for(const match of key.matchAll(/: /g)){const parts=[key.slice(0,match.index),key.slice(match.index+2)],outputs=parts.map(part=>translate(part,false));if(parts.every((part,i)=>safe(part,outputs[i])))return outputs.join(': ');}
+ for(const match of key.matchAll(/\. (?=[A-Z])/g)){const parts=[key.slice(0,match.index+1),key.slice(match.index+2)],outputs=parts.map(part=>translate(part,false));if(parts.every((part,i)=>safe(part,outputs[i])))return outputs.join(' ');}
+ if(key.endsWith('.')&&Object.hasOwn(catalog(),key.slice(0,-1)))return catalog()[key.slice(0,-1)]+'.';
+ return null;
+}
+let uppercaseCatalog=null,uppercaseIndex=null,memoCatalog=null;
+const memo=new Map();
+function translate(key,track=true){
  const direct=catalog()[key];if(direct!==undefined)return direct;
+ if(memoCatalog!==catalog()){memoCatalog=catalog();memo.clear();}
+ if(memo.has(key)){const out=memo.get(key);if(track&&out===key&&/[A-Za-z]{3}/.test(key)&&!quantities.some(([pattern])=>pattern.test(key)))missing.add(key);return out;}
+ for(const mark of ['.',':'])if(catalog()[key+mark]!==undefined)return catalog()[key+mark].replace(/[.:]$/,'');
  const count=key.match(/^All (\d+) questions$/);if(count)return 'Todas las '+count[1]+' preguntas';
  const question=key.match(/^Question (\d+) of (\d+)$/);if(question)return 'Pregunta '+question[1]+' de '+question[2];
  if(key===key.toUpperCase()){
-  const match=Object.keys(catalog()).find(k=>k.toUpperCase()===key);if(match)return catalog()[match].toUpperCase();
+  if(uppercaseCatalog!==catalog()){uppercaseCatalog=catalog();uppercaseIndex=new Map(Object.entries(catalog()).map(([k,v])=>[k.toUpperCase(),v.toUpperCase()]));}if(uppercaseIndex.has(key))return uppercaseIndex.get(key);
  }
- if(!phraseIndex){phraseIndex=new Map();for(const k of Object.keys(catalog())){
-  if(!k||/^<\/?[a-z]/i.test(k)||k.startsWith('"')||k.startsWith('>'))continue;
-  const first=k[0];if(!phraseIndex.has(first))phraseIndex.set(first,[]);phraseIndex.get(first).push(k);
- }for(const bucket of phraseIndex.values())bucket.sort((a,b)=>b.length-a.length);}
- let output='',i=0;
- while(i<key.length){let found;
-  if(i===0||!/[\p{L}\p{N}_]/u.test(key[i-1]))for(const k of phraseIndex.get(key[i])||[]){
-   if(key.startsWith(k,i)&&(i+k.length===key.length||!/[\p{L}\p{N}_]/u.test(key[i+k.length]))){found=k;break;}
-  }
-  if(found){output+=catalog()[found];i+=found.length;}else output+=key[i++];
- }
- return output;
+ const rendered=template(key);if(rendered!==null){memo.set(key,rendered);return rendered;}
+ if(track&&/[A-Za-z]{3}/.test(key))missing.add(key);
+ memo.set(key,key);
+ return key;
 }
 function text(source){
  const input=String(source??'');if(locale!=='es')return input;
- return input.match(/^\s*/)[0]+translate(normalize(input))+input.match(/\s*$/)[0];
+ const key=normalize(input);if(!key)return input;
+ return input.match(/^\s*/)[0]+translate(key)+input.match(/\s*$/)[0];
 }
 function protect(element){return !!element?.closest?.(protectedSelector)||['SCRIPT','STYLE','NOSCRIPT'].includes(element?.tagName);}
 function apply(scope=root.document){
@@ -61,6 +141,7 @@ function apply(scope=root.document){
   let saved=imageMemory.get(img);if(!saved){saved=img.getAttribute('src');imageMemory.set(img,saved);}
   img.setAttribute('src',locale==='es'?saved.replace(/(?<!-es)\.svg(?=\?|$)/,'-es.svg'):saved);
  }
+ for(const element of scope.querySelectorAll?.('[data-i18n-date]')||[])element.textContent=date(element.getAttribute('data-i18n-date'))+(element.hasAttribute('data-date-caption')?' · '+text(element.getAttribute('data-date-caption')):'');
  for(const link of scope.querySelectorAll?.('a[href]')||[]){
   const href=link.getAttribute('href');if(!href||link.hasAttribute('download')||/^(?:#|mailto:|blob:|data:|javascript:)/i.test(href))continue;
   try{const url=new URL(href,root.location.href);if(url.origin!==root.location.origin||/\.(?:json|md|zip|pdf)$/i.test(url.pathname))continue;url.searchParams.set('lang',locale);const next=href.split(/[?#]/)[0]+url.search+url.hash;if(href!==next)link.setAttribute('href',next);}catch{}
@@ -70,11 +151,28 @@ function apply(scope=root.document){
 }
 function schedule(){if(pending)return;pending=true;root.queueMicrotask(()=>{pending=false;observer?.disconnect();apply();observe();});}
 function observe(){observer?.observe(root.document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['aria-label','placeholder','title','alt']});}
-function setLocale(next){
+function loadCatalog(){
+ if(root.QuidenceSpanish||!root.document)return Promise.resolve();
+ if(!catalogPromise)catalogPromise=new Promise((resolve,reject)=>{
+  const script=root.document.createElement('script'),url=new URL('i18n-es.js',sourceURL);
+  // The page pins the catalog independently of the small loader.
+  url.search=root.document.querySelector('script[data-es-catalog]')?.dataset.esCatalog||'';
+  script.src=url.href;script.onload=resolve;script.onerror=()=>{catalogPromise=null;script.remove();reject(Error('Spanish translations could not load.'));};root.document.head.appendChild(script);
+ });return catalogPromise;
+}
+async function setLocale(next){
+ const sequence=++requestSequence;
+ if(next==='es'&&!root.QuidenceSpanish&&root.document){
+  control?.setAttribute('aria-busy','true');
+  try{await loadCatalog();}catch{if(control){control.value=locale;control.removeAttribute('aria-busy');}const note=root.document.createElement('p');note.className='language-error';note.setAttribute('role','status');note.textContent='No se pudieron cargar las traducciones. Selecciona Español para intentarlo de nuevo.';control?.closest('nav')?.appendChild(note);return locale;}
+  if(sequence!==requestSequence)return locale;
+ }
+ control?.removeAttribute('aria-busy');root.document?.querySelectorAll('.language-error').forEach(e=>e.remove());
  locale=next==='es'?'es':'en';try{root.localStorage.setItem(KEY,locale);}catch{}
  if(root.location&&root.history){const url=new URL(root.location.href);url.searchParams.set('lang',locale);root.history.replaceState(root.history.state,'',url);}
  observer?.disconnect();apply();observe();root.document?.dispatchEvent(new root.CustomEvent('quidence:language',{detail:{locale}}));return locale;
 }
+function date(source){const d=new Date(source);return Number.isNaN(d.getTime())?String(source):new Intl.DateTimeFormat(locale==='es'?'es-US':'en-US',{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}).format(d);}
 function markdown(source){
  // Never translate quoted original answers or code/JSON records. For mixed
  // evidence lines only a known heading is translated; the student suffix stays.
@@ -94,8 +192,7 @@ function html(source){
 }
 function start(){
  const requested=new URL(root.location.href).searchParams.get('lang');let stored='';try{stored=root.localStorage.getItem(KEY)||'';}catch{}
- locale=requested==='es'||requested==='en'?requested:stored==='es'?'es':'en';
- if(requested==='es'||requested==='en')try{root.localStorage.setItem(KEY,locale);}catch{}
+ const desired=requested==='es'||requested==='en'?requested:stored==='es'?'es':'en';
  const toolbar=root.document.createElement('nav');toolbar.className='language-toolbar';toolbar.setAttribute('aria-label','Language');
  const label=root.document.createElement('label');label.className='language-label';label.appendChild(root.document.createTextNode('Language'));
  control=root.document.createElement('select');control.setAttribute('aria-label','Language');control.id='quidence-language';
@@ -105,9 +202,9 @@ function start(){
  const header=root.document.querySelector('.site-header');
  if(header){const group=root.document.createElement('div');group.className='header-tools';const preview=header.querySelector('.preview-label');if(preview)group.appendChild(preview);group.appendChild(toolbar);header.appendChild(group);}
  else root.document.body.prepend(toolbar);
- apply();observer=new root.MutationObserver(schedule);observe();
+ apply();observer=new root.MutationObserver(schedule);observe();setLocale(desired);
  root.addEventListener('storage',event=>{if(event.key===KEY)setLocale(event.newValue);});
 }
 if(root.document){if(root.document.readyState==='loading')root.document.addEventListener('DOMContentLoaded',start,{once:true});else start();}
-return {text,markdown,markdownArea,html,apply,setLocale,get locale(){return locale;},normalize,KEY,protectedSelector};
+return {text,markdown,markdownArea,html,apply,setLocale,date,get missing(){return [...missing];},clearMissing(){missing.clear();},get locale(){return locale;},normalize,KEY,protectedSelector};
 });
