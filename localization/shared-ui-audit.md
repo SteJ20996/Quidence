@@ -1,0 +1,405 @@
+# Shared UI translation audit
+
+Homepage, navigation, record management, report interpretation and reviewer controls translated. Original student answers and review notes remain verbatim. Split HTML headlines/captions are covered by reviewed supplemental keys. No schema, storage key or scoring value is translated.
+
+Excluded inventory rows are technical identifiers, markup fragments, email/file references or presentation fragments represented by a clean supplemental key:
+
+- 0: `<!doctype html>`
+- 8: `challenge-no-followup`
+- 10: `DOMContentLoaded`
+- 11: `diagnostics`
+- 12: `module`
+- 711: `app`
+- 715: `&amp;`
+- 716: `&quot;`
+- 717: `lesson`
+- 718: `predict`
+- 719: `check`
+- 720: `<button class="btn`
+- 721: `" data-action="`
+- 722: `storage-note`
+- 726: `home`
+- 728: `quiet`
+- 729: `active`
+- 730: `<button class="lesson-link`
+- 731: `" data-action="open" data-index="`
+- 732: `summary`
+- 734: `disabled`
+- 736: `learn`
+- 739: `review`
+- 741: `current`
+- 742: `<li class="`
+- 745: `primary`
+- 746: `<a href="`
+- 747: `" target="_blank" rel="noopener">`
+- 764: `text-task`
+- 765: `checked`
+- 766: `<input type="radio" name="choice" value="`
+- 769: `next`
+- 773: `submitted`
+- 775: `<div class="task-layout`
+- 779: `<input type="checkbox" name="otherHelp"`
+- 781: `selected`
+- 782: `<option value="`
+- 783: `<label class="control-label" for="lab-`
+- 784: `<select id="lab-`
+- 785: `" data-lab="`
+- 786: `<input id="lab-`
+- 787: `" type="range" min="`
+- 788: `" max="`
+- 789: `" step="`
+- 790: `" value="`
+- 791: `"><output id="out-`
+- 792: `" for="lab-`
+- 795: `reset-lab`
+- 797: `quiet small`
+- 804: `explain`
+- 808: `<button data-action="step" data-index="`
+- 809: `" class="step-dot`
+- 810: `" aria-label="Read step`
+- 811: `prev-step`
+- 813: `next-step`
+- 818: `play-motion`
+- 821: `true`
+- 822: `paused`
+- 823: `completed`
+- 824: `live-readout`
+- 825: `polite`
+- 826: `motion-note`
+- 829: `lab-`
+- 830: `(prefers-reduced-motion: reduce)`
+- 831: `off`
+- 833: `navigation`
+- 834: `pagehide`
+- 835: `visibilitychange`
+- 836: `hidden`
+- 837: `lab-graphs`
+- 838: `lab-formula`
+- 839: `lab-note`
+- 841: `out-`
+- 842: `correct`
+- 844: `unsure`
+- 850: `revisit`
+- 854: `revise`
+- 856: `<span class="feedback-label`
+- 860: `relearn`
+- 862: `continue`
+- 873: `open`
+- 875: `export-json`
+- 877: `export-md`
+- 879: `print`
+- 890: `raw`
+- 892: `reset-blocked`
+- 894: `cancel-reset`
+- 896: `confirm-reset`
+- 903: `answer-form`
+- 904: `submit`
+- 905: `[data-action="next"]`
+- 907: `answer-status`
+- 908: `instant`
+- 909: `input`
+- 910: `control`
+- 911: `checkbox`
+- 912: `SELECT`
+- 913: `[name="choice"]:checked`
+- 914: `invalid-choice`
+- 915: `[name="explanation"]`
+- 916: `[name="otherHelp"]`
+- 918: `change`
+- 932: `click`
+- 933: `[data-action]`
+- 934: `Quidence_`
+- 935: `_Saved_Record.json`
+- 936: `application/json`
+- 937: `reset-dialog`
+- 938: `step`
+- 939: `_Answer_History.json`
+- 940: `_Learning_Summary.md`
+- 941: `text/markdown`
+- 945: `school`
+- 948: `further`
+- 951: `science`
+- 954: `courses/pre-algebra/`
+- 957: `courses/algebra-1/`
+- 960: `courses/geometry/`
+- 963: `geometry`
+- 964: `courses/algebra-2/`
+- 967: `modules/af01/dist/`
+- 968: `foundations/?module=af01`
+- 971: `modules/ad01/dist/`
+- 972: `foundations/?module=ad01`
+- 975: `modules/ae01/dist/`
+- 976: `foundations/?module=ae01`
+- 979: `modules/ab01/dist/`
+- 980: `foundations/?module=ab01`
+- 983: `physics-1`
+- 985: `courses/physics-1/`
+- 988: `physics-2`
+- 990: `courses/physics-2/`
+- 993: `foundations/?module=aa01`
+- 996: `projects/?module=`
+- 997: `diagnostics/?module=`
+- 998: `physics-`
+- 1273: `project-start`
+- 1274: `entry`
+- 1275: `<button type="button" data-f-action="`
+- 1278: `<a class="f-mode-link" data-f-mode="`
+- 1279: `" href="`
+- 1280: `target="_blank" rel="noopener"`
+- 1284: `intro`
+- 1286: `report`
+- 1288: `disabled title="Save all answers to open this report"`
+- 1293: `projects`
+- 1296: `id="project-start"`
+- 1307: `<a class="f-secondary-link" href="`
+- 1315: `jump`
+- 1316: `resume`
+- 1321: `class="f-primary"`
+- 1322: `" data-f-course>Continue the lessons`
+- 1326: `followup`
+- 1330: `history`
+- 1331: `saved`
+- 1332: `new`
+- 1337: `drawing`
+- 1338: `reason`
+- 1339: `formula`
+- 1340: `<label class="f-field" for="f-`
+- 1344: `<textarea id="f-`
+- 1345: `" data-f-field="`
+- 1346: `" rows="`
+- 1347: `" maxlength="`
+- 1348: `<input id="f-`
+- 1349: `" type="text" inputmode="text" maxlength="80" value="`
+- 1351: `<input data-f-field="`
+- 1352: `" data-f-option="`
+- 1353: `" type="`
+- 1354: `radio`
+- 1355: `" name="`
+- 1356: `" value="option-`
+- 1363: `<input type="checkbox" data-f-unsure`
+- 1365: `<input type="checkbox" data-f-not-studied`
+- 1368: `<input type="checkbox" data-f-help`
+- 1370: `previous`
+- 1373: `matched`
+- 1374: `recheck`
+- 1375: `rounding-review`
+- 1379: `partial`
+- 1383: `not-studied`
+- 1391: `reviewed`
+- 1411: `missing`
+- 1439: `export-drawings`
+- 1464: `<form data-f-review="`
+- 1472: `<form data-f-part-review="`
+- 1473: `" data-field="`
+- 1482: `replace`
+- 1486: `cancel-replace`
+- 1488: `confirm-replace`
+- 1490: `task`
+- 1491: `[data-project-field]`
+- 1492: `[data-project-label]`
+- 1493: `tabindex`
+- 1496: `[data-f-action="next"]`
+- 1497: `[data-f-action="report"]`
+- 1498: `form`
+- 1500: `[name="points"]`
+- 1501: `[name="note"]`
+- 1506: `[data-f-home]`
+- 1507: `[data-f-course]`
+- 1508: `[data-f-reports]`
+- 1509: `[data-project-action]`
+- 1510: `[data-f-action]`
+- 1511: `Quidence_Foundation_Original_Data.json`
+- 1515: `_Further`
+- 1516: `_Project_Report.md`
+- 1517: `_Diagnostic_Report.md`
+- 1518: `_Foundation_Report.md`
+- 1519: `application/zip`
+- 1520: `Quidence_Report_with_Drawings.zip`
+- 1522: `_Project_History.json`
+- 1523: `_Diagnostic_History.json`
+- 1524: `_Foundation_History.json`
+- 1525: `undo`
+- 1526: `place`
+- 1527: `[data-project-x]`
+- 1528: `[data-project-y]`
+- 1529: `connect`
+- 1530: `[data-project-from]`
+- 1531: `[data-project-to]`
+- 1532: `clear`
+- 1534: `pointerdown`
+- 1535: `[data-project-board]`
+- 1536: `pointercancel`
+- 1537: `pointerup`
+- 1538: `tap`
+- 2035: `decimal-final-2dp-1`
+- 2036: `written-precision-2`
+- 2037: `written-precision-3`
+- 2039: `analyze`
+- 2040: `modeling`
+- 2050: `title`
+- 2051: `prompt`
+- 2052: `groupName`
+- 2088: `significant`
+- 2145: `field-project`
+- 2146: `diagnostic-challenge`
+- 2147: `foundation-check`
+- 2166: `![Student construction:`
+- 2167: `](Quidence_Drawing_`
+- 2191: `legacy-strict`
+- 2453: `[data-table-scroll]`
+- 2454: `[data-table-edge]`
+- 2455: `scroll`
+- 2456: `<div class="f-matrix" role="img" aria-label="Matrix rows:`
+- 2458: `f-plot-`
+- 2459: `<path class="f-grid" d="M`
+- 2460: `" text-anchor="middle">`
+- 2461: `" text-anchor="end">`
+- 2462: `<polygon data-polygon="`
+- 2463: `" points="`
+- 2464: `" fill="none" stroke="`
+- 2465: `" stroke-width="2.5"`
+- 2466: `stroke-dasharray="6 4"`
+- 2467: `<path data-line="`
+- 2468: `<rect class="f-area positive" x="`
+- 2469: `" width="`
+- 2470: `<path class="f-area`
+- 2471: `negative`
+- 2472: `<path class="f-curve" d="`
+- 2473: `<path class="f-secondary" d="M`
+- 2474: `<path class="f-secondary" marker-end="url(#`
+- 2475: `-arrow)" d="M`
+- 2476: `<circle class="f-open" cx="`
+- 2477: `" r="5"/><circle class="f-dot" cx="`
+- 2478: `<circle class="f-dot" cx="`
+- 2479: `end`
+- 2480: `<text class="f-point-label" x="`
+- 2481: `" text-anchor="`
+- 2482: `" stroke="#fff" stroke-width="4" stroke-linejoin="round" paint-order="stroke">`
+- 2483: `<svg viewBox="0 0`
+- 2484: `-title">Coordinate graph`
+- 2485: `-clip"><rect x="`
+- 2486: `<marker id="`
+- 2487: `-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">`
+- 2488: `<g clip-path="url(#`
+- 2489: `-clip)"><path class="f-axis" d="M`
+- 2490: `<text x="15" y="`
+- 2491: `" text-anchor="middle"`
+- 2492: `transform="rotate(-90 15`
+- 2493: `f-line-`
+- 2494: `37v10"/><text x="`
+- 2495: `" y="65" text-anchor="middle">`
+- 2496: `80" role="img" aria-labelledby="`
+- 2497: `"><title id="`
+- 2498: `<path class="f-axis" d="M`
+- 2499: `f-area-`
+- 2500: `"/><rect class="f-area negative" x="`
+- 2501: `"/><text x="`
+- 2502: `" y="25" text-anchor="middle">w =`
+- 2503: `<text x="8" y="`
+- 2504: `" text-anchor="middle">removed`
+- 2505: `quidence-foundations`
+- 2513: `high`
+- 2514: `foundational`
+- 2515: `college`
+- 2516: `advanced`
+- 2517: `all`
+- 2518: `stage`
+- 2519: `direction`
+- 2520: `subject-filters`
+- 2521: `filter-stage`
+- 2522: `filter-direction`
+- 2523: `filter-status`
+- 2524: `filter-empty`
+- 2525: `filter-reset`
+- 2526: `[data-subject]`
+- 2527: `[data-subject-tags]`
+- 2530: `popstate`
+- 2535: `learning-entry`
+- 2536: `learning-goal`
+- 2537: `goal-status`
+- 2538: `goal-course`
+- 2539: `goal-foundations`
+- 2540: `goal-copy`
+- 2541: `goal-markdown`
+- 2542: `goal-report`
+- 2543: `goal-original`
+- 2544: `goal-reset`
+- 2545: `goal-include-report`
+- 2551: `[data-learning-subject]`
+- 2552: `goal-subject-label`
+- 2554: `href`
+- 2561: `function`
+- 2562: `null`
+- 2566: `clearing:`
+- 2568: `ready:`
+- 2571: `identical`
+- 2572: `conflicting`
+- 2576: `storage`
+- 2577: `pageshow`
+- 2578: `aside`
+- 2580: `padding:12px 20px;background:#edf4f2;color:#173c34;font:14px system-ui;display:block`
+- 2583: `records/`
+- 2584: `local-record-status`
+- 2587: `local-storage-usage`
+- 2592: `local-optimize`
+- 2596: `local-export`
+- 2597: `quidence-local-records-`
+- 2600: `local-clear`
+- 2604: `local-import`
+- 3796: `projects-no-followup`
+- 4583: `saved-reports`
+- 4586: `current-session`
+- 4589: `exportedAt`
+- 4590: `exportedAtISO`
+- 4591: `compact-v2:`
+- 4592: `view`
+- 4593: `index`
+- 4594: `events`
+- 4601: `saved-report-note`
+- 4602: `error`
+- 4603: `role`
+- 4604: `status`
+- 4605: `alert`
+- 4610: `document.querySelector('[data-print-report]').addEventListener('click',function(){window.print();});`
+- 4613: `_blank`
+- 4614: `$1Quidence`
+- 4617: `json`
+- 4618: `Quidence ·`
+- 4623: `>Matching answer components</`
+- 4624: `>One or two things to check next</`
+- 4625: `>How to read this summary</`
+- 4629: `Quidence_Report.md`
+- 4630: `Quidence_Report.html`
+- 4631: `report-feedback`
+- 4632: `question-text`
+- 4633: `student-work`
+- 4634: `class="`
+- 4636: `section`
+- 4637: `report-handoff`
+- 4646: `[data-report-status]`
+- 4647: `[data-report-fallback]`
+- 4648: `textarea`
+- 4649: `[data-report-summary]`
+- 4653: `[data-report-copy]`
+- 4656: `[data-report-print]`
+- 4662: `explanationReview`
+- 4677: `<button data-r-action="open" data-report="`
+- 4687: `[data-r-home]`
+- 4688: `[data-r-foundations]`
+- 4689: `[data-r-action]`
+- 4690: `Quidence_Original_Saved_Reports.json`
+- 4691: `download`
+- 4692: `_Saved_Report.json`
+- 4697: `drawings`
+- 4698: `copy`
+- 4701: `[role="status"]`
+- 5369: `ac01_beta01_session_v1`
+- 5370: `ad01_beta01_session_v1`
+- 5371: `ae01_beta01_session_v1`
+- 5372: `af01_beta01_session_v1`
+- 5373: `pre-algebra_beta01_session_v1`
+- 5374: `algebra-1_beta01_session_v1`
+- 5375: `algebra-2_beta01_session_v1`
+- 5376: `physics-1_beta01_session_v1`
+- 5377: `physics-2_beta01_session_v1`
+- 5642: `hello@quidence.com`

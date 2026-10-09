@@ -11,7 +11,7 @@ const styles=`*{box-sizing:border-box}body{max-width:850px;margin:28px auto;padd
 const PRINT_SCRIPT="document.querySelector('[data-print-report]').addEventListener('click',function(){window.print();});";
 function drawingEntries(payload){const p=root.QuidenceProjectTools||(typeof module==='object'&&module.exports?require('./project-tools.js'):null);return p?p.reportDrawings(payload):[];}
 function drawingFigure(d){const p=root.QuidenceProjectTools||(typeof module==='object'&&module.exports?require('./project-tools.js'):null);return'<figure class="report-drawing"><figcaption>'+escape(d.title)+'</figcaption>'+p.svg(d.spec,d.drawing)+'<p>'+escape(p.fieldTypes.drawing.text(d.spec,d.drawing))+'</p></figure>';}
-function documentHtml(title,body){return`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escape(title)}</title><style>${styles}</style></head><body><div class="toolbar"><button type="button" data-print-report>Print / save as PDF</button><p>Choose Save as PDF. Close this tab to return to your activity.</p></div>${body}<script>${PRINT_SCRIPT}</script></body></html>`;}
+function documentHtml(title,body){const source=`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escape(title)}</title><style>${styles}</style></head><body><div class="toolbar"><button type="button" data-print-report>Print / save as PDF</button><p>Choose Save as PDF. Close this tab to return to your activity.</p></div>${body}<script>${PRINT_SCRIPT}</script></body></html>`;return root.QuidenceI18n?.html(source)||source;}
 function openPrint(html){
  const tab=root.open('','_blank');if(!tab)return false;
  tab.opener=null;tab.document.open();tab.document.write(html);tab.document.close();tab.focus?.();
@@ -51,16 +51,19 @@ function summaryBody(subject,payload,standalone=true){
 function printableSummary(subject,payload){const body=summaryBody(subject,payload);return body?documentHtml('Quidence · '+subject+' · Student summary',body):null;}
 function packageFiles(subject,payload,request=''){
  const p=root.QuidenceProjectTools||(typeof module==='object'&&module.exports?require('./project-tools.js'):null);
- return [{name:'Quidence_Report.md',content:markdown(subject,payload,request)},{name:'Quidence_Report.html',content:printable(subject,payload,request)},...drawingEntries(payload).map(d=>({name:d.filename,content:p.svg(d.spec,d.drawing)}))];
+ return [{name:'Quidence_Report.md',content:root.QuidenceI18n?.markdown(markdown(subject,payload,request))||markdown(subject,payload,request)},{name:'Quidence_Report.html',content:printable(subject,payload,request)},...drawingEntries(payload).map(d=>({name:d.filename,content:p.svg(d.spec,d.drawing)}))];
 }
 function markdownBody(text,drawings=[]){
- const lines=String(text).split('\n'),out=[],used=new Set();let quoteLines=[],code=false,codeLines=[];
+ const lines=String(text).split('\n'),out=[],used=new Set();let quoteLines=[],code=false,codeLines=[],originalBlock=false;
  const flush=()=>{if(quoteLines.length){out.push('<div class="student-work">'+escape(quoteLines.join('\n'))+'</div>');quoteLines=[];}};
  for(const line of lines){
   if(/^`{3,}/.test(line)){flush();if(code){out.push('<pre class="student-work">'+escape(codeLines.join('\n'))+'</pre>');codeLines=[];}code=!code;continue;}
   if(code){codeLines.push(line);continue;}
   if(/^> ?/.test(line)){quoteLines.push(line.replace(/^> ?/,''));continue;}
-  flush();const heading=line.match(/^(#{1,4})\s+(.+)$/);
+  flush();
+  if(originalBlock){if(!line.trim()||/^(?:Other help reported|Earlier report viewed|Reference mathematics|Next check):/.test(line))originalBlock=false;else{out.push('<p class="student-work">'+escape(line)+'</p>');continue;}}
+  if(/^(?:Student explanation|Explanation \(human review\)|Explanation for (?:human )?review|Current revision is not submitted\. Draft explanation|Reviewer note|Review note|Reviewed explanation|Unsaved reviewer draft|Local review of)/.test(line)){const colon=line.indexOf(':');out.push(colon<0?'<p class="student-work">'+escape(line)+'</p>':'<p>'+escape(line.slice(0,colon+1))+'<span class="student-work">'+escape(line.slice(colon+1))+'</span></p>');originalBlock=true;continue;}
+  const heading=line.match(/^(#{1,4})\s+(.+)$/);
   if(heading){const level=Math.min(3,heading[1].length);out.push(`<h${level}>${escape(heading[2])}</h${level}>`);}
   else if(/^!\[/.test(line)&&drawings.some(d=>line.endsWith(']('+d.filename+')'))){const d=drawings.find(d=>line.endsWith(']('+d.filename+')'));out.push(drawingFigure(d));used.add(d.filename);}
   else if(line.trim()){const cls=/^(?:Reference|Next|Feedback|Result|Local review|Current component)/i.test(line)?'report-feedback':/^(?:Question|Reasoning prompt)/i.test(line)?'question-text':/^(?:Attempt|Student explanation|Explanation)/i.test(line)?'student-work':'';out.push(`<p${cls?' class="'+cls+'"':''}>${escape(line)}</p>`);}
@@ -82,7 +85,8 @@ function attach(host,subject,payload,request=''){
  const status=box.querySelector('[data-report-status]'),fallback=box.querySelector('[data-report-fallback]'),area=box.querySelector('textarea');
  const summaryButton=box.querySelector('[data-report-summary]');if(summaryButton)summaryButton.onclick=()=>{try{const html=printableSummary(subject,payload);status.textContent=html&&openPrint(html)?'Your summary opened in a separate tab. Print it there; the full report keeps all evidence.':'The summary tab could not open. Use the full report below.';}catch{status.textContent='The summary could not open. Use the full report below.';}};
  box.querySelector('[data-report-copy]').onclick=async()=>{
-  const ok=await copy(markdown(subject,payload,request),area);fallback.hidden=ok;
+  const source=markdown(subject,payload,request),output=root.QuidenceI18n?.markdownArea(area,source)||source;
+  const ok=await copy(output,area);fallback.hidden=ok;
   status.textContent=ok?'Markdown copied. Paste it into your AI tutor conversation.':'Use your device’s Copy command on the selected Markdown below.';
  };
  box.querySelector('[data-report-print]').onclick=()=>{

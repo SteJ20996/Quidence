@@ -1,0 +1,5 @@
+{
+  "At u=f, the thin-lens model has no finite image distance. For u<f a virtual-image case requires a different interpretation; the control deliberately stays at u>f.": "En u=f, el modelo de lente delgada no tiene una distancia de imagen finita. Para u<f, el caso de imagen virtual requiere una interpretación diferente; el control se mantiene deliberadamente en u>f.",
+  "Object": "Objeto",
+  "Image": "Imagen"
+}

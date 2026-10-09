@@ -1,0 +1,60 @@
+# Neutral Spanish; identifiers, formulas and saved answer values remain unchanged.
+1	Registros locales · Quidence
+2	Quidence
+3	Las cuentas y la sincronización en la nube están pausadas.
+4	Durante las pruebas públicas, los nuevos registros de aprendizaje se guardan en este navegador. Esta página no permite iniciar sesión ni registrarse.
+5	Guardar, restaurar o eliminar registros locales →
+6	Las copias locales existentes se conservan hasta que decidas eliminarlas. Este cambio no elimina los registros que se hayan subido anteriormente al servidor.
+7	Elige tu asignatura →
+9	Diagnóstico de nivel intermedio y avanzado
+14	Vuelve a comprobar
+18	Sí
+20	Exactamente una solución
+22	Sin solución
+24	Infinitas soluciones
+25	Álgebra lineal
+26	Problemas de nivel intermedio y avanzado sobre sistemas, espacios vectoriales, transformaciones, proyecciones y vectores propios
+27	Multiplicación de matrices, eliminación, rango y espacio nulo, bases, productos escalares, determinantes, mínimos cuadrados y vectores propios. Indica que aún no has estudiado un tema cuando corresponda.
+28	Sistemas, rango y estructura de las soluciones
+29	Composición y coordenadas
+30	Ortogonalidad y aproximación
+31	Vectores propios y geometría
+32	Linealidad y subespacios
+33	Demostraciones generales en espacios vectoriales abstractos, valores propios complejos, forma de Jordan y descomposición en valores singulares
+34	Condicionamiento numérico, sistemas grandes y aplicación independiente más allá de estos ejemplos finitos
+35	intermedio
+36	Un parámetro cambia el conjunto de soluciones
+37	Considera 2x + ky = 6 y 4x + 6y = 12, con parámetro real k. Indica el valor excepcional de k y clasifica el sistema en ese caso. Para k = 2, encuentra x e y. Para el valor excepcional de k, cambia únicamente el segundo término del lado derecho a 13 y vuelve a clasificar el sistema.
+38	Valor excepcional de k
+39	Condición de singularidad
+41	Sistema original para ese valor de k
+42	Ecuaciones dependientes frente a contradicción
+43	x cuando k = 2
+44	Eliminación
+45	y cuando k = 2
+47	Sistema modificado para ese valor de k
+48	Compatibilidad del lado derecho
+49	Elimina una variable antes de dividir entre una expresión que contenga el parámetro. Explica qué ocurre cuando esa expresión es cero.
+50	Resta el doble de la primera ecuación a la segunda: (6 − 2k)y = 0. Para k = 3, las ecuaciones originales coinciden. Para k = 2, y = 0 y x = 3. Para k = 3 con el segundo miembro de la segunda ecuación igual a 13, la eliminación da 0 = 1, por lo que no hay solución.
+51	Prueba otro sistema con un parámetro y distingue la condición de matriz singular de la compatibilidad del sistema.
+52	avanzado
+53	Una solución completa, no solo un vector
+54	Para la matriz A mostrada, resuelve Ax = (3, 6, 1)ᵀ. Toma la tercera coordenada como parámetro libre t y escribe x = p + td, con p₃ = 0 y d₃ = 1. Indica el rango, la nulidad, p₁, p₂, d₁ y d₂. ¿Seguiría habiendo una solución si únicamente se reemplazara por 7 la segunda componente, que es 6, del vector del lado derecho?
+56	Rango de A
+57	Filas independientes
+59	Nulidad de A
+60	Rango–nulidad
+61	Solución particular
+62	Dirección del espacio nulo
+64	¿Hay solución después de cambiar 6 por 7?
+65	Compatibilidad con el espacio columna
+66	Muestra las ecuaciones independientes y verifica Ap = b y Ad = 0. Explica por qué una variable libre no es un error aritmético.
+67	La segunda fila es el doble de la primera; la tercera fila es independiente. Un rango de 2 da una nulidad de 1. De y + z = 1 y x + 2y − z = 3, se obtiene z = t, y = 1 − t, x = 1 + 3t. Por tanto, p = (1,1,0) y d = (3,−1,1). Un vector del lado derecho cuya segunda componente sea 7 contradice que esa componente deba ser el doble de la primera.
+68	Comprueba la compatibilidad de un nuevo vector del lado derecho antes de resolver y después expresa todas las soluciones como un vector particular más un vector del espacio nulo.
+69	Compón dos transformaciones y después deshazlas
+70	A = [[1,2],[0,1]], B = [[2,0],[1,1]] y v = (1,−1)ᵀ. Calcula ABv y BAv. ¿Qué expresión invierte la transformación compuesta AB?
+72	ABv: primera coordenada
+73	Orden de composición de matrices
+75	ABv: segunda coordenada
+77	BAv: primera coordenada
+79	BAv: segunda coordenada

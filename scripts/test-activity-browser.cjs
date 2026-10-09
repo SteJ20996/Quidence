@@ -70,7 +70,7 @@ async function run() {
         await page.goto(href);
         assert.equal(await page.locator('#f-subject').inputValue(), subject);
         assert.equal(await page.locator('.f-mode-link[aria-current="page"]').getAttribute('data-f-mode'), projects ? 'projects' : 'check');
-        assert.equal(await page.locator('[data-f-mode="learn"]').getAttribute('href'), '../' + COURSES[subject].course);
+        assert.equal(await page.locator('[data-f-mode="learn"]').getAttribute('href'), '../' + COURSES[subject].course + '?lang=en');
         await checkLayout(page, width, url.pathname + subject + ' overview');
         if (capture && (width === 1440 || width === 375) && ((!projects && subject === 'algebra-1') || (projects && subject === 'af01'))) {
           await page.screenshot({path: path.join(capture, (projects ? 'projects' : 'diagnostic') + '-' + width + '.png'), fullPage: true});

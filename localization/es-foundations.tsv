@@ -1,0 +1,891 @@
+1540	Arriba
+1541	Abajo
+1542	Izquierda
+1543	Derecha
+1544	A elige una fila. B elige una columna. Cada casilla indica (puntos de A, puntos de B). Se prefiere obtener más puntos.
+1545	Cooperar
+1546	No cooperar
+1548	Matemáticas de secundaria
+1549	Fundamentos seleccionados de preálgebra y Álgebra I
+1550	Números y fracciones
+1551	Tasas y proporciones
+1552	Expresiones y ecuaciones
+1553	Coordenadas y rectas
+1554	Modelos y restricciones
+1555	Compara dos números negativos
+1556	¿Qué número es mayor: −3/4 o −0.8?
+1558	Número mayor
+1561	Son iguales
+1562	Muestra cómo comparaste los dos valores. Basta con convertirlos a decimales o explicar su posición en la recta numérica.
+1563	−3/4 = −0.75, que está a la derecha de −0.8; por lo tanto, −3/4 es mayor.
+1564	Compara otra fracción negativa con un decimal antes de elegir el valor mayor.
+1565	Describe una resta
+1566	Empieza en −2 en la recta numérica. Calcula −2 − 5.
+1568	Resultado
+1569	Explica la dirección y la distancia de tu desplazamiento.
+1570	Restar 5 desplaza cinco unidades hacia la izquierda, de −2 a −7.
+1571	Distingue el punto de partida del desplazamiento con signo.
+1573	Una recta numérica de −8 a 2, con un punto inicial en −2.
+1574	Combina partes de una misma unidad
+1575	Calcula 1/2 + 1/4. Puedes ingresar una fracción o un decimal.
+1576	Suma
+1577	Explica por qué las partes deben tener el mismo tamaño antes de sumarlas.
+1578	Un medio equivale a dos cuartos. Dos cuartos más un cuarto son tres cuartos, o 0.75.
+1579	Usa partes del mismo tamaño para sumar fracciones.
+1580	Encuentra una unidad que se repite
+1581	Una persona corre 3 vueltas iguales en 12 minutos a un ritmo constante. ¿Cuánto tarda en recorrer 1 vuelta y 5 vueltas?
+1582	Minutos para 1 vuelta
+1584	Minutos para 5 vueltas
+1585	Explica cómo calculaste el tiempo por vuelta y lo usaste para 5 vueltas.
+1586	12 ÷ 3 = 4 minutos por vuelta. Cinco vueltas requieren 5 × 4 = 20 minutos al mismo ritmo.
+1587	Encuentra la tasa por unidad y luego multiplícala por la cantidad de unidades; muestra siempre las unidades.
+1588	Comprueba una relación proporcional
+1589	La tabla muestra el número de botellas y su costo total. ¿Es el costo proporcional al número de botellas?
+1591	¿Es proporcional?
+1592	Usa el costo por botella y la fila correspondiente a cero botellas para justificar tu respuesta.
+1593	Las filas con cantidades distintas de cero dan $3 por botella, y cero botellas cuestan $0. La regla es C = 3b.
+1594	Comprueba tanto la razón constante como el valor en cero.
+1595	Botellas
+1596	Expresa una parte como porcentaje
+1597	Se han vendido 12 de 40 boletos. ¿Qué porcentaje de los boletos se ha vendido?
+1599	Porcentaje vendido (ingresa el número sin %)
+1600	Muestra la razón entre la parte y el total y cómo la convertiste en porcentaje.
+1601	12/40 = 0.3 = 30%. El total es de 40 boletos.
+1602	Identifica el total antes de convertir una razón en porcentaje.
+1603	Distribuye a cada término
+1604	Elige la expresión que equivale a 2(x + 3) para todo x.
+1606	Expresión equivalente
+1609	Explica qué multiplica el 2 que está fuera del paréntesis. Puedes comprobar tu regla con un valor de x.
+1610	El 2 multiplica tanto a x como a 3: 2x + 2 × 3 = 2x + 6.
+1611	Distribuye el factor a cada término dentro del paréntesis.
+1612	Resuelve 3x − 4 = 11.
+1613	Muestra qué haces en ambos lados y comprueba tu valor en la ecuación original.
+1614	Suma 4 a ambos lados para obtener 3x = 15 y luego divide ambos lados entre 3. Con x = 5, 15 − 4 = 11.
+1615	Explica un paso de una ecuación como la misma operación en ambos lados.
+1616	Describe todos los valores permitidos
+1617	¿Qué desigualdad describe todas las soluciones de 2x + 1 ≤ 9?
+1619	Conjunto de soluciones
+1620	Explica el valor límite y si está incluido.
+1621	Resta 1 y divide entre 2, que es positivo, para obtener x ≤ 4. El valor límite x = 4 da 9, por lo que está incluido.
+1622	Distingue una desigualdad estricta de una que incluye su valor límite.
+1623	Distingue el valor inicial del cambio
+1624	Estos puntos pertenecen a una misma recta. Escribe su regla como y = mx + b indicando m y b.
+1625	Pendiente m
+1626	Valor inicial b
+1627	Explica qué información da el valor inicial y cuál da la tasa de cambio.
+1628	Cuando x = 0, y = −1, por lo que b = −1. De (0, −1) a (1, 2), y aumenta 3 por cada unidad de x, por lo que m = 3.
+1629	Lee por separado el valor inicial y el cambio.
+1630	Lee una pendiente con signo
+1631	Una recta pasa por (−1, 4) y (2, −2). Encuentra su pendiente.
+1632	Pendiente
+1633	Muestra el cambio en y y el cambio en x, incluidos sus signos.
+1634	La pendiente es (−2 − 4)/(2 − (−1)) = −6/3 = −2.
+1635	Usa el cambio en y dividido entre el cambio en x, no la altura de un punto.
+1637	Una recta decreciente que pasa por los puntos señalados (−1, 4) y (2, −2).
+1638	Lee un par ordenado
+1639	Lee el punto P marcado en el plano de coordenadas. Indica sus coordenadas x e y.
+1640	Coordenada x
+1641	Coordenada y
+1642	Explica cómo los desplazamientos horizontal y vertical determinan los signos y el orden.
+1643	P está tres unidades a la derecha y dos unidades abajo del origen, por lo que P = (3, −2).
+1644	Escribe primero la coordenada horizontal y después la vertical.
+1645	El punto P está tres unidades a la derecha y dos unidades abajo del origen.
+1646	Distingue un cargo fijo de uno que se repite
+1647	Un club cobra $6 una sola vez más $4 por visita. Elige una regla para el costo total C después de v visitas y luego calcula el costo de 3 visitas.
+1649	Regla del costo
+1653	Costo de 3 visitas ($)
+1654	Explica qué representa cada término.
+1655	Los $6 se pagan una sola vez y 4v representa los cargos por las visitas. Con v = 3, C = 6 + 12 = $18.
+1656	Identifica las cantidades fijas y las que se repiten antes de formular una regla.
+1657	Comprueba una expresión de área
+1658	Un rectángulo mide 3 cm de alto y w cm de ancho. Retira una franja de 2 cm de ancho que ocupa toda la altura. Para w = 6 cm, calcula el área restante.
+1659	Área restante (cm²)
+1660	Escribe una expresión de área y explica por qué se resta la franja retirada.
+1661	El ancho restante es w − 2, por lo que el área es 3(w − 2). Con w = 6, el área es 3 × 4 = 12 cm².
+1662	Distingue una longitud retirada de un área retirada.
+1664	Un rectángulo de 3 cm por 6 cm. Se marca para retirar una franja de 2 cm de ancho que ocupa toda la altura.
+1665	Comprueba un límite de números enteros
+1666	El club cobra $6 una sola vez más $4 por visita. Tu presupuesto es de $23. Encuentra el mayor número entero de visitas que puedes pagar y comprueba esa cantidad y una visita más.
+1668	Mayor número entero de visitas
+1669	Costo de esa cantidad de visitas ($)
+1670	Costo de una visita más ($)
+1671	Explica por qué tu cantidad es posible y por qué el siguiente número entero no lo es.
+1672	Cuatro visitas cuestan 6 + 4 × 4 = $22. Cinco cuestan $26, más que el presupuesto. Si el cálculo da una fracción, hay que redondear hacia abajo para obtener visitas completas.
+1673	Comprueba el límite propuesto y el caso del siguiente número entero.
+1674	Fundamentos de álgebra lineal
+1675	Vectores, combinaciones lineales, dimensiones de matrices e introducción a las transformaciones matriciales
+1676	Significado y operaciones de los vectores
+1677	Combinaciones y puntos alcanzables
+1678	Lee una matriz
+1679	Aplica una transformación
+1680	Estructura y ecuaciones
+1681	Lee una flecha desplazada
+1682	Una flecha empieza en A = (−1, 1) y termina en B = (2, 3). Encuentra las componentes de su vector.
+1683	Cambio horizontal
+1684	Cambio vertical
+1685	Explica por qué el punto final por sí solo no es el vector.
+1686	Resta el punto inicial del punto final: (2 − (−1), 3 − 1) = (3, 2).
+1687	Compara punto final menos punto inicial para flechas en distintas posiciones.
+1688	Una flecha de A = (−1, 1) a B = (2, 3).
+1689	Suma dos desplazamientos
+1690	Sean u = (2, −1) y v = (−1, 3). Calcula u + v.
+1691	Componente x del resultado
+1692	Componente y del resultado
+1693	Explica cómo se combinan los cambios horizontales y verticales.
+1694	Suma las componentes correspondientes: (2 + (−1), −1 + 3) = (1, 2).
+1695	Suma los cambios horizontales entre sí y los cambios verticales entre sí.
+1696	Invierte y cambia la escala
+1697	Sea u = (1, −3). Calcula −2u.
+1698	Explica el efecto del signo negativo y del factor 2.
+1699	Multiplica ambas componentes por −2 para obtener (−2, 6). El vector invierte su dirección y duplica su longitud.
+1700	Distingue el signo de un escalar de su magnitud.
+1701	Conserva ambos coeficientes
+1702	Sean u = (1, 2) y v = (3, −1). Calcula 2u − v.
+1703	Muestra los aportes multiplicados por sus escalares antes de combinarlos.
+1704	2u = (2, 4) y −v = (−3, 1), por lo que 2u − v = (−1, 5).
+1705	Escribe cada vector multiplicado por su escalar antes de sumar los aportes.
+1706	Pregunta qué puntos se pueden alcanzar
+1707	Sean u = (1, 2) y v = (2, 4). ¿Existen coeficientes reales a y b que hagan au + bv = (0, 1)?
+1709	¿Se puede alcanzar el punto objetivo?
+1710	Describe la recta que contiene todas las combinaciones posibles y compara el punto objetivo con ella.
+1711	Cada combinación es (a + 2b, 2a + 4b), por lo que y = 2x. El punto objetivo (0, 1) no pertenece a esa recta.
+1712	Una segunda flecha sobre la misma recta no añade una dirección independiente.
+1713	Usa dos direcciones independientes
+1714	Sean u = (1, 0) y v = (0, 2). Los coeficientes reales pueden ser positivos, negativos o cero. ¿Puede au + bv alcanzar todos los puntos del plano?
+1716	¿Se pueden alcanzar todos los puntos?
+1717	Explica cómo elegirías a y b para un punto objetivo (x, y).
+1718	au + bv = (a, 2b). Para cualquier (x, y), elige a = x y b = y/2.
+1719	Relaciona la independencia con el control separado de las coordenadas.
+1720	Lee las dimensiones de una matriz
+1721	La matriz mostrada tiene dos filas horizontales. Indica su número de filas y columnas. ¿Cuántas componentes debe tener un vector de entrada para poder multiplicarlo por esta matriz?
+1723	Filas
+1725	Columnas
+1726	Componentes del vector de entrada
+1727	Explica cómo la longitud del vector de entrada corresponde a las entradas de cada fila.
+1728	La matriz es de 2 × 3. Cada fila combina tres componentes de entrada y se producen dos componentes de salida.
+1729	Lee filas × columnas y haz corresponder la entrada con el número de columnas.
+1730	Usa una matriz identidad
+1731	Aplica la matriz identidad I mostrada a v = (−2, 3). Calcula Iv.
+1732	Componente x de salida
+1733	Componente y de salida
+1734	Explica por qué esta matriz deja el vector sin cambios.
+1735	Las columnas son (1, 0) y (0, 1), por lo que los mismos coeficientes de entrada reconstruyen (−2, 3).
+1736	Relaciona la matriz identidad con las direcciones originales de las coordenadas.
+1737	Lee una columna en orden
+1738	Indica la primera columna de la matriz A mostrada, de arriba abajo.
+1739	Entrada superior
+1740	Entrada inferior
+1741	Explica en qué se diferencia una columna de una fila.
+1742	La primera columna es (2, 1), leída hacia abajo en el lado izquierdo. La primera fila, en cambio, sería (2, −1).
+1743	Distingue qué entradas pertenecen a cada fila y a cada columna.
+1744	Calcula la salida de una matriz
+1745	Para la matriz A mostrada y v = (1, 3), calcula Av.
+1746	Explica tu cálculo usando filas o columnas multiplicadas por escalares.
+1747	1(2, 0) + 3(1, −1) = (5, −3). Los coeficientes de entrada siguen siendo 1 y 3.
+1748	Conserva los coeficientes de entrada mientras cambias las direcciones de las columnas.
+1749	Sigue una dirección de la base
+1750	Para la matriz A mostrada, ¿a dónde va el paso original hacia arriba e₂ = (0, 1)?
+1751	Componente x de la nueva dirección
+1752	Componente y de la nueva dirección
+1753	Explica qué columna selecciona la entrada (0, 1).
+1754	A(0, 1) es cero veces la primera columna más una vez la segunda: (−1, 3).
+1755	Relaciona cada dirección de la base con su columna correspondiente de la matriz.
+1756	Distingue una traslación de una transformación lineal
+1757	La transformación T lleva (x, y) a (x + 1, y). ¿Es T una transformación lineal?
+1759	¿Es lineal?
+1760	Comprueba qué ocurre con el vector cero.
+1761	T(0, 0) = (1, 0). Una transformación lineal debe llevar el cero al cero, por lo que esta traslación es afín y no lineal.
+1762	Comprueba el vector cero antes de tratar una regla con traslación como una transformación lineal.
+1763	Describe una reflexión
+1764	Aplica la matriz R mostrada a (2, 3). Encuentra la salida.
+1765	Explica qué coordenada cambia y qué eje actúa como espejo.
+1766	R conserva x e invierte el signo de y, produciendo (2, −3). Es una reflexión respecto al eje x.
+1767	Relaciona los cambios de coordenadas con su significado geométrico.
+1768	Reconoce una dirección colapsada
+1769	La matriz A mostrada tiene columnas (1, 2) y (2, 4). Cuando la entrada recorre el plano, ¿qué salidas son posibles?
+1771	Salidas posibles
+1772	Todos los puntos del plano
+1773	Solo los puntos de la recta y = 2x
+1774	Solo el vector cero
+1775	Explica qué pueden generar las dos columnas mediante combinaciones lineales.
+1776	La segunda columna es el doble de la primera. Cada salida es un múltiplo de (1, 2), por lo que la imagen es la recta y = 2x.
+1777	Relaciona las columnas dependientes con una transformación que no puede alcanzar todo el plano.
+1778	Satisface ambas ecuaciones
+1779	Resuelve el sistema x + y = 5 y x − y = 1.
+1780	Explica cómo encontraste el par y luego compruébalo en ambas ecuaciones.
+1781	Sumar las ecuaciones da 2x = 6, por lo que x = 3 e y = 2. Se cumplen tanto 3 + 2 = 5 como 3 − 2 = 1.
+1782	Una solución de un sistema debe satisfacer todas sus ecuaciones al mismo tiempo.
+1783	Fundamentos de teoría de juegos
+1784	Tablas de pagos de dos jugadores y razonamiento con estrategias puras
+1785	Lee la situación
+1786	Mejores respuestas
+1787	Dominancia
+1788	El dilema del prisionero
+1789	Comprueba el equilibrio
+1790	Lee los puntos de los dos jugadores
+1791	A elige Arriba y B elige Derecha. ¿Cuántos puntos recibe cada jugador?
+1792	Puntos de A
+1793	Puntos de B
+1794	Explica qué casilla usaste y de quién son los puntos que aparecen primero.
+1795	Usa la fila Arriba y la columna Derecha: (0, 4). A recibe 0 y B recibe 4.
+1796	Identifica la fila, la columna y el orden de los pagos antes de comparar las opciones.
+1797	Cambia solo la elección de un jugador
+1798	Empieza en (Abajo, Izquierda). Solo A cambia a Arriba. B mantiene Izquierda. Indica los puntos del nuevo resultado.
+1799	Nuevos puntos de A
+1800	Nuevos puntos de B
+1801	Explica qué fila o columna cambió y cuál se mantuvo fija.
+1802	A cambia la fila a Arriba mientras la columna Izquierda permanece fija. El nuevo resultado es (3, 2).
+1803	Mantén fija la elección del otro jugador cuando solo un jugador cambia.
+1804	Distingue las preferencias de los jugadores
+1805	El resultado X da (4, 1) puntos y el resultado Y da (2, 5). Cada jugador prefiere más puntos propios. ¿Qué resultado prefiere cada jugador?
+1806	A prefiere
+1807	B prefiere
+1808	Compara los puntos propios de cada jugador en lugar de comparar los puntos de A con los de B.
+1809	A prefiere X porque 4 > 2. B prefiere Y porque 5 > 1.
+1810	Un total mayor o el pago de otro jugador no determina la mejor elección individual.
+1811	Fija primero la elección de B
+1812	B elige Izquierda. ¿Cuál es la mejor respuesta de A?
+1814	Mejor respuesta de A
+1817	Indica los dos pagos de A que comparaste en la columna Izquierda.
+1818	Con B fijo en Izquierda, A compara 3 para Arriba con 5 para Abajo. Abajo es mejor.
+1819	Una mejor respuesta depende de la elección fija del oponente.
+1820	Lee la mejor respuesta de B
+1821	A elige Arriba. ¿Cuál es la mejor respuesta de B?
+1823	Mejor respuesta de B
+1825	Indica los dos pagos de B que comparaste en la fila Arriba.
+1826	Con A en Arriba, B compara los segundos números, 2 y 4. Derecha es mejor.
+1827	Para el jugador B, compara los segundos números a lo largo de una fila fija.
+1828	Permite un empate
+1829	B elige Izquierda en esta tabla. Selecciona todas las mejores respuestas de A.
+1830	Mejores respuestas de A
+1831	Explica por qué un máximo empatado puede dar más de una mejor respuesta.
+1832	A obtiene 2 en cualquiera de las dos filas de la columna Izquierda. Ambas son mejores respuestas.
+1833	Las mejores respuestas no tienen que ser únicas.
+1834	Comprueba todas las elecciones del oponente
+1835	¿Tiene A una estrategia estrictamente dominante en esta tabla? Una estrategia estrictamente dominante da más puntos propios para cada elección de B.
+1837	Estrategia estrictamente dominante de A
+1838	Ninguna
+1839	Compara las elecciones de A en ambas columnas.
+1840	Abajo da 5 > 3 frente a Izquierda y 1 > 0 frente a Derecha, por lo que Abajo es estrictamente dominante.
+1841	Para afirmar dominancia hay que comprobar todas las elecciones del oponente.
+1842	Distingue la dominancia estricta de la débil
+1843	Arriba da a A al menos tantos puntos como Abajo en ambas columnas y más en una columna. ¿Cómo domina Arriba a Abajo?
+1845	Tipo de dominancia
+1847	Estrictamente
+1849	Débilmente, pero no estrictamente
+1850	No domina
+1851	Explica qué cambia la igualdad en una columna.
+1852	Frente a Izquierda, ambas dan 2 a A. Frente a Derecha, Arriba da 3 > 1. Arriba domina débilmente a Abajo, pero el empate impide la dominancia estricta.
+1853	Distingue «al menos igual de bueno» de «estrictamente mejor en todos los casos».
+1854	Comprueba cuándo cambia la mejor elección
+1855	¿Tiene A una estrategia estrictamente dominante en esta tabla?
+1856	Compara la mejor fila cuando B elige Izquierda con la mejor fila cuando B elige Derecha.
+1857	A prefiere Arriba frente a Izquierda (3 > 1) y Abajo frente a Derecha (2 > 0). Ninguna fila es estrictamente mejor en ambos casos.
+1858	Las mejores respuestas condicionadas no dan automáticamente una estrategia dominante.
+1859	Compara los resultados conjuntos
+1860	En este juego de una sola ronda, compara la cooperación de ambos con la no cooperación de ambos. ¿Qué resultado da más puntos a ambos jugadores?
+1862	Ambos jugadores prefieren
+1864	Ambos cooperan
+1866	Ninguno coopera
+1867	Son iguales
+1868	Usa los puntos de ambos jugadores para explicar la comparación.
+1869	Si ambos cooperan, obtienen (3, 3); si ninguno coopera, obtienen (1, 1). Ambos prefieren la cooperación mutua.
+1870	Distingue un cambio conjunto de un incentivo individual.
+1871	Comprueba un cambio individual tentador
+1872	Empieza con ambos jugadores cooperando. Solo A cambia a No cooperar. ¿Cuántos puntos adicionales obtiene A?
+1874	Ganancia de puntos de A
+1875	Explica qué pago cambió manteniendo fija la elección de B.
+1876	A pasa de 3 a 5 mientras B mantiene Cooperar, ganando 2 puntos. Esta desviación rentable impide que la cooperación mutua sea aquí un equilibrio de Nash.
+1877	Un resultado que ambos prefieren aún puede permitir una desviación unilateral rentable.
+1878	Explica el dilema
+1879	¿Qué afirmación describe este dilema del prisionero de una sola ronda?
+1881	Explicación
+1883	No cooperar es estrictamente dominante para cada jugador, pero ambos prefieren que los dos cooperen
+1884	El total de puntos siempre es el mismo
+1886	Todos los resultados dan puntos iguales
+1887	Comprueba el incentivo de un jugador frente a cada elección del oponente y luego compara los dos resultados conjuntos.
+1888	No cooperar da 5 > 3 frente a Cooperar y 1 > 0 frente a No cooperar para cualquiera de los jugadores. Sin embargo, ambos prefieren (3, 3) a (1, 1).
+1889	Describe las comparaciones de incentivos y el supuesto de una sola ronda del modelo.
+1890	Comprueba todos los candidatos
+1891	Selecciona todos los equilibrios de Nash en estrategias puras de esta tabla. En un equilibrio, ningún jugador puede obtener más puntos cambiando solo su propia elección.
+1893	Resultados de equilibrio
+1894	Arriba / Izquierda
+1895	Arriba / Derecha
+1896	Abajo / Izquierda
+1897	Abajo / Derecha
+1898	Para cada casilla seleccionada, comprueba por separado el cambio de A y el cambio de B.
+1899	En Arriba/Izquierda, un cambio reduce los puntos de A de 3 a 1 o los de B de 3 a 1. En Abajo/Derecha, un cambio reduce los puntos de A de 2 a 0 o los de B de 2 a 0. Ambos resultados de la diagonal cumplen la condición.
+1900	Comprueba las desviaciones unilaterales en lugar de elegir el total más alto.
+1901	Reconoce la ausencia de equilibrio puro
+1902	¿Tiene esta tabla algún equilibrio de Nash en estrategias puras? «Puras» significa que cada jugador elige una fila o columna fija.
+1904	¿Hay algún equilibrio en estrategias puras?
+1905	Explica por qué en cada casilla hay un jugador que puede ganar puntos cambiando solo su propia elección.
+1906	En la diagonal, B puede cambiar de −1 a 1. Fuera de la diagonal, A puede cambiar de −1 a 1. Ninguna casilla pura cumple la condición. Esto no descarta un equilibrio en estrategias mixtas.
+1907	Comprueba cada casilla y distingue las estrategias puras de las mixtas.
+1908	Distingue la indiferencia de la mejora
+1909	En Arriba/Izquierda, B puede cambiar a Derecha y conservar los mismos puntos. ¿Basta ese empate para descartar un equilibrio de Nash en Arriba/Izquierda?
+1911	¿El empate lo descarta?
+1912	Comprueba si alguno de los jugadores puede obtener estrictamente más puntos cambiando solo su propia elección.
+1913	A bajaría de 2 a 1 al cambiar. B conservaría 2. Ninguno gana estrictamente, por lo que Arriba/Izquierda es un equilibrio de Nash.
+1914	Un cambio indiferente no es una desviación rentable.
+1915	Cálculo visual
+1916	Límites conceptuales, cambio local, integrales con signo y acumulación
+1917	Límites y valores
+1918	Cambio promedio e instantáneo
+1919	Interpreta el cambio
+1920	Sumas de rectángulos y signo
+1921	Dirección de integración y conexión
+1922	Distingue los valores cercanos del valor en el punto
+1923	Para x ≠ 1, f(x) = x + 1. En x = 1, f(1) = 5. Cuando x se aproxima a 1 por ambos lados, ¿a qué valor se aproxima f(x)?
+1925	Límite bilateral
+1926	Explica por qué la regla para valores cercanos y el valor en el punto responden preguntas distintas.
+1927	La regla cercana x + 1 se aproxima a 2. El valor separado f(1) = 5 no cambia ese límite.
+1928	Describe por separado el comportamiento cercano y el valor en el punto.
+1930	La recta y = x + 1 tiene un círculo abierto en (1, 2) y un punto lleno en (1, 5).
+1931	Compara los dos lados
+1932	En x = 0, la gráfica se aproxima a −1 por la izquierda y a 1 por la derecha. ¿Existe su límite bilateral?
+1934	¿Existe el límite bilateral?
+1935	Compara el límite por la izquierda y el límite por la derecha.
+1936	Los dos límites laterales son distintos. Un límite bilateral requiere que coincidan, por lo que no existe.
+1937	No sustituyas límites laterales distintos por su promedio.
+1938	Una rama izquierda en y = −1 y una rama derecha en y = 1 cerca de x = 0.
+1939	Usa una regla continua
+1940	Para f(x) = x², encuentra el límite cuando x se aproxima a 2.
+1941	Límite
+1942	Explica por qué evaluar esta regla continua en 2 da el límite de los valores cercanos.
+1943	El polinomio x² es continuo, por lo que las salidas cercanas se aproximan a 2² = 4.
+1944	Usa la continuidad al relacionar un valor en un punto con un límite.
+1945	La parábola continua y = x², con el punto (2, 4) marcado.
+1946	Usa un intervalo para el cambio promedio
+1947	Para f(x) = x², encuentra la tasa de cambio promedio de x = 1 a x = 3.
+1948	Tasa de cambio promedio
+1949	Muestra el cambio en la salida y la amplitud del intervalo.
+1950	La tasa promedio es (9 − 1)/(3 − 1) = 8/2 = 4. Es la pendiente de una secante sobre el intervalo.
+1951	Divide el cambio en la salida entre el cambio en la entrada usando ambos extremos.
+1952	La parábola y = x² con extremos (1, 1) y (3, 9).
+1953	Lee una pendiente local
+1954	Para f(x) = x², la tangente en x = 3 tiene pendiente 6. ¿Cuánto vale f′(3)?
+1956	Explica la diferencia entre f′(3) y f(3).
+1957	La derivada es la pendiente de la tangente, 6. El valor de la función es 9, la altura del punto.
+1958	Distingue la altura de una función de su tasa de cambio local.
+1959	Comprueba un punto angular
+1960	Para f(x) = |x| en 0, las pendientes de secantes cercanas se aproximan a −1 por la izquierda y a 1 por la derecha. ¿Existe f′(0)?
+1961	¿Existe la derivada?
+1962	Explica qué deben cumplir los dos límites de pendientes para que exista una derivada.
+1963	Los límites de pendientes no coinciden, por lo que no hay derivada en el punto angular. La continuidad por sí sola no basta.
+1964	Comprueba el límite de pendientes en ambas direcciones.
+1966	La gráfica y = |x| tiene un punto angular en el origen.
+1967	Lee el signo de una pendiente
+1968	La gráfica es una recta que pasa por (0, 4) y (2, 0). ¿Cuál es su derivada en x = 1?
+1969	Derivada
+1970	Usa el cambio de la recta para explicar el signo, en lugar de la altura en x = 1.
+1971	La recta tiene pendiente (0 − 4)/(2 − 0) = −2 en todos sus puntos. Su altura positiva en x = 1 no hace positiva la pendiente.
+1972	Distingue el comportamiento creciente o decreciente de estar encima o debajo del eje.
+1973	Una recta que pasa por (0, 4) y (2, 0).
+1974	Interpreta las unidades de la derivada
+1975	Una posición s(t) se mide en metros y el tiempo t en segundos. En t = 2, s′(2) = 4. ¿Qué describe ese 4?
+1977	Significado
+1979	Velocidad instantánea de 4 m/s a los 2 segundos
+1980	Posición de 4 m a los 2 segundos
+1981	La distancia total recorrida es de 4 m
+1982	Explica las unidades de salida por unidad de entrada y por qué esta afirmación es local.
+1983	El cambio de posición por segundo tiene unidades m/s. La derivada describe la velocidad en ese instante, no la posición ni la distancia total.
+1984	Usa las cantidades y sus unidades para interpretar una derivada.
+1985	Estima un aporte estrecho
+1986	A(x) = ∫₀ˣ f(t) dt. La función es continua y se mantiene cerca de 3 en el intervalo pequeño de x = 2 a x = 2.1. Estima A(2.1) − A(2).
+1987	Cambio estimado en A
+1988	Explica la altura, el ancho y por qué tu respuesta es una estimación.
+1989	El aporte estrecho es aproximadamente altura × ancho = 3 × 0.1 = 0.3. Es una estimación porque f no tiene que ser exactamente constante.
+1990	Relaciona un pequeño cambio en la acumulación con un rectángulo estrecho.
+1991	Suma dos rectángulos de punto medio
+1992	Para f(x) = x en [0, 2], usa dos rectángulos de igual ancho evaluados en los puntos medios. Sus puntos de evaluación son 0.5 y 1.5. Calcula la suma de rectángulos.
+1993	Suma de rectángulos de punto medio
+1994	Explica cada altura, el ancho común y la suma de los dos productos.
+1995	Cada ancho es 1. Las alturas son 0.5 y 1.5, por lo que la suma es 0.5 × 1 + 1.5 × 1 = 2.
+1996	Una altura de evaluación por sí sola no es el aporte de un rectángulo.
+1997	La recta y = x de 0 a 2, con dos rectángulos de punto medio de ancho 1 y alturas 0.5 y 1.5.
+1998	Compara dos aproximaciones dadas
+1999	Para x² en [0, 2], una suma izquierda de 2 rectángulos es 1 y una suma izquierda de 4 rectángulos es 1.75. La integral exacta es 8/3. ¿Cuál de las sumas dadas está más cerca?
+2001	Suma más cercana
+2002	2 rectángulos: 1
+2003	4 rectángulos: 1.75
+2004	Compara los errores usando el valor exacto dado. Explica qué ilustran las divisiones más estrechas en este ejemplo.
+2005	Los errores son 8/3 − 1 = 5/3 y 8/3 − 1.75 = 11/12. Aquí la estimación de cuatro rectángulos está más cerca. Este ejemplo no demuestra que toda aproximación con divisiones más finas tenga menor error.
+2006	Compara las aproximaciones con su valor de referencia; una imagen finita no demuestra un límite.
+2007	Distingue la acumulación con signo del área
+2008	Para f(x) = x en [−1, 1], encuentra tanto la integral con signo como el área geométrica total entre la gráfica y el eje.
+2010	Integral con signo
+2011	Área geométrica total
+2012	Explica cómo contribuyen las dos regiones triangulares a cada resultado.
+2013	Cada triángulo tiene área 1/2. Los aportes con signo −1/2 y 1/2 se cancelan; el área total suma sus magnitudes y da 1.
+2014	Los aportes debajo del eje son negativos en una integral, pero positivos en el área total.
+2015	La recta y = x en [−1, 1], con regiones triangulares negativa y positiva del mismo tamaño.
+2016	Invierte los límites de integración
+2017	Para la función constante f(x) = 3, ∫₀² f(x) dx = 6. Calcula ∫₂⁰ f(x) dx.
+2018	Integral con límites invertidos
+2019	Explica qué cambia al invertir los límites de integración.
+2020	Invertir la dirección de integración cambia el signo: ∫₂⁰ f = −∫₀² f = −6. La altura positiva de la función no cambia.
+2021	Distingue la dirección de integración del signo de la función.
+2022	Relaciona la altura con la pendiente de acumulación
+2023	Sea A(x) = ∫₀ˣ (t² − 1) dt. Calcula A′(2).
+2024	Explica qué teorema relaciona la función original con la pendiente de la función de acumulación.
+2025	El integrando es continuo. Por el teorema fundamental del cálculo, A′(x) = x² − 1, por lo que A′(2) = 3. Esto no es el valor acumulado A(2).
+2026	Usa la altura original para la pendiente de acumulación, bajo la condición de continuidad.
+2027	Explica una acumulación decreciente
+2028	Para A(x) = ∫₀ˣ f(t) dt, la función continua f vale −2 en todo [1, 3]. Calcula A(3) − A(1).
+2029	Cambio en A
+2030	Explica por qué mover el extremo a la derecha puede hacer que la acumulación disminuya.
+2031	El aporte adicional es ∫₁³ (−2) dt = −2 × 2 = −4. A disminuye porque los aportes añadidos son negativos; no se necesita su valor inicial.
+2032	La dirección del cambio de una función de acumulación sigue el signo de su integrando.
+2033	Elaborado para Quidence usando ideas matemáticas estándar; no se ha verificado de forma independiente la autorización para usar las fuentes.
+2192	Una solución
+2193	A elige una fila. B elige una columna. Cada casilla indica (puntos de A, puntos de B). Cada jugador prefiere más puntos propios.
+2194	Operaciones con fracciones y signos
+2195	Bases de proporciones y porcentajes
+2196	Ecuaciones y desigualdades
+2197	Aplica un modelo a una situación nueva
+2198	Divide por el tamaño de las porciones, no por los denominadores
+2199	Tienes 3/4 de litro de jugo. Un vaso lleno contiene 1/8 de litro. ¿Cuántos vasos completos puedes llenar?
+2201	Vasos completos
+2202	Explica qué pregunta la división aquí. Comprueba tu respuesta multiplicando los vasos por los litros por vaso.
+2203	(3/4) ÷ (1/8) = 6. Seis vasos usan 6 × 1/8 = 3/4 de litro. El cociente cuenta porciones de tamaño 1/8, no octavas partes de 3/4.
+2204	Usa otro tamaño de porción y relaciona la división con cuántos grupos iguales caben.
+2205	Comprueba los signos y el orden de las operaciones
+2206	Calcula −2 × (3 − 5) + 1. Un estudiante lo reescribió como −2 × 3 − 5 + 1 y obtuvo −10. ¿Es válido ese método?
+2207	Valor de la expresión
+2208	¿Es válido el método descrito?
+2209	Muestra los pasos, explica el producto de dos números negativos e identifica el primer paso incorrecto del estudiante.
+2210	El paréntesis da −2, luego (−2)(−2) = 4 y después 4 + 1 = 5. El estudiante ignoró el paréntesis; distribuir exigiría multiplicar tanto 3 como −5 por −2.
+2211	Prueba otro multiplicador negativo y compara una expresión correctamente distribuida con la expresión entre paréntesis.
+2212	Un aumento constante no siempre es proporcional
+2213	Un servicio de reparto cobra $5 antes de recorrer cualquier distancia y $2 por kilómetro. ¿Es su costo total proporcional a la distancia? Calcula el costo a 0 km y a 4 km.
+2214	¿Es proporcional?
+2215	Costo a 0 km ($)
+2216	Costo a 4 km ($)
+2217	Explica si un aumento constante por sí solo basta para la proporcionalidad, usando el costo en cero.
+2218	C = 5 + 2d. Los costos son $5 y $13. El cargo inicial distinto de cero impide que C sea proporcional a d, aunque el aumento por kilómetro sea constante.
+2219	Compara una recta con cargo fijo y una regla proporcional en una tabla nueva.
+2220	Lleva cuenta de la base del porcentaje
+2221	Una chaqueta cuesta $80. Su precio sube un 25% y luego el nuevo precio baja un 20%. Calcula cada precio nuevo. ¿Vuelve a $80?
+2223	Precio después del aumento ($)
+2224	Precio después de la reducción ($)
+2226	¿Vuelve al precio original?
+2227	Indica el total usado para cada porcentaje. Explica por qué el 25% y el 20% se aplican a cantidades distintas.
+2228	El 25% de $80 es $20, dando $100. El descuento es el 20% de $100 = $20, dando $80. Los dos porcentajes tienen bases distintas; los cambios no se calculan restando 20 a 25.
+2229	Usa otro par de cambios porcentuales e identifica cada base antes de calcular.
+2230	Una incógnita en ambos lados
+2231	Resuelve 4x + 1 = 2x + 9.
+2232	Muestra pasos equivalentes en ambos lados y sustituye tu valor en ambas expresiones originales.
+2233	Resta 2x y 1 de ambos lados: 2x = 8, por lo que x = 4. Ambos lados originales son entonces iguales a 17.
+2234	Prueba coeficientes distintos y explica por qué cada paso conserva la igualdad.
+2235	Cuando una ecuación no tiene una respuesta única
+2236	Clasifica cada ecuación: P es 2(x + 3) = 2x + 6. Q es 2(x + 3) = 2x + 7.
+2237	Ecuación P
+2238	Ecuación Q
+2239	Simplifica ambos lados. Explica qué indica la afirmación verdadera o falsa restante sobre todos los valores posibles de x.
+2240	P se reduce a 6 = 6 y se cumple para todo x real, por lo que tiene infinitas soluciones. Q se reduce a 6 = 7 y no se cumple para ningún x, por lo que no tiene solución. Que una variable se cancele no implica x = 0.
+2241	Distingue una identidad, una contradicción y una ecuación con una sola solución.
+2242	Comprueba una desigualdad con coeficiente negativo
+2243	¿Qué conjunto de soluciones describe todas las soluciones reales de −2x ≤ 6? Luego comprueba x = −4 y x = 0 en la desigualdad original.
+2245	¿Satisface x = −4 la desigualdad original?
+2246	¿Satisface x = 0 la desigualdad original?
+2247	Muestra tus pasos, explica la dirección de la desigualdad y comprueba el valor límite x = −3.
+2248	Dividir entre −2 invierte el orden, dando x ≥ −3. En −4, el lado izquierdo es 8, que no es ≤ 6. En 0 es 0, que sí es ≤ 6. El valor límite da igualdad y está incluido.
+2249	Usa otro coeficiente negativo y verifica la solución con valores a ambos lados del valor límite.
+2250	Construye un nuevo modelo de presupuesto
+2251	Un taller cuesta $11 por el salón más $3 por participante. Tienes $30. Indica el cargo fijo y el costo por participante y luego encuentra el mayor número entero de participantes que puedes pagar.
+2252	Cargo fijo ($)
+2253	Costo por participante ($)
+2255	Máximo número entero de participantes
+2256	Costo de tu máximo ($)
+2257	Costo de un participante más ($)
+2258	Escribe tu regla de costo, explica sus dos términos y comprueba la última cantidad que puedes pagar y una más. Si no puedes avanzar, identifica en qué paso.
+2259	C = 11 + 3p. Seis cuestan $29 y siete cuestan $32. El cargo fijo se cuenta una sola vez. 19/3 no es un número entero de participantes, por lo que el máximo que puedes pagar es 6.
+2260	Comprueba la construcción del modelo por separado de la aritmética: si el modelo original no está claro, pide un cálculo con un modelo correcto proporcionado.
+2261	Dimensiones y orden de las transformaciones
+2262	Linealidad e independencia
+2263	Sistemas y su estructura
+2264	Comprueba si un producto está definido
+2265	A es una matriz de 2 × 3 y B es una matriz de 3 × 2. Decide si AB y BA están definidos e indica las dimensiones de cada resultado.
+2266	¿Está definido AB?
+2268	Filas de AB
+2270	Columnas de AB
+2271	¿Está definido BA?
+2273	Filas de BA
+2275	Columnas de BA
+2276	Indica qué dimensiones deben coincidir y por qué invertir el orden cambia las dimensiones del resultado.
+2277	En AB coinciden los 3 interiores y el resultado tiene dimensiones 2 × 2. En BA coinciden los 2 interiores y el resultado tiene dimensiones 3 × 3. El orden de multiplicación determina tanto las dimensiones compatibles de entrada como las de salida.
+2278	Comprueba otro par de matrices rectangulares, incluido un producto cuyas dimensiones interiores no coincidan.
+2279	Descarta una entrada incompatible
+2280	A tiene 2 filas y 3 columnas. ¿Se puede formar Av cuando v tiene 2 componentes? ¿Cuántas componentes debe tener v y cuántas tendrá Av?
+2282	¿Está definido para una entrada de 2 componentes?
+2283	Componentes de entrada necesarias
+2285	Componentes de salida
+2286	Explica qué combina cada fila; no deduzcas la longitud de la entrada del número de filas de salida.
+2287	Cada fila combina tres entradas, por lo que una entrada de 2 componentes es incompatible. Una entrada válida tiene 3 componentes y produce 2 componentes de salida.
+2288	Haz corresponder los espacios de entrada y salida de otra matriz rectangular.
+2289	Dos transformaciones en dos órdenes
+2290	S(x, y) = (2x, y) y H(x, y) = (x + y, y). Empieza en (1, 1). Calcula H(S(1, 1)) y S(H(1, 1)).
+2292	H después de S: x
+2294	H después de S: y
+2296	S después de H: x
+2298	S después de H: y
+2299	Escribe cada vector intermedio. Explica qué transformación actúa primero en cada expresión y si ambos órdenes coinciden.
+2300	S primero da (2,1) y luego H da (3,1). H primero da (2,1) y luego S da (4,1). La transformación situada más a la derecha actúa primero y las salidas son distintas.
+2301	Predice el resultado de otra entrada antes de explorar las dos transformaciones.
+2302	El cero no es una prueba completa de linealidad
+2303	T(x, y) = (x², y). Calcula T(0, 0), T(2, 0) y 2T(1, 0). ¿Es T lineal?
+2307	¿Es T lineal?
+2308	Usa tus cálculos para comprobar si multiplicar la entrada por un escalar coincide con multiplicar la salida por ese escalar. Explica qué puede y qué no puede demostrar llevar el cero al cero.
+2309	T(0,0)=(0,0), pero T(2,0)=(4,0), mientras que 2T(1,0)=(2,0). Esto incumple la propiedad de multiplicación por escalares, por lo que T no es lineal aunque conserve el cero.
+2310	Comprueba la multiplicación por escalares o la suma en otra transformación; un solo contraejemplo refuta la linealidad.
+2311	Usa direcciones distintas de los ejes
+2312	Sean u = (1, 1) y v = (1, −1). Encuentra a y b tales que au + bv = (4, 2). ¿Son u y v independientes?
+2314	¿Son independientes?
+2315	Muestra ambas ecuaciones de coordenadas. Explica por qué estas dos direcciones pueden alcanzar cualquier punto (x, y).
+2316	a+b=4 y a−b=2 dan a=3,b=1. En general, a=(x+y)/2 y b=(x−y)/2, por lo que cada punto objetivo tiene coeficientes únicos; las direcciones son independientes.
+2317	Compara con dos vectores distintos de cero sobre la misma recta y describe los puntos que se pueden alcanzar.
+2318	Dos resultados distintos de sistemas
+2319	Clasifica P: x + y = 2 y 2x + 2y = 4. Clasifica Q: x + y = 2 y 2x + 2y = 5.
+2320	Sistema P
+2321	Sistema Q
+2322	Compara la segunda ecuación con el doble de la primera. Explica la representación con rectas y, para P, da dos pares de soluciones distintos.
+2323	P repite la misma recta y tiene infinitas soluciones, incluidas (0,2) y (2,0). Q exige que 2x+2y sea a la vez 4 y 5, por lo que sus rectas paralelas nunca se encuentran.
+2324	Usa otro sistema para distinguir una intersección, una recta repetida y rectas paralelas.
+2325	Encuentra una entrada distinta de cero que se transforma en cero
+2326	Para A = [[1, 2], [2, 4]], considera la entrada (−2, 1). Calcula A(−2, 1). ¿Puede la salida por sí sola identificar de manera única todas las entradas?
+2327	¿Identifica cada salida una entrada única?
+2328	Compara esta entrada con (0, 0) y explica qué significan las salidas iguales para invertir la transformación.
+2329	A(−2,1)=(−2+2,−4+4)=(0,0), igual que A(0,0). Entradas distintas comparten una salida, por lo que esta transformación no se puede invertir de manera única para todas las entradas.
+2330	Relaciona las columnas dependientes, las entradas distintas de cero que se transforman en cero y las soluciones no únicas.
+2331	Conserva los coeficientes de entrada cuando cambian las columnas
+2332	A es una transformación lineal que lleva (1, 0) a (2, 1) y (0, 1) a (−1, 3). Calcula A(2, −1). Un estudiante usó en cambio 2 veces (2, 1) más 3 veces (−1, 3). ¿Es válido ese cálculo?
+2333	¿Es válido el cálculo del estudiante?
+2334	Indica de dónde vienen los coeficientes y muestra el aporte de cada columna multiplicada por su escalar.
+2335	Usa los coeficientes de entrada: 2(2,1)−(−1,3)=(4,2)+(1,−3)=(5,−1). Las entradas de las columnas describen las nuevas direcciones; no sustituyen los coeficientes de entrada.
+2336	Usa una entrada nueva y describe la misma combinación de columnas sin depender del resultado mostrado.
+2337	Construye y lee un modelo nuevo
+2338	Comprueba a ambos jugadores por separado
+2339	Contraejemplos de dominancia y equilibrio
+2340	Construye una casilla de pagos a partir de una situación
+2341	Dos puestos de comida eligen abrir Temprano o Tarde. Si ambos abren Temprano, ganan (4, 3). A Temprano/B Tarde ganan (2, 5). A Tarde/B Temprano ganan (6, 1). Si ambos abren Tarde, ganan (1, 2). A elige filas y B columnas; cada par es (ingresos de A, ingresos de B). Indica los ingresos cuando ambos abren Temprano y luego solo A cambia a Tarde.
+2342	Ingresos de A después del cambio
+2343	Ingresos de B después del cambio
+2344	Identifica cada acción y la acción que no cambia. Indica el supuesto necesario para tratar ingresos mayores como el resultado preferido de cada jugador.
+2345	B sigue abriendo Temprano y A pasa a abrir Tarde, dando (6,1). Usar los ingresos como pagos supone que cada jugador prefiere más ingresos propios en este modelo; los horarios de apertura por sí solos no definen las preferencias.
+2346	Construye las cuatro casillas a partir de otra situación e indica qué representan los números de los pagos.
+2347	Encuentra las respuestas condicionadas de ambos jugadores
+2348	Usa esta tabla nueva. Cuando B elige Derecha, ¿cuál es la mejor respuesta de A? Cuando A elige Abajo, ¿cuál es la mejor respuesta de B?
+2349	A frente a Derecha
+2350	B frente a Abajo
+2351	Enumera los dos pagos propios de cada comparación. Mantén fija la acción del oponente.
+2352	Frente a Derecha, A compara 5 con 2 y prefiere Arriba. Frente a Abajo, B compara 0 con 6 y prefiere Derecha. Las dos comparaciones usan números de jugadores distintos.
+2353	Encuentra todas las mejores respuestas en otra tabla asimétrica, incluido un empate.
+2354	Comprueba cada casilla, incluidas las no seleccionadas
+2355	En esta tabla, ¿es cada resultado un equilibrio de Nash en estrategias puras? Elige Sí o No para cada uno de los cuatro resultados.
+2356	(Arriba, Izquierda)
+2357	(Arriba, Derecha)
+2358	(Abajo, Izquierda)
+2359	(Abajo, Derecha)
+2360	Para cada casilla, indica un jugador que pueda ganar puntos cambiando solo su propia elección o explica por qué ninguno puede hacerlo. No uses una regla basada en la diagonal.
+2361	En TL, A gana 1→3 al cambiar. En TR, B gana 2→4. En BL, B gana 0→6. En BR, A gana 2→5. Cada casilla permite un cambio unilateral rentable, por lo que ninguna es un equilibrio puro.
+2362	Comprueba a ambos jugadores en cada casilla de una tabla nueva; que no haya equilibrio puro no significa que no haya equilibrio mixto.
+2363	Identifica la dominancia sin una conclusión dada
+2364	Clasifica la estrategia Arriba de A en comparación con Abajo en esta tabla.
+2365	Arriba en comparación con Abajo
+2366	Domina estrictamente
+2367	Domina débilmente, pero no estrictamente
+2368	No domina
+2369	Escribe la comparación de A en cada columna y explica si tu clasificación permite empates.
+2370	Frente a Izquierda, Arriba da 2 y Abajo 2. Frente a Derecha, Arriba da 4 y Abajo 1. Arriba nunca es peor y es mejor en un caso: dominancia débil, no estricta.
+2371	Cambia un pago de A y comprueba qué afirmación de dominancia sigue siendo válida.
+2372	El equilibrio puede ser peor para ambos
+2373	Para la tabla mostrada, ¿es (Abajo, Derecha) un equilibrio de Nash? ¿Prefieren ambos jugadores (Arriba, Izquierda) a (Abajo, Derecha)?
+2375	¿Es (Abajo, Derecha) un equilibrio de Nash?
+2377	¿Prefieren ambos (Arriba, Izquierda)?
+2378	Comprueba el cambio individual de cada jugador desde (Abajo, Derecha) y luego compara los dos resultados conjuntos. Explica por qué son comprobaciones distintas.
+2379	En BR cada jugador obtiene 2. A obtiene 0 si cambia solo y B obtiene 1 si cambia solo, por lo que ninguno gana y BR es un equilibrio. En TL cada jugador obtiene 4, que ambos prefieren. Una mejora conjunta no implica una desviación individual rentable.
+2380	Construye o lee otro ejemplo que distinga el equilibrio de un resultado preferido por ambos.
+2381	Cuando cambia el modelo de pagos
+2382	Usa la misma tabla. Un nuevo subsidio cambia solo el pago de A en (Arriba, Derecha), de 0 a 3. Todos los demás pagos permanecen iguales. ¿Sigue siendo (Abajo, Derecha) un equilibrio de Nash? ¿Qué gana ahora A al cambiar solo su propia elección desde esa casilla?
+2383	¿Sigue siendo un equilibrio de Nash?
+2384	Mantén a B en Derecha, compara la acción anterior de A con su nueva acción usando el pago modificado y explica por qué hay que comprobar de nuevo la conclusión anterior.
+2385	A puede pasar de 2 en BR a 3 en TR, una ganancia de 1. Por lo tanto, BR ya no es un equilibrio. Cambiar el modelo exige volver a comprobar los incentivos unilaterales.
+2386	Cambia un pago en una tabla nueva y predice qué mejores respuestas específicas se ven afectadas.
+2387	Calcula un límite y un cambio local
+2388	Construye una suma con sus unidades
+2389	Antiderivadas y acumulación
+2390	Calcula un límite alrededor de un punto ausente
+2391	Para x ≠ 2, f(x) = (x² − 4)/(x − 2). El valor en x = 2 se define por separado como f(2) = 9. Calcula limₓ→₂ f(x) e indica si es igual a f(2).
+2392	Límite cuando x se aproxima a 2
+2393	¿Es el límite igual a f(2)?
+2394	Muestra una simplificación válida cerca de 2. Explica por qué permite encontrar el límite sin reemplazar el valor definido por separado en 2.
+2395	Para x≠2, factoriza x²−4=(x−2)(x+2), por lo que f(x)=x+2 y el límite es 4. En x=2, el valor especificado es 9; cancelar no redefine ese punto.
+2396	Prueba otra discontinuidad removible y distingue la regla cercana del valor en el punto.
+2397	Construye tú mismo un cociente de diferencias
+2398	Sea f(x) = x². Para h distinto de cero, simplifica [f(2 + h) − f(2)]/h como kh + b. Indica k, b y f′(2).
+2399	Coeficiente k de h
+2400	Constante b
+2401	Desarrolla f(2+h), forma el cociente y explica cómo su límite da la derivada y no el valor de la función.
+2402	[(2+h)²−4]/h=(4h+h²)/h=4+h para h≠0, por lo que k=1,b=4. Cuando h→0, el cociente tiende a 4, dando f′(2)=4. Que coincida aquí con f(2)=4 es una coincidencia, no una regla general.
+2403	Forma el cociente en otro valor de x antes de usar cualquier pendiente proporcionada.
+2404	Compara cambios cercanos y más amplios
+2405	Una curva suave pasa por los valores de la tabla. Estima su pendiente en x = 2 usando el punto indicado más cercano de cada lado. Indica también la pendiente de la secante más amplia de x = 1 a x = 3.
+2407	Estimación de pendiente con los puntos más cercanos
+2409	Pendiente de la secante más amplia
+2410	Muestra el cambio vertical dividido entre el horizontal para ambos intervalos. Explica por qué una estimación con una secante finita por sí sola no demuestra la derivada exacta.
+2411	Los puntos más cercanos dan (8.2−7.8)/(2.05−1.95)=0.4/0.1=4. La pendiente más amplia es (14−4)/(3−1)=5. Los puntos cercanos estiman una pendiente local; los datos finitos por sí solos no determinan una derivada exacta.
+2412	Compara secantes sucesivamente más estrechas e indica qué información adicional permite justificar una derivada.
+2413	Construye rectángulos cuyo ancho no sea uno
+2414	Aproxima ∫₀² x² dx con cuatro rectángulos iguales usando extremos derechos. Encuentra el ancho, la suma de las cuatro alturas de evaluación y la aproximación con rectángulos.
+2416	Ancho del rectángulo Δx
+2418	Suma de las alturas de evaluación
+2419	Aproximación con rectángulos
+2420	Enumera los extremos derechos y las alturas. Explica por qué la suma de alturas debe multiplicarse por el ancho.
+2421	Δx=2/4=0.5; los extremos son 0.5,1,1.5,2. Las alturas son 0.25,1,2.25,4 y suman 7.5. Multiplica por 0.5 para obtener 3.75. Sumar solo las alturas omite el ancho horizontal.
+2422	Usa otro intervalo, otra regla de evaluación y un ancho distinto de uno para construir una suma nueva.
+2423	Construye y compara dos aproximaciones
+2424	Para f(x)=x en [0,3], usa tres rectángulos iguales. Calcula una suma con extremos izquierdos y otra con extremos derechos. ¿Cuál es menor que la integral exacta?
+2425	Suma con extremos izquierdos
+2426	Suma con extremos derechos
+2428	¿Cuál subestima?
+2429	Suma izquierda
+2430	Suma derecha
+2431	Ambas
+2432	Construye las alturas y explica la relación de subestimación y sobreestimación usando la función creciente. Puedes encontrar el área exacta geométricamente.
+2433	El ancho es 1. Las alturas izquierdas 0,1,2 dan 3; las derechas 1,2,3 dan 6. La recta creciente hace que los rectángulos izquierdos queden por debajo y los derechos por encima. El área triangular es 4.5.
+2434	Construye ambas sumas para una función decreciente y comprueba cómo cambia la conclusión.
+2435	El desplazamiento neto y la distancia son distintos
+2436	Un robot se mueve a +3 metros/segundo durante 0 ≤ t < 2 segundos y luego a −2 metros/segundo durante 2 ≤ t ≤ 5 segundos. Empieza en la posición 10 metros. Encuentra el desplazamiento neto, la distancia total recorrida y la posición final.
+2437	Calcula el aporte con signo de cada intervalo de tiempo. Explica cómo la posición inicial y los valores absolutos de los aportes intervienen en respuestas distintas.
+2438	Los aportes son +3×2=+6 m y −2×3=−6 m. El desplazamiento neto es 0, la distancia es 6+6=12 m y la posición final es 10+0=10 m. Un desplazamiento neto de cero no significa que no haya movimiento.
+2439	Usa duraciones distintas y otra posición inicial para distinguir las tres cantidades.
+2440	Una antiderivada necesita una condición inicial
+2441	Encuentra constantes a y C tales que F(x)=ax²+C cumpla F′(x)=2x y F(0)=5. Calcula también F(3).
+2443	Deriva tu propuesta, usa la condición inicial y explica por qué la derivada por sí sola no determina C.
+2444	F′(x)=2ax exige a=1. F(0)=C=5, por lo que F(3)=9+5=14. Toda constante tiene derivada cero; la condición inicial selecciona una antiderivada.
+2445	Cambia la condición inicial y distingue el cambio acumulado del valor de la función.
+2446	Calcula una integral definida y la pendiente de su acumulación
+2447	Sea A(x)=∫₁ˣ 2t dt. Calcula A(3) y A′(3).
+2448	Muestra cómo una antiderivada da el valor acumulado y luego explica cómo el teorema fundamental da la pendiente. Mantén visible el límite inferior de integración.
+2449	Una antiderivada de 2t es t², por lo que A(3)=3²−1²=8. Como 2t es continuo, A′(x)=2x y A′(3)=6. El valor acumulado y su tasa de cambio responden preguntas distintas.
+2450	Usa otro integrando y otro límite inferior de integración y luego calcula tanto la acumulación como su derivada.
+5125	Fundamentos de estadística
+5126	Resúmenes de datos, diseño de estudios, estandarización y probabilidad elemental seleccionados
+5127	Variables y representaciones
+5128	Centro y combinación de grupos
+5129	Dispersión y estandarización
+5130	Muestreo y diseño de estudios
+5131	Probabilidad y condiciones
+5132	Identifica una variable cuantitativa
+5133	Una encuesta registra el color de la camisa y el tiempo de traslado en minutos. ¿Qué variable tiene diferencias numéricas de tamaño significativo?
+5135	Variable
+5136	Tiempo de traslado
+5138	Color de la camisa
+5139	Explica por qué asignar números a los colores no convierte sus diferencias en cantidades medidas.
+5140	El tiempo de traslado es cuantitativo. El color es categórico; asignar etiquetas numéricas a los colores no crea una distancia numérica medida.
+5141	Distingue una medición de una etiqueta de categoría.
+5142	Lee las frecuencias
+5143	Una tabla da tiempos de espera y frecuencias. ¿Cuántos casos se midieron y cuántos esperaron como máximo 2 minutos?
+5144	Total de casos
+5145	Casos de como máximo 2 minutos
+5146	Explica qué se suma para encontrar el número de casos.
+5147	Suma las frecuencias: 2 + 3 + 1 = 6 en total. Las dos primeras frecuencias suman 5 casos de como máximo 2 minutos.
+5148	Mantén separados los valores medidos y sus frecuencias.
+5149	Tiempo de espera (min)
+5150	Frecuencia
+5151	Comprueba una afirmación exagerada basada en una gráfica
+5152	Las ventas son 98 unidades en A y 100 en B. Una gráfica de barras inicia su eje vertical en 97, haciendo que las barras visibles tengan alturas de 1 y 3 unidades. ¿Qué afirmación describe las ventas reales?
+5153	Afirmación respaldada
+5154	B vendió 2 unidades más, aproximadamente un 2.04% más que A.
+5156	B vendió tres veces tantas unidades como A.
+5157	A y B vendieron la misma cantidad.
+5158	Explica cómo una base truncada cambia las longitudes visibles sin cambiar los valores.
+5159	La diferencia de ventas es 100 − 98 = 2; 2/98 es aproximadamente 2.04%. Una base truncada de las barras exagera la razón visual.
+5160	Lee la escala y la base antes de comparar las longitudes de las barras.
+5161	Compara la media y la mediana
+5162	Las observaciones son 2, 3, 3, 4, 18. Encuentra su media y su mediana.
+5163	Media
+5165	Mediana
+5166	Muestra el total y la posición central de los datos ordenados; explica por qué difieren los resúmenes.
+5167	El total de las cinco observaciones es 30, dando una media de 6. El tercer valor ordenado es 3. El valor grande eleva la media.
+5168	Calcula e interpreta dos medidas de centro antes de elegir una.
+5169	Usa ambas posiciones centrales
+5170	Los valores ordenados son 1, 3, 7, 9. Encuentra la mediana.
+5171	Explica por qué ninguna observación central por sí sola es aquí la mediana.
+5172	Para cuatro valores, calcula el promedio del segundo y del tercero: (3 + 7)/2 = 5.
+5173	Usa ambas posiciones centrales cuando el número de observaciones sea par.
+5174	Combina grupos de tamaños distintos
+5175	Dos estudiantes tienen un promedio de 80 puntos y otros ocho tienen un promedio de 90. ¿Cuál es la media de los diez estudiantes juntos?
+5176	Media combinada
+5177	Usa el tamaño de cada grupo para reconstruir el total; explica por qué falla promediar 80 y 90 con el mismo peso.
+5178	El total es 2 × 80 + 8 × 90 = 880. Divide entre 10 para obtener 88. Los grupos tienen pesos distintos.
+5179	Pondera la media de cada grupo por su número de casos.
+5180	Distingue el centro de la dispersión
+5181	Datos A: 4, 5, 6. Datos B: 1, 5, 9. Encuentra cada rango.
+5182	Rango de A
+5183	Rango de B
+5184	Compara la media que tienen en común con sus dispersiones distintas.
+5185	Ambas medias son 5. El rango de A es 6 − 4 = 2; el rango de B es 9 − 1 = 8. Un centro común no implica igual dispersión.
+5186	Compara la variación además del centro.
+5187	Calcula la dispersión muestral
+5188	La muestra es 1, 3, 5, con media 3. La suma de las desviaciones al cuadrado es 8. La varianza muestral usa el divisor n − 1. Encuentra la varianza y la desviación estándar muestrales.
+5189	Varianza muestral
+5190	Desviación estándar muestral
+5191	Explica el divisor y la raíz cuadrada; identifica las unidades de cada cantidad.
+5192	n = 3, por lo que la varianza muestral es 8/2 = 4. La desviación estándar muestral es √4 = 2 en las unidades originales de medición; la varianza tiene unidades al cuadrado.
+5193	Distingue la varianza de su raíz cuadrada.
+5194	Estandariza teniendo en cuenta las unidades
+5195	Una puntuación es 20, la media de referencia es 14 y la desviación estándar es 3. Calcula z = (puntuación − media)/desviación estándar.
+5196	Puntuación z
+5197	Explica el signo y qué cuenta el número.
+5198	z = (20 − 14)/3 = 2, que significa dos desviaciones estándar por encima de la media de referencia.
+5199	Convierte una distancia estandarizada en una interpretación.
+5200	Comprueba quiénes integraron la muestra
+5201	Una encuesta en línea pregunta a los visitantes del sitio web de un club de ciclismo si los residentes de la ciudad quieren carriles para bicicletas. ¿Cuál es un problema probable?
+5203	Problema de muestreo
+5205	Los visitantes y voluntarios pueden diferir del conjunto de residentes de la ciudad.
+5207	Solo tener menos de un millón de respuestas podría causar sesgo.
+5208	Todas las respuestas en línea son muestras aleatorias.
+5209	Identifica la población objetivo y las personas a las que realmente se llegó.
+5210	La población objetivo son los residentes de la ciudad, pero la encuesta llega a visitantes voluntarios del sitio web interesados en el ciclismo. Un gran número de respuestas no corrige esta falta de correspondencia en la selección.
+5211	Distingue la población del marco muestral y del proceso de respuesta.
+5212	Distingue la selección de la asignación
+5213	Una muestra aleatoria de estudiantes informa sus horas actuales de ejercicio y sus calificaciones. ¿Se asignó un tratamiento al azar?
+5214	¿Se asignó el tratamiento al azar?
+5215	Explica qué parte fue aleatoria y por qué eso no elimina todos los factores de confusión.
+5216	Los estudiantes fueron seleccionados al azar; su ejercicio fue observado, no asignado. Otros factores pueden explicar una asociación entre ejercicio y calificaciones.
+5217	Identifica cada paso aleatorio antes de hacer una afirmación causal.
+5218	Mantén separadas dos conclusiones
+5219	En un ensayo bien realizado, se asigna al azar a voluntarios a la tutoría A o B. Elige la conclusión cuidadosa.
+5220	Conclusión
+5222	Puede haber respaldo para una comparación causal entre los participantes; una generalización más amplia requiere cuidado.
+5223	Todos los estudiantes están representados porque la asignación fue aleatoria.
+5224	La participación de voluntarios hace imposible la asignación aleatoria.
+5225	Explica cómo el reclutamiento y la asignación afectan afirmaciones distintas.
+5226	La asignación aleatoria respalda la comparación de tratamientos, mientras que el reclutamiento de voluntarios puede limitar la generalización a la población.
+5227	Evalúa por separado la causalidad y la cobertura de la población.
+5228	Conserva el total o condiciona a un grupo
+5229	Se selecciona un estudiante de la tabla con igual probabilidad para todos. Calcula P(club y aprobar) y P(aprobar dado club). Se aceptan fracciones.
+5231	P(club y aprobar)
+5232	P(aprobar dado club)
+5233	Explica por qué los numeradores coinciden pero los denominadores difieren.
+5234	Hay 8 en la intersección entre 50 estudiantes: 8/50 = 0.16. Hay 20 miembros del club: 8/20 = 0.4.
+5235	Identifica el grupo de referencia antes de dividir.
+5236	Invierte la condición con cuidado
+5237	Usa la misma tabla y una selección con igual probabilidad para todos. Calcula P(club dado aprobar). ¿Es igual a P(aprobar dado club)?
+5239	P(club dado aprobar)
+5240	¿Es igual a P(aprobar dado club)?
+5241	Identifica a todos los estudiantes que aprobaron antes de contar a los miembros del club entre ellos.
+5242	Hay 18 que aprobaron y 8 de ellos son miembros del club, por lo que la probabilidad es 8/18 = 4/9. Difiere de 8/20 = 0.4.
+5243	No inviertas una probabilidad condicional sin cambiar el denominador.
+5244	Cuenta una unión sin contar dos veces
+5245	P(A) = 0.4, P(B) = 0.3 y P(A y B) = 0.1. Calcula P(A o B), donde «o» incluye la intersección. ¿Son A y B independientes?
+5247	Explica tanto la resta de la intersección como tu comparación de independencia.
+5248	La unión es 0.4 + 0.3 − 0.1 = 0.6. La independencia exigiría 0.4 × 0.3 = 0.12 para la intersección; el 0.1 dado es distinto.
+5249	Distingue una regla de unión de una condición de independencia.
+5250	Fundamentos de precálculo
+5251	Temas seleccionados de álgebra, dominios de funciones, composición, características de gráficas, trigonometría y reglas exponenciales y logarítmicas
+5252	Álgebra y restricciones
+5253	Funciones e inversas
+5254	Gráficas y tasas
+5255	Ángulos y trigonometría
+5256	Crecimiento y logaritmos
+5257	Combina potencias de una misma base
+5258	Para todo x real, ¿qué expresión equivale a x² × x³?
+5259	Expresión
+5260	Explica usando multiplicación repetida o la regla de exponentes.
+5261	Los factores contienen cinco copias de x en total, por lo que el producto es x⁵.
+5262	Distingue multiplicar potencias de elevar una potencia a otra potencia.
+5263	Conserva una entrada excluida después de cancelar
+5264	Para f(x) = (x² − 4)/(x − 2), indica la regla simplificada en su dominio original y la entrada excluida.
+5265	Regla simplificada
+5268	x + 2 para todo x real, incluido 2
+5269	x excluido
+5270	Explica por qué simplificar no proporciona un valor cuando el denominador es cero.
+5271	Factoriza el numerador como (x − 2)(x + 2) y luego cancela para x ≠ 2. El denominador original sigue siendo cero en 2.
+5272	Conserva las restricciones al cancelar factores.
+5273	Invierte una desigualdad cuando sea necesario
+5274	Resuelve −2x < 6.
+5277	Explica qué hace la división entre un número negativo a la comparación y comprueba un valor.
+5278	Dividir ambos lados entre −2 invierte el signo de desigualdad: x > −3. Por ejemplo, x = 0 satisface la desigualdad original.
+5279	Conserva la dirección correcta y el carácter estricto del valor límite.
+5280	Incluye el límite de un radical
+5281	Para f(x) = √(x − 3) con valores reales, selecciona el dominio.
+5283	Dominio
+5284	Usa la condición del radicando y comprueba x = 3.
+5285	x − 3 debe ser no negativo; en x = 3, el valor es 0. Por lo tanto, x ≥ 3.
+5286	Distingue un valor límite incluido por un radical de uno excluido por un denominador.
+5287	Sigue ambos órdenes de composición
+5288	Sean f(x) = 2x + 1 y g(x) = x². Calcula f(g(2)) y g(f(2)).
+5289	Muestra cada salida intermedia antes de aplicar la función exterior.
+5290	g(2) = 4 y f(4) = 9. f(2) = 5 y g(5) = 25. El orden de composición importa.
+5291	Identifica las reglas interior y exterior antes de calcular.
+5292	Deshaz una función
+5293	La regla es y = 3x − 2. Elige su regla inversa y recupera x cuando y = 13.
+5294	Regla inversa
+5296	x recuperado
+5297	Explica las operaciones inversas y comprueba la regla original.
+5298	Suma 2 a y y luego divide entre 3. Para y = 13, x = 15/3 = 5; 3 × 5 − 2 = 13.
+5299	Invierte las operaciones en orden inverso.
+5300	Lee una parábola transformada
+5301	Para y = −2(x + 1)² + 3, indica las coordenadas del vértice y la dirección de apertura.
+5302	Coordenada x del vértice
+5303	Coordenada y del vértice
+5304	Se abre hacia
+5305	Abajo
+5306	Explica qué términos dan el vértice y cuál da la dirección.
+5307	Escribe x + 1 como x − (−1). El vértice es (−1, 3) y el multiplicador negativo exterior hace que se abra hacia abajo.
+5308	Relaciona cada parámetro con una característica de la gráfica.
+5309	Encuentra todos los ceros
+5310	Selecciona todos los ceros de f(x) = x² − 5x + 6.
+5311	Ceros
+5312	Factoriza la expresión y comprueba cada cero por sustitución.
+5313	x² − 5x + 6 = (x − 2)(x − 3). Exactamente x = 2 y x = 3 hacen que el producto sea cero.
+5314	Encuentra el cero de cada factor sin tratar una intersección con un eje como un vértice.
+5315	Calcula una tasa promedio
+5316	Para f(x) = x² en el intervalo [1, 3], calcula [f(3) − f(1)]/(3 − 1).
+5317	Muestra la diferencia de salidas y la diferencia de entradas; distingue esto de la salida f(3).
+5318	El cambio de salida es 9 − 1 = 8 para un cambio de entrada de 2, por lo que la tasa promedio es 4. Es la pendiente de una secante.
+5319	Distingue la altura de la salida del cambio por unidad de entrada.
+5320	Convierte un ángulo a radianes
+5321	Escribe 150° como cπ radianes. Ingresa c, usando una fracción si te resulta útil.
+5322	Coeficiente c en cπ radianes
+5323	Usa la relación 180° = π radianes.
+5324	150/180 = 5/6, por lo que 150° = 5π/6 radianes.
+5325	Convierte las unidades del ángulo antes de usar fórmulas en radianes.
+5326	Lee los signos de los cuadrantes
+5327	A 120°, el punto de la circunferencia unitaria está en el cuadrante II. Selecciona los signos del coseno y del seno.
+5329	cos 120°
+5330	Positivo
+5331	Negativo
+5333	sin 120°
+5334	Relaciona el coseno con la posición horizontal y el seno con la posición vertical.
+5335	El cuadrante II tiene x < 0 e y > 0. El coseno es la coordenada x y el seno es la coordenada y.
+5336	Usa los signos de las coordenadas en lugar de memorizar signos aislados.
+5337	Usa la identidad de la circunferencia unitaria
+5338	Un ángulo del cuadrante I tiene cos θ = 3/5. Calcula sin θ.
+5339	sin θ
+5340	Usa sin²θ + cos²θ = 1 y justifica el signo elegido.
+5341	sin²θ = 1 − 9/25 = 16/25. El cuadrante I hace positivo el seno, dando 4/5.
+5342	Usa conjuntamente la identidad y la información del cuadrante.
+5343	Convierte el crecimiento porcentual en un factor
+5344	Una cantidad empieza en 80 y crece un 25% por período. Indica el factor de crecimiento y la cantidad después de dos períodos.
+5345	Cantidad después de dos períodos
+5346	Explica por qué el porcentaje se aplica multiplicando la cantidad actual cada vez.
+5347	El factor es 1 + 0.25 = 1.25. Dos períodos dan 80 × 1.25² = 125.
+5348	Distingue el factor del porcentaje y de la cantidad añadida.
+5349	Aplica una disminución repetida
+5350	Una cantidad empieza en 200 y pierde el 10% de su valor actual cada hora. Encuentra la cantidad después de dos horas.
+5351	Cantidad después de dos horas
+5352	Muestra el factor y ambas cantidades sucesivas; explica por qué es distinto restar dos veces un valor fijo de 20.
+5353	Cada hora conserva el 90%: 200 → 180 → 162, o 200 × 0.9².
+5354	Usa una razón repetida para la disminución porcentual.
+5355	Interpreta un logaritmo y su dominio
+5356	Calcula log₂32. Para log₂(x − 1) con valores reales, elige el dominio.
+5358	log₂32
+5359	Dominio de log₂(x − 1)
+5360	Todos los x reales
+5361	Explica la pregunta sobre el exponente y por qué el argumento del logaritmo debe ser positivo.
+5362	2⁵ = 32, por lo que log₂32 = 5. El argumento x − 1 debe ser positivo, dando x > 1.
+5363	Relaciona los logaritmos con los exponentes y conserva su restricción de entradas positivas.

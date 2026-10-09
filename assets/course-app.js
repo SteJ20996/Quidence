@@ -132,7 +132,7 @@ app.addEventListener('input',event=>{
  document.getElementById('answer-status').textContent=notice;document.querySelector('[data-action="next"]').disabled=true;save();
 });
 app.addEventListener('change',event=>{if(event.target.dataset.lab){E.log(state,'graph_explored',{lesson:lesson().id,control:event.target.dataset.lab,settings:{...state.labs[state.lessonIndex]}});save();}});
-function download(name,content,mime){const url=URL.createObjectURL(new Blob([content],{type:mime})),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function download(name,content,mime){if(mime==='text/markdown') content=window.QuidenceI18n?.markdown(content)||content;const url=URL.createObjectURL(new Blob([content],{type:mime})),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function reportPayload(){const payload={...E.exportRecord(state),reportText:markdown()};return window.QuidenceReportStore.prepare(C.MODULE,payload,state.createdAt);}
 function markdown(){
  let s='# '+C.TITLE+'\n\n'+`Session started: ${state.createdAt}\n\n`+'Initial predictions and checks after instruction are separate observations. Required explanations need human review. Fixed choices do not establish subject mastery.\n\n';

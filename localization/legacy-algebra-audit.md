@@ -1,0 +1,336 @@
+# Legacy algebra Spanish translation audit
+
+- Assigned rows: 1436. Translated rows: 1111. Excluded rows: 325.
+- Translation uses neutral Spanish for students in the United States. Decimal points, dollars, miles and original formulas remain unchanged.
+- Numeric literal multiset check: no differences in any translated row. Mathematical negation, all-real-x scope, optional support, provisional review and non-mastery cautions were manually reviewed.
+- Deliberately false answer choices remain false (for example, changing one side preserves equality; three samples prove a global extremum; x² can be negative).
+- Technical token words are not changed in source or scoring. This file only provides display translations.
+- Dynamic fragments need runtime composition review: notably the equal-lap sentence (5900–5902), number-dependent status/report sentences, and captions embedded inside excluded malformed HTML.
+
+## Excluded rows
+
+- 5645: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5646: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5647: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5648: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5649: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5650: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5656: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5661: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5665: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5670: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5671: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5677: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5678: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5683: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5684: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5691: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5692: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5699: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5706: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5711: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5717: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5722: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5726: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5731: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5737: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5738: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5744: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5750: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5773: Internal regex for evidence detection; preserve unchanged.
+- 5845: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5846: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5847: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5848: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5849: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5850: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5851: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5852: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5853: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5854: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5855: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5856: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5857: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5858: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5859: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5860: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5861: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5866: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5867: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5868: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5870: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5872: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5873: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5874: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5875: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5876: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5877: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5878: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5879: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5881: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5882: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5883: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5885: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5886: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5888: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5889: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5906: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5908: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5909: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5910: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5911: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5912: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5914: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5915: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5919: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5920: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5924: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5925: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5926: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5927: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5929: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5930: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5932: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5933: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5934: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5935: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5936: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5937: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5938: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5943: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5944: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5945: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5946: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5947: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 5948: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5950: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5951: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5952: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5953: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5954: Number and internationally understood unchanged unit abbreviation.
+- 5956: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5957: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5958: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5959: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5960: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5961: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5966: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5973: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5974: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5975: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5976: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5977: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5978: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5981: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5985: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5986: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5987: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5988: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5989: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5990: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5996: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5997: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5998: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 5999: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6000: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6001: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6003: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6004: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6005: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6011: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6012: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6017: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6021: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6022: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6028: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6033: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6034: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6040: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6042: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6044: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6049: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6051: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6058: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6059: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6060: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6061: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6062: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6063: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6064: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6065: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6066: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6067: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6068: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6072: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6073: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6074: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6075: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6076: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6077: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6078: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6080: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6081: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6082: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6101: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6103: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6125: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6128: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6130: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6134: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6135: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6147: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6149: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6185: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6187: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6190: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6191: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6202: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6204: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6215: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6217: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6219: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6223: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6227: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6228: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6234: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6236: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6240: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6248: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6253: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6255: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6257: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6266: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6268: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6279: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6280: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6281: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6310: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6312: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6317: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6318: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6319: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6320: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6321: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6322: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6323: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6324: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6325: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6326: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6327: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6328: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6355: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6356: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6357: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6358: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6359: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6361: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6362: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6392: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6393: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6397: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6405: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6407: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6409: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6410: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6411: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6412: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6419: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6420: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6421: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6435: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6436: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6439: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6441: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6442: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6447: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6448: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6449: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6466: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6467: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6468: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6469: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6470: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6471: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6472: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6473: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6476: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6477: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6478: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6479: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6480: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6481: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6482: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6492: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6517: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6518: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6523: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6525: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6526: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6529: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6530: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6531: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6532: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6533: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6534: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6536: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6537: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6715: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6716: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6717: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6719: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6720: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6763: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6764: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6817: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6819: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6820: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6822: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6853: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6854: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6878: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6881: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6882: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6890: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6891: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6899: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6902: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6903: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6904: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6905: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6906: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6907: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6908: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6909: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6910: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6914: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6921: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6922: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6923: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6924: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6925: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6933: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6934: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6935: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6938: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6939: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6940: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6944: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6945: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6946: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6947: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6948: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6949: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6950: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 6955: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6956: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6957: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6958: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6960: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6961: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 6965: Incomplete HTML/SVG or attribute fragment; not a standalone display string. Translate the completed rendered text or attribute separately.
+- 7001: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 7028: Internal regex for evidence detection; preserve unchanged.
+- 7070: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 7073: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 7075: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.
+- 7078: Technical identifier, enum, selector, file name, color, operation token or internal version; preserve unchanged.

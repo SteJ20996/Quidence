@@ -1,0 +1,156 @@
+81	Inversa de AB
+83	Orden de las inversas
+84	Muestra cada vector intermedio y explica por qué la operación inversa debe deshacer primero la última transformación aplicada.
+85	Bv = (2,0), por lo que ABv = (2,0). Av = (−1,−1), por lo que BAv = (−2,−2). Ambas matrices son invertibles; (AB)⁻¹ = B⁻¹A⁻¹ porque A⁻¹ cancela la última transformación aplicada.
+86	Usa otro par de transformaciones que no conmuten y verifica la inversa propuesta mediante multiplicación.
+87	La misma transformación en una base diferente
+88	Sea C = (u,v), donde u = (1,1)ᵀ y v = (1,−1)ᵀ. En coordenadas estándar, T(x,y) = (2x + y, 3y). Para w = (4,2)ᵀ, encuentra [w]C y [T(w)]C. Indica, por filas, las cuatro entradas de la matriz de T en la base C.
+89	[w]C: primera coordenada
+90	Coordenadas en una base
+91	[w]C: segunda coordenada
+93	[T(w)]C: primera coordenada
+94	Conversión de base del resultado
+96	[T(w)]C: segunda coordenada
+97	Fila 1, columna 1
+98	Imágenes de los vectores de la base
+99	Fila 1, columna 2
+100	Fila 2, columna 1
+101	Fila 2, columna 2
+102	Distingue los vectores de sus listas de coordenadas. Obtén las columnas a partir de T(u) y T(v) y después comprueba la matriz de coordenadas usando [w]C.
+103	Las coordenadas en la base C de (x,y) son ((x+y)/2,(x−y)/2). Así, [w]C = (3,1). T(w) = (10,6), con coordenadas (8,2). T(u) = (3,3) tiene coordenadas (3,0); T(v) = (1,−3) tiene coordenadas (−1,2). La matriz en C es [[3,−1],[0,2]].
+104	Vuelve a cambiar la base y distingue la transformación geométrica de su representación matricial.
+105	Proyecta y comprueba el residuo
+106	En el espacio euclidiano R³, proyecta b = (2,1,3)ᵀ sobre la recta generada por a = (1,2,2)ᵀ. Escribe la proyección como ca. Indica c, cada coordenada del residuo r = b − ca y r·a.
+107	Coeficiente de proyección c
+108	Normalización de la proyección
+109	Primera coordenada del residuo
+110	Construcción del residuo
+111	Segunda coordenada del residuo
+112	Tercera coordenada del residuo
+114	Comprobación de ortogonalidad
+115	Elige el coeficiente mediante una condición de ortogonalidad o un argumento de minimización. Verifica el residuo en vez de limitarte a dar una fórmula.
+116	Exige (b − ca)·a = 0. Aquí b·a = 10 y a·a = 9, por lo que c = 10/9. El residuo es (8/9,−11/9,7/9), cuyo producto escalar con a es (8 − 22 + 14)/9 = 0.
+117	Usa una dirección que no sea unitaria en una nueva proyección y verifica la ortogonalidad del residuo.
+118	Ajusta una recta sin suponer que el ajuste es exacto
+119	Usa mínimos cuadrados ordinarios con pesos iguales para ajustar y = α + βx a los tres puntos mostrados. Encuentra α, β y la suma de los residuos al cuadrado, definiendo cada residuo como el valor observado de y menos el valor ajustado de y. ¿Puede una sola recta pasar por los tres puntos?
+121	Ordenada al origen α
+122	Ecuaciones normales de mínimos cuadrados
+124	Pendiente β
+126	Suma de los residuos al cuadrado
+127	Error residual
+129	¿Una recta pasa por los tres puntos?
+130	Solución exacta frente a aproximación
+131	Plantea las ecuaciones del ajuste o las sumas centradas. Verifica que los residuos suman cero y que su suma ponderada por x también es cero.
+132	Las ecuaciones normales son 3α + 3β = 5 y 3α + 5β = 6. Por tanto, β = 1/2 y α = 7/6. Los residuos son −1/6, 1/3, −1/6; sus cuadrados suman 1/6. Su suma y su suma ponderada por x son cero. Los cambios sucesivos desiguales de y impiden que exista una recta exacta.
+133	Compara un sistema compatible con uno sobredeterminado y comprueba el residuo de mínimos cuadrados con cada columna de la matriz de diseño.
+134	y observado
+135	Los vectores propios no se definen solo por cocientes entre coordenadas
+136	Para A = [[3,1],[0,2]], v = (−1,1)ᵀ y w = (1,1)ᵀ, decide cuáles de v y w son vectores propios. Indica el valor propio de v y ambas coordenadas de A⁴v.
+137	¿Es v un vector propio?
+138	Un mismo valor propio para todas las coordenadas
+139	¿Es w un vector propio?
+141	Valor propio de v
+142	Cálculo del valor propio
+143	A⁴v: primera coordenada
+144	Potencias aplicadas a un vector propio
+145	A⁴v: segunda coordenada
+146	Calcula Av y Aw. Para cada vector, comprueba si un único escalar sirve para todo el vector y después justifica la cuarta potencia.
+147	Av = (−2,2) = 2v. Aw = (4,2), que no es un múltiplo escalar de (1,1). Por tanto, v tiene valor propio 2 y A⁴v = 2⁴v = (−16,16). Cocientes diferentes entre coordenadas no definen un valor propio.
+148	Comprueba otro posible vector propio, incluyendo una coordenada cero, y justifica una potencia de una matriz sin repetir cuatro multiplicaciones.
+149	El cambio de área y la orientación usan el signo de manera diferente
+150	La transformación lineal tiene matriz A = [[1,2],[3,1]]. Un triángulo tiene vértices O = (0,0), U = (2,0) y V = (0,3), en ese orden. Encuentra det(A), el área original y el área de la imagen. ¿Conserva este orden su orientación después de la transformación?
+153	Determinante con signo
+155	Área del triángulo original
+156	Área geométrica
+158	Área del triángulo imagen
+159	Valor absoluto del determinante como factor de área
+161	¿Se conserva la orientación?
+162	Orientación frente a área positiva
+163	Usa el signo del determinante para razonar sobre la orientación y su magnitud para razonar sobre el área. Explica por qué interpretar el resultado como un área negativa sería incorrecto.
+164	det(A) = 1 − 6 = −5. El área original es (2×3)/2 = 3; el área de la imagen es |−5|×3 = 15. Los vértices imagen son (0,0), (2,6), (6,3); el doble de su área con signo es −30, por lo que la orientación se invierte.
+165	Transforma otro triángulo usando un determinante negativo y comprueba su área tanto con las coordenadas de sus vértices como con el factor de escala del determinante.
+167	El triángulo original aparece con línea azul discontinua; su imagen, con línea morada continua. Las coordenadas de los vértices originales se indican en la pregunta. Ambos usan la misma escala de coordenadas.
+168	Un vector que no puede alcanzarse todavía tiene una imagen más cercana
+169	A = [[1,2],[2,4]] y b = (3,5)ᵀ. ¿Es compatible Ax = b? Encuentra el vector p del espacio columna de A más cercano a b en distancia euclidiana. ¿Es único un vector de entrada x que cumpla Ax = p?
+170	¿Es compatible Ax = b?
+171	p más cercano: primera coordenada
+172	Proyección sobre el espacio columna
+173	p más cercano: segunda coordenada
+175	¿Es único el vector de entrada que produce p?
+176	Espacio nulo y unicidad
+177	Describe el espacio columna, verifica que b − p es perpendicular a él y distingue la unicidad de la salida más cercana de la unicidad de su entrada.
+178	El espacio columna es span((1,2)), pero b cumple 5 ≠ 2×3. Su coeficiente de proyección es (3 + 10)/(1 + 4) = 13/5, lo que da p = (13/5,26/5). El residuo (2/5,−1/5) es ortogonal a (1,2). Las entradas que producen p no son únicas porque (−2,1) es un vector no nulo del espacio nulo.
+179	Distingue los vectores del lado derecho incompatibles, las salidas más cercanas únicas y las múltiples entradas que producen una misma salida.
+180	Una traslación oculta en una transformación
+181	Para k real, define Tₖ(x,y) = (2x + y + k, x − y). ¿Qué valor de k hace que Tₖ sea lineal? Para k = 2, u = (1,0) y v = (0,1), indica la primera coordenada de T₂(u + v) y de T₂(u) + T₂(v).
+182	k para que haya linealidad
+183	Linealidad y origen
+185	Primera coordenada de T₂(u + v)
+186	Comprobación de aditividad
+188	Primera coordenada de T₂(u) + T₂(v)
+189	Da una justificación suficiente para el valor de k que elegiste y un contraejemplo para k = 2. No consideres lineal toda fórmula cuya gráfica sea una recta.
+190	Tₖ(0,0) = (k,0), por lo que k debe ser 0. Para k = 0, la transformación es la multiplicación por [[2,1],[1,−1]], que es lineal. Para k = 2, T₂(u+v) = (5,0), mientras que T₂(u)+T₂(v) = (7,0), por lo que no se cumple la aditividad.
+191	Distingue transformaciones lineales y afines en otra fórmula.
+192	Un determinante cero no termina el análisis
+193	Para Aₖ = [[1,2,1],[0,k−1,2],[0,0,k+2]], selecciona todos los valores reales de k que hacen que Aₖ sea singular. Para k = 1, indica el rango, la nulidad y si A₁x = (0,0,1)ᵀ es compatible.
+195	Valores del parámetro que producen singularidad
+200	Condiciones para que el determinante sea cero
+201	Rango cuando k = 1
+202	Rango después de que desaparece un pivote
+203	Nulidad cuando k = 1
+204	¿Es compatible con el vector (0,0,1)ᵀ?
+205	Compatibilidad entre filas que no son independientes
+206	Calcula el determinante y después examina las filas concretas cuando k = 1. Explica por qué contar solamente las entradas diagonales distintas de cero puede dar un rango incorrecto.
+207	El determinante es (k−1)(k+2), lo que da k = 1 o −2. Para k = 1, las filas son (1,2,1), (0,0,2), (0,0,3); las dos últimas son dependientes, pero no son nulas. El rango es 2 y la nulidad, 1. La segunda ecuación exige z = 0 y la tercera, 3z = 1, por lo que el vector del lado derecho es incompatible.
+208	Después de encontrar un valor excepcional del parámetro, vuelve a calcular el rango y comprueba el lado derecho, en lugar de detenerte cuando el determinante es cero.
+209	Los subespacios deben ser cerrados bajo la suma
+211	Subespacios vectoriales
+212	Condiciones de cierre de un subespacio
+213	Dimensión de S₁
+214	Dimensión de una restricción homogénea
+215	Dimensión de S₄
+216	Dependencia de los vectores generadores
+217	Para cada conjunto rechazado, indica una condición específica que no se cumple y da un ejemplo. Da vectores generadores independientes para S₁ y explica la dependencia en S₄.
+218	S₁ es un plano homogéneo con base (1,−1,0), (1,0,−1), por lo que su dimensión es 2. S₂ no contiene el vector cero. S₃ contiene (1,0,0) y (0,1,0), pero no su suma. S₄ es una recta porque su segundo vector generador es el doble del primero. Así, exactamente S₁ y S₄ son subespacios.
+219	Comprueba el vector cero, la suma y la multiplicación escalar en otro conjunto antes de deducir su dimensión.
+221	Preálgebra
+222	Modelos de varios pasos con fracciones, porcentajes, tasas y razones
+223	Operaciones con signos, fracciones, porcentajes, razones y una incógnita sencilla.
+224	Cantidades variables y el todo de referencia
+225	Tasas y razones con incógnitas
+226	Otros temas de números enteros y exponentes, y modelado independiente a lo largo de todo el currículo de secundaria básica
+227	Retira parte de una mezcla y después dilúyela
+228	Mezcla 3/4 de litro de concentrado con 1/2 litro de agua. La mezcla es uniforme. Retira 2/5 de la mezcla y después agrega 1/4 de litro de agua. Encuentra la fracción de concentrado antes de retirar la mezcla, los litros de concentrado que quedan después y la fracción final de concentrado.
+229	Fracción inicial de concentrado
+230	Una fracción de la mezcla completa
+232	Concentrado restante (litros)
+233	Retiro proporcional de una mezcla uniforme
+235	Fracción final de concentrado
+236	Un nuevo denominador después de la dilución
+237	Lleva por separado el concentrado y el volumen total en cada etapa. Explica por qué retirar una porción uniforme, sin hacer otro cambio, no modifica su concentración.
+238	Inicialmente, el volumen total es 5/4 L y la fracción de concentrado es (3/4)/(5/4) = 3/5. Conservar 3/5 deja 9/20 L de concentrado y 3/4 L de mezcla. Agregar 1/4 L de agua da un total de 1 L, por lo que la fracción final es 9/20.
+239	Usa otra fracción retirada y distingue una fracción de un ingrediente de una fracción de la mezcla completa.
+240	Recupera un precio con dos bases que cambian
+241	Una bolsa tiene un descuento del 20%. Se aplica un impuesto sobre ventas del 8% al precio con descuento y después se agrega un cargo de envío de $3 sin impuesto. El total es $46.20. Encuentra el precio original, el descuento y el impuesto.
+242	Precio original ($)
+243	Operaciones porcentuales inversas
+245	Descuento ($)
+246	Base del descuento
+248	Impuesto sobre ventas ($)
+249	Base del impuesto
+250	Plantea un modelo para el total y deshaz las operaciones en el orden correcto. Indica a qué cantidad se aplica el impuesto.
+251	Si P es el precio original, 1.08(0.8P)+3 = 46.20. Resta el envío para obtener 43.20, divide entre 1.08 para obtener 40 y después entre 0.8 para obtener 50. El descuento es 10 y el impuesto es 0.08×40 = 3.20.
+252	Recupera una cantidad original después de un cargo y dos cambios porcentuales, sin sumar las tasas porcentuales.
+253	Suma las tasas de llenado, no los tiempos de llenado
+254	Una llave llena un tanque vacío en 6 horas y otra, en 4 horas. Una fuga vacía un tanque lleno en 12 horas. Supón que todas las tasas son constantes y que ambas llaves y la fuga funcionan al mismo tiempo. Encuentra la fracción neta del tanque que se llena por hora, el tiempo necesario para llenar un tanque vacío y la fracción llena después de 3/2 horas.
+256	Tanques netos por hora
+257	Tasas fraccionarias con signo
+259	Tiempo de llenado (horas)
+260	Recíproco de la tasa neta
+262	Fracción del tanque después de 3/2 horas
+263	Tasa multiplicada por el tiempo transcurrido
+264	Usa un tanque lleno como unidad común. Explica por qué sumar 6 y 4 no da el tiempo de llenado conjunto.
+265	La tasa neta es 1/6 + 1/4 − 1/12 = 1/3 de tanque por hora. El llenado tarda 1/(1/3) = 3 horas. En 3/2 horas se llena (1/3)(3/2) = 1/2 tanque.
+266	Modela otro proceso con tasas positivas y negativas simultáneas e indica sus unidades.
+267	Encuentra las cantidades detrás de una razón que cambia
+268	Un club tiene inicialmente una razón chicos:chicas de 3:4. Se incorporan seis chicos y no entra ni sale nadie más, por lo que la razón cambia a 3:2. Encuentra los números originales de chicos y chicas y el total final de integrantes.

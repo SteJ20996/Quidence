@@ -4,7 +4,7 @@ const path = require('node:path');
 const {createHash} = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const entries = ['foundations/index.html', 'diagnostics/index.html', 'projects/index.html'];
-const reportAssets = new Set(['assets/hub.css', 'assets/hub-goals.js', 'assets/report-tools.js', 'assets/report-tools.css', 'assets/report-store.js', 'assets/report-viewer.js', 'assets/course-app.js', 'modules/aa01/dist/app.js', 'modules/ab01/dist/learning.js', 'modules/ad01/dist/app.js']);
+const reportAssets = new Set(['assets/i18n.css', 'assets/i18n-es.js', 'assets/i18n.js', 'assets/hub.css', 'assets/hub-goals.js', 'assets/report-tools.js', 'assets/report-tools.css', 'assets/report-store.js', 'assets/report-viewer.js', 'assets/course-app.js', 'modules/aa01/dist/app.js', 'modules/ab01/dist/learning.js', 'modules/ad01/dist/app.js']);
 const digest = content => createHash('sha256').update(content).digest('hex').slice(0, 12);
 function versionActivities(check = false) {
   const updates = new Map();
