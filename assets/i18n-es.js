@@ -7583,6 +7583,8 @@
   "Add (1, 1) to another (1, 1). Add the horizontal parts and the vertical parts separately.": "Suma (1, 1) y otro (1, 1). Suma por separado las partes horizontales y las verticales.",
   "Also show the derivative graph": "Mostrar también el gráfico de la derivada",
   "Student construction": "Construcción del estudiante",
+  "Show an answer and explain how you reached it. Your reasoning helps a tutor choose what to teach next.": "Muestra una respuesta y explica cómo la obtuviste. Tu razonamiento ayuda a un tutor a elegir qué enseñar después.",
+  "CALIFORNIA-INSPIRED FIELD PROJECTS": "PROYECTOS DE CAMPO INSPIRADOS EN CALIFORNIA",
   "A useful request for a teacher or tutor": "Una petición útil para un docente o tutor",
   "Scope and evidence limits": "Alcance y límites de la evidencia",
   "Answer and explanation history": "Historial de respuestas y explicaciones",

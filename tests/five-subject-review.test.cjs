@@ -29,7 +29,7 @@ test('coordinate display is bounded while saved construction precision and disti
 test('print exports include the student drawing rather than substituting a reference, and reject unsafe specifications',()=>{
  const payload=drawingPayload(),before=JSON.stringify(payload),html=R.printable('Geometry',payload),md=R.markdown('Geometry',payload);
  assert.match(html,/<svg xmlns=/);assert.match(html,/G=\(2, 3\)/);assert.doesNotMatch(html,/G=\(3\.6667/);assert.match(html,/&lt;script&gt;student text/);assert.doesNotMatch(html,/<script>student text/);assert.match(md,/!\[.*\]\(Quidence_Drawing_1_1\.svg\)/);assert.equal(JSON.stringify(payload),before);
- const bad=structuredClone(payload);bad.observations[0].components[0].drawingSpec.board.xmax='"><script>bad</script>';assert.doesNotMatch(R.printable('Geometry',bad),/<svg/);
+ const bad=structuredClone(payload);bad.observations[0].components[0].drawingSpec.board.xmax='"><script>bad</script>';const unsafeHtml=R.printable('Geometry',bad);assert.doesNotMatch(unsafeHtml,/<figure class="report-drawing"/);assert.match(unsafeHtml,/<div class="report-brand"/);
  const huge=structuredClone(payload);huge.observations[0].components[0].drawingSpec.board.xmin=1e100;huge.observations[0].components[0].drawingSpec.board.xmax=1e100+10;assert.equal(P.reportDrawings(huge).length,0);
 });
 test('drawing packages are readable ZIP files with valid CRCs and matching Markdown image attachments',()=>{
