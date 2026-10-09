@@ -26,11 +26,16 @@ async function run() {
         await page.waitForFunction(() => [...document.querySelectorAll('.q-brand-logo')].every(e => e.complete && e.naturalWidth));
         const result = await page.locator('.q-brand-logo').evaluate(e => {
           const box = e.getBoundingClientRect();
-          return {x: box.x, right: box.right, height: box.height, width: box.width, filter: getComputedStyle(e).filter, blend: getComputedStyle(e).mixBlendMode};
+          let parent=e.parentElement,color='';while(parent){color=getComputedStyle(parent).backgroundColor;if(color!=='rgba(0, 0, 0, 0)'&&color!=='transparent')break;parent=parent.parentElement;}
+          const rgb=(color.match(/[\d.]+/g)||[]).slice(0,3).map(Number),bg=rgb.length===3?rgb:[255,255,255];
+          const fg=e.src.includes('logo-dark')?[246,247,249]:[20,34,54];
+          const luminance=rgb=>rgb.map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((s,v,i)=>s+v*[.2126,.7152,.0722][i],0),a=luminance(bg),b=luminance(fg);
+          return {x: box.x, right: box.right, height: box.height, width: box.width, filter: getComputedStyle(e).filter, blend: getComputedStyle(e).mixBlendMode,contrast:(Math.max(a,b)+.05)/(Math.min(a,b)+.05)};
         });
         assert(result.x >= 0 && result.right <= width + 1, file + ' clipped logo');
         assert(result.width >= 180 && result.height >= 44, file + ' undersized logo');
         assert.equal(result.filter, 'none'); assert.equal(result.blend, 'normal');
+        assert(result.contrast>=4.5,file+' low logo contrast '+result.contrast);
         assert.equal(await page.locator('.brand-mark,.brand-initial,.brand-wordmark,.f-brand-mark').count(), 0, file + ' old mark');
         const overlap = await page.evaluate(() => {
           const logo = document.querySelector('.q-brand'), parent = logo.parentElement, a = logo.getBoundingClientRect();

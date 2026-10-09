@@ -12,7 +12,7 @@ function versionActivities(check = false) {
     .map(file => fs.readFileSync(path.join(root, 'assets', file))).join('\n'));
   for (const file of entries) {
     const source = fs.readFileSync(path.join(root, file), 'utf8');
-    const html = source.replace(/<html\b[^>]*>/, tag => tag.replace(/\sdata-activity-version="[^"]*"/, '').replace(/>$/, ' data-activity-version="' + uiVersion + '">'))
+    const html = source.replace(/data-es-catalog="[^"]*"/g, 'data-es-catalog="?v=' + digest(fs.readFileSync(path.join(root, 'assets/i18n-es.js'))) + '"').replace(/<html\b[^>]*>/, tag => tag.replace(/\sdata-activity-version="[^"]*"/, '').replace(/>$/, ' data-activity-version="' + uiVersion + '">'))
       .replace(/(src|href)="(\.\.\/assets\/[^"?]+\.(?:js|css|svg))(?:\?[^" ]*)?"/g, (_, attr, reference) => {
         const hash = digest(fs.readFileSync(path.resolve(root, path.dirname(file), reference)));
         return attr + '="' + reference + '?v=' + hash + '"';
@@ -24,7 +24,7 @@ function versionActivities(check = false) {
   const publicHTML = require('./build-static-release.cjs').files().filter(file => file.endsWith('.html'));
   for (const file of publicHTML) {
     const source = updates.get(file) ?? fs.readFileSync(path.join(root, file), 'utf8');
-    const html = source.replace(/(src|href)="([^"?]+\.(?:js|css|svg))(?:\?[^" ]*)?"/g, (match, attr, reference) => {
+    const html = source.replace(/data-es-catalog="[^"]*"/g, 'data-es-catalog="?v=' + digest(fs.readFileSync(path.join(root, 'assets/i18n-es.js'))) + '"').replace(/(src|href)="([^"?]+\.(?:js|css|svg))(?:\?[^" ]*)?"/g, (match, attr, reference) => {
       const resolved = path.resolve(root, path.dirname(file), reference);
       if (!reportAssets.has(path.relative(root, resolved))) return match;
       const hash = digest(fs.readFileSync(resolved));

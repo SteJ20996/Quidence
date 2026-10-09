@@ -67,6 +67,17 @@ function numericReading(value,unit=null,allowX=true){
  return{value:n,fraction:tokens.length===2,places:(mantissa.split('.')[1]?.length||0)-Number(exponent),significant};
 }
 function numeric(value,unit=null){return numericReading(value,unit)?.value??null;}
+// A UI confirmation gate; historical parsing and saved outcomes stay intact.
+function numericFormatIssues(t,a){
+ if(a.unsure||a.notStudied)return[];
+ return t.fields.filter(f=>f.kind==='number').flatMap(f=>{
+  const raw=a.values[f.id]?.trim()||'';if(!raw)return[];
+  if(raw.includes(','))return[{field:f.id,label:f.label,raw,kind:'comma'}];
+  const dotted=raw.split('/').some(token=>!/^\s*[+-−]?\d+(?:\.\d*)?\s*[xX×*]\s*10\s*\^/.test(token)&&/^\s*[+-−]?[1-9]\d*(?:\.\d{3})+(?![\d.eE])(?:\s|$)/.test(token));
+  if(dotted){const value=numeric(raw,fieldUnit(f));return [{field:f.id,label:f.label,raw,kind:value===null?'separator':'decimal',value}];}
+  return[];
+ });
+}
 function minimumPlaces(answer){return answer===0?2:Math.max(2,1-Math.floor(Math.log10(Math.abs(answer))));}
 function currentNumberMatches(f,value,previous=false){
  const read=numericReading(value,fieldUnit(f),!previous);if(!read||!Number.isFinite(f.answer))return false;
@@ -185,6 +196,7 @@ function studentSummary(s){
 function portable(s){return{product:'Quidence',kind:settings.projects?'field-project':settings.challenge?'diagnostic-challenge':'foundation-check',check:checkName(s),schema:SCHEMA,bankVersion:s.bankVersion,exportedAt:stamp(),markdown:markdown(s),scope:B.MODULES[s.module].scope,subject:subjectTitle(s),session:clone(s),taskDefinitions:clone(tasks(s)),observations:observations(s),studentSummary:studentSummary(s),evidenceSummary:evidenceSummary(s),scopeReview:scopeReview(s),recommendedFollowups:nextChecks(s),interpretation:'Objective answer components are checked with fixed mathematics. Explanations require human or AI-tutor review. These observations do not establish mastery, effort, AI use, or a complete course diagnosis.'};}
 function answerText(t,a){return t.fields.map(f=>{const v=a?.values[f.id];if(settings.fieldTypes?.[f.kind])return f.label+': '+settings.fieldTypes[f.kind].text(f,v);return f.label+': '+(f.kind==='number'?v||'not entered':f.kind==='multi'?(v||[]).map(x=>f.options.find(o=>o.value===x)?.label||x).join('; ')||'not selected':f.options.find(o=>o.value===v)?.label||'not selected');}).join('\n');}
 const quoteOriginal=value=>String(value??'').split('\n').map(line=>'> '+line).join('\n');
+function answerMarkdown(t,a){return t.fields.map(f=>{const single={...t,fields:[f]},line=answerText(single,a),prefix=f.label+': ';return f.label+':\n'+quoteOriginal(line.startsWith(prefix)?line.slice(prefix.length):line);}).join('\n');}
 function markdown(s){
  const module={...B.MODULES[s.module],scope:authoredText(B.MODULES[s.module].scope)},brief=studentSummary(s);let out='# Quidence · '+subjectTitle(s)+'\n\nScope: '+module.scope+'\nSession: '+s.id+'\n\n## Your next conversation\n\n'+brief.overview+'\n\n### Matching answer components\n\n'+(brief.matched.map(x=>'- '+x.title+': '+x.detail).join('\n')||'No matching fixed components are available in this record.')+'\n\n### One or two things to check next\n\n'+(brief.checks.map(x=>'- '+x.title+': '+x.detail+' '+x.next).join('\n')||'No specific next check was selected. Ask about a new task before making a broader claim.')+'\n\n## How to read this report\n\nMatching answer fields do not verify the explanation or establish mastery. Written reasons remain open until a reviewer checks their mathematical meaning. '+brief.selection+'\n\n## A useful request for a teacher or tutor\n\nBefore sharing, remove names, school, contact details and other personal information. Use only tools you are allowed to use; younger learners should work with a parent or teacher.\n\nUse the actual answers and explanations below to suggest one or two learning priorities. Explain which specific responses support each suggestion, and ask a follow-up question when the reasoning is ambiguous. Keep arithmetic errors, conceptual explanations, missing evidence, and reported help distinct. Do not treat this short check as a complete course assessment or infer effort or AI use from it. Start with a short explanation and one changed-number practice question, then adapt to my response.\n\n';
  const summary=evidenceSummary(s);out+='Check: '+checkName(s)+' · '+tasks(s).length+' '+unit+'\n\n## Fixed components and separate explanation reviews\n\nMatched components: '+summary.matched+'; need another check: '+summary.recheck+'; uncertain: '+summary.unsure+'; not studied: '+summary.notStudied+'; locally reviewed responses: '+(summary.reviewed||0)+'; mathematical response parts awaiting review: '+(summary.review||0)+'; earlier precision checks awaiting review: '+summary.roundingReview+'; missing: '+summary.missing+'. These are component counts, not a weighted grade or mastery estimate.\nWhole-answer explanations awaiting review: '+summary.explanations.open+'; revision: '+summary.explanations.revise+'; partial: '+summary.explanations.partial+'; key connection explained: '+summary.explanations.connected+'. Reviews concern only the current submitted attempt.\n\n';
@@ -198,7 +210,7 @@ function markdown(s){
   if(t.table)out+='Given table: '+JSON.stringify(t.table)+'\n\n';if(t.matrix)out+='Given matrix: '+JSON.stringify(t.matrix)+'\n\n';if(t.referenceVisual)out+='Reference diagram description: '+t.referenceVisual.description+'\n\n';if(t.visual)out+='Graph/table description: '+t.visual.description+'\n'+(t.visual.kind==='game'?'Payoffs: '+JSON.stringify(t.visual)+'\n':'')+'\n';
   out+='Reasoning prompt: '+t.reason+'\n\n';
   out+='Current component checks:\n'+reviewedComponents(s,t).map(x=>'- '+x.label+': '+x.state+(x.skill?' · '+x.skill:'')+(x.feedback?' · '+x.feedback:'')+(x.reviewCriteria?.length?' · review criteria: '+x.reviewCriteria.join('; '):'')+(x.selection?' · correct selections: '+x.selection.correct.join(', ')+'; extra selections: '+x.selection.extra.join(', ')+'; missing selections: '+x.selection.missing.join(', '):'')).join('\n')+'\n\n';
-  for(const [i,a]of (r?.submissions||[]).entries())out+='Attempt '+(i+1)+' · '+a.objective.state+' · '+a.at+'\n'+(a.answer.notStudied?'Student marked this topic not studied.\n':'')+(a.answer.unsure?'Student selected “I’m not sure”.\n':'')+quoteOriginal(answerText(t,a.answer))+'\nStudent explanation:\n'+quoteOriginal(a.answer.explanation)+'\nOther help reported: '+a.answer.otherHelp+'\nEarlier report viewed: '+a.feedbackSeen+'\n\n';
+  for(const [i,a]of (r?.submissions||[]).entries())out+='Attempt '+(i+1)+' · '+a.objective.state+' · '+a.at+'\n'+(a.answer.notStudied?'Student marked this topic not studied.\n':'')+(a.answer.unsure?'Student selected “I’m not sure”.\n':'')+answerMarkdown(t,a.answer)+'\nStudent explanation:\n'+quoteOriginal(a.answer.explanation)+'\nOther help reported: '+a.answer.otherHelp+'\nEarlier report viewed: '+a.feedbackSeen+'\n\n';
   if(!r?.submissions.length)out+='No submitted answer.\n\n';else if(r.status==='draft')out+='Current revision is not submitted. Draft explanation:\n'+quoteOriginal(r.draft.explanation)+'\n\n';
   for(const x of r?.partReviews||[])out+='Local review of part '+x.field+' on attempt '+x.submission+': '+(x.points===null?'open':x.points+'/2')+'\n'+quoteOriginal(x.note)+'\n';
   out+='Reference mathematics: '+t.solution+'\nNext check: '+t.next+'\n';for(const x of r?.reviews||[])out+='Local review of attempt '+x.submission+': '+(x.points===null?'open':x.points+'/2')+'\n'+quoteOriginal(x.note)+'\n';out+='\n';
@@ -228,7 +240,7 @@ function hydrate(value){
  const migrated=clone(value);for(const id of Object.keys(B.MODULES))if(!migrated.modules[id])migrated.modules[id]={active:null,sessions:[]};
  return migrated;
 }
-const api={settings,SCHEMA,NUMERIC_POLICY,PREVIOUS_NUMERIC_POLICY,LEGACY_NUMERIC_POLICY,subjectTitle,authoredText,displayTask,studentTaskNote,numberMatches,numeric,minimumPlaces,fresh,session,createSession,definition,checkName,tasks,task,blank,record,edit,validate,evaluate,submit,last,done,review,latestReview,reviewPart,latestPartReview,observations,componentChecks,evidenceSummary,studentSummary,scopeReview,nextChecks,portable,answerText,markdown,hydrate};
+const api={settings,SCHEMA,NUMERIC_POLICY,PREVIOUS_NUMERIC_POLICY,LEGACY_NUMERIC_POLICY,subjectTitle,authoredText,displayTask,studentTaskNote,numberMatches,numeric,numericFormatIssues,minimumPlaces,fresh,session,createSession,definition,checkName,tasks,task,blank,record,edit,validate,evaluate,submit,last,done,review,latestReview,reviewPart,latestPartReview,observations,componentChecks,evidenceSummary,studentSummary,scopeReview,nextChecks,portable,answerText,markdown,hydrate};
 return api;
 }
 const api=build(B,X);api.forBank=build;

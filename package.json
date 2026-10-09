@@ -17,7 +17,9 @@
     "test:projects": "node --test tests/projects.test.cjs",
     "test:diagnostics": "node --test tests/challenges.test.cjs",
     "build:locales": "node scripts/build-locales.cjs",
-    "test:localization:browser": "node scripts/test-localization-browser.cjs"
+    "test:localization:browser": "node scripts/test-localization-browser.cjs",
+    "build:brand:images": "node scripts/build-brand-images.cjs",
+    "test:spanish:review": "node scripts/test-spanish-review-browser.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

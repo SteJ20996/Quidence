@@ -1,0 +1,262 @@
+[
+  [
+    "[n] L displaced",
+    "[n] L desplazados"
+  ],
+  [
+    "[n] shaded parts among [n] equal parts.",
+    "[n] partes sombreadas entre [n] partes iguales."
+  ],
+  [
+    "[n]/[n] of one whole",
+    "[n]/[n] de un entero"
+  ],
+  [
+    "[n] of [n] steps opened. Take time to compare the model and its numerical readouts.",
+    "[n] de [n] pasos abiertos. Dedica tiempo a comparar el modelo y sus lecturas numéricas."
+  ],
+  [
+    "[n] units",
+    "[n] unidades"
+  ],
+  [
+    "A cubic with three factors. y = (x + [n])(x − [n])(x − [n]). Axes: x, y.",
+    "Una función cúbica con tres factores. y = (x + [n])(x − [n])(x − [n]). Ejes: x, y."
+  ],
+  [
+    "A factored quadratic. y = (x − [n])(x − [n]). Axes: x, y.",
+    "Una función cuadrática factorizada. y = (x − [n])(x − [n]). Ejes: x, y."
+  ],
+  [
+    "A linear rule. y = [n]x + [n]. Axes: x, y.",
+    "Una regla lineal. y = [n]x + [n]. Ejes: x, y."
+  ],
+  [
+    "Adjacent angles: [n]° and [n]°",
+    "Ángulos adyacentes: [n]° y [n]°"
+  ],
+  [
+    "Amount after t periods = [n] × [n]ᵗ",
+    "Cantidad después de t períodos = [n] × [n]ᵗ"
+  ],
+  [
+    "Applied force [n] N east",
+    "Fuerza aplicada de [n] N hacia el este"
+  ],
+  [
+    "Area [n] square units",
+    "Área de [n] unidades cuadradas"
+  ],
+  [
+    "Perimeter [n] units",
+    "Perímetro de [n] unidades"
+  ],
+  [
+    "At [n] s: position [n] m",
+    "A los [n] s: posición de [n] m"
+  ],
+  [
+    "Displacement [n] m",
+    "Desplazamiento de [n] m"
+  ],
+  [
+    "Distance [n] m",
+    "Distancia de [n] m"
+  ],
+  [
+    "Cost = [n] × number of items",
+    "Costo = [n] × número de artículos"
+  ],
+  [
+    "Kmax = [n] eV",
+    "Kmax = [n] eV"
+  ],
+  [
+    "Factor [n]",
+    "Factor [n]"
+  ],
+  [
+    "At t = [n]: [n]",
+    "Para t = [n]: [n]"
+  ],
+  [
+    "Fnet = [n] − [n] = [n] N; a = Fnet/m.",
+    "Fnet = [n] − [n] = [n] N; a = Fnet/m."
+  ],
+  [
+    "For an input change of [n], output changes by [n].",
+    "Para un cambio de entrada de [n], la salida cambia en [n]."
+  ],
+  [
+    "Fraction = [n]/[n]",
+    "Fracción = [n]/[n]"
+  ],
+  [
+    "Decimal = [n]",
+    "Decimal = [n]"
+  ],
+  [
+    "Horizontal forces only. Arrow lengths use the same scale: [n] N east and [n] N west. Vertical forces balance and are omitted.",
+    "Solo fuerzas horizontales. Las longitudes de las flechas usan la misma escala: [n] N hacia el este y [n] N hacia el oeste. Las fuerzas verticales se equilibran y se omiten."
+  ],
+  [
+    "Image distance [n] cm",
+    "Distancia de la imagen de [n] cm"
+  ],
+  [
+    "Magnification [n]",
+    "Aumento [n]"
+  ],
+  [
+    "Image height [n] cm",
+    "Altura de la imagen de [n] cm"
+  ],
+  [
+    "Input [n] J ([n] Wh)",
+    "Entrada de [n] J ([n] Wh)"
+  ],
+  [
+    "Useful [n] J",
+    "Útil: [n] J"
+  ],
+  [
+    "Other [n] J",
+    "Otras formas: [n] J"
+  ],
+  [
+    "Intersection = ([n], [n])",
+    "Intersección = ([n], [n])"
+  ],
+  [
+    "Legs [n], [n]",
+    "Catetos [n], [n]"
+  ],
+  [
+    "Net force [n] N",
+    "Fuerza neta de [n] N"
+  ],
+  [
+    "Acceleration [n] m/s²",
+    "Aceleración de [n] m/s²"
+  ],
+  [
+    "One angle is [n] degrees. Its adjacent angle is [n] degrees.",
+    "Un ángulo mide [n] grados. Su ángulo adyacente mide [n] grados."
+  ],
+  [
+    "Opposing force [n] N west",
+    "Fuerza opuesta de [n] N hacia el oeste"
+  ],
+  [
+    "Period [n] s",
+    "Período de [n] s"
+  ],
+  [
+    "Total mechanical energy [n] J",
+    "Energía mecánica total de [n] J"
+  ],
+  [
+    "Position at constant velocity. x = [n] + ([n])t. Axes: Time (s), Position (m).",
+    "Posición a velocidad constante. x = [n] + ([n])t. Ejes: Tiempo (s), Posición (m)."
+  ],
+  [
+    "Repeated percentage change. y = [n]([n])ᵗ. Axes: Time (periods), Amount.",
+    "Cambio porcentual repetido. y = [n]([n])ᵗ. Ejes: Tiempo (períodos), Cantidad."
+  ],
+  [
+    "Scale factor [n]",
+    "Factor de escala [n]"
+  ],
+  [
+    "Perimeter factor [n]",
+    "Factor del perímetro [n]"
+  ],
+  [
+    "Area factor [n]",
+    "Factor del área [n]"
+  ],
+  [
+    "Simplified rule: x + [n], for x ≠ [n]",
+    "Regla simplificada: x + [n], para x ≠ [n]"
+  ],
+  [
+    "Slope = [n]",
+    "Pendiente = [n]"
+  ],
+  [
+    "y-intercept = [n]",
+    "Intersección con el eje y = [n]"
+  ],
+  [
+    "Solution x = [n]",
+    "Solución x = [n]"
+  ],
+  [
+    "Substitution: [n] = [n]",
+    "Sustitución: [n] = [n]"
+  ],
+  [
+    "Speed [n] m/s",
+    "Rapidez de [n] m/s"
+  ],
+  [
+    "Frequency [n] Hz",
+    "Frecuencia de [n] Hz"
+  ],
+  [
+    "Wavelength [n] m",
+    "Longitud de onda de [n] m"
+  ],
+  [
+    "Start [n]",
+    "Inicio [n]"
+  ],
+  [
+    "Change [n]",
+    "Cambio [n]"
+  ],
+  [
+    "End [n]",
+    "Final [n]"
+  ],
+  [
+    "Start at [n]; add [n]; end at [n].",
+    "Empieza en [n]; suma [n]; termina en [n]."
+  ],
+  [
+    "Two distinct models · B = [n] T",
+    "Dos modelos distintos · B = [n] T"
+  ],
+  [
+    "Width [n] units and height [n] units. Area [n] square units; perimeter [n] units.",
+    "Ancho de [n] unidades y altura de [n] unidades. Área de [n] unidades cuadradas; perímetro de [n] unidades."
+  ],
+  [
+    "Zeros: x = [n] and x = [n]",
+    "Ceros: x = [n] y x = [n]"
+  ],
+  [
+    "k = [n]. Cancellation is valid only when x ≠ k.",
+    "k = [n]. La cancelación es válida solo cuando x ≠ k."
+  ],
+  [
+    "log base [n] of [n] = [n]",
+    "logaritmo en base [n] de [n] = [n]"
+  ],
+  [
+    "x = x₀ + vt; constant velocity [n] m/s gives a = [n] m/s².",
+    "x = x₀ + vt; una velocidad constante de [n] m/s da a = [n] m/s²."
+  ],
+  [
+    "Read step [n]",
+    "Lee el paso [n]"
+  ],
+  [
+    "STEP [n] OF [n]",
+    "PASO [n] DE [n]"
+  ],
+  [
+    "Two simultaneous linear rules. y = x + [n]; y = −x + [n]. Axes: x, y.",
+    "Dos reglas lineales simultáneas. y = x + [n]; y = −x + [n]. Ejes: x, y."
+  ]
+]

@@ -21,5 +21,9 @@ for(const [key,value]of Object.entries(catalog)){if(/^#{1,6}\s/.test(key)){const
 // US spelling changes are presentation aliases, not new question definitions.
 const american=s=>s.replace(/\bAnalyse\b/g,'Analyze').replace(/\banalyse\b/g,'analyze').replace(/\bmodelling\b/g,'modeling').replace(/\btravelled\b/g,'traveled').replace(/\bkilometres\b/g,'kilometers').replace(/\bkilometre\b/g,'kilometer').replace(/\bmetres\b/g,'meters').replace(/\bmetre\b/g,'meter').replace(/\blitres\b/g,'liters').replace(/\blitre\b/g,'liter');
 for(const [key,value]of Object.entries(catalog)){const alias=american(key);if(!Object.hasOwn(catalog,alias))catalog[alias]=value;}
-fs.writeFileSync(path.join(root,'assets/i18n-es.js'),"(function(root){'use strict';root.QuidenceSpanish=Object.freeze("+JSON.stringify(catalog,null,2)+");})(typeof window==='object'?window:globalThis);\n");
+// Reviewed UI terminology for the US Spanish audience. Mathematics stays intact.
+for(const key of Object.keys(catalog))catalog[key]=catalog[key].replace(/\bIntroduce\b/g,'Ingresa').replace(/\bintroduce\b/g,'ingresa').replace(/\basignatura\b/g,'materia').replace(/Álgebra Lineal/g,'Álgebra lineal').replace(/[«“"](?:Todavía no estoy seguro|No estoy seguro)[»”"]/g,'«Aún no estoy seguro»').replace(/^Comprobar fundamentos$/,'Comprueba los fundamentos');
+const quantities=JSON.parse(fs.readFileSync(path.join(root,'localization/quantity-templates-es.json'),'utf8'));
+for(const [en,es]of quantities)if(en.split('[n]').length!==es.split('[n]').length)throw Error('Quantity template changes numeric slots: '+en);
+fs.writeFileSync(path.join(root,'assets/i18n-es.js'),"(function(root){'use strict';root.QuidenceSpanish=Object.freeze("+JSON.stringify(catalog,null,2)+");root.QuidenceSpanishQuantities=Object.freeze("+JSON.stringify(quantities)+");})(typeof window==='object'?window:globalThis);\n");
 console.log(JSON.stringify({translated:translated.size,catalogEntries:Object.keys(catalog).length,inventory:inventory.length}));
