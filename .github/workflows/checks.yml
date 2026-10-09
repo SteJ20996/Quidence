@@ -34,3 +34,5 @@ jobs:
         run: npm run test:browser
       - name: Check bilingual layouts, complete reports and original answer preservation
         run: npm run test:localization:browser
+      - name: Check the supplied logo across both languages and offline reports
+        run: npm run test:brand:browser

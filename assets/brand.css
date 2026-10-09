@@ -1,0 +1,9 @@
+/* Transparent vector wordmarks inherit each page's existing background. */
+a.q-brand{display:inline-flex;align-items:center;min-height:44px;flex-shrink:0;max-width:100%;padding:0;gap:0;text-decoration:none;background:transparent}
+.q-brand img.q-brand-logo{display:block;width:216px;max-width:100%;height:auto;aspect-ratio:12270 / 3100;object-fit:contain;position:static;filter:none;mix-blend-mode:normal}
+.q-brand:focus-visible{outline:3px solid #db8600;outline-offset:5px;border-radius:4px}
+body>header.q-brand-header{flex-wrap:wrap;height:auto;min-height:84px}
+body>header.q-brand-header>.brand{margin-right:auto}
+.f-header-inner{flex-wrap:wrap}
+@media(max-width:600px){.q-brand img.q-brand-logo{width:190px}body>header.q-brand-header{row-gap:12px;padding-top:14px;padding-bottom:14px}}
+@media(max-width:360px){.q-brand img.q-brand-logo{width:180px}}
