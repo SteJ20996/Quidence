@@ -23,7 +23,7 @@
     const bridgeTargets=()=>chapter<2?[...new Set(frontier.map(id=>data.bridges[chapter][id]).filter(Boolean))]:[];
     const snapshot=()=>({chapter,frontier:[...frontier],activeLayer});
     function remember(){trail.push(snapshot());if(trail.length>200)trail.shift();}
-    function focusNodes(ids,layer=null){remember();frontier=ids;activeLayer=layer;chosenCourse=null;update();}
+    function focusNodes(ids,layer=null,select=false){remember();frontier=ids;activeLayer=layer;chosenCourse=null;update(select);}
     function chooseChapter(index,targets=null){
       if(index===chapter)return;
       remember();chapter=index;frontier=targets?.length?targets:[...current().initial];activeLayer=null;chosenCourse=null;buildCities();update();
@@ -47,7 +47,7 @@
       }
       for(const node of [...current().nodes].sort((a,b)=>a.y-b.y)){
         const button=document.createElement('button');button.type='button';button.className='qa-node';button.dataset.node=node.id;button.append(document.createElement('span'));
-        button.addEventListener('click',()=>focusNodes([node.id]));cities.append(button);
+        button.addEventListener('click',()=>focusNodes([node.id],null,true));cities.append(button);
       }
     }
     function courseLink(module,kind){
@@ -56,7 +56,7 @@
       const url=new URL(anchor?.getAttribute('href')||catalog.COURSES[module][kind],window.location.href);
       url.searchParams.set('lang',language);return url.pathname+url.search+url.hash;
     }
-    function renderSelection(w){
+    function renderSelection(w,select=false){
       const body=root.querySelector('.qa-course-body'),title=body.querySelector('.qa-course-title'),meta=body.querySelector('.qa-course-meta'),actions=body.querySelector('.qa-actions'),choices=body.querySelector('.qa-course-choices');
       const candidates=courseCandidates(chapter,frontier).filter(id=>courses.has(id));
       if(!candidates.includes(chosenCourse))chosenCourse=candidates.find(id=>courses.get(id).module===selectedModule)||candidates[0]||null;
@@ -68,13 +68,13 @@
       for(const id of candidates){
         if(candidates.length<2)break;
         const button=document.createElement('button');button.type='button';button.className='qa-course-choice';button.textContent=courses.get(id)[language];button.setAttribute('aria-pressed',String(id===chosenCourse));
-        button.addEventListener('click',()=>{chosenCourse=id;update();});choices.append(button);
+        button.addEventListener('click',()=>{chosenCourse=id;update(true);});choices.append(button);
       }
       const learn=root.querySelector('.qa-learn'),diagnose=root.querySelector('.qa-diagnose');
-      if(course){learn.href=courseLink(course.module,'course');diagnose.hidden=!catalog.COURSES[course.module].challenge;if(!diagnose.hidden)diagnose.href=courseLink(course.module,'challenge');else diagnose.removeAttribute('href');selectSubject(course.module);}
-      else{learn.removeAttribute('href');diagnose.removeAttribute('href');}
+      if(course){learn.onclick=diagnose.onclick=()=>selectSubject(course.module);learn.href=courseLink(course.module,'course');diagnose.hidden=!catalog.COURSES[course.module].challenge;if(!diagnose.hidden)diagnose.href=courseLink(course.module,'challenge');else diagnose.removeAttribute('href');if(select)selectSubject(course.module);}
+      else{learn.onclick=diagnose.onclick=null;learn.removeAttribute('href');diagnose.removeAttribute('href');}
     }
-    function update(){
+    function update(select=false){
       const w=data.words[language],following=children(frontier),parents=current().links.filter(([,b])=>frontier.includes(b)).map(([a])=>a),related=new Set([...frontier,...following,...parents]);
       for(const button of cities.querySelectorAll('button')){
         const available=courseCandidates(chapter,[button.dataset.node]).some(id=>courses.has(id));
@@ -94,7 +94,7 @@
       chapterBar.setAttribute('aria-label',language==='es'?'Mapas de conocimientos relacionados':'Connected knowledge maps');
       layerBar.setAttribute('aria-label',language==='es'?'Ramas del conocimiento':'Knowledge branches');
       roads.setAttribute('aria-label',language==='es'?'Líneas continuas: bases habituales. Líneas discontinuas: conexiones y aplicaciones.':'Solid routes: common foundations. Dashed routes: connections and applications.');
-      renderSelection(w);scheduleLayout();
+      renderSelection(w,select);scheduleLayout();
     }
     function svgPath(d,stroke,width,dashed=false){
       const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d',d);path.setAttribute('fill','none');path.setAttribute('stroke',stroke);path.setAttribute('stroke-width',width);if(dashed)path.setAttribute('stroke-dasharray','4 5');return path;

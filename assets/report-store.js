@@ -41,7 +41,7 @@ function sameWork(a,b){
 }
 function save(module,payload,sessionId,storage){
  if(!SUBJECTS[module]||!payload||typeof payload!=='object')return{ok:false,error:'The report could not be saved.'};
- try{storage=storage||(root.QuidenceStorage||root.localStorage);const result=read(storage);if(!result.ok)return result;const data=result.data;
+ try{storage=storage||(root.QuidenceStorage||root.localStorage);const result=read(storage);if(!result.ok)return{...result,module,payload:withRequest(payload,captureRequest(module,storage))};const data=result.data;
   const session=sessionKey(payload,sessionId);
   const id=module+':'+session;let item=data.items.find(x=>x.id===id);
   if(item&&sameWork(item.versions.at(-1).payload,payload))return{ok:true,id,changed:false,module,payload:withRequest(payload,item.versions.at(-1).payload.learningRequest)};
@@ -51,9 +51,9 @@ function save(module,payload,sessionId,storage){
   // Only migrate older, large fingerprints. Current fingerprints are not used
   // to decide equality; sameWork compares the actual saved student evidence.
   for(const existing of data.items)for(const version of existing.versions)if(!/^compact-v2:\d+:[0-9a-f]+$/.test(version.signature))version.signature=signature(content(version.payload));
-  if((storage.getItem(KEY)||'')!==result.raw)return{ok:false,error:'Saved reports changed in another tab. Reload before saving; your activity record is kept.'};
+  if((storage.getItem(KEY)||'')!==result.raw)return{ok:false,module,payload,error:'Saved reports changed in another tab. Reload before saving; your activity record is kept.'};
   storage.setItem(KEY,JSON.stringify(data));return{ok:true,id,changed:true,module,payload};
- }catch{return{ok:false,error:'Your report is open, but it could not be saved in this browser. Download a copy.'};}
+ }catch{return{ok:false,module,payload,error:'Your report is open, but it could not be saved in this browser. Download a copy.'};}
 }
 function compact(storage){
  try{storage=storage||(root.QuidenceStorage||root.localStorage);const result=read(storage);if(!result.ok)return result;
@@ -65,7 +65,7 @@ function compact(storage){
  }catch{return{ok:false,error:'Report optimization could not finish. The previous saved reports are kept.'};}
 }
 const HANDOFF='Any earlier automatic explanation credit is an unvalidated detector suggestion, not a label of understanding. Independently review the question, conditions, exact reasoning and justification. Before sharing, remove names, school, contact details and other personal information. Use only tools you are allowed to use; younger learners should work with a parent or teacher. Read the actual questions, answers, explanations, support context, and revisions in this report. Suggest one or two learning priorities with specific evidence. Ask a follow-up when reasoning is ambiguous. Keep missing evidence separate from incorrect answers, and calculation separate from conceptual explanation. Do not infer mastery, effort, or AI use from this short activity. Teach one next idea, offer a changed-number question, and adapt to the learner’s answer.';
-function appendNotice(host,result,options={}){if(!result||!root.document)return;const p=root.document.createElement('p');p.className='saved-report-note'+(result.ok?'':' error');p.setAttribute('role',result.ok?'status':'alert');p.textContent=result.ok?'A report copy is saved in this browser. Download it to discuss with your teacher or tutor, or revisit it when you keep learning. ':result.error+' ';if(result.ok){const a=root.document.createElement('a');a.href=options.reportsHref||'../../../reports/';a.textContent='View saved reports';p.appendChild(a);}host.appendChild(p);if(result.ok&&result.payload)root.QuidenceReportTools?.attach(host,SUBJECTS[result.module],result.payload,HANDOFF);}
+function appendNotice(host,result,options={}){if(!result||!root.document)return;const p=root.document.createElement('p');p.className='saved-report-note'+(result.ok?'':' error');p.setAttribute('role',result.ok?'status':'alert');p.textContent=result.ok?'A report copy is saved in this browser. Download it to discuss with your teacher or tutor, or revisit it when you keep learning. ':result.error+' ';if(result.ok){const a=root.document.createElement('a');a.href=options.reportsHref||'../../../reports/';a.textContent='View saved reports';p.appendChild(a);}host.appendChild(p);if(result.payload)root.QuidenceReportTools?.attach(host,SUBJECTS[result.module],result.payload,HANDOFF);}
 const api={KEY,SUBJECTS,displaySubject,fresh,hydrate,read,save,prepare,compact,appendNotice,HANDOFF};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceReportStore=api;
 })(typeof window==='undefined'?globalThis:window);

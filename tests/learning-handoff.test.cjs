@@ -85,6 +85,23 @@ test('saved contexts are immutable across request edits, opt-out, reopens and le
  assert.equal(S.prepare('ab01',work,'legacy',storage).learningRequest,undefined);assert.equal(S.save('ab01',work,'legacy',storage).changed,false);assert.equal(map.get(S.KEY),before);
 });
 
+test('full browser storage keeps old reports and provides the current exact payload for download',()=>{
+ const h=harness(),S=h.window.QuidenceReportStore,storage=h.window.localStorage;
+ const previous={markdown:'# Earlier work\n\n> Original response'};
+ assert(S.save('ab01',previous,'earlier',storage).ok);const before=h.map.get(S.KEY);
+ const goal='  Use a geometric view.\n保留原话。  ';
+ h.map.set(Goals.KEY,JSON.stringify({schema:Goals.KEY,subject:'ab01',text:goal,includeInReport:true}));
+ storage.setItem=()=>{throw Error('quota');};
+ const current={markdown:'# Current work\n\n> Save my answer\n> My unsaved explanation'};
+ const result=S.save('ab01',current,'current',storage);
+ assert.equal(result.ok,false);assert.equal(h.map.get(S.KEY),before);
+ assert.equal(result.payload.markdown,current.markdown);assert.equal(result.payload.learningRequest.text,goal);
+ const host=new Element('section');S.appendNotice(host,result);
+ assert.match(host.children.find(e=>e.className==='saved-report-note error').textContent,/could not be saved/);
+ assert(host.children.find(e=>e.className==='report-handoff'),'Download tools missing when storage is full');
+ assert.equal(current.learningRequest,undefined,'Preparing a download mutated original input');
+});
+
 test('learning criteria reach readable exports, printable reports, summaries and drawing packages safely',()=>{
  const text='<script>alert("goal")</script>\n```\nExact student wording & spaces.',payload={markdown:'# Evidence\n\n> Original answer',learningRequest:{schema:'quidence_report_learning_request_v1',subject:'geometry',text,capturedAt:'2026-10-08T00:00:00Z'},studentSummary:{matched:[],checks:[],selection:'Review the original work.'}};
  assert.match(Tools.markdown('Geometry',payload),/criterion in this report/);assert(Tools.markdown('Geometry',payload).includes(Tools.quote(text)));

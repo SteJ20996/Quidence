@@ -14,16 +14,17 @@ async function run(){
   await page.goto(origin+'/?lang=en');assert(!requests.some(r=>r.includes('i18n-es.js')),'English loaded the Spanish catalog');
   await page.locator('#quidence-language').selectOption('es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');assert(requests.some(r=>r.includes('i18n-es.js')));
   assert.equal(await page.evaluate(()=>QuidenceI18n.text('The new student sentence is in your notebook.')),'The new student sentence is in your notebook.');
-  for(const course of ['pre-algebra','algebra-1','geometry','algebra-2','physics','physics-1','physics-2']){
-   await page.goto(origin+'/courses/'+course+'/?lang=es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');await collect();
+  for(const course of ['pre-algebra','algebra-1','geometry','algebra-2','physics','physics-1','physics-2','af01','ae01','ad01']){
+   await page.goto(origin+(['af01','ae01','ad01'].includes(course)?'/modules/'+course+'/dist/':'/courses/'+course+'/')+'?lang=es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');await collect();
    const count=await page.evaluate(raw=>{
-    const E=QuidenceCourseEngine,C=QuidenceCourseContent,s=E.fresh();
+    const E=window.AD01Engine||QuidenceCourseEngine,C=window.AD01Content||QuidenceCourseContent,s=E.fresh();
     for(const l of C.LESSONS)for(const t of [l.predict,...l.checks]){E.update(s,t.id,{choices:['unsure'],explanation:raw,otherHelp:false});assertSubmit(E.submit(s,t.id,t===l.predict?'predict':'check'));}
     function assertSubmit(ok){if(!ok)throw Error('Could not seed submitted evidence');}
     s.lessons.forEach(l=>{l.seenSteps=[0,1,2,3];l.reviewed=true;});s.view='lesson';s.stage='review';localStorage.setItem(E.SCHEMA,JSON.stringify(s));return C.LESSONS.length;
    },RAW);await page.reload();await page.waitForFunction(()=>QuidenceI18n.locale==='es');
+   await page.locator('[data-action="summary"]').click();const exported=page.waitForEvent('download');await page.locator('[data-action="export-md"]').click();const file=await exported;assert(fs.readFileSync(await file.path(),'utf8').includes(RAW.split('\n').map(s=>'> '+s).join('\n')),'Summary changed original explanation');await collect();
    for(let i=0;i<count;i++){
-    await page.locator('[data-action="open"][data-index="'+i+'"]').click();
+    await page.locator('[data-action="open"][data-index="'+i+'"]').first().click();
     assert.deepEqual(await page.locator('.written-answer [data-no-translate]').allTextContents(),[RAW,RAW],course+' original explanation');
     const before=await storage();await page.locator('#quidence-language').selectOption('en');await page.locator('#quidence-language').selectOption('es');assert.deepEqual(await storage(),before,'feedback language switch changed source records');
     await collect();lessons++;
@@ -32,9 +33,9 @@ async function run(){
     for(let j=0;j<4;j++){
      await page.locator('[data-action="step"][data-index="'+j+'"]').click();await collect();steps++;
      for(const control of await page.locator('[id^="lab-"]').all()){
-      const tag=await control.evaluate(e=>e.tagName);
-      const values=await control.evaluate(e=>e.tagName==='SELECT'?[...e.options].map(o=>o.value):[e.min,e.max]);
-      for(const value of [...new Set(values)]){if(tag==='SELECT')await control.selectOption(value);else await control.evaluate((e,v)=>{e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}));},value);await collect();controlStates++;}
+      const tag=await control.evaluate(e=>e.tagName);if(!['SELECT','INPUT'].includes(tag))continue;
+      const values=await control.evaluate(e=>e.tagName==='SELECT'?[...e.options].map(o=>o.value):e.type==='checkbox'?['false','true']:[e.min,e.max]);
+      for(const value of [...new Set(values)]){if(tag==='SELECT')await control.selectOption(value);else await control.evaluate((e,v)=>{if(e.type==='checkbox')e.checked=v==='true';else e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}));},value);await collect();controlStates++;}
      }
      assert(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=1,course+' step overflow');
     }
