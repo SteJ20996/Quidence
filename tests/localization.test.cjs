@@ -1,6 +1,21 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 function runtime(){const context=vm.createContext({});for(const file of ['i18n-es.js','i18n.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../assets',file),'utf8'),context);return context.QuidenceI18n;}
+test('all Number Theory proof paragraphs, fields and options have Mexican Spanish with intact mathematics',()=>{
+ const entries=require('../scripts/number-theory-locales.cjs').numberTheoryCatalog(),api=runtime();api.setLocale('es');
+ assert(Object.keys(entries).length>=630);
+ for(const [en,es]of Object.entries(entries)){
+  assert.equal(api.text(en),es,en);
+  // This explicit clarification excludes the trivial factor 1 in the RSA count.
+  const comparable=es.replace('comparte un factor mayor que 1 con 143','comparte un factor con 143');
+  const numbers=s=>s.match(/[0-9₀-₉⁰¹²³⁴⁵⁶⁷⁸⁹]+(?:[.,][0-9]+)*/g)||[];
+  assert.deepEqual(numbers(comparable),numbers(en),'numeric change: '+en);
+  const relations=s=>s.match(/[≡≢≤≥≠⇐⇒∤∎]/g)||[];
+  assert.deepEqual(relations(es),relations(en),'relation change: '+en);
+ }
+ for(const [en,es]of [['Middle School','Secundaria'],['High School','Preparatoria'],['High school · 2/4 responses','Preparatoria · 2/4 pasos con respuestas'],['From high school to university','De la preparatoria a la universidad']])assert.equal(api.text(en),es);
+ const catalogSource=fs.readFileSync(path.join(__dirname,'../assets/i18n-es.js'),'utf8');assert(!/\b(?:vosotros|vosotras|vuestro|vuestra|ordenador|fichero)\b/i.test(catalogSource));
+});
 test('Spanish display preserves numbers and mathematical inequality conditions',()=>{const api=runtime();const source='At u=f, the thin-lens model has no finite image distance. For u<f a virtual-image case requires a different interpretation; the control deliberately stays at u>f.';assert.equal(api.text(source),source);api.setLocale('es');const out=api.text(source);assert(out.includes('imagen virtual'));for(const relation of ['u=f','u<f','u>f'])assert(out.includes(relation));assert.equal(api.text('Question 4 of 12'),'Pregunta 4 de 12');api.setLocale('en');assert.equal(api.text(source),source);});
 test('localized Markdown preserves original multiline answers, reviewer notes and fenced records',()=>{const api=runtime();api.setLocale('es');const source='# Saved reports\n\n> Save my answer\n> Your explanation\n\nStudent explanation: Save my answer\nYour explanation\nOther help reported: false\n\nReviewer note: Save my answer\nYour explanation\n\n```json\n{"note":"Save my answer","answer":"−3/4"}\n```';const result=api.markdown(source);assert(result.startsWith('# Informes guardados'));assert(result.includes('> Save my answer\n> Your explanation'));assert(result.includes(': Save my answer\nYour explanation'));assert(result.includes('{"note":"Save my answer","answer":"−3/4"}'));api.setLocale('en');assert.equal(api.markdown(source),source);});
 test('unreviewed sentences stay whole and are recorded for local translation review',()=>{const api=runtime();api.setLocale('es');for(const sentence of ['The cart is up and the speed is in the top lap. Use six or one for the Sum.','Save my answer. This novel phrase is not a reviewed caption.','   '])assert.equal(api.text(sentence),sentence);assert(api.missing.includes('The cart is up and the speed is in the top lap. Use six or one for the Sum.'));assert.equal(api.text('1 saved attempt; earlier answers remain in your history.'),'1 intento guardado; las respuestas anteriores permanecen en tu historial.');});

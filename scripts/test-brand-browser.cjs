@@ -78,7 +78,7 @@ async function run() {
     await page.setContent(report);
     await page.screenshot({path: path.join(screenshots, 'new-logo-report-es-375.webp')});
     assert.deepEqual(errors, []); assert.deepEqual(failures, []);
-    console.log(JSON.stringify({pages: 22, languages: 2, layouts, offlineReports: 2, errors, failures}));
+    console.log(JSON.stringify({pages: files().filter(f=>f.endsWith('.html')).length, languages: 2, layouts, offlineReports: 2, errors, failures}));
   } finally {
     await browser?.close(); await new Promise(resolve => server.close(resolve));
   }

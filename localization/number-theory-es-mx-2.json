@@ -1,0 +1,152 @@
+{
+  "nt-p10": {
+    "title": "El argumento de Euclides para infinitos números primos",
+    "prompt": "Supón que alguien afirma tener una lista finita y completa de todos los números primos. El argumento de Euclides muestra cómo encontrar un primo que falta en cualquier lista así, sin factorizar ningún número.",
+    "approach": "Multiplica los primos de una lista y suma 1. El resultado deja residuo 1 al dividir entre cada primo de la lista, así que sus factores primos son nuevos. Demuestra que todo número mayor que 1 tiene un factor primo y el argumento estará completo. Trabajar con residuos módulo 4 permite demostrar que hay infinitos primos de la forma 4k + 3.",
+    "uses": "Principio del buen orden (menor divisor mayor que 1, contraejemplo mínimo); residuos.",
+    "nextCheck": "Utiliza Q = 6 × (un producto de números primos) − 1 para demostrar que hay infinitos primos de la forma 6k + 5.",
+    "steps": [
+      {
+        "title": "Construye Q y encuentra sus residuos",
+        "prompt": "Para la lista 2, 3, 5, 7, 11, 13, calcula Q = 2 × 3 × 5 × 7 × 11 × 13 + 1. Demuestra que Q deja residuo 1 al dividir entre cualquier primo de la lista.",
+        "proof": ["Q = 30030 + 1 = 30031. Para cualquier primo p de la lista, el producto 2·3·5·7·11·13 es p multiplicado por un entero no negativo, digamos pk. Entonces Q = pk + 1 con 0 ≤ 1 < p, así que el residuo es 1. En particular, ningún primo de la lista divide a Q."],
+        "fields": {"q2": {"label": "Q para 2, 3, 5, 7, 11, 13"}, "rem": {"label": "Residuo de dividir Q entre cualquier primo de la lista"}}
+      },
+      {
+        "title": "¿Q es primo?",
+        "prompt": "Comprueba mediante multiplicación que 59 × 509 = 30031. ¿Qué garantiza realmente el argumento?",
+        "proof": ["59 × 509 = 59 × 500 + 59 × 9 = 29500 + 531 = 30031. Así que Q no es primo. Esto no invalida el argumento: por el Paso 1, ningún primo de la lista divide a Q, así que todo factor primo de Q falta en la lista. El argumento garantiza un primo que falta en la lista, no que Q sea primo."],
+        "fields": {"guarantee": {"label": "¿Qué garantiza el argumento?", "options": {"newfactor": "Todo factor primo de Q falta en la lista", "other-1": "Q siempre es primo", "other-2": "Q es el primo que sigue después de los de la lista"}}}
+      },
+      {
+        "title": "Escribe la demostración completa",
+        "prompt": "Demuestra que todo entero N > 1 tiene un factor primo. Después demuestra que hay infinitos números primos.",
+        "proof": [
+          "Lema. Todo entero N > 1 tiene un factor primo.",
+          "Demostración. El conjunto de divisores de N mayores que 1 no está vacío (contiene a N), así que tiene un elemento mínimo d. Si d no fuera primo, d = rs con 1 < r < d y r sería un divisor de N mayor que 1 y menor que d, una contradicción. Por lo tanto, d es primo. ∎",
+          "Teorema. Hay infinitos números primos.",
+          "Demostración. Sea p₁, …, pₖ cualquier lista finita de primos y sea Q = p₁p₂⋯pₖ + 1. Entonces Q > 1, así que, por el lema, Q tiene un factor primo p. Si p fuera algún pᵢ, p dividiría tanto a Q como a p₁⋯pₖ y, por lo tanto, a su diferencia 1, lo cual es imposible. Así, p es un primo que no está en la lista. Como en toda lista finita falta un primo, hay infinitos números primos. ∎"
+        ],
+        "fields": {"proof": {"label": "Escribe la demostración completa", "criteria": ["Demuestra que todo N > 1 tiene un factor primo (menor divisor mayor que 1).", "Muestra que un primo de la lista que dividiera a Q dividiría a 1; concluye que en toda lista finita falta un primo."], "followup": "¿La demostración necesita que Q sea primo? Utiliza 30031 en tu respuesta."}}
+      },
+      {
+        "title": "Una variante para primos de la forma 4k + 3",
+        "prompt": "Sea Q = 4 × (3 × 7 × 11) − 1. Calcula Q y su residuo módulo 4. Demuestra que Q debe tener un factor primo de la forma 4k + 3 distinto de 3, 7 y 11. Después utiliza la factorización prima dada Q = 13 × 71 (13 y 71 son primos) para indicar un factor primo de Q de la forma 4k + 3 distinto de 3, 7 y 11.",
+        "proof": [
+          "Q = 4·231 − 1 = 923 y 923 = 4·230 + 3, así que Q ≡ 3 (mod 4).",
+          "Lema. Si x ≡ 1 y y ≡ 1 (mod 4), entonces xy ≡ 1 (mod 4). Demostración: (4s + 1)(4t + 1) = 4(4st + s + t) + 1.",
+          "Afirmación. Todo entero N > 1 con N ≡ 3 (mod 4) tiene un factor primo ≡ 3 (mod 4).",
+          "Demostración. Supón lo contrario y sea N el contraejemplo mínimo (principio del buen orden). N no es primo, pues un primo N ≡ 3 sería él mismo un factor de ese tipo. Así, N = rs con 1 < r, s < N. N es impar, de modo que r y s son impares; por lo tanto, cada uno es ≡ 1 o ≡ 3 (mod 4). Por el lema, no pueden ser ambos ≡ 1, así que uno, digamos r, es ≡ 3 (mod 4). Como 1 < r < N, r no es un contraejemplo; por lo tanto, r tiene un factor primo ≡ 3 (mod 4) y ese primo también divide a N. Esto contradice la elección de N. ∎",
+          "Por la afirmación, Q tiene un factor primo q ≡ 3 (mod 4).",
+          "q no es 3, 7 ni 11: para cada uno de esos p, 4·231 es múltiplo de p, así que Q = 4·231 − 1 deja residuo p − 1 ≠ 0.",
+          "Con Q = 13 × 71: 71 es un factor primo de Q, 71 = 4·17 + 3 y 71 no es 3, 7 ni 11. Por lo tanto, 71 es un primo nuevo de la forma 4k + 3. (13 = 4·3 + 1 no tiene esa forma.)",
+          "La misma construcción, aplicada a cualquier lista finita de primos de la forma 4k + 3, siempre produce uno nuevo; por lo tanto, hay infinitos primos de ese tipo."
+        ],
+        "fields": {"f3": {"label": "Factor primo de la forma 4k + 3"}, "variation": {"label": "Demuestra la variante", "criteria": ["Un producto de números de la forma 4k + 1 también tiene la forma 4k + 1; utiliza esto (por ejemplo, con un contraejemplo mínimo) para mostrar que Q ≡ 3 (mod 4) tiene un factor primo de la forma 4k + 3.", "Q deja un residuo distinto de cero al dividir entre 3, 7 u 11, así que ese factor es nuevo."], "followup": "¿Por qué el mismo recurso no demuestra directamente que hay infinitos primos de la forma 4k + 1?"}}
+      }
+    ]
+  },
+  "nt-p03": {
+    "title": "Por qué funcionan las pruebas con dígitos",
+    "prompt": "En una tienda escolar ficticia, una persona que atiende revisa totales largos mediante pruebas rápidas con dígitos en lugar de usar una calculadora. Demostrarás por qué funcionan las pruebas y exactamente qué errores pueden y no pueden detectar.",
+    "approach": "Escribe un número como la suma de sus dígitos multiplicados por potencias de 10. Como 10 ≡ 1 (mod 9) y 10 ≡ −1 (mod 11), las pruebas con dígitos se convierten en teoremas. La misma expresión muestra que intercambiar dos dígitos vecinos distintos cambia el número en 9·10ʲ(u − v), que siempre es múltiplo de 9 y nunca es múltiplo del primo 11.",
+    "uses": "Reglas para sumar y multiplicar congruencias (se demuestran en el Paso 2); lema de Euclides: si un primo divide un producto, divide uno de sus factores (se supone).",
+    "nextCheck": "Demuestra que el esquema de dígito verificador módulo 11 también detecta el intercambio de cualesquiera dos símbolos distintos, no solo de símbolos vecinos.",
+    "steps": [
+      {
+        "title": "Dos residuos rápidos",
+        "prompt": "Para N = 7,384,512, suma los dígitos para encontrar N mod 9. Después utiliza la suma alternada que comienza en el último dígito (2 − 1 + 5 − 4 + …) para encontrar N mod 11.",
+        "proof": ["Suma de dígitos: 7 + 3 + 8 + 4 + 5 + 1 + 2 = 30 y 30 = 3·9 + 3, así que N ≡ 3 (mod 9).", "Suma alternada desde la derecha: 2 − 1 + 5 − 4 + 8 − 3 + 7 = 14 y 14 = 11 + 3, así que N ≡ 3 (mod 11).", "El Paso 2 demuestra que estos atajos dan los residuos correctos."],
+        "fields": {}
+      },
+      {
+        "title": "Demuestra ambas pruebas",
+        "prompt": "Escribe N = dₖ10ᵏ + … + d₁10 + d₀. Demuestra que N ≡ dₖ + … + d₁ + d₀ (mod 9) y N ≡ d₀ − d₁ + d₂ − … (mod 11).",
+        "proof": [
+          "Reglas utilizadas: si a ≡ b y c ≡ d (mod m), entonces a + c ≡ b + d y ac ≡ bd (mod m). Demostración: m divide a (a − b) y a (c − d); entonces (a + c) − (b + d) = (a − b) + (c − d) y ac − bd = a(c − d) + d(a − b) son múltiplos de m.",
+          "Como 10 = 9 + 1, tenemos 10 ≡ 1 (mod 9). Multiplicar esta congruencia por sí misma j veces da 10ʲ ≡ 1ʲ = 1 (mod 9). Entonces dⱼ10ʲ ≡ dⱼ (mod 9) para cada j y, al sumar, N ≡ dₖ + … + d₀ (mod 9).",
+          "Como 10 = 11 − 1, tenemos 10 ≡ −1 (mod 11), así que 10ʲ ≡ (−1)ʲ (mod 11). Entonces N ≡ d₀ − d₁ + d₂ − … (mod 11). ∎"
+        ],
+        "fields": {"testsProof": {"label": "Demuestra ambas pruebas con dígitos", "criteria": ["Utiliza 10 ≡ 1 (mod 9) y 10 ≡ −1 (mod 11) y eleva a potencias.", "Combina término a término utilizando las reglas para sumar y multiplicar congruencias."], "followup": "¿Qué regla de las congruencias utilizaste al elevar 10 ≡ 1 a la j-ésima potencia?"}}
+      },
+      {
+        "title": "Qué sucede al intercambiar dígitos vecinos",
+        "prompt": "Un total de 52,317 se escribió como 52,137 al intercambiar dos dígitos vecinos. Encuentra la diferencia. Después demuestra en general: intercambiar dos dígitos vecinos distintos siempre cambia N en un múltiplo de 9, pero nunca en un múltiplo de 11. ¿Qué prueba detecta el intercambio?",
+        "proof": [
+          "52,317 − 52,137 = 180.",
+          "Afirmación general. Supón que los dígitos en las posiciones j + 1 y j (es decir, los que multiplican a 10ʲ⁺¹ y 10ʲ) son u y v, con u ≠ v. Antes del intercambio aportan u·10ʲ⁺¹ + v·10ʲ y, después, v·10ʲ⁺¹ + u·10ʲ. El cambio es",
+          "(u − v)·10ʲ⁺¹ − (u − v)·10ʲ = 9·10ʲ·(u − v).",
+          "Esto siempre es múltiplo de 9, así que la prueba de la suma de dígitos nunca puede detectar ese intercambio (los dígitos son los mismos, de modo que su suma no cambia).",
+          "Módulo 11, 9·10ʲ·(u − v) ≡ 9·(−1)ʲ·(u − v). Como 11 es primo, divide este producto solo si divide a 9 o a u − v. No divide a 9 y 0 < |u − v| ≤ 9, así que no divide a u − v. Por lo tanto, el cambio nunca es múltiplo de 11 y la prueba de la suma alternada siempre detecta el intercambio.",
+          "En el ejemplo, los dígitos intercambiados son 3 y 1 en las posiciones de centenas y decenas (j = 1): 9·10·(3 − 1) = 180."
+        ],
+        "fields": {"diff": {"label": "Diferencia 52,317 − 52,137"}, "notices": {"label": "¿Qué prueba detecta el intercambio?", "options": {"only11": "Solo la prueba de la suma alternada (mod 11)", "other-1": "Solo la prueba de la suma de dígitos (mod 9)", "other-2": "Ambas pruebas", "other-3": "Ninguna prueba"}}, "swapProof": {"label": "Demuestra el resultado general del intercambio", "criteria": ["Muestra que el cambio es 9·10ʲ·(u − v).", "Explica por qué siempre es múltiplo de 9 y, utilizando que 11 es primo, nunca es múltiplo de 11."], "followup": "¿Una prueba basada en 3 en lugar de 9 detectaría el intercambio?"}}
+      },
+      {
+        "title": "Diseña un dígito verificador y demuestra qué detecta",
+        "prompt": "Un código ficticio de tienda tiene nueve dígitos d₁…d₉ seguidos por un valor verificador c elegido de modo que 10d₁ + 9d₂ + … + 2d₉ + 1·c sea múltiplo de 11 (c = 10 se imprime como X). Para los dígitos 4 7 1 2 0 9 3 6 5, encuentra la suma ponderada y c. Después demuestra que el esquema detecta cualquier dígito individual incorrecto y cualquier intercambio de dos símbolos vecinos distintos.",
+        "proof": [
+          "Suma ponderada: 10·4 + 9·7 + 8·1 + 7·2 + 6·0 + 5·9 + 4·3 + 3·6 + 2·5 = 40 + 63 + 8 + 14 + 0 + 45 + 12 + 18 + 10 = 210. Como 210 = 19·11 + 1, necesitamos 1 + c ≡ 0 (mod 11), así que c = 10, que se imprime como X.",
+          "Sea S la suma ponderada de un código válido, de modo que S ≡ 0 (mod 11), y supón que la posición con peso w contiene el símbolo s.",
+          "Un símbolo individual incorrecto: si s cambia a s′ ≠ s, S cambia en w(s′ − s). Aquí 1 ≤ w ≤ 10 y 0 < |s′ − s| ≤ 10, así que 11 no divide a ninguno de los factores. Como 11 es primo, no divide el producto; por lo tanto, la nueva suma no es ≡ 0 y se detecta el error.",
+          "Intercambio de vecinos: los pesos vecinos son w + 1 y w. Si los símbolos s y t (s ≠ t) se intercambian, S cambia en (w + 1)t + ws − (w + 1)s − wt = t − s, que está entre −10 y 10 y no es 0; por lo tanto, no es múltiplo de 11. Se detecta el error. ∎"
+        ],
+        "fields": {"wsum": {"label": "Suma ponderada de los nueve dígitos"}, "check": {"label": "Valor verificador c"}, "swaps": {"label": "¿El esquema detecta todos los intercambios de vecinos distintos?", "options": {"yes": "Sí; el intercambio de vecinos distintos cambia la suma en la diferencia de ambos símbolos, que nunca es múltiplo de 11", "other-1": "No; los intercambios conservan los símbolos, así que la suma no puede cambiar", "other-2": "Solo los intercambios que incluyen el dígito 0"}}, "checkProof": {"label": "Demuestra qué detecta el dígito verificador", "criteria": ["Un símbolo individual incorrecto cambia la suma en w(s′ − s); ninguno de los factores es múltiplo del primo 11.", "Un intercambio de vecinos distintos cambia la suma en t − s, que no es cero y está entre −10 y 10."], "followup": "¿Por qué fallaría la demostración si el esquema utilizara 10 en lugar de 11?"}}
+      }
+    ]
+  },
+  "nt-p04": {
+    "title": "Un antiguo acertijo de residuos",
+    "prompt": "Un acertijo registrado en un antiguo texto chino de matemáticas pide encontrar una cantidad de objetos que deje residuo 2 al contarlos de tres en tres, residuo 3 al contarlos de cinco en cinco y residuo 2 al contarlos de siete en siete. Resuélvelo mediante razonamiento, sin probar números uno por uno.",
+    "approach": "No cuentes a partir de 1. Escribe la condición con el mayor módulo como x = 7k + 2 y sustituye en la siguiente condición; cada paso es una congruencia lineal sencilla. Después demuestra que la respuesta es única módulo 105, porque los divisores coprimos se multiplican. Finalmente, encuentra la condición exacta para que dos congruencias puedan cumplirse al mismo tiempo.",
+    "uses": "Identidad de Bézout en general (a partir del algoritmo extendido de Euclides, nt-p02; se supone en general); lema de los divisores coprimos (se demuestra en el Paso 2).",
+    "nextCheck": "Resuelve un sistema de tres congruencias que tú propongas cuya menor solución positiva sea mayor que 1000, utilizando únicamente sustitución.",
+    "steps": [
+      {
+        "title": "Resuelve por sustitución",
+        "prompt": "A partir de x ≡ 2 (mod 7), escribe x = 7k + 2. Sustituye en x ≡ 3 (mod 5) y encuentra k mod 5. Continúa con x ≡ 2 (mod 3). Indica k mod 5, la menor solución positiva y la distancia entre soluciones consecutivas.",
+        "proof": [
+          "x = 7k + 2. La condición x ≡ 3 (mod 5) se convierte en 7k + 2 ≡ 3, es decir, 2k ≡ 1 (mod 5), porque 7 ≡ 2. Como 2·3 = 6 ≡ 1 (mod 5), al multiplicar por 3 obtenemos k ≡ 3 (mod 5). Escribe k = 5j + 3, así que x = 35j + 23.",
+          "La condición x ≡ 2 (mod 3) se convierte en 35j + 23 ≡ 2, es decir, 2j + 2 ≡ 2 (mod 3), porque 35 ≡ 2 y 23 ≡ 2. Así, 2j ≡ 0 (mod 3). Al multiplicar por 2 (ya que 2·2 = 4 ≡ 1), obtenemos j ≡ 0 (mod 3). Escribe j = 3i, así que x = 105i + 23.",
+          "Toda solución tiene esta forma y todo número de esta forma es una solución, porque cada paso de sustitución era reversible. La menor solución positiva es 23 y las soluciones consecutivas difieren en 105."
+        ],
+        "fields": {"smallest": {"label": "Menor solución positiva"}, "period": {"label": "Distancia entre soluciones"}}
+      },
+      {
+        "title": "Demuestra que la respuesta es única módulo 105",
+        "prompt": "Demuestra: si x y y son soluciones, entonces 105 divide a x − y. Utiliza que 3, 5 y 7 no tienen factores comunes por pares.",
+        "proof": [
+          "Lema. Si m | N, n | N y gcd(m, n) = 1, entonces mn | N.",
+          "Demostración. Por la identidad de Bézout existen enteros u, v con um + vn = 1. Escribe N = m·N₁ = n·N₂. Entonces N = N·(um + vn) = um·n·N₂ + vn·m·N₁ = mn(uN₂ + vN₁). ∎",
+          "Si x y y son soluciones, entonces x − y ≡ 0 módulo 3, 5 y 7. Por el lema con m = 3, n = 5, obtenemos 15 | x − y. Como gcd(15, 7) = 1, el lema aplicado de nuevo da 105 | x − y. Así, todas las soluciones son congruentes módulo 105 y, por el Paso 1, son exactamente 23 + 105i."
+        ],
+        "fields": {"uniq": {"label": "Demuestra la unicidad módulo 105", "criteria": ["Demuestra o cita: si m | N, n | N y gcd(m, n) = 1, entonces mn | N.", "Aplícalo dos veces a x − y."], "followup": "¿En qué parte utilizaste que 3, 5 y 7 son coprimos por pares?"}}
+      },
+      {
+        "title": "La construcción de Sunzi y una versión moderna",
+        "prompt": "Sean u₁, u₂, u₃ los inversos de 35 mod 3, de 21 mod 5 y de 15 mod 7, respectivamente, cada uno elegido entre 1 y el módulo menos 1. Encuentra u₁, calcula x = 2·35·u₁ + 3·21·u₂ + 2·15·u₃, reduce el resultado módulo 105 y demuestra por qué funciona la construcción. Después, un banco ficticio de semillas distribuye entre 200 y 300 paquetes en bandejas de 3, 5 y 7, con residuos 2, 3 y 2, como en el acertijo. ¿Cuántos paquetes hay?",
+        "proof": [
+          "Inversos: 35 ≡ 2 (mod 3) y 2·2 = 4 ≡ 1, así que u₁ = 2. 21 ≡ 1 (mod 5), así que u₂ = 1. 15 ≡ 1 (mod 7), así que u₃ = 1.",
+          "x = 2·35·2 + 3·21·1 + 2·15·1 = 140 + 63 + 30 = 233 y 233 = 2·105 + 23, así que x ≡ 23 (mod 105).",
+          "Por qué funciona: 35 es múltiplo de 5 y de 7, 21 de 3 y de 7, y 15 de 3 y de 5. Módulo 3, los últimos dos términos se anulan y el primero es 2·(35·u₁) ≡ 2·1 = 2. Módulo 5, solo permanece el término central: 3·(21·u₂) ≡ 3. Módulo 7, solo permanece el último término: 2·(15·u₃) ≡ 2.",
+          "Banco de semillas: por el Paso 2, la cantidad es 23 + 105i. La desigualdad 200 ≤ 23 + 105i ≤ 300 da 177/105 ≤ i ≤ 277/105, así que i = 2 y hay 233 paquetes."
+        ],
+        "fields": {"inv35": {"label": "Inverso de 35 módulo 3"}, "built": {"label": "Valor obtenido con la construcción"}, "reduced": {"label": "Resultado reducido módulo 105"}, "packets": {"label": "Cantidad de paquetes"}}
+      },
+      {
+        "title": "Cuando los módulos comparten un factor",
+        "prompt": "Decide si x ≡ 1 (mod 4) y x ≡ 2 (mod 6) tiene solución. Después resuelve x ≡ 1 (mod 4), x ≡ 3 (mod 6) por sustitución: indica la menor solución positiva y el período. Enuncia y demuestra una regla para determinar cuándo x ≡ a (mod m), x ≡ b (mod n) tiene solución.",
+        "proof": [
+          "Primer sistema: x ≡ 1 (mod 4) hace que x sea impar y x ≡ 2 (mod 6) hace que sea par, así que no hay solución.",
+          "Segundo sistema: x = 4k + 1 y 4k + 1 ≡ 3 (mod 6) significa 6 | 4k − 2, es decir, 3 | 2k − 1; así, 2k ≡ 1 (mod 3) y k ≡ 2 (mod 3). Escribe k = 3j + 2: x = 12j + 9. La menor solución positiva es 9 y las soluciones se repiten cada 12 = lcm(4, 6).",
+          "Regla. Sea g = gcd(m, n). El sistema tiene solución si y solo si g | a − b y, en ese caso, las soluciones forman una sola clase módulo lcm(m, n).",
+          "Demostración. Si x es una solución, g divide a m y a n, así que x ≡ a y x ≡ b (mod g), y g | a − b. Recíprocamente, supón que a − b = gt. Por Bézout, g = um + vn. Toma x = a − umt. Entonces x ≡ a (mod m) y x = a − (g − vn)t = b + vnt ≡ b (mod n). Escribe m = gm′ y n = gn′. Si d > 0 divide a m′ y a n′, entonces gd divide a m y a n, así que gd ≤ g y d = 1. Por lo tanto, gcd(m′, n′) = 1 y, por Bézout, 1 = sm′ + wn′ para algunos enteros s, w.",
+          "Sea L = gm′n′. Si x y y son dos soluciones, entonces m | x − y y n | x − y. Escribe x − y = mk. Como n | mk, obtenemos n′ | m′k y k = s(m′k) + w(n′k) es múltiplo de n′. Así, L = gm′·n′ divide a mk = x − y. Recíprocamente, m | L y n | L, así que x + iL es una solución para todo entero i. Por lo tanto, las soluciones forman exactamente una clase módulo L.",
+          "Finalmente, L = lcm(m, n): L = mn′ = nm′ es un múltiplo común y el mismo argumento (con x − y reemplazado por cualquier múltiplo común) muestra que L divide a todo múltiplo común de m y n. ∎",
+          "Para el primer sistema, g = 2 no divide a 1 − 2; para el segundo, g = 2 divide a 1 − 3."
+        ],
+        "fields": {"sys1": {"label": "¿x ≡ 1 (mod 4), x ≡ 2 (mod 6) tiene solución?", "options": {"no": "No; la primera condición hace que x sea impar y la segunda que sea par", "other-1": "Sí; todo par de congruencias tiene solución", "other-2": "Sí; infinitas, cada 24 números"}}, "sys2small": {"label": "Menor solución positiva del segundo sistema"}, "sys2period": {"label": "Período del segundo sistema"}, "shared": {"label": "Enuncia y demuestra la regla general", "criteria": ["Existe una solución exactamente cuando gcd(m, n) divide a a − b.", "Demuestra ambas implicaciones (Bézout para la existencia) y demuestra que las soluciones forman una clase módulo lcm(m, n)."], "followup": "Utiliza tu regla para decidir rápidamente si x ≡ 5 (mod 12) y x ≡ 8 (mod 18) tiene solución."}}
+      }
+    ]
+  }
+}

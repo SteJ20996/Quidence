@@ -2,7 +2,7 @@
 
 The approved ten-project English preview is now a public course under `courses/number-theory/`. It has 43 steps, 120 response fields, complete expandable reference proofs and the three foundation proofs (Bézout, Euclid’s lemma and unique factorization). The homepage offers this eleventh course through its subject rail, College Level cards and the Number Theory node in University Maths.
 
-Spanish navigation and controls are reviewed. The project prompts, mathematical labels, interactive models and proofs remain the approved English draft, with a visible language notice in both languages. The content is intentionally protected from automatic partial translation. Student reasoning can use either language, and language changes preserve the exact original response.
+Update: the complete Number Theory Spanish translation is now supplied using Mexican Latin American wording, including all project text, proofs, models and readable exports. The English source and all answer values remain unchanged. Student reasoning can use either language; language changes preserve the exact original response. See mexican-spanish-20261010.md for the follow-up audit and CI repair.
 
 Calculations and choices can be checked; free-form proofs remain pending review. Number Theory has ten proof projects and its own exportable notebook, not a claimed standalone diagnostic test or mastery score. The existing ten courses retain their 52 diagnostic problems and 20 field projects. Course-specific opted-in learning requests are captured with each Number Theory check; old checks keep their original context.
 

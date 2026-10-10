@@ -8,5 +8,7 @@
   ],
   "errors": [],
   "failedRequests": [],
+  "spanishProofSteps": 86,
+  "interactiveModels": 10,
   "result": "passed"
 }

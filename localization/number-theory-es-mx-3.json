@@ -1,0 +1,114 @@
+{
+  "nt-p07": {
+    "title": "Triángulos rectángulos con lados enteros",
+    "prompt": "Una terna pitagórica (a, b, c) está formada por enteros positivos con a² + b² = c². Es primitiva si gcd(a, b, c) = 1. Encuentra una fórmula para las ternas y demuestra que produce todas las ternas primitivas.",
+    "approach": "Primero demuestra que la fórmula siempre da una terna. Después recorre el argumento al revés: factoriza b² = (c − a)(c + a), muestra que (c + a)/2 y (c − a)/2 son coprimos y utiliza la factorización única para demostrar que son cuadrados. Esto describe todas las ternas primitivas a la vez, sin necesidad de enumerarlas.",
+    "uses": "Factorización única de enteros (se supone); cuadrados módulo 4; fórmula de Viète para el producto de las raíces.",
+    "nextCheck": "Comprueba que 65 = 8² + 1² = 7² + 4². Utiliza el Paso 4 para encontrar las ternas primitivas con hipotenusa 65 que se obtienen y explica por qué la fórmula con m = 8, n = 1 y con m = 7, n = 4 da ternas primitivas.",
+    "steps": [
+      {
+        "title": "La fórmula siempre funciona",
+        "prompt": "Para enteros m > n > 0, define a = m² − n², b = 2mn, c = m² + n². Demuestra a² + b² = c² para todos esos m y n. Calcula la terna para m = 5, n = 2.",
+        "proof": ["(m² − n²)² + (2mn)² = m⁴ − 2m²n² + n⁴ + 4m²n² = m⁴ + 2m²n² + n⁴ = (m² + n²)². ∎", "Para m = 5, n = 2: a = 25 − 4 = 21, b = 20, c = 29 y 441 + 400 = 841 = 29²."],
+        "fields": {"identity": {"label": "Demuestra la identidad", "criteria": ["Desarrolla (m² − n²)² + (2mn)² y simplifica hasta obtener (m² + n²)²."], "followup": "¿La identidad requiere m > n? ¿Qué cambia si m < n?"}}
+      },
+      {
+        "title": "¿Cuándo es primitiva la terna?",
+        "prompt": "Muestra qué falla cuando m y n son ambos impares (por ejemplo, m = 5, n = 3) y cuando comparten un factor; indica el máximo común divisor de la terna para m = 5, n = 3. Después demuestra: si gcd(m, n) = 1 y m, n tienen distinta paridad, la terna es primitiva.",
+        "proof": [
+          "m = 5, n = 3 da (16, 30, 34) y gcd = 2. En general, si m y n son ambos impares, m² − n², 2mn y m² + n² son todos pares. Si d = gcd(m, n) > 1, entonces d² divide a los tres.",
+          "Afirmación: si gcd(m, n) = 1 y m, n tienen distinta paridad, entonces gcd(a, b, c) = 1.",
+          "Demostración. c = m² + n² es impar, porque exactamente uno de m², n² es impar. Supón que un primo p divide a a, b y c. Entonces p ≠ 2, porque c es impar. Además, p | c + a = 2m² y p | c − a = 2n² y, como p es impar, p | m² y p | n²; así, p | m y p | n. Esto contradice gcd(m, n) = 1. ∎"
+        ],
+        "fields": {"bothOdd": {"label": "¿Qué sucede cuando m y n son ambos impares?", "options": {"even": "Los tres lados son pares, así que la terna no es primitiva", "other-1": "La igualdad a² + b² = c² no se cumple", "other-2": "Nada; la terna siempre es primitiva"}}, "gcd53": {"label": "Máximo común divisor de la terna con m = 5, n = 3"}, "primitive": {"label": "Demuestra la condición para que la terna sea primitiva", "criteria": ["c = m² + n² es impar, así que un factor primo común p es impar.", "p divide a c + a = 2m² y a c − a = 2n², así que p divide a m y a n, lo que contradice gcd(m, n) = 1."], "followup": "¿Por qué necesitas ambas condiciones: ser coprimos y tener distinta paridad?"}}
+      },
+      {
+        "title": "Un hecho sobre la paridad",
+        "prompt": "Demuestra que, en toda terna primitiva, c es impar y exactamente uno de a, b es par.",
+        "proof": [
+          "Todo cuadrado es 0 o 1 módulo 4: (2k)² = 4k² y (2k + 1)² = 4(k² + k) + 1.",
+          "Si a y b fueran ambos pares, c² = a² + b² sería par; entonces c sería par y 2 dividiría a a, b y c, lo cual es imposible para una terna primitiva.",
+          "Si a y b fueran ambos impares, a² + b² ≡ 1 + 1 = 2 (mod 4), pero c² es 0 o 1 (mod 4), lo cual es imposible.",
+          "Así que exactamente uno de a, b es par. Entonces a² + b² ≡ 0 + 1 = 1 (mod 4), de modo que c² es impar y c es impar. ∎"
+        ],
+        "fields": {"parity": {"label": "Demuestra el hecho sobre la paridad", "criteria": ["Los cuadrados son 0 o 1 módulo 4.", "Descarta que ambos catetos sean pares (la terna no sería primitiva) y que ambos sean impares (suma ≡ 2 mod 4)."], "followup": "¿En qué parte de tu demostración interviene que la terna sea primitiva?"}}
+      },
+      {
+        "title": "Toda terna primitiva se obtiene de la fórmula",
+        "prompt": "Sea (a, b, c) una terna primitiva con b par. Define u = (c + a)/2 y v = (c − a)/2. Demuestra que u y v son enteros positivos coprimos con uv = (b/2)² y concluye que u = m² y v = n². Después encuentra m y n para la terna (21, 20, 29) y para (7, 24, 25).",
+        "proof": [
+          "Por el Paso 3, a y c son impares; por lo tanto, c + a y c − a son pares y u, v son enteros. Como c > a > 0, ambos son positivos.",
+          "uv = (c² − a²)/4 = b²/4 = (b/2)².",
+          "gcd(u, v) = 1: un divisor común d de u y v divide a u + v = c y a u − v = a. Si un primo p dividiera tanto a a como a c, dividiría a c² − a² = b² y, por lo tanto, a b, contradiciendo que la terna sea primitiva. Así, gcd(a, c) = 1 y d = 1.",
+          "Lema. Si u y v son enteros positivos coprimos y uv es un cuadrado perfecto, entonces u y v son cuadrados perfectos.",
+          "Demostración. Por factorización única, escribe uv = w². Para cada primo p, su exponente en w² es par. Como gcd(u, v) = 1, p divide como máximo a uno de u y v, así que todo su exponente (par) aparece en ese factor. Por lo tanto, todo primo tiene exponente par tanto en u como en v. ∎",
+          "Así, u = m² y v = n² con m > n > 0; entonces c = u + v = m² + n², a = u − v = m² − n² y b² = 4m²n² da b = 2mn. gcd(m, n) = 1 porque gcd(u, v) = 1, y m, n tienen distinta paridad porque c es impar.",
+          "(21, 20, 29): u = (29 + 21)/2 = 25 = 5², v = (29 − 21)/2 = 4 = 2², así que m = 5, n = 2.",
+          "(7, 24, 25): u = (25 + 7)/2 = 16 = 4², v = (25 − 7)/2 = 9 = 3², así que m = 4, n = 3."
+        ],
+        "fields": {"m1": {"label": "m para (21, 20, 29)"}, "n1": {"label": "n para (21, 20, 29)"}, "m2": {"label": "m para (7, 24, 25)"}, "n2": {"label": "n para (7, 24, 25)"}, "allTriples": {"label": "Demuestra que toda terna primitiva se obtiene de la fórmula", "criteria": ["Muestra que u, v son enteros positivos coprimos con uv = (b/2)².", "Utiliza la factorización única para mostrar que u y v son cuadrados y después recupera a, b, c."], "followup": "¿Por qué b debe ser el cateto par en este argumento?"}}
+      },
+      {
+        "title": "Ternas en una circunferencia",
+        "prompt": "Dividir a² + b² = c² entre c² da un punto (a/c, b/c) en la circunferencia unitaria x² + y² = 1. La recta que pasa por (−1, 0) con pendiente t = 2/3 corta la circunferencia en un segundo punto. Encuéntralo sin resolver una cuadrática desde cero: sustituye y = t(x + 1) y utiliza el producto de las raíces. Indica las coordenadas como fracciones exactas (también se acepta un decimal redondeado a dos cifras decimales) y la terna primitiva que produce el punto.",
+        "proof": [
+          "Sustituir y = t(x + 1) en x² + y² = 1 da (1 + t²)x² + 2t²x + (t² − 1) = 0. Una raíz es x = −1. El producto de las raíces es (t² − 1)/(1 + t²), así que la otra raíz es x = (1 − t²)/(1 + t²) y después y = t(x + 1) = 2t/(1 + t²).",
+          "Con t = 2/3: x = (1 − 4/9)/(1 + 4/9) = 5/13 y y = (4/3)/(13/9) = 12/13. Multiplicar por 13 da la terna primitiva (5, 12, 13), que corresponde a la fórmula con m = 3, n = 2 (t = n/m)."
+        ],
+        "fields": {"px": {"label": "Coordenada x del segundo punto"}, "py": {"label": "Coordenada y del segundo punto"}, "triple": {"label": "¿Qué terna primitiva produce el punto?"}}
+      }
+    ]
+  },
+  "nt-p05": {
+    "title": "Últimos dígitos y una prueba que puede ser engañada",
+    "prompt": "Las potencias enormes pueden reducirse mediante razonamiento en lugar de desarrollar todas las multiplicaciones. Demostrarás el pequeño teorema de Fermat, lo utilizarás para calcular rápidamente y después verás exactamente qué puede y qué no puede demostrar sobre un número.",
+    "approach": "Reduce los exponentes enormes. Encuentra una potencia que sea ≡ 1 o ≡ −1, demuestra el pequeño teorema de Fermat mostrando que a, 2a, …, (p − 1)a reordenan 1, …, p − 1 módulo p y utiliza cuadrados sucesivos. Después distingue un teorema de su recíproco: pasar la prueba en base 2 no demuestra que un número sea primo, pero fallar la prueba en base 3 demuestra que 341 es compuesto.",
+    "uses": "Lema de Euclides (se supone); prueba de la suma alternada para 11 (nt-p03); lema de los divisores coprimos (nt-p04).",
+    "nextCheck": "Sea n = 561 = 3·11·17. Demuestra, utilizando el teorema de Fermat para cada factor primo y el lema de unicidad, que a⁵⁶⁰ ≡ 1 (mod 561) para todo a con gcd(a, 561) = 1.",
+    "steps": [
+      {
+        "title": "El último dígito de una potencia enorme",
+        "prompt": "Encuentra el último dígito de 7²⁰²⁶. Comienza con 7² = 49 ≡ −1 (mod 10). Encuentra 7⁴ mod 10 y 2026 mod 4 y después el último dígito.",
+        "proof": ["7⁴ = (7²)² ≡ (−1)² = 1 (mod 10).", "2026 = 4·506 + 2, así que 2026 mod 4 = 2.", "7²⁰²⁶ = (7⁴)⁵⁰⁶·7² ≡ 1⁵⁰⁶·49 ≡ 9 (mod 10). El último dígito es 9."],
+        "fields": {"last": {"label": "Último dígito de 7²⁰²⁶"}}
+      },
+      {
+        "title": "Demuestra el pequeño teorema de Fermat",
+        "prompt": "Sea p primo y a un entero que p no divide. Demuestra que a, 2a, …, (p − 1)a dejan los residuos 1, 2, …, p − 1, en algún orden, al dividir entre p. Concluye que a^(p−1) ≡ 1 (mod p). Después encuentra 2¹⁰⁰ mod 13: indica el exponente reducido mediante el teorema y el valor.",
+        "proof": [
+          "Ningún residuo es 0: para 1 ≤ k ≤ p − 1, p no divide a k ni a a; por lo tanto, como p es primo, p no divide a ka.",
+          "No hay dos residuos iguales: si ia ≡ ja (mod p) con 1 ≤ j < i ≤ p − 1, entonces p | (i − j)a. Como p ∤ a y p es primo, p | i − j. Pero 0 < i − j < p, una contradicción.",
+          "Así, los p − 1 números ka tienen p − 1 residuos distintos, todos en {1, …, p − 1}. Ese conjunto tiene exactamente p − 1 elementos, así que los residuos son 1, …, p − 1 en algún orden.",
+          "Al multiplicar todas las congruencias: a·2a·⋯·(p − 1)a ≡ 1·2·⋯·(p − 1), es decir, a^(p−1)·(p − 1)! ≡ (p − 1)! (mod p). Así, p | (a^(p−1) − 1)·(p − 1)!. El primo p no divide a ninguno de los factores 1, …, p − 1, así que p ∤ (p − 1)! y, por lo tanto, p | a^(p−1) − 1. ∎",
+          "Aplicación: 13 es primo y 13 ∤ 2, así que 2¹² ≡ 1 (mod 13). 100 = 12·8 + 4, así que 2¹⁰⁰ = (2¹²)⁸·2⁴ ≡ 16 ≡ 3 (mod 13)."
+        ],
+        "fields": {"fltProof": {"label": "Demuestra el pequeño teorema de Fermat", "criteria": ["Muestra que los residuos de a, 2a, …, (p − 1)a son distintos de cero y distintos por pares, así que son 1, …, p − 1 en algún orden.", "Multiplica las congruencias y cancela (p − 1)!, explicando por qué p ∤ (p − 1)!."], "followup": "¿En qué parte exacta de tu demostración utilizas que p es primo?"}, "reduced": {"label": "Exponente reducido para 2¹⁰⁰ mod 13"}}
+      },
+      {
+        "title": "Cuadrados sucesivos",
+        "prompt": "Calcula 3⁴⁵ mod 17. Encuentra 3², 3⁴, 3⁸, 3¹⁶ y 3³² mod 17, cada uno elevando al cuadrado el anterior; escribe 45 como suma de potencias de 2 y multiplica. Indica 3¹⁶ mod 17, la cantidad de operaciones de elevar al cuadrado y 3⁴⁵ mod 17. ¿Qué teorema predice 3¹⁶ mod 17 sin elevar al cuadrado?",
+        "proof": ["3² = 9.", "3⁴ = 81 = 4·17 + 13 ≡ 13 ≡ −4.", "3⁸ ≡ (−4)² = 16 ≡ −1.", "3¹⁶ ≡ (−1)² = 1, como predice el pequeño teorema de Fermat (17 es primo, así que 3¹⁶ ≡ 1).", "3³² ≡ 1² = 1.", "Son 5 operaciones de elevar al cuadrado. En binario, 45 = 101101₂ = 32 + 8 + 4 + 1, así que", "3⁴⁵ = 3³²·3⁸·3⁴·3 ≡ 1·(−1)·(−4)·3 = 12 (mod 17)."],
+        "fields": {"squarings": {"label": "Cantidad de operaciones de elevar al cuadrado"}}
+      },
+      {
+        "title": "Un número compuesto que pasa la prueba",
+        "prompt": "El teorema dice: si n es primo y n ∤ a, entonces a^(n−1) ≡ 1 (mod n). Toma n = 341. Utiliza la prueba de la suma alternada del proyecto de dígitos para mostrar que 11 | 341 e indica el otro factor (ambos factores son primos). Después utiliza 2¹⁰ = 1024 = 3·341 + 1 para encontrar 2³⁴⁰ mod 341. ¿Qué demuestra este resultado?",
+        "proof": ["Suma alternada desde la derecha: 1 − 4 + 3 = 0, que es múltiplo de 11; por lo tanto, 11 | 341 y 341 = 11·31.", "2¹⁰ = 1024 = 3·341 + 1, así que 2¹⁰ ≡ 1 (mod 341). Entonces 2³⁴⁰ = (2¹⁰)³⁴ ≡ 1 (mod 341).", "Así, 341 pasa la prueba en base 2, aunque es compuesto. El teorema de Fermat dice «primo ⇒ pasa la prueba»; no dice «pasa la prueba ⇒ primo». Pasar la prueba no demuestra que el número sea primo."],
+        "fields": {"proves": {"label": "¿Qué demuestra 2³⁴⁰ ≡ 1 (mod 341) sobre 341?", "options": {"nothing": "No demuestra que sea primo; el recíproco del teorema de Fermat es falso", "other-1": "Que 341 es primo", "other-2": "Que 341 es compuesto"}}}
+      },
+      {
+        "title": "La base 3 lo revela",
+        "prompt": "Calcula 3³⁴⁰ mod 341 sin calculadora: encuentra su valor módulo los primos 11 y 31 utilizando el teorema de Fermat para cada uno y después combina por sustitución. Explica qué demuestra el resultado y por qué el resultado en base 2 no demostraba que el número fuera primo. ¿Alguien que no conociera ningún factor de 341 podría llegar a la misma conclusión?",
+        "proof": [
+          "Módulo 11: 3¹⁰ ≡ 1 por el teorema de Fermat y 340 = 34·10, así que 3³⁴⁰ ≡ 1 (mod 11).",
+          "Módulo 31: 3³⁰ ≡ 1 y 340 = 11·30 + 10, así que 3³⁴⁰ ≡ 3¹⁰. Ahora 3⁵ = 243 = 7·31 + 26 ≡ −5, así que 3¹⁰ ≡ 25 (mod 31).",
+          "Combina: x = 31k + 25 y x ≡ 1 (mod 11). Como 31 ≡ 9 y 25 ≡ 3 (mod 11), 9k + 3 ≡ 1, así que 9k ≡ −2 ≡ 9 (mod 11). Como gcd(9, 11) = 1, k ≡ 1 (mod 11). Así, x ≡ 56 (mod 341) y, por el lema de unicidad del proyecto de residuos, esta es la única clase.",
+          "Por lo tanto, 3³⁴⁰ ≡ 56 ≢ 1 (mod 341). Si 341 fuera primo, el teorema de Fermat obligaría a que 3³⁴⁰ ≡ 1 (ya que 341 ∤ 3). Por contraposición, 341 es compuesto.",
+          "Aquí, los factores 11 y 31 solo acortaron los cálculos. El mismo valor se obtiene mediante cuadrados sucesivos módulo 341, sin conocer ningún factor: 3⁸ = 6561 = 19·341 + 82 ≡ 82, 3¹⁶ ≡ 82² = 6724 = 19·341 + 245 ≡ 245 y 3³² ≡ 245² = 60025 = 176·341 + 9 ≡ 9 = 3². Así, 3³⁴⁰ = (3³²)¹⁰·3²⁰ ≡ (3²)¹⁰·3²⁰ = 3⁴⁰ = 3³²·3⁸ ≡ 9·82 = 738 = 2·341 + 56 ≡ 56. Este cálculo no utiliza ningún factor; por lo tanto, fallar una prueba de Fermat, con una base a que n no divide, demuestra por sí solo que n es compuesto.",
+          "La base 2 pasó porque 2¹⁰ ≡ 1 módulo 11 y módulo 31 (1023 = 3·11·31) y 10 | 340. Pasar con una base es compatible con ser compuesto, así que no demuestra que el número sea primo."
+        ],
+        "fields": {"converse": {"label": "Explica qué demuestra cada base", "criteria": ["Contraposición: como 3³⁴⁰ ≢ 1 (mod 341) y 341 ∤ 3, 341 no puede ser primo; los cuadrados sucesivos módulo 341 dan el mismo resultado sin utilizar ningún factor.", "El recíproco es falso: 2³⁴⁰ ≡ 1 (mod 341), aunque 341 = 11·31; por lo tanto, pasar con una base no demuestra que el número sea primo."], "followup": "¿Por qué 2¹⁰ ≡ 1 módulo 11 y módulo 31 hace que 341 pase la prueba en base 2?"}}
+      }
+    ]
+  }
+}

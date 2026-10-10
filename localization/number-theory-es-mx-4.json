@@ -1,0 +1,115 @@
+{
+  "nt-p06": {
+    "title": "Un candado didáctico de clave pública",
+    "prompt": "Un club ficticio de matemáticas construye un candado didáctico: cualquiera puede cifrar un mensaje con números públicos, pero solo quien tiene un número secreto puede descifrarlo. Construye las claves, cifra y descifra un mensaje y demuestra que el descifrado siempre funciona.",
+    "approach": "El candado solo utiliza herramientas anteriores. El algoritmo de Euclides encuentra d, el teorema de Fermat reduce los exponentes y el teorema chino del residuo permite trabajar módulo 11 y módulo 13 por separado. La demostración de que el descifrado siempre funciona trata el caso p | m por separado, porque el teorema de Fermat no se aplica en ese caso.",
+    "uses": "Pequeño teorema de Fermat (nt-p05); lema de los divisores coprimos (nt-p04); algoritmo extendido de Euclides (nt-p02); inclusión-exclusión; factorización única (se supone; se utiliza para afirmar que «los únicos primos que dividen a 143 son 11 y 13»).",
+    "nextCheck": "Con p = 17, q = 19 y e = 5, encuentra d; después cifra y descifra un mensaje que tú elijas, utilizando el teorema chino del residuo para descifrarlo.",
+    "steps": [
+      {
+        "title": "Construye las claves",
+        "prompt": "El club utiliza los primos p = 11 y q = 13. Encuentra n = pq. Encuentra φ(n), la cantidad de enteros de 1 a n que no comparten con n ningún factor mayor que 1, contando los múltiplos de 11 y de 13 (sin enumerarlos). El exponente público es e = 7; decide si está permitido (no debe compartir ningún factor mayor que 1 con φ(n)). Después utiliza 120 = 17·7 + 1 para encontrar el exponente secreto d con 7d ≡ 1 (mod 120) y 0 < d < 120.",
+        "proof": [
+          "n = 11·13 = 143.",
+          "Los únicos primos que dividen a 143 son 11 y 13, así que un entero de 1 a 143 comparte un factor mayor que 1 con 143 exactamente cuando es múltiplo de 11 o de 13. Hay 143/11 = 13 múltiplos de 11 y 143/13 = 11 múltiplos de 13. Un número divisible entre ambos es divisible entre 143 (lema: los divisores coprimos se multiplican) y solo 143 cumple esto. Por inclusión-exclusión, 13 + 11 − 1 = 23 números comparten un factor, así que φ(143) = 143 − 23 = 120 = (11 − 1)(13 − 1).",
+          "El mismo conteo funciona para cualesquiera primos distintos p y q: de 1 a pq hay q múltiplos de p y p múltiplos de q, y solo pq es múltiplo de ambos; por lo tanto, φ(pq) = pq − q − p + 1 = (p − 1)(q − 1).",
+          "120 = 17·7 + 1, así que 7 ∤ 120 y, como 7 es primo, gcd(7, 120) = 1: e = 7 está permitido.",
+          "A partir de 1 = 120 − 17·7 obtenemos 7·(−17) ≡ 1 (mod 120), así que d ≡ −17 ≡ 103. Comprobación: 7·103 = 721 = 6·120 + 1."
+        ],
+        "fields": {"eok": {"label": "¿Está permitido e = 7?", "options": {"yes": "Sí, porque gcd(7, 120) = 1, así que 7 tiene inverso módulo 120", "other-1": "No, porque 7 no divide a 120", "other-2": "No, porque e debe dividir a n = 143"}}, "d": {"label": "Exponente secreto d"}}
+      },
+      {
+        "title": "Cifra un mensaje",
+        "prompt": "El mensaje es m = 9. Calcula c = 9⁷ mod 143 mediante cuadrados sucesivos: primero encuentra 9² y 9⁴ mod 143.",
+        "proof": ["9² = 81.", "9⁴ = 81² = 6561 = 45·143 + 126 ≡ 126 ≡ −17 (mod 143).", "9⁷ = 9⁴·9²·9 ≡ (−17)·729. Como 729 = 5·143 + 14, esto es (−17)·14 = −238 = −2·143 + 48.", "Así, c = 48."],
+        "fields": {"c": {"label": "Mensaje cifrado c"}}
+      },
+      {
+        "title": "Descifra con el teorema chino del residuo",
+        "prompt": "Calcular 48¹⁰³ mod 143 directamente es largo. Encuentra su valor módulo 11 y módulo 13, utilizando el teorema de Fermat para reducir el exponente, y después combina los resultados.",
+        "proof": [
+          "Módulo 11: 48 = 4·11 + 4 ≡ 4. Por el teorema de Fermat, 4¹⁰ ≡ 1 y 103 = 10·10 + 3, así que 48¹⁰³ ≡ 4³ = 64 = 5·11 + 9 ≡ 9.",
+          "Módulo 13: 48 = 3·13 + 9 ≡ 9. Por el teorema de Fermat, 9¹² ≡ 1 y 103 = 8·12 + 7, así que 48¹⁰³ ≡ 9⁷. Ahora 9² = 81 = 6·13 + 3 ≡ 3, así que 9⁶ = (9²)³ ≡ 27 ≡ 1 y 9⁷ ≡ 9.",
+          "Combina: x − 9 es divisible entre 11 y entre 13, que son coprimos, así que 143 | x − 9. Por lo tanto, x ≡ 9 (mod 143) y el mensaje descifrado es 9."
+        ],
+        "fields": {"back": {"label": "Mensaje descifrado"}}
+      },
+      {
+        "title": "Demuestra que el candado siempre se abre",
+        "prompt": "Sea n = pq con p ≠ q primos y sean e, d enteros positivos con ed ≡ 1 (mod (p − 1)(q − 1)). Demuestra que, para todo entero m con 0 ≤ m < n, (mᵉ)ᵈ ≡ m (mod n). Trata los casos p | m y p ∤ m por separado y después combina ambos primos.",
+        "proof": [
+          "Como ed ≡ 1 (mod (p − 1)(q − 1)) y ed > 0, podemos escribir ed = 1 + k(p − 1)(q − 1) con un entero k ≥ 0.",
+          "Módulo p. Si p | m, tanto m^(ed) como m son ≡ 0. Si p ∤ m, el teorema de Fermat da m^(p−1) ≡ 1, así que m^(ed) = m·(m^(p−1))^(k(q−1)) ≡ m·1 = m. En ambos casos, p | m^(ed) − m.",
+          "Módulo q. El mismo argumento da q | m^(ed) − m.",
+          "Como p ≠ q son primos, gcd(p, q) = 1; por el lema de los divisores coprimos, pq | m^(ed) − m, es decir, m^(ed) ≡ m (mod n). Como 0 ≤ m < n, m es exactamente el residuo de dividir m^(ed) entre n. Reducir c = mᵉ mod n antes de elevar a la potencia d no cambia el resultado módulo n. ∎"
+        ],
+        "fields": {"correct": {"label": "Demuestra que el descifrado siempre funciona", "criteria": ["Escribe ed = 1 + k(p − 1)(q − 1) y utiliza el teorema de Fermat cuando p ∤ m.", "Trata el caso p | m por separado, haz lo mismo para q y combina utilizando gcd(p, q) = 1."], "followup": "¿Por qué necesitas el caso p | m y qué falla si solo utilizas el teorema de Euler con gcd(m, n) = 1?"}}
+      },
+      {
+        "title": "¿Qué debe mantenerse en secreto?",
+        "prompt": "Todos pueden conocer n = 143 y e = 7. ¿Qué número debe mantenerse en secreto? Explica cómo conocer p y q, o conocer φ(n), permite recuperar el exponente secreto. Este candado con números pequeños es una demostración matemática.",
+        "proof": [
+          "El exponente secreto es d. Los primos p y q, y φ(n), también permiten obtener d. A partir de p y q obtenemos φ(n) = (p − 1)(q − 1) y el algoritmo extendido de Euclides calcula d como el inverso de e módulo φ(n), como en el Paso 1.",
+          "Conocer φ(n) también revela los factores: p + q = n − φ(n) + 1 y pq = n. Así, p y q son las raíces de t² − (n − φ(n) + 1)t + n = 0. Para n = 143 y φ(n) = 120, esto es t² − 24t + 143 = 0, cuyas raíces son 11 y 13. Una vez conocidos esos valores, el Paso 1 recupera d = 103.",
+          "Estos parámetros pequeños muestran las matemáticas de RSA. Este candado didáctico no sirve para proteger mensajes."
+        ],
+        "fields": {"secret": {"label": "¿Qué número debe mantenerse en secreto?", "options": {"d": "d (y también p, q y φ(n), pues cada uno permite obtener d)", "other-1": "e, porque se utiliza para cifrar", "other-2": "n, porque es el producto de los primos", "other-3": "El mensaje cifrado c"}}, "factoring": {"label": "Explica cómo los factores revelan el exponente secreto", "criteria": ["A partir de p y q, obtiene φ(n) = (p − 1)(q − 1).", "Utiliza el algoritmo extendido de Euclides para encontrar d, el inverso de e módulo φ(n)."], "followup": "Si alguien conoce n = 143 y φ(n) = 120, ¿cómo puede encontrar p y q resolviendo una ecuación cuadrática?"}}
+      }
+    ]
+  },
+  "nt-p08": {
+    "title": "Números perfectos y un supuesto primo que no lo es",
+    "prompt": "Un entero positivo es perfecto si es igual a la suma de sus divisores positivos menores que él. Explora las sumas de divisores y los números de la forma 2ᵖ − 1, demostrando cada paso.",
+    "approach": "Utiliza la factorización única para convertir una suma de todos los divisores en un producto de sumas geométricas cortas. Para 2ᵖ − 1 con p primo impar, demuestra que todo factor primo q satisface q ≡ 1 (mod 2p), utilizando el menor exponente d con 2ᵈ ≡ 1 (mod q). Esto deja muy pocos candidatos; así, se demuestra que 127 es primo y se factoriza 2047 con una división.",
+    "uses": "Factorización única (se supone); pequeño teorema de Fermat (nt-p05); lema de los divisores coprimos (nt-p04); lema de √n (se demuestra en el Paso 2); sumas geométricas.",
+    "nextCheck": "Euler demostró que todo número perfecto par tiene la forma de Euclides. Escribe N = 2ᵏm con m impar, utiliza σ(N) = 2N para mostrar que σ(m) = m + m/(2^(k+1) − 1) y concluye que m = 2^(k+1) − 1 y que m es primo.",
+    "steps": [
+      {
+        "title": "Sumas de divisores mediante una fórmula",
+        "prompt": "Sea σ(n) la suma de todos los divisores positivos de n y sea s(n) = σ(n) − n. Demuestra que, si n = p₁^a₁ ⋯ p_k^a_k (primos distintos), entonces σ(n) = (1 + p₁ + ⋯ + p₁^a₁) ⋯ (1 + p_k + ⋯ + p_k^a_k). Utiliza la fórmula, sin enumerar divisores, con 28 = 2²·7, 12 = 2²·3 y 120 = 2³·3·5 para encontrar s(28), s(12) y s(120). ¿12 es perfecto (s(n) = n), abundante (s(n) > n) o deficiente (s(n) < n)?",
+        "proof": [
+          "Divisores. Si d | n, escribe n = de. Por factorización única, la factorización prima de de es la de n, así que d = p₁^b₁ ⋯ p_k^b_k con 0 ≤ bᵢ ≤ aᵢ. Recíprocamente, cada d de esa forma divide a n, con cofactor p₁^(a₁−b₁) ⋯ p_k^(a_k−b_k). Distintas elecciones de exponentes dan números distintos, nuevamente por factorización única.",
+          "Fórmula. Desarrollar el producto (1 + p₁ + ⋯ + p₁^a₁) ⋯ (1 + p_k + ⋯ + p_k^a_k) da un término p₁^b₁ ⋯ p_k^b_k para cada elección de exponentes 0 ≤ bᵢ ≤ aᵢ; así, cada divisor aparece exactamente una vez y el producto es igual a σ(n). ∎",
+          "28 = 2²·7: σ = (1 + 2 + 4)(1 + 7) = 7·8 = 56, así que s(28) = 28: perfecto.",
+          "12 = 2²·3: σ = 7·4 = 28, así que s(12) = 16 > 12: abundante.",
+          "120 = 2³·3·5: σ = (1 + 2 + 4 + 8)(1 + 3)(1 + 5) = 15·4·6 = 360, así que s(120) = 240, exactamente el doble de 120."
+        ],
+        "fields": {"kind12": {"label": "12 es…", "options": {"abundant": "abundante, ya que s(12) = 16 > 12", "other-1": "perfecto", "other-2": "deficiente"}}, "sigmaWhy": {"label": "Demuestra la fórmula de la suma de divisores", "criteria": ["Utiliza la factorización única: los divisores son exactamente p₁^b₁ ⋯ p_k^b_k con 0 ≤ bᵢ ≤ aᵢ; cada uno aparece una vez.", "Explica por qué desarrollar el producto produce cada divisor exactamente una vez."], "followup": "¿Por qué la fórmula da σ(mn) = σ(m)σ(n) cuando gcd(m, n) = 1, pero no en general?"}}
+      },
+      {
+        "title": "Una prueba para números 2ᵖ − 1",
+        "prompt": "Sea p primo impar y q un primo que divide a 2ᵖ − 1. Sea d el menor exponente positivo con 2ᵈ ≡ 1 (mod q). (a) Demuestra que 2ᵏ ≡ 1 (mod q) exactamente cuando d | k. (b) Concluye que d = p y utiliza el teorema de Fermat para demostrar que q ≡ 1 (mod 2p). (c) Decide si 127 = 2⁷ − 1 es primo comparando la cota inferior que (b) da para sus factores primos con √127. (d) Para 2047 = 2¹¹ − 1, encuentra el menor número que (b) permite como factor primo, divide e indica el otro factor.",
+        "proof": [
+          "(a) Divide k = sd + r con 0 ≤ r < d. Entonces 2ᵏ = (2ᵈ)ˢ·2ʳ ≡ 2ʳ (mod q). Si 2ᵏ ≡ 1, entonces 2ʳ ≡ 1 y, como r < d y d es el menor exponente positivo con esa propiedad, r = 0; así, d | k. Recíprocamente, si k = sd, entonces 2ᵏ = (2ᵈ)ˢ ≡ 1.",
+          "(b) 2ᵖ ≡ 1 (mod q), así que d | p por (a) y d = 1 o d = p. Si d = 1, entonces q | 2 − 1 = 1, lo cual es imposible. Así, d = p. Como 2ᵖ − 1 es impar, q es impar; por lo tanto, q ∤ 2 y el teorema de Fermat da 2^(q−1) ≡ 1 (mod q). Por (a), p | q − 1. Además, 2 | q − 1 porque q es impar. Como p es impar, gcd(2, p) = 1, así que 2p | q − 1. ∎",
+          "Lema. Si n > 1 es compuesto, tiene un factor primo menor o igual que √n. Demostración: escribe n = ab con 1 < a ≤ b; entonces a² ≤ ab = n y cualquier factor primo de a es menor o igual que a ≤ √n.",
+          "(c) Todo factor primo de 127 tiene la forma 1 + 14t con t ≥ 1, así que es al menos 15. Pero 12² = 144 > 127, de modo que √127 < 12. Si 127 fuera compuesto, el lema daría un factor primo menor o igual que √127 < 12; sin embargo, todo factor primo es al menos 15. Por lo tanto, 127 es primo.",
+          "(d) Todo factor primo de 2047 tiene la forma 1 + 22t, así que el menor valor permitido es 23. Al dividir, 2047 = 23·89. Todo factor primo de 89 también divide a 2047, así que es al menos 23, y 23² = 529 > 89; por el lema de √n, 89 es primo. Como predice (b), 89 = 1 + 22·4."
+        ],
+        "fields": {"orderProof": {"label": "Demuestra que los factores primos de 2ᵖ − 1 son ≡ 1 (mod 2p)", "criteria": ["Demuestra que 2ᵏ ≡ 1 (mod q) si y solo si d | k dividiendo k entre d.", "Muestra que d = p; utiliza el teorema de Fermat para obtener p | q − 1 y que q y p son impares para obtener 2p | q − 1."], "followup": "¿En qué parte se utiliza que p es primo? ¿En qué parte se utiliza que p es impar?"}, "prime127": {"label": "¿127 es primo?", "options": {"yes": "Sí; todo factor primo tendría que ser al menos 15, que es mayor que √127", "other-1": "No; tiene un factor de la forma 14t + 1", "other-2": "El lema no permite decidirlo"}}, "f2047": {"label": "Menor factor primo posible de 2047"}}
+      },
+      {
+        "title": "La receta de Euclides para números perfectos",
+        "prompt": "Demuestra: si 2ᵖ − 1 es primo, entonces N = 2^(p−1)(2ᵖ − 1) es perfecto. Utiliza el Paso 2 (c) para construir un número perfecto a partir de 127.",
+        "proof": [
+          "Sea M = 2ᵖ − 1, un primo. M es impar, así que 2^(p−1) y M no comparten factores primos y la factorización de N es 2^(p−1)·M¹. Por el Paso 1,",
+          "σ(N) = (1 + 2 + ⋯ + 2^(p−1))·(1 + M).",
+          "La suma geométrica es 2ᵖ − 1 = M, porque (2 − 1)(1 + 2 + ⋯ + 2^(p−1)) = 2ᵖ − 1. Además, 1 + M = 2ᵖ. Así, σ(N) = M·2ᵖ = 2·2^(p−1)M = 2N y s(N) = σ(N) − N = N. ∎",
+          "Con p = 7 y M = 127 (primo por el Paso 2): N = 2⁶·127 = 64·127 = 8128."
+        ],
+        "fields": {"perfect": {"label": "Número perfecto construido a partir de 127"}, "recipe": {"label": "Demuestra la receta de Euclides", "criteria": ["Utiliza la fórmula de la suma de divisores con los factores coprimos 2^(p−1) y el primo 2ᵖ − 1.", "Muestra que σ(N) = (2ᵖ − 1)·2ᵖ = 2N."], "followup": "¿En qué parte de la demostración se utiliza que 2ᵖ − 1 es primo?"}}
+      },
+      {
+        "title": "Por qué el exponente debe ser primo y por qué eso no basta",
+        "prompt": "Demuestra: si k = rs con r, s > 1, entonces 2ʳ − 1 es un factor de 2ᵏ − 1 estrictamente entre 1 y 2ᵏ − 1; por lo tanto, 2ᵏ − 1 es compuesto. Como ejemplo, escribe 2¹² − 1 = (2⁴ − 1) × M y encuentra M a partir de tu demostración, sin usar división larga. Después decide: ¿basta que p sea primo para que 2ᵖ − 1 sea primo?",
+        "proof": [
+          "Sea x = 2ʳ. Entonces 2ᵏ − 1 = xˢ − 1 = (x − 1)(x^(s−1) + x^(s−2) + ⋯ + x + 1). (Desarrolla: x·(x^(s−1) + ⋯ + 1) − (x^(s−1) + ⋯ + 1) = xˢ − 1, porque todos los términos intermedios se cancelan.)",
+          "Como r > 1, x − 1 = 2ʳ − 1 ≥ 3 > 1. Como s > 1, x < xˢ, así que x − 1 < xˢ − 1. Por lo tanto, 2ʳ − 1 es un factor propio y 2ᵏ − 1 es compuesto. ∎",
+          "Ejemplo: r = 4, s = 3, x = 16: M = 16² + 16 + 1 = 273 y 15·273 = 4095 = 2¹² − 1.",
+          "Así, 2ᵏ − 1 solo puede ser primo cuando k es primo. Pero eso no basta: 11 es primo y 2¹¹ − 1 = 2047 = 23·89 (Paso 2 (d))."
+        ],
+        "fields": {"cof4095": {"label": "M en 2¹² − 1 = 15 × M"}, "compositeExp": {"label": "Demuestra que un exponente compuesto produce un número compuesto", "criteria": ["Define x = 2ʳ y factoriza xˢ − 1 = (x − 1)(x^(s−1) + ⋯ + 1).", "Muestra que 1 < 2ʳ − 1 < 2ᵏ − 1."], "followup": "¿Qué factor de 2¹² − 1 da la demostración si eliges r = 3?"}, "primeEnough": {"label": "¿Basta que p sea primo para que 2ᵖ − 1 sea primo?", "options": {"no": "No; es necesario pero no suficiente, por ejemplo 2¹¹ − 1 = 23·89", "other-1": "Sí; eso demuestra el Paso 4", "other-2": "Basta con que sean primos impares"}}}
+      }
+    ]
+  }
+}

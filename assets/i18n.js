@@ -15,6 +15,26 @@ function template(key){
  if(quantitiesSource!==root.QuidenceSpanishQuantities){quantitiesSource=root.QuidenceSpanishQuantities;quantities=(quantitiesSource||[]).map(([en,es])=>[new RegExp('^'+en.split('[n]').map(s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('([-−+]?\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)')+'$'),es]);}
  for(const [pattern,output]of quantities){const m=key.match(pattern);if(m){let i=0;return output.replace(/\[n\]/g,()=>m[++i]);}}
  const patterns=[
+  [/^(\d+)\. (.+)$/,m=>{const label=translate(m[2],false);return label!==m[2]?m[1]+'. '+label:null;}],
+  [/^(\d+) steps$/,m=>m[1]+' pasos'],
+  [/^(\d+) of (\d+) steps have responses$/,m=>m[1]+' de '+m[2]+' pasos tienen respuestas'],
+  [/^REFERENCE PROOF · STEP (\d+)$/,m=>'DEMOSTRACIÓN DE REFERENCIA · PASO '+m[1]],
+  [/^STEP (\d+) OF (\d+)$/,m=>'PASO '+m[1]+' DE '+m[2]],
+  [/^(\d+) of (\d+) calculations or choices match\.(?: (\d+) explanations? saved for review\.)?(?: (\d+) responses? still open\.)?$/,m=>m[1]+' de '+m[2]+' cálculos u opciones coinciden.'+(m[3]?' '+m[3]+(m[3]==='1'?' explicación guardada':' explicaciones guardadas')+' para revisión.':'')+(m[4]?' '+m[4]+(m[4]==='1'?' respuesta aún pendiente.':' respuestas aún pendientes.'):'')],
+  [/^(\d+) explanations? saved for review\.(?: (\d+) responses? still open\.)?$/,m=>m[1]+(m[1]==='1'?' explicación guardada':' explicaciones guardadas')+' para revisión.'+(m[2]?' '+m[2]+(m[2]==='1'?' respuesta aún pendiente.':' respuestas aún pendientes.'):'')],
+  [/^(\d+) responses? still open\.$/,m=>m[1]+(m[1]==='1'?' respuesta aún pendiente.':' respuestas aún pendientes.')],
+  [/^(High school|Bridge to university|University) · (\d+)\/(\d+) responses$/,m=>(m[1]==='High school'?'Preparatoria':m[1]==='University'?'Universidad':'Puente a la universidad')+' · '+m[2]+'/'+m[3]+' pasos con respuestas'],
+  [/^(\d+) L jug$/,m=>'Jarra de '+m[1]+' L'],
+  [/^Capacity (\d+) L$/,m=>'Capacidad: '+m[1]+' L'],
+  [/^Fill (\d+) L$/,m=>'Llena '+m[1]+' L'],
+  [/^Empty (\d+) L$/,m=>'Vacía '+m[1]+' L'],
+  [/^Fill, empty or pour until a jug is full or empty\. (Can you leave 1 L in the larger jug\?|Notice the multiple-of-3 invariant\.)$/,m=>'Llena, vacía o vierte hasta que una jarra esté llena o vacía. '+translate(m[1],false)],
+  [/^\((\d+), (\d+)\) · (\d+) moves( · Target reached!)?$/,m=>'('+m[1]+', '+m[2]+') · '+m[3]+' operaciones'+(m[4]?' · ¡Objetivo alcanzado!':'')],
+  [/^Threshold: (.+)$/,m=>'Umbral: '+m[1]],
+  [/^(\d+) is below its threshold\. It is impossible\.$/,m=>m[1]+' está por debajo de su umbral. Es imposible.'],
+  [/^x² \+ y² = 1 · slope t = (\d+)\/(\d+)$/,m=>'x² + y² = 1 · pendiente t = '+m[1]+'/'+m[2]],
+  [/^Sides: (.+)$/,m=>'Lados: '+m[1]],
+  [/^Not primitive: the three sides have gcd (\d+)\.$/,m=>'No es primitiva: los tres lados tienen máximo común divisor '+m[1]+'.'],
   [/^Saved checks \((\d+)\)$/,m=>'Comprobaciones guardadas ('+m[1]+')'],
   [/^(\d+) saved attempts?; earlier answers remain in your history\.$/,m=>m[1]+(m[1]==='1'?' intento guardado':' intentos guardados')+'; las respuestas anteriores permanecen en tu historial.'],
   [/^(\d+) saved attempt\(s\)$/,m=>m[1]+(m[1]==='1'?' intento guardado':' intentos guardados')],
@@ -173,7 +193,7 @@ async function setLocale(next){
  observer?.disconnect();apply();observe();root.document?.dispatchEvent(new root.CustomEvent('quidence:language',{detail:{locale}}));return locale;
 }
 const dateFormatters=new Map();
-function date(source){const d=new Date(source);if(Number.isNaN(d.getTime()))return String(source);if(!dateFormatters.has(locale))dateFormatters.set(locale,new Intl.DateTimeFormat(locale==='es'?'es-US':'en-US',{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}));return dateFormatters.get(locale).format(d);}
+function date(source){const d=new Date(source);if(Number.isNaN(d.getTime()))return String(source);if(!dateFormatters.has(locale))dateFormatters.set(locale,new Intl.DateTimeFormat(locale==='es'?'es-MX':'en-US',{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}));return dateFormatters.get(locale).format(d);}
 function markdown(source){
  // Never translate quoted original answers or code/JSON records. For mixed
  // evidence lines only a known heading is translated; the student suffix stays.

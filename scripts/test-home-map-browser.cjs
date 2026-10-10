@@ -42,7 +42,7 @@ async function main(){
    await page.locator('#goal-include-report').check();
    await page.locator('[data-home-view="courses"]').click();
    assert.equal(await page.locator('.subject-card:visible').count(),11);
-   assert.deepEqual(await page.locator('.group-heading h2').allTextContents(),['Secundaria inicial','Secundaria superior','Nivel universitario']);
+   assert.deepEqual(await page.locator('.group-heading h2').allTextContents(),['Secundaria','Preparatoria','Nivel universitario']);
    const levels=await page.locator('.catalogue-group').evaluateAll(groups=>groups.map(g=>g.querySelectorAll('.subject-card').length));assert.deepEqual(levels,[1,6,4]);
    assert.equal(await page.locator('.home-map-view').isVisible(),false);
    assert.equal(await page.locator('#learning-goal').inputValue(),RAW);assert(await page.locator('#goal-include-report').isChecked());

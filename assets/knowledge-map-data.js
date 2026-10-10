@@ -129,7 +129,7 @@ const data={
     }
   },
   "courses": [
-    {"id":"number-theory","chapter":1,"node":"number","en":"Number Theory","es":"Teoría de números","scope":{"en":"Ten English projects · Proof review stays open","es":"Diez proyectos en inglés · Las demostraciones quedan pendientes de revisión"},"module":"number-theory"},
+    {"id":"number-theory","chapter":1,"node":"number","en":"Number Theory","es":"Teoría de números","scope":{"en":"Ten bilingual projects · Proof review stays open","es":"Diez proyectos bilingües · Las demostraciones quedan pendientes de revisión"},"module":"number-theory"},
     {
       "id": "prealgebra",
       "chapter": 0,

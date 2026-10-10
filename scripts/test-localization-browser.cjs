@@ -4,7 +4,7 @@ const {chromium}=require('playwright'),{createServer}=require('../backend/server
 const {files}=require('./build-static-release.cjs');
 async function run(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
- const errors=[],untranslated=[],missing=new Set(),screens=process.env.QUIDENCE_SCREENSHOTS;
+ const errors=[],untranslated=[],missing=new Set(),screens=process.env.QUIDENCE_SCREENSHOTS;let layouts=0;
  try{
  browser=await chromium.launch({executablePath:process.env.QUIDENCE_BROWSER_EXECUTABLE,args:['--no-sandbox']});
  const context=await browser.newContext(),page=await context.newPage(),origin='http://127.0.0.1:'+server.address().port;
@@ -19,6 +19,7 @@ async function run(){
    assert(overflow<=1,file+' overflow '+overflow+' at '+width);
    await page.locator('#quidence-language').selectOption('en');assert.equal(await page.locator('html').getAttribute('lang'),'en');
    await page.locator('#quidence-language').selectOption('es');
+   layouts++;
    if(screens&&file==='index.html'&&[375,1440].includes(width)){fs.mkdirSync(screens,{recursive:true});await page.screenshot({path:path.join(screens,'home-es-'+width+'.png'),fullPage:true});}
   }
  }
@@ -32,7 +33,12 @@ async function run(){
    await page.locator('[data-f-explanation]').fill(raw);
    const field=page.locator('[data-f-field]').filter({visible:true}).first();
    if(await field.count()&&['text','number'].includes(await field.getAttribute('type')))await field.fill('−3/4');
-   const before=await storage(),values=await page.locator('input,select,textarea').evaluateAll(es=>es.map(e=>[e.id,e.name,e.value,e.checked]));
+   // Finish the existing edit before taking the baseline. Changing focus to
+   // the language menu legitimately flushes a pending draft; it is not a
+   // write caused by translating the page. Verify the original edit is saved.
+   await page.evaluate(()=>document.activeElement?.blur());
+   const before=await storage();assert(Object.values(before).some(v=>v.includes(JSON.stringify(raw).slice(1,-1))),'original explanation was not saved before locale test');
+   const values=await page.locator('input,select,textarea').evaluateAll(es=>es.map(e=>[e.id,e.name,e.value,e.checked]));
    await page.locator('#quidence-language').selectOption('en');await page.locator('#quidence-language').selectOption('es');
    assert.deepEqual(await storage(),before,'locale switch changed saved records');
    const after=await page.locator('input,select,textarea').evaluateAll(es=>es.map(e=>[e.id,e.name,e.value,e.checked]));assert.deepEqual(after,values,'locale switch changed answers');
@@ -60,7 +66,7 @@ async function run(){
  assert.deepEqual(authoredMissing,[],'unreviewed authored text in introductions, reports, controls or exports');
  assert.equal(errors.length,0,errors.join('\n'));
  fs.writeFileSync(path.join(__dirname,'../localization/browser-english-residue.json'),JSON.stringify([...new Set(untranslated)],null,2)+'\n');
- console.log(JSON.stringify({layouts:88,tasks,reports:20,errors,englishResidue:[...new Set(untranslated)].length}));
+ console.log(JSON.stringify({layouts,tasks,reports:20,errors,englishResidue:[...new Set(untranslated)].length}));
  }finally{await browser?.close();await new Promise(r=>server.close(r));}
 }
 run().catch(e=>{console.error(e);process.exitCode=1;});

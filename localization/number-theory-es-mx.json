@@ -1,0 +1,166 @@
+{
+  "nt-p01": {
+    "title": "Losetas cuadradas y el atajo de Euclides",
+    "prompt": "Un centro comunitario ficticio quiere cubrir un piso rectangular de 924 cm por 588 cm con losetas cuadradas idénticas, sin cortar ninguna. Las losetas se colocan en una cuadrícula rectangular alineada. El lado de cada loseta debe medir un número entero de centímetros y el centro quiere usar las losetas más grandes posibles. No enumeres todos los divisores; utiliza el razonamiento que se propone a continuación.",
+    "approach": "No busques los divisores uno por uno. Demuestra que (a, b) y (b, r) tienen los mismos divisores comunes cuando a = qb + r; así, cada división conserva la respuesta y reduce los números. El último residuo distinto de cero es el máximo común divisor, que se representa aquí con gcd, y todo divisor común lo divide. La cantidad de losetas y el mínimo común múltiplo, representado con lcm, se deducen de estos dos hechos.",
+    "uses": "División con residuo; principio del buen orden (una sucesión decreciente de enteros no negativos termina).",
+    "nextCheck": "Demuestra que, si el algoritmo de Euclides aplicado a a y b requiere k divisiones, entonces b es al menos el (k + 1)-ésimo número de Fibonacci.",
+    "steps": [
+      {
+        "title": "Aplica el algoritmo",
+        "prompt": "Divide con residuo: 924 = 1 × 588 + 336. Después divide 588 entre 336 y continúa hasta que el residuo sea 0. Indica el último residuo distinto de cero y la cantidad de divisiones.",
+        "proof": ["Las divisiones son", "924 = 1·588 + 336", "588 = 1·336 + 252", "336 = 1·252 + 84", "252 = 3·84 + 0.", "Se necesitan cuatro divisiones y el último residuo distinto de cero es 84. El Paso 2 demuestra que este número es gcd(924, 588)."],
+        "fields": {"gcd": {"label": "Último residuo distinto de cero, gcd(924, 588)"}, "divisions": {"label": "Cantidad de divisiones"}}
+      },
+      {
+        "title": "Demuestra por qué funciona",
+        "prompt": "Sea a = qb + r, con q y r enteros no negativos, donde 0 ≤ r < b. Demuestra que a y b tienen exactamente los mismos divisores comunes que b y r. Después explica por qué termina el algoritmo y por qué el último residuo distinto de cero es el máximo común divisor.",
+        "proof": [
+          "Lema. Si a = qb + r, los divisores comunes de a y b son exactamente los divisores comunes de b y r.",
+          "Demostración. Supón que d | a y d | b. Entonces d divide a − qb = r, así que d es un divisor común de b y r. Recíprocamente, supón que d | b y d | r. Entonces d divide qb + r = a, así que d es un divisor común de a y b. ∎",
+          "Terminación. Cada residuo satisface 0 ≤ r < b, por lo que los residuos forman una sucesión estrictamente decreciente de enteros no negativos: 336 > 252 > 84 > 0. Una sucesión estrictamente decreciente de enteros no negativos no puede continuar indefinidamente, así que algún residuo es 0.",
+          "Conclusión. Al aplicar el lema en cada división, los divisores comunes de (924, 588), (588, 336), (336, 252), (252, 84) y (84, 0) forman el mismo conjunto. Los divisores comunes de 84 y 0 son exactamente los divisores de 84, porque todo entero divide a 0. Por lo tanto, los divisores comunes de 924 y 588 son exactamente los divisores de 84 y el mayor de ellos es 84. En particular, todo divisor común de 924 y 588 divide a 84.",
+          "En general, si el primer residuo ya es 0, entonces b | a y gcd(a, b) = b. En otro caso, si los residuos distintos de cero son r₁ > r₂ > ⋯ > rₙ, el lema aplicado en cada división muestra que los divisores comunes de a y b son exactamente los divisores de rₙ; así, rₙ = gcd(a, b) y todo divisor común de a y b lo divide."
+        ],
+        "fields": {"why": {"label": "Demuestra por qué funciona el algoritmo", "criteria": ["Si d divide a a y a b, divide a r = a − qb; si d divide a b y a r, divide a a = qb + r. Por lo tanto, ambos pares tienen los mismos divisores comunes.", "Los residuos son enteros no negativos que disminuyen estrictamente, así que uno de ellos es 0; el último residuo distinto de cero es el máximo común divisor y todo divisor común lo divide."], "followup": "¿En qué parte de tu demostración utilizaste que cada residuo es menor que el divisor?"}}
+      },
+      {
+        "title": "Cuenta las losetas",
+        "prompt": "Una loseta cuadrada de lado s cubre el piso exactamente si y solo si s divide tanto a 924 como a 588. Utiliza el mayor valor posible de s. ¿Cuántas losetas caben a lo largo de cada lado y cuántas se necesitan en total? Después, utiliza el Paso 2, en lugar de ensayo y error, para seleccionar todos los otros lados de loseta de la lista que también cubren el piso exactamente.",
+        "proof": [
+          "Una fila de losetas de lado s cubre exactamente 924 cm cuando s | 924 y una columna cubre exactamente 588 cm cuando s | 588. Por lo tanto, los lados posibles son los divisores comunes de 924 y 588 y el mayor es gcd(924, 588) = 84.",
+          "Entonces 924 = 84 × 11 y 588 = 84 × 7; caben 11 losetas a lo largo de un lado y 7 a lo largo del otro, y se necesitan 11 × 7 = 77 losetas.",
+          "Por el Paso 2, un lado s sirve si y solo si s divide a 84. Como 84 = 12 × 7 = 21 × 4 = 28 × 3 = 42 × 2, los lados de 12, 21, 28 y 42 cm sirven. 56 no divide a 84 (84 = 56 + 28), así que un lado de 56 cm no sirve."
+        ],
+        "fields": {"along924": {"label": "Losetas a lo largo del lado de 924 cm"}, "along588": {"label": "Losetas a lo largo del lado de 588 cm"}, "total": {"label": "Total de losetas"}, "otherSides": {"label": "Otros lados de loseta que también sirven"}}
+      },
+      {
+        "title": "Del máximo común divisor al mínimo común múltiplo",
+        "prompt": "Un patrón de borde se repite cada 924 cm y otro cada 588 cm. Demuestra que la longitud más corta en la que ambos patrones terminan juntos es 924 × 588 / 84. Utiliza 924 = 84 × 11, 588 = 84 × 7 y la identidad 1 = 2 × 11 − 3 × 7.",
+        "proof": [
+          "Una longitud L sirve exactamente cuando L es un múltiplo común de 924 y 588. Escribe 924 = 84·11 y 588 = 84·7.",
+          "Como 924 | L, escribe L = 84·11·t para algún entero positivo t. Como 588 | L, tenemos 84·7 | 84·11·t, así que 7 | 11t.",
+          "Afirmación: 7 | t. Utiliza 1 = 2·11 − 3·7 y multiplica por t: t = 2·(11t) − 3·7·t. Ambos términos de la derecha son múltiplos de 7 (el primero porque 7 | 11t), así que 7 | t.",
+          "Por lo tanto, t ≥ 7 y t = 7 sirve, porque entonces L = 84·11·7 = 924·7 = 588·11. El mínimo común múltiplo es 84·77 = 6468.",
+          "Comprobación: gcd × lcm = 84 × 6468 = 543,312 = 924 × 588. El mismo argumento funciona para cualesquiera a = g·a′ y b = g·b′ cuando podemos escribir 1 = x·a′ + y·b′ con x y y enteros. La identidad de Bézout (un proyecto posterior; se supone en general a partir de nt-p04) proporciona tales x y y cuando g = gcd(a, b); entonces gcd(a, b)·lcm(a, b) = ab en general."
+        ],
+        "fields": {"lcm": {"label": "Menor longitud común, lcm(924, 588) (cm)"}, "identity": {"label": "¿Qué identidad confirma tu resultado?", "options": {"other-2": "El máximo común divisor y el mínimo común múltiplo no tienen relación"}}, "lcmProof": {"label": "Demuestra que 6468 es el mínimo común múltiplo", "criteria": ["Escribe un múltiplo común como L = 84·11·t; entonces 7 | 11t.", "Utiliza 1 = 2·11 − 3·7 para demostrar que 7 | t, así que t ≥ 7; t = 7 sirve."], "followup": "¿Por qué fallaría el argumento si 11 y 7 tuvieran un factor común?"}}
+      }
+    ]
+  },
+  "nt-p02": {
+    "title": "Dos jarras y ninguna taza medidora",
+    "prompt": "En una feria científica ficticia solo tienes dos jarras sin marcas de medición, con capacidades de 7 L y 11 L, y un tanque grande de agua. Puedes llenar una jarra, vaciar una jarra o verter agua de una jarra a la otra hasta que la que recibe esté llena o la que vierte esté vacía. Necesitas exactamente 1 L.",
+    "approach": "Recorre el algoritmo de Euclides hacia atrás para escribir 1 = 2·11 − 3·7 e interprétalo como llenados y vaciados. Después demuestra cómo es toda solución. Para las jarras que no permiten obtener ciertas cantidades, encuentra una propiedad que ninguna operación cambie: cada cantidad sigue siendo un múltiplo del máximo común divisor.",
+    "uses": "Algoritmo de Euclides (nt-p01); inducción sobre la cantidad de operaciones; si m | kn y gcd(m, n) = 1, entonces m | k (se demuestra para 7 y 11 en el Paso 2 y se supone en general en el Paso 4).",
+    "nextCheck": "Demuestra la identidad de Bézout en general: para cualesquiera enteros positivos a y b existen enteros x y y tales que ax + by = gcd(a, b).",
+    "steps": [
+      {
+        "title": "Recorre Euclides hacia atrás",
+        "prompt": "Encuentra gcd(7, 11) con el algoritmo de Euclides. Después sustituye hacia atrás para encontrar enteros x y y con 7x + 11y = 1, con x negativo y lo más cercano posible a 0. Convierte tus valores de x y y en una secuencia de llenados y vertidos.",
+        "proof": [
+          "Euclides: 11 = 1·7 + 4, 7 = 1·4 + 3, 4 = 1·3 + 1, 3 = 3·1 + 0, así que gcd(7, 11) = 1.",
+          "Sustitución hacia atrás, un residuo a la vez:",
+          "1 = 4 − 3", "= 4 − (7 − 4) = 2·4 − 7", "= 2·(11 − 7) − 7 = 2·11 − 3·7.",
+          "Así, x = −3 y y = 2. Por el Paso 2, toda solución tiene x = −3 + 11k, así que ningún otro valor negativo de x está más cerca de 0.",
+          "Interpretación: vierte 11 L dos veces (+22 L) y retira 7 L tres veces (−21 L), dejando 1 L. Una secuencia (las cantidades se escriben como (jarra de 7 L, jarra de 11 L)):",
+          "llena la jarra de 11 L (0, 11); vierte en la jarra de 7 L (7, 4); vacía la jarra de 7 L (0, 4); vierte (4, 0); llena la jarra de 11 L (4, 11); vierte hasta llenar la jarra de 7 L (7, 8); vacía la jarra de 7 L (0, 8); vierte (7, 1); vacía la jarra de 7 L (0, 1).",
+          "La jarra de 11 L ahora contiene 1 L. La jarra de 11 L se llenó dos veces y la de 7 L se vació tres veces, de acuerdo con y = 2 y x = −3: 2·11 − 3·7 = 1."
+        ],
+        "fields": {"x": {"label": "x (negativo, lo más cercano a 0)"}, "pour": {"label": "Escribe una secuencia de llenados y vertidos", "criteria": ["Utiliza 2·11 − 3·7 = 1: llena dos veces la jarra de 11 L y vierte de ella a la jarra de 7 L; vacía la de 7 L cada vez que se llene. La jarra de 7 L se llena tres veces (3·7 = 21 = 22 − 1) y queda 1 L en la de 11 L.", "Indica las cantidades después de cada operación y utiliza únicamente las operaciones permitidas."], "followup": "¿Cómo corresponden la cantidad de veces que llenas la jarra de 11 L y la cantidad de veces que se llena la de 7 L con y y x?"}}
+      },
+      {
+        "title": "Encuentra todas las soluciones",
+        "prompt": "Demuestra que (x, y) satisface 7x + 11y = 1 si y solo si x = −3 + 11k y y = 2 − 7k para algún entero k. Después indica la solución con el menor valor positivo de x.",
+        "proof": [
+          "Implicación directa. 7(−3 + 11k) + 11(2 − 7k) = −21 + 77k + 22 − 77k = 1.",
+          "Implicación recíproca. Sea 7x + 11y = 1. Resta 7(−3) + 11(2) = 1 para obtener 7(x + 3) = 11(2 − y). Así, 11 divide a 7(x + 3).",
+          "Afirmación: 11 divide a x + 3. Multiplica 1 = 2·11 − 3·7 por (x + 3): x + 3 = 2·11·(x + 3) − 3·7(x + 3). El primer término es múltiplo de 11 y 7(x + 3) es múltiplo de 11, así que x + 3 es múltiplo de 11. Escribe x + 3 = 11k. Entonces 7·11k = 11(2 − y), así que 2 − y = 7k y y = 2 − 7k. ∎",
+          "El menor valor positivo de x: −3 + 11k > 0 exactamente cuando k ≥ 1, así que k = 1 da x = 8 y y = −5. Comprobación: 56 − 55 = 1."
+        ],
+        "fields": {"xpos": {"label": "Menor valor positivo de x"}, "ypos": {"label": "Valor correspondiente de y"}, "pattern": {"label": "¿Cómo se relacionan las soluciones?", "options": {"steps": "x cambia en múltiplos de 11 mientras y cambia en los mismos múltiplos de 7 en sentido contrario", "other-1": "x y y cambian ambos en 1", "other-2": "Solo hay una solución"}}, "allSolutions": {"label": "Demuestra que encontraste todas las soluciones", "criteria": ["Resta la solución conocida: 7(x + 3) = 11(2 − y), así que 11 | 7(x + 3).", "Utiliza 1 = 2·11 − 3·7 (o gcd(7, 11) = 1) para concluir que 11 | x + 3; después despeja y."], "followup": "¿Por qué no basta comprobar que (−3 + 11k, 2 − 7k) satisface la ecuación?"}}
+      },
+      {
+        "title": "Demuestra que algunas cantidades son imposibles",
+        "prompt": "Ahora las jarras tienen capacidades de 6 L y 15 L. Encuentra gcd(6, 15). Demuestra que, después de cualquier secuencia de operaciones, cada jarra contiene una cantidad de litros que es múltiplo de 3. Después selecciona todas las cantidades de 1 L a 9 L que puedes dejar en la jarra de 15 L y escribe una secuencia para cada cantidad que selecciones.",
+        "proof": [
+          "gcd(6, 15) = 3, ya que 15 = 2·6 + 3 y 6 = 2·3.",
+          "Invariante. Afirmación: después de cada operación, ambas cantidades son múltiplos de 3. Al inicio, ambas son 0. Supón que, antes de una operación, las cantidades u (jarra de 6 L) y v (jarra de 15 L) son múltiplos de 3.",
+          "• Llenar establece una cantidad en 6 o 15, ambos múltiplos de 3.",
+          "• Vaciar establece una cantidad en 0.",
+          "• Verter de una jarra a otra transfiere t litros, donde t es el menor entre la cantidad en la jarra que vierte y el espacio libre en la que recibe. Ambos son múltiplos de 3 (una capacidad menos un múltiplo de 3), así que t es múltiplo de 3 y ambas cantidades nuevas siguen siendo múltiplos de 3.",
+          "Por inducción sobre la cantidad de operaciones, la afirmación siempre se cumple. Por lo tanto, 1, 2, 4, 5, 7 y 8 L son imposibles.",
+          "Los múltiplos de 3 sí son posibles:",
+          "6 L: llena la jarra de 6 L y vierte su contenido en la de 15 L.",
+          "9 L: llena la jarra de 15 L y vierte en la de 6 L hasta llenarla; quedan 9 L.",
+          "3 L: continúa desde 9 L: vacía la jarra de 6 L y vuelve a verter; quedan 15 − 6 − 6 = 3 L."
+        ],
+        "fields": {"amounts": {"label": "Cantidades que puedes dejar en la jarra de 15 L"}, "invariant": {"label": "Demuestra el invariante de los múltiplos de 3", "criteria": ["Enuncia la afirmación para las cantidades de ambas jarras y comprueba el estado inicial.", "Comprueba cada tipo de operación: llenar, vaciar y verter (la cantidad vertida es múltiplo de 3)."], "followup": "¿Por qué un invariante demuestra la imposibilidad sin probar todas las secuencias?"}}
+      },
+      {
+        "title": "Enuncia la regla general",
+        "prompt": "Para jarras de a y b litros con a < b, explica qué cantidades de litros enteros puedes dejar en la jarra más grande y por qué. Relaciona tu respuesta con gcd(a, b).",
+        "proof": [
+          "Sea g = gcd(a, b), con a < b.",
+          "Solo múltiplos de g. El invariante del Paso 3 funciona al reemplazar 3 por g: las capacidades a y b son múltiplos de g, así que llenar, vaciar y verter conserva ambas cantidades como múltiplos de g.",
+          "Todos los múltiplos de g hasta b. Llena la jarra de a litros y vierte en la de b litros; vacía la de b litros cada vez que se llene y repite. Después de verter el contenido de la jarra pequeña k veces, han entrado ka litros en la grande y se ha retirado un múltiplo de b; por lo tanto, la jarra grande contiene el residuo r_k de dividir ka entre b.",
+          "Primero, gcd(a/g, b/g) = 1: si d > 0 divide tanto a a/g como a b/g, entonces dg divide a a y a b; así, dg ≤ g y d = 1.",
+          "Para k = 0, 1, …, b/g − 1, los residuos r_k son todos distintos: si ka y k′a dejan el mismo residuo al dividir entre b, entonces b | (k − k′)a, así que (b/g) | (k − k′)(a/g). Como gcd(b/g, a/g) = 1, (b/g) | k − k′ y, como |k − k′| < b/g, k = k′. Son b/g múltiplos distintos de g entre 0 y b − g, así que son exactamente 0, g, 2g, …, b − g. Junto con b (llena la jarra grande), es posible dejar en ella cada múltiplo de g hasta b.",
+          "Por lo tanto, las cantidades que pueden quedar en la jarra más grande son exactamente los múltiplos de gcd(a, b) de 0 a b. Para 7 L y 11 L, g = 1 y es posible obtener cualquier cantidad entera hasta 11 L."
+        ],
+        "fields": {"rule": {"label": "Enuncia y justifica la regla general", "criteria": ["Toda cantidad que se puede medir es múltiplo de gcd(a, b) (invariante).", "Es posible dejar en la jarra más grande cualquier múltiplo de gcd(a, b) hasta b (patrón de vertidos: los residuos de dividir ka entre b son distintos para k = 0, …, b/g − 1)."], "followup": "Con jarras de 9 L y 14 L, ¿qué cantidades hasta 14 L puedes dejar en la jarra más grande?"}}
+      }
+    ]
+  },
+  "nt-p09": {
+    "title": "Paquetes de boletos y el mayor pedido imposible",
+    "prompt": "Un museo ficticio vende boletos únicamente en paquetes de 5 y de 7. Un grupo puede comprar cualquier cantidad de cada tipo de paquete, incluso cero, y debe comprar exactamente tantos boletos como personas. Trabaja con residuos, sin enumerar todos los tamaños de grupo.",
+    "approach": "Clasifica los tamaños según su residuo módulo 5. Agregar un paquete de 5 conserva el residuo, así que cada clase tiene un umbral: el menor tamaño de esa clase formado solo con paquetes de 7. Todo tamaño igual o mayor que el umbral es posible y todo tamaño menor es imposible. El mayor tamaño imposible y la cantidad de tamaños imposibles se deducen de estos umbrales, sin enumerarlos.",
+    "uses": "División con residuo; si a | bj y gcd(a, b) = 1, entonces a | j (se supone); un lema de la función piso (se demuestra en el Paso 3).",
+    "nextCheck": "Demuestra que, para a y b coprimos, un tamaño n con 0 ≤ n ≤ ab − a − b puede comprarse si y solo si ab − a − b − n no puede comprarse.",
+    "steps": [
+      {
+        "title": "Clasifica los tamaños por su residuo módulo 5",
+        "prompt": "Los números 7b para b = 0, 1, 2, 3, 4 son 0, 7, 14, 21, 28. Muestra que dejan cinco residuos distintos al dividir entre 5. Después demuestra: un tamaño n puede comprarse exactamente cuando n ≥ 7b, donde b es el único valor en {0, 1, 2, 3, 4} con 7b ≡ n (mod 5). Indica el menor tamaño que puede comprarse entre los que dejan residuo 3 y entre los que dejan residuo 1.",
+        "proof": [
+          "Residuos: 0, 7, 14, 21, 28 dejan 0, 2, 4, 1, 3 al dividir entre 5; todos son distintos. Así, para cada tamaño n existe exactamente un b en {0, …, 4} con 7b ≡ n (mod 5); llámalo bₙ.",
+          "Afirmación: n = 5x + 7y tiene una solución con x, y ≥ 0 enteros si y solo si n ≥ 7bₙ.",
+          "Demostración. (⇐) Si n ≥ 7bₙ, entonces n − 7bₙ es un múltiplo no negativo de 5, digamos 5x, así que n = 5x + 7bₙ. (⇒) Supón que n = 5x + 7y con x, y ≥ 0. Divide y entre 5: y = 5s + y′ con 0 ≤ y′ ≤ 4. Entonces n = 5(x + 7s) + 7y′, así que 7y′ ≡ n (mod 5), lo que obliga a que y′ = bₙ. Por lo tanto, n = 5(x + 7s) + 7bₙ ≥ 7bₙ. ∎",
+          "Los tamaños con residuo 3 tienen bₙ = 4, así que el menor que puede comprarse es 28. Los tamaños con residuo 1 tienen bₙ = 3, así que el menor es 21."
+        ],
+        "fields": {"thr3": {"label": "Menor tamaño posible con residuo 3 (mod 5)"}, "thr1": {"label": "Menor tamaño posible con residuo 1 (mod 5)"}, "classProof": {"label": "Demuestra el criterio de las clases de residuos", "criteria": ["Muestra que 0, 7, 14, 21, 28 tienen residuos distintos módulo 5.", "Si n = 5x + 7y, reduce y módulo 5 para mostrar que n ≥ 7bₙ; recíprocamente, n − 7bₙ es un múltiplo no negativo de 5."], "followup": "¿Por qué importa que los cinco residuos sean distintos?"}}
+      },
+      {
+        "title": "Encuentra el mayor tamaño imposible",
+        "prompt": "Utiliza el Paso 1 para encontrar el mayor tamaño que no puede comprarse y el menor N tal que todos los tamaños a partir de N pueden comprarse. Demuestra ambos resultados.",
+        "proof": [
+          "En la clase con bₙ = b, los tamaños imposibles son exactamente los números positivos de esa clase menores que 7b y el mayor es 7b − 5. El mayor umbral es 7·4 = 28, así que el mayor tamaño imposible es 28 − 5 = 23.",
+          "Todo n ≥ 24 puede comprarse: si bₙ ≤ 3, entonces 7bₙ ≤ 21 < n; si bₙ = 4, entonces n ≡ 3 (mod 5) y n ≥ 24 obliga a que n ≥ 28 = 7bₙ. En ambos casos se aplica el Paso 1. Como 23 es imposible, 24 es el menor N a partir del cual todos los tamaños son posibles."
+        ],
+        "fields": {"largest": {"label": "Mayor tamaño imposible (5 y 7)"}, "runStart": {"label": "Menor N a partir del cual todos los tamaños son posibles"}}
+      },
+      {
+        "title": "Cuenta los tamaños imposibles sin enumerarlos",
+        "prompt": "En la clase con umbral 7b (b = 1, 2, 3, 4), cuenta los tamaños positivos menores que 7b que dejan el mismo residuo que 7b. Suma las cuatro cantidades.",
+        "proof": [
+          "En la clase con umbral 7b, los tamaños imposibles son 7b − 5, 7b − 10, …, mientras sigan siendo positivos: 7b − 5j > 0 para j = 1, 2, …, ⌊7b/5⌋ (7b/5 no es entero para b = 1, …, 4, ya que 5 ∤ 7b).",
+          "Cantidades: b = 1: ⌊7/5⌋ = 1; b = 2: ⌊14/5⌋ = 2; b = 3: ⌊21/5⌋ = 4; b = 4: ⌊28/5⌋ = 5. La clase b = 0 (múltiplos de 5) no tiene ninguno.",
+          "Total: 1 + 2 + 4 + 5 = 12 tamaños imposibles.",
+          "Lema. Si N es entero y x no lo es, entonces ⌊x⌋ + ⌊N − x⌋ = N − 1. Demostración: escribe x = k + f con k = ⌊x⌋ y 0 < f < 1; entonces N − x = (N − k − 1) + (1 − f), con 0 < 1 − f < 1, así que ⌊N − x⌋ = N − k − 1. ∎",
+          "Agrupar en pares da el mismo total: ⌊7b/5⌋ + ⌊7(5 − b)/5⌋ = ⌊7b/5⌋ + ⌊7 − 7b/5⌋ = 6, porque 7b/5 no es entero. Los pares (b = 1, 4) y (b = 2, 3) dan 6 + 6 = 12 = (5 − 1)(7 − 1)/2."
+        ],
+        "fields": {"howMany": {"label": "Cantidad de tamaños imposibles (5 y 7)"}}
+      },
+      {
+        "title": "Generaliza y encuentra cuándo falla",
+        "prompt": "Para tamaños de paquete coprimos a, b ≥ 2, repite los Pasos 1–3 para demostrar que el mayor tamaño imposible es ab − a − b y que hay (a − 1)(b − 1)/2 tamaños imposibles. Aplica el resultado a paquetes de 3 y de 8. Después decide si los paquetes de 6 y de 9 tienen un mayor tamaño imposible.",
+        "proof": [
+          "Demostración general (gcd(a, b) = 1, a, b ≥ 2). Los números b·j para j = 0, 1, …, a − 1 dejan residuos distintos módulo a: si bj ≡ bj′ (mod a), entonces a | b(j − j′) y, como gcd(a, b) = 1, obtenemos a | j − j′; como |j − j′| < a, j = j′. Son a números con a residuos distintos y solo hay a residuos posibles, así que cada residuo aparece exactamente una vez. Cada clase módulo a tiene, por lo tanto, exactamente un umbral b·j y, como en el Paso 1, los tamaños de esa clase que pueden comprarse son exactamente los ≥ b·j. El mayor umbral es b(a − 1), así que el mayor tamaño imposible es b(a − 1) − a = ab − a − b. La clase con umbral bj contiene ⌊bj/a⌋ tamaños imposibles, porque bj/a no es entero cuando 1 ≤ j ≤ a − 1 (a ∤ bj, ya que gcd(a, b) = 1 y 0 < j < a). Por el lema del Paso 3 (con N = b y x = bj/a), ⌊bj/a⌋ + ⌊b(a − j)/a⌋ = ⌊bj/a⌋ + ⌊b − bj/a⌋ = b − 1. Al sumar esta identidad para j = 1, …, a − 1, cada clase se cuenta dos veces; por lo tanto, el doble del total es (a − 1)(b − 1) y el total es (a − 1)(b − 1)/2.",
+          "Paquetes de 3 y de 8: 24 − 3 − 8 = 13 y 2·7/2 = 7.",
+          "Paquetes de 6 y de 9: cualquier compra es 6x + 9y = 3(2x + 3y), un múltiplo de 3. Por lo tanto, todo tamaño que no es múltiplo de 3 (40, 41, 43, …) es imposible y no hay un mayor tamaño imposible. La demostración anterior requería gcd(a, b) = 1."
+        ],
+        "fields": {"largest38": {"label": "Mayor tamaño imposible con paquetes de 3 y de 8"}, "count38": {"label": "Cantidad de tamaños imposibles con paquetes de 3 y de 8"}, "six9": {"label": "¿Hay un mayor tamaño imposible con paquetes de 6 y de 9?", "options": {"no": "No; todo tamaño que no es múltiplo de 3 es imposible, así que hay infinitos", "other-1": "Sí; es 6 × 9 − 6 − 9 = 39", "other-2": "Sí; es 5"}}, "general": {"label": "Demuestra el resultado general", "criteria": ["Muestra que b·0, b·1, …, b·(a − 1) dejan residuos distintos módulo a utilizando gcd(a, b) = 1.", "Concluye que el mayor tamaño imposible es b(a − 1) − a y cuenta agrupando en pares: ⌊bj/a⌋ + ⌊b(a − j)/a⌋ = b − 1."], "followup": "¿Qué paso de tu demostración falla para paquetes de 6 y de 9?"}}
+      }
+    ]
+  }
+}
