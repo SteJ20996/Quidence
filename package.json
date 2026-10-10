@@ -22,7 +22,8 @@
     "build:brand:images": "node scripts/build-brand-images.cjs",
     "test:spanish:review": "node scripts/test-spanish-review-browser.cjs",
     "test:history:stress": "node scripts/test-history-stress-browser.cjs",
-    "test:number-theory:browser": "node scripts/test-number-theory-browser.cjs"
+    "test:number-theory:browser": "node scripts/test-number-theory-browser.cjs",
+    "test:reviewed:browser": "node scripts/test-reviewed-release-browser.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

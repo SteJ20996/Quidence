@@ -272,10 +272,6 @@
     "[n] pasos"
   ],
   [
-    "STEP [n] OF [n]",
-    "PASO [n] DE [n]"
-  ],
-  [
     "[n] of [n] calculations or choices match.",
     "[n] de [n] cálculos u opciones coinciden."
   ],
@@ -310,5 +306,241 @@
   [
     "University · [n]/[n] responses",
     "Universidad · [n]/[n] pasos con respuestas"
+  ],
+  [
+    "[n] submitted attempts recorded, including retries.",
+    "[n] intentos enviados registrados, incluidos los reintentos."
+  ],
+  [
+    "[n] submitted",
+    "[n] enviados"
+  ],
+  [
+    "[n] skipped",
+    "[n] omitidos"
+  ],
+  [
+    "[n] not yet submitted",
+    "[n] aún sin enviar"
+  ],
+  [
+    "Time on activities: [n]:[n]. Interruptions affect this time; it does not measure effort or ability.",
+    "Tiempo en las actividades: [n]:[n]. Las interrupciones afectan este tiempo; no mide el esfuerzo ni la capacidad."
+  ],
+  [
+    "[n] hint(s)",
+    "[n] pista(s)"
+  ],
+  [
+    "[n] try",
+    "[n] intento"
+  ],
+  [
+    "[n] tries",
+    "[n] intentos"
+  ],
+  [
+    "[n] / [n] tasks recorded",
+    "[n] / [n] tareas registradas"
+  ],
+  [
+    "[n] / [n] steps viewed. Record the prediction at Step [n] before continuing.",
+    "[n] / [n] pasos vistos. Registra la predicción en el paso [n] antes de continuar."
+  ],
+  [
+    "The current blend B(t) sends v to ([n], [n]). Use Final view to edit the column images.",
+    "La combinación actual B(t) lleva v a ([n], [n]). Usa la vista final para editar las imágenes de las columnas."
+  ],
+  [
+    "Current blend B(t) = [[n], [n]; [n], [n]]. The final output Av will be ([n], [n]).",
+    "Combinación actual B(t) = [[n], [n]; [n], [n]]. La salida final Av será ([n], [n])."
+  ],
+  [
+    "[n] of [n] steps opened. Take time to compare the graphs.",
+    "[n] de [n] pasos abiertos. Tómate tu tiempo para comparar las gráficas."
+  ],
+  [
+    "Distance = [n]",
+    "Distancia = [n]"
+  ],
+  [
+    "f([n]) = [n]",
+    "f([n]) = [n]"
+  ],
+  [
+    "Moving point: x = [n], f(x) = [n]. At the target [n], f([n]) = [n]. Left-hand limit: [n]; right-hand limit: [n].",
+    "Punto en movimiento: x = [n], f(x) = [n]. En el punto objetivo [n], f([n]) = [n]. Límite por la izquierda: [n]; límite por la derecha: [n]."
+  ],
+  [
+    "P = ([n], [n]); Q = ([n], [n]). Secant slope [n]. Tangent slope [n].",
+    "P = ([n], [n]); Q = ([n], [n]). Pendiente de la secante: [n]. Pendiente de la tangente: [n]."
+  ],
+  [
+    "Rectangle sum = [n]",
+    "Suma de rectángulos = [n]"
+  ],
+  [
+    "Signed integral = [n]",
+    "Integral con signo = [n]"
+  ],
+  [
+    "|error| = [n]",
+    "|error| = [n]"
+  ],
+  [
+    "Total area = [n]",
+    "Área total = [n]"
+  ],
+  [
+    "On [[n], [n]], [n] midpoint rectangles give [n]. Exact signed integral: [n]. Total geometric area: [n].",
+    "En [[n], [n]], [n] rectángulos de punto medio dan [n]. Integral exacta con signo: [n]. Área geométrica total: [n]."
+  ],
+  [
+    "On [[n], [n]], [n] left rectangles give [n]. Exact signed integral: [n]. Total geometric area: [n].",
+    "En [[n], [n]], [n] rectángulos con extremo izquierdo dan [n]. Integral exacta con signo: [n]. Área geométrica total: [n]."
+  ],
+  [
+    "On [[n], [n]], [n] right rectangles give [n]. Exact signed integral: [n]. Total geometric area: [n].",
+    "En [[n], [n]], [n] rectángulos con extremo derecho dan [n]. Integral exacta con signo: [n]. Área geométrica total: [n]."
+  ],
+  [
+    "Oriented accumulation from 0 to [n]: A(x) = [n]. Original height f(x) = [n].",
+    "Acumulación orientada de 0 a [n]: A(x) = [n]. Altura original f(x) = [n]."
+  ],
+  [
+    "A([n]) = [n]. Average change ΔA/h = [n]. Tangent slope A′(x) = f(x) = [n].",
+    "A([n]) = [n]. Cambio promedio ΔA/h = [n]. Pendiente de la tangente A′(x) = f(x) = [n]."
+  ],
+  [
+    "Real domain: x ≥ [n]",
+    "Dominio real: x ≥ [n]"
+  ],
+  [
+    "Real domain: x ≠ [n]",
+    "Dominio real: x ≠ [n]"
+  ],
+  [
+    "Vertex = ([n], [n])",
+    "Vértice = ([n], [n])"
+  ],
+  [
+    "Axis x = [n]",
+    "Eje x = [n]"
+  ],
+  [
+    "Vertical scale |a| = [n]",
+    "Escala vertical |a| = [n]"
+  ],
+  [
+    "cos θ = [n]",
+    "cos θ = [n]"
+  ],
+  [
+    "sin θ = [n]",
+    "sin θ = [n]"
+  ],
+  [
+    "θ = [n]° = [n]π radians",
+    "θ = [n]° = [n]π radianes"
+  ],
+  [
+    "Counterclockwise angle [n]° = [n]π radians. Coordinates ([n], [n]). Rounded values are displayed.",
+    "Ángulo en sentido contrario a las manecillas del reloj: [n]° = [n]π radianes. Coordenadas ([n], [n]). Se muestran valores redondeados."
+  ],
+  [
+    "Exponential amount = [n]",
+    "Cantidad exponencial = [n]"
+  ],
+  [
+    "Matched line = [n]",
+    "Recta ajustada = [n]"
+  ],
+  [
+    "First-unit change = [n]",
+    "Cambio en la primera unidad = [n]"
+  ],
+  [
+    "y = [n] × [n]ᵗ; t = log base [n] of (y/[n])",
+    "y = [n] × [n]ᵗ; t = logaritmo en base [n] de (y/[n])"
+  ],
+  [
+    "Minimum = [n]",
+    "Mínimo = [n]"
+  ],
+  [
+    "Maximum = [n]",
+    "Máximo = [n]"
+  ],
+  [
+    "Shift = [n]",
+    "Desplazamiento = [n]"
+  ],
+  [
+    "Mean = [n]",
+    "Media = [n]"
+  ],
+  [
+    "Median = [n]",
+    "Mediana = [n]"
+  ],
+  [
+    "Range = [n]",
+    "Rango = [n]"
+  ],
+  [
+    "Total = [n]",
+    "Total = [n]"
+  ],
+  [
+    "Reference group: all [n] students",
+    "Grupo de referencia: los [n] estudiantes"
+  ],
+  [
+    "Reference group: [n] club members",
+    "Grupo de referencia: [n] integrantes del club"
+  ],
+  [
+    "Relevant fraction = [n]/[n] = [n]",
+    "Fracción pertinente = [n]/[n] = [n]"
+  ],
+  [
+    "Overall P(pass) = [n]",
+    "P(aprobar) global = [n]"
+  ],
+  [
+    "Angle [n] degrees; horizontal coordinate [n]; vertical coordinate [n].",
+    "Ángulo de [n] grados; coordenada horizontal [n]; coordenada vertical [n]."
+  ],
+  [
+    "f(t) = [n] × [n]ᵗ; teal line has the same initial value and first-unit change.",
+    "f(t) = [n] × [n]ᵗ; la recta verde azulada tiene el mismo valor inicial y el mismo cambio en la primera unidad."
+  ],
+  [
+    "[n], [n], [n], [n], [n], [n], [n], [n], [n] minutes. Each dot is one observation; the horizontal axis gives waiting time in minutes.",
+    "[n], [n], [n], [n], [n], [n], [n], [n], [n] minutos. Cada punto es una observación; el eje horizontal indica el tiempo de espera en minutos."
+  ],
+  [
+    "f′([n]) = [n]. This graph plots slopes, not the original function values.",
+    "f′([n]) = [n]. Esta gráfica representa pendientes, no los valores de la función original."
+  ],
+  [
+    "P = ([n], [n]); Q = ([n], [n]). Secant slope [n]. No derivative at this corner.",
+    "P = ([n], [n]); Q = ([n], [n]). Pendiente de la secante: [n]. No hay derivada en esta esquina."
+  ],
+  [
+    "A width-3 red strip marked for removal. At x=[n], the kept width is [n]. Red means removed; it is excluded from the remaining area.",
+    "Una franja roja de ancho 3 marcada para quitarla. En x=[n], el ancho conservado es [n]. El rojo indica lo que se quita; se excluye del área restante."
+  ],
+  [
+    "The kept blue rectangle and the removed red strip. At x=[n], the kept width is [n]. Red means removed; it is excluded from the remaining area.",
+    "El rectángulo azul conservado y la franja roja que se quita. En x=[n], el ancho conservado es [n]. El rojo indica lo que se quita; se excluye del área restante."
+  ],
+  [
+    "Whole rectangle of width x and height 5. At x=[n], the kept width is [n]. Red means removed; it is excluded from the remaining area.",
+    "Rectángulo completo de ancho x y altura 5. En x=[n], el ancho conservado es [n]. El rojo indica lo que se quita; se excluye del área restante."
+  ],
+  [
+    "Computed graph of (x − [n])² + [n]. The axes have labelled scales. Your chosen x-values appear on the given function.",
+    "Gráfica calculada de (x − [n])² + [n]. Los ejes tienen escalas etiquetadas. Los valores de x que elegiste aparecen en la función dada."
   ]
 ]

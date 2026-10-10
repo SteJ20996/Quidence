@@ -10,7 +10,7 @@
     "subjectChanges": 200,
     "pageChanges": 20,
     "languageChanges": 6,
-    "elapsedMs": 207,
+    "elapsedMs": 300,
     "localRequests": {
       "concurrency": 40,
       "total": 120,

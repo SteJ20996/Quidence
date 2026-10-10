@@ -8,18 +8,24 @@ const missing=new Set(),sourceURL=root.document?.currentScript?.src;
 const markdownMemory=new WeakMap();
 const catalog=()=>root.QuidenceSpanish||{};
 const caption=source=>{const direct=catalog()[source]??catalog()[source+'.'];return direct===undefined?null:direct;};
-let quantitiesSource=null,quantities=[];
+let quantitiesSource=null,quantities=[],quantityIndex=new Map();
+const quantityBucket=key=>key.match(/^[^\s\d−+.-]+/)?.[0]||'#number';
+function quantityCandidates(key){return quantityIndex.get(quantityBucket(key))||[];}
 // Only reviewed, complete formats are interpolated. An unknown sentence is
 // never assembled from translated words or arbitrary substrings.
 function template(key){
- if(quantitiesSource!==root.QuidenceSpanishQuantities){quantitiesSource=root.QuidenceSpanishQuantities;quantities=(quantitiesSource||[]).map(([en,es])=>[new RegExp('^'+en.split('[n]').map(s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('([-−+]?\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)')+'$'),es]);}
- for(const [pattern,output]of quantities){const m=key.match(pattern);if(m){let i=0;return output.replace(/\[n\]/g,()=>m[++i]);}}
+ if(quantitiesSource!==root.QuidenceSpanishQuantities){quantitiesSource=root.QuidenceSpanishQuantities;quantityIndex=new Map();quantities=(quantitiesSource||[]).map(([en,es])=>{const item=[new RegExp('^'+en.split('[n]').map(s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('([-−+]?\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)')+'$'),es],bucket=en.startsWith('[n]')?'#number':quantityBucket(en.split('[n]')[0]);if(!quantityIndex.has(bucket))quantityIndex.set(bucket,[]);quantityIndex.get(bucket).push(item);return item;});}
+ for(const [pattern,output]of quantityCandidates(key)){const m=key.match(pattern);if(m){let i=0;return output.replace(/\[n\]/g,()=>m[++i]);}}
  const patterns=[
+  [/^Point (\d+)$/,m=>'Punto '+m[1]],
+  [/^Change sign for (.+)$/,m=>{const label=translate(m[1],false);return label!==m[1]?'Cambiar el signo de '+label:null;}],
+  [/^(.+) magnitude$/,m=>{const label=translate(m[1],false);return label!==m[1]?'Magnitud de '+label:null;}],
+  [/^Support: lesson seen=(true|false); earlier feedback=(true|false); other help reported=(true|false)$/,m=>'Apoyo: lección vista='+(m[1]==='true'?'sí':'no')+'; comentarios anteriores='+(m[2]==='true'?'sí':'no')+'; otra ayuda declarada='+(m[3]==='true'?'sí':'no')],
   [/^(\d+)\. (.+)$/,m=>{const label=translate(m[2],false);return label!==m[2]?m[1]+'. '+label:null;}],
   [/^(\d+) steps$/,m=>m[1]+' pasos'],
   [/^(\d+) of (\d+) steps have responses$/,m=>m[1]+' de '+m[2]+' pasos tienen respuestas'],
   [/^REFERENCE PROOF · STEP (\d+)$/,m=>'DEMOSTRACIÓN DE REFERENCIA · PASO '+m[1]],
-  [/^STEP (\d+) OF (\d+)$/,m=>'PASO '+m[1]+' DE '+m[2]],
+  [/^STEP (\d+) OF (\d+)$/i,m=>'PASO '+m[1]+' DE '+m[2]],
   [/^(\d+) of (\d+) calculations or choices match\.(?: (\d+) explanations? saved for review\.)?(?: (\d+) responses? still open\.)?$/,m=>m[1]+' de '+m[2]+' cálculos u opciones coinciden.'+(m[3]?' '+m[3]+(m[3]==='1'?' explicación guardada':' explicaciones guardadas')+' para revisión.':'')+(m[4]?' '+m[4]+(m[4]==='1'?' respuesta aún pendiente.':' respuestas aún pendientes.'):'')],
   [/^(\d+) explanations? saved for review\.(?: (\d+) responses? still open\.)?$/,m=>m[1]+(m[1]==='1'?' explicación guardada':' explicaciones guardadas')+' para revisión.'+(m[2]?' '+m[2]+(m[2]==='1'?' respuesta aún pendiente.':' respuestas aún pendientes.'):'')],
   [/^(\d+) responses? still open\.$/,m=>m[1]+(m[1]==='1'?' respuesta aún pendiente.':' respuestas aún pendientes.')],
@@ -88,7 +94,7 @@ function template(key){
   [/^(Input|Output) plane; first basis (.+); second basis (.+); (transformed )?v (.+)\. Both planes use the same scale: one unit is one coordinate unit\.$/,m=>(m[1]==='Input'?'Plano de entrada':'Plano de salida')+'; primer vector de la base '+m[2]+'; segundo vector de la base '+m[3]+'; '+(m[4]?'v transformado ':'v ')+m[5]+'. Ambos planos usan la misma escala: una unidad equivale a una unidad de coordenadas.'],
   [/^Output ([xy]) = (.+)$/,m=>'Salida '+m[1]+' = '+m[2]],
   [/^The selected map A sends v to (.+)\. Colored endpoints can be dragged to change A\.$/,m=>'La transformación A seleccionada lleva v a '+m[1]+'. Puedes arrastrar los extremos de colores para cambiar A.'],
-  [/^det\(A\) = ([-\d.]+); area scale = ([-\d.]+)\.$/,m=>'det(A) = '+m[1]+'; factor de escala del área = '+m[2]+'.'],
+  [/^det\(A\) = ([-−\d.]+); area scale = ([-−\d.]+)\.$/,m=>'det(A) = '+m[1]+'; factor de escala del área = '+m[2]+'.'],
   [/^!\[Student construction: (.+)\]\((Quidence_Drawing_\d+_\d+\.svg)\)$/,m=>{const title=translate(m[1],false);return title!==m[1]?'![Construcción del estudiante: '+title+']('+m[2]+')':null;}],
   [/^Enter a number, fraction, or scientific notation( with no unit or the requested (.+) unit)? for (.+)\.$/,m=>{const label=translate(m[3]);return 'Ingresa un número, una fracción o notación científica '+(m[2]?'sin unidad o con la unidad solicitada ('+m[2]+') ':'')+'para '+label+'. Usa punto decimal y evita separadores de miles.';}],
  ];
@@ -100,7 +106,7 @@ function template(key){
  if(key.endsWith(' (opens in a new tab)')){const base=translate(key.slice(0,-21),false);if(base!==key.slice(0,-21))return base+' (se abre en una pestaña nueva)';}
  // A row composed of reviewed captions, counts, dates or mathematics is safe
  // only when every caption is known. Never partly translate a row.
- const safe=(part,out)=>out!==part||Object.hasOwn(catalog(),part)||quantities.some(([pattern])=>pattern.test(part))||!/[A-Za-z]{3}/.test(part)||/^\d{1,2} (?:ene|feb|mar|abr|may|jun|jul|ago|sep|oct|nov|dic)\b/i.test(part)||/^\d{4}-\d\d-\d\dT/.test(part);
+ const safe=(part,out)=>out!==part||Object.hasOwn(catalog(),part)||quantityCandidates(part).some(([pattern])=>pattern.test(part))||!/[A-Za-z]{3}/.test(part)||/^\d{1,2} (?:ene|feb|mar|abr|may|jun|jul|ago|sep|oct|nov|dic)\b/i.test(part)||/^\d{4}-\d\d-\d\dT/.test(part);
  for(const separator of [' · ','; '])if(key.includes(separator)){const parts=key.split(separator),outputs=parts.map(part=>translate(part,false));if(parts.every((part,i)=>safe(part,outputs[i])))return outputs.join(separator);}
  for(const match of key.matchAll(/; /g)){const parts=[key.slice(0,match.index),key.slice(match.index+2)],outputs=parts.map(part=>translate(part,false));if(parts.every((part,i)=>safe(part,outputs[i])))return outputs.join('; ');}
  for(const match of key.matchAll(/: /g)){const parts=[key.slice(0,match.index),key.slice(match.index+2)],outputs=parts.map(part=>translate(part,false));if(parts.every((part,i)=>safe(part,outputs[i])))return outputs.join(': ');}
@@ -113,7 +119,7 @@ const memo=new Map();
 function translate(key,track=true){
  const direct=catalog()[key];if(direct!==undefined)return direct;
  if(memoCatalog!==catalog()){memoCatalog=catalog();memo.clear();}
- if(memo.has(key)){const out=memo.get(key);if(track&&out===key&&/[A-Za-z]{3}/.test(key)&&!quantities.some(([pattern])=>pattern.test(key)))missing.add(key);return out;}
+ if(memo.has(key)){const out=memo.get(key);if(track&&out===key&&/[A-Za-z]{3}/.test(key)&&!quantityCandidates(key).some(([pattern])=>pattern.test(key)))missing.add(key);return out;}
  for(const mark of ['.',':'])if(catalog()[key+mark]!==undefined)return catalog()[key+mark].replace(/[.:]$/,'');
  const count=key.match(/^All (\d+) questions$/);if(count)return 'Todas las '+count[1]+' preguntas';
  const question=key.match(/^Question (\d+) of (\d+)$/);if(question)return 'Pregunta '+question[1]+' de '+question[2];

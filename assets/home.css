@@ -227,3 +227,5 @@ body.quidence-home .qa-step:disabled{cursor:default}
  body.quidence-home .qh-site-header{grid-template-areas:"brand brand" "description language" "navigation navigation"}
  body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-areas:"brand brand" "description language"}
 }
+
+body.quidence-home .eyebrow{color:#07786f}

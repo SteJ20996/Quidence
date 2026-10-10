@@ -22,6 +22,26 @@ test('Number Theory exports use readable localized status captions rather than s
  for(const [en,es]of [['Response status','Estado de la respuesta'],['Check the response format','Revisa el formato de la respuesta'],['No response yet','Aún no hay respuesta'],['Draft response','Respuesta en borrador'],['Pending proof review','Demostración pendiente de revisión']])assert.equal(api.text(en),es);
 });
 
+test('dynamic graph captions translate fractional coordinates, signed determinants and counters',()=>{
+ const api=runtime();api.setLocale('es');
+ for(const [en,es]of [
+  ['Step 2 of 7','PASO 2 DE 7'],
+  ['det(A) = −1; area scale = 1.','det(A) = −1; factor de escala del área = 1.'],
+  ['Vertex = (-3, 3) · Axis x = -3 · Opens up · Vertical scale |a| = 2','Vértice = (-3, 3) · Eje x = -3 · Abre hacia arriba · Escala vertical |a| = 2'],
+  ['A(-2) = -0.6667. Average change ΔA/h = 1.3333. Tangent slope A′(x) = f(x) = 3.','A(-2) = -0.6667. Cambio promedio ΔA/h = 1.3333. Pendiente de la tangente A′(x) = f(x) = 3.'],
+  ['YOUR SIX-LESSON SUMMARY','TU RESUMEN DE SEIS LECCIONES'],
+ ])assert.equal(api.text(en),es);
+ // The indexed lookup must cover every reviewed format, including f([n]) and
+ // templates beginning with a number, without silently dropping a category.
+ for(const [en,es]of require('../localization/quantity-templates-es.json')){
+  let i=0,j=0;const values=['-0.031','27.125','1.234e-6'];
+  const source=en.replace(/\[n\]/g,()=>values[(i++)%values.length]);
+  const expected=es.replace(/\[n\]/g,()=>values[(j++)%values.length]);
+  assert.equal(api.text(source),expected,source);assert.equal(api.text(source),expected,'memo: '+source);
+ }
+ assert.deepEqual(Array.from(api.missing),[]);
+});
+
 test('Spanish display preserves numbers and mathematical inequality conditions',()=>{const api=runtime();const source='At u=f, the thin-lens model has no finite image distance. For u<f a virtual-image case requires a different interpretation; the control deliberately stays at u>f.';assert.equal(api.text(source),source);api.setLocale('es');const out=api.text(source);assert(out.includes('imagen virtual'));for(const relation of ['u=f','u<f','u>f'])assert(out.includes(relation));assert.equal(api.text('Question 4 of 12'),'Pregunta 4 de 12');api.setLocale('en');assert.equal(api.text(source),source);});
 test('localized Markdown preserves original multiline answers, reviewer notes and fenced records',()=>{const api=runtime();api.setLocale('es');const source='# Saved reports\n\n> Save my answer\n> Your explanation\n\nStudent explanation: Save my answer\nYour explanation\nOther help reported: false\n\nReviewer note: Save my answer\nYour explanation\n\n```json\n{"note":"Save my answer","answer":"−3/4"}\n```';const result=api.markdown(source);assert(result.startsWith('# Informes guardados'));assert(result.includes('> Save my answer\n> Your explanation'));assert(result.includes(': Save my answer\nYour explanation'));assert(result.includes('{"note":"Save my answer","answer":"−3/4"}'));api.setLocale('en');assert.equal(api.markdown(source),source);});
 test('unreviewed sentences stay whole and are recorded for local translation review',()=>{const api=runtime();api.setLocale('es');for(const sentence of ['The cart is up and the speed is in the top lap. Use six or one for the Sum.','Save my answer. This novel phrase is not a reviewed caption.','   '])assert.equal(api.text(sentence),sentence);assert(api.missing.includes('The cart is up and the speed is in the top lap. Use six or one for the Sum.'));assert.equal(api.text('1 saved attempt; earlier answers remain in your history.'),'1 intento guardado; las respuestas anteriores permanecen en tu historial.');});

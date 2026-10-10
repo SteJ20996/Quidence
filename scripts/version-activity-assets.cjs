@@ -8,6 +8,7 @@ const reportAssets = new Set(['assets/brand.js', 'assets/brand.css', 'assets/qui
 const digest = content => createHash('sha256').update(content).digest('hex').slice(0, 12);
 for(const file of ['home.css','home.js','knowledge-map-data.js','knowledge-map.js','local-records.js'])reportAssets.add('assets/'+file);
 for(const file of ['app.js','core.js','style.css'])reportAssets.add('courses/number-theory/'+file);
+for(const file of ['app.js','matrix-guide.js','style.css'])reportAssets.add('modules/ab01/dist/'+file);
 reportAssets.add('assets/course-catalog.js');reportAssets.add('assets/sync-policy.js');
 function versionActivities(check = false) {
   const updates = new Map();
