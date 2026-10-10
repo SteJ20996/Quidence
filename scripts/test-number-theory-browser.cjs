@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {chromium}=require('playwright'),{createServer}=require('../backend/server.cjs');
-const data=require('../courses/number-theory/data.json');
+const data=require('../courses/number-theory/data.json'),C=require('../courses/number-theory/core.js');
 const KEY='quidence:number-theory-preview:v1',RAW='Mi razonamiento original / 我的证明\n  <img src=x onerror=alert(1)> & spaces.';
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
@@ -35,7 +35,7 @@ async function main(){
    assert.equal(await page.locator('#project-head h2').textContent(),expected[p.id].title);
    assert.equal(await page.locator('#work h3').textContent(),expected[p.id].steps[i].title);
    assert.deepEqual(await page.locator('.proof-content > p:not(.proof-label)').allTextContents(),expected[p.id].steps[i].proof);
-   for(const f of p.steps[i].fields)if(f.options)assert.deepEqual(await page.locator(`input[data-field="${f.id}"]`).evaluateAll(es=>es.map(e=>e.value)),f.options.map(o=>o.value));
+   for(const f of p.steps[i].fields)if(f.options)assert.deepEqual(await page.locator(`input[data-field="${f.id}"]`).evaluateAll(es=>es.map(e=>e.value)),C.orderedOptions(f,p.id+':'+i+':'+f.id).map(o=>o.value));
    assert(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=1,'Number Theory overflow '+p.id+' '+i+' at '+width);
   }}}
   await page.setViewportSize({width:1440,height:900});
@@ -51,9 +51,26 @@ async function main(){
   await page.locator('[data-project="nt-p09"]').click();await page.locator('[data-step="0"]').click();await page.locator('#ticket-group').fill('23');await page.locator('#ticket-group').dispatchEvent('change');await collect();
   await page.locator('[data-project="nt-p07"]').click();await page.locator('#triple-m').evaluate(e=>{e.value='4';e.dispatchEvent(new Event('input',{bubbles:true}));});await collect();
   await page.locator('[data-project="nt-p06"]').click();await page.locator('#rsa-message').fill('11');await page.locator('#rsa-message').dispatchEvent('change');await page.locator('[data-lab="rsa-lock"]').click();await page.locator('[data-lab="rsa-unlock"]').click();await collect();
+
+  // Regressions supplied in the uploaded evidence: rounding, X, stable choices and exported statuses.
+  await chooseProject('nt-p07');await page.locator('[data-step="4"]').click();
+  for(const [value,correct]of [['5/13',true],['10/26',true],['0.38',true],['0.385',true],['0.3846',true],['0.39',false],['0.3845',false]]){
+   await page.locator('#f-px').fill(value);await page.locator('#check').click();await collect();
+   assert.equal(await page.locator('#feedback-px').evaluate(e=>e.classList.contains('correct')),correct,value);
+  }
+  await chooseProject('nt-p03');await page.locator('[data-step="3"]').click();
+  for(const value of ['10','X','x']){await page.locator('#f-check').fill(value);await page.locator('#check').click();await collect();assert(await page.locator('#feedback-check').evaluate(e=>e.classList.contains('correct')));}
+  const chosen=page.locator('input[data-field="swaps"][value="yes"]');await chosen.check();await page.locator('#check').click();await collect();
+  const order=await page.locator('input[data-field="swaps"]').evaluateAll(es=>es.map(e=>e.value));
+  await page.locator('#quidence-language').selectOption('en');await page.waitForFunction(()=>QuidenceI18n.locale==='en');
+  assert.deepEqual(await page.locator('input[data-field="swaps"]').evaluateAll(es=>es.map(e=>e.value)),order);assert(await chosen.isChecked());
+  await page.reload();await page.locator('#app').waitFor({state:'visible'});assert(await page.locator('input[data-field="swaps"][value="yes"]').isChecked());
+  assert.deepEqual(await page.locator('input[data-field="swaps"]').evaluateAll(es=>es.map(e=>e.value)),order);
+  await page.locator('#quidence-language').selectOption('es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');
+
   await page.locator('[data-project="nt-p01"]').click();await page.locator('[data-step="1"]').click();await collect();
-  await page.locator('#session').click();assert.equal(await page.locator('.student-work').last().textContent(),RAW);assert.equal(await page.locator('.student-work img').count(),0);
-  const downloadPromise=page.waitForEvent('download');await page.locator('#export').click();const download=await downloadPromise;const text=fs.readFileSync(await download.path(),'utf8');assert(text.includes(RAW));assert(text.includes('Historial de comprobaciones'));assert(text.includes('84'));assert(text.includes('6,468'));
+  await page.locator('#session').click();assert((await page.locator('.student-work').allTextContents()).includes(RAW));assert.equal(await page.locator('.student-work img').count(),0);
+  const downloadPromise=page.waitForEvent('download');await page.locator('#export').click();const download=await downloadPromise;const text=fs.readFileSync(await download.path(),'utf8');assert(text.includes(RAW));assert(text.includes('Historial de comprobaciones'));assert(text.includes('84'));assert(text.includes('6,468'));assert(text.includes('Estado de la respuesta:'));assert(!/\n(?:Status|Response status):|\nEstado de la respuesta: (?:correct|retry|format|empty|pending)\b/.test(text));
   await page.locator('#close-modal').click();await page.reload();await page.locator('#app').waitFor({state:'visible'});assert.equal(await page.locator('#f-why').inputValue(),RAW);
   // Opted-in learning criteria are captured with the check, rather than read retroactively.
   await page.evaluate(()=>QuidenceStorage.setItem('cluevera_learning_goal_v1',JSON.stringify({schema:'cluevera_learning_goal_v1',subject:'number-theory',text:'Explain gcd geometrically / 保留原文',includeInReport:true})));
@@ -66,6 +83,13 @@ async function main(){
     await page.locator('#quidence-language').selectOption(language);await page.waitForFunction(l=>QuidenceI18n.locale===l,language);
     await page.locator('dialog[open]').count().then(async n=>{if(n)await page.locator('#close-modal').click();});
     await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+
+    if(width<=375){const fits=await page.locator('#quidence-language').evaluate(e=>{
+      const s=getComputedStyle(e),canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');ctx.font=s.font;
+      const available=e.getBoundingClientRect().width-parseFloat(s.paddingLeft)-parseFloat(s.paddingRight)-20;
+      return available>=ctx.measureText(e.selectedOptions[0].textContent).width;
+    });assert(fits,'selected language must fit at '+width+' '+language);}
+
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow at '+width+' '+language);
     await page.locator('#toolkit').click();assert.equal(await page.locator('.tool-proof').count(),3);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await page.locator('#close-modal').click();result.layouts++;
    }

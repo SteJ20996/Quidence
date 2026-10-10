@@ -591,7 +591,7 @@
 | `notices` | Which test notices the swap? | choice | `only11` | **✓ Only the alternating (mod 11) test**<br>✗ Only the digit-sum (mod 9) test<br>✗ Both tests<br>✗ Neither test |
 | `swapProof` | Prove the general swap result | reason | （人工审阅） | 审阅要点：Show the change is 9·10ʲ·(u − v). / Explain why it is always a multiple of 9 and, using that 11 is prime, never a multiple of 11.<br>追问：Would a test based on 3 instead of 9 notice the swap? |
 | `wsum` | Weighted sum of the nine digits | number | **210** | 接受：`210`；应判错：`37`, `198` |
-| `check` | Check value c | number | **10** | 接受：`10`；应判错：`1`, `0`, `2` |
+| `check` | Check value c | number | **10** | 接受：`10`, `X`；应判错：`1`, `0`, `2` |
 | `swaps` | Does the scheme catch every neighboring swap? | choice | `yes` | **✓ Yes; a neighboring swap changes the sum by the difference of the two symbols, which is never a multiple of 11**<br>✗ No; swaps keep the same symbols, so the sum cannot change<br>✗ Only swaps that involve the digit 0 |
 | `checkProof` | Prove what the check digit catches | reason | （人工审阅） | 审阅要点：A single wrong symbol changes the sum by w(s′ − s); neither factor is a multiple of the prime 11. / A neighboring swap changes the sum by t − s, which is nonzero and between −10 and 10.<br>追问：Why would the proof fail if the scheme used 10 instead of 11? |
 
@@ -790,7 +790,7 @@
 
 #### 5 · Triples on a circle
 
-> Dividing a² + b² = c² by c² gives a point (a/c, b/c) on the unit circle x² + y² = 1. The line through (−1, 0) with slope t = 2/3 meets the circle at a second point. Find it without solving a quadratic from scratch: substitute y = t(x + 1) and use the product of the roots. Give the coordinates as exact fractions (a decimal rounded to two places is also accepted), and the primitive triple the point gives.
+> Dividing a² + b² = c² by c² gives a point (a/c, b/c) on the unit circle x² + y² = 1. The line through (−1, 0) with slope t = 2/3 meets the circle at a second point. Find it without solving a quadratic from scratch: substitute y = t(x + 1) and use the product of the roots. Give the coordinates as exact fractions (a decimal correctly rounded to at least two places is also accepted), and the primitive triple the point gives.
 
 字段：`px`, `py`, `triple`
 
@@ -817,8 +817,8 @@
 | `m2` | m for (7, 24, 25) | number | **4** | 接受：`4`；应判错：`3`, `16` |
 | `n2` | n for (7, 24, 25) | number | **3** | 接受：`3`；应判错：`4`, `9` |
 | `allTriples` | Prove that every primitive triple comes from the formula | reason | （人工审阅） | 审阅要点：Show u, v are coprime positive integers with uv = (b/2)². / Use unique factorization to show u and v are squares, then recover a, b, c.<br>追问：Why must b be the even leg in this argument? |
-| `px` | x-coordinate of the second point | number | **5/13** | 接受：`5/13`, `0.38`；应判错：`2/3`, `12/13` |
-| `py` | y-coordinate of the second point | number | **12/13** | 接受：`12/13`, `0.92`；应判错：`5/13`, `2/3` |
+| `px` | x-coordinate of the second point | number | **5/13** | 接受：`5/13`, `0.38`；允许：正确四舍五入至至少 2 位小数；应判错：`2/3`, `12/13` |
+| `py` | y-coordinate of the second point | number | **12/13** | 接受：`12/13`, `0.92`；允许：正确四舍五入至至少 2 位小数；应判错：`5/13`, `2/3` |
 | `triple` | Which primitive triple does the point give? | choice | `5-12-13` | **✓ 5, 12, 13**<br>✗ 3, 4, 5<br>✗ 2, 3, √13 |
 
 **Reference solution（总结）：** The identity (m² − n²)² + (2mn)² = (m² + n²)² shows the formula works; it gives primitive triples exactly when gcd(m, n) = 1 with opposite parity. Conversely, for a primitive triple with b even, (c + a)/2 and (c − a)/2 are coprime with product (b/2)², hence squares m² and n². On the unit circle, slope t = 2/3 gives (5/13, 12/13), the triple (5, 12, 13).

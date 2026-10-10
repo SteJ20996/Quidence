@@ -781,7 +781,8 @@
             "type": "number",
             "answer": "10",
             "accepted": [
-              "10"
+              "10",
+              "X"
             ]
           },
           {
@@ -1156,7 +1157,7 @@
       },
       {
         "title": "Triples on a circle",
-        "prompt": "Dividing a² + b² = c² by c² gives a point (a/c, b/c) on the unit circle x² + y² = 1. The line through (−1, 0) with slope t = 2/3 meets the circle at a second point. Find it without solving a quadratic from scratch: substitute y = t(x + 1) and use the product of the roots. Give the coordinates as exact fractions (a decimal rounded to two places is also accepted), and the primitive triple the point gives.",
+        "prompt": "Dividing a² + b² = c² by c² gives a point (a/c, b/c) on the unit circle x² + y² = 1. The line through (−1, 0) with slope t = 2/3 meets the circle at a second point. Find it without solving a quadratic from scratch: substitute y = t(x + 1) and use the product of the roots. Give the coordinates as exact fractions (a decimal correctly rounded to at least two places is also accepted), and the primitive triple the point gives.",
         "proof": "Substituting y = t(x + 1) into x² + y² = 1 gives (1 + t²)x² + 2t²x + (t² − 1) = 0. One root is x = −1. The product of the roots is (t² − 1)/(1 + t²), so the other root is x = (1 − t²)/(1 + t²), and then y = t(x + 1) = 2t/(1 + t²).\n\nWith t = 2/3: x = (1 − 4/9)/(1 + 4/9) = 5/13 and y = (4/3)/(13/9) = 12/13. Multiplying by 13 gives the primitive triple (5, 12, 13), which is the formula with m = 3, n = 2 (t = n/m).",
         "fields": [
           {
@@ -1167,7 +1168,8 @@
             "accepted": [
               "5/13",
               "0.38"
-            ]
+            ],
+            "minDecimalPlaces": 2
           },
           {
             "id": "py",
@@ -1177,7 +1179,8 @@
             "accepted": [
               "12/13",
               "0.92"
-            ]
+            ],
+            "minDecimalPlaces": 2
           },
           {
             "id": "triple",

@@ -104,5 +104,9 @@
   "Responses and reasoning from this browser. Proofs are pending review; numerical matches are not mastery judgments.": "Respuestas y razonamientos de este navegador. Las demostraciones quedan pendientes de revisión; las coincidencias numéricas no son evaluaciones de dominio.",
   "Check history": "Historial de comprobaciones",
   "Each check preserves the responses supplied at that time.": "Cada comprobación conserva las respuestas proporcionadas en ese momento.",
-  "Learning request included with this check (original wording):": "Solicitud de aprendizaje incluida en esta comprobación (texto original):"
+  "Learning request included with this check (original wording):": "Solicitud de aprendizaje incluida en esta comprobación (texto original):",
+  "Exact fractions or decimals correctly rounded to at least two places are accepted.": "Se aceptan fracciones exactas o decimales correctamente redondeados a dos o más cifras decimales.",
+  "Response status": "Estado de la respuesta",
+  "Check the response format": "Revisa el formato de la respuesta",
+  "No response yet": "Aún no hay respuesta"
 }

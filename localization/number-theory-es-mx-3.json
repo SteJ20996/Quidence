@@ -50,7 +50,7 @@
       },
       {
         "title": "Ternas en una circunferencia",
-        "prompt": "Dividir a² + b² = c² entre c² da un punto (a/c, b/c) en la circunferencia unitaria x² + y² = 1. La recta que pasa por (−1, 0) con pendiente t = 2/3 corta la circunferencia en un segundo punto. Encuéntralo sin resolver una cuadrática desde cero: sustituye y = t(x + 1) y utiliza el producto de las raíces. Indica las coordenadas como fracciones exactas (también se acepta un decimal redondeado a dos cifras decimales) y la terna primitiva que produce el punto.",
+        "prompt": "Dividir a² + b² = c² entre c² da un punto (a/c, b/c) en la circunferencia unitaria x² + y² = 1. La recta que pasa por (−1, 0) con pendiente t = 2/3 corta la circunferencia en un segundo punto. Encuéntralo sin resolver una cuadrática desde cero: sustituye y = t(x + 1) y utiliza el producto de las raíces. Indica las coordenadas como fracciones exactas (también se acepta un decimal correctamente redondeado a dos o más cifras decimales) y la terna primitiva que produce el punto.",
         "proof": [
           "Sustituir y = t(x + 1) en x² + y² = 1 da (1 + t²)x² + 2t²x + (t² − 1) = 0. Una raíz es x = −1. El producto de las raíces es (t² − 1)/(1 + t²), así que la otra raíz es x = (1 − t²)/(1 + t²) y después y = t(x + 1) = 2t/(1 + t²).",
           "Con t = 2/3: x = (1 − 4/9)/(1 + 4/9) = 5/13 y y = (4/3)/(13/9) = 12/13. Multiplicar por 13 da la terna primitiva (5, 12, 13), que corresponde a la fórmula con m = 3, n = 2 (t = n/m)."

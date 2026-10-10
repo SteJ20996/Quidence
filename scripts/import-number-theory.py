@@ -43,6 +43,9 @@ for raw in re.split(r"(?=^### 项目 \d+ ·)", text, flags=re.M)[1:]:
             f["answer"] = clean(expected)
             accepted = review.split("接受：", 1)[1].split("；", 1)[0]
             f["accepted"] = re.findall(r"`([^`]+)`", accepted)
+            rounding = re.search(r"四舍五入至至少 (\d+) 位小数", review)
+            if rounding:
+                f["minDecimalPlaces"] = int(rounding.group(1))
         else:
             answers = re.findall(r"`([^`]+)`", expected)
             f["answer"] = answers if kind == "multi" else answers[0]
