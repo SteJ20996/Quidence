@@ -12879,11 +12879,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "0098ac1177be2a5fe3fc29b1c3b53e7be847c5b699e29715a877e3b301562d94"
+          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "4487e8ae47d3d6a86fd2f0302da0b12ed702245adf8a8158d828fed6aa6bcf87"
+          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
         }
       ],
       "sourceReview": {
@@ -12911,11 +12911,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "0098ac1177be2a5fe3fc29b1c3b53e7be847c5b699e29715a877e3b301562d94"
+          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "4487e8ae47d3d6a86fd2f0302da0b12ed702245adf8a8158d828fed6aa6bcf87"
+          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
         }
       ],
       "sourceReview": {
@@ -12938,16 +12938,16 @@
       "title": "Why digit tests work",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "288ffade8830a5c40673c24e5b133f8d60ad8df3dab596ace777192b40f681e3",
+      "fingerprint": "3be989bb00e9cc1680a2b04166ddc519b88353549d78bf0fb41796cf758948be",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "0098ac1177be2a5fe3fc29b1c3b53e7be847c5b699e29715a877e3b301562d94"
+          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "4487e8ae47d3d6a86fd2f0302da0b12ed702245adf8a8158d828fed6aa6bcf87"
+          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
         }
       ],
       "sourceReview": {
@@ -12975,11 +12975,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "0098ac1177be2a5fe3fc29b1c3b53e7be847c5b699e29715a877e3b301562d94"
+          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "4487e8ae47d3d6a86fd2f0302da0b12ed702245adf8a8158d828fed6aa6bcf87"
+          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
         }
       ],
       "sourceReview": {
@@ -13007,11 +13007,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "0098ac1177be2a5fe3fc29b1c3b53e7be847c5b699e29715a877e3b301562d94"
+          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "4487e8ae47d3d6a86fd2f0302da0b12ed702245adf8a8158d828fed6aa6bcf87"
+          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
         }
       ],
       "sourceReview": {
@@ -13039,11 +13039,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "0098ac1177be2a5fe3fc29b1c3b53e7be847c5b699e29715a877e3b301562d94"
+          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "4487e8ae47d3d6a86fd2f0302da0b12ed702245adf8a8158d828fed6aa6bcf87"
+          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
         }
       ],
       "sourceReview": {
@@ -13066,16 +13066,16 @@
       "title": "Right triangles with whole-number sides",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "fe189323dc8b2de87b4426eb4dabae5590ed7186cfa6f7ca8da15006dc7eb6bf",
+      "fingerprint": "b885349612c19503644f509835bf879b821f90f44f6ec9287a1678beb1b0e79e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "0098ac1177be2a5fe3fc29b1c3b53e7be847c5b699e29715a877e3b301562d94"
+          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "4487e8ae47d3d6a86fd2f0302da0b12ed702245adf8a8158d828fed6aa6bcf87"
+          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
         }
       ],
       "sourceReview": {
@@ -13103,11 +13103,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "0098ac1177be2a5fe3fc29b1c3b53e7be847c5b699e29715a877e3b301562d94"
+          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "4487e8ae47d3d6a86fd2f0302da0b12ed702245adf8a8158d828fed6aa6bcf87"
+          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
         }
       ],
       "sourceReview": {
@@ -13135,11 +13135,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "0098ac1177be2a5fe3fc29b1c3b53e7be847c5b699e29715a877e3b301562d94"
+          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "4487e8ae47d3d6a86fd2f0302da0b12ed702245adf8a8158d828fed6aa6bcf87"
+          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
         }
       ],
       "sourceReview": {
@@ -13167,11 +13167,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "0098ac1177be2a5fe3fc29b1c3b53e7be847c5b699e29715a877e3b301562d94"
+          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "4487e8ae47d3d6a86fd2f0302da0b12ed702245adf8a8158d828fed6aa6bcf87"
+          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
         }
       ],
       "sourceReview": {

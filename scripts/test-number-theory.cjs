@@ -29,6 +29,27 @@ for(const [a,b] of [['−3','-3'],['84.000','84'],['10/26','5/13'],['8.4e1','84'
 for(const bad of ['1/0','1+1','NaN','Infinity','1,2','', '0x54','6,468'])test(()=>assert.equal(C.rational(bad),null));
 test(()=>assert.ok(!C.equalNumber('0.38','5/13')));
 test(()=>assert.equal(C.grade({type:'number',answer:'84',accepted:['84']},'83.999').status,'retry'));
+
+const circle=data.find(p=>p.id==='nt-p07').steps.at(-1),px=circle.fields.find(f=>f.id==='px'),py=circle.fields.find(f=>f.id==='py');
+for(const [f,values]of [[px,['5/13','10/26','0.38','0.385','0.3846','0.384615','0.3846153846153846']],[py,['12/13','24/26','0.92','0.923','0.9231','0.923077']]])for(const value of values)test(()=>assert.equal(C.grade(f,value).status,'correct',f.id+' '+value));
+for(const [f,values]of [[px,['0.39','0.3845','0.384','0.4','12/13','2/3']],[py,['0.93','0.9230','0.9232','0.9','5/13']]])for(const value of values)test(()=>assert.equal(C.grade(f,value).status,'retry',f.id+' '+value));
+for(const value of ['0,3846','0.3846/0','NaN','Infinity'])test(()=>assert.equal(C.grade(px,value).status,'format',value));
+test(()=>{assert(C.roundedDecimal('0.01','1/200',2));assert(C.roundedDecimal('-0.01','-1/200',2));assert(!C.roundedDecimal('0.00','1/200',2));assert(!C.roundedDecimal('0.4','5/13',2));assert(!C.roundedDecimal('0.38','5/13',undefined));});
+const checkValue=data.find(p=>p.id==='nt-p03').steps.flatMap(s=>s.fields).find(f=>f.id==='check');
+for(const value of ['10','X','x'])test(()=>assert.equal(C.grade(checkValue,value).status,'correct'));
+test(()=>assert.equal(C.grade({type:'number',answer:'10',accepted:['10']},'X').status,'format'));
+test(()=>{
+ const original=structuredClone(data),positions=[];
+ for(const p of data)for(const [i,s]of p.steps.entries())for(const f of s.fields.filter(f=>f.options)){
+  const order=C.orderedOptions(f,p.id+':'+i+':'+f.id);
+  assert.deepEqual(order,C.orderedOptions(f,p.id+':'+i+':'+f.id));
+  assert.deepEqual(order.map(o=>o.value).sort(),f.options.map(o=>o.value).sort());
+  if(f.type==='choice')positions.push(order.findIndex(o=>o.value===f.answer));else assert.deepEqual(order,f.options);
+ }
+ assert(new Set(positions).size>=3);assert(positions.filter(p=>p===0).length<positions.length/2);
+ assert.deepEqual(data,original);
+});
+
 for(let m=2;m<=10;m++)for(let n=1;n<m;n++)test(()=>{const t=C.triple(m,n);assert.equal(t.a*t.a+t.b*t.b,t.c*t.c);assert.equal(t.g===1,C.gcd(m,n)===1&&(m-n)%2===1);});
 for(let m=0;m<143;m++)test(()=>assert.equal(C.powMod(C.powMod(m,7,143),103,143),m));
 test(()=>{let a=[0,0];const cap=[7,11];const moves=[['fill',1],['pour',1],['empty',0],['pour',1],['fill',1],['pour',1],['empty',0],['pour',1],['empty',0]];for(const [op,i] of moves){if(op==='fill')a[i]=cap[i];if(op==='empty')a[i]=0;if(op==='pour')a=C.pour(a,cap,i);assert.ok(a.every((n,i)=>n>=0&&n<=cap[i]));}assert.deepEqual(a,[0,1]);});
