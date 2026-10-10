@@ -172,7 +172,8 @@ async function setLocale(next){
  if(root.location&&root.history){const url=new URL(root.location.href);url.searchParams.set('lang',locale);root.history.replaceState(root.history.state,'',url);}
  observer?.disconnect();apply();observe();root.document?.dispatchEvent(new root.CustomEvent('quidence:language',{detail:{locale}}));return locale;
 }
-function date(source){const d=new Date(source);return Number.isNaN(d.getTime())?String(source):new Intl.DateTimeFormat(locale==='es'?'es-US':'en-US',{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}).format(d);}
+const dateFormatters=new Map();
+function date(source){const d=new Date(source);if(Number.isNaN(d.getTime()))return String(source);if(!dateFormatters.has(locale))dateFormatters.set(locale,new Intl.DateTimeFormat(locale==='es'?'es-US':'en-US',{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}));return dateFormatters.get(locale).format(d);}
 function markdown(source){
  // Never translate quoted original answers or code/JSON records. For mixed
  // evidence lines only a known heading is translated; the student suffix stays.
@@ -199,8 +200,9 @@ function start(){
  label.setAttribute('for','quidence-language');
  for(const [value,caption]of [['en','English'],['es','Español']]){const option=root.document.createElement('option');option.value=value;option.textContent=caption;option.lang=value;option.setAttribute('data-no-translate','');control.appendChild(option);}
  control.value=locale;control.addEventListener('change',()=>setLocale(control.value));label.appendChild(control);toolbar.appendChild(label);
- const header=root.document.querySelector('.site-header');
- if(header){const group=root.document.createElement('div');group.className='header-tools';const preview=header.querySelector('.preview-label');if(preview)group.appendChild(preview);group.appendChild(toolbar);header.appendChild(group);}
+ const header=root.document.querySelector('.site-header'),languageHost=root.document.querySelector('[data-language-host]');
+ if(languageHost){control.classList.add('qa-language');languageHost.appendChild(toolbar);}
+ else if(header){const group=root.document.createElement('div');group.className='header-tools';const preview=header.querySelector('.preview-label');if(preview)group.appendChild(preview);group.appendChild(toolbar);header.appendChild(group);}
  else root.document.body.prepend(toolbar);
  apply();observer=new root.MutationObserver(schedule);observe();setLocale(desired);
  root.addEventListener('storage',event=>{if(event.key===KEY)setLocale(event.newValue);});

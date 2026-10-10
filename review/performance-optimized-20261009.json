@@ -1,0 +1,170 @@
+{
+  "label": "optimized-20261009",
+  "date": "2026-10-09T16:50:47.999Z",
+  "scope": "Local Chromium and local static server only; CPU throttling is a synthetic proxy, not a real phone or Cloudflare capacity measurement.",
+  "fixture": {
+    "tasks": 15,
+    "reportCharacters": 60461,
+    "sessionCharacters": 11857
+  },
+  "archives": [
+    {
+      "cpu": 1,
+      "count": 10,
+      "characters": 606597,
+      "seeded": true,
+      "loadMs": 63.8,
+      "readMs": 2.3,
+      "unchangedSaveMs": 2.4,
+      "newSaveMs": 13.8,
+      "renderedReports": 10,
+      "openMs": 60.5,
+      "sixLanguageChangesMs": 181.7,
+      "allReportsReachable": true,
+      "maxLongTaskMs": 0
+    },
+    {
+      "cpu": 1,
+      "count": 50,
+      "characters": 3032915,
+      "seeded": true,
+      "loadMs": 62.6,
+      "readMs": 6.9,
+      "unchangedSaveMs": 16,
+      "newSaveMs": 44.3,
+      "renderedReports": 20,
+      "openMs": 60.1,
+      "sixLanguageChangesMs": 163.2,
+      "allReportsReachable": true,
+      "maxLongTaskMs": 0
+    },
+    {
+      "cpu": 1,
+      "count": 100,
+      "characters": 6065805,
+      "seeded": false
+    },
+    {
+      "cpu": 4,
+      "count": 10,
+      "characters": 606597,
+      "seeded": true,
+      "loadMs": 168,
+      "readMs": 4.6,
+      "unchangedSaveMs": 7.2,
+      "newSaveMs": 48.3,
+      "renderedReports": 10,
+      "openMs": 129.4,
+      "sixLanguageChangesMs": 654.1,
+      "allReportsReachable": true,
+      "maxLongTaskMs": 76
+    },
+    {
+      "cpu": 4,
+      "count": 50,
+      "characters": 3032915,
+      "seeded": true,
+      "loadMs": 218.8,
+      "readMs": 25.3,
+      "unchangedSaveMs": 28.7,
+      "newSaveMs": 234.2,
+      "renderedReports": 20,
+      "openMs": 247.4,
+      "sixLanguageChangesMs": 725.7,
+      "allReportsReachable": true,
+      "maxLongTaskMs": 94
+    },
+    {
+      "cpu": 4,
+      "count": 100,
+      "characters": 6065805,
+      "seeded": false
+    }
+  ],
+  "histories": [
+    {
+      "cpu": 1,
+      "count": 10,
+      "characters": 118721,
+      "seeded": true,
+      "loadMs": 54.2,
+      "hundredKeystrokesMs": 88.1,
+      "savedHistoryButtons": 10,
+      "maxLongTaskMs": 0
+    },
+    {
+      "cpu": 1,
+      "count": 100,
+      "characters": 1184322,
+      "seeded": true,
+      "loadMs": 95.5,
+      "hundredKeystrokesMs": 85.4,
+      "savedHistoryButtons": 100,
+      "maxLongTaskMs": 0
+    },
+    {
+      "cpu": 1,
+      "count": 250,
+      "characters": 2960473,
+      "seeded": true,
+      "loadMs": 183.1,
+      "hundredKeystrokesMs": 97,
+      "savedHistoryButtons": 250,
+      "maxLongTaskMs": 75
+    },
+    {
+      "cpu": 4,
+      "count": 10,
+      "characters": 118721,
+      "seeded": true,
+      "loadMs": 202.7,
+      "hundredKeystrokesMs": 316.7,
+      "savedHistoryButtons": 10,
+      "maxLongTaskMs": 0
+    },
+    {
+      "cpu": 4,
+      "count": 100,
+      "characters": 1184322,
+      "seeded": true,
+      "loadMs": 364.9,
+      "hundredKeystrokesMs": 320.4,
+      "savedHistoryButtons": 100,
+      "maxLongTaskMs": 158
+    },
+    {
+      "cpu": 4,
+      "count": 250,
+      "characters": 2960473,
+      "seeded": true,
+      "loadMs": 615.3,
+      "hundredKeystrokesMs": 296.4,
+      "savedHistoryButtons": 250,
+      "maxLongTaskMs": 272
+    }
+  ],
+  "errors": [],
+  "quota": {
+    "filledBlocks": 51,
+    "rejectedNewSave": true,
+    "originalArchiveUnchanged": true,
+    "error": "Your report is open, but it could not be saved in this browser. Download a copy."
+  },
+  "sameActivityTabs": {
+    "staleWriteBlocked": true,
+    "firstDraftPreserved": true,
+    "secondDraftDownloadable": true
+  },
+  "localRequests": {
+    "concurrency": 100,
+    "total": 500,
+    "failed": 0,
+    "totalMs": 602.7,
+    "p50Ms": 39.8,
+    "p95Ms": 158.4
+  },
+  "isolatedBrowsers": {
+    "concurrentUsers": 8,
+    "reloadAndIsolationPassed": true
+  }
+}

@@ -2,6 +2,7 @@
 'use strict';
 // Legacy persistence identifiers are intentionally retained; see BRAND_MIGRATION.md.
 const KEYS={
+ 'quidence:number-theory-preview:v1':{label:'Number Theory projects'},
  cluevera_project_portfolio_v1:{label:"Field projects",schema:"cluevera_project_portfolio_v1"},
  cluevera_challenge_portfolio_v1:{label:'Diagnostic challenges',schema:'cluevera_challenge_portfolio_v1'},
  cluevera_algebra_progress_v06:{label:'Visual algebra activities',schema:'cluevera_algebra_progress_v06'},

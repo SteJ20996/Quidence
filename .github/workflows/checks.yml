@@ -38,3 +38,8 @@ jobs:
         run: npm run test:brand:browser
       - name: Check Spanish course evidence, number formats and lazy loading
         run: npm run test:spanish:review
+
+      - name: Check knowledge map, bilingual course navigation and saved evidence
+        run: npm run test:home:browser
+      - name: Check Number Theory steps, proofs, exports and phone layouts
+        run: npm run test:number-theory:browser

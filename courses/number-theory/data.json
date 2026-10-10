@@ -1,0 +1,1797 @@
+[
+  {
+    "id": "nt-p01",
+    "order": 1,
+    "title": "Square tiles and Euclid’s shortcut",
+    "level": "High-school foundation",
+    "difficulty": "medium",
+    "topic": "Divisibility and the greatest common divisor",
+    "prompt": "An invented community center wants to cover a rectangular floor 924 cm by 588 cm with identical square tiles, without cutting any tile. Tiles are laid in an aligned rectangular grid. Each tile side must be a whole number of centimeters, and the center wants the largest possible tiles. Do not list all divisors; use the reasoning below.",
+    "approach": "Do not search for divisors. Prove that (a, b) and (b, r) have the same common divisors when a = qb + r, so each division keeps the answer and makes the numbers smaller. The last nonzero remainder is the gcd, and every common divisor divides it. The tile count and the lcm follow from these two facts.",
+    "teacherGuide": "核心想法：不去列出 924 和 588 的所有因数，而是证明\"(a, b) 和 (b, a 除以 b 的余数) 有完全相同的公因数\"。这样问题每一步都变小，最后一个非零余数就是最大公因数，而且顺带证明了\"所有公因数都整除 gcd\"。第 3 步的多选题和第 4 步的最小公倍数都直接用这两个结论推出，不需要试数。常见卡点：学生会说\"余数越来越小所以会停\"，但没有说清\"余数是非负整数\"这个前提。",
+    "uses": "Division with remainder; well-ordering (a decreasing sequence of nonnegative integers stops).",
+    "steps": [
+      {
+        "title": "Run the algorithm",
+        "prompt": "Divide with remainder: 924 = 1 × 588 + 336, then divide 588 by 336, and continue until the remainder is 0. Give the last nonzero remainder and the number of divisions.",
+        "proof": "The divisions are\n\n924 = 1·588 + 336\n\n588 = 1·336 + 252\n\n336 = 1·252 + 84\n\n252 = 3·84 + 0.\n\nFour divisions are needed, and the last nonzero remainder is 84. Step 2 proves that this number is gcd(924, 588).",
+        "fields": [
+          {
+            "id": "gcd",
+            "label": "Last nonzero remainder, gcd(924, 588)",
+            "type": "number",
+            "answer": "84",
+            "accepted": [
+              "84"
+            ]
+          },
+          {
+            "id": "divisions",
+            "label": "Number of divisions",
+            "type": "number",
+            "answer": "4",
+            "accepted": [
+              "4"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Prove why it works",
+        "prompt": "Let a = qb + r with whole numbers q and r, where 0 ≤ r < b. Prove that a and b have exactly the same common divisors as b and r. Then explain why the algorithm stops and why the last nonzero remainder is the greatest common divisor.",
+        "proof": "Lemma. If a = qb + r, then the common divisors of a and b are exactly the common divisors of b and r.\n\nProof. Suppose d | a and d | b. Then d divides a − qb = r, so d is a common divisor of b and r. Conversely, suppose d | b and d | r. Then d divides qb + r = a, so d is a common divisor of a and b. ∎\n\nTermination. Each remainder satisfies 0 ≤ r < b, so the remainders form a strictly decreasing sequence of nonnegative integers: 336 > 252 > 84 > 0. A strictly decreasing sequence of nonnegative integers cannot go on forever, so some remainder equals 0.\n\nConclusion. Applying the lemma at each division, the common divisors of (924, 588), (588, 336), (336, 252), (252, 84) and (84, 0) are all the same set. The common divisors of 84 and 0 are exactly the divisors of 84, because every integer divides 0. So the common divisors of 924 and 588 are exactly the divisors of 84, and the greatest of them is 84. In particular, every common divisor of 924 and 588 divides 84.\n\nIn general, if the first remainder is already 0, then b | a and gcd(a, b) = b. Otherwise, if the nonzero remainders are r₁ > r₂ > ⋯ > rₙ, the lemma at each division shows that the common divisors of a and b are exactly the divisors of rₙ, so rₙ = gcd(a, b), and every common divisor of a and b divides it.",
+        "fields": [
+          {
+            "id": "why",
+            "label": "Prove why the algorithm works",
+            "type": "reason",
+            "criteria": [
+              "If d divides a and b, it divides r = a − qb; if d divides b and r, it divides a = qb + r. So the two pairs have the same common divisors.",
+              "The remainders are nonnegative integers that strictly decrease, so one of them is 0; the last nonzero remainder is the gcd, and every common divisor divides it."
+            ],
+            "followup": "Where in your proof did you use that each remainder is less than the divisor?"
+          }
+        ]
+      },
+      {
+        "title": "Count the tiles",
+        "prompt": "A square tile of side s covers the floor exactly if and only if s divides both 924 and 588. Use the largest such s. How many tiles fit along each side, and how many are needed? Then, using Step 2 instead of trial and error, select all the other tile sides in the list that also cover the floor exactly.",
+        "proof": "A row of tiles of side s fills 924 cm exactly when s | 924, and a column fills 588 cm exactly when s | 588. So the possible sides are the common divisors of 924 and 588, and the largest is gcd(924, 588) = 84.\n\nThen 924 = 84 × 11 and 588 = 84 × 7, so 11 tiles fit along one side, 7 along the other, and 11 × 7 = 77 tiles are needed.\n\nBy Step 2, a side s works if and only if s divides 84. Since 84 = 12 × 7 = 21 × 4 = 28 × 3 = 42 × 2, the sides 12, 21, 28 and 42 cm work. 56 does not divide 84 (84 = 56 + 28), so 56 cm does not work.",
+        "fields": [
+          {
+            "id": "along924",
+            "label": "Tiles along the 924 cm side",
+            "type": "number",
+            "answer": "11",
+            "accepted": [
+              "11"
+            ]
+          },
+          {
+            "id": "along588",
+            "label": "Tiles along the 588 cm side",
+            "type": "number",
+            "answer": "7",
+            "accepted": [
+              "7"
+            ]
+          },
+          {
+            "id": "total",
+            "label": "Total tiles",
+            "type": "number",
+            "answer": "77",
+            "accepted": [
+              "77"
+            ]
+          },
+          {
+            "id": "otherSides",
+            "label": "Other tile sides that also work",
+            "type": "multi",
+            "answer": [
+              "21",
+              "28",
+              "42",
+              "12"
+            ],
+            "options": [
+              {
+                "value": "21",
+                "label": "21 cm"
+              },
+              {
+                "value": "28",
+                "label": "28 cm"
+              },
+              {
+                "value": "42",
+                "label": "42 cm"
+              },
+              {
+                "value": "56",
+                "label": "56 cm"
+              },
+              {
+                "value": "12",
+                "label": "12 cm"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "From gcd to lcm",
+        "prompt": "A border pattern repeats every 924 cm and another every 588 cm. Prove that the shortest length where both patterns end together is 924 × 588 / 84. Use 924 = 84 × 11, 588 = 84 × 7, and the identity 1 = 2 × 11 − 3 × 7.",
+        "proof": "A length L works exactly when L is a common multiple of 924 and 588. Write 924 = 84·11 and 588 = 84·7.\n\nSince 924 | L, write L = 84·11·t for a positive integer t. Since 588 | L, we have 84·7 | 84·11·t, so 7 | 11t.\n\nClaim: 7 | t. Using 1 = 2·11 − 3·7, multiply by t: t = 2·(11t) − 3·7·t. Both terms on the right are multiples of 7 (the first because 7 | 11t), so 7 | t.\n\nSo t ≥ 7, and t = 7 works, since then L = 84·11·7 = 924·7 = 588·11. The least common multiple is 84·77 = 6468.\n\nCheck: gcd × lcm = 84 × 6468 = 543,312 = 924 × 588. The same argument works for any a = g·a′ and b = g·b′ as soon as we can write 1 = x·a′ + y·b′ with integers x and y. Bézout’s identity (a later project; assumed in general from nt-p04 on) gives such x and y when g = gcd(a, b), and then gcd(a, b)·lcm(a, b) = ab in general.",
+        "fields": [
+          {
+            "id": "lcm",
+            "label": "Shortest common length, lcm(924, 588) (cm)",
+            "type": "number",
+            "answer": "6468",
+            "accepted": [
+              "6468"
+            ]
+          },
+          {
+            "id": "identity",
+            "label": "Which identity does your result confirm?",
+            "type": "choice",
+            "answer": "prod",
+            "options": [
+              {
+                "value": "prod",
+                "label": "gcd × lcm = 924 × 588"
+              },
+              {
+                "value": "other-1",
+                "label": "gcd + lcm = 924 + 588"
+              },
+              {
+                "value": "other-2",
+                "label": "gcd and lcm are unrelated"
+              }
+            ]
+          },
+          {
+            "id": "lcmProof",
+            "label": "Prove that 6468 is the least common multiple",
+            "type": "reason",
+            "criteria": [
+              "Write a common multiple as L = 84·11·t; then 7 | 11t.",
+              "Use 1 = 2·11 − 3·7 to show 7 | t, so t ≥ 7; t = 7 works."
+            ],
+            "followup": "Why would the argument fail if 11 and 7 had a common factor?"
+          }
+        ]
+      }
+    ],
+    "nextCheck": "Prove that if Euclid’s algorithm on a and b takes k divisions, then b is at least the (k + 1)-th Fibonacci number."
+  },
+  {
+    "id": "nt-p02",
+    "order": 2,
+    "title": "Two jugs and no measuring cup",
+    "level": "Bridge (high school to undergraduate)",
+    "difficulty": "medium",
+    "topic": "Linear Diophantine equations",
+    "prompt": "At an invented science fair, you have only two unmarked jugs that hold 7 L and 11 L, plus a large tank of water. You may fill a jug, empty a jug, or pour from one jug into the other until the receiving jug is full or the pouring jug is empty. You need exactly 1 L.",
+    "approach": "Run the Euclidean algorithm backward to write 1 = 2·11 − 3·7, and read it as fills and empties. Then prove what every solution looks like. For jugs that cannot make some amounts, find a quantity that no move can change: every amount stays a multiple of the gcd.",
+    "teacherGuide": "核心想法有两个。第一，\"能量出 1 升\"等价于找整数 x、y 使 7x + 11y = 1，扩展欧几里得算法把这个解\"倒推\"出来，并且给出一个具体的倒水顺序。第二，\"量不出 4 升\"要用不变量来证明：不管怎么操作，两个壶里的水量永远是 3 的倍数。这样学生不用尝试所有倒法，就能同时证明\"能\"和\"不能\"。常见卡点：求通解时，学生只验证 (x + 11k, y − 7k) 是解，却没有证明\"所有解都长这样\"。",
+    "uses": "Euclidean algorithm (nt-p01); induction on the number of moves; if m | kn and gcd(m, n) = 1 then m | k (proved for 7 and 11 in Step 2, assumed in general in Step 4).",
+    "steps": [
+      {
+        "title": "Run Euclid backward",
+        "prompt": "Find gcd(7, 11) with the Euclidean algorithm. Then substitute backward to find integers x and y with 7x + 11y = 1, with x negative and as close to 0 as possible. Turn your x and y into a fill-and-pour sequence.",
+        "proof": "Euclid: 11 = 1·7 + 4, 7 = 1·4 + 3, 4 = 1·3 + 1, 3 = 3·1 + 0, so gcd(7, 11) = 1.\n\nBack-substitution, one remainder at a time:\n\n1 = 4 − 3\n\n= 4 − (7 − 4) = 2·4 − 7\n\n= 2·(11 − 7) − 7 = 2·11 − 3·7.\n\nSo x = −3 and y = 2. By Step 2, every solution has x = −3 + 11k, so no other negative x is closer to 0.\n\nMeaning: pour in 11 L twice (+22 L) and pour out 7 L three times (−21 L), leaving 1 L. A sequence (amounts written as (7 L jug, 11 L jug)):\n\nfill the 11 L jug (0, 11); pour into the 7 L jug (7, 4); empty the 7 L jug (0, 4); pour (4, 0); fill the 11 L jug (4, 11); pour until the 7 L jug is full (7, 8); empty the 7 L jug (0, 8); pour (7, 1); empty the 7 L jug (0, 1).\n\nThe 11 L jug now holds 1 L. The 11 L jug was filled twice and the 7 L jug was emptied three times, matching y = 2 and x = −3: 2·11 − 3·7 = 1.",
+        "fields": [
+          {
+            "id": "g",
+            "label": "gcd(7, 11)",
+            "type": "number",
+            "answer": "1",
+            "accepted": [
+              "1"
+            ]
+          },
+          {
+            "id": "x",
+            "label": "x (negative, closest to 0)",
+            "type": "number",
+            "answer": "-3",
+            "accepted": [
+              "-3"
+            ]
+          },
+          {
+            "id": "y",
+            "label": "y",
+            "type": "number",
+            "answer": "2",
+            "accepted": [
+              "2"
+            ]
+          },
+          {
+            "id": "pour",
+            "label": "Give a fill-and-pour sequence",
+            "type": "reason",
+            "criteria": [
+              "Use 2·11 − 3·7 = 1: fill the 11 L jug twice and pour from it into the 7 L jug, emptying the 7 L jug whenever it is full. The 7 L jug becomes full three times (3·7 = 21 = 22 − 1), and 1 L is left in the 11 L jug.",
+              "Show the amounts after each move, using only moves the rules allow."
+            ],
+            "followup": "How do the number of times you fill the 11 L jug and the number of times the 7 L jug becomes full match y and x?"
+          }
+        ]
+      },
+      {
+        "title": "Find every solution",
+        "prompt": "Prove that (x, y) solves 7x + 11y = 1 if and only if x = −3 + 11k and y = 2 − 7k for some integer k. Then give the solution with the smallest positive x.",
+        "proof": "If part. 7(−3 + 11k) + 11(2 − 7k) = −21 + 77k + 22 − 77k = 1.\n\nOnly-if part. Let 7x + 11y = 1. Subtract 7(−3) + 11(2) = 1 to get 7(x + 3) = 11(2 − y). So 11 divides 7(x + 3).\n\nClaim: 11 divides x + 3. Multiply 1 = 2·11 − 3·7 by (x + 3): x + 3 = 2·11·(x + 3) − 3·7(x + 3). The first term is a multiple of 11, and 7(x + 3) is a multiple of 11, so x + 3 is a multiple of 11. Write x + 3 = 11k. Then 7·11k = 11(2 − y), so 2 − y = 7k and y = 2 − 7k. ∎\n\nThe smallest positive x: −3 + 11k > 0 exactly when k ≥ 1, so k = 1 gives x = 8 and y = −5. Check: 56 − 55 = 1.",
+        "fields": [
+          {
+            "id": "xpos",
+            "label": "Smallest positive x",
+            "type": "number",
+            "answer": "8",
+            "accepted": [
+              "8"
+            ]
+          },
+          {
+            "id": "ypos",
+            "label": "Matching y",
+            "type": "number",
+            "answer": "-5",
+            "accepted": [
+              "-5"
+            ]
+          },
+          {
+            "id": "pattern",
+            "label": "How are the solutions related?",
+            "type": "choice",
+            "answer": "steps",
+            "options": [
+              {
+                "value": "steps",
+                "label": "x changes by multiples of 11 while y changes by the same multiples of 7 in the opposite direction"
+              },
+              {
+                "value": "other-1",
+                "label": "x and y both change by 1"
+              },
+              {
+                "value": "other-2",
+                "label": "There is only one solution"
+              }
+            ]
+          },
+          {
+            "id": "allSolutions",
+            "label": "Prove that you found every solution",
+            "type": "reason",
+            "criteria": [
+              "Subtract the known solution: 7(x + 3) = 11(2 − y), so 11 | 7(x + 3).",
+              "Use 1 = 2·11 − 3·7 (or gcd(7, 11) = 1) to conclude 11 | x + 3, then solve for y."
+            ],
+            "followup": "Why is it not enough to check that (−3 + 11k, 2 − 7k) satisfies the equation?"
+          }
+        ]
+      },
+      {
+        "title": "Prove that some targets are impossible",
+        "prompt": "Now the jugs hold 6 L and 15 L. Find gcd(6, 15). Prove that after any sequence of moves, each jug holds a multiple of 3 liters. Then select every amount from 1 L to 9 L that can be left in the 15 L jug, and give a sequence for each one you select.",
+        "proof": "gcd(6, 15) = 3, since 15 = 2·6 + 3 and 6 = 2·3.\n\nInvariant. Claim: after every move, both amounts are multiples of 3. At the start both are 0. Suppose before a move the amounts u (6 L jug) and v (15 L jug) are multiples of 3.\n\n• Filling sets an amount to 6 or 15, both multiples of 3.\n\n• Emptying sets an amount to 0.\n\n• Pouring from one jug into the other moves t liters, where t is the smaller of the amount in the pouring jug and the free space in the receiving jug. Both are multiples of 3 (a capacity minus a multiple of 3), so t is a multiple of 3, and both new amounts stay multiples of 3.\n\nBy induction on the number of moves, the claim always holds. So 1, 2, 4, 5, 7 and 8 L are impossible.\n\nThe multiples of 3 are possible:\n\n6 L: fill the 6 L jug and pour it into the 15 L jug.\n\n9 L: fill the 15 L jug and pour into the 6 L jug until it is full; 9 L remain.\n\n3 L: continue from 9 L: empty the 6 L jug and pour again; 15 − 6 − 6 = 3 L remain.",
+        "fields": [
+          {
+            "id": "g2",
+            "label": "gcd(6, 15)",
+            "type": "number",
+            "answer": "3",
+            "accepted": [
+              "3"
+            ]
+          },
+          {
+            "id": "amounts",
+            "label": "Amounts you can leave in the 15 L jug",
+            "type": "multi",
+            "answer": [
+              "3",
+              "6",
+              "9"
+            ],
+            "options": [
+              {
+                "value": "1",
+                "label": "1 L"
+              },
+              {
+                "value": "2",
+                "label": "2 L"
+              },
+              {
+                "value": "3",
+                "label": "3 L"
+              },
+              {
+                "value": "4",
+                "label": "4 L"
+              },
+              {
+                "value": "5",
+                "label": "5 L"
+              },
+              {
+                "value": "6",
+                "label": "6 L"
+              },
+              {
+                "value": "7",
+                "label": "7 L"
+              },
+              {
+                "value": "8",
+                "label": "8 L"
+              },
+              {
+                "value": "9",
+                "label": "9 L"
+              }
+            ]
+          },
+          {
+            "id": "invariant",
+            "label": "Prove the multiple-of-3 invariant",
+            "type": "reason",
+            "criteria": [
+              "State the claim for the amounts in both jugs and check the starting state.",
+              "Check each kind of move: fill, empty, pour (the poured amount is a multiple of 3)."
+            ],
+            "followup": "Why does an invariant prove impossibility without trying every sequence?"
+          }
+        ]
+      },
+      {
+        "title": "State the general rule",
+        "prompt": "For jugs of a and b liters with a < b, explain which whole-liter amounts can be left in the larger jug, and why. Connect your answer to gcd(a, b).",
+        "proof": "Let g = gcd(a, b), with a < b.\n\nOnly multiples of g. The Step 3 invariant works with 3 replaced by g: capacities a and b are multiples of g, so every fill, empty and pour keeps both amounts multiples of g.\n\nEvery multiple of g up to b. Fill the a-liter jug and pour it into the b-liter jug, emptying the b-liter jug whenever it becomes full, and repeat. After the small jug has been poured out k times, a total of ka liters has gone into the large jug and a multiple of b has been thrown away, so the large jug holds the remainder r_k of ka divided by b.\n\nFirst, gcd(a/g, b/g) = 1: if d > 0 divides both a/g and b/g, then dg divides a and b, so dg ≤ g and d = 1.\n\nFor k = 0, 1, …, b/g − 1 the remainders r_k are all different: if ka and k′a leave the same remainder on division by b, then b | (k − k′)a, so (b/g) | (k − k′)(a/g). Since gcd(b/g, a/g) = 1, (b/g) | k − k′, and since |k − k′| < b/g, k = k′. They are b/g different multiples of g between 0 and b − g, so they are exactly 0, g, 2g, …, b − g. Together with b itself (fill the large jug), every multiple of g up to b can be left in the large jug.\n\nSo the amounts that can be left in the larger jug are exactly the multiples of gcd(a, b) from 0 to b. For 7 L and 11 L, g = 1 and every whole amount up to 11 L is possible.",
+        "fields": [
+          {
+            "id": "rule",
+            "label": "State and justify the general rule",
+            "type": "reason",
+            "criteria": [
+              "Every measurable amount is a multiple of gcd(a, b) (invariant).",
+              "Every multiple of gcd(a, b) up to b can be left in the larger jug (the pouring pattern: the remainders of ka on division by b are different for k = 0, …, b/g − 1)."
+            ],
+            "followup": "With jugs of 9 L and 14 L, which amounts up to 14 L can you leave in the larger jug?"
+          }
+        ]
+      }
+    ],
+    "nextCheck": "Prove Bézout’s identity in general: for any positive integers a and b there are integers x and y with ax + by = gcd(a, b)."
+  },
+  {
+    "id": "nt-p09",
+    "order": 3,
+    "title": "Ticket packs and the largest impossible order",
+    "level": "High-school foundation",
+    "difficulty": "medium",
+    "topic": "Linear combinations with nonnegative coefficients",
+    "prompt": "An invented museum sells tickets only in packs of 5 and packs of 7. A group can buy any number of each kind of pack, including zero, and must buy exactly as many tickets as people. Work with remainders, not with a list of all sizes.",
+    "approach": "Sort sizes by their remainder mod 5. Adding a 5-pack keeps the remainder, so each class has one threshold: the smallest size in that class made with 7-packs only. Every size at or above the threshold works, and every size below it fails. The largest impossible size and the count both follow from the thresholds, with no list.",
+    "teacherGuide": "核心想法：不要从 1 一个个试到 30，而是按\"除以 5 的余数\"把所有人数分成 5 类。每一类里，只要用到的 7 张包数 b 确定了（b 只能是 0–4），能买的人数就是\"从 7b 开始，每次加 5\"。这样每一类都有一个\"门槛\"，门槛以下买不了，门槛以上全都能买。最大的门槛是 28，所以最大的买不了的数是 28 − 5 = 23；每类买不了的个数也能直接算出来，不需要列表。最后一步把同样的推理推广到任意互素的 a、b。",
+    "uses": "Division with remainder; if a | bj and gcd(a, b) = 1 then a | j (assumed); a floor-function lemma (proved in Step 3).",
+    "steps": [
+      {
+        "title": "Sort sizes by their remainder mod 5",
+        "prompt": "The numbers 7b for b = 0, 1, 2, 3, 4 are 0, 7, 14, 21, 28. Show that they leave five different remainders when divided by 5. Then prove: a size n can be bought exactly when n ≥ 7b, where b is the one value in {0, 1, 2, 3, 4} with 7b ≡ n (mod 5). Give the smallest size that can be bought among sizes leaving remainder 3, and among sizes leaving remainder 1.",
+        "proof": "Remainders: 0, 7, 14, 21, 28 leave 0, 2, 4, 1, 3 when divided by 5, which are all different. So for each size n there is exactly one b in {0, …, 4} with 7b ≡ n (mod 5); call it bₙ.\n\nClaim: n = 5x + 7y has a solution with whole numbers x, y ≥ 0 if and only if n ≥ 7bₙ.\n\nProof. (⇐) If n ≥ 7bₙ, then n − 7bₙ is a nonnegative multiple of 5, say 5x, so n = 5x + 7bₙ. (⇒) Suppose n = 5x + 7y with x, y ≥ 0. Divide y by 5: y = 5s + y′ with 0 ≤ y′ ≤ 4. Then n = 5(x + 7s) + 7y′, so 7y′ ≡ n (mod 5), which forces y′ = bₙ. Hence n = 5(x + 7s) + 7bₙ ≥ 7bₙ. ∎\n\nSizes with remainder 3 have bₙ = 4, so the smallest one that can be bought is 28. Sizes with remainder 1 have bₙ = 3, so the smallest is 21.",
+        "fields": [
+          {
+            "id": "thr3",
+            "label": "Smallest possible size with remainder 3 (mod 5)",
+            "type": "number",
+            "answer": "28",
+            "accepted": [
+              "28"
+            ]
+          },
+          {
+            "id": "thr1",
+            "label": "Smallest possible size with remainder 1 (mod 5)",
+            "type": "number",
+            "answer": "21",
+            "accepted": [
+              "21"
+            ]
+          },
+          {
+            "id": "classProof",
+            "label": "Prove the residue-class criterion",
+            "type": "reason",
+            "criteria": [
+              "Show that 0, 7, 14, 21, 28 have different remainders mod 5.",
+              "If n = 5x + 7y, reduce y mod 5 to show n ≥ 7bₙ; conversely, n − 7bₙ is a nonnegative multiple of 5."
+            ],
+            "followup": "Why does it matter that the five remainders are all different?"
+          }
+        ]
+      },
+      {
+        "title": "Find the largest impossible size",
+        "prompt": "Use Step 1 to find the largest size that cannot be bought and the smallest N such that every size from N on can be bought. Prove both.",
+        "proof": "In the class with bₙ = b, the impossible sizes are exactly the positive numbers below 7b in that class, and the largest is 7b − 5. The largest threshold is 7·4 = 28, so the largest impossible size is 28 − 5 = 23.\n\nEvery n ≥ 24 can be bought: if bₙ ≤ 3, then 7bₙ ≤ 21 < n; if bₙ = 4, then n ≡ 3 (mod 5) and n ≥ 24 forces n ≥ 28 = 7bₙ. In both cases Step 1 applies. Since 23 is impossible, 24 is the smallest N with every size from N on possible.",
+        "fields": [
+          {
+            "id": "largest",
+            "label": "Largest impossible size (5 and 7)",
+            "type": "number",
+            "answer": "23",
+            "accepted": [
+              "23"
+            ]
+          },
+          {
+            "id": "runStart",
+            "label": "Smallest N with every size from N on possible",
+            "type": "number",
+            "answer": "24",
+            "accepted": [
+              "24"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Count the impossible sizes without listing them",
+        "prompt": "In the class with threshold 7b (b = 1, 2, 3, 4), count the positive sizes below 7b that leave the same remainder as 7b. Add the four counts.",
+        "proof": "In the class with threshold 7b, the impossible sizes are 7b − 5, 7b − 10, …, as long as they stay positive: 7b − 5j > 0 for j = 1, 2, …, ⌊7b/5⌋ (7b/5 is not a whole number for b = 1, …, 4, since 5 ∤ 7b).\n\nCounts: b = 1: ⌊7/5⌋ = 1; b = 2: ⌊14/5⌋ = 2; b = 3: ⌊21/5⌋ = 4; b = 4: ⌊28/5⌋ = 5. The class b = 0 (multiples of 5) has none.\n\nTotal: 1 + 2 + 4 + 5 = 12 impossible sizes.\n\nLemma. If N is an integer and x is not, then ⌊x⌋ + ⌊N − x⌋ = N − 1. Proof: write x = k + f with k = ⌊x⌋ and 0 < f < 1; then N − x = (N − k − 1) + (1 − f) with 0 < 1 − f < 1, so ⌊N − x⌋ = N − k − 1. ∎\n\nPairing gives the same total: ⌊7b/5⌋ + ⌊7(5 − b)/5⌋ = ⌊7b/5⌋ + ⌊7 − 7b/5⌋ = 6, because 7b/5 is not an integer. The pairs (b = 1, 4) and (b = 2, 3) give 6 + 6 = 12 = (5 − 1)(7 − 1)/2.",
+        "fields": [
+          {
+            "id": "howMany",
+            "label": "Number of impossible sizes (5 and 7)",
+            "type": "number",
+            "answer": "12",
+            "accepted": [
+              "12"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Generalize, and see where it breaks",
+        "prompt": "For coprime pack sizes a, b ≥ 2, repeat Steps 1–3 to prove that the largest impossible size is ab − a − b and that there are (a − 1)(b − 1)/2 impossible sizes. Apply the result to packs of 3 and 8. Then decide whether packs of 6 and 9 have a largest impossible size.",
+        "proof": "General proof (gcd(a, b) = 1, a, b ≥ 2). The numbers b·j for j = 0, 1, …, a − 1 leave different remainders mod a: if bj ≡ bj′ (mod a), then a | b(j − j′), and since gcd(a, b) = 1 this gives a | j − j′; since |j − j′| < a, j = j′. These are a numbers with a different remainders, and there are only a possible remainders, so each remainder occurs exactly once. So each class mod a has exactly one threshold b·j, and as in Step 1 the sizes in that class that can be bought are exactly those ≥ b·j. The largest threshold is b(a − 1), so the largest impossible size is b(a − 1) − a = ab − a − b. The class with threshold bj contains ⌊bj/a⌋ impossible sizes, because bj/a is not an integer when 1 ≤ j ≤ a − 1 (a ∤ bj since gcd(a, b) = 1 and 0 < j < a). By the lemma in Step 3 (with N = b and x = bj/a), ⌊bj/a⌋ + ⌊b(a − j)/a⌋ = ⌊bj/a⌋ + ⌊b − bj/a⌋ = b − 1. Adding this identity over j = 1, …, a − 1 counts every class twice, so twice the total is (a − 1)(b − 1), and the total is (a − 1)(b − 1)/2.\n\nPacks of 3 and 8: 24 − 3 − 8 = 13 and 2·7/2 = 7.\n\nPacks of 6 and 9: every purchase is 6x + 9y = 3(2x + 3y), a multiple of 3. So every size that is not a multiple of 3 (40, 41, 43, …) is impossible, and there is no largest impossible size. The proof above needed gcd(a, b) = 1.",
+        "fields": [
+          {
+            "id": "largest38",
+            "label": "Largest impossible size for packs of 3 and 8",
+            "type": "number",
+            "answer": "13",
+            "accepted": [
+              "13"
+            ]
+          },
+          {
+            "id": "count38",
+            "label": "Number of impossible sizes for packs of 3 and 8",
+            "type": "number",
+            "answer": "7",
+            "accepted": [
+              "7"
+            ]
+          },
+          {
+            "id": "six9",
+            "label": "Is there a largest impossible size for packs of 6 and 9?",
+            "type": "choice",
+            "answer": "no",
+            "options": [
+              {
+                "value": "no",
+                "label": "No; every size that is not a multiple of 3 is impossible, so there are infinitely many"
+              },
+              {
+                "value": "other-1",
+                "label": "Yes; it is 6 × 9 − 6 − 9 = 39"
+              },
+              {
+                "value": "other-2",
+                "label": "Yes; it is 5"
+              }
+            ]
+          },
+          {
+            "id": "general",
+            "label": "Prove the general result",
+            "type": "reason",
+            "criteria": [
+              "Show that b·0, b·1, …, b·(a − 1) leave different remainders mod a, using gcd(a, b) = 1.",
+              "Conclude that the largest impossible size is b(a − 1) − a, and count with the pairing ⌊bj/a⌋ + ⌊b(a − j)/a⌋ = b − 1."
+            ],
+            "followup": "Which step of your proof fails for packs of 6 and 9?"
+          }
+        ]
+      }
+    ],
+    "nextCheck": "Prove that for coprime a and b, a size n with 0 ≤ n ≤ ab − a − b can be bought if and only if ab − a − b − n cannot."
+  },
+  {
+    "id": "nt-p10",
+    "order": 4,
+    "title": "Euclid’s argument for endless primes",
+    "level": "High-school foundation",
+    "difficulty": "medium",
+    "topic": "Prime numbers",
+    "prompt": "Suppose someone claims to have a complete, finite list of all primes. Euclid’s argument shows how to find a prime that is missing from any such list, without factoring anything.",
+    "approach": "Multiply the primes on a list and add 1. The result leaves remainder 1 on division by each listed prime, so its prime factors are new. Prove that every number above 1 has a prime factor, and the argument is complete. Working with remainders mod 4 gives infinitely many primes of the form 4k + 3.",
+    "teacherGuide": "核心想法：不需要知道 Q 是不是质数，也不需要把 Q 分解出来。只要证明两件事：(1) 任何大于 1 的整数都有质因数；(2) 名单上的质数都不整除 Q（因为余数都是 1）。所以 Q 的质因数一定不在名单上。题目里直接给出 30031 = 59 × 509，学生只需用乘法核对，这个反例的作用是说明\"Q 本身不一定是质数\"。第 4 步把同样的推理用到 4k + 3 型质数，关键是\"几个 4k + 1 型的数相乘，还是 4k + 1 型\"。",
+    "uses": "Well-ordering (least divisor greater than 1, smallest counterexample); remainders.",
+    "steps": [
+      {
+        "title": "Build Q and find its remainders",
+        "prompt": "For the list 2, 3, 5, 7, 11, 13, compute Q = 2 × 3 × 5 × 7 × 11 × 13 + 1. Prove that Q leaves remainder 1 when divided by any prime on the list.",
+        "proof": "Q = 30030 + 1 = 30031. For any prime p on the list, the product 2·3·5·7·11·13 is p times a whole number, say pk. Then Q = pk + 1 with 0 ≤ 1 < p, so the remainder is 1. In particular, no prime on the list divides Q.",
+        "fields": [
+          {
+            "id": "q2",
+            "label": "Q for 2, 3, 5, 7, 11, 13",
+            "type": "number",
+            "answer": "30031",
+            "accepted": [
+              "30031"
+            ]
+          },
+          {
+            "id": "rem",
+            "label": "Remainder of Q divided by any listed prime",
+            "type": "number",
+            "answer": "1",
+            "accepted": [
+              "1"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Is Q prime?",
+        "prompt": "Check by multiplication that 59 × 509 = 30031. What does the argument actually guarantee?",
+        "proof": "59 × 509 = 59 × 500 + 59 × 9 = 29500 + 531 = 30031. So Q is not prime. This does not break the argument: by Step 1, no listed prime divides Q, so every prime factor of Q is missing from the list. The argument guarantees a prime missing from the list, not that Q itself is prime.",
+        "fields": [
+          {
+            "id": "prodCheck",
+            "label": "59 × 509",
+            "type": "number",
+            "answer": "30031",
+            "accepted": [
+              "30031"
+            ]
+          },
+          {
+            "id": "guarantee",
+            "label": "What does the argument guarantee?",
+            "type": "choice",
+            "answer": "newfactor",
+            "options": [
+              {
+                "value": "newfactor",
+                "label": "Every prime factor of Q is missing from the list"
+              },
+              {
+                "value": "other-1",
+                "label": "Q itself is always prime"
+              },
+              {
+                "value": "other-2",
+                "label": "Q is the next prime after the list"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Write the complete proof",
+        "prompt": "Prove that every integer N > 1 has a prime factor. Then prove that there are infinitely many primes.",
+        "proof": "Lemma. Every integer N > 1 has a prime factor.\n\nProof. The set of divisors of N that are greater than 1 is not empty (it contains N), so it has a least element d. If d were not prime, d = rs with 1 < r < d, and r would be a divisor of N greater than 1 and smaller than d, a contradiction. So d is prime. ∎\n\nTheorem. There are infinitely many primes.\n\nProof. Let p₁, …, pₖ be any finite list of primes and Q = p₁p₂⋯pₖ + 1. Then Q > 1, so by the lemma Q has a prime factor p. If p were some pᵢ, then p would divide both Q and p₁⋯pₖ, hence their difference 1, which is impossible. So p is a prime not on the list. Since every finite list misses a prime, there are infinitely many primes. ∎",
+        "fields": [
+          {
+            "id": "proof",
+            "label": "Write the complete proof",
+            "type": "reason",
+            "criteria": [
+              "Prove that every N > 1 has a prime factor (least divisor greater than 1).",
+              "Show that a listed prime dividing Q would divide 1; conclude that every finite list misses a prime."
+            ],
+            "followup": "Does the proof need Q to be prime? Use 30031 in your answer."
+          }
+        ]
+      },
+      {
+        "title": "A variation for primes of the form 4k + 3",
+        "prompt": "Let Q = 4 × (3 × 7 × 11) − 1. Compute Q and its remainder mod 4. Prove that Q must have a prime factor of the form 4k + 3 that is not 3, 7 or 11. Then use the given prime factorization Q = 13 × 71 (13 and 71 are prime) to name a prime factor of Q of the form 4k + 3 that is not 3, 7 or 11.",
+        "proof": "Q = 4·231 − 1 = 923, and 923 = 4·230 + 3, so Q ≡ 3 (mod 4).\n\nLemma. If x ≡ 1 and y ≡ 1 (mod 4), then xy ≡ 1 (mod 4). Proof: (4s + 1)(4t + 1) = 4(4st + s + t) + 1.\n\nClaim. Every integer N > 1 with N ≡ 3 (mod 4) has a prime factor ≡ 3 (mod 4).\n\nProof. Suppose not, and let N be the smallest counterexample (well-ordering). N is not prime, since a prime N ≡ 3 would be its own such factor. So N = rs with 1 < r, s < N. N is odd, so r and s are odd, hence each is ≡ 1 or ≡ 3 (mod 4). By the lemma they are not both ≡ 1, so one of them, say r, is ≡ 3 (mod 4). Since 1 < r < N, r is not a counterexample, so r has a prime factor ≡ 3 (mod 4), and that prime also divides N. This contradicts the choice of N. ∎\n\nBy the claim, Q has a prime factor q ≡ 3 (mod 4).\n\nq is not 3, 7 or 11: for each such p, 4·231 is a multiple of p, so Q = 4·231 − 1 leaves remainder p − 1 ≠ 0.\n\nWith Q = 13 × 71: 71 is a prime factor of Q, 71 = 4·17 + 3, and 71 is not 3, 7 or 11. So 71 is a new prime of the form 4k + 3. (13 = 4·3 + 1 is not of that form.)\n\nThe same construction, applied to any finite list of primes of the form 4k + 3, always produces a new one, so there are infinitely many such primes.",
+        "fields": [
+          {
+            "id": "q3",
+            "label": "Q = 4 × 231 − 1",
+            "type": "number",
+            "answer": "923",
+            "accepted": [
+              "923"
+            ]
+          },
+          {
+            "id": "mod4",
+            "label": "Q mod 4",
+            "type": "number",
+            "answer": "3",
+            "accepted": [
+              "3"
+            ]
+          },
+          {
+            "id": "f3",
+            "label": "Prime factor of the form 4k + 3",
+            "type": "number",
+            "answer": "71",
+            "accepted": [
+              "71"
+            ]
+          },
+          {
+            "id": "variation",
+            "label": "Prove the variation",
+            "type": "reason",
+            "criteria": [
+              "A product of numbers of the form 4k + 1 is again of the form 4k + 1; use this (for example with a smallest counterexample) to show that Q ≡ 3 (mod 4) has a prime factor of the form 4k + 3.",
+              "Q leaves a nonzero remainder when divided by 3, 7 or 11, so that factor is new."
+            ],
+            "followup": "Why does the same trick not show directly that there are infinitely many primes of the form 4k + 1?"
+          }
+        ]
+      }
+    ],
+    "nextCheck": "Use Q = 6 × (a product of primes) − 1 to prove that there are infinitely many primes of the form 6k + 5."
+  },
+  {
+    "id": "nt-p03",
+    "order": 5,
+    "title": "Why digit tests work",
+    "level": "High-school foundation",
+    "difficulty": "medium",
+    "topic": "Modular arithmetic",
+    "prompt": "At an invented school store, a clerk checks long totals with quick digit tests instead of a calculator. You will prove why the tests work and exactly what they can and cannot catch.",
+    "approach": "Write a number as digits times powers of 10. Since 10 ≡ 1 (mod 9) and 10 ≡ −1 (mod 11), the digit tests become theorems. The same expression shows that swapping two neighboring digits changes the number by 9·10ʲ(u − v), which is always a multiple of 9 and never a multiple of the prime 11.",
+    "teacherGuide": "核心想法：把一个数写成\"各位数字 × 10 的幂\"之和，再用两个事实：10 ≡ 1 (mod 9)，10 ≡ −1 (mod 11)。这样数位和、交错和的检验就从\"口诀\"变成了可以证明的定理。接着用同样的写法，算出\"交换相邻两位\"会让数值改变 9 × 10ʲ × (两数字之差)，于是一般地证明：模 9 永远查不出这种错误，模 11 永远能查出。最后的校验码题，用\"11 是质数\"证明它能查出所有单个数字错误和相邻互换。整个过程都是一般证明，不靠举例。",
+    "uses": "Rules for adding and multiplying congruences (proved in Step 2); Euclid’s lemma: if a prime divides a product, it divides a factor (assumed).",
+    "steps": [
+      {
+        "title": "Two quick remainders",
+        "prompt": "For N = 7,384,512, add the digits to find N mod 9. Then use the alternating sum starting from the last digit (2 − 1 + 5 − 4 + …) to find N mod 11.",
+        "proof": "Digit sum: 7 + 3 + 8 + 4 + 5 + 1 + 2 = 30, and 30 = 3·9 + 3, so N ≡ 3 (mod 9).\n\nAlternating sum from the right: 2 − 1 + 5 − 4 + 8 − 3 + 7 = 14, and 14 = 11 + 3, so N ≡ 3 (mod 11).\n\nStep 2 proves that these shortcuts give the true remainders.",
+        "fields": [
+          {
+            "id": "mod9",
+            "label": "N mod 9",
+            "type": "number",
+            "answer": "3",
+            "accepted": [
+              "3"
+            ]
+          },
+          {
+            "id": "mod11",
+            "label": "N mod 11",
+            "type": "number",
+            "answer": "3",
+            "accepted": [
+              "3"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Prove both tests",
+        "prompt": "Write N = dₖ10ᵏ + … + d₁10 + d₀. Prove that N ≡ dₖ + … + d₁ + d₀ (mod 9) and N ≡ d₀ − d₁ + d₂ − … (mod 11).",
+        "proof": "Rules used: if a ≡ b and c ≡ d (mod m), then a + c ≡ b + d and ac ≡ bd (mod m). Proof: m divides (a − b) and (c − d); then (a + c) − (b + d) = (a − b) + (c − d), and ac − bd = a(c − d) + d(a − b), are multiples of m.\n\nSince 10 = 9 + 1, we have 10 ≡ 1 (mod 9). Multiplying this congruence by itself j times gives 10ʲ ≡ 1ʲ = 1 (mod 9). Then dⱼ10ʲ ≡ dⱼ (mod 9) for each j, and adding, N ≡ dₖ + … + d₀ (mod 9).\n\nSince 10 = 11 − 1, we have 10 ≡ −1 (mod 11), so 10ʲ ≡ (−1)ʲ (mod 11). Then N ≡ d₀ − d₁ + d₂ − … (mod 11). ∎",
+        "fields": [
+          {
+            "id": "testsProof",
+            "label": "Prove both digit tests",
+            "type": "reason",
+            "criteria": [
+              "Use 10 ≡ 1 (mod 9) and 10 ≡ −1 (mod 11), and raise them to powers.",
+              "Combine term by term using the rules for adding and multiplying congruences."
+            ],
+            "followup": "Which rule about congruences did you use when raising 10 ≡ 1 to the j-th power?"
+          }
+        ]
+      },
+      {
+        "title": "What a swap of neighboring digits does",
+        "prompt": "A total of 52,317 was typed as 52,137, with two neighboring digits swapped. Find the difference. Then prove in general: swapping two different neighboring digits always changes N by a multiple of 9, but never by a multiple of 11. Which test notices the swap?",
+        "proof": "52,317 − 52,137 = 180.\n\nGeneral claim. Suppose the digits in places j + 1 and j (that is, the digits multiplying 10ʲ⁺¹ and 10ʲ) are u and v, with u ≠ v. Before the swap they contribute u·10ʲ⁺¹ + v·10ʲ, and after it v·10ʲ⁺¹ + u·10ʲ. The change is\n\n(u − v)·10ʲ⁺¹ − (u − v)·10ʲ = 9·10ʲ·(u − v).\n\nThis is always a multiple of 9, so the digit-sum test can never notice such a swap (the digits are the same, so the digit sum does not change).\n\nModulo 11, 9·10ʲ·(u − v) ≡ 9·(−1)ʲ·(u − v). Since 11 is prime, it divides this product only if it divides 9 or u − v. It does not divide 9, and 0 < |u − v| ≤ 9, so it does not divide u − v. So the change is never a multiple of 11, and the alternating test always notices the swap.\n\nIn the example, the swapped digits are 3 and 1 in the hundreds and tens places (j = 1): 9·10·(3 − 1) = 180.",
+        "fields": [
+          {
+            "id": "diff",
+            "label": "Difference 52,317 − 52,137",
+            "type": "number",
+            "answer": "180",
+            "accepted": [
+              "180"
+            ]
+          },
+          {
+            "id": "notices",
+            "label": "Which test notices the swap?",
+            "type": "choice",
+            "answer": "only11",
+            "options": [
+              {
+                "value": "only11",
+                "label": "Only the alternating (mod 11) test"
+              },
+              {
+                "value": "other-1",
+                "label": "Only the digit-sum (mod 9) test"
+              },
+              {
+                "value": "other-2",
+                "label": "Both tests"
+              },
+              {
+                "value": "other-3",
+                "label": "Neither test"
+              }
+            ]
+          },
+          {
+            "id": "swapProof",
+            "label": "Prove the general swap result",
+            "type": "reason",
+            "criteria": [
+              "Show the change is 9·10ʲ·(u − v).",
+              "Explain why it is always a multiple of 9 and, using that 11 is prime, never a multiple of 11."
+            ],
+            "followup": "Would a test based on 3 instead of 9 notice the swap?"
+          }
+        ]
+      },
+      {
+        "title": "Design a check digit and prove what it catches",
+        "prompt": "An invented store code has nine digits d₁…d₉ followed by a check value c chosen so that 10d₁ + 9d₂ + … + 2d₉ + 1·c is a multiple of 11 (c = 10 is printed as X). For the digits 4 7 1 2 0 9 3 6 5, find the weighted sum and c. Then prove that the scheme catches every single wrong digit and every swap of two different neighboring symbols.",
+        "proof": "Weighted sum: 10·4 + 9·7 + 8·1 + 7·2 + 6·0 + 5·9 + 4·3 + 3·6 + 2·5 = 40 + 63 + 8 + 14 + 0 + 45 + 12 + 18 + 10 = 210. Since 210 = 19·11 + 1, we need 1 + c ≡ 0 (mod 11), so c = 10, printed X.\n\nLet S be the weighted sum of a valid code, so S ≡ 0 (mod 11), and let the position with weight w hold the symbol s.\n\nSingle wrong symbol: if s becomes s′ ≠ s, S changes by w(s′ − s). Here 1 ≤ w ≤ 10 and 0 < |s′ − s| ≤ 10, so 11 divides neither factor. Since 11 is prime, it does not divide the product, so the new sum is not ≡ 0 and the error is caught.\n\nNeighboring swap: neighboring weights are w + 1 and w. If symbols s and t (s ≠ t) swap, S changes by (w + 1)t + ws − (w + 1)s − wt = t − s, which is between −10 and 10 and not 0, so it is not a multiple of 11. The error is caught. ∎",
+        "fields": [
+          {
+            "id": "wsum",
+            "label": "Weighted sum of the nine digits",
+            "type": "number",
+            "answer": "210",
+            "accepted": [
+              "210"
+            ]
+          },
+          {
+            "id": "check",
+            "label": "Check value c",
+            "type": "number",
+            "answer": "10",
+            "accepted": [
+              "10"
+            ]
+          },
+          {
+            "id": "swaps",
+            "label": "Does the scheme catch every neighboring swap?",
+            "type": "choice",
+            "answer": "yes",
+            "options": [
+              {
+                "value": "yes",
+                "label": "Yes; a neighboring swap changes the sum by the difference of the two symbols, which is never a multiple of 11"
+              },
+              {
+                "value": "other-1",
+                "label": "No; swaps keep the same symbols, so the sum cannot change"
+              },
+              {
+                "value": "other-2",
+                "label": "Only swaps that involve the digit 0"
+              }
+            ]
+          },
+          {
+            "id": "checkProof",
+            "label": "Prove what the check digit catches",
+            "type": "reason",
+            "criteria": [
+              "A single wrong symbol changes the sum by w(s′ − s); neither factor is a multiple of the prime 11.",
+              "A neighboring swap changes the sum by t − s, which is nonzero and between −10 and 10."
+            ],
+            "followup": "Why would the proof fail if the scheme used 10 instead of 11?"
+          }
+        ]
+      }
+    ],
+    "nextCheck": "Prove that the mod 11 check-digit scheme also catches the swap of any two symbols, not only neighboring ones."
+  },
+  {
+    "id": "nt-p04",
+    "order": 6,
+    "title": "An ancient remainder puzzle",
+    "level": "Bridge (high school to undergraduate)",
+    "difficulty": "challenging",
+    "topic": "Congruences and the Chinese Remainder Theorem",
+    "prompt": "A puzzle recorded in an ancient Chinese mathematics text asks for a number of objects that leaves remainder 2 when counted by threes, remainder 3 when counted by fives, and remainder 2 when counted by sevens. Solve it by reasoning, not by searching.",
+    "approach": "Do not count up from 1. Write the condition with the largest modulus as x = 7k + 2 and substitute it into the next condition; each step is a small linear congruence. Then prove the answer is unique modulo 105, because coprime divisors multiply. Finally, find the exact condition for when two congruences can hold together.",
+    "teacherGuide": "核心想法：用\"逐个代入\"代替\"从 1 开始找\"。先把最大模数的条件写成 x = 7k + 2，再代入下一个条件解出 k，这样每一步都是解一个很小的一次同余方程。然后证明解\"在模 105 意义下唯一\"——这一步要用\"两两互素的数都整除 N，则它们的乘积也整除 N\"。第 3 步给出孙子的\"拼装法\"并证明它为什么对。第 4 步讨论模不互素的情况，给出一般判别法：有解当且仅当两个余数模 gcd 同余。",
+    "uses": "Bézout’s identity in general (from the extended Euclidean algorithm, nt-p02; assumed in general); the coprime-divisor lemma (proved in Step 2).",
+    "steps": [
+      {
+        "title": "Solve by substitution",
+        "prompt": "From x ≡ 2 (mod 7), write x = 7k + 2. Substitute into x ≡ 3 (mod 5) and solve for k mod 5. Continue with x ≡ 2 (mod 3). Give k mod 5, the smallest positive solution, and the distance between consecutive solutions.",
+        "proof": "x = 7k + 2. The condition x ≡ 3 (mod 5) becomes 7k + 2 ≡ 3, that is, 2k ≡ 1 (mod 5) because 7 ≡ 2. Since 2·3 = 6 ≡ 1 (mod 5), multiplying by 3 gives k ≡ 3 (mod 5). Write k = 5j + 3, so x = 35j + 23.\n\nThe condition x ≡ 2 (mod 3) becomes 35j + 23 ≡ 2, that is, 2j + 2 ≡ 2 (mod 3) because 35 ≡ 2 and 23 ≡ 2. So 2j ≡ 0 (mod 3). Multiplying by 2 (since 2·2 = 4 ≡ 1) gives j ≡ 0 (mod 3). Write j = 3i, so x = 105i + 23.\n\nEvery solution has this form, and every number of this form is a solution, since each substitution step was reversible. The smallest positive solution is 23, and consecutive solutions differ by 105.",
+        "fields": [
+          {
+            "id": "kmod5",
+            "label": "k mod 5",
+            "type": "number",
+            "answer": "3",
+            "accepted": [
+              "3"
+            ]
+          },
+          {
+            "id": "smallest",
+            "label": "Smallest positive solution",
+            "type": "number",
+            "answer": "23",
+            "accepted": [
+              "23"
+            ]
+          },
+          {
+            "id": "period",
+            "label": "Distance between solutions",
+            "type": "number",
+            "answer": "105",
+            "accepted": [
+              "105"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Prove that the answer is unique modulo 105",
+        "prompt": "Prove: if x and y are both solutions, then 105 divides x − y. Use the fact that 3, 5 and 7 have no common factors in pairs.",
+        "proof": "Lemma. If m | N, n | N and gcd(m, n) = 1, then mn | N.\n\nProof. By Bézout’s identity there are integers u, v with um + vn = 1. Write N = m·N₁ = n·N₂. Then N = N·(um + vn) = um·n·N₂ + vn·m·N₁ = mn(uN₂ + vN₁). ∎\n\nIf x and y are solutions, then x − y ≡ 0 modulo 3, 5 and 7. By the lemma with m = 3, n = 5, we get 15 | x − y. Since gcd(15, 7) = 1, the lemma again gives 105 | x − y. So all solutions are congruent modulo 105, and with Step 1 they are exactly 23 + 105i.",
+        "fields": [
+          {
+            "id": "uniq",
+            "label": "Prove uniqueness modulo 105",
+            "type": "reason",
+            "criteria": [
+              "Prove or cite: if m | N, n | N and gcd(m, n) = 1, then mn | N.",
+              "Apply it twice to x − y."
+            ],
+            "followup": "Where did you use that 3, 5 and 7 are pairwise coprime?"
+          }
+        ]
+      },
+      {
+        "title": "Sunzi’s construction, and a modern version",
+        "prompt": "Let u₁, u₂, u₃ be the inverses of 35 mod 3, of 21 mod 5, and of 15 mod 7, each chosen between 1 and the modulus minus 1. Find u₁, compute x = 2·35·u₁ + 3·21·u₂ + 2·15·u₃, reduce it modulo 105, and prove why the construction works. Then an invented seed library sorts between 200 and 300 packets into trays of 3, 5 and 7, with remainders 2, 3 and 2 as in the puzzle. How many packets are there?",
+        "proof": "Inverses: 35 ≡ 2 (mod 3) and 2·2 = 4 ≡ 1, so u₁ = 2. 21 ≡ 1 (mod 5), so u₂ = 1. 15 ≡ 1 (mod 7), so u₃ = 1.\n\nx = 2·35·2 + 3·21·1 + 2·15·1 = 140 + 63 + 30 = 233, and 233 = 2·105 + 23, so x ≡ 23 (mod 105).\n\nWhy it works: 35 is a multiple of 5 and 7, 21 of 3 and 7, and 15 of 3 and 5. Modulo 3, the last two terms vanish and the first is 2·(35·u₁) ≡ 2·1 = 2. Modulo 5, only the middle term survives: 3·(21·u₂) ≡ 3. Modulo 7, only the last term survives: 2·(15·u₃) ≡ 2.\n\nSeed library: by Step 2, the count is 23 + 105i. The inequality 200 ≤ 23 + 105i ≤ 300 gives 177/105 ≤ i ≤ 277/105, so i = 2 and the count is 233.",
+        "fields": [
+          {
+            "id": "inv35",
+            "label": "Inverse of 35 modulo 3",
+            "type": "number",
+            "answer": "2",
+            "accepted": [
+              "2"
+            ]
+          },
+          {
+            "id": "built",
+            "label": "Value from the construction",
+            "type": "number",
+            "answer": "233",
+            "accepted": [
+              "233"
+            ]
+          },
+          {
+            "id": "reduced",
+            "label": "Reduced modulo 105",
+            "type": "number",
+            "answer": "23",
+            "accepted": [
+              "23"
+            ]
+          },
+          {
+            "id": "packets",
+            "label": "Number of packets",
+            "type": "number",
+            "answer": "233",
+            "accepted": [
+              "233"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "When the moduli share a factor",
+        "prompt": "Decide whether x ≡ 1 (mod 4) and x ≡ 2 (mod 6) has a solution. Then solve x ≡ 1 (mod 4), x ≡ 3 (mod 6) by substitution: give the smallest positive solution and the repeat length. State and prove a rule for when x ≡ a (mod m), x ≡ b (mod n) has a solution.",
+        "proof": "First system: x ≡ 1 (mod 4) makes x odd, and x ≡ 2 (mod 6) makes x even, so there is no solution.\n\nSecond system: x = 4k + 1, and 4k + 1 ≡ 3 (mod 6) means 6 | 4k − 2, that is, 3 | 2k − 1, so 2k ≡ 1 (mod 3) and k ≡ 2 (mod 3). Write k = 3j + 2: x = 12j + 9. The smallest positive solution is 9, and solutions repeat every 12 = lcm(4, 6).\n\nRule. Let g = gcd(m, n). The system has a solution if and only if g | a − b, and then the solutions form one class modulo lcm(m, n).\n\nProof. If x is a solution, g divides m and n, so x ≡ a and x ≡ b (mod g), and g | a − b. Conversely, suppose a − b = gt. By Bézout, g = um + vn. Put x = a − umt. Then x ≡ a (mod m), and x = a − (g − vn)t = b + vnt ≡ b (mod n). Write m = gm′ and n = gn′. If d > 0 divides m′ and n′, then gd divides m and n, so gd ≤ g and d = 1. Hence gcd(m′, n′) = 1, and by Bézout 1 = sm′ + wn′ for some integers s, w.\n\nLet L = gm′n′. If x and y are two solutions, then m | x − y and n | x − y. Write x − y = mk. Since n | mk, we get n′ | m′k, and k = s(m′k) + w(n′k) is a multiple of n′. So L = gm′·n′ divides mk = x − y. Conversely, m | L and n | L, so x + iL is a solution for every integer i. So the solutions form exactly one class modulo L.\n\nFinally, L = lcm(m, n): L = mn′ = nm′ is a common multiple, and the same argument (with x − y replaced by any common multiple) shows that L divides every common multiple of m and n. ∎\n\nFor the first system, g = 2 does not divide 1 − 2; for the second, g = 2 divides 1 − 3.",
+        "fields": [
+          {
+            "id": "sys1",
+            "label": "Does x ≡ 1 (mod 4), x ≡ 2 (mod 6) have a solution?",
+            "type": "choice",
+            "answer": "no",
+            "options": [
+              {
+                "value": "no",
+                "label": "No; the first makes x odd and the second makes x even"
+              },
+              {
+                "value": "other-1",
+                "label": "Yes; every pair of congruences has a solution"
+              },
+              {
+                "value": "other-2",
+                "label": "Yes; infinitely many, every 24 numbers"
+              }
+            ]
+          },
+          {
+            "id": "sys2small",
+            "label": "Smallest positive solution of the second system",
+            "type": "number",
+            "answer": "9",
+            "accepted": [
+              "9"
+            ]
+          },
+          {
+            "id": "sys2period",
+            "label": "Repeat length of the second system",
+            "type": "number",
+            "answer": "12",
+            "accepted": [
+              "12"
+            ]
+          },
+          {
+            "id": "shared",
+            "label": "State and prove the general rule",
+            "type": "reason",
+            "criteria": [
+              "A solution exists exactly when gcd(m, n) divides a − b.",
+              "Prove both directions (Bézout for existence), and prove that the solutions form one class modulo lcm(m, n)."
+            ],
+            "followup": "Use your rule to decide quickly whether x ≡ 5 (mod 12) and x ≡ 8 (mod 18) has a solution."
+          }
+        ]
+      }
+    ],
+    "nextCheck": "Solve a three-congruence system of your own whose smallest positive solution is above 1000, using only substitution."
+  },
+  {
+    "id": "nt-p07",
+    "order": 7,
+    "title": "Right triangles with whole-number sides",
+    "level": "Bridge (high school to undergraduate)",
+    "difficulty": "challenging",
+    "topic": "Pythagorean triples",
+    "prompt": "A Pythagorean triple (a, b, c) consists of positive integers with a² + b² = c². It is primitive if gcd(a, b, c) = 1. Find a formula for triples and prove that it produces every primitive triple.",
+    "approach": "First prove the formula always gives a triple. Then go backward: factor b² = (c − a)(c + a), show that (c + a)/2 and (c − a)/2 are coprime, and use unique factorization to show they are squares. This describes every primitive triple at once, so nothing needs to be counted.",
+    "teacherGuide": "核心想法：先用代数恒等式证明公式一定给出勾股数；再证明在\"m、n 互素、一奇一偶\"时得到的是本原勾股数；最难也最漂亮的是第 4 步——反过来证明\"每一个本原勾股数都来自这个公式\"，关键是把 b² = c² − a² 分解成 (c − a)(c + a)，并用\"两个互素的正整数相乘是平方数，则各自都是平方数\"。这样就不需要列出所有勾股数，而是用定理一次性刻画全部。第 5 步从几何角度再看一次：过 (−1, 0) 的有理斜率直线与单位圆的另一个交点，用韦达定理求出，不用解二次方程。",
+    "uses": "Unique factorization of integers (assumed); squares modulo 4; Vieta’s formula for the product of roots.",
+    "steps": [
+      {
+        "title": "The formula always works",
+        "prompt": "For integers m > n > 0, set a = m² − n², b = 2mn, c = m² + n². Prove a² + b² = c² for all such m and n. Compute the triple for m = 5, n = 2.",
+        "proof": "(m² − n²)² + (2mn)² = m⁴ − 2m²n² + n⁴ + 4m²n² = m⁴ + 2m²n² + n⁴ = (m² + n²)². ∎\n\nFor m = 5, n = 2: a = 25 − 4 = 21, b = 20, c = 29, and 441 + 400 = 841 = 29².",
+        "fields": [
+          {
+            "id": "a",
+            "label": "a",
+            "type": "number",
+            "answer": "21",
+            "accepted": [
+              "21"
+            ]
+          },
+          {
+            "id": "b",
+            "label": "b",
+            "type": "number",
+            "answer": "20",
+            "accepted": [
+              "20"
+            ]
+          },
+          {
+            "id": "c",
+            "label": "c",
+            "type": "number",
+            "answer": "29",
+            "accepted": [
+              "29"
+            ]
+          },
+          {
+            "id": "identity",
+            "label": "Prove the identity",
+            "type": "reason",
+            "criteria": [
+              "Expand (m² − n²)² + (2mn)² and simplify to (m² + n²)²."
+            ],
+            "followup": "Does the identity need m > n? What changes if m < n?"
+          }
+        ]
+      },
+      {
+        "title": "When is the triple primitive?",
+        "prompt": "Show what goes wrong when m and n are both odd (for example m = 5, n = 3) and when they share a factor; give the gcd of the triple for m = 5, n = 3. Then prove: if gcd(m, n) = 1 and m, n have opposite parity, the triple is primitive.",
+        "proof": "m = 5, n = 3 gives (16, 30, 34), and gcd = 2. In general, if m and n are both odd, then m² − n², 2mn and m² + n² are all even. If d = gcd(m, n) > 1, then d² divides all three.\n\nClaim: if gcd(m, n) = 1 and m, n have opposite parity, then gcd(a, b, c) = 1.\n\nProof. c = m² + n² is odd, since exactly one of m², n² is odd. Suppose a prime p divides a, b and c. Then p ≠ 2, because c is odd. Also p | c + a = 2m² and p | c − a = 2n², and since p is odd, p | m² and p | n², so p | m and p | n. This contradicts gcd(m, n) = 1. ∎",
+        "fields": [
+          {
+            "id": "bothOdd",
+            "label": "What happens when m and n are both odd?",
+            "type": "choice",
+            "answer": "even",
+            "options": [
+              {
+                "value": "even",
+                "label": "All three sides are even, so the triple is not primitive"
+              },
+              {
+                "value": "other-1",
+                "label": "a² + b² = c² fails"
+              },
+              {
+                "value": "other-2",
+                "label": "Nothing; the triple is always primitive"
+              }
+            ]
+          },
+          {
+            "id": "gcd53",
+            "label": "gcd of the triple from m = 5, n = 3",
+            "type": "number",
+            "answer": "2",
+            "accepted": [
+              "2"
+            ]
+          },
+          {
+            "id": "primitive",
+            "label": "Prove the primitivity condition",
+            "type": "reason",
+            "criteria": [
+              "c = m² + n² is odd, so a common prime factor p is odd.",
+              "p divides c + a = 2m² and c − a = 2n², so p divides m and n, contradicting gcd(m, n) = 1."
+            ],
+            "followup": "Why do you need both conditions, coprime and opposite parity?"
+          }
+        ]
+      },
+      {
+        "title": "A parity fact",
+        "prompt": "Prove that in every primitive triple, c is odd and exactly one of a, b is even.",
+        "proof": "Every square is 0 or 1 modulo 4: (2k)² = 4k² and (2k + 1)² = 4(k² + k) + 1.\n\nIf a and b were both even, then c² = a² + b² would be even, so c would be even and 2 would divide a, b and c; impossible for a primitive triple.\n\nIf a and b were both odd, then a² + b² ≡ 1 + 1 = 2 (mod 4), but c² is 0 or 1 (mod 4); impossible.\n\nSo exactly one of a, b is even. Then a² + b² ≡ 0 + 1 = 1 (mod 4), so c² is odd and c is odd. ∎",
+        "fields": [
+          {
+            "id": "parity",
+            "label": "Prove the parity fact",
+            "type": "reason",
+            "criteria": [
+              "Squares are 0 or 1 modulo 4.",
+              "Rule out both legs even (not primitive) and both legs odd (sum ≡ 2 mod 4)."
+            ],
+            "followup": "Where does primitivity enter your proof?"
+          }
+        ]
+      },
+      {
+        "title": "Every primitive triple comes from the formula",
+        "prompt": "Let (a, b, c) be primitive with b even. Set u = (c + a)/2 and v = (c − a)/2. Prove that u and v are coprime positive integers with uv = (b/2)², and conclude that u = m² and v = n². Then find m and n for the triple (21, 20, 29) and for (7, 24, 25).",
+        "proof": "By Step 3, a and c are odd, so c + a and c − a are even and u, v are integers. Since c > a > 0, both are positive.\n\nuv = (c² − a²)/4 = b²/4 = (b/2)².\n\ngcd(u, v) = 1: a common divisor d of u and v divides u + v = c and u − v = a. If a prime p divided both a and c, it would divide c² − a² = b², hence b, contradicting primitivity. So gcd(a, c) = 1 and d = 1.\n\nLemma. If u and v are coprime positive integers and uv is a perfect square, then u and v are perfect squares.\n\nProof. By unique factorization, write uv = w². For each prime p, its exponent in w² is even. Since gcd(u, v) = 1, p divides at most one of u and v, so its whole (even) exponent sits in that one. So every prime has an even exponent in u and in v. ∎\n\nSo u = m² and v = n² with m > n > 0, and then c = u + v = m² + n², a = u − v = m² − n², and b² = 4m²n² gives b = 2mn. gcd(m, n) = 1 because gcd(u, v) = 1, and m, n have opposite parity because c is odd.\n\n(21, 20, 29): u = (29 + 21)/2 = 25 = 5², v = (29 − 21)/2 = 4 = 2², so m = 5, n = 2.\n\n(7, 24, 25): u = (25 + 7)/2 = 16 = 4², v = (25 − 7)/2 = 9 = 3², so m = 4, n = 3.",
+        "fields": [
+          {
+            "id": "m1",
+            "label": "m for (21, 20, 29)",
+            "type": "number",
+            "answer": "5",
+            "accepted": [
+              "5"
+            ]
+          },
+          {
+            "id": "n1",
+            "label": "n for (21, 20, 29)",
+            "type": "number",
+            "answer": "2",
+            "accepted": [
+              "2"
+            ]
+          },
+          {
+            "id": "m2",
+            "label": "m for (7, 24, 25)",
+            "type": "number",
+            "answer": "4",
+            "accepted": [
+              "4"
+            ]
+          },
+          {
+            "id": "n2",
+            "label": "n for (7, 24, 25)",
+            "type": "number",
+            "answer": "3",
+            "accepted": [
+              "3"
+            ]
+          },
+          {
+            "id": "allTriples",
+            "label": "Prove that every primitive triple comes from the formula",
+            "type": "reason",
+            "criteria": [
+              "Show u, v are coprime positive integers with uv = (b/2)².",
+              "Use unique factorization to show u and v are squares, then recover a, b, c."
+            ],
+            "followup": "Why must b be the even leg in this argument?"
+          }
+        ]
+      },
+      {
+        "title": "Triples on a circle",
+        "prompt": "Dividing a² + b² = c² by c² gives a point (a/c, b/c) on the unit circle x² + y² = 1. The line through (−1, 0) with slope t = 2/3 meets the circle at a second point. Find it without solving a quadratic from scratch: substitute y = t(x + 1) and use the product of the roots. Give the coordinates as exact fractions (a decimal rounded to two places is also accepted), and the primitive triple the point gives.",
+        "proof": "Substituting y = t(x + 1) into x² + y² = 1 gives (1 + t²)x² + 2t²x + (t² − 1) = 0. One root is x = −1. The product of the roots is (t² − 1)/(1 + t²), so the other root is x = (1 − t²)/(1 + t²), and then y = t(x + 1) = 2t/(1 + t²).\n\nWith t = 2/3: x = (1 − 4/9)/(1 + 4/9) = 5/13 and y = (4/3)/(13/9) = 12/13. Multiplying by 13 gives the primitive triple (5, 12, 13), which is the formula with m = 3, n = 2 (t = n/m).",
+        "fields": [
+          {
+            "id": "px",
+            "label": "x-coordinate of the second point",
+            "type": "number",
+            "answer": "5/13",
+            "accepted": [
+              "5/13",
+              "0.38"
+            ]
+          },
+          {
+            "id": "py",
+            "label": "y-coordinate of the second point",
+            "type": "number",
+            "answer": "12/13",
+            "accepted": [
+              "12/13",
+              "0.92"
+            ]
+          },
+          {
+            "id": "triple",
+            "label": "Which primitive triple does the point give?",
+            "type": "choice",
+            "answer": "5-12-13",
+            "options": [
+              {
+                "value": "5-12-13",
+                "label": "5, 12, 13"
+              },
+              {
+                "value": "other-1",
+                "label": "3, 4, 5"
+              },
+              {
+                "value": "other-2",
+                "label": "2, 3, √13"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "nextCheck": "Check that 65 = 8² + 1² = 7² + 4². Use Step 4 to find the primitive triples with hypotenuse 65 that these give, and explain why the formula with m = 8, n = 1 and with m = 7, n = 4 gives primitive triples."
+  },
+  {
+    "id": "nt-p05",
+    "order": 8,
+    "title": "Last digits and a theorem that can be fooled",
+    "level": "Intro undergraduate",
+    "difficulty": "challenging",
+    "topic": "Powers modulo n and Fermat’s little theorem",
+    "prompt": "Huge powers can be reduced by reasoning instead of by multiplying out. You will prove Fermat’s little theorem, use it to compute quickly, and then see exactly what it can and cannot prove about a number.",
+    "approach": "Make huge exponents small. Find a power that is ≡ 1 or ≡ −1, prove Fermat’s little theorem by showing that a, 2a, …, (p − 1)a rearrange 1, …, p − 1 modulo p, and use repeated squaring. Then separate a theorem from its converse: passing the base-2 test does not establish primality, but failing the base-3 test proves that 341 is composite.",
+    "teacherGuide": "核心想法：把大指数\"变小\"。第 1 步用 7² ≡ −1 (mod 10) 一下子得到 7⁴ ≡ 1，不需要把 7 的各次方都列出来。第 2 步证明费马小定理：a, 2a, …, (p − 1)a 除以 p 的余数恰好是 1, 2, …, p − 1 换了顺序——这是全题的理论核心。第 3 步用\"反复平方\"把 3⁴⁵ 拆成 3³²·3⁸·3⁴·3，只需 5 次平方。第 4、5 步讨论\"反过来对不对\"：341 = 11 × 31 是合数，却满足 2³⁴⁰ ≡ 1 (mod 341)；换成底数 3，分别模 11、模 31 计算，再用中国剩余定理合并，得到 56 ≠ 1。最后用完全不依赖因数的反复平方（模 341）再算一次，说明\"费马检验失败\"本身就能证明一个数是合数，不需要先找到因数。",
+    "uses": "Euclid’s lemma (assumed); the alternating test for 11 (nt-p03); the coprime-divisor lemma (nt-p04).",
+    "steps": [
+      {
+        "title": "The last digit of a huge power",
+        "prompt": "Find the last digit of 7²⁰²⁶. Start from 7² = 49 ≡ −1 (mod 10). Find 7⁴ mod 10 and 2026 mod 4, then the last digit.",
+        "proof": "7⁴ = (7²)² ≡ (−1)² = 1 (mod 10).\n\n2026 = 4·506 + 2, so 2026 mod 4 = 2.\n\n7²⁰²⁶ = (7⁴)⁵⁰⁶·7² ≡ 1⁵⁰⁶·49 ≡ 9 (mod 10). The last digit is 9.",
+        "fields": [
+          {
+            "id": "four",
+            "label": "7⁴ mod 10",
+            "type": "number",
+            "answer": "1",
+            "accepted": [
+              "1"
+            ]
+          },
+          {
+            "id": "expRem",
+            "label": "2026 mod 4",
+            "type": "number",
+            "answer": "2",
+            "accepted": [
+              "2"
+            ]
+          },
+          {
+            "id": "last",
+            "label": "Last digit of 7²⁰²⁶",
+            "type": "number",
+            "answer": "9",
+            "accepted": [
+              "9"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Prove Fermat’s little theorem",
+        "prompt": "Let p be prime and a an integer that p does not divide. Prove that a, 2a, …, (p − 1)a leave the remainders 1, 2, …, p − 1, in some order, when divided by p. Conclude that a^(p−1) ≡ 1 (mod p). Then find 2¹⁰⁰ mod 13: give the exponent after reducing it with the theorem, and the value.",
+        "proof": "No remainder is 0: for 1 ≤ k ≤ p − 1, p divides neither k nor a, so since p is prime, p does not divide ka.\n\nNo two remainders are equal: if ia ≡ ja (mod p) with 1 ≤ j < i ≤ p − 1, then p | (i − j)a. Since p ∤ a and p is prime, p | i − j. But 0 < i − j < p, a contradiction.\n\nSo the p − 1 numbers ka have p − 1 different remainders, all in {1, …, p − 1}. That set has exactly p − 1 elements, so the remainders are 1, …, p − 1 in some order.\n\nMultiplying all the congruences: a·2a·⋯·(p − 1)a ≡ 1·2·⋯·(p − 1), that is, a^(p−1)·(p − 1)! ≡ (p − 1)! (mod p). So p | (a^(p−1) − 1)·(p − 1)!. The prime p divides none of the factors 1, …, p − 1, so p ∤ (p − 1)!, and therefore p | a^(p−1) − 1. ∎\n\nApplication: 13 is prime and 13 ∤ 2, so 2¹² ≡ 1 (mod 13). 100 = 12·8 + 4, so 2¹⁰⁰ = (2¹²)⁸·2⁴ ≡ 16 ≡ 3 (mod 13).",
+        "fields": [
+          {
+            "id": "fltProof",
+            "label": "Prove Fermat’s little theorem",
+            "type": "reason",
+            "criteria": [
+              "Show the remainders of a, 2a, …, (p − 1)a are nonzero and pairwise different, so they are 1, …, p − 1 in some order.",
+              "Multiply the congruences and cancel (p − 1)!, explaining why p ∤ (p − 1)!."
+            ],
+            "followup": "Where exactly does your proof use that p is prime?"
+          },
+          {
+            "id": "reduced",
+            "label": "Reduced exponent for 2¹⁰⁰ mod 13",
+            "type": "number",
+            "answer": "4",
+            "accepted": [
+              "4"
+            ]
+          },
+          {
+            "id": "pow",
+            "label": "2¹⁰⁰ mod 13",
+            "type": "number",
+            "answer": "3",
+            "accepted": [
+              "3"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Repeated squaring",
+        "prompt": "Compute 3⁴⁵ mod 17. Find 3², 3⁴, 3⁸, 3¹⁶ and 3³² mod 17, each by squaring the one before, write 45 as a sum of powers of 2, and multiply. Give 3¹⁶ mod 17, the number of squarings, and 3⁴⁵ mod 17. Which theorem predicts 3¹⁶ mod 17 without any squaring?",
+        "proof": "3² = 9.\n\n3⁴ = 81 = 4·17 + 13 ≡ 13 ≡ −4.\n\n3⁸ ≡ (−4)² = 16 ≡ −1.\n\n3¹⁶ ≡ (−1)² = 1, as Fermat’s little theorem predicts (17 is prime, so 3¹⁶ ≡ 1).\n\n3³² ≡ 1² = 1.\n\nThat is 5 squarings. In binary, 45 = 101101₂ = 32 + 8 + 4 + 1, so\n\n3⁴⁵ = 3³²·3⁸·3⁴·3 ≡ 1·(−1)·(−4)·3 = 12 (mod 17).",
+        "fields": [
+          {
+            "id": "p16",
+            "label": "3¹⁶ mod 17",
+            "type": "number",
+            "answer": "1",
+            "accepted": [
+              "1"
+            ]
+          },
+          {
+            "id": "squarings",
+            "label": "Number of squarings",
+            "type": "number",
+            "answer": "5",
+            "accepted": [
+              "5"
+            ]
+          },
+          {
+            "id": "result",
+            "label": "3⁴⁵ mod 17",
+            "type": "number",
+            "answer": "12",
+            "accepted": [
+              "12"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "A composite number that passes",
+        "prompt": "The theorem says: if n is prime and n ∤ a, then a^(n−1) ≡ 1 (mod n). Take n = 341. Use the alternating-sum test from the digit-test project to show 11 | 341, and give the other factor (both factors are prime). Then use 2¹⁰ = 1024 = 3·341 + 1 to find 2³⁴⁰ mod 341. What does this result prove?",
+        "proof": "Alternating sum from the right: 1 − 4 + 3 = 0, which is a multiple of 11, so 11 | 341, and 341 = 11·31.\n\n2¹⁰ = 1024 = 3·341 + 1, so 2¹⁰ ≡ 1 (mod 341). Then 2³⁴⁰ = (2¹⁰)³⁴ ≡ 1 (mod 341).\n\nSo 341 passes the test with base 2, although it is composite. Fermat’s theorem says “prime ⇒ passes”; it does not say “passes ⇒ prime”. Passing proves nothing about primality.",
+        "fields": [
+          {
+            "id": "other",
+            "label": "341 = 11 × ?",
+            "type": "number",
+            "answer": "31",
+            "accepted": [
+              "31"
+            ]
+          },
+          {
+            "id": "base2",
+            "label": "2³⁴⁰ mod 341",
+            "type": "number",
+            "answer": "1",
+            "accepted": [
+              "1"
+            ]
+          },
+          {
+            "id": "proves",
+            "label": "What does 2³⁴⁰ ≡ 1 (mod 341) prove about 341?",
+            "type": "choice",
+            "answer": "nothing",
+            "options": [
+              {
+                "value": "nothing",
+                "label": "Nothing about primality; the converse of Fermat’s theorem is false"
+              },
+              {
+                "value": "other-1",
+                "label": "That 341 is prime"
+              },
+              {
+                "value": "other-2",
+                "label": "That 341 is composite"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Base 3 exposes it",
+        "prompt": "Compute 3³⁴⁰ mod 341 without a calculator: find it modulo the primes 11 and 31 using Fermat’s theorem for each, then combine by substitution. Explain what the result proves, and why the base-2 result proved nothing. Could someone who did not know any factor of 341 reach the same conclusion?",
+        "proof": "Modulo 11: 3¹⁰ ≡ 1 by Fermat’s theorem, and 340 = 34·10, so 3³⁴⁰ ≡ 1 (mod 11).\n\nModulo 31: 3³⁰ ≡ 1, and 340 = 11·30 + 10, so 3³⁴⁰ ≡ 3¹⁰. Now 3⁵ = 243 = 7·31 + 26 ≡ −5, so 3¹⁰ ≡ 25 (mod 31).\n\nCombine: x = 31k + 25 and x ≡ 1 (mod 11). Since 31 ≡ 9 and 25 ≡ 3 (mod 11), 9k + 3 ≡ 1, so 9k ≡ −2 ≡ 9 (mod 11). Since gcd(9, 11) = 1, k ≡ 1 (mod 11). So x ≡ 56 (mod 341), and by the uniqueness lemma from the remainder project this is the only class.\n\nSo 3³⁴⁰ ≡ 56 ≢ 1 (mod 341). If 341 were prime, Fermat’s theorem would force 3³⁴⁰ ≡ 1 (since 341 ∤ 3). By the contrapositive, 341 is composite.\n\nHere the factors 11 and 31 only shortened the arithmetic. The same value comes from repeated squaring modulo 341, with no factor at all: 3⁸ = 6561 = 19·341 + 82 ≡ 82, 3¹⁶ ≡ 82² = 6724 = 19·341 + 245 ≡ 245, and 3³² ≡ 245² = 60025 = 176·341 + 9 ≡ 9 = 3². So 3³⁴⁰ = (3³²)¹⁰·3²⁰ ≡ (3²)¹⁰·3²⁰ = 3⁴⁰ = 3³²·3⁸ ≡ 9·82 = 738 = 2·341 + 56 ≡ 56. This computation uses no factor, so a failed Fermat test, with a base a that n does not divide, proves on its own that n is composite.\n\nBase 2 passed because 2¹⁰ ≡ 1 modulo both 11 and 31 (1023 = 3·11·31), and 10 | 340. Passing one base is consistent with being composite, so it proves nothing.",
+        "fields": [
+          {
+            "id": "mod11",
+            "label": "3³⁴⁰ mod 11",
+            "type": "number",
+            "answer": "1",
+            "accepted": [
+              "1"
+            ]
+          },
+          {
+            "id": "mod31",
+            "label": "3³⁴⁰ mod 31",
+            "type": "number",
+            "answer": "25",
+            "accepted": [
+              "25"
+            ]
+          },
+          {
+            "id": "base3",
+            "label": "3³⁴⁰ mod 341",
+            "type": "number",
+            "answer": "56",
+            "accepted": [
+              "56"
+            ]
+          },
+          {
+            "id": "converse",
+            "label": "Explain what each base proves",
+            "type": "reason",
+            "criteria": [
+              "Contrapositive: since 3³⁴⁰ ≢ 1 (mod 341) and 341 ∤ 3, 341 cannot be prime; repeated squaring modulo 341 gives the same result without any factor.",
+              "The converse is false: 2³⁴⁰ ≡ 1 (mod 341) although 341 = 11·31, so passing one base proves nothing."
+            ],
+            "followup": "Why does 2¹⁰ ≡ 1 modulo both 11 and 31 make 341 pass the base-2 test?"
+          }
+        ]
+      }
+    ],
+    "nextCheck": "Let n = 561 = 3·11·17. Prove, using Fermat’s theorem for each prime factor and the uniqueness lemma, that a⁵⁶⁰ ≡ 1 (mod 561) for every a with gcd(a, 561) = 1."
+  },
+  {
+    "id": "nt-p06",
+    "order": 9,
+    "title": "A toy public-key lock",
+    "level": "Intro undergraduate",
+    "difficulty": "challenging",
+    "topic": "Applications: public-key cryptography",
+    "prompt": "An invented math club builds a toy lock: anyone can lock a message with public numbers, but only the holder of a secret number can unlock it. Build the keys, lock and unlock a message, and prove that unlocking always works.",
+    "approach": "The lock uses only earlier tools. The Euclidean algorithm finds d, Fermat’s theorem shrinks exponents, and the Chinese Remainder Theorem lets you work modulo 11 and 13 separately. The proof that unlocking always works treats the case p | m on its own, because Fermat’s theorem does not apply there.",
+    "teacherGuide": "核心想法：RSA 只用到前面学过的三件事——扩展欧几里得算法（求 d）、费马小定理（缩小指数）、中国剩余定理（分开模 11 和模 13 计算再合并）。φ(143) 用容斥原理计数（数 11 的倍数和 13 的倍数），不需要列出 1 到 143。第 4 步证明\"对所有消息都能正确解锁\"，包括与 n 不互素的消息，这是很多讲义略过的地方。最后讨论安全性：知道 p、q 就能算出 d，所以安全性取决于\"分解大数很难\"；追问里还有\"知道 φ(n) 就能用一元二次方程求出 p、q\"。",
+    "uses": "Fermat’s little theorem (nt-p05); the coprime-divisor lemma (nt-p04); extended Euclidean algorithm (nt-p02); inclusion–exclusion; unique factorization (assumed; used for “the only primes dividing 143 are 11 and 13”).",
+    "steps": [
+      {
+        "title": "Build the keys",
+        "prompt": "The club uses the primes p = 11 and q = 13. Find n = pq. Find φ(n), the number of integers from 1 to n that share no factor greater than 1 with n, by counting multiples of 11 and of 13 (do not list them). The public exponent is e = 7; decide whether it is allowed (it must share no factor greater than 1 with φ(n)). Then use 120 = 17·7 + 1 to find the secret exponent d with 7d ≡ 1 (mod 120) and 0 < d < 120.",
+        "proof": "n = 11·13 = 143.\n\nThe only primes dividing 143 are 11 and 13, so an integer from 1 to 143 shares a factor with 143 exactly when it is a multiple of 11 or of 13. There are 143/11 = 13 multiples of 11 and 143/13 = 11 multiples of 13. A number divisible by both is divisible by 143 (the lemma: coprime divisors multiply), and only 143 itself is. By inclusion–exclusion, 13 + 11 − 1 = 23 numbers share a factor, so φ(143) = 143 − 23 = 120 = (11 − 1)(13 − 1).\n\nThe same count works for any distinct primes p and q: from 1 to pq there are q multiples of p and p multiples of q, and only pq is a multiple of both, so φ(pq) = pq − q − p + 1 = (p − 1)(q − 1).\n\n120 = 17·7 + 1, so 7 ∤ 120, and since 7 is prime, gcd(7, 120) = 1: e = 7 is allowed.\n\nFrom 1 = 120 − 17·7 we get 7·(−17) ≡ 1 (mod 120), so d ≡ −17 ≡ 103. Check: 7·103 = 721 = 6·120 + 1.",
+        "fields": [
+          {
+            "id": "n",
+            "label": "n = pq",
+            "type": "number",
+            "answer": "143",
+            "accepted": [
+              "143"
+            ]
+          },
+          {
+            "id": "phi",
+            "label": "φ(n)",
+            "type": "number",
+            "answer": "120",
+            "accepted": [
+              "120"
+            ]
+          },
+          {
+            "id": "eok",
+            "label": "Is e = 7 allowed?",
+            "type": "choice",
+            "answer": "yes",
+            "options": [
+              {
+                "value": "yes",
+                "label": "Yes, because gcd(7, 120) = 1, so 7 has an inverse modulo 120"
+              },
+              {
+                "value": "other-1",
+                "label": "No, because 7 does not divide 120"
+              },
+              {
+                "value": "other-2",
+                "label": "No, because e must divide n = 143"
+              }
+            ]
+          },
+          {
+            "id": "d",
+            "label": "Secret exponent d",
+            "type": "number",
+            "answer": "103",
+            "accepted": [
+              "103"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Lock a message",
+        "prompt": "The message is m = 9. Compute c = 9⁷ mod 143 by repeated squaring: find 9² and 9⁴ mod 143 first.",
+        "proof": "9² = 81.\n\n9⁴ = 81² = 6561 = 45·143 + 126 ≡ 126 ≡ −17 (mod 143).\n\n9⁷ = 9⁴·9²·9 ≡ (−17)·729. Since 729 = 5·143 + 14, this is (−17)·14 = −238 = −2·143 + 48.\n\nSo c = 48.",
+        "fields": [
+          {
+            "id": "c",
+            "label": "Locked message c",
+            "type": "number",
+            "answer": "48",
+            "accepted": [
+              "48"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Unlock with the Chinese Remainder Theorem",
+        "prompt": "Computing 48¹⁰³ mod 143 directly is long. Find it modulo 11 and modulo 13 instead, using Fermat’s theorem to shrink the exponent, then combine.",
+        "proof": "Modulo 11: 48 = 4·11 + 4 ≡ 4. By Fermat’s theorem, 4¹⁰ ≡ 1, and 103 = 10·10 + 3, so 48¹⁰³ ≡ 4³ = 64 = 5·11 + 9 ≡ 9.\n\nModulo 13: 48 = 3·13 + 9 ≡ 9. By Fermat’s theorem, 9¹² ≡ 1, and 103 = 8·12 + 7, so 48¹⁰³ ≡ 9⁷. Now 9² = 81 = 6·13 + 3 ≡ 3, so 9⁶ = (9²)³ ≡ 27 ≡ 1, and 9⁷ ≡ 9.\n\nCombine: x − 9 is divisible by 11 and by 13, which are coprime, so 143 | x − 9. So x ≡ 9 (mod 143), and the unlocked message is 9.",
+        "fields": [
+          {
+            "id": "dec11",
+            "label": "48¹⁰³ mod 11",
+            "type": "number",
+            "answer": "9",
+            "accepted": [
+              "9"
+            ]
+          },
+          {
+            "id": "dec13",
+            "label": "48¹⁰³ mod 13",
+            "type": "number",
+            "answer": "9",
+            "accepted": [
+              "9"
+            ]
+          },
+          {
+            "id": "back",
+            "label": "Unlocked message",
+            "type": "number",
+            "answer": "9",
+            "accepted": [
+              "9"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Prove that the lock always opens",
+        "prompt": "Let n = pq with p ≠ q primes, and let e, d be positive integers with ed ≡ 1 (mod (p − 1)(q − 1)). Prove that for every integer m with 0 ≤ m < n, (mᵉ)ᵈ ≡ m (mod n). Treat the cases p | m and p ∤ m separately, then combine the two primes.",
+        "proof": "Since ed ≡ 1 (mod (p − 1)(q − 1)) and ed > 0, we can write ed = 1 + k(p − 1)(q − 1) with an integer k ≥ 0.\n\nModulo p. If p | m, both m^(ed) and m are ≡ 0. If p ∤ m, Fermat’s theorem gives m^(p−1) ≡ 1, so m^(ed) = m·(m^(p−1))^(k(q−1)) ≡ m·1 = m. In both cases p | m^(ed) − m.\n\nModulo q. The same argument gives q | m^(ed) − m.\n\nSince p ≠ q are primes, gcd(p, q) = 1, so pq | m^(ed) − m by the coprime-divisor lemma, that is, m^(ed) ≡ m (mod n). Since 0 ≤ m < n, m is exactly the remainder of m^(ed) on division by n. Reducing c = mᵉ mod n before raising to the power d does not change the result modulo n. ∎",
+        "fields": [
+          {
+            "id": "correct",
+            "label": "Prove that unlocking always works",
+            "type": "reason",
+            "criteria": [
+              "Write ed = 1 + k(p − 1)(q − 1) and use Fermat’s theorem when p ∤ m.",
+              "Handle the case p | m separately, do the same for q, and combine with gcd(p, q) = 1."
+            ],
+            "followup": "Why is the case p | m needed, and what goes wrong if you only use Euler’s theorem with gcd(m, n) = 1?"
+          }
+        ]
+      },
+      {
+        "title": "What must stay secret?",
+        "prompt": "Everyone may know n = 143 and e = 7. Which number must stay secret? Explain how knowing p and q, or knowing φ(n), allows someone to recover the secret exponent. This small-number lock is a mathematical demonstration.",
+        "proof": "The secret exponent is d. The primes p and q, and φ(n), also reveal d. From p and q we obtain φ(n) = (p − 1)(q − 1), and the extended Euclidean algorithm computes d as the inverse of e modulo φ(n), as in Step 1.\n\nKnowing φ(n) also reveals the factors: p + q = n − φ(n) + 1 and pq = n. Thus p and q are the roots of t² − (n − φ(n) + 1)t + n = 0. For n = 143 and φ(n) = 120 this is t² − 24t + 143 = 0, whose roots are 11 and 13. Once these values are known, Step 1 recovers d = 103.\n\nThese small parameters demonstrate the mathematics of RSA. This toy lock is not suitable for protecting messages.",
+        "fields": [
+          {
+            "id": "secret",
+            "label": "Which number must stay secret?",
+            "type": "choice",
+            "answer": "d",
+            "options": [
+              {
+                "value": "d",
+                "label": "d (and also p, q and φ(n), since each of them leads to d)"
+              },
+              {
+                "value": "other-1",
+                "label": "e, because it is used to lock"
+              },
+              {
+                "value": "other-2",
+                "label": "n, because it is the product of the primes"
+              },
+              {
+                "value": "other-3",
+                "label": "The locked message c"
+              }
+            ]
+          },
+          {
+            "id": "factoring",
+            "label": "Explain how the factors reveal the secret exponent",
+            "type": "reason",
+            "criteria": [
+              "From p and q, obtain φ(n) = (p − 1)(q − 1).",
+              "Use the extended Euclidean algorithm to find d, the inverse of e modulo φ(n)."
+            ],
+            "followup": "If someone learns n = 143 and φ(n) = 120, how can they find p and q by solving a quadratic equation?"
+          }
+        ]
+      }
+    ],
+    "nextCheck": "With p = 17, q = 19 and e = 5, find d, then lock and unlock a message of your choice, using the Chinese Remainder Theorem to unlock."
+  },
+  {
+    "id": "nt-p08",
+    "order": 10,
+    "title": "Perfect numbers and a prime that isn’t",
+    "level": "Intro undergraduate",
+    "difficulty": "challenging",
+    "topic": "Divisor sums, perfect and Mersenne numbers",
+    "prompt": "A positive integer is perfect if it equals the sum of its positive divisors smaller than itself. Explore divisor sums and numbers of the form 2ᵖ − 1, proving each step.",
+    "approach": "Use unique factorization to turn a sum over all divisors into a product of short geometric sums. For 2ᵖ − 1 with p an odd prime, prove that every prime factor q satisfies q ≡ 1 (mod 2p), using the smallest exponent d with 2ᵈ ≡ 1 (mod q). This leaves very few candidates, so 127 is proved prime and 2047 is factored with one division.",
+    "teacherGuide": "核心想法：用唯一分解定理把\"求所有因数之和\"变成乘积公式 σ(n) = ∏(1 + p + ⋯ + pᵃ)，不需要列出因数。第 2 步是本题的理论核心：用\"阶\"的引理和费马小定理证明 2ᵖ − 1 的质因数都 ≡ 1 (mod 2p)。这样判断 127 是质数只需要一句话（最小可能的质因数是 15，而 15 > √127），分解 2047 也只需要检验一个候选数 23。第 3 步证明欧几里得的完全数构造；第 4 步证明指数是合数时 2ᵏ − 1 一定是合数，再指出\"指数是质数\"仍然不够（2047）。",
+    "uses": "Unique factorization (assumed); Fermat’s little theorem (nt-p05); the coprime-divisor lemma (nt-p04); the √n lemma (proved in Step 2); geometric sums.",
+    "steps": [
+      {
+        "title": "Divisor sums by formula",
+        "prompt": "Let σ(n) be the sum of all positive divisors of n, and s(n) = σ(n) − n. Prove that if n = p₁^a₁ ⋯ p_k^a_k (distinct primes), then σ(n) = (1 + p₁ + ⋯ + p₁^a₁) ⋯ (1 + p_k + ⋯ + p_k^a_k). Use the formula, not a list of divisors, with 28 = 2²·7, 12 = 2²·3 and 120 = 2³·3·5, to find s(28), s(12) and s(120). Is 12 perfect (s(n) = n), abundant (s(n) > n) or deficient (s(n) < n)?",
+        "proof": "Divisors. If d | n, write n = de. By unique factorization, the prime factorization of de is that of n, so d = p₁^b₁ ⋯ p_k^b_k with 0 ≤ bᵢ ≤ aᵢ. Conversely, each such d divides n, with cofactor p₁^(a₁−b₁) ⋯ p_k^(a_k−b_k). Different exponent choices give different numbers, again by unique factorization.\n\nFormula. Expanding the product (1 + p₁ + ⋯ + p₁^a₁) ⋯ (1 + p_k + ⋯ + p_k^a_k) gives one term p₁^b₁ ⋯ p_k^b_k for each choice of exponents 0 ≤ bᵢ ≤ aᵢ, so every divisor appears exactly once, and the product equals σ(n). ∎\n\n28 = 2²·7: σ = (1 + 2 + 4)(1 + 7) = 7·8 = 56, so s(28) = 28: perfect.\n\n12 = 2²·3: σ = 7·4 = 28, so s(12) = 16 > 12: abundant.\n\n120 = 2³·3·5: σ = (1 + 2 + 4 + 8)(1 + 3)(1 + 5) = 15·4·6 = 360, so s(120) = 240, exactly twice 120.",
+        "fields": [
+          {
+            "id": "s28",
+            "label": "s(28)",
+            "type": "number",
+            "answer": "28",
+            "accepted": [
+              "28"
+            ]
+          },
+          {
+            "id": "s12",
+            "label": "s(12)",
+            "type": "number",
+            "answer": "16",
+            "accepted": [
+              "16"
+            ]
+          },
+          {
+            "id": "s120",
+            "label": "s(120)",
+            "type": "number",
+            "answer": "240",
+            "accepted": [
+              "240"
+            ]
+          },
+          {
+            "id": "kind12",
+            "label": "12 is …",
+            "type": "choice",
+            "answer": "abundant",
+            "options": [
+              {
+                "value": "abundant",
+                "label": "abundant, since s(12) = 16 > 12"
+              },
+              {
+                "value": "other-1",
+                "label": "perfect"
+              },
+              {
+                "value": "other-2",
+                "label": "deficient"
+              }
+            ]
+          },
+          {
+            "id": "sigmaWhy",
+            "label": "Prove the divisor-sum formula",
+            "type": "reason",
+            "criteria": [
+              "Use unique factorization: divisors are exactly p₁^b₁ ⋯ p_k^b_k with 0 ≤ bᵢ ≤ aᵢ, each appearing once.",
+              "Explain why expanding the product produces each divisor exactly once."
+            ],
+            "followup": "Why does the formula give σ(mn) = σ(m)σ(n) when gcd(m, n) = 1, but not in general?"
+          }
+        ]
+      },
+      {
+        "title": "A test for numbers 2ᵖ − 1",
+        "prompt": "Let p be an odd prime and q a prime that divides 2ᵖ − 1. Let d be the smallest positive exponent with 2ᵈ ≡ 1 (mod q). (a) Prove that 2ᵏ ≡ 1 (mod q) exactly when d | k. (b) Conclude that d = p, and use Fermat’s theorem to prove q ≡ 1 (mod 2p). (c) Decide whether 127 = 2⁷ − 1 is prime by comparing the lower bound that (b) gives for its prime factors with √127. (d) For 2047 = 2¹¹ − 1, find the smallest number that (b) allows as a prime factor, divide, and give the other factor.",
+        "proof": "(a) Divide k = sd + r with 0 ≤ r < d. Then 2ᵏ = (2ᵈ)ˢ·2ʳ ≡ 2ʳ (mod q). If 2ᵏ ≡ 1, then 2ʳ ≡ 1, and since r < d and d is the smallest positive such exponent, r = 0, so d | k. Conversely, if k = sd, then 2ᵏ = (2ᵈ)ˢ ≡ 1.\n\n(b) 2ᵖ ≡ 1 (mod q), so d | p by (a), and d = 1 or d = p. If d = 1, then q | 2 − 1 = 1, impossible. So d = p. Since 2ᵖ − 1 is odd, q is odd, so q ∤ 2 and Fermat’s theorem gives 2^(q−1) ≡ 1 (mod q). By (a), p | q − 1. Also 2 | q − 1 because q is odd. Since p is odd, gcd(2, p) = 1, so 2p | q − 1. ∎\n\nLemma. If n > 1 is composite, it has a prime factor at most √n. Proof: write n = ab with 1 < a ≤ b; then a² ≤ ab = n, and any prime factor of a is at most a ≤ √n.\n\n(c) Every prime factor of 127 has the form 1 + 14t with t ≥ 1, so it is at least 15. But 12² = 144 > 127, so √127 < 12. If 127 were composite, the lemma would give a prime factor at most √127 < 12, yet every prime factor is at least 15. So 127 is prime.\n\n(d) Every prime factor of 2047 has the form 1 + 22t, so the smallest allowed value is 23. Dividing, 2047 = 23·89. Every prime factor of 89 also divides 2047, so it is at least 23, and 23² = 529 > 89; by the √n lemma, 89 is prime. As (b) predicts, 89 = 1 + 22·4.",
+        "fields": [
+          {
+            "id": "orderProof",
+            "label": "Prove that prime factors of 2ᵖ − 1 are ≡ 1 (mod 2p)",
+            "type": "reason",
+            "criteria": [
+              "Prove 2ᵏ ≡ 1 (mod q) iff d | k by dividing k by d.",
+              "Show d = p, use Fermat’s theorem to get p | q − 1, and use that q and p are odd to get 2p | q − 1."
+            ],
+            "followup": "Where does the proof use that p is prime? Where does it use that p is odd?"
+          },
+          {
+            "id": "prime127",
+            "label": "Is 127 prime?",
+            "type": "choice",
+            "answer": "yes",
+            "options": [
+              {
+                "value": "yes",
+                "label": "Yes; every prime factor would be at least 15, which is larger than √127"
+              },
+              {
+                "value": "other-1",
+                "label": "No; it has a factor of the form 14t + 1"
+              },
+              {
+                "value": "other-2",
+                "label": "The lemma cannot decide"
+              }
+            ]
+          },
+          {
+            "id": "f2047",
+            "label": "Smallest possible prime factor of 2047",
+            "type": "number",
+            "answer": "23",
+            "accepted": [
+              "23"
+            ]
+          },
+          {
+            "id": "cof2047",
+            "label": "2047 = 23 × ?",
+            "type": "number",
+            "answer": "89",
+            "accepted": [
+              "89"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Euclid’s recipe for perfect numbers",
+        "prompt": "Prove: if 2ᵖ − 1 is prime, then N = 2^(p−1)(2ᵖ − 1) is perfect. Use Step 2 (c) to build a perfect number from 127.",
+        "proof": "Let M = 2ᵖ − 1, a prime. M is odd, so 2^(p−1) and M share no prime factor, and the factorization of N is 2^(p−1)·M¹. By Step 1,\n\nσ(N) = (1 + 2 + ⋯ + 2^(p−1))·(1 + M).\n\nThe geometric sum is 2ᵖ − 1 = M, because (2 − 1)(1 + 2 + ⋯ + 2^(p−1)) = 2ᵖ − 1. And 1 + M = 2ᵖ. So σ(N) = M·2ᵖ = 2·2^(p−1)M = 2N, and s(N) = σ(N) − N = N. ∎\n\nWith p = 7 and M = 127 (prime by Step 2): N = 2⁶·127 = 64·127 = 8128.",
+        "fields": [
+          {
+            "id": "perfect",
+            "label": "Perfect number built from 127",
+            "type": "number",
+            "answer": "8128",
+            "accepted": [
+              "8128"
+            ]
+          },
+          {
+            "id": "recipe",
+            "label": "Prove Euclid’s recipe",
+            "type": "reason",
+            "criteria": [
+              "Use the divisor-sum formula with the coprime factors 2^(p−1) and the prime 2ᵖ − 1.",
+              "Show σ(N) = (2ᵖ − 1)·2ᵖ = 2N."
+            ],
+            "followup": "Where does the proof use that 2ᵖ − 1 is prime?"
+          }
+        ]
+      },
+      {
+        "title": "Why the exponent must be prime, and why that is not enough",
+        "prompt": "Prove: if k = rs with r, s > 1, then 2ʳ − 1 is a factor of 2ᵏ − 1 strictly between 1 and 2ᵏ − 1, so 2ᵏ − 1 is composite. As an example, write 2¹² − 1 = (2⁴ − 1) × M and find M from your proof, not by long division. Then decide: is “p is prime” enough to make 2ᵖ − 1 prime?",
+        "proof": "Let x = 2ʳ. Then 2ᵏ − 1 = xˢ − 1 = (x − 1)(x^(s−1) + x^(s−2) + ⋯ + x + 1). (Multiply out: x·(x^(s−1) + ⋯ + 1) − (x^(s−1) + ⋯ + 1) = xˢ − 1, since all middle terms cancel.)\n\nSince r > 1, x − 1 = 2ʳ − 1 ≥ 3 > 1. Since s > 1, x < xˢ, so x − 1 < xˢ − 1. So 2ʳ − 1 is a proper factor and 2ᵏ − 1 is composite. ∎\n\nExample: r = 4, s = 3, x = 16: M = 16² + 16 + 1 = 273, and 15·273 = 4095 = 2¹² − 1.\n\nSo 2ᵏ − 1 can be prime only when k is prime. But that is not enough: 11 is prime, and 2¹¹ − 1 = 2047 = 23·89 (Step 2 (d)).",
+        "fields": [
+          {
+            "id": "cof4095",
+            "label": "M in 2¹² − 1 = 15 × M",
+            "type": "number",
+            "answer": "273",
+            "accepted": [
+              "273"
+            ]
+          },
+          {
+            "id": "compositeExp",
+            "label": "Prove that a composite exponent gives a composite number",
+            "type": "reason",
+            "criteria": [
+              "Set x = 2ʳ and factor xˢ − 1 = (x − 1)(x^(s−1) + ⋯ + 1).",
+              "Show 1 < 2ʳ − 1 < 2ᵏ − 1."
+            ],
+            "followup": "Which factor of 2¹² − 1 does the proof give if you take r = 3 instead?"
+          },
+          {
+            "id": "primeEnough",
+            "label": "Is “p is prime” enough to make 2ᵖ − 1 prime?",
+            "type": "choice",
+            "answer": "no",
+            "options": [
+              {
+                "value": "no",
+                "label": "No; it is necessary but not sufficient, for example 2¹¹ − 1 = 23·89"
+              },
+              {
+                "value": "other-1",
+                "label": "Yes; that is what Step 4 proves"
+              },
+              {
+                "value": "other-2",
+                "label": "Only odd primes are enough"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "nextCheck": "Euler proved that every even perfect number has Euclid’s form. Write N = 2ᵏm with m odd, use σ(N) = 2N to show that σ(m) = m + m/(2^(k+1) − 1), and conclude that m = 2^(k+1) − 1 and that m is prime.\n"
+  }
+]

@@ -11,6 +11,7 @@
     "build:static": "node scripts/build-static-release.cjs",
     "version:activities": "node scripts/version-activity-assets.cjs",
     "test:brand:browser": "node scripts/test-brand-browser.cjs",
+    "test:home:browser": "node scripts/test-home-map-browser.cjs",
     "test:browser": "node scripts/test-activity-browser.cjs",
     "test": "node scripts/test-all.cjs",
     "test:sync": "node --test tests/backend-sync.test.cjs tests/sync-client.test.cjs tests/security.test.cjs",
@@ -19,7 +20,9 @@
     "build:locales": "node scripts/build-locales.cjs",
     "test:localization:browser": "node scripts/test-localization-browser.cjs",
     "build:brand:images": "node scripts/build-brand-images.cjs",
-    "test:spanish:review": "node scripts/test-spanish-review-browser.cjs"
+    "test:spanish:review": "node scripts/test-spanish-review-browser.cjs",
+    "test:history:stress": "node scripts/test-history-stress-browser.cjs",
+    "test:number-theory:browser": "node scripts/test-number-theory-browser.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

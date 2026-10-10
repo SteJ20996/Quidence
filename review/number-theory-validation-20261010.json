@@ -1,0 +1,9 @@
+{
+  "checks": 1862,
+  "projects": 10,
+  "steps": 43,
+  "fields": 120,
+  "result": "passed",
+  "browser_visual_qa": "See review/number-theory-browser-20261010.json",
+  "note": "Document adapters test render and state functions; they are not a real browser and do not verify visual layout."
+}

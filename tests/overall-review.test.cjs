@@ -107,7 +107,10 @@ test('static release includes public dependencies and excludes internal document
   assert(files.includes('modules/aa01/dist/sketch-lab/math.js'));
   assert(files.includes('assets/project-bank-v1.js'), 'old definitions are needed for saved history');
   assert(files.includes('records/index.html'));
-  assert(!files.some(file => /^(review|tests|archive|backend)\//.test(file) || /\.(?:md|json)$/.test(file)));
+  assert(files.includes('courses/number-theory/data.json'));
+  assert(files.includes('courses/number-theory/app.js'));
+  assert(!files.includes('content/number-theory/source-v2.md'));
+  assert(!files.some(file => /^(review|tests|archive|backend)\//.test(file) || (/\.(?:md|json)$/.test(file)&&file!=='courses/number-theory/data.json')));
   assert(!files.includes('assets/sync-client.js')); assert(!files.includes('assets/account-app.js'));
   assert(!files.includes('modules/aa01/dist/sketch-lab/index.html'));
   assert(!files.some(file => file.includes('/beta01/')));

@@ -24,8 +24,10 @@ function prepare(module,payload,sessionId,storage){
 }
 function displaySubject(item){return SUBJECTS[item.module]||item.subject;}
 function fresh(){return{schema:KEY,items:[]};}
-function hydrate(v){if(!v||v.schema!==KEY||!Array.isArray(v.items))return null;const ids=new Set();for(const x of v.items){if(!x||typeof x.id!=='string'||ids.has(x.id)||!SUBJECTS[x.module]||!Array.isArray(x.versions)||!x.versions.length||x.versions.some(r=>!r||typeof r.signature!=='string'||!Number.isFinite(Date.parse(r.savedAt))||!r.payload||typeof r.payload!=='object'))return null;ids.add(x.id);}return clone(v);}
-function read(storage){try{const raw=storage.getItem(KEY)||'';if(!raw)return{ok:true,data:fresh(),raw};const data=hydrate(JSON.parse(raw));return data?{ok:true,data,raw}:{ok:false,raw,error:'The saved reports could not be read. The original data is kept unchanged.'};}catch{return{ok:false,raw:'',error:'Browser saving is unavailable. Download a copy of your report.'};}}
+function valid(v){if(!v||v.schema!==KEY||!Array.isArray(v.items))return false;const ids=new Set();for(const x of v.items){if(!x||typeof x.id!=='string'||ids.has(x.id)||!SUBJECTS[x.module]||!Array.isArray(x.versions)||!x.versions.length||x.versions.some(r=>!r||typeof r.signature!=='string'||!Number.isFinite(Date.parse(r.savedAt))||!r.payload||typeof r.payload!=='object'))return false;ids.add(x.id);}return true;}
+function hydrate(v){return valid(v)?clone(v):null;}
+// JSON.parse already owns a new object. Public hydrate still copies its input.
+function read(storage){try{const raw=storage.getItem(KEY)||'';if(!raw)return{ok:true,data:fresh(),raw};const data=JSON.parse(raw);return valid(data)?{ok:true,data,raw}:{ok:false,raw,error:'The saved reports could not be read. The original data is kept unchanged.'};}catch{return{ok:false,raw:'',error:'Browser saving is unavailable. Download a copy of your report.'};}}
 function content(payload){return JSON.stringify(payload,(key,value)=>['exported_at','exportedAt','exportedAtISO','exported'].includes(key)?undefined:value);}
 // A small storage fingerprint, not a security hash or proof of equal reports.
 // Equality always compares the actual normalized content, including legacy copies.
@@ -46,7 +48,9 @@ function save(module,payload,sessionId,storage){
   payload=withRequest(payload,captureRequest(module,storage));const hash=signature(content(payload));
   if(!item){item={id,module,subject:SUBJECTS[module],sessionId:session,versions:[]};data.items.push(item);}
   item.versions.push({savedAt:new Date().toISOString(),signature:hash,payload:clone(payload)});
-  for(const existing of data.items)for(const version of existing.versions)version.signature=signature(content(version.payload));
+  // Only migrate older, large fingerprints. Current fingerprints are not used
+  // to decide equality; sameWork compares the actual saved student evidence.
+  for(const existing of data.items)for(const version of existing.versions)if(!/^compact-v2:\d+:[0-9a-f]+$/.test(version.signature))version.signature=signature(content(version.payload));
   if((storage.getItem(KEY)||'')!==result.raw)return{ok:false,error:'Saved reports changed in another tab. Reload before saving; your activity record is kept.'};
   storage.setItem(KEY,JSON.stringify(data));return{ok:true,id,changed:true,module,payload};
  }catch{return{ok:false,error:'Your report is open, but it could not be saved in this browser. Download a copy.'};}

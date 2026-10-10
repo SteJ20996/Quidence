@@ -1,0 +1,20 @@
+{
+  "scope": "Local browser and local server; not a production capacity guarantee.",
+  "layouts": 12,
+  "mapStates": 36,
+  "errors": [],
+  "failedRequests": [],
+  "stress": {
+    "savedReports": 100,
+    "archiveCharacters": 535128,
+    "subjectChanges": 200,
+    "pageChanges": 20,
+    "languageChanges": 6,
+    "elapsedMs": 216,
+    "localRequests": {
+      "concurrency": 40,
+      "total": 120,
+      "failed": 0
+    }
+  }
+}

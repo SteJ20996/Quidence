@@ -39,7 +39,7 @@ function mount(window){
  window.addEventListener('pageshow',event=>{if(event.persisted)reloadNotice();});
  document.addEventListener('DOMContentLoaded',()=>{
   const banner=document.createElement('aside');banner.setAttribute('aria-label','Local record storage');banner.style.cssText='padding:12px 20px;background:#edf4f2;color:#173c34;font:14px system-ui;display:block';
-  banner.appendChild(document.createTextNode(controller?'New learning records stay in this browser. ':'Browser saving is unavailable; download a report before closing an activity. '));const link=document.createElement('a');link.href=new URL('records/',siteRoot).href;link.textContent='Save or delete records';banner.appendChild(link);document.body.prepend(banner);
+  banner.appendChild(document.createTextNode(controller?'New learning records stay in this browser. ':'Browser saving is unavailable; download a report before closing an activity. '));const link=document.createElement('a');link.href=new URL('records/',siteRoot).href;link.textContent='Save or delete records';banner.appendChild(link);const noticeHost=document.getElementById('home-record-notice');if(noticeHost)noticeHost.appendChild(banner);else document.body.prepend(banner);
   const status=document.getElementById('local-record-status');if(!status)return;
   if(!controller){status.textContent='Browser storage is unavailable. Use the activity’s report download while the page is open.';return;}
   if(controller.blocked())status.textContent='Saved workspace information could not be read. You can still export the original records before clearing them.';

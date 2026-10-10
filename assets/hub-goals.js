@@ -41,6 +41,7 @@ function mount(document,window){
   course.href=SUBJECTS[goal.subject].course;foundation.hidden=!SUBJECTS[goal.subject].foundation;foundation.textContent=SUBJECTS[goal.subject].foundationLabel||'Complete a foundation check →';if(SUBJECTS[goal.subject].foundation)foundation.href=SUBJECTS[goal.subject].foundation;else foundation.removeAttribute('href');
   report.innerHTML='<option value="">Start with my question only</option>'+reports.filter(r=>r.module===goal.subject||(['pre-algebra','algebra-1'].includes(goal.subject)&&r.module==='aa01')).map(r=>'<option data-no-translate data-i18n-date="'+window.QuidenceReportTools.escape(r.versions.at(-1).savedAt)+'" data-date-caption="'+window.QuidenceReportTools.escape(r.versions.at(-1).payload.check||'learning report')+'" value="'+window.QuidenceReportTools.escape(r.id)+'">'+window.QuidenceReportTools.escape(new Date(r.versions.at(-1).savedAt).toLocaleString())+' · '+window.QuidenceReportTools.escape(r.versions.at(-1).payload.check||'learning report')+'</option>').join('');
   text.value=goal.text;if(include)include.checked=goal.includeInReport;area.hidden=true;persist();
+  if(document.dispatchEvent&&window.CustomEvent)document.dispatchEvent(new window.CustomEvent('quidence:subject',{detail:{subject:goal.subject}}));
  }
 
  for(const button of host.querySelectorAll('[data-learning-subject]'))button.addEventListener('click',()=>{if(goal.subject!==button.dataset.learningSubject)goal.includeInReport=false;goal.subject=button.dataset.learningSubject;status.textContent='';render();});

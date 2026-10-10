@@ -258,5 +258,57 @@
   [
     "Two simultaneous linear rules. y = x + [n]; y = −x + [n]. Axes: x, y.",
     "Dos reglas lineales simultáneas. y = x + [n]; y = −x + [n]. Ejes: x, y."
+  ],
+  [
+    "Reports [n]–[n] of [n]",
+    "Informes [n]–[n] de [n]"
+  ],
+  [
+    "[n] of [n] steps have responses",
+    "[n] de [n] pasos tienen respuestas"
+  ],
+  [
+    "[n] steps",
+    "[n] pasos"
+  ],
+  [
+    "STEP [n] OF [n]",
+    "PASO [n] DE [n]"
+  ],
+  [
+    "[n] of [n] calculations or choices match.",
+    "[n] de [n] cálculos u opciones coinciden."
+  ],
+  [
+    "[n] explanation saved for review.",
+    "[n] explicación guardada para revisión."
+  ],
+  [
+    "[n] explanations saved for review.",
+    "[n] explicaciones guardadas para revisión."
+  ],
+  [
+    "[n] response still open.",
+    "[n] respuesta aún pendiente."
+  ],
+  [
+    "[n] responses still open.",
+    "[n] respuestas aún pendientes."
+  ],
+  [
+    "Step [n]",
+    "Paso [n]"
+  ],
+  [
+    "High school · [n]/[n] responses",
+    "Secundaria · [n]/[n] pasos con respuestas"
+  ],
+  [
+    "Bridge to university · [n]/[n] responses",
+    "Puente a la universidad · [n]/[n] pasos con respuestas"
+  ],
+  [
+    "University · [n]/[n] responses",
+    "Universidad · [n]/[n] pasos con respuestas"
   ]
 ]

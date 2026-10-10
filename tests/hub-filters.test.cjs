@@ -16,8 +16,10 @@ test('URL filters recover safely, clear All, and preserve unrelated parameters',
 test('homepage temporarily removes filters and keeps separate course starts without a learning request',()=>{
  const source=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
  assert.doesNotMatch(source,/id="subject-filters"|id="filter-stage"|id="filter-direction"|src="assets\/hub-filters.js"/);
- assert.match(source,/TELL US WHAT YOU'RE LOOKING FOR · OPTIONAL/);assert.match(source,/3 · TRY OUR PROBLEMS/);assert.match(source,/No learning request is needed/);
- assert.equal([...source.matchAll(/class="subject-link"/g)].length,10);assert.equal([...source.matchAll(/data-learning-subject="/g)].length,10);
- assert.deepEqual([...source.matchAll(/data-subject="([^\"]+)"/g)].map(m=>m[1]),order);
+ assert.match(source,/Tell us what you're looking for/);assert.match(source,/>Optional</);assert.match(source,/No learning request is needed/);
+ assert.match(source,/data-home-view="map"/);assert.match(source,/data-home-view="courses"/);assert.match(source,/id="knowledge-map"/);
+ assert.match(source,/>Middle School</);assert.match(source,/>High School</);assert.match(source,/>College Level</);
+ assert.equal([...source.matchAll(/class="subject-link"/g)].length,11);assert.equal([...source.matchAll(/data-learning-subject="/g)].length,11);
+ assert.deepEqual([...source.matchAll(/data-subject="([^\"]+)"/g)].map(m=>m[1]).sort(),[...order].sort());
  assert.doesNotMatch(source,/<article[^>]*\bhidden\b/);
 });

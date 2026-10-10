@@ -39,9 +39,9 @@ async function run() {
     legacy = false;
     await cached.goto(origin + '/projects/?module=af01');
     assert.equal(await cached.evaluate(() => window.staleActivityAsset), true, 'the warmed old asset remains in the HTTP cache');
-    await cached.goto(origin + '/');
+    await cached.goto(origin + '/?view=courses');
     for (const [subject, className] of [['algebra-1', 'challenge-link'], ['af01', 'project-link']]) {
-      await cached.goto(origin + '/');
+      await cached.goto(origin + '/?view=courses');
       await cached.locator('[data-subject="' + subject + '"] .' + className).click();
       await cached.locator('.f-mode-link').first().waitFor();
       assert.equal(await cached.locator('.f-mode-link').count(), 3);
@@ -62,8 +62,8 @@ async function run() {
       page.on('pageerror', error => errors.push(error.message));
       page.on('requestfailed', request => failures.push(request.url() + ': ' + request.failure()?.errorText));
       page.on('response', response => {if (response.status() >= 400) failures.push(response.url() + ': ' + response.status());});
-      await page.goto(origin + '/');
-      const links = await page.locator('.challenge-link, .project-link').evaluateAll(elements => elements.map(el => el.href));
+      await page.goto(origin + '/?view=courses');
+      const links = await page.locator('.challenge-link, .project-link').evaluateAll(elements => elements.map(el => el.href).filter(href=>new URL(href).searchParams.has('module')));
       assert.equal(links.length, 20);
       for (const href of links) {
         const url = new URL(href), subject = url.searchParams.get('module'), projects = url.pathname === '/projects/';
@@ -121,8 +121,8 @@ async function checkHomepage(browser, origin, capture, errors, failures) {
     page.on('pageerror', error => errors.push(error.message));
     page.on('requestfailed', r => failures.push(r.url() + ': ' + r.failure()?.errorText));
     page.on('response', r => {if (r.status() >= 400) failures.push(r.url() + ': ' + r.status());});
-    await page.goto(origin + '/');
-    assert.equal(await page.locator('.preview-subject').textContent(), 'Mathematics & Science');
+    await page.goto(origin + '/?view=courses');
+    assert.equal(await page.locator('.qh-description-title').textContent(), 'Mathematics & Science');
     assert.equal(await page.locator('#goal-include-report').isChecked(), false);
     await page.locator('[data-learning-subject="algebra-1"]').click();
     await page.locator('#learning-goal').fill(request);
@@ -149,7 +149,7 @@ async function checkHomepage(browser, origin, capture, errors, failures) {
     await page.locator('[data-learning-subject="algebra-1"]').click();
     if ([1440, 375].includes(width)) {
       for (const className of ['challenge-link', 'project-link']) {
-        await page.goto(origin + '/');
+        await page.goto(origin + '/?view=courses');
         await page.locator('#learning-goal').fill(request);
         await page.locator('#goal-include-report').check();
         const activity = await page.locator('[data-subject="algebra-1"] .' + className).getAttribute('href');
@@ -177,7 +177,7 @@ async function checkHomepage(browser, origin, capture, errors, failures) {
         await summary.waitForLoadState();
         assert.equal(await summary.locator('.report-learning-focus .student-work').textContent(), request);
         await summary.close();
-        await page.goto(origin + '/');
+        await page.goto(origin + '/?view=courses');
         await page.locator('#learning-goal').fill('<script>window.goalTextExecuted=true</script>\nA later request.');
         await page.goto(origin + '/' + activity);
         assert.equal(await page.locator('.report-learning-focus .student-work').textContent(), request);

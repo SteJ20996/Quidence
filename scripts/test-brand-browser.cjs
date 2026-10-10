@@ -33,7 +33,7 @@ async function run() {
           return {x: box.x, right: box.right, height: box.height, width: box.width, filter: getComputedStyle(e).filter, blend: getComputedStyle(e).mixBlendMode,contrast:(Math.max(a,b)+.05)/(Math.min(a,b)+.05)};
         });
         assert(result.x >= 0 && result.right <= width + 1, file + ' clipped logo');
-        assert(result.width >= 180 && result.height >= 44, file + ' undersized logo');
+        assert(result.width >= 180 && result.height >= 44, file + ' undersized logo at '+width+' ('+result.width+'×'+result.height+')');
         assert.equal(result.filter, 'none'); assert.equal(result.blend, 'normal');
         assert(result.contrast>=4.5,file+' low logo contrast '+result.contrast);
         assert.equal(await page.locator('.brand-mark,.brand-initial,.brand-wordmark,.f-brand-mark').count(), 0, file + ' old mark');
