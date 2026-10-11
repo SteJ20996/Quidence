@@ -188,3 +188,7 @@ node scripts/render-challenge-graphics.cjs
 旧版本审核文件保留作为历史记录；以本 README 和本次诊断审核表为当前范围。macOS 实机交互及打印仍需实际浏览器测试。
 
 Current record behavior is described at `data-use/`. See [Claude follow-up status](CLAUDE_FOLLOWUP_REVIEW.md), [source review process](SOURCE_REVIEW.md), and the [unapproved privacy and retention draft](PRIVACY_AND_RETENTION_DRAFT.md). There is no online account deletion or automatic revision expiry yet. The explanation checks are provisional and do not call an AI grading model; these activities do not certify comprehensive mathematical mastery.
+
+## 基础 SEO 与 Search Console
+
+配置、维护顺序和 Cloudflare DNS 验证步骤见 [SEO_SETUP.md](SEO_SETUP.md)。更改页面或 SEO 后运行 `npm run build:seo`、`npm run version:activities`、`npm run build:seo`，再检查和构建。只发布 `static-release/`；不要发布源码、学生记录或未完成预览。

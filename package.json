@@ -23,7 +23,9 @@
     "test:spanish:review": "node scripts/test-spanish-review-browser.cjs",
     "test:history:stress": "node scripts/test-history-stress-browser.cjs",
     "test:number-theory:browser": "node scripts/test-number-theory-browser.cjs",
-    "test:reviewed:browser": "node scripts/test-reviewed-release-browser.cjs"
+    "test:reviewed:browser": "node scripts/test-reviewed-release-browser.cjs",
+    "build:seo": "node scripts/build-seo.cjs",
+    "test:seo": "node --test tests/seo.test.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

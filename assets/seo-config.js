@@ -1,0 +1,64 @@
+(function(root,factory){
+  const api=factory();
+  if(typeof module==='object'&&module.exports)module.exports=api;
+  else root.QuidenceSEOConfig=api;
+})(typeof window==='object'?window:globalThis,()=>{
+'use strict';
+const ORIGIN='https://www.quidence.com';
+// Only authored public entries belong in the sitemap. Student records are never read here.
+const COURSES={
+  'pre-algebra':['/courses/pre-algebra/','Pre-Algebra','Preálgebra','Review signed numbers, fractions, ratios, and expressions with introductory lessons and checks.','Repasa los números con signo, las fracciones, las razones y las expresiones con lecciones y ejercicios introductorios.'],
+  'algebra-1':['/courses/algebra-1/','Algebra I','Álgebra I','Explore equations, linear functions, systems, and quadratic roots with introductory activities.','Explora ecuaciones, funciones lineales, sistemas y raíces cuadráticas con actividades introductorias.'],
+  geometry:['/courses/geometry/','Geometry','Geometría','Review angles, triangle relationships, similarity, and measurement with introductory activities.','Repasa ángulos, relaciones entre triángulos, semejanza y medición con actividades introductorias.'],
+  'algebra-2':['/courses/algebra-2/','Algebra II','Álgebra II','Explore polynomial factors, rational expressions, exponentials, and logarithms in introductory lessons.','Explora factores de polinomios, expresiones racionales, funciones exponenciales y logaritmos en lecciones introductorias.'],
+  af01:['/modules/af01/dist/','Pre-calculus','Precálculo','Connect functions to graphs, angles, and growth through selected introductory activities.','Relaciona las funciones con sus gráficas, los ángulos y el crecimiento mediante actividades introductorias seleccionadas.'],
+  ad01:['/modules/ad01/dist/','Calculus','Cálculo','Explore limits, derivatives, and accumulation through interactive graphs and introductory questions.','Explora límites, derivadas y acumulación mediante gráficas interactivas y preguntas introductorias.'],
+  ae01:['/modules/ae01/dist/','Statistics','Estadística','Read distributions, compare summaries, and examine study design with introductory statistics activities.','Interpreta distribuciones, compara resúmenes de datos y examina el diseño de estudios con actividades introductorias de estadística.'],
+  ab01:['/modules/ab01/dist/','Linear Algebra','Álgebra lineal','Connect two-dimensional vectors and matrices with geometric transformations and introductory checks.','Relaciona vectores y matrices en dos dimensiones con transformaciones geométricas y ejercicios introductorios.'],
+  'number-theory':['/courses/number-theory/','Number Theory','Teoría de números','Explore divisibility, primes, and congruences through ten projects with step-by-step reference proofs.','Explora divisibilidad, números primos y congruencias mediante diez proyectos con demostraciones de referencia paso a paso.'],
+  'physics-1':['/courses/physics-1/','Physics 1 Foundations','Fundamentos de Física 1','Explore motion, forces, energy, momentum, rotation, oscillations, and fluids in introductory lessons.','Explora movimiento, fuerzas, energía, cantidad de movimiento, rotación, oscilaciones y fluidos en lecciones introductorias.'],
+  'physics-2':['/courses/physics-2/','Physics 2 Foundations','Fundamentos de Física 2','Explore heat, electric fields, circuits, magnetism, optics, waves, and photons after basic mechanics.','Explora calor, campos eléctricos, circuitos, magnetismo, óptica, ondas y fotones después de estudiar mecánica básica.'],
+};
+const PAGES={
+  '/':{en:['Mathematics and Science Learning','Explore the mathematics knowledge map, choose introductory lessons, and test your understanding with multi-part problems.'],es:['Aprendizaje de Matemáticas y Ciencias','Explora el mapa de conocimientos de matemáticas, elige lecciones introductorias y comprueba tu comprensión con problemas de varios pasos.'],sitemap:true},
+  '/data-use/':{en:['Data Use and Local Records','Learn how Quidence keeps answers and reports in your browser during public testing and how to export or delete them.'],es:['Uso de datos y registros locales','Conoce cómo Quidence guarda respuestas e informes en tu navegador durante las pruebas públicas y cómo exportarlos o eliminarlos.'],sitemap:true},
+  '/account/':{en:['Account','Account information during public testing.'],es:['Cuenta','Información de la cuenta durante las pruebas públicas.'],noindex:true},
+  '/records/':{en:['Manage Local Records','Export, restore, or delete learning records stored in this browser.'],es:['Administrar registros locales','Exporta, restaura o elimina los registros de aprendizaje guardados en este navegador.'],noindex:true},
+  '/reports/':{en:['Saved Reports','Review learning reports saved in this browser.'],es:['Informes guardados','Revisa los informes de aprendizaje guardados en este navegador.'],noindex:true},
+  '/modules/aa01/dist/':{en:['Visual Algebra','Explore equations and algebra through visual activities and reasoning checks.'],es:['Álgebra visual','Explora ecuaciones y álgebra mediante actividades visuales y ejercicios de razonamiento.']},
+  '/modules/ab01/dist/vectors.html':{en:['Vectors','Explore two-dimensional vectors with interactive visual models.'],es:['Vectores','Explora vectores en dos dimensiones con modelos visuales interactivos.']},
+  '/modules/ab01/dist/matrix.html':{en:['Matrices and Transformations','Explore matrices and their geometric transformations with interactive visual models.'],es:['Matrices y transformaciones','Explora matrices y sus transformaciones geométricas con modelos visuales interactivos.']},
+  '/courses/physics/':{en:['Introductory Physics','Explore selected introductory physics models and questions.'],es:['Introducción a la física','Explora modelos y preguntas seleccionados de física introductoria.']},
+};
+for(const c of Object.values(COURSES))PAGES[c[0]]={en:[c[1],c[3]],es:[c[2],c[4]],sitemap:true};
+const ACTIVITIES={
+  '/diagnostics/':{en:'Test Your Understanding',es:'Comprueba tu comprensión'},
+  '/projects/':{en:'Field Projects',es:'Proyectos de aplicación'},
+  '/foundations/':{en:'Foundation Check',es:'Evaluación de fundamentos'},
+};
+const FOUNDATION_IDS=new Set(['aa01','ab01','ad01','ae01','af01']);
+function normalizePath(path){
+  const normalized=path.replace(/\/index\.html$/,'/')||'/';
+  return PAGES[normalized+'/']||ACTIVITIES[normalized+'/']?normalized+'/':normalized;
+}
+function resolve(input,actualLocale){
+  const url=new URL(input,ORIGIN),pathname=normalizePath(url.pathname);
+  const locale=actualLocale==='en'||actualLocale==='es'?actualLocale:url.searchParams.get('lang')==='es'?'es':'en';
+  let page=PAGES[pathname],moduleId=null;
+  if(ACTIVITIES[pathname]){
+    const id=url.searchParams.get('module'),valid=pathname==='/foundations/'?FOUNDATION_IDS.has(id):Object.hasOwn(COURSES,id)&&id!=='number-theory'||id==='physics';
+    const title=id==='aa01'?(locale==='es'?'Preálgebra y Álgebra I':'Pre-Algebra and Algebra I'):id==='physics'?(locale==='es'?'Física':'Physics'):COURSES[id]?.[locale==='es'?2:1];
+    moduleId=valid?id:null;
+    const label=ACTIVITIES[pathname][locale];
+    page={noindex:!valid,[locale]:[title&&valid?title+' · '+label:label,locale==='es'?'Trabaja en problemas de varios pasos y guarda tus respuestas y explicaciones en este navegador.':'Work through multi-part problems and save your answers and explanations in this browser.']};
+  }
+  if(!page)return null;
+  const canonical=new URL(pathname,ORIGIN);
+  if(moduleId)canonical.searchParams.set('module',moduleId);
+  canonical.searchParams.set('lang',locale);
+  const alternate=lang=>{const u=new URL(canonical);u.searchParams.set('lang',lang);return u.href;};
+  return{pathname,locale,title:page[locale][0]+' · Quidence',description:page[locale][1],canonical:canonical.href,noindex:!!page.noindex,
+    alternates:page.noindex?[]:[['en',alternate('en')],['es',alternate('es')],['es-MX',alternate('es')]],sitemap:!!page.sitemap};
+}
+return{ORIGIN,COURSES,PAGES,ACTIVITIES,normalizePath,resolve};
+});

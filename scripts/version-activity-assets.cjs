@@ -10,6 +10,7 @@ for(const file of ['home.css','home.js','knowledge-map-data.js','knowledge-map.j
 for(const file of ['app.js','core.js','style.css'])reportAssets.add('courses/number-theory/'+file);
 for(const file of ['app.js','matrix-guide.js','style.css'])reportAssets.add('modules/ab01/dist/'+file);
 reportAssets.add('assets/course-catalog.js');reportAssets.add('assets/sync-policy.js');
+reportAssets.add('assets/seo-config.js');reportAssets.add('assets/seo.js');
 function versionActivities(check = false) {
   const updates = new Map();
   const uiVersion = digest(['foundation.css', 'foundation-app.js', 'project.css']

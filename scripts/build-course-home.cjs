@@ -21,5 +21,5 @@ function build(){
  html=replaceRegion(html,'COURSE_CARDS',cards+'<p class="catalogue-scope">Nine mathematics courses and two physics foundations courses · 52 diagnostic problems, 20 field projects and 10 Number Theory proof projects. Number Theory uses a separate project notebook; proof responses remain pending review.</p><p class="closing-note">You can start with any course. This choice does not assign you a level.</p>');
  fs.writeFileSync(file,html);
 }
-function buildVersioned(){build();require('./version-activity-assets.cjs').versionActivities();}
+function buildVersioned(){build();require('./build-seo.cjs').buildSEO();require('./version-activity-assets.cjs').versionActivities();require('./build-seo.cjs').buildSEO();}
 if(require.main===module)buildVersioned();module.exports={build:buildVersioned,card};
