@@ -124,7 +124,7 @@ async function checkRestoredGameTheory(page, origin, width) {
   await page.locator('[data-subject="ac01"] .challenge-link').click();
   assert.equal(new URL(page.url()).pathname, '/foundations/');
   assert.equal(await page.locator('#f-subject').inputValue(), 'ac01');
-  assert.match(await page.locator('#f-heading').textContent(), /Game Theory/);
+  assert.equal(await page.locator('#f-heading').textContent(), 'Game theory foundations');
   assert.equal(await page.locator('a[href*="diagnostics/?module=ac01"], a[href*="projects/?module=ac01"]').count(), 0);
   await checkLayout(page, width, 'Game Theory foundation overview');
   await page.locator('[data-f-action="resume"]').click();
@@ -136,9 +136,11 @@ async function checkRestoredGameTheory(page, origin, width) {
   assert.equal(await page.locator('[data-f-unsure]').isChecked(), true);
   assert.equal(await page.locator('[data-f-explanation]').inputValue(), explanation);
   await page.locator('#quidence-language').selectOption('es');
+  await page.waitForFunction(() => QuidenceI18n.locale === 'es');
   assert.equal(await page.locator('[data-f-explanation]').inputValue(), explanation);
   await checkLayout(page, width, 'Game Theory Spanish foundation draft');
   await page.locator('#quidence-language').selectOption('en');
+  await page.waitForFunction(() => QuidenceI18n.locale === 'en');
 
   await page.goto(origin + '/?view=courses');
   await page.locator('[data-subject="ac01"] .subject-link').click();
