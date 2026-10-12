@@ -6,3 +6,7 @@
 
 
 .course-language-note{max-width:1120px;margin:18px auto 0;padding:0 24px;color:var(--muted);font-size:13px}
+
+/* Keep wide payoff tables inside their scroll container on narrow screens. */
+.learning-grid > .card{min-width:0}
+@media(max-width:900px){.learning-grid{grid-template-columns:minmax(0,1fr)}}
