@@ -143,7 +143,7 @@ npm.cmd start
 
 ## 发布与开发检查
 
-静态托管前运行 `npm run build:static`，只发布生成的 `static-release/`，不要发布整个仓库。脚本要求输出目录不存在，避免旧文件混入新包。生成的 `_headers` 适用于 Cloudflare Pages 静态响应；其他托管方须等效配置安全响应头。这个命令只准备文件，不部署网站，不表示来源审核已经通过。详见 [OVERALL_REVIEW_2026-10-07.md](OVERALL_REVIEW_2026-10-07.md)。
+静态托管前运行 `npm run build:static`，只发布生成的 `static-release/`，不要发布整个仓库。脚本要求输出目录不存在，避免旧文件混入新包。生成的 `_headers` 适用于 Cloudflare Pages 和 Workers 静态响应；其他托管方须等效配置安全响应头。这个命令只准备文件，不部署网站，不表示来源审核已经通过。详见 [OVERALL_REVIEW_2026-10-07.md](OVERALL_REVIEW_2026-10-07.md)。现有 Worker `shy-thunder-f1c9` 的 GitHub 自动部署配置和连接步骤见 [Cloudflare 部署说明](DEPLOYMENT.zh-CN.md)。
 
 `npm test` 检查记录保护、题目数学、DOM 流程、活动资源版本和来源清单；GitHub Actions 自动执行这些检查、发布包构建及 Chromium 活动页检查。macOS/iPad、Safari、Firefox 和打印交互仍需实测。账户相关代码仅供开发测试，不能据此重开公测账户。
 
