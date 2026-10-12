@@ -7,5 +7,6 @@
   "keep_vars": true,
   "assets": {
     "directory": "./static-release"
-  }
+  },
+  "previews": {}
 }

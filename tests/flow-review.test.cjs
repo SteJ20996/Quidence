@@ -224,7 +224,7 @@ test('activity navigation follows all ten subjects and preserves unfinished work
  const catalog=require('../assets/course-catalog.js');
  for(const kind of ['diagnostic','project']){
   const h=harness(kind);
-  for(const [id,c]of Object.entries(catalog.COURSES).filter(([,c])=>c.challenge)){
+  for(const [id,c]of Object.entries(catalog.COURSES).filter(([,c])=>c.challenge?.startsWith('diagnostics/'))){
    h.controller.select(id);const links=h.host.querySelectorAll('[data-f-mode]');
    assert.equal(links.length,3);const mode=kind==='project'?'projects':'check';
    for(const link of links){const url=new URL(link.attrs.href,'https://quidence.test/'+(kind==='project'?'projects':'diagnostics')+'/');

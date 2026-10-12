@@ -16,6 +16,7 @@ const COURSES={
   ae01:['/modules/ae01/dist/','Statistics','Estadística','Read distributions, compare summaries, and examine study design with introductory statistics activities.','Interpreta distribuciones, compara resúmenes de datos y examina el diseño de estudios con actividades introductorias de estadística.'],
   ab01:['/modules/ab01/dist/','Linear Algebra','Álgebra lineal','Connect two-dimensional vectors and matrices with geometric transformations and introductory checks.','Relaciona vectores y matrices en dos dimensiones con transformaciones geométricas y ejercicios introductorios.'],
   'number-theory':['/courses/number-theory/','Number Theory','Teoría de números','Explore divisibility, primes, and congruences through ten projects with step-by-step reference proofs.','Explora divisibilidad, números primos y congruencias mediante diez proyectos con demostraciones de referencia paso a paso.'],
+  ac01:['/modules/ac01/dist/','Game Theory Foundations','Fundamentos de teoría de juegos','Explore payoff tables, best responses, dominant strategies, and pure Nash equilibria in four English lessons.','Explora tablas de pagos, mejores respuestas, estrategias dominantes y equilibrios de Nash puros en cuatro lecciones en inglés.'],
   'physics-1':['/courses/physics-1/','Physics 1 Foundations','Fundamentos de Física 1','Explore motion, forces, energy, momentum, rotation, oscillations, and fluids in introductory lessons.','Explora movimiento, fuerzas, energía, cantidad de movimiento, rotación, oscilaciones y fluidos en lecciones introductorias.'],
   'physics-2':['/courses/physics-2/','Physics 2 Foundations','Fundamentos de Física 2','Explore heat, electric fields, circuits, magnetism, optics, waves, and photons after basic mechanics.','Explora calor, campos eléctricos, circuitos, magnetismo, óptica, ondas y fotones después de estudiar mecánica básica.'],
 };
@@ -36,7 +37,7 @@ const ACTIVITIES={
   '/projects/':{en:'Field Projects',es:'Proyectos de aplicación'},
   '/foundations/':{en:'Foundation Check',es:'Evaluación de fundamentos'},
 };
-const FOUNDATION_IDS=new Set(['aa01','ab01','ad01','ae01','af01']);
+const FOUNDATION_IDS=new Set(['aa01','ab01','ac01','ad01','ae01','af01']);
 function normalizePath(path){
   const normalized=path.replace(/\/index\.html$/,'/')||'/';
   return PAGES[normalized+'/']||ACTIVITIES[normalized+'/']?normalized+'/':normalized;
@@ -46,7 +47,7 @@ function resolve(input,actualLocale){
   const locale=actualLocale==='en'||actualLocale==='es'?actualLocale:url.searchParams.get('lang')==='es'?'es':'en';
   let page=PAGES[pathname],moduleId=null;
   if(ACTIVITIES[pathname]){
-    const id=url.searchParams.get('module'),valid=pathname==='/foundations/'?FOUNDATION_IDS.has(id):Object.hasOwn(COURSES,id)&&id!=='number-theory'||id==='physics';
+    const id=url.searchParams.get('module'),valid=pathname==='/foundations/'?FOUNDATION_IDS.has(id):Object.hasOwn(COURSES,id)&&id!=='number-theory'&&id!=='ac01'||id==='physics';
     const title=id==='aa01'?(locale==='es'?'Preálgebra y Álgebra I':'Pre-Algebra and Algebra I'):id==='physics'?(locale==='es'?'Física':'Physics'):COURSES[id]?.[locale==='es'?2:1];
     moduleId=valid?id:null;
     const label=ACTIVITIES[pathname][locale];

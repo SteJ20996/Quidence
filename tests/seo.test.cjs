@@ -10,8 +10,8 @@ test('canonical URLs keep subjects and languages but drop tracking, versions and
     assert.notEqual(p.canonical,SEO.resolve('/diagnostics/?module=ad01&lang='+lang).canonical);
     assert.equal(SEO.resolve('/courses/number-theory?lang='+lang).canonical,SEO.resolve('/courses/number-theory/index.html?lang='+lang).canonical);
   }
-  for(const route of ['/foundations/?module=ac01','/diagnostics/?module=number-theory','/projects/?module=../../reports/'])assert(SEO.resolve(route).noindex);
-  assert(!SEO.resolve('/foundations/?module=aa01').noindex);assert.equal(SEO.resolve('/unpublished/'),null);
+  for(const route of ['/diagnostics/?module=ac01','/diagnostics/?module=number-theory','/projects/?module=../../reports/'])assert(SEO.resolve(route).noindex);
+  assert(!SEO.resolve('/foundations/?module=aa01').noindex);assert(!SEO.resolve('/foundations/?module=ac01').noindex);assert.equal(SEO.resolve('/unpublished/'),null);
 });
 test('all active courses have unique bilingual metadata and reciprocal alternatives',()=>{
   const courses=require('../assets/course-catalog.js').COURSES;
@@ -28,7 +28,7 @@ test('all active courses have unique bilingual metadata and reciprocal alternati
 test('sitemap includes canonical public entries and excludes workspaces and version parameters',()=>{
   const xml=fs.readFileSync(path.join(root,'sitemap.xml'),'utf8');
   const urls=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1].replaceAll('&amp;','&'));
-  assert.equal(urls.length,26);assert.equal(new Set(urls).size,urls.length);
+  assert.equal(urls.length,28);assert.equal(new Set(urls).size,urls.length);
   for(const url of urls){const p=SEO.resolve(url);assert.equal(p.canonical,url);assert(p.sitemap);assert(!p.noindex);assert(!new URL(url).searchParams.has('v'));}
   assert.doesNotMatch(xml,/\/reports\/|\/records\/|\/account\/|\/archive\/|\/qidolab\//);
   const robots=fs.readFileSync(path.join(root,'robots.txt'),'utf8');assert.match(robots,/Sitemap: https:\/\/www\.quidence\.com\/sitemap\.xml/);

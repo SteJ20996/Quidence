@@ -95,3 +95,11 @@
 6. 后续再考虑练习模式、跨科作图及教师视图；进一步审题处理是非题内容偏向。
 
 不要以测试通过、来源指纹、原件可读或本地存储为依据声称全面数学诊断认证、知识产权清除或法律免责。
+
+## 2026-10-12 · Restore Game Theory (AC01)
+
+- Restored the original four English lessons, payoff-table explorer, eight fresh checks, and existing record schema from the archive.
+- Added Game Theory to Further Mathematics subject choices, College Level cards, and the University Maths map, with links to discrete reasoning, linear algebra, and optimization.
+- Re-enabled the existing 15-question foundation check and 6-question further check. The diagnostic and field-project inventories keep their current counts.
+- Included the restored public files in the release and SEO policies. Original question definitions and archived snapshots remain unchanged.
+- Added the required Cloudflare previews block.
