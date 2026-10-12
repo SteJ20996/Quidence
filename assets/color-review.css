@@ -1,0 +1,277 @@
+/* Quidence color review: color-only overrides on the audited release.
+   Plot colors, semantic feedback, gold achievements, fonts and geometry remain in the original styles. */
+:root {
+  color-scheme: light;
+  --q-page: #f3f1f7;
+  --q-paper: #ffffff;
+  --q-mist: #eee9f5;
+  --q-ink: #20383e;
+  --q-muted: #53666b;
+  --q-line: #ddd7e6;
+  --q-control: #6e8588;
+  --q-teal: #153f44;
+  --q-primary: #15565b;
+  --q-mint: #ddf1e8;
+  --q-mint-hover: #cce8db;
+  --q-coral: #b94f3d;
+  --q-coral-hover: #9e4232;
+  --q-focus: #15565b;
+  --ink: var(--q-ink);
+  --muted: var(--q-muted);
+  --line: var(--q-line);
+  --border: var(--q-line);
+  --cream: var(--q-page);
+  --paper: var(--q-page);
+}
+html { background: var(--q-page); }
+body[data-q-theme] { background: var(--q-page); color: var(--q-ink); }
+body[data-q-theme] .quidence-foundations {
+  --f-ink: var(--q-ink); --f-muted: var(--q-muted); --f-border: var(--q-line);
+  --f-primary: var(--q-primary);
+  background: var(--q-page);
+}
+/* Dark headers use the existing white logo; white headers keep the existing dark logo. */
+body[data-q-theme] .site-header,
+body[data-q-theme] .qa-header,
+body[data-q-ui="ab01"] > header,
+body[data-q-ui="reports"] > header { background: var(--q-teal); color: #ffffff; }
+body[data-q-theme] .topbar,
+body[data-q-theme] .f-site-header { background: var(--q-paper); border-color: var(--q-line); }
+body[data-q-ui="account"] > header,
+body[data-q-ui="records"] > header,
+body[data-q-ui="course"] > header.q-brand-header:not(.site-header):not(.f-site-header) {
+  background: var(--q-paper); border-color: var(--q-line);
+}
+body[data-q-theme] .language-toolbar { background: var(--q-teal); color: #ffffff; }
+body[data-q-theme] .site-header .language-toolbar,
+body[data-q-theme] .header-inner .language-toolbar { background: transparent; }
+body[data-q-theme] .language-label select,
+body[data-q-theme] .header-button {
+  background: #245e62; color: #ffffff; border-color: #9ebfbd;
+}
+body[data-q-theme] .language-label option { background: #ffffff; color: var(--q-ink); }
+/* Quiet near-white surfaces; chart canvases are intentionally excluded. */
+body[data-q-theme] :is(.card,.subject-filters,.orientation-card,
+  .f-intro,.f-question,.f-evidence article,.route-card,.step-card,.lab-card,.hint-card,
+  .criteria-card,.evidence-card,.practice-card,.learning-entry) {
+  background-color: var(--q-paper); border-color: var(--q-line);
+}
+body[data-q-theme] .subject-card {
+  background-color: var(--q-paper); border-left-color: var(--q-line);
+  border-right-color: var(--q-line); border-bottom-color: var(--q-line);
+}
+body[data-q-theme] :is(.card,.subject-card,.route-card,.step-card) {
+  box-shadow: 0 6px 24px #153f4406;
+}
+/* Primary actions: same color in every subject, without changing graph variables. */
+body[data-q-theme] :is(.primary,.btn.primary,.btn.dark,.f-primary,.subject-link),
+body[data-q-theme] .goal-actions button {
+  color: #ffffff; background: var(--q-primary); border-color: var(--q-primary);
+  box-shadow: 0 3px 10px #153f4412;
+}
+body[data-q-theme] :is(.primary,.btn.primary,.btn.dark,.f-primary,.subject-link):hover:not(:disabled),
+body[data-q-theme] .goal-actions button:hover:not(:disabled) {
+  background: var(--q-teal); border-color: var(--q-teal); color: #ffffff; filter: none;
+}
+body[data-q-theme] :is(.primary,.btn.primary,.btn.dark,.f-primary,.subject-link):active:not(:disabled) {
+  background: #0e3438; border-color: #0e3438;
+}
+body[data-q-theme] :is(.secondary,.btn.soft,.btn.quiet,.f-secondary-link,.qa-step,.quiet) {
+  color: var(--q-teal); background: var(--q-mint); border-color: var(--q-control);
+}
+body[data-q-theme] :is(.secondary,.btn.soft,.btn.quiet,.f-secondary-link,.qa-step,.quiet):hover:not(:disabled) {
+  color: var(--q-teal); background: var(--q-mint-hover); border-color: var(--q-primary);
+}
+body[data-q-theme] :is(.text-button,.text-btn,.foundation-link,.goal-course-links,
+  .storage-copy a,.goal-choice a,.goal-actions a,.f-all-subjects,.f-saved-reports) {
+  color: var(--q-primary);
+}
+body[data-q-theme] .eyebrow { color: var(--q-primary); }
+body[data-q-theme] :is(.primary,.btn,.f-primary,.secondary,.qa-step,.quiet):disabled,
+body[data-q-theme] .goal-actions button:disabled {
+  opacity: 1; background: #ece9f0; color: #5b6870; border-color: #a1a6ae;
+  box-shadow: none; filter: none; cursor: default;
+}
+/* Inputs stay bright with a stronger boundary and an explicit keyboard focus ring. */
+body[data-q-theme] :is(input:not([type]),input[type="text"],input[type="number"],
+  input[type="email"],input[type="password"],textarea,select) {
+  background: #ffffff; color: var(--q-ink); border-color: var(--q-control);
+}
+body[data-q-theme] :is(input,textarea)::placeholder { color: #586a70; opacity: 1; }
+body[data-q-theme] :is(input,textarea)[readonly] { background: #f7f5fa; }
+body[data-q-theme] .language-label select { background: #245e62; color: #ffffff; border-color: #9ebfbd; }
+body[data-q-theme] :is(button,a,input,textarea,select,summary,[tabindex]):focus-visible {
+  outline: 3px solid var(--q-focus); outline-offset: 3px;
+}
+body[data-q-theme] .site-header :is(button,a,select):focus-visible,
+body[data-q-ui="ab01"] > header :is(button,a,select):focus-visible,
+body[data-q-ui="reports"] > header :is(button,a,select):focus-visible {
+  outline-color: #ddf1e8;
+}
+body[data-q-theme] :is(input[type="checkbox"],input[type="radio"]) { accent-color: var(--q-primary); }
+body[data-q-theme] dialog {
+  background: #ffffff; color: var(--q-ink); border-color: var(--q-control);
+  box-shadow: 0 20px 80px #153f4433;
+}
+body[data-q-theme] dialog::backdrop { background: #153f4466; }
+body[data-q-theme] .modal-top { background: #ffffff; border-color: var(--q-line); }
+body[data-q-theme] .modal-top button { background: var(--q-mint); color: var(--q-teal); }
+body[data-q-theme] .site-header :is(.text-button,.text-btn) { color: #ddf1e8; }
+body[data-q-ui="account"] button,
+body[data-q-ui="records"] button:not(.danger) { background: var(--q-primary); color: #ffffff; border-color: var(--q-primary); }
+body[data-q-ui="account"] button:hover:not(:disabled),
+body[data-q-ui="records"] button:not(.danger):hover:not(:disabled) { background: var(--q-teal); }
+/* Selection is mint or deep teal; correct/incorrect, warnings and chart legends stay untouched. */
+body[data-q-theme] :is(.lesson-link.active,.area-nav.active,
+  .choice[aria-pressed="true"],.step.current,
+  .activity-tabs button[aria-current],.view-tabs button[aria-pressed="true"],
+  .lap-tabs button[aria-pressed="true"],.solid-stage-nav button[aria-pressed="true"],
+  .f-mode-nav .f-mode-link[aria-current="page"],.f-view-controls button[aria-pressed="true"]) {
+  background: var(--q-mint); color: var(--q-teal); border-color: var(--q-primary); box-shadow: none;
+}
+body[data-q-theme] :is(.mission-tabs button[aria-current],.step-tab[aria-current="step"],
+  .step-dot.active,.option[aria-pressed="true"],.active .area-number) {
+  background: var(--q-primary); color: #ffffff; border-color: var(--q-primary);
+}
+body[data-q-theme] :is(.answer-option,.option):has(input:checked) {
+  background: var(--q-mint); border-color: var(--q-primary);
+}
+body[data-q-theme] .explore-tabs button[aria-current] { color: var(--q-primary); border-color: var(--q-primary); }
+body[data-q-ui="nt"] .route-item[aria-current="true"] {
+  background: var(--q-mint); color: var(--q-teal); border-color: var(--q-primary);
+}
+body[data-q-ui="nt"] .route-item[aria-current="true"] .route-number {
+  background: var(--q-primary); color: #ffffff; border-color: var(--q-primary);
+}
+body[data-q-theme] .f-view-controls,
+body[data-q-theme] .view-tabs { background: var(--q-mist); border-color: var(--q-line); }
+/* Reports retain semantic evidence colors. Reading notes use a lavender surface. */
+body[data-q-theme] .report-handoff { background: #f6f3fa; color: var(--q-ink); border-color: var(--q-line); }
+body[data-q-theme] .report-learning-focus,
+body[data-q-theme] .goal-report-option { background: #edf8f2; color: var(--q-ink); border-color: #a7c3b9; }
+body[data-q-theme] .report-status:not(.error) { background: var(--q-mint); border-left-color: var(--q-primary); }
+body[data-q-theme] :is(.f-quote,.first-thought,.written-answer) { background: #f6f3fa; }
+body[data-q-theme] .summary-table thead { background: var(--q-mist); color: var(--q-ink); }
+/* Map-only tokens: existing roads, available-course blue and plotted data colors remain unchanged. */
+body[data-q-theme].quidence-home {
+  --qa-paper: #fefdff; --qa-card: #ffffff; --qa-ink: var(--q-ink); --qa-muted: var(--q-muted);
+  --qa-border: var(--q-line); --qa-green: var(--q-primary); --qa-green-soft: var(--q-mint);
+  --qa-blue-soft: var(--q-mist); --qa-ring: #c5e2d9;
+  --qa-header: var(--q-teal); --qa-header-ink: #ffffff;
+  background: var(--q-page);
+}
+body[data-q-theme].quidence-home .qh-site-header .qf-page-nav {
+  background: #245256; border-color: #7eabaa;
+}
+body[data-q-theme].quidence-home .qh-site-header .qf-page-choice { color: #ffffff; }
+body[data-q-theme].quidence-home .qf-page-choice[aria-current="page"],
+body[data-q-theme].quidence-home .qh-site-header .qf-page-choice[aria-current="page"],
+body[data-q-theme].quidence-home .qf-left-rail .qf-page-choice[aria-current="page"] {
+  background: var(--q-mint); color: var(--q-teal);
+}
+body[data-q-theme].quidence-home .learning-subject-buttons button {
+  background: #ffffff; color: var(--q-ink); border-color: var(--q-control);
+}
+body[data-q-theme].quidence-home .learning-subject-buttons button[aria-pressed="true"] {
+  background: var(--q-primary); border-color: var(--q-primary); color: #ffffff;
+  box-shadow: inset 0 0 0 1px var(--q-primary);
+}
+body[data-q-theme].quidence-home .learning-subject-buttons button:hover:not([aria-pressed="true"]) {
+  background: var(--q-mint); border-color: var(--q-primary);
+}
+body[data-q-theme].quidence-home .qa-course-action { background: var(--q-mint); color: var(--q-teal); border-color: var(--q-control); }
+body[data-q-theme].quidence-home .qa-course-action.qa-diagnose { background: var(--q-primary); color: #ffffff; border-color: var(--q-primary); }
+body[data-q-theme].quidence-home .qa-course-action.qa-diagnose:hover { background: var(--q-teal); }
+body[data-q-theme].quidence-home .qa-step { background: var(--q-mint); color: var(--q-teal); border-color: var(--q-control); }
+body[data-q-theme].quidence-home .qa-step:disabled { opacity: 1; background: #ece9f0; color: #5b6870; border-color: #a1a6ae; }
+body[data-q-theme].quidence-home .qa-layer,
+body[data-q-theme].quidence-home .qa-chapter { color: var(--q-muted); }
+body[data-q-theme].quidence-home .qa-layer[aria-pressed="true"] { background: var(--q-mint); color: var(--q-teal); border-color: var(--q-primary); }
+body[data-q-theme].quidence-home .qa-chapter[aria-pressed="true"] { background: var(--q-primary); color: #ffffff; }
+body[data-q-theme].quidence-home #goal-copy { background: var(--q-coral); color: #ffffff; border-color: var(--q-coral); }
+body[data-q-theme].quidence-home #goal-copy:hover:not(:disabled) { background: var(--q-coral-hover); border-color: var(--q-coral-hover); }
+body[data-q-theme].quidence-home #goal-copy:disabled { background: #ece9f0; color: #5b6870; border-color: #a1a6ae; }
+body[data-q-theme].quidence-home #goal-original,
+body[data-q-theme].quidence-home #goal-reset { background: var(--q-mint); color: var(--q-teal); border-color: var(--q-control); }
+body[data-q-theme].quidence-home .learning-request textarea { border-color: var(--q-control); }
+body[data-q-theme].quidence-home .qh-language-label select,
+body[data-q-theme].quidence-home .qa-language { background: #245e62; color: #ffffff; border-color: #9ebfbd; }
+body[data-q-theme].quidence-home .feedback-section { background: #edf8f2; border-color: var(--q-line); }
+body[data-q-theme].quidence-home .feedback-email { background: var(--q-primary); color: #ffffff; border-color: var(--q-primary); }
+body[data-q-theme].quidence-home .feedback-email:hover { background: var(--q-teal); }
+/* The side card shares the existing sticky rail and never overlays course controls. */
+html.q-home-scroll { scroll-behavior: smooth; }
+body[data-q-theme].quidence-home .q-qidolab-float {
+  display: grid; justify-items: start; gap: 7px; padding: 14px 16px; flex: none;
+  min-width: 0; border: 1px solid #6e8588; border-radius: 14px;
+  color: var(--q-primary); background: linear-gradient(120deg,#fffaf0,#edf5ef);
+  text-decoration: none; box-shadow: 0 6px 20px #153f4410;
+}
+body[data-q-theme].quidence-home .q-qidolab-float > img {
+  display: block; width: min(100%,140px); height: auto; aspect-ratio: 1118 / 404;
+}
+body[data-q-theme].quidence-home .q-qidolab-float > span {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  width: 100%; font-size: 12px; line-height: 1.5;
+}
+body[data-q-theme].quidence-home .q-qidolab-float > span > span { font-size: 19px; line-height: 1; }
+body[data-q-theme].quidence-home .q-qidolab-float:hover {
+  border-color: var(--q-primary); box-shadow: 0 8px 24px #153f441a;
+}
+body[data-q-theme].quidence-home .q-qidolab-link { scroll-margin-block: 24px; }
+body[data-q-theme].quidence-home .q-qidolab-link:target { outline: 2px solid var(--q-primary); outline-offset: 5px; }
+@media (min-width: 960px) {
+  body[data-q-theme].quidence-home .qf-left-rail {
+    display: flex; flex-direction: column; gap: 14px; overflow: visible;
+  }
+  body[data-q-theme].quidence-home .qf-left-rail > .qs-subject-panel {
+    flex: 0 1 auto; min-height: 0; overflow-y: auto; scrollbar-width: thin;
+  }
+}
+@media (max-width: 959px) {
+  body[data-q-theme].quidence-home .q-qidolab-float {
+    grid-template-columns: minmax(0,110px) minmax(0,1fr); align-items: center;
+    gap: 18px; margin-top: 14px; padding: 12px 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.q-home-scroll { scroll-behavior: auto; }
+}
+/* The whole Qidolab panel is one real link. It uses the same type family as its surroundings. */
+body[data-q-theme].quidence-home .q-qidolab-link {
+  display: grid; grid-template-columns: minmax(0,1fr) minmax(220px,370px); align-items: center; gap: 32px;
+  max-width: 1900px; margin: 24px auto; padding: 25px 36px; border-radius: 18px;
+  color: var(--q-teal); background: linear-gradient(115deg,#fffaf0,#f3f6ef);
+  border: 1px solid #c9d8cf; text-decoration: none; box-shadow: 0 8px 28px #153f4408;
+}
+body[data-q-theme] .q-qidolab-copy { display: grid; justify-items: start; gap: 12px; min-width: 0; }
+body[data-q-theme] .q-qidolab-logo {
+  display: block; width: min(100%,380px); height: auto; aspect-ratio: 1118 / 404; object-fit: contain;
+}
+body[data-q-theme] .q-qidolab-tagline { color: var(--q-muted); font-size: 14px; line-height: 1.5; }
+body[data-q-theme] .q-qidolab-cta {
+  display: inline-flex; align-items: center; gap: 20px; margin-top: 2px;
+  color: var(--q-primary); font-size: 14px; line-height: 1.5;
+}
+body[data-q-theme] .q-qidolab-cta > span { font-size: 22px; line-height: 1; }
+body[data-q-theme] .q-qidolab-art {
+  display: block; width: 100%; max-width: 370px; height: auto; aspect-ratio: 520 / 300; justify-self: end;
+}
+body[data-q-theme].quidence-home .q-qidolab-link:hover { border-color: var(--q-primary); box-shadow: 0 10px 30px #153f4412; }
+body[data-q-theme].quidence-home .q-qidolab-link:hover .q-qidolab-cta { text-decoration: underline; text-underline-offset: 4px; }
+body[data-q-theme].quidence-home .q-qidolab-link:active { background: #edf3e9; }
+body[data-q-theme].quidence-home .q-qidolab-link:focus-visible {
+  outline: 3px solid #15565b; outline-offset: 5px;
+}
+@media (max-width: 600px) {
+  body[data-q-theme].quidence-home .q-qidolab-link { grid-template-columns: minmax(0,1fr); padding: 23px 19px; gap: 14px; }
+  body[data-q-theme] .q-qidolab-logo { max-width: 290px; }
+  body[data-q-theme] .q-qidolab-tagline { font-size: 13px; }
+  body[data-q-theme] .q-qidolab-art { max-width: 285px; justify-self: center; }
+}
+@media print {
+  :root,html,body[data-q-theme],body[data-q-theme] .quidence-foundations { background: #ffffff; }
+  body[data-q-theme] .q-qidolab-float { display: none !important; }
+  body[data-q-theme] .q-qidolab-link { display: none !important; }
+  body[data-q-theme] :is(.card,.subject-card,.route-card,.step-card) { box-shadow: none; }
+}

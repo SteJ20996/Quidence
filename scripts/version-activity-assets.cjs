@@ -11,6 +11,7 @@ for(const file of ['app.js','core.js','style.css'])reportAssets.add('courses/num
 for(const file of ['app.js','matrix-guide.js','style.css'])reportAssets.add('modules/ab01/dist/'+file);
 reportAssets.add('assets/course-catalog.js');reportAssets.add('assets/sync-policy.js');
 reportAssets.add('assets/seo-config.js');reportAssets.add('assets/seo.js');
+for (const file of ['color-review.css', 'qidolab-lockup.svg', 'qidolab-water-puzzle.svg']) reportAssets.add('assets/' + file);
 function versionActivities(check = false) {
   const updates = new Map();
   const uiVersion = digest(['foundation.css', 'foundation-app.js', 'project.css']
