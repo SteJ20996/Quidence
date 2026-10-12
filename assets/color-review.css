@@ -2,7 +2,7 @@
    Plot colors, semantic feedback, gold achievements, fonts and geometry remain in the original styles. */
 :root {
   color-scheme: light;
-  --q-page: #f3f1f7;
+  --q-page: #f8f5ec;
   --q-paper: #ffffff;
   --q-mist: #eee9f5;
   --q-ink: #20383e;
@@ -268,6 +268,14 @@ body[data-q-theme].quidence-home .q-qidolab-link:focus-visible {
   body[data-q-theme] .q-qidolab-logo { max-width: 290px; }
   body[data-q-theme] .q-qidolab-tagline { font-size: 13px; }
   body[data-q-theme] .q-qidolab-art { max-width: 285px; justify-self: center; }
+}
+/* Match Qidolab's warm cream canvas and gentle desktop background glows. */
+@media screen and (min-width: 980px) {
+  body[data-q-theme],body[data-q-theme].quidence-home {
+    background: radial-gradient(ellipse at 48% 42%,#dfe5d880,transparent 58%),
+      radial-gradient(ellipse at 82% 8%,#eddfd580,transparent 35%),var(--q-page);
+  }
+  body[data-q-theme] .quidence-foundations { background: transparent; }
 }
 @media print {
   :root,html,body[data-q-theme],body[data-q-theme] .quidence-foundations { background: #ffffff; }
