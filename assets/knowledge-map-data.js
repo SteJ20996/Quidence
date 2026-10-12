@@ -129,7 +129,18 @@ const data={
     }
   },
   "courses": [
-    {"id":"number-theory","chapter":1,"node":"number","en":"Number Theory","es":"Teoría de números","scope":{"en":"Ten bilingual projects · Proof review stays open","es":"Diez proyectos bilingües · Las demostraciones quedan pendientes de revisión"},"module":"number-theory"},
+    {
+      "id": "number-theory",
+      "chapter": 1,
+      "node": "number",
+      "en": "Number Theory",
+      "es": "Teoría de números",
+      "scope": {
+        "en": "Ten bilingual projects · Proof review stays open",
+        "es": "Diez proyectos bilingües · Las demostraciones quedan pendientes de revisión"
+      },
+      "module": "number-theory"
+    },
     {
       "id": "prealgebra",
       "chapter": 0,
@@ -249,10 +260,24 @@ const data={
         "es": "Electromagnetismo y fundamentos físicos relacionados"
       },
       "module": "physics-2"
+    },
+    {
+      "id": "gametheory",
+      "chapter": 1,
+      "node": "gametheory",
+      "en": "Game Theory Foundations",
+      "es": "Fundamentos de teoría de juegos",
+      "scope": {
+        "en": "Four English lessons · 15-question foundation check",
+        "es": "Cuatro lecciones en inglés · Evaluación de fundamentos con 15 preguntas"
+      },
+      "module": "ac01"
     }
   ],
   "bindings": {
-    "number": ["number-theory"],
+    "number": [
+      "number-theory"
+    ],
     "operations": [
       "prealgebra"
     ],
@@ -323,6 +348,9 @@ const data={
     "calclinear": [
       "calculus",
       "linear"
+    ],
+    "gametheory": [
+      "gametheory"
     ]
   },
   "chapters": [
@@ -805,6 +833,14 @@ const data={
           "layer": "applied",
           "en": "Mathematical statistics",
           "es": "Estadística matemática"
+        },
+        {
+          "id": "gametheory",
+          "x": 0.875,
+          "y": 0.665,
+          "layer": "applied",
+          "en": "Game theory",
+          "es": "Teoría de juegos"
         }
       ],
       "links": [
@@ -939,6 +975,21 @@ const data={
         [
           "complex",
           "harmonic",
+          "r"
+        ],
+        [
+          "proof",
+          "gametheory",
+          "r"
+        ],
+        [
+          "linear",
+          "gametheory",
+          "r"
+        ],
+        [
+          "gametheory",
+          "optimization",
           "r"
         ]
       ]

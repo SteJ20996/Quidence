@@ -1,0 +1,32 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'..'),Catalog=require('../assets/course-catalog.js'),Map=require('../assets/knowledge-map.js'),Data=require('../assets/knowledge-map-data.js'),F=require('../assets/foundation-bank.js'),SEO=require('../assets/seo-config.js');
+test('the restored Game Theory entry opens actual lessons and its available foundation check',()=>{
+ const c=Catalog.COURSES.ac01;
+ assert.deepEqual(Map.courseCandidates(1,['gametheory']),['gametheory']);
+ assert(Data.courses.some(x=>x.id==='gametheory'&&x.module==='ac01'));
+ assert.equal(F.MODULES.ac01.tasks.length,15);
+ assert.equal(c.challenge,c.foundation);
+ assert.equal(SEO.resolve('/foundations/?module=ac01').noindex,false);
+ for(const route of ['/diagnostics/?module=ac01','/projects/?module=ac01'])assert.equal(SEO.resolve(route).noindex,true);
+ const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
+ assert.match(home,/data-learning-subject="ac01"/);
+ assert.match(home,/data-subject="ac01"/);
+ const card=home.match(/<article[^>]*data-subject="ac01"[\s\S]*?<\/article>/)[0];
+ assert(card.includes(c.course));assert.match(card,/foundations\/\?module=ac01/);
+ assert.doesNotMatch(card,/href="undefined"|projects\/|diagnostics\//);
+});
+test('restoring AC01 preserves its original question definitions, scoring, and record protocol',()=>{
+ const archived=path.join(root,'archive/retired-subjects/game-theory/dist');
+ for(const file of ['content.js','engine.js'])assert.equal(fs.readFileSync(path.join(root,'modules/ac01/dist',file),'utf8').trimEnd(),fs.readFileSync(path.join(archived,file),'utf8').trimEnd());
+ const E=require('../modules/ac01/dist/engine.js');
+ assert.equal(E.SCHEMA,'ac01_beta01_session_v1');
+ assert(E.hydrate(E.fresh()));
+ const entry=fs.readFileSync(path.join(root,'modules/ac01/dist/index.html'),'utf8');
+ assert.doesNotMatch(entry,/sync-client\.js/);
+ assert.match(entry,/local-records\.js/);
+ assert.match(entry,/id="app" lang="en" data-no-translate/);
+ const release=require('../scripts/build-static-release.cjs');
+ for(const file of ['index.html','app.js','content.js','engine.js','style.css'])assert(release.files().includes('modules/ac01/dist/'+file));
+ assert(!release.files().some(file=>file.startsWith('archive/')));
+});

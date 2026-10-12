@@ -133,6 +133,18 @@
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/number-theory/?lang=es" />
   </url>
   <url>
+    <loc>https://www.quidence.com/modules/ac01/dist/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/modules/ac01/dist/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/modules/ac01/dist/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/modules/ac01/dist/?lang=es" />
+  </url>
+  <url>
+    <loc>https://www.quidence.com/modules/ac01/dist/?lang=es</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/modules/ac01/dist/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/modules/ac01/dist/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/modules/ac01/dist/?lang=es" />
+  </url>
+  <url>
     <loc>https://www.quidence.com/courses/physics-1/?lang=en</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/physics-1/?lang=en" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/physics-1/?lang=es" />

@@ -177,7 +177,7 @@ npm run test:browser
 | `courses/`、`modules/aa01`、`ab01`、`ad01`、`ae01`、`af01` | 当前数学教学与视觉活动，另含 `courses/physics-1/`、`courses/physics-2/`，旧 `courses/physics/` 保留历史读取 |
 | `foundations/`、`reports/` | 旧数学基础检查、保存的报告；历史记录保持兼容 |
 | `backend/`、`account/` | 账号及带版本冲突保护的跨设备同步 |
-| `archive/retired-subjects/` | 已退出产品的经济学与博弈论源文件；不属于当前课程 |
+| `archive/retired-subjects/` | 经济学封存源文件及博弈论的历史快照；博弈论现恢复于 modules/ac01 |
 
 退出课程的旧 URL 显示停止提供课程的说明，保留返回数学主页及导出旧报告的链接。旧记录、报告和必要的历史题目定义不删除；当前活动入口不再提供这些学科。
 
@@ -198,3 +198,7 @@ Current record behavior is described at `data-use/`. See [Claude follow-up statu
 ## 基础 SEO 与 Search Console
 
 配置、维护顺序和 Cloudflare DNS 验证步骤见 [SEO_SETUP.md](SEO_SETUP.md)。更改页面或 SEO 后运行 `npm run build:seo`、`npm run version:activities`、`npm run build:seo`，再检查和构建。只发布 `static-release/`；不要发布源码、学生记录或未完成预览。
+
+## 博弈论（AC01）恢复
+
+Game Theory 已恢复到大学数学知识地图、Further Mathematics 的 Subject 选项和 College Level 课程卡片。提供四个原有英文教学单元、八道课后检查，以及单独的 15 题基础检查和 6 题进一步检查；旧 AC01 学习记录与报告继续兼容。正式发布包含 modules/ac01/dist，原有封存快照保留。

@@ -9,6 +9,7 @@ for (const file of ['assets/favicon-32.png', 'assets/apple-touch-icon.png', 'mod
 const digest = content => createHash('sha256').update(content).digest('hex').slice(0, 12);
 for(const file of ['home.css','home.js','knowledge-map-data.js','knowledge-map.js','local-records.js'])reportAssets.add('assets/'+file);
 for(const file of ['app.js','core.js','style.css'])reportAssets.add('courses/number-theory/'+file);
+for(const file of ['app.js','content.js','engine.js','style.css'])reportAssets.add('modules/ac01/dist/'+file);
 for(const file of ['app.js','matrix-guide.js','style.css'])reportAssets.add('modules/ab01/dist/'+file);
 reportAssets.add('assets/course-catalog.js');reportAssets.add('assets/sync-policy.js');
 reportAssets.add('assets/seo-config.js');reportAssets.add('assets/seo.js');
