@@ -4498,7 +4498,7 @@
       "taskId": "ac-x01",
       "title": "Build a payoff cell from a story",
       "bankVersion": "cluevera-foundation-followups-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "c96bc8a04dd0fa68543962a466aef0c480b1dd7fcf2ad6c2845a631021b26825",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -4526,7 +4526,7 @@
       "taskId": "ac-x02",
       "title": "Find both players’ conditional responses",
       "bankVersion": "cluevera-foundation-followups-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "37501bd451262771a9990dfdb96e5471dc77bcd81c6bda7622d787d693d47863",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -4554,7 +4554,7 @@
       "taskId": "ac-x03",
       "title": "Check every cell, including the unselected ones",
       "bankVersion": "cluevera-foundation-followups-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "56324f202a129055ce154e953de6f8e581d69012d097f1d988f7afd996c80d03",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -4582,7 +4582,7 @@
       "taskId": "ac-x04",
       "title": "Identify dominance without a supplied conclusion",
       "bankVersion": "cluevera-foundation-followups-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "46614d9b180d1c96a887c01e0db2afd00fb22f5172d158820fb2bc4fe5f3aec9",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -4610,7 +4610,7 @@
       "taskId": "ac-x05",
       "title": "Equilibrium can be worse for both",
       "bankVersion": "cluevera-foundation-followups-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "48fd41c08d1101646fa01767d6c77f120dae08e8250553e87fce6b4ed6c455c5",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -4638,7 +4638,7 @@
       "taskId": "ac-x06",
       "title": "When the payoff model changes",
       "bankVersion": "cluevera-foundation-followups-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "e45b6283ba90f0e29240a3bb90bf4fd144d854da8c0ee7c8ed191f1d76d6192d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -5850,7 +5850,7 @@
       "taskId": "ac-f01",
       "title": "Read the two players’ points",
       "bankVersion": "cluevera-foundations-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "bccd3e9c4cac68b28adb20d74ff160b549475931ade9c4ec8765b958f08b4dc1",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -5882,7 +5882,7 @@
       "taskId": "ac-f02",
       "title": "Change only one player",
       "bankVersion": "cluevera-foundations-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "31a8aac1d424e82652fd19cfe5bfa38ccc5d2fa70a537a6dc1d9f1bc4670d60b",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -5914,7 +5914,7 @@
       "taskId": "ac-f03",
       "title": "Separate the players’ preferences",
       "bankVersion": "cluevera-foundations-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "2e4a6832af6fc5083987367b2067fbb7e8da9c484c45d3cbdf62c78aef1b17c9",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -5946,7 +5946,7 @@
       "taskId": "ac-f04",
       "title": "Fix B’s choice first",
       "bankVersion": "cluevera-foundations-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "c0246cba11f55cb7ceb1d84a813c1953137d9ff549df37280cd11e5147a1dea8",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -5978,7 +5978,7 @@
       "taskId": "ac-f05",
       "title": "Read B’s best response",
       "bankVersion": "cluevera-foundations-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "62ecf9c5a2a870365141067ae941cd2a7cfdcc5f29c5903f78dfd6d57bf96100",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -6010,7 +6010,7 @@
       "taskId": "ac-f06",
       "title": "Allow a tie",
       "bankVersion": "cluevera-foundations-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "f2b738610dd95901001a91394acb15b66c7a7d0d43fabe315fef2a51fd8bf92b",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -6042,7 +6042,7 @@
       "taskId": "ac-f07",
       "title": "Test every opposing choice",
       "bankVersion": "cluevera-foundations-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "b8923868c9f99306b05d1c25e719d716dcda87917758e7fbba706d8d88b28daf",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -6074,7 +6074,7 @@
       "taskId": "ac-f08",
       "title": "Distinguish strict from weak dominance",
       "bankVersion": "cluevera-foundations-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "ea86aed8d0fa7845943781cc224746275aa593c1016cbfbc3c65aafd93c24e5f",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -6106,7 +6106,7 @@
       "taskId": "ac-f09",
       "title": "Check when the best choice changes",
       "bankVersion": "cluevera-foundations-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "4e496d1ee512938c6d0cc0cdc81bcb6475b3a805c520da15d6262725751dc7e5",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -6138,7 +6138,7 @@
       "taskId": "ac-f10",
       "title": "Compare mutual outcomes",
       "bankVersion": "cluevera-foundations-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "45b7b76ac8645271f22ef18f5afa2b6ccb079d99d4b606612d7ef817a4f14447",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -6170,7 +6170,7 @@
       "taskId": "ac-f11",
       "title": "Check a tempting one-person switch",
       "bankVersion": "cluevera-foundations-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "d111b9b19bac3b7d5791d28783fe81d7e4afba41904dbd466e16a1333dadb58d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -6202,7 +6202,7 @@
       "taskId": "ac-f12",
       "title": "Explain the dilemma",
       "bankVersion": "cluevera-foundations-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "970e6ec1a24ae03dbc9335b786d1db703b4ef8a490f51d65fed7c20c3fabdc8a",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -6234,7 +6234,7 @@
       "taskId": "ac-f13",
       "title": "Test every candidate",
       "bankVersion": "cluevera-foundations-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "3042163f00ff7f6781129b84def09e40ae5ae29c56740cd4dfe664644b5f76d4",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -6266,7 +6266,7 @@
       "taskId": "ac-f14",
       "title": "Recognize no pure equilibrium",
       "bankVersion": "cluevera-foundations-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "48baca04f7635ce7ba27104db95140d825888172f21d3cc01af0d92a64ef4301",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -6298,7 +6298,7 @@
       "taskId": "ac-f15",
       "title": "Keep indifference distinct from improvement",
       "bankVersion": "cluevera-foundations-1",
-      "availability": "historical-only",
+      "availability": "active",
       "fingerprint": "0bb235455429222a2658788daa94d0c91b0cda1ee2fd8e133fcaa8b4e77a4385",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
@@ -7762,6 +7762,378 @@
         "automatedReference": null
       },
       "automatedReference": null
+    },
+    {
+      "id": "lesson:ac01:c1",
+      "family": "lesson",
+      "module": "ac01",
+      "taskId": "c1",
+      "title": "A chooses Science and B chooses Art. Which payoff pair is selected?",
+      "bankVersion": "ac01_content_1",
+      "availability": "active",
+      "fingerprint": "8a4fc1adbfdefcc0304c3c7c2150db5fa14bc486229d173d3a5463754e4f398c",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ac01/dist/content.js",
+          "sha256": "d9c25cbdd1667c987493dbc047914ff3f9d70d1580a2956e867ac8ac4d0a4a0a"
+        },
+        {
+          "path": "modules/ac01/dist/engine.js",
+          "sha256": "97f4fb892e1d22a580158946169350b43209f5b677d6921d39509a028d1f4734"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ac01:c2",
+      "family": "lesson",
+      "module": "ac01",
+      "taskId": "c2",
+      "title": "At (A: Art, B: Science), whose payoff is larger?",
+      "bankVersion": "ac01_content_1",
+      "availability": "active",
+      "fingerprint": "a1864788ca6cd4a0a2e6c4fff8f9e2ce93105fab11a009663b2105f3e0804196",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ac01/dist/content.js",
+          "sha256": "d9c25cbdd1667c987493dbc047914ff3f9d70d1580a2956e867ac8ac4d0a4a0a"
+        },
+        {
+          "path": "modules/ac01/dist/engine.js",
+          "sha256": "97f4fb892e1d22a580158946169350b43209f5b677d6921d39509a028d1f4734"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ac01:c3",
+      "family": "lesson",
+      "module": "ac01",
+      "taskId": "c3",
+      "title": "B chooses Large. What is A’s best response?",
+      "bankVersion": "ac01_content_1",
+      "availability": "active",
+      "fingerprint": "376a377548ab235679e7c431620c8c62445e9827b40bb786c72f4d86ae814c79",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ac01/dist/content.js",
+          "sha256": "d9c25cbdd1667c987493dbc047914ff3f9d70d1580a2956e867ac8ac4d0a4a0a"
+        },
+        {
+          "path": "modules/ac01/dist/engine.js",
+          "sha256": "97f4fb892e1d22a580158946169350b43209f5b677d6921d39509a028d1f4734"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ac01:c4",
+      "family": "lesson",
+      "module": "ac01",
+      "taskId": "c4",
+      "title": "Does A have a strictly dominant strategy in this game?",
+      "bankVersion": "ac01_content_1",
+      "availability": "active",
+      "fingerprint": "ab58d2a3bbed9eda9427201fe28bfaceeb068a516b30b207784cb87df88a9251",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ac01/dist/content.js",
+          "sha256": "d9c25cbdd1667c987493dbc047914ff3f9d70d1580a2956e867ac8ac4d0a4a0a"
+        },
+        {
+          "path": "modules/ac01/dist/engine.js",
+          "sha256": "97f4fb892e1d22a580158946169350b43209f5b677d6921d39509a028d1f4734"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ac01:c5",
+      "family": "lesson",
+      "module": "ac01",
+      "taskId": "c5",
+      "title": "Both choose Reserve. Which alternative outcome gives both groups a higher payoff?",
+      "bankVersion": "ac01_content_1",
+      "availability": "active",
+      "fingerprint": "491822e0c8c210c30ee67f8fd0e165e7eaf6d0732e2bd34aba21e1887f16ff78",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ac01/dist/content.js",
+          "sha256": "d9c25cbdd1667c987493dbc047914ff3f9d70d1580a2956e867ac8ac4d0a4a0a"
+        },
+        {
+          "path": "modules/ac01/dist/engine.js",
+          "sha256": "97f4fb892e1d22a580158946169350b43209f5b677d6921d39509a028d1f4734"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ac01:c6",
+      "family": "lesson",
+      "module": "ac01",
+      "taskId": "c6",
+      "title": "Why is this a prisoner’s dilemma?",
+      "bankVersion": "ac01_content_1",
+      "availability": "active",
+      "fingerprint": "4f5a3055d4f5f0f4983d5d27a092b42780acabb77cbffe9ddb42d8bbc3362971",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ac01/dist/content.js",
+          "sha256": "d9c25cbdd1667c987493dbc047914ff3f9d70d1580a2956e867ac8ac4d0a4a0a"
+        },
+        {
+          "path": "modules/ac01/dist/engine.js",
+          "sha256": "97f4fb892e1d22a580158946169350b43209f5b677d6921d39509a028d1f4734"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ac01:c7",
+      "family": "lesson",
+      "module": "ac01",
+      "taskId": "c7",
+      "title": "Select every pure-strategy Nash equilibrium. Test both players at each outcome.",
+      "bankVersion": "ac01_content_1",
+      "availability": "active",
+      "fingerprint": "d24dc7ab2e91a8d04d6977da71177934c5e644f202f4b23d812101bb06c05957",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ac01/dist/content.js",
+          "sha256": "d9c25cbdd1667c987493dbc047914ff3f9d70d1580a2956e867ac8ac4d0a4a0a"
+        },
+        {
+          "path": "modules/ac01/dist/engine.js",
+          "sha256": "97f4fb892e1d22a580158946169350b43209f5b677d6921d39509a028d1f4734"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ac01:c8",
+      "family": "lesson",
+      "module": "ac01",
+      "taskId": "c8",
+      "title": "Which statement correctly describes a Nash equilibrium?",
+      "bankVersion": "ac01_content_1",
+      "availability": "active",
+      "fingerprint": "0ae405b31ed875fb5b1905a154c9439daddd9fa20d9a5a109a026fc218514a9f",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ac01/dist/content.js",
+          "sha256": "d9c25cbdd1667c987493dbc047914ff3f9d70d1580a2956e867ac8ac4d0a4a0a"
+        },
+        {
+          "path": "modules/ac01/dist/engine.js",
+          "sha256": "97f4fb892e1d22a580158946169350b43209f5b677d6921d39509a028d1f4734"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ac01:p1",
+      "family": "lesson",
+      "module": "ac01",
+      "taskId": "p1",
+      "title": "An outcome is written (2, 5), with A first and B second. Who receives 5?",
+      "bankVersion": "ac01_content_1",
+      "availability": "active",
+      "fingerprint": "514a1c241b70ebfc6011a307ba48f7f11cefd65db1130405a9e792dad37dd950",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ac01/dist/content.js",
+          "sha256": "d9c25cbdd1667c987493dbc047914ff3f9d70d1580a2956e867ac8ac4d0a4a0a"
+        },
+        {
+          "path": "modules/ac01/dist/engine.js",
+          "sha256": "97f4fb892e1d22a580158946169350b43209f5b677d6921d39509a028d1f4734"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ac01:p2",
+      "family": "lesson",
+      "module": "ac01",
+      "taskId": "p2",
+      "title": "B chooses Plain. Which choice gives A a higher payoff?",
+      "bankVersion": "ac01_content_1",
+      "availability": "active",
+      "fingerprint": "127bb46e720fabe482d8dfbfefe043de9fb62af4d93b314e93fcb8c8e4ecd3d8",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ac01/dist/content.js",
+          "sha256": "d9c25cbdd1667c987493dbc047914ff3f9d70d1580a2956e867ac8ac4d0a4a0a"
+        },
+        {
+          "path": "modules/ac01/dist/engine.js",
+          "sha256": "97f4fb892e1d22a580158946169350b43209f5b677d6921d39509a028d1f4734"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ac01:p3",
+      "family": "lesson",
+      "module": "ac01",
+      "taskId": "p3",
+      "title": "B chooses Share. Which choice gives A the higher payoff in this one-round table?",
+      "bankVersion": "ac01_content_1",
+      "availability": "active",
+      "fingerprint": "30823fe9650096807d934a33254aa2072b6aee42a866d8906c882a63138aea0d",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ac01/dist/content.js",
+          "sha256": "d9c25cbdd1667c987493dbc047914ff3f9d70d1580a2956e867ac8ac4d0a4a0a"
+        },
+        {
+          "path": "modules/ac01/dist/engine.js",
+          "sha256": "97f4fb892e1d22a580158946169350b43209f5b677d6921d39509a028d1f4734"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ac01:p4",
+      "family": "lesson",
+      "module": "ac01",
+      "taskId": "p4",
+      "title": "Both choose Library. If only A switches to Café, does A gain?",
+      "bankVersion": "ac01_content_1",
+      "availability": "active",
+      "fingerprint": "08e00de5081a498467e5e29d0ffccd3bc5dd6b9e52561796b5786a7b9f78e0ad",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ac01/dist/content.js",
+          "sha256": "d9c25cbdd1667c987493dbc047914ff3f9d70d1580a2956e867ac8ac4d0a4a0a"
+        },
+        {
+          "path": "modules/ac01/dist/engine.js",
+          "sha256": "97f4fb892e1d22a580158946169350b43209f5b677d6921d39509a028d1f4734"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
     },
     {
       "id": "lesson:ad01:c1",
