@@ -9,7 +9,7 @@
 - 域名及路由继续在 Cloudflare 控制台管理；配置不含 `route` 或 `routes`，并设置 `workers_dev: false`。正式域名和根域名跳转不由这份配置修改。
 - `keep_vars: true` 保留现有控制台变量；本次静态发布无需新增应用变量、数据库或后端入口。
 
-这份提交只准备部署配置。合并到 `main` 并在 Cloudflare 完成连接后，自动部署才会生效。
+2026-10-12：GitHub 部署配置已合并到 `main`，Cloudflare 控制台已连接仓库 `SteJ20996/AA01`，生产分支为 `main`。首次构建与正式域名发布仍待确认；以 Cloudflare 构建日志和实际部署结果为准。
 
 ## 连接现有 Worker
 
