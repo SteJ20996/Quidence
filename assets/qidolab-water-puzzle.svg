@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="300" viewBox="0 0 520 300" role="img" aria-labelledby="title desc">
+  <title id="title">Qidolab water-jug puzzle</title>
+  <desc id="desc">Two unmarked jugs with capacities of seven and four liters, a pouring arrow, and the challenge to leave exactly five liters.</desc>
+  <defs>
+    <clipPath id="large"><path d="M94 81H216V228Q216 249 195 249H115Q94 249 94 228Z"/></clipPath>
+    <clipPath id="small"><path d="M295 127H399V229Q399 249 379 249H315Q295 249 295 229Z"/></clipPath>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#b5e8d2"/><stop offset="1" stop-color="#74b8a1"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="5.8" refY="4" orient="auto">
+      <path d="M1 1L6 4L1 7" fill="none" stroke="#15565b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <ellipse cx="248" cy="164" rx="211" ry="128" fill="#e8f1e8"/>
+  <circle cx="139" cy="111" r="78" fill="#f3f1f7"/>
+  <ellipse cx="249" cy="262" rx="186" ry="9" fill="#153f44" opacity=".08"/>
+  <g font-family="DejaVu Sans,Arial,sans-serif" fill="#153f44" text-anchor="middle">
+    <text x="155" y="60" font-size="24" font-weight="600">7 L</text>
+    <text x="347" y="106" font-size="24" font-weight="600">4 L</text>
+  </g>
+  <g fill="none" stroke="#789690" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M215 108H231Q251 108 251 129V163Q251 184 231 184H216"/>
+    <path d="M399 149H412Q431 149 431 168V190Q431 209 412 209H399"/>
+  </g>
+  <path d="M94 81H216V228Q216 249 195 249H115Q94 249 94 228Z" fill="#fdfcf9"/>
+  <path d="M295 127H399V229Q399 249 379 249H315Q295 249 295 229Z" fill="#fdfcf9"/>
+  <g clip-path="url(#large)">
+    <path d="M89 177Q122 170 154 177T221 177V254H89Z" fill="url(#water)"/>
+    <path d="M89 177Q122 170 154 177T221 177" fill="none" stroke="#d9f4e6" stroke-width="4"/>
+  </g>
+  <g clip-path="url(#small)">
+    <path d="M290 130Q319 125 346 131T404 130V254H290Z" fill="url(#water)"/>
+    <path d="M290 130Q319 125 346 131T404 130" fill="none" stroke="#d9f4e6" stroke-width="4"/>
+  </g>
+  <g fill="none" stroke="#153f44" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M94 81V228Q94 249 115 249H195Q216 249 216 228V81"/>
+    <path d="M91 81H219"/>
+    <path d="M295 127V229Q295 249 315 249H379Q399 249 399 229V127"/>
+    <path d="M292 127H402"/>
+  </g>
+  <g stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity=".7">
+    <path d="M106 97V155"/><path d="M307 145V207"/>
+  </g>
+  <path d="M230 91Q269 61 294 94" fill="none" stroke="#15565b" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M270 111Q260 125 270 125Q280 125 270 111Z" fill="#74b8a1"/>
+  <g transform="translate(350 20)">
+    <rect width="116" height="46" rx="23" fill="#f4e2d9" stroke="#dab8a8"/>
+    <text x="58" y="30" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="600" fill="#8c4637">5 L ?</text>
+  </g>
+  <g fill="#aecabf"><circle cx="65" cy="186" r="4"/><circle cx="455" cy="146" r="5"/><circle cx="262" cy="229" r="3"/></g>
+</svg>

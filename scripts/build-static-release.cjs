@@ -25,6 +25,9 @@ function files() {
     } else if (allowed(file)) found.push(file);
   }
   roots.forEach(walk);
+  for (const file of ['robots.txt', 'sitemap.xml']) {
+    if (fs.existsSync(path.join(root, file))) found.push(file);
+  }
   return found.sort();
 }
 function validateLinks(list) {
@@ -43,11 +46,13 @@ function validateLinks(list) {
 function headers() {
   return '/*\n  Content-Security-Policy: ' + CONTENT_SECURITY_POLICY +
     '\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: same-origin' +
-    '\n  X-Frame-Options: SAMEORIGIN\n  Cache-Control: no-cache\n';
+    '\n  X-Frame-Options: SAMEORIGIN\n  Cache-Control: no-cache\n' +
+    ['account', 'records', 'reports'].map(route => '\n/' + route + '/*\n  X-Robots-Tag: noindex, follow\n').join('');
 }
 function build(output = path.join(root, 'static-release')) {
   // Refuse to mix a fresh public bundle with files left by an earlier build.
   if (fs.existsSync(output)) throw Error('Use an empty output directory for the static release.');
+  require('./build-seo.cjs').buildSEO(true);
   const list = files();
   validateLinks(list);
   for (const file of list) {
@@ -58,5 +63,5 @@ function build(output = path.join(root, 'static-release')) {
   fs.writeFileSync(path.join(output, '_headers'), headers());
   return {files: list.length, output};
 }
-if (require.main === module) console.log(JSON.stringify(build()));
 module.exports = {files, validateLinks, headers, build};
+if (require.main === module) console.log(JSON.stringify(build(process.argv[2])));

@@ -1,0 +1,233 @@
+[
+  {
+    "state": "Body text",
+    "foreground": "#20383e",
+    "background": "#f3f1f7",
+    "ratio": 11.04,
+    "threshold": 4.5
+  },
+  {
+    "state": "Card text",
+    "foreground": "#20383e",
+    "background": "#ffffff",
+    "ratio": 12.38,
+    "threshold": 4.5
+  },
+  {
+    "state": "Muted text",
+    "foreground": "#53666b",
+    "background": "#ffffff",
+    "ratio": 6.03,
+    "threshold": 4.5
+  },
+  {
+    "state": "Muted on mist",
+    "foreground": "#53666b",
+    "background": "#f3f1f7",
+    "ratio": 5.38,
+    "threshold": 4.5
+  },
+  {
+    "state": "Primary",
+    "foreground": "#ffffff",
+    "background": "#15565b",
+    "ratio": 8.35,
+    "threshold": 4.5
+  },
+  {
+    "state": "Primary hover",
+    "foreground": "#ffffff",
+    "background": "#153f44",
+    "ratio": 11.5,
+    "threshold": 4.5
+  },
+  {
+    "state": "Primary active",
+    "foreground": "#ffffff",
+    "background": "#0e3438",
+    "ratio": 13.4,
+    "threshold": 4.5
+  },
+  {
+    "state": "Mint action",
+    "foreground": "#153f44",
+    "background": "#ddf1e8",
+    "ratio": 9.76,
+    "threshold": 4.5
+  },
+  {
+    "state": "Mint hover",
+    "foreground": "#153f44",
+    "background": "#cce8db",
+    "ratio": 8.83,
+    "threshold": 4.5
+  },
+  {
+    "state": "Coral action",
+    "foreground": "#ffffff",
+    "background": "#b94f3d",
+    "ratio": 4.94,
+    "threshold": 4.5
+  },
+  {
+    "state": "Coral hover",
+    "foreground": "#ffffff",
+    "background": "#9e4232",
+    "ratio": 6.4,
+    "threshold": 4.5
+  },
+  {
+    "state": "Placeholder",
+    "foreground": "#586a70",
+    "background": "#ffffff",
+    "ratio": 5.66,
+    "threshold": 4.5
+  },
+  {
+    "state": "Input border",
+    "foreground": "#6e8588",
+    "background": "#ffffff",
+    "ratio": 3.91,
+    "threshold": 3
+  },
+  {
+    "state": "Input border on mist",
+    "foreground": "#6e8588",
+    "background": "#f3f1f7",
+    "ratio": 3.49,
+    "threshold": 3
+  },
+  {
+    "state": "Quiet button boundary",
+    "foreground": "#6e8588",
+    "background": "#ddf1e8",
+    "ratio": 3.32,
+    "threshold": 3
+  },
+  {
+    "state": "Focus ring",
+    "foreground": "#15565b",
+    "background": "#ffffff",
+    "ratio": 8.35,
+    "threshold": 3
+  },
+  {
+    "state": "Header focus",
+    "foreground": "#ddf1e8",
+    "background": "#153f44",
+    "ratio": 9.76,
+    "threshold": 3
+  },
+  {
+    "state": "Language control",
+    "foreground": "#ffffff",
+    "background": "#245e62",
+    "ratio": 7.36,
+    "threshold": 4.5
+  },
+  {
+    "state": "Disabled action",
+    "foreground": "#5b6870",
+    "background": "#ece9f0",
+    "ratio": 4.78,
+    "threshold": 4.5
+  },
+  {
+    "state": "Readonly text",
+    "foreground": "#20383e",
+    "background": "#f7f5fa",
+    "ratio": 11.43,
+    "threshold": 4.5
+  },
+  {
+    "state": "Saved report header",
+    "foreground": "#f6f7f9",
+    "background": "#153f44",
+    "ratio": 10.73,
+    "threshold": 4.5
+  },
+  {
+    "state": "Saved report logo accent",
+    "foreground": "#68e1af",
+    "background": "#153f44",
+    "ratio": 7.11,
+    "threshold": 3
+  },
+  {
+    "state": "Linear Algebra selection",
+    "foreground": "#153f44",
+    "background": "#ddf1e8",
+    "ratio": 9.76,
+    "threshold": 4.5
+  },
+  {
+    "state": "Number Theory route selection",
+    "foreground": "#153f44",
+    "background": "#ddf1e8",
+    "ratio": 9.76,
+    "threshold": 4.5
+  },
+  {
+    "state": "Number Theory route number",
+    "foreground": "#ffffff",
+    "background": "#15565b",
+    "ratio": 8.35,
+    "threshold": 4.5
+  },
+  {
+    "state": "Footer subtitle on cream",
+    "foreground": "#53666b",
+    "background": "#fffaf0",
+    "threshold": 4.5,
+    "ratio": 5.8
+  },
+  {
+    "state": "Footer subtitle on pale green",
+    "foreground": "#53666b",
+    "background": "#f3f6ef",
+    "threshold": 4.5,
+    "ratio": 5.53
+  },
+  {
+    "state": "Footer action",
+    "foreground": "#15565b",
+    "background": "#fffaf0",
+    "threshold": 4.5,
+    "ratio": 8.03
+  },
+  {
+    "state": "Footer wordmark",
+    "foreground": "#162638",
+    "background": "#fffaf0",
+    "threshold": 4.5,
+    "ratio": 14.75
+  },
+  {
+    "state": "Water puzzle capacity labels",
+    "foreground": "#153f44",
+    "background": "#e8f1e8",
+    "threshold": 4.5,
+    "ratio": 9.95
+  },
+  {
+    "state": "Water puzzle target",
+    "foreground": "#8c4637",
+    "background": "#f4e2d9",
+    "threshold": 4.5,
+    "ratio": 5.49
+  },
+  {
+    "state": "Side shortcut caption",
+    "foreground": "#15565b",
+    "background": "#edf5ef",
+    "threshold": 4.5,
+    "ratio": 7.52
+  },
+  {
+    "state": "Side shortcut boundary",
+    "foreground": "#6e8588",
+    "background": "#fffaf0",
+    "threshold": 3,
+    "ratio": 3.76
+  }
+]

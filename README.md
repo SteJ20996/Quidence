@@ -1,3 +1,9 @@
+## 2026-10-12 · 薄雾紫 × 深青绿与 Qidolab 入口
+
+- 用户已审核的新配色覆盖主页、课程、检查、项目和报告；阅读卡片保持明亮，图表及正误反馈继续保留原有语义。
+- 底部使用正式 Qidolab Logo 和水壶小游戏配图，整块可进入 Qidolab；左侧新增通往该区域的浮动卡片，手机端使用紧凑入口。
+- 生成模板、英／西语来源和资源版本同步更新。题库、评分、原始作答及历史保存不变；检查范围见 [本轮整合记录](review/mist-teal-qidolab-20261012.md)。GitHub 合并与正式域名部署分别处理。
+
 ## 2026-10-10 · Number Theory 与知识地图发布
 
 - 新增数论：10 个项目、43 个步骤、120 个答题字段及完整证明；首页、学科卡片和知识地图均可进入。现有十门课与历史记录保持兼容。
@@ -188,3 +194,7 @@ node scripts/render-challenge-graphics.cjs
 旧版本审核文件保留作为历史记录；以本 README 和本次诊断审核表为当前范围。macOS 实机交互及打印仍需实际浏览器测试。
 
 Current record behavior is described at `data-use/`. See [Claude follow-up status](CLAUDE_FOLLOWUP_REVIEW.md), [source review process](SOURCE_REVIEW.md), and the [unapproved privacy and retention draft](PRIVACY_AND_RETENTION_DRAFT.md). There is no online account deletion or automatic revision expiry yet. The explanation checks are provisional and do not call an AI grading model; these activities do not certify comprehensive mathematical mastery.
+
+## 基础 SEO 与 Search Console
+
+配置、维护顺序和 Cloudflare DNS 验证步骤见 [SEO_SETUP.md](SEO_SETUP.md)。更改页面或 SEO 后运行 `npm run build:seo`、`npm run version:activities`、`npm run build:seo`，再检查和构建。只发布 `static-release/`；不要发布源码、学生记录或未完成预览。
