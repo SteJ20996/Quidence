@@ -63,7 +63,10 @@ async function run() {
       page.on('requestfailed', request => failures.push(request.url() + ': ' + request.failure()?.errorText));
       page.on('response', response => {if (response.status() >= 400) failures.push(response.url() + ': ' + response.status());});
       await page.goto(origin + '/?view=courses');
-      const links = await page.locator('.challenge-link, .project-link').evaluateAll(elements => elements.map(el => el.href).filter(href=>new URL(href).searchParams.has('module')));
+      const activityLinks = await page.locator('.challenge-link, .project-link').evaluateAll(elements => elements.map(el => el.href).filter(href=>new URL(href).searchParams.has('module')));
+      assert.equal(activityLinks.length, 21);
+      assert.equal(activityLinks.filter(href => new URL(href).pathname === '/foundations/' && new URL(href).searchParams.get('module') === 'ac01').length, 1);
+      const links = activityLinks.filter(href => ['/diagnostics/', '/projects/'].includes(new URL(href).pathname));
       assert.equal(links.length, 20);
       for (const href of links) {
         const url = new URL(href), subject = url.searchParams.get('module'), projects = url.pathname === '/projects/';
@@ -102,6 +105,8 @@ async function run() {
         }
         pages++;
       }
+      await checkRestoredGameTheory(page, origin, width);
+      pages += 2; drafts += 2;
       console.log('Activity browser checks: ' + width + 'px passed.');
       await context.close();
     }
@@ -111,6 +116,48 @@ async function run() {
     if (browser) await browser.close();
     await new Promise(resolve => server.close(resolve));
   }
+}
+
+async function checkRestoredGameTheory(page, origin, width) {
+  const explanation = '先分别读取 A 和 B 的收益。 Keep each player’s payoff separate.';
+  await page.goto(origin + '/?view=courses');
+  await page.locator('[data-subject="ac01"] .challenge-link').click();
+  assert.equal(new URL(page.url()).pathname, '/foundations/');
+  assert.equal(await page.locator('#f-subject').inputValue(), 'ac01');
+  assert.match(await page.locator('#f-heading').textContent(), /Game Theory/);
+  assert.equal(await page.locator('a[href*="diagnostics/?module=ac01"], a[href*="projects/?module=ac01"]').count(), 0);
+  await checkLayout(page, width, 'Game Theory foundation overview');
+  await page.locator('[data-f-action="resume"]').click();
+  await page.locator('[data-f-unsure]').check();
+  await page.locator('[data-f-explanation]').fill(explanation);
+  await page.locator('#f-subject').selectOption('ab01');
+  await page.locator('#f-subject').selectOption('ac01');
+  await page.reload();
+  assert.equal(await page.locator('[data-f-unsure]').isChecked(), true);
+  assert.equal(await page.locator('[data-f-explanation]').inputValue(), explanation);
+  await page.locator('#quidence-language').selectOption('es');
+  assert.equal(await page.locator('[data-f-explanation]').inputValue(), explanation);
+  await checkLayout(page, width, 'Game Theory Spanish foundation draft');
+  await page.locator('#quidence-language').selectOption('en');
+
+  await page.goto(origin + '/?view=courses');
+  await page.locator('[data-subject="ac01"] .subject-link').click();
+  assert.equal(new URL(page.url()).pathname, '/' + COURSES.ac01.course);
+  assert.equal(await page.locator('#app').getAttribute('lang'), 'en');
+  await checkPageWidth(page, width, 'Game Theory course introduction');
+  await page.locator('[data-action="start"]').click();
+  await page.locator('[name="choice"][value="b"]').check();
+  await page.locator('#explanation').fill(explanation);
+  await page.reload();
+  assert.equal(await page.locator('[name="choice"][value="b"]').isChecked(), true);
+  assert.equal(await page.locator('#explanation').inputValue(), explanation);
+  await page.locator('#answer-form button[type="submit"]').click();
+  await page.locator('[data-action="next"]').click();
+  await page.locator('#row-choice').selectOption('0');
+  await page.locator('#col-choice').selectOption('1');
+  assert.equal(await page.locator('.payoffs td.selected .payoff-a').textContent(), '0');
+  assert.equal(await page.locator('.payoffs td.selected .payoff-b').textContent(), '1');
+  await checkPageWidth(page, width, 'Game Theory interactive payoff table');
 }
 
 async function checkHomepage(browser, origin, capture, errors, failures) {
