@@ -21,6 +21,7 @@ const sourcePath = id => {
   if (!match) throw Error('Missing source logo path: ' + id);
   return '<path d="' + match[1] + '"/>';
 };
-const favicon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="2850 2850 3100 3100"><title>Quidence</title><rect x="2850" y="2850" width="3100" height="3100" rx="560" fill="#142236"/><g fill="#f6f7f9">' + sourcePath('pSQdEuSjk') + '</g><g fill="#68e1af">' + sourcePath('pj9MlKyDQ') + sourcePath('pasONU90z') + '</g></svg>\n';
+// Inset only the magnifier: keep the tile size and the supplied vector intact.
+const favicon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="2850 2850 3100 3100"><title>Quidence</title><rect x="2850" y="2850" width="3100" height="3100" rx="560" fill="#142236"/><g transform="translate(4400 4400) scale(0.88) translate(-4400 -4400)"><g fill="#f6f7f9">' + sourcePath('pSQdEuSjk') + '</g><g fill="#68e1af">' + sourcePath('pj9MlKyDQ') + sourcePath('pasONU90z') + '</g></g></svg>\n';
 fs.writeFileSync(path.join(root, 'assets/favicon.svg'), favicon);
 fs.writeFileSync(path.join(root, 'modules/aa01/dist/favicon.svg'), favicon);

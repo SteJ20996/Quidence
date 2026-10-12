@@ -5,6 +5,7 @@ const {createHash} = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const entries = ['foundations/index.html', 'diagnostics/index.html', 'projects/index.html'];
 const reportAssets = new Set(['assets/brand.js', 'assets/brand.css', 'assets/quidence-logo-dark.svg', 'assets/quidence-logo-light.svg', 'assets/favicon.svg','assets/i18n.css', 'assets/i18n-es.js', 'assets/i18n.js', 'assets/hub.css', 'assets/hub-goals.js', 'assets/report-tools.js', 'assets/report-tools.css', 'assets/report-store.js', 'assets/report-viewer.js', 'assets/course-app.js', 'modules/aa01/dist/app.js', 'modules/ab01/dist/learning.js', 'modules/ad01/dist/app.js']);
+for (const file of ['assets/favicon-32.png', 'assets/apple-touch-icon.png', 'modules/aa01/dist/favicon.svg']) reportAssets.add(file);
 const digest = content => createHash('sha256').update(content).digest('hex').slice(0, 12);
 for(const file of ['home.css','home.js','knowledge-map-data.js','knowledge-map.js','local-records.js'])reportAssets.add('assets/'+file);
 for(const file of ['app.js','core.js','style.css'])reportAssets.add('courses/number-theory/'+file);
@@ -19,7 +20,7 @@ function versionActivities(check = false) {
   for (const file of entries) {
     const source = fs.readFileSync(path.join(root, file), 'utf8');
     const html = source.replace(/data-es-catalog="[^"]*"/g, 'data-es-catalog="?v=' + digest(fs.readFileSync(path.join(root, 'assets/i18n-es.js'))) + '"').replace(/<html\b[^>]*>/, tag => tag.replace(/\sdata-activity-version="[^"]*"/, '').replace(/>$/, ' data-activity-version="' + uiVersion + '">'))
-      .replace(/(src|href)="(\.\.\/assets\/[^"?]+\.(?:js|css|svg))(?:\?[^" ]*)?"/g, (_, attr, reference) => {
+      .replace(/(src|href)="(\.\.\/assets\/[^"?]+\.(?:js|css|svg|png))(?:\?[^" ]*)?"/g, (_, attr, reference) => {
         const hash = digest(fs.readFileSync(path.resolve(root, path.dirname(file), reference)));
         return attr + '="' + reference + '?v=' + hash + '"';
       });
@@ -30,7 +31,7 @@ function versionActivities(check = false) {
   const publicHTML = require('./build-static-release.cjs').files().filter(file => file.endsWith('.html'));
   for (const file of publicHTML) {
     const source = updates.get(file) ?? fs.readFileSync(path.join(root, file), 'utf8');
-    const html = source.replace(/data-es-catalog="[^"]*"/g, 'data-es-catalog="?v=' + digest(fs.readFileSync(path.join(root, 'assets/i18n-es.js'))) + '"').replace(/(src|href)="([^"?]+\.(?:js|css|svg))(?:\?[^" ]*)?"/g, (match, attr, reference) => {
+    const html = source.replace(/data-es-catalog="[^"]*"/g, 'data-es-catalog="?v=' + digest(fs.readFileSync(path.join(root, 'assets/i18n-es.js'))) + '"').replace(/(src|href)="([^"?]+\.(?:js|css|svg|png))(?:\?[^" ]*)?"/g, (match, attr, reference) => {
       const resolved = path.resolve(root, path.dirname(file), reference);
       if (!reportAssets.has(path.relative(root, resolved))) return match;
       const hash = digest(fs.readFileSync(resolved));
