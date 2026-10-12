@@ -1,0 +1,11 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "shy-thunder-f1c9",
+  "compatibility_date": "2026-10-12",
+  // Keep the existing production domain and routes managed in Cloudflare.
+  "workers_dev": false,
+  "keep_vars": true,
+  "assets": {
+    "directory": "./static-release"
+  }
+}
