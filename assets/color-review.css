@@ -288,7 +288,7 @@ body[data-q-theme].quidence-home .q-qidolab-link:focus-visible {
 body[data-q-theme] select:not([multiple]):is(:not([size]),[size="0"],[size="1"]) {
   -webkit-appearance: none;
   appearance: none;
-  padding-inline-end: 40px;
+  padding-inline-end: var(--q-select-text-space,40px);
   background-image: var(--q-select-chevron,url("select-chevron.svg"));
   background-repeat: no-repeat;
   background-position: right 14px center;
@@ -296,6 +296,7 @@ body[data-q-theme] select:not([multiple]):is(:not([size]),[size="0"],[size="1"])
 }
 body[data-q-theme] :is(.language-label select,.qa-language) {
   --q-select-chevron: url("select-chevron-light.svg");
+  --q-select-text-space: 32px;
 }
 @media (forced-colors: active) {
   body[data-q-theme] select:not([multiple]):is(:not([size]),[size="0"],[size="1"]) {
