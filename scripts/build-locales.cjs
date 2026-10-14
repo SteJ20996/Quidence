@@ -27,4 +27,26 @@ for(const key of Object.keys(catalog))catalog[key]=catalog[key].replace(/\bIntro
 const quantities=JSON.parse(fs.readFileSync(path.join(root,'localization/quantity-templates-es.json'),'utf8'));
 for(const [en,es]of quantities)if(en.split('[n]').length!==es.split('[n]').length)throw Error('Quantity template changes numeric slots: '+en);
 fs.writeFileSync(path.join(root,'assets/i18n-es.js'),"(function(root){'use strict';root.QuidenceSpanish=Object.freeze("+JSON.stringify(catalog,null,2)+");root.QuidenceSpanishQuantities=Object.freeze("+JSON.stringify(quantities)+");})(typeof window==='object'?window:globalThis);\n");
+// Keep the complete catalog for portable reports and compatibility. Browser
+// pages load common copy plus their own course's long, source-scoped passages.
+const groups=['aa01','ab01','ac01','ad01','ae01','af01','number-theory'];
+const buckets=Object.fromEntries(groups.map(group=>[group,{}]));
+const owner=new Map();
+for(const item of inventory){
+ const scoped=new Set(item.files.map(file=>file.match(/^modules\/(aa01|ab01|ac01|ad01|ae01|af01)\/dist\//)?.[1]||null));
+ if(scoped.size===1&&!scoped.has(null)&&normalize(item.text).length>80)owner.set(normalize(item.text),[...scoped][0]);
+}
+for(const key of Object.keys(require('./number-theory-locales.cjs').numberTheoryCatalog())){
+ if(key.length>80&&!inventory.some(item=>normalize(item.text)===key&&item.files.some(file=>!file.startsWith('courses/number-theory/'))))owner.set(key,'number-theory');
+}
+const common={};
+for(const [key,value]of Object.entries(catalog)){
+ const group=owner.get(key)||owner.get(key.replace(/^#{1,6}\s+/,''));
+ (group?buckets[group]:common)[key]=value;
+}
+const directory=path.join(root,'assets/i18n-es');fs.mkdirSync(directory,{recursive:true});
+for(const [group,entries]of Object.entries({common,...buckets})){
+ const extra=group==='common'?';root.QuidenceSpanishQuantities=Object.freeze('+JSON.stringify(quantities)+')':'';
+ fs.writeFileSync(path.join(directory,group+'.js'),"(function(root){'use strict';root.QuidenceSpanish=Object.freeze(Object.assign({},root.QuidenceSpanish,"+JSON.stringify(entries)+"))"+extra+";})(typeof window==='object'?window:globalThis);\n");
+}
 console.log(JSON.stringify({translated:translated.size,catalogEntries:Object.keys(catalog).length,inventory:inventory.length}));
