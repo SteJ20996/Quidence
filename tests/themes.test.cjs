@@ -8,7 +8,9 @@ test('every published page restores its theme before loading styles, with versio
     assert.match(html,/<script src="[^"]*\/themes.js\?v=[a-f0-9]+"><\/script>/,file);
     assert(html.indexOf('/themes.js')<html.indexOf('rel="stylesheet"'),file+' early restore');
     assert.match(html,/href="[^"]*\/themes.css\?v=[a-f0-9]+"/,file);
-    assert(!html.includes('quidence-logo-dark.svg'),file+' light header logo');
+    assert.match(html,/data-logo-light-src="[^"]*quidence-logo-light\.svg\?v=[a-f0-9]+"/,file+' dark-ink logo available');
+    assert.match(html,/data-logo-dark-src="[^"]*quidence-logo-dark\.svg\?v=[a-f0-9]+"/,file+' white logo available');
+    assert.match(html,/href="[^"]*\/appearance-layout.css\?v=[a-f0-9]+"/,file+' shared appearance controls');
   }
   require('../scripts/install-themes.cjs').install(true);
 });

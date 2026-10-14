@@ -4,13 +4,25 @@ const {chromium}=require('playwright'),{createServer}=require('../backend/server
 const {KEY,THEMES}=require('../assets/themes.js');
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
- const result={layouts:0,pages:24,themes:4,errors:[],failures:[]};
+ const result={layouts:0,pages:24,themes:4,alignedHomeLayouts:0,logoContrastChecks:0,errors:[],failures:[]};
  const shots=path.join(__dirname,'../review/theme-screenshots');fs.mkdirSync(shots,{recursive:true});
  try{
   browser=await chromium.launch({executablePath:process.env.QUIDENCE_BROWSER_EXECUTABLE,args:['--no-sandbox']});
   const origin='http://127.0.0.1:'+server.address().port;
   const context=await browser.newContext(),page=await context.newPage();
   const listen=p=>{p.on('pageerror',e=>result.errors.push(e.message));p.on('response',r=>{if(r.status()>=400)result.failures.push(r.status()+' '+r.url());});};listen(page);
+  // Switching styles must not move the controls under the user's pointer.
+  for(const lang of ['en','es'])for(const width of [960,1024,1440,1920,2560]){
+   await page.setViewportSize({width,height:1000});await page.goto(origin+'/?lang='+lang);await page.waitForFunction(l=>QuidenceI18n.locale===l,lang);let baseline;
+   for(const theme of Object.keys(THEMES)){
+    await page.locator('[data-theme-choice="'+theme+'"]').click();await page.evaluate(()=>document.fonts.ready);await page.evaluate(()=>scrollTo(0,0));
+    const boxes=await page.evaluate(()=>{const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return[r.x,r.y,r.width,r.height]};return{bar:rect('.q-theme-bar'),label:rect('.q-theme-label'),buttons:[...document.querySelectorAll('[data-theme-choice]')].map(e=>{const r=e.getBoundingClientRect();return[r.x,r.y,r.width,r.height]}),header:rect('.qh-site-header'),layout:rect('.qf-layout')}});
+    if(!baseline)baseline=boxes;
+    assert.deepEqual(boxes.bar,baseline.bar,`${lang} ${width} ${theme}: Appearance moved`);assert.deepEqual(boxes.label,baseline.label,`${lang} ${width} ${theme}: Appearance label moved`);assert.deepEqual(boxes.buttons,baseline.buttons,`${lang} ${width} ${theme}: theme buttons moved`);
+    for(const section of ['header','layout']){assert.equal(boxes[section][0],baseline[section][0],theme+' '+section+' left edge');assert.equal(boxes[section][2],baseline[section][2],theme+' '+section+' width');}
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${lang} ${width} ${theme}: overflow`);result.alignedHomeLayouts++;
+   }
+  }
   for(const theme of Object.keys(THEMES)){
    await page.goto(origin+'/?lang=en');await page.locator('[data-theme-choice="'+theme+'"]').click();
    for(const width of [320,1440])for(const file of files().filter(f=>f.endsWith('.html'))){
@@ -23,6 +35,9 @@ async function main(){
     const bounds=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-innerWidth,buttons:[...document.querySelectorAll('[data-theme-choice]')].map(e=>{const r=e.getBoundingClientRect();return{x:r.left,right:r.right,h:r.height};}),bg:getComputedStyle(document.body).backgroundColor}));
     assert(bounds.overflow<=1,`${theme} ${file} ${width}: overflow ${bounds.overflow}`);
     assert(bounds.buttons.every(b=>b.x>=0&&b.right<=width+1&&b.h>=44),theme+' '+file+' clipped theme controls');
+    await page.waitForFunction(()=>[...document.querySelectorAll('.q-brand-logo')].every(e=>e.complete&&e.naturalWidth));
+    const logoContrast=await page.locator('.q-brand-logo').evaluate(e=>{let parent=e.parentElement,color='';while(parent){color=getComputedStyle(parent).backgroundColor;if(color!=='rgba(0, 0, 0, 0)'&&color!=='transparent')break;parent=parent.parentElement;}const bg=color.match(/[\d.]+/g).slice(0,3).map(Number),fg=e.src.includes('logo-dark')?[246,247,249]:[20,34,54];const luminance=rgb=>rgb.map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((s,v,i)=>s+v*[.2126,.7152,.0722][i],0),a=luminance(bg),b=luminance(fg);return(Math.max(a,b)+.05)/(Math.min(a,b)+.05);});
+    assert(logoContrast>=4.5,`${theme} ${file}: low logo contrast ${logoContrast}`);result.logoContrastChecks++;
     const expected=THEMES[theme].page.match(/\w\w/g).map(v=>parseInt(v,16));assert.equal(bounds.bg,`rgb(${expected.join(', ')})`,file+' theme background');
     if(file==='index.html'||(width===1440&&['courses/algebra-1/index.html','foundations/index.html','reports/index.html'].includes(file)))await page.screenshot({path:path.join(shots,theme+'-'+file.replaceAll('/','-')+'-'+width+'.png'),fullPage:false});
     assert.match(await page.locator('#quidence-language').evaluate(e=>getComputedStyle(e).backgroundImage),/%2320383e/,file+' visible language chevron');
