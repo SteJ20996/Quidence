@@ -114,8 +114,8 @@ html[data-ui-theme="studio"] #cartoon-knowledge-map .map-num{background:#f5e2ab;
 }
 @media(max-width:600px){
  html[data-ui-theme="studio"] body[data-q-theme].quidence-home::before{display:none}
- html[data-ui-theme="studio"] body[data-q-theme].quidence-home .qh-brand{flex-basis:170px}
- html[data-ui-theme="studio"] body[data-q-theme].quidence-home .q-brand-logo{width:170px}
+ html[data-ui-theme="studio"] body[data-q-theme].quidence-home .qh-brand{flex-basis:180px}
+ html[data-ui-theme="studio"] body[data-q-theme].quidence-home .q-brand-logo{width:180px}
  html[data-ui-theme="studio"] body[data-q-theme].quidence-home .qh-language-label select{font-size:12px;min-width:86px;width:100%;padding-left:8px}
  html[data-ui-theme="studio"] body[data-q-theme].quidence-home .qf-page-choice,html[data-ui-theme="studio"] body[data-q-theme].quidence-home .q-paper-records{padding:10px 5px;white-space:normal;font-size:13px;text-align:center;min-width:0}
  html[data-ui-theme="studio"] body[data-q-theme].quidence-home .qf-page-heading{padding:22px 0 23px}

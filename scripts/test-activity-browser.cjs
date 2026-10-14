@@ -175,10 +175,12 @@ async function checkHomepage(browser, origin, capture, errors, failures) {
     assert.equal(await page.locator('#goal-include-report').isChecked(), false);
     await page.locator('#request-subject').selectOption('algebra-1');
     await page.locator('#learning-goal').fill(request);
+    await page.locator('.q-paper-options > summary').click();
     await page.locator('#goal-include-report').check();
     await page.reload();
     assert.equal(await page.locator('#learning-goal').inputValue(), request);
     assert.equal(await page.locator('#goal-include-report').isChecked(), true);
+    await page.locator('.q-paper-options > summary').click();
     assert.equal(await page.locator('.feedback-email').getAttribute('href'), 'mailto:hello@quidence.com?subject=Quidence%20website%20feedback');
     await checkPageWidth(page, width, 'homepage');
     for (const selector of ['.goal-report-option', '.feedback-email']) {
@@ -200,6 +202,7 @@ async function checkHomepage(browser, origin, capture, errors, failures) {
       for (const className of ['challenge-link', 'project-link']) {
         await page.goto(origin + '/?view=courses');
         await page.locator('#learning-goal').fill(request);
+        await page.locator('.q-paper-options > summary').click();
         await page.locator('#goal-include-report').check();
         const activity = await page.locator('[data-subject="algebra-1"] .' + className).getAttribute('href');
         await page.goto(origin + '/' + activity);

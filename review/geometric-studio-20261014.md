@@ -40,6 +40,12 @@ inputs. The request heading moves back to its original position in other themes.
   72 map views and 45 complete questions; passed with no missing translations.
 - Actual browser captures reviewed for desktop, phone, all three maps and a
   course page. Decorative SVG assets require no external image services.
+- Full activity regression: 88 pages, 48 saved drafts, four completed report
+  flows and real stale-cache upgrades passed. The test opens More options
+  before interacting with the report opt-in, matching the new default layout.
+- Bilingual regression: 96 layouts, 72 tasks and 20 reports passed with no
+  English residue. Brand regression: 192 layouts and two offline reports
+  passed; the Studio phone logo keeps the existing 180px/44px minimum.
 
 ## Captures
 
