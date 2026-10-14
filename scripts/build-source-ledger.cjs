@@ -18,6 +18,7 @@ function build(){
   const file=school.IDS.includes(module)?'assets/school-course-content.js':`modules/${module}/dist/content.js`,content=school.IDS.includes(module)?school.create(module):require(path.join(root,file));
   for(const lesson of content.LESSONS)for(const task of [lesson.predict,...lesson.checks])add('lesson',module,task,[file,'assets/course-models.js','assets/course-graphs.js'],{bankVersion:content.VERSION});
  }
+ const projects=require('../modules/ac01/dist/projects/content.js');for(const task of projects.ACTIVITIES)add('game-theory-project','ac01',task,['modules/ac01/dist/projects/content.js','modules/ac01/dist/projects/core.js'],{bankVersion:projects.VERSION,automatedReference:'tests/game-projects.test.cjs'});
  const game=require('../modules/ac01/dist/content.js');for(const lesson of game.LESSONS)for(const task of [lesson.predict,...lesson.checks])add('lesson','ac01',task,['modules/ac01/dist/content.js','modules/ac01/dist/engine.js'],{bankVersion:game.VERSION});
  const physics=require('../courses/physics/content.js');
  for(const lesson of physics.LESSONS)for(const task of [lesson.predict,...lesson.checks])add('lesson','physics',task,['courses/physics/content.js','assets/physics-models.js'],{bankVersion:physics.VERSION});

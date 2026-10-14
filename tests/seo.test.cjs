@@ -28,7 +28,7 @@ test('all active courses have unique bilingual metadata and reciprocal alternati
 test('sitemap includes canonical public entries and excludes workspaces and version parameters',()=>{
   const xml=fs.readFileSync(path.join(root,'sitemap.xml'),'utf8');
   const urls=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1].replaceAll('&amp;','&'));
-  assert.equal(urls.length,28);assert.equal(new Set(urls).size,urls.length);
+  assert.equal(urls.length,30);assert(urls.includes('https://www.quidence.com/modules/ac01/dist/projects/?lang=en'));assert(urls.includes('https://www.quidence.com/modules/ac01/dist/projects/?lang=es'));assert.equal(new Set(urls).size,urls.length);
   for(const url of urls){const p=SEO.resolve(url);assert.equal(p.canonical,url);assert(p.sitemap);assert(!p.noindex);assert(!new URL(url).searchParams.has('v'));}
   assert.doesNotMatch(xml,/\/reports\/|\/records\/|\/account\/|\/archive\/|\/qidolab\//);
   const robots=fs.readFileSync(path.join(root,'robots.txt'),'utf8');assert.match(robots,/Sitemap: https:\/\/www\.quidence\.com\/sitemap\.xml/);

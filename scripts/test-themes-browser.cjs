@@ -4,7 +4,7 @@ const {chromium}=require('playwright'),{createServer}=require('../backend/server
 const {KEY,THEMES}=require('../assets/themes.js');
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
- const result={layouts:0,pages:24,themes:4,alignedHomeLayouts:0,classicCardLayouts:0,logoContrastChecks:0,errors:[],failures:[]};
+ const result={layouts:0,pages:files().filter(f=>f.endsWith('.html')).length,themes:4,alignedHomeLayouts:0,classicCardLayouts:0,logoContrastChecks:0,errors:[],failures:[]};
  const shots=path.join(__dirname,'../review/theme-screenshots');fs.mkdirSync(shots,{recursive:true});
  try{
   browser=await chromium.launch({executablePath:process.env.QUIDENCE_BROWSER_EXECUTABLE,args:['--no-sandbox']});

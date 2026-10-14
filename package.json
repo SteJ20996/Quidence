@@ -30,7 +30,8 @@
     "test:cartoon:browser": "node scripts/test-cartoon-browser.cjs",
     "test:paper:browser": "node scripts/test-paper-browser.cjs",
     "test:atlas:browser": "node scripts/test-atlas-browser.cjs",
-    "test:studio:browser": "node scripts/test-studio-browser.cjs"
+    "test:studio:browser": "node scripts/test-studio-browser.cjs",
+    "test:game-projects:browser": "node scripts/test-game-projects-browser.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"
