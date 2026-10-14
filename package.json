@@ -29,7 +29,8 @@
     "test:themes:browser": "node scripts/test-themes-browser.cjs",
     "test:cartoon:browser": "node scripts/test-cartoon-browser.cjs",
     "test:paper:browser": "node scripts/test-paper-browser.cjs",
-    "test:atlas:browser": "node scripts/test-atlas-browser.cjs"
+    "test:atlas:browser": "node scripts/test-atlas-browser.cjs",
+    "test:studio:browser": "node scripts/test-studio-browser.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

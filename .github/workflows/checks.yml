@@ -57,3 +57,6 @@ jobs:
 
       - name: Check Learning Atlas groups, theme round trips and responsive navigation
         run: npm run test:atlas:browser
+
+      - name: Check Geometric Studio layouts, original form nodes and responsive navigation
+        run: npm run test:studio:browser
