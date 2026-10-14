@@ -4896,11 +4896,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -4928,11 +4932,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -4960,11 +4968,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -4992,11 +5004,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5024,11 +5040,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5056,11 +5076,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5088,11 +5112,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5120,11 +5148,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5152,11 +5184,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5184,11 +5220,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5216,11 +5256,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5248,11 +5292,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5280,11 +5328,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5312,11 +5364,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5344,11 +5400,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5376,11 +5436,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5408,11 +5472,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5440,11 +5508,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5472,11 +5544,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5504,11 +5580,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5536,11 +5616,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5568,11 +5652,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5600,11 +5688,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5632,11 +5724,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5664,11 +5760,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5696,11 +5796,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5728,11 +5832,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5760,11 +5868,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5792,11 +5904,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5824,11 +5940,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5856,11 +5976,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5888,11 +6012,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5920,11 +6048,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5952,11 +6084,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -5984,11 +6120,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6016,11 +6156,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6048,11 +6192,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6080,11 +6228,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6112,11 +6264,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6144,11 +6300,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6176,11 +6336,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6208,11 +6372,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6240,11 +6408,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6272,11 +6444,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6304,11 +6480,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6336,11 +6516,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6368,11 +6552,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6400,11 +6588,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6432,11 +6624,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6464,11 +6660,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6496,11 +6696,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6528,11 +6732,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6560,11 +6768,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6592,11 +6804,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6624,11 +6840,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6656,11 +6876,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6688,11 +6912,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6720,11 +6948,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6752,11 +6984,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6784,11 +7020,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6816,11 +7056,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6848,11 +7092,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6880,11 +7128,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6912,11 +7164,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6944,11 +7200,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -6976,11 +7236,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7008,11 +7272,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7040,11 +7308,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7072,11 +7344,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7104,11 +7380,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7136,11 +7416,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7168,11 +7452,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7200,11 +7488,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7232,11 +7524,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7264,11 +7560,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7296,11 +7596,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7328,11 +7632,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7360,11 +7668,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7392,11 +7704,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7424,11 +7740,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7456,11 +7776,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7488,11 +7812,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7520,11 +7848,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7552,11 +7884,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7584,11 +7920,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7616,11 +7956,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7648,11 +7992,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7680,11 +8028,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7712,11 +8064,15 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
@@ -7744,11 +8100,1635 @@
       "sourceFiles": [
         {
           "path": "assets/foundation-bank.js",
-          "sha256": "c12be68538646a9d5381752e7bf48aeeff8dfb8d24f7df3c57bfa42ffc31d2df"
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
         },
         {
           "path": "assets/subject-foundations.js",
           "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:number-theory:nt-f01",
+      "family": "foundation",
+      "module": "number-theory",
+      "taskId": "nt-f01",
+      "title": "Separate quotient and remainder",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "9080900dae54a8fbf914a609bfb687e789cb37b7439ae6f606dc39398b2fc32b",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:number-theory:nt-f02",
+      "family": "foundation",
+      "module": "number-theory",
+      "taskId": "nt-f02",
+      "title": "A negative integer, a nonnegative remainder",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "bba73271e6aa6a6875b9eca389820d3dc363e35a272c3d1da906d15c43e80a29",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:number-theory:nt-f03",
+      "family": "foundation",
+      "module": "number-theory",
+      "taskId": "nt-f03",
+      "title": "Check an implication and its reverse",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "709e4c2e75748341108bb7cbd997cdce68ae5af903e3b31f18395e33fa0bb369",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:number-theory:nt-f04",
+      "family": "foundation",
+      "module": "number-theory",
+      "taskId": "nt-f04",
+      "title": "What makes a prime?",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "67f139608ef5153c410a987b29ccc02243bec5e2285e36c092cfa193f5133083",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:number-theory:nt-f05",
+      "family": "foundation",
+      "module": "number-theory",
+      "taskId": "nt-f05",
+      "title": "Read prime exponents",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "48ae53a591ae1c2c86b2166bdb88b1b9c4cf9147884b90dadd4abb3c21663719",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:number-theory:nt-f06",
+      "family": "foundation",
+      "module": "number-theory",
+      "taskId": "nt-f06",
+      "title": "Find a nontrivial factor",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "c045afc5af446e59bf62093277cabcc6169628f9a80094b8a6d6c93a7edc5cc9",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:number-theory:nt-f07",
+      "family": "foundation",
+      "module": "number-theory",
+      "taskId": "nt-f07",
+      "title": "Greatest common divisor",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "8e00f657480552896f1a0dcbcf783adfb3214f950b24c4df6dbca09569a604e9",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:number-theory:nt-f08",
+      "family": "foundation",
+      "module": "number-theory",
+      "taskId": "nt-f08",
+      "title": "Least common multiple",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "cf7fd9980cf22c0ae18b7e6adedc9dc4c391ddf31a9505726a8854d855b444fa",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:number-theory:nt-f09",
+      "family": "foundation",
+      "module": "number-theory",
+      "taskId": "nt-f09",
+      "title": "Use a remainder chain",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "8e228f4965285348bf23db752d044edd762e8207e19fcf6c09444de4b81c358f",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:number-theory:nt-f10",
+      "family": "foundation",
+      "module": "number-theory",
+      "taskId": "nt-f10",
+      "title": "Add modulo 7",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "e7943d52cecb8432c64dcdc5c13b64f71d3db8541d658b7b53fd45674961ae7b",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:number-theory:nt-f11",
+      "family": "foundation",
+      "module": "number-theory",
+      "taskId": "nt-f11",
+      "title": "Multiply modulo 5",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "d82783572ca85c9cbdbee1661111623492cd81fe6ebeea29d16a8709aad49c8e",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:number-theory:nt-f12",
+      "family": "foundation",
+      "module": "number-theory",
+      "taskId": "nt-f12",
+      "title": "Solve a small congruence",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "424ed30dc725b78f87452e82b8c60a2f67eaab5a3ce11ff51f1a31ef1b0df4d7",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:number-theory:nt-f13",
+      "family": "foundation",
+      "module": "number-theory",
+      "taskId": "nt-f13",
+      "title": "Explain why an odd square is odd",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "7261d23da31d674a20c55fb66acb9abc794a77211aac4d8c58da79e84d2bc107",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:number-theory:nt-f14",
+      "family": "foundation",
+      "module": "number-theory",
+      "taskId": "nt-f14",
+      "title": "Disprove a universal claim",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "5156f5fe4dbcbe11d83680a75133fab4a969e24c2612d0006fcaf77d03313a36",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:number-theory:nt-f15",
+      "family": "foundation",
+      "module": "number-theory",
+      "taskId": "nt-f15",
+      "title": "More integers than remainders",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "61bcff508bd1de6e18e68881f179041274f725e98cb848482b1d907b89c6649e",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-1:p1-f01",
+      "family": "foundation",
+      "module": "physics-1",
+      "taskId": "p1-f01",
+      "title": "Position is not displacement",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "7b276b2e0e036a6bbbc81f5b035081feb559f1e335e0a7ef176bcace8d084d49",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-1:p1-f02",
+      "family": "foundation",
+      "module": "physics-1",
+      "taskId": "p1-f02",
+      "title": "Average velocity",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "b9cec1ecb765a6a08eb41ea4da8bdd76b832ff561b46101c4587aab00c1edfa0",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-1:p1-f03",
+      "family": "foundation",
+      "module": "physics-1",
+      "taskId": "p1-f03",
+      "title": "Acceleration can be negative",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "99ced0393ffa3468eea37bac318e6f80827090bf7f1b0b0301bf2548dd05dee7",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-1:p1-f04",
+      "family": "foundation",
+      "module": "physics-1",
+      "taskId": "p1-f04",
+      "title": "Use the net force",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "b02e8663b63b60729273a85beaa067f9d5c5137e9b1fae1762cb723be1b02f2e",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-1:p1-f05",
+      "family": "foundation",
+      "module": "physics-1",
+      "taskId": "p1-f05",
+      "title": "Balance vertical forces",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "ab2ad8d3068513537404c80d5b0ecbdc8ff7c976ba1fc6c17b7d7cafb61b03e7",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-1:p1-f06",
+      "family": "foundation",
+      "module": "physics-1",
+      "taskId": "p1-f06",
+      "title": "A force pair acts on two objects",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "0d1a6c9296a755824d18c07f24636f8d6fc62eae16578b1e3414f9a37e0dca14",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-1:p1-f07",
+      "family": "foundation",
+      "module": "physics-1",
+      "taskId": "p1-f07",
+      "title": "Kinetic energy and speed",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "719972bbf9042a4c6e5c8875fa614f80a065484937042fd1e4fd9a614da56142",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-1:p1-f08",
+      "family": "foundation",
+      "module": "physics-1",
+      "taskId": "p1-f08",
+      "title": "Momentum in a sticking collision",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "c5131ce908db92a70476eb54270a7fea0aeb0dfbbdb7e704399a9803932e2aaf",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-1:p1-f09",
+      "family": "foundation",
+      "module": "physics-1",
+      "taskId": "p1-f09",
+      "title": "Work changes kinetic energy",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "3983d8b7751e0879a631095b39ab3932acb73ea508900001160082769e0ddeb0",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-1:p1-f10",
+      "family": "foundation",
+      "module": "physics-1",
+      "taskId": "p1-f10",
+      "title": "Perpendicular lever arm",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "47edc970b2c11f467453ac23105ce441badfeae45e54426e2a40801ae7144609",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-1:p1-f11",
+      "family": "foundation",
+      "module": "physics-1",
+      "taskId": "p1-f11",
+      "title": "Angular acceleration",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "33a542807c7fbf7ead56f916da294666e2b981d10dbd92792a293276ceb3d34e",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-1:p1-f12",
+      "family": "foundation",
+      "module": "physics-1",
+      "taskId": "p1-f12",
+      "title": "Period and frequency",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "a93624a459fea8b1f714af6e53d4914aa05fc55d0642d3f651d68806c9b2a709",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-1:p1-f13",
+      "family": "foundation",
+      "module": "physics-1",
+      "taskId": "p1-f13",
+      "title": "Pressure below a surface",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "459a174b669965847e162819fbd27a82471c748d8f5aadcc3ed5858c3d55f4b6",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-1:p1-f14",
+      "family": "foundation",
+      "module": "physics-1",
+      "taskId": "p1-f14",
+      "title": "Buoyancy and weight",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "f147f62f1bafeaf489c9f3316423d9010076cde245ae794bf257ef9b21505213",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-1:p1-f15",
+      "family": "foundation",
+      "module": "physics-1",
+      "taskId": "p1-f15",
+      "title": "Flow through a narrower pipe",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "bd093a290d7545e11ace03be048efa9254fffdf1af9c8a09cb69f4048a695c0b",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-2:p2-f01",
+      "family": "foundation",
+      "module": "physics-2",
+      "taskId": "p2-f01",
+      "title": "Heat uses a temperature change",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "399d413ca98a312dd68a71d88ca14f964dd8b864e5b2a7782b7546dfae9fb330",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-2:p2-f02",
+      "family": "foundation",
+      "module": "physics-2",
+      "taskId": "p2-f02",
+      "title": "State the work sign convention",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "149b56f81820d58bbb66fd7a343462d0fee394f130b9ce5b2aa284dfc313162b",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-2:p2-f03",
+      "family": "foundation",
+      "module": "physics-2",
+      "taskId": "p2-f03",
+      "title": "Absolute temperature",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "841b1730be4645a94537526a412626f6febd3752ff69502c43894d2a711bccf2",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-2:p2-f04",
+      "family": "foundation",
+      "module": "physics-2",
+      "taskId": "p2-f04",
+      "title": "Charge sign changes force direction",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "15e31f3d835f85b552746063ebffacf727e3d5cc9de8983535010ba2c334535b",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-2:p2-f05",
+      "family": "foundation",
+      "module": "physics-2",
+      "taskId": "p2-f05",
+      "title": "Potential and potential energy",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "ac1a61ada267c97b3889d1b8f66701aebce190592d5c24d2b7e4eaa5588491d7",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-2:p2-f06",
+      "family": "foundation",
+      "module": "physics-2",
+      "taskId": "p2-f06",
+      "title": "An inverse-square comparison",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "ffdd809187081f715d704dc47729b7974f04aeeda6eb4e69d2b04e04e7198835",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-2:p2-f07",
+      "family": "foundation",
+      "module": "physics-2",
+      "taskId": "p2-f07",
+      "title": "Resistors in series",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "a568994d09e029ead669f68f3451ac9918b9b813ce55b0e62a929ede9abaf016",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-2:p2-f08",
+      "family": "foundation",
+      "module": "physics-2",
+      "taskId": "p2-f08",
+      "title": "Resistors in parallel",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "e877c5eb1e8c5f9b479488f89d82e189a113e6e8709de7cd36b9a6a18d4e3760",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-2:p2-f09",
+      "family": "foundation",
+      "module": "physics-2",
+      "taskId": "p2-f09",
+      "title": "Electrical power",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "d44b2b4f9e6a9c5f2610a9b3b5901ccc2846f537acceb484ea5ee5e14cd79db0",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-2:p2-f10",
+      "family": "foundation",
+      "module": "physics-2",
+      "taskId": "p2-f10",
+      "title": "Perpendicular magnetic force",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "8d0be90b49ffd2133261a3ba873538649394090e6571598d0611e42f2661a50d",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-2:p2-f11",
+      "family": "foundation",
+      "module": "physics-2",
+      "taskId": "p2-f11",
+      "title": "Changing flux induces emf",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "914e82f74f2f7b570341d710a133d7c2cc07355cd333c4c35a9c99caeaa7d54a",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-2:p2-f12",
+      "family": "foundation",
+      "module": "physics-2",
+      "taskId": "p2-f12",
+      "title": "An ideal converging lens",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "dd14aafa681901c23ecaebb16392cb9251163ad7e82fd05e1e95fbdaf2da3c66",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-2:p2-f13",
+      "family": "foundation",
+      "module": "physics-2",
+      "taskId": "p2-f13",
+      "title": "Wavelength from speed and frequency",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "1adaf3aede24bf8b48632f1ea10f38f3e623b0637c5b165bdd3ef240e8c640e1",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-2:p2-f14",
+      "family": "foundation",
+      "module": "physics-2",
+      "taskId": "p2-f14",
+      "title": "Refraction uses angles from the normal",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "a76812eb327a42e1307cbc0df05b8896713049e8b4e98d9350badc27251f6937",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      },
+      "automatedReference": null
+    },
+    {
+      "id": "foundation:physics-2:p2-f15",
+      "family": "foundation",
+      "module": "physics-2",
+      "taskId": "p2-f15",
+      "title": "A photon must cross the threshold",
+      "bankVersion": "cluevera-foundations-1",
+      "availability": "active",
+      "fingerprint": "5081f1d9dfa04eaa34fa763223ebe156b9abdac5fb592ec8a1168cc61ced0b2c",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/foundation-bank.js",
+          "sha256": "46c30dedd72de2189d66a68c92e175e474a5145b7375958636075c355da88f23"
+        },
+        {
+          "path": "assets/subject-foundations.js",
+          "sha256": "9d9d3e3ae0608e8f5f38c2c8d685432da335098d9b5c9b07bd911dbfd5a7e38b"
+        },
+        {
+          "path": "assets/additional-foundations.js",
+          "sha256": "73136549ed9263d0e1cdc00504f672e6c920309d5e144c99b3228debcb04cb9a"
         }
       ],
       "sourceReview": {
