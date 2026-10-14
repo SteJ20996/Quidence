@@ -1,0 +1,29 @@
+/* Decorative field-guide illustrations. Course models and mathematical data stay separate. */
+(function(){'use strict';
+const line=(d,extra='')=>'<path d="'+d+'" '+extra+'/>';
+const grid='<path d="M25 16v94m25-94v94m25-94v94m25-94v94m25-94v94m25-94v94m25-94v94M18 25h180M18 50h180M18 75h180M18 100h180" stroke="#b5cbc9" stroke-width=".65" opacity=".65"/>';
+const axes=line('M24 100h173m-7-4 7 4-7 4M45 112V12m-4 7 4-7 4 7','stroke-width="1.4"');
+function icon(id){
+ const p='atlas-'+id,blue='url(#'+p+'-blue)',green='url(#'+p+'-green)',gold='url(#'+p+'-gold)';
+ const circle=(x,y,r,fill)=>'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+fill+'"/>';
+ const rect=(x,y,w,h,fill)=>'<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+fill+'"/>';
+ const art={
+  'pre-algebra':line('M12 66H208M24 59v14m32-14v14m32-14v14m32-14v14m32-14v14m32-14v14')+circle(56,66,7,gold)+circle(152,66,6,green)+'<g fill="#173d4d" stroke="none" text-anchor="middle" font-family="Georgia,serif" font-size="12">'+[-2,-1,0,1,2].map((n,i)=>'<text x="'+(56+i*32)+'" y="91">'+n+'</text>').join('')+'</g>',
+  'algebra-1':line('M45 29 110 20 175 29M110 13v90m-25 8h50m-42-8h34M45 29 28 83m17-54 17 54m113-54-17 54m17-54 17 54','stroke="#565c50" stroke-width="2"')+rect(29,61,14,23,blue)+rect(45,61,14,23,blue)+rect(160,61,14,23,gold)+rect(176,61,14,23,gold)+line('M24 84q21 17 42 0Zm130 0q21 17 42 0Z','fill="#bec4ad"')+circle(110,20,4,'#7c8472'),
+  geometry:grid+line('M22 48 52 36 80 48 50 61Z','fill="#b6d8bc"')+line('M22 48 50 61v43L22 90Z','fill="'+green+'"')+line('M50 61 80 48v42l-30 14Z','fill="#75b695"')+line('m94 98 23-62 25 62Z','fill="'+gold+'"')+line('m117 36 1 67 24-5','fill="#e9b756"')+circle(175,76,29,blue)+line('M157 60q12-12 24-4','stroke="#e5f1f0" stroke-width="7" opacity=".65"'),
+  'algebra-2':grid+line('M23 100h175m-7-4 7 4-7 4M110 113V12m-4 7 4-7 4 7')+line('M48 16Q110 184 172 16','stroke="#377dab" stroke-width="2.8"'),
+  af01:grid+line('M12 93C43 7 65 7 98 73S154 137 204 39','stroke="#bf993c" stroke-width="2.3"')+line('M12 73C49 137 74 137 108 52S166 6 207 81','stroke="#367990" stroke-width="2.3"'),
+  ad01:grid+line('M45 99C96 133 118 13 187 38V100H45Z','fill="'+green+'" opacity=".55"')+Array.from({length:10},(_,i)=>line('M'+(54+i*13)+' 100V'+[103,99,91,78,64,50,40,34,32,34][i],'stroke="#7aa99e" stroke-width=".8"')).join('')+axes+line('M24 94C96 139 118 13 187 38','stroke="#255e68" stroke-width="2"'),
+  ae01:grid+[24,40,65,90,75,48,27].map((h,i)=>rect(32+i*23,104-h,20,h,i<3?green:blue)).join('')+line('M20 105h186'),
+  ab01:grid+axes+line('M45 100 143 20m-4 13 4-13-13 6','stroke="#337ca5" stroke-width="2.3"')+line('M45 100 174 82m-11-4 11 4-9 7','stroke="#173d4d" stroke-width="2.3"'),
+  'number-theory':Array.from({length:24},(_,i)=>circle(37+(i%6)*29,26+Math.floor(i/6)*25,4.7,[gold,blue,green,blue][i%4])).join(''),
+  ac01:'<g fill="#234957" stroke="none" font-family="Georgia,serif" text-anchor="middle" font-size="14"><text x="94" y="22">A</text><text x="153" y="22">B</text><text x="34" y="58">A</text><text x="34" y="94">B</text></g>'+rect(61,32,121,76,'#fcfaf2')+line('M121 32v76M61 70h121','stroke="#789598"')+'<g fill="#234957" stroke="none" font-family="Georgia,serif" text-anchor="middle" font-size="13"><text x="90" y="57">3, 3</text><text x="151" y="57">0, 4</text><text x="90" y="94">4, 0</text><text x="151" y="94">1, 1</text></g>',
+  'physics-1':line('M110 11 44 82m66-71-27 92m27-92 25 92m-25-92 66 71','stroke-width="1.2"')+line('M26 55Q110 153 194 55','stroke="#99b7c1" stroke-dasharray="3 5"')+[ [44,82],[83,103],[135,103],[176,82]].map(([x,y],i)=>circle(x,y,12,i===2?gold:blue)).join('')+circle(110,11,2,'#173d4d'),
+  'physics-2':[-1,1].map(sign=>line('M75 65C'+(60)+' '+(65+sign*63)+' 162 '+(65+sign*63)+' 147 65M75 65C94 '+(65+sign*48)+' 126 '+(65+sign*48)+' 147 65M75 65C34 '+(65+sign*53)+' 19 '+(65+sign*30)+' 12 '+(65+sign*28)+'M147 65C185 '+(65+sign*54)+' 203 '+(65+sign*30)+' 212 '+(65+sign*27),'stroke="#6f9eaf" stroke-width="1.1"')).join('')+line('M12 65h200','stroke="#6f9eaf"')+circle(75,65,17,gold)+circle(147,65,17,blue)+line('M67 65h16m-8-8v16M139 65h16','stroke="#224b58" stroke-width="2"')
+ };
+ return '<svg viewBox="0 0 220 124" aria-hidden="true" focusable="false"><defs><radialGradient id="'+p+'-blue" cx="30%" cy="25%" r="85%"><stop stop-color="#c6dfeb"/><stop offset=".5" stop-color="#8ebbd0"/><stop offset="1" stop-color="#4d87a4"/></radialGradient><linearGradient id="'+p+'-green" x2="1" y2="1"><stop stop-color="#c9dfca"/><stop offset="1" stop-color="#7bb59c"/></linearGradient><linearGradient id="'+p+'-gold" x2="1" y2="1"><stop stop-color="#ffe8a6"/><stop offset="1" stop-color="#e8ad42"/></linearGradient></defs><g fill="none" stroke="#486879" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">'+(art[id]||'')+'</g></svg>';
+}
+function compass(){return '<svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1"><circle cx="32" cy="32" r="22"/><circle cx="32" cy="32" r="17"/><path d="m32 2 4 26 26 4-26 4-4 26-4-26-26-4 26-4Z"/><path d="m32 12 4 16-4 4-4-4Zm0 20 4 4-4 16-4-16Z" fill="currentColor" opacity=".35"/><path d="m17 17 30 30m0-30L17 47"/></svg>';}
+function route(){return '<svg viewBox="0 0 520 140" aria-hidden="true"><g fill="none" stroke-width="1.5"><path d="M20 115 90 75 170 85 240 57 330 83 405 38 490 56" stroke="#82a8b6"/><path d="M90 75 170 85 235 116 330 83 410 92 490 56" stroke="#c5a45b"/><path d="M170 85 240 57 325 20 405 38" stroke="#6eaa8c"/></g>'+[[20,115,12,'#8eb9cb'],[90,75,9,'#ebc87d'],[170,85,9,'#8abb9f'],[240,57,10,'#8eb9cb'],[235,116,8,'#8eb9cb'],[330,83,9,'#ebc87d'],[325,20,10,'#8abb9f'],[405,38,9,'#8abb9f'],[410,92,9,'#ebc87d'],[490,56,11,'#8eb9cb']].map(([x,y,r,c])=>'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+c+'" stroke="#4a7982" stroke-width=".8"/>').join('')+'</svg>';}
+window.QuidenceAtlasArt={icon,compass,route};
+})();

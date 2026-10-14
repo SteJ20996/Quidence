@@ -19,8 +19,8 @@ for(const card of home.querySelectorAll('.subject-card')){
  const details=card.querySelector('.card-more');movable(card.querySelector(':scope>p'),details,details?.querySelector('summary'));
 }
 const footer=document.createElement('a');footer.className='q-paper-only q-paper-footer';footer.href='https://qidolab.com/';const logo=document.createElement('img');logo.src=home.querySelector('.q-header-qidolab img').src;logo.alt='Qidolab';logo.width=150;logo.height=54;logo.setAttribute('data-no-translate','');footer.append(logo,label('span','break'));home.querySelector('.feedback-section').before(footer);
-let isPaper;
-function theme(){const active=document.documentElement.dataset.uiTheme==='paper';if(active===isPaper)return;isPaper=active;for(const {el,marker,target,after}of moves){if(active){if(after)after.after(el);else target.append(el);}else marker.after(el);}if(!active)options.open=false;}
+let isCompact;
+function theme(){const active=['paper','atlas'].includes(document.documentElement.dataset.uiTheme);if(active===isCompact)return;isCompact=active;for(const {el,marker,target,after}of moves){if(active){if(after)after.after(el);else target.append(el);}else marker.after(el);}if(!active)options.open=false;}
 function language(){const t=copy[window.QuidenceI18n?.locale==='es'?'es':'en'];for(const el of home.querySelectorAll('[data-paper-copy]'))el.textContent=t[el.dataset.paperCopy];}
 document.addEventListener('quidence:theme',theme);document.addEventListener('quidence:language',language);theme();language();
 })();

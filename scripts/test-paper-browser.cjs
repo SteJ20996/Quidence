@@ -10,7 +10,7 @@ async function main(){
   page.on('pageerror',e=>result.errors.push(e.message));page.on('response',r=>{if(r.status()>=400)result.failedRequests.push(r.status()+' '+r.url());});
   const language=lang=>page.waitForFunction(l=>window.QuidenceI18n?.locale===l,lang);
   await page.goto(origin+'/?lang=en');await language('en');
-  const originalLinks=await page.locator('.subject-card a').evaluateAll(es=>es.map(e=>e.getAttribute('href')));
+  const originalLinks=await page.locator('.subject-card').evaluateAll(es=>Object.fromEntries(es.map(e=>[e.dataset.subject,[...e.querySelectorAll('a')].map(a=>a.getAttribute('href'))])));
   await page.locator('[data-theme-choice="paper"]').click();
   assert.equal(await page.locator('.q-paper-category-icon').count(),4,'category decorations stay in the four filter buttons');
   await page.locator('#request-subject').selectOption('geometry');
@@ -27,7 +27,7 @@ async function main(){
    assert.equal(await page.locator('#request-subject').inputValue(),'geometry');
    assert.equal(await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1')),stored);
    assert.equal(await page.locator('#goal-include-report').isChecked(),true);
-   assert.deepEqual(await page.locator('.subject-card a').evaluateAll(es=>es.map(e=>e.getAttribute('href'))),originalLinks);
+   assert.deepEqual(await page.locator('.subject-card').evaluateAll(es=>Object.fromEntries(es.map(e=>[e.dataset.subject,[...e.querySelectorAll('a')].map(a=>a.getAttribute('href'))]))),originalLinks);
    assert.equal(await page.locator('#goal-include-report').count(),1);result.themeRoundTrips++;
   }
   await page.reload();await language('en');assert.equal(await page.locator('#learning-goal').inputValue(),raw);assert.equal(await page.locator('#request-subject').inputValue(),'geometry');
