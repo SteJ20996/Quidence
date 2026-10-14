@@ -65,6 +65,7 @@ async function run() {
       await page.goto(origin + '/?view=courses');
       const activityLinks = await page.locator('.challenge-link, .project-link').evaluateAll(elements => elements.map(el => el.href).filter(href=>new URL(href).searchParams.has('module')));
       assert.equal(activityLinks.length, 21);
+      assert.equal(await page.locator('.project-link[href*="ac01/dist/projects"]').count(), 1);
       assert.equal(activityLinks.filter(href => new URL(href).pathname === '/foundations/' && new URL(href).searchParams.get('module') === 'ac01').length, 1);
       const links = activityLinks.filter(href => ['/diagnostics/', '/projects/'].includes(new URL(href).pathname));
       assert.equal(links.length, 20);

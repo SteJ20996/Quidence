@@ -9744,6 +9744,111 @@
       "automatedReference": null
     },
     {
+      "id": "game-theory-project:ac01:food-trucks",
+      "family": "game-theory-project",
+      "module": "ac01",
+      "taskId": "food-trucks",
+      "title": {
+        "en": "Food trucks at the school fair",
+        "es": "Puestos de comida en la feria escolar"
+      },
+      "bankVersion": "ac01-projects-1",
+      "availability": "active",
+      "fingerprint": "51fc8c1f98e75f42e6c883823756b2faab634ba228ca6ea93def2f5da12b44bd",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ac01/dist/projects/content.js",
+          "sha256": "5d22b73a2451cd4ae606f4ba0b8f625652d53539de94f73987b58e6d6a1b1220"
+        },
+        {
+          "path": "modules/ac01/dist/projects/core.js",
+          "sha256": "202b50a1fdc0259fc2a07e8b65892faef40b2f694fa7a34a2275878f007c91b3"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/game-projects.test.cjs"
+      },
+      "automatedReference": "tests/game-projects.test.cjs"
+    },
+    {
+      "id": "game-theory-project:ac01:missed-deadline",
+      "family": "game-theory-project",
+      "module": "ac01",
+      "taskId": "missed-deadline",
+      "title": {
+        "en": "When a teammate misses a deadline",
+        "es": "Cuando alguien del equipo no cumple un plazo"
+      },
+      "bankVersion": "ac01-projects-1",
+      "availability": "active",
+      "fingerprint": "b5f1ae6ad2d7448c017d96be8e1ca0b4cccfb3dd4712c02fa6d4b3f54ec5a5a7",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ac01/dist/projects/content.js",
+          "sha256": "5d22b73a2451cd4ae606f4ba0b8f625652d53539de94f73987b58e6d6a1b1220"
+        },
+        {
+          "path": "modules/ac01/dist/projects/core.js",
+          "sha256": "202b50a1fdc0259fc2a07e8b65892faef40b2f694fa7a34a2275878f007c91b3"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/game-projects.test.cjs"
+      },
+      "automatedReference": "tests/game-projects.test.cjs"
+    },
+    {
+      "id": "game-theory-project:ac01:shared-printer",
+      "family": "game-theory-project",
+      "module": "ac01",
+      "taskId": "shared-printer",
+      "title": {
+        "en": "Who maintains the shared printer?",
+        "es": "¿Quién mantiene la impresora compartida?"
+      },
+      "bankVersion": "ac01-projects-1",
+      "availability": "active",
+      "fingerprint": "64c8a2a353c2a3ff0f34ab7935a45dee897c2e4ab0ec01080aa02075f0af9e61",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ac01/dist/projects/content.js",
+          "sha256": "5d22b73a2451cd4ae606f4ba0b8f625652d53539de94f73987b58e6d6a1b1220"
+        },
+        {
+          "path": "modules/ac01/dist/projects/core.js",
+          "sha256": "202b50a1fdc0259fc2a07e8b65892faef40b2f694fa7a34a2275878f007c91b3"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/game-projects.test.cjs"
+      },
+      "automatedReference": "tests/game-projects.test.cjs"
+    },
+    {
       "id": "lesson:ac01:c1",
       "family": "lesson",
       "module": "ac01",

@@ -60,3 +60,6 @@ jobs:
 
       - name: Check Geometric Studio layouts, original form nodes and responsive navigation
         run: npm run test:studio:browser
+
+      - name: Check Game Theory projects, cases, exports and record preservation
+        run: npm run test:game-projects:browser

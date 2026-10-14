@@ -1,0 +1,64 @@
+{
+  "schema": "quidence-game-projects-review-1",
+  "date": "2026-10-14",
+  "contentVersion": "ac01-projects-1",
+  "scope": "Two Game Theory projects and one branching case study; original AC01 lesson content and engine unchanged",
+  "mathematics": {
+    "method": "Independent payoff expectations and unilateral deviation checks; f=1 and f=2 ties; expected deduction 3q; comma/dot decimals",
+    "test": "tests/game-projects.test.cjs"
+  },
+  "browser": {
+    "script": "scripts/test-game-projects-browser.cjs",
+    "submittedSteps": 19,
+    "layouts": 152,
+    "languages": [
+      "en",
+      "es"
+    ],
+    "themes": [
+      "classic",
+      "paper",
+      "atlas",
+      "studio"
+    ],
+    "widths": [
+      320,
+      1440
+    ],
+    "errors": [],
+    "failedRequests": [],
+    "verified": [
+      "autosave and reload",
+      "exact original text and immutable submissions",
+      "saved condition and help snapshots",
+      "independent case branches B and C",
+      "downloaded JSON contents",
+      "readable Markdown and saved report rendering",
+      "cross-tab conflict without overwrite",
+      "unreadable original retained",
+      "blocked storage with in-memory export",
+      "legacy lesson record untouched"
+    ]
+  },
+  "siteRegression": {
+    "script": "scripts/test-themes-browser.cjs",
+    "pages": 25,
+    "layouts": 200,
+    "alignedHomeLayouts": 40,
+    "classicCardLayouts": 10,
+    "logoContrastChecks": 200,
+    "errors": [],
+    "failedRequests": []
+  },
+  "reviewLimit": "Automated checks and visual inspection do not certify human pedagogical review, originality clearance or absence of every possible bug. Source-review pending annotations are retained in source-ledger.json.",
+  "brandRegression": {
+    "script": "scripts/test-brand-browser.cjs",
+    "pages": 25,
+    "languages": 2,
+    "layouts": 200,
+    "offlineReports": 2,
+    "errors": [],
+    "failedRequests": [],
+    "repair": "Project-page logo now has a 160px minimum width; shared logo-size gate passes."
+  }
+}

@@ -14,7 +14,8 @@ test('the restored Game Theory entry opens actual lessons and its available foun
  assert.match(home,/data-subject="ac01"/);
  const card=home.match(/<article[^>]*data-subject="ac01"[\s\S]*?<\/article>/)[0];
  assert(card.includes(c.course));assert.match(card,/foundations\/\?module=ac01/);
- assert.doesNotMatch(card,/href="undefined"|projects\/|diagnostics\//);
+ assert.doesNotMatch(card,/href="undefined"|href="projects\/|diagnostics\//);
+ assert(card.includes(c.project));assert.equal(c.projectCount,2);assert.equal(c.caseCount,1);assert.equal(SEO.resolve('/'+c.project).noindex,false);
 });
 test('restoring AC01 preserves its original question definitions, scoring, and record protocol',()=>{
  const archived=path.join(root,'archive/retired-subjects/game-theory/dist');
