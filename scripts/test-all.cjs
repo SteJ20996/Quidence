@@ -21,3 +21,5 @@ const inventory=spawnSync(process.execPath,[path.join(__dirname,"build-source-le
 const localization=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/localization.test.cjs'),path.join(__dirname,'../tests/locale-chunks.test.cjs')],{stdio:'inherit'});if(localization.status!==0)process.exit(localization.status??1);
 
 const seo=spawnSync(process.execPath,["--test",path.join(__dirname,"../tests/seo.test.cjs")],{stdio:"inherit"});if(seo.status!==0)process.exit(seo.status??1);
+
+const themes=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/themes.test.cjs')],{stdio:'inherit'});if(themes.status!==0)process.exit(themes.status??1);
