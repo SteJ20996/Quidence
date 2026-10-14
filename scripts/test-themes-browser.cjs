@@ -4,7 +4,7 @@ const {chromium}=require('playwright'),{createServer}=require('../backend/server
 const {KEY,THEMES}=require('../assets/themes.js');
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
- const result={layouts:0,pages:24,themes:4,alignedHomeLayouts:0,logoContrastChecks:0,errors:[],failures:[]};
+ const result={layouts:0,pages:24,themes:4,alignedHomeLayouts:0,classicCardLayouts:0,logoContrastChecks:0,errors:[],failures:[]};
  const shots=path.join(__dirname,'../review/theme-screenshots');fs.mkdirSync(shots,{recursive:true});
  try{
   browser=await chromium.launch({executablePath:process.env.QUIDENCE_BROWSER_EXECUTABLE,args:['--no-sandbox']});
@@ -13,7 +13,7 @@ async function main(){
   const listen=p=>{p.on('pageerror',e=>result.errors.push(e.message));p.on('response',r=>{if(r.status()>=400)result.failures.push(r.status()+' '+r.url());});};listen(page);
   // Switching styles must not move the controls under the user's pointer.
   for(const lang of ['en','es'])for(const width of [960,1024,1440,1920,2560]){
-   await page.setViewportSize({width,height:1000});await page.goto(origin+'/?lang='+lang);await page.waitForFunction(l=>QuidenceI18n.locale===l,lang);let baseline;
+   await page.setViewportSize({width,height:1000});await page.goto(origin+'/?lang='+lang+'&view=courses');await page.waitForFunction(l=>QuidenceI18n.locale===l,lang);let baseline;
    for(const theme of Object.keys(THEMES)){
     await page.locator('[data-theme-choice="'+theme+'"]').click();await page.evaluate(()=>document.fonts.ready);await page.evaluate(()=>scrollTo(0,0));
     const boxes=await page.evaluate(()=>{const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return[r.x,r.y,r.width,r.height]};return{bar:rect('.q-theme-bar'),label:rect('.q-theme-label'),buttons:[...document.querySelectorAll('[data-theme-choice]')].map(e=>{const r=e.getBoundingClientRect();return[r.x,r.y,r.width,r.height]}),header:rect('.qh-site-header'),layout:rect('.qf-layout')}});
@@ -21,6 +21,26 @@ async function main(){
     assert.deepEqual(boxes.bar,baseline.bar,`${lang} ${width} ${theme}: Appearance moved`);assert.deepEqual(boxes.label,baseline.label,`${lang} ${width} ${theme}: Appearance label moved`);assert.deepEqual(boxes.buttons,baseline.buttons,`${lang} ${width} ${theme}: theme buttons moved`);
     for(const section of ['header','layout']){assert.equal(boxes[section][0],baseline[section][0],theme+' '+section+' left edge');assert.equal(boxes[section][2],baseline[section][2],theme+' '+section+' width');}
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${lang} ${width} ${theme}: overflow`);result.alignedHomeLayouts++;
+    if(theme==='classic'){
+     const cards=await page.locator('.subject-card').evaluateAll(es=>es.map(e=>{
+      const card=e.getBoundingClientRect(),box=selector=>{const el=e.querySelector(selector);if(!el)return null;const r=el.getBoundingClientRect();return{top:r.top-card.top,bottom:r.bottom-card.top,height:r.height,inside:r.left>=card.left&&r.right<=card.right+1&&r.bottom<=card.bottom+1&&el.scrollWidth<=el.clientWidth+1};};
+      return{id:e.dataset.subject,top:card.top,height:card.height,slots:['.topic-label','.version','.subject-picture','h3',':scope>p',':scope>.subject-link','a[href*="foundations/"]','.challenge-link:not([href*="foundations/"])','.project-link','.scope-note'].map(box)};
+     }));
+     assert.equal(cards.length,12);
+     for(const card of cards){
+      assert(card.slots[1].top>=card.slots[0].bottom+8,card.id+' activity label has its own line');
+      assert(card.slots.filter(Boolean).every(slot=>slot.inside),`${lang} ${width} ${card.id}: clipped card content`);
+      const present=card.slots.filter(Boolean);for(let i=1;i<present.length;i++)assert(present[i].top>=present[i-1].bottom-1,card.id+' card reading order overlaps');
+     }
+     // Every neighbouring card uses the same rows, including available action
+     // slots. Longer translations may expand a whole row, never clip its text.
+     for(const card of cards)for(const peer of cards.filter(p=>p.top===card.top)){
+      assert.equal(card.height,peer.height,card.id+' card height');
+      card.slots.forEach((slot,i)=>{if(slot&&peer.slots[i])assert.equal(slot.top,peer.slots[i].top,card.id+' slot '+i+' alignment');});
+     }
+     if(lang==='en'){const physics=cards.find(c=>c.id==='physics-1');for(const card of cards){assert.equal(card.height,physics.height,card.id+' matches Physics 1 height');card.slots.forEach((slot,i)=>{if(slot&&physics.slots[i])assert.equal(slot.top,physics.slots[i].top,card.id+' matches Physics 1 slot '+i);});}}
+     result.classicCardLayouts++;
+    }
    }
   }
   for(const theme of Object.keys(THEMES)){
