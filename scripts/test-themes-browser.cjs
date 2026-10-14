@@ -61,6 +61,11 @@ async function main(){
   assert.equal(await answer.inputValue(),'123/7');assert.equal(await other.locator('[data-f-explanation]').inputValue(),raw);
   assert.deepEqual(await other.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([key])=>key!=='quidence_ui_theme_v1'))),recordBefore);
   await other.reload();assert.equal(await other.locator('[data-f-explanation]').inputValue(),raw);
+  assert.equal(await other.locator('html').getAttribute('data-ui-theme'),'atlas','saved selection after reload');
+  // storageState reads the first open page for each origin. Let the background
+  // page receive cross-tab storage events before taking that browser snapshot.
+  await page.bringToFront();
+  await page.waitForFunction(()=>localStorage.getItem('quidence_ui_theme_v1')==='atlas'&&document.documentElement.dataset.uiTheme==='atlas',null,{polling:100});
   // A new browser session with restored storage picks the same theme before the DOM is ready.
   const saved=await context.storageState();assert.equal(saved.origins.find(o=>o.origin===origin)?.localStorage.find(x=>x.name===KEY)?.value,'atlas','stored theme before reopening');await context.close();
   const reopened=await browser.newContext({storageState:saved}),again=await reopened.newPage();listen(again);

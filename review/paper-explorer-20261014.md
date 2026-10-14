@@ -27,6 +27,7 @@ These are actual Chromium renders of the implementation, with no test answers en
 - Static release: 200 files, with local links validated and fonts/artwork included. Nunito's license is explicitly included.
 - Visual inspection: desktop and phone homepages, Paper course/foundation pages, map view, and the repaired Geometry illustration in Geometric Studio.
 - The Paper browser suite is included in GitHub Actions so future changes recheck these regressions.
+- The first CI run caught a cross-tab snapshot timing issue in the existing theme test: the selecting tab saved each choice successfully, but Playwright collected storage from the first, background page before it had caught up. The test now also asserts the final theme after reload and waits for the first page's storage and rendered theme to agree before exporting the browser state. The expected saved value is unchanged.
 
 ## Assets and provenance
 
