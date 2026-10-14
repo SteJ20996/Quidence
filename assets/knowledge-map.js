@@ -89,7 +89,7 @@
       for(const button of chapterBar.querySelectorAll('button')){button.textContent=w.chapters[Number(button.dataset.chapter)];button.setAttribute('aria-pressed',String(Number(button.dataset.chapter)===chapter));}
       for(const [index,button]of [...layerBar.querySelectorAll('button')].entries()){button.textContent=w.layers[chapter][index];button.setAttribute('aria-pressed',String(button.dataset.layer===activeLayer));}
       root.lang=language;root.dataset.chapter=String(chapter);
-      root.setAttribute('aria-label',language==='es'?'Mapa de conocimientos matemáticos':'Mathematics Knowledge Map');
+      root.setAttribute('aria-label',language==='es'?'Mapa de conocimientos de matemáticas y física':'Mathematics & Physics Knowledge Map');
       map.setAttribute('aria-label',language==='es'?'Los conocimientos crecen de abajo hacia arriba':'Knowledge grows from bottom to top');
       chapterBar.setAttribute('aria-label',language==='es'?'Mapas de conocimientos relacionados':'Connected knowledge maps');
       layerBar.setAttribute('aria-label',language==='es'?'Ramas del conocimiento':'Knowledge branches');

@@ -42,7 +42,7 @@ async function run() {
     await cached.goto(origin + '/?view=courses');
     for (const [subject, className] of [['algebra-1', 'challenge-link'], ['af01', 'project-link']]) {
       await cached.goto(origin + '/?view=courses');
-      await cached.locator('[data-subject="' + subject + '"] .' + className).click();
+      const target=cached.locator('[data-subject="' + subject + '"] .' + className);if(await target.isHidden())await cached.locator('[data-subject="' + subject + '"] .card-more summary').click();await target.click();
       await cached.locator('.f-mode-link').first().waitFor();
       assert.equal(await cached.locator('.f-mode-link').count(), 3);
       assert.equal(await cached.evaluate(() => window.staleActivityAsset), undefined);
@@ -173,7 +173,7 @@ async function checkHomepage(browser, origin, capture, errors, failures) {
     await page.goto(origin + '/?view=courses');
     assert.equal(await page.locator('.qh-description-title').textContent(), 'Mathematics & Science');
     assert.equal(await page.locator('#goal-include-report').isChecked(), false);
-    await page.locator('[data-learning-subject="algebra-1"]').click();
+    await page.locator('#request-subject').selectOption('algebra-1');
     await page.locator('#learning-goal').fill(request);
     await page.locator('#goal-include-report').check();
     await page.reload();
@@ -192,10 +192,10 @@ async function checkHomepage(browser, origin, capture, errors, failures) {
       await page.locator('.feedback-section').screenshot({path: path.join(capture, 'feedback-' + width + '.png')});
     }
     // Consent applies to the selected subject, while the exact draft stays available.
-    await page.locator('[data-learning-subject="geometry"]').click();
+    await page.locator('#request-subject').selectOption('geometry');
     assert.equal(await page.locator('#goal-include-report').isChecked(), false);
     assert.equal(await page.locator('#learning-goal').inputValue(), request);
-    await page.locator('[data-learning-subject="algebra-1"]').click();
+    await page.locator('#request-subject').selectOption('algebra-1');
     if ([1440, 375].includes(width)) {
       for (const className of ['challenge-link', 'project-link']) {
         await page.goto(origin + '/?view=courses');

@@ -4,7 +4,7 @@ const {chromium}=require('playwright'),{createServer}=require('../backend/server
 const {KEY,THEMES}=require('../assets/themes.js');
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
- const result={layouts:0,pages:24,themes:3,errors:[],failures:[]};
+ const result={layouts:0,pages:24,themes:4,errors:[],failures:[]};
  const shots=path.join(__dirname,'../review/theme-screenshots');fs.mkdirSync(shots,{recursive:true});
  try{
   browser=await chromium.launch({executablePath:process.env.QUIDENCE_BROWSER_EXECUTABLE,args:['--no-sandbox']});
@@ -41,7 +41,7 @@ async function main(){
   await page.goto(origin+'/?lang=es');await page.waitForFunction(()=>window.QuidenceI18n?.locale==='es');
   const raw='My exact question\n  −1/3 <test> 我的原文';await page.locator('#learning-goal').fill(raw);
   const before=await page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([key])=>key!=='quidence_ui_theme_v1')));
-  for(const theme of ['paper','atlas','studio'])await page.locator('[data-theme-choice="'+theme+'"]').click();
+  for(const theme of ['classic','paper','atlas','studio'])await page.locator('[data-theme-choice="'+theme+'"]').click();
   assert.equal(await page.locator('#learning-goal').inputValue(),raw);
   assert.deepEqual(await page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([key])=>key!=='quidence_ui_theme_v1'))),before);
   await page.reload();assert.equal(await page.locator('html').getAttribute('data-ui-theme'),'studio');assert.equal(await page.locator('#learning-goal').inputValue(),raw);
@@ -57,12 +57,12 @@ async function main(){
   const answer=other.locator('input[data-f-field][type="text"]').first();await answer.fill('123/7');
   await other.locator('[data-f-explanation]').fill(raw);await other.locator('[data-f-explanation]').blur();
   const recordBefore=await other.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([key])=>key!=='quidence_ui_theme_v1')));
-  for(const theme of ['paper','studio','atlas'])await other.locator('[data-theme-choice="'+theme+'"]').click();
+  for(const theme of ['classic','paper','studio','atlas']){await other.locator('[data-theme-choice="'+theme+'"]').click();assert.equal(await other.evaluate(()=>localStorage.getItem('quidence_ui_theme_v1')),theme,'live saved selection');}
   assert.equal(await answer.inputValue(),'123/7');assert.equal(await other.locator('[data-f-explanation]').inputValue(),raw);
   assert.deepEqual(await other.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([key])=>key!=='quidence_ui_theme_v1'))),recordBefore);
   await other.reload();assert.equal(await other.locator('[data-f-explanation]').inputValue(),raw);
   // A new browser session with restored storage picks the same theme before the DOM is ready.
-  const saved=await context.storageState();await context.close();
+  const saved=await context.storageState();assert.equal(saved.origins.find(o=>o.origin===origin)?.localStorage.find(x=>x.name===KEY)?.value,'atlas','stored theme before reopening');await context.close();
   const reopened=await browser.newContext({storageState:saved}),again=await reopened.newPage();listen(again);
   await again.goto(origin+'/',{waitUntil:'commit'});await again.waitForFunction(()=>document.documentElement.dataset.uiTheme==='atlas');await reopened.close();
   const blocked=await browser.newContext(),b=await blocked.newPage();listen(b);

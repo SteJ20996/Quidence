@@ -189,8 +189,9 @@ const MODULES={
  ]}
 };
 Object.assign(MODULES,typeof module==='object'&&module.exports?require('./subject-foundations.js'):(root.QuidenceSubjectFoundations||{}));
+Object.assign(MODULES,(typeof module==='object'&&module.exports?require('./additional-foundations.js'):root.QuidenceAdditionalFoundations).MODULES);
 for(const [module,definition] of Object.entries(MODULES))for(const t of definition.tasks){t.module=module;t.groupName=definition.groups[t.group];t.provenance='Composed for Quidence using standard mathematical ideas; source clearance has not been independently verified.';}
-const api={VERSION:'cluevera-foundations-1',MODULES};
+const api={VERSION:'cluevera-foundations-1',MODULES,SOURCE_FILES:['assets/foundation-bank.js','assets/subject-foundations.js','assets/additional-foundations.js']};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceFoundationBank=api;
 })(typeof window==='undefined'?globalThis:window);
 

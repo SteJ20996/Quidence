@@ -14,7 +14,7 @@ async function main(){
   const es=async p=>p.waitForFunction(()=>QuidenceI18n.locale==='es');
   const collect=async p=>{await p.evaluate(()=>QuidenceI18n.apply());for(const k of await p.evaluate(()=>QuidenceI18n.missing))missing.add(k);};
   const download=async(p,id)=>{const ready=p.waitForEvent('download');await p.locator(id).click();const d=await ready;return{name:d.suggestedFilename(),text:fs.readFileSync(await d.path(),'utf8')};};
-  await page.goto(origin+'/?lang=en');await page.locator('#learning-goal').fill(RAW);await page.locator('#goal-include-report').check();await page.locator('#learning-goal').blur();
+  await page.addInitScript(()=>localStorage.setItem('quidence_ui_theme_v1','classic'));await page.goto(origin+'/?lang=en');await page.locator('#learning-goal').fill(RAW);await page.locator('#goal-include-report').check();await page.locator('#learning-goal').blur();
   const before=await page.evaluate(k=>localStorage.getItem(k),GOAL);
   for(const selector of ['.qa-next','.qa-back','.qa-layer:first-child','[data-chapter="1"]','[data-chapter="0"]']){
    await page.locator(selector).click();assert.equal(await page.evaluate(k=>localStorage.getItem(k),GOAL),before,'Browsing changed report criteria');result.mapBrowseActions++;

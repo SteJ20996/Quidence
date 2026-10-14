@@ -16,14 +16,14 @@ async function main(){
    const bounds=await page.evaluate(()=>{
     const overlaps=[],nodes=[...document.querySelectorAll('.qa-node')].map(e=>({id:e.dataset.node,r:e.getBoundingClientRect()}));
     for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){const a=nodes[i].r,b=nodes[j].r;if(a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top)overlaps.push([nodes[i].id,nodes[j].id]);}
-    const h=document.querySelector('.qh-site-header').getBoundingClientRect(),headerClipping=[...document.querySelector('.qh-site-header').children].filter(e=>{const r=e.getBoundingClientRect();return r.left<h.left||r.right>h.right;}).map(e=>e.className);
+    const h=document.querySelector('.qh-site-header').getBoundingClientRect(),headerClipping=[...document.querySelector('.qh-site-header').children].filter(e=>{const r=e.getBoundingClientRect();return r.width>0&&(r.left<h.left||r.right>h.right);}).map(e=>e.className);
     return{overflow:document.documentElement.scrollWidth>innerWidth,overlaps,headerClipping};
    });
    assert.deepEqual(bounds,{overflow:false,overlaps:[],headerClipping:[]});output.mapStates++;
   }
   for(const [width,height]of [[1280,720],[1200,900],[1920,1080],[1024,768],[375,812],[320,812]]){
    const context=await browser.newContext({viewport:{width,height}}),page=await context.newPage();listen(page);
-   await page.goto(origin+'/?lang=en');await ready(page);
+   await page.addInitScript(()=>localStorage.setItem('quidence_ui_theme_v1','classic'));await page.goto(origin+'/?lang=en');await ready(page);
    assert.deepEqual(await page.locator('#quidence-language option').evaluateAll(es=>es.map(e=>e.value)),['en','es']);
    assert.equal(await page.locator('.q-brand-logo').count(),1);
    for(const language of ['en','es']){
@@ -40,7 +40,7 @@ async function main(){
    assert.equal(await page.locator('[data-learning-subject="algebra-1"]').getAttribute('aria-pressed'),'true');
    assert.equal(await page.locator('#goal-include-report').isChecked(),false,'New subject needs its own report opt-in');
    await page.locator('#goal-include-report').check();
-   await page.locator('[data-home-view="courses"]').click();
+   await page.locator('button[data-home-view="courses"]').click();
    assert.equal(await page.locator('.subject-card:visible').count(),12);
    assert.deepEqual(await page.locator('.group-heading h2').allTextContents(),['Secundaria','Preparatoria','Nivel universitario']);
    const levels=await page.locator('.catalogue-group').evaluateAll(groups=>groups.map(g=>g.querySelectorAll('.subject-card').length));assert.deepEqual(levels,[1,6,5]);
@@ -49,7 +49,7 @@ async function main(){
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
    await page.reload();await ready(page);assert.equal(await page.locator('.home-course-view').isVisible(),true);
    assert.equal(await page.locator('#learning-goal').inputValue(),RAW);assert(await page.locator('#goal-include-report').isChecked());
-   await page.locator('[data-home-view="map"]').click();
+   await page.locator('button[data-home-view="map"]').click();
    assert.equal(await page.locator('#knowledge-map').getAttribute('data-selected-course'),'algebra-1');
    for(const subject of Object.keys(require('../assets/course-catalog.js').COURSES)){
     await page.locator('[data-learning-subject="'+subject+'"]').click();
@@ -62,7 +62,7 @@ async function main(){
   }
   // Existing reports and the exact user request survive repeated map/page/language changes.
   const context=await browser.newContext({viewport:{width:1200,height:900}}),page=await context.newPage();listen(page);
-  await page.goto(origin+'/?lang=en');await ready(page);
+  await page.addInitScript(()=>localStorage.setItem('quidence_ui_theme_v1','classic'));await page.goto(origin+'/?lang=en');await ready(page);
   const archive=Store.fresh();for(let i=0;i<100;i++)archive.items.push({id:'algebra-1:map-report-'+i,module:'algebra-1',subject:'Algebra I',sessionId:'map-report-'+i,versions:[{savedAt:'2026-10-09T19:00:00Z',signature:'compact-v2:1:0',payload:{markdown:'# Algebra I\n\n> '+RAW+'\n\n'+'.'.repeat(5000)}}]});
   const originalArchive=JSON.stringify(archive);
   await page.evaluate(({key,value})=>QuidenceStorage.setItem(key,value),{key:Store.KEY,value:originalArchive});
@@ -84,13 +84,13 @@ async function main(){
   await context.close();
   for(const raw of ['{unreadable','{"schema":"unknown","text":"original"}']){
    const context=await browser.newContext(),page=await context.newPage();listen(page);
-   await page.addInitScript(raw=>localStorage.setItem('cluevera_learning_goal_v1',raw),raw);
+   await page.addInitScript(raw=>{localStorage.setItem('cluevera_learning_goal_v1',raw);localStorage.setItem('quidence_ui_theme_v1','classic');},raw);
    await page.goto(origin+'/');await ready(page);await page.locator('#learning-goal').fill('New unsaved draft');await page.locator('[data-node="algebra1"]').click();
    assert.equal(await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1')),raw);await context.close();
   }
   const unavailable=await browser.newContext(),blocked=await unavailable.newPage();listen(blocked);
   await blocked.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw Error('Storage denied');}}));
-  await blocked.goto(origin+'/');await ready(blocked);await blocked.locator('[data-home-view="courses"]').click();assert.equal(await blocked.locator('.subject-card:visible').count(),12);await unavailable.close();
+  await blocked.goto(origin+'/');await blocked.locator('[data-theme-choice="classic"]').click();await ready(blocked);await blocked.locator('button[data-home-view="courses"]').click();assert.equal(await blocked.locator('.subject-card:visible').count(),12);await unavailable.close();
   const routes=['/','/assets/home.js','/assets/knowledge-map.js','/assets/knowledge-map-data.js'];let failed=0;
   for(let batch=0;batch<3;batch++)await Promise.all(Array.from({length:40},async(_,i)=>{const response=await fetch(origin+routes[i%routes.length]);if(response.status!==200||!(await response.text()).length)failed++;}));
   output.stress.localRequests={concurrency:40,total:120,failed};assert.equal(failed,0);
