@@ -50,5 +50,15 @@
     "errors": [],
     "failedRequests": []
   },
-  "reviewLimit": "Automated checks and visual inspection do not certify human pedagogical review, originality clearance or absence of every possible bug. Source-review pending annotations are retained in source-ledger.json."
+  "reviewLimit": "Automated checks and visual inspection do not certify human pedagogical review, originality clearance or absence of every possible bug. Source-review pending annotations are retained in source-ledger.json.",
+  "brandRegression": {
+    "script": "scripts/test-brand-browser.cjs",
+    "pages": 25,
+    "languages": 2,
+    "layouts": 200,
+    "offlineReports": 2,
+    "errors": [],
+    "failedRequests": [],
+    "repair": "Project-page logo now has a 160px minimum width; shared logo-size gate passes."
+  }
 }
