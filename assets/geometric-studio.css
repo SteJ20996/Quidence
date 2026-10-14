@@ -6,7 +6,7 @@ html[data-ui-theme="studio"] body[data-q-theme] :is(.card,.orientation-card,.f-i
 html[data-ui-theme="studio"] body[data-q-theme] :is(.site-header,.qa-header,.topbar,.f-site-header,header.q-brand-header){background:#fffefa;border-bottom:1px solid #d7dfdc}
 html[data-ui-theme="studio"] body[data-q-theme] :is(.primary,.btn,.f-primary,.f-secondary-link,.secondary,.quiet,.subject-link,.project-link,.challenge-link,.lesson-link,.area-nav){border-radius:24px}
 html[data-ui-theme="studio"] body[data-q-theme].quidence-home{position:relative}
-html[data-ui-theme="studio"] body[data-q-theme].quidence-home::before{content:'';position:absolute;inset:72px 12px 12px;border:1px solid #e6e6df;border-radius:18px;pointer-events:none}
+
 html[data-ui-theme="studio"] body[data-q-theme].quidence-home .q-studio-only{display:block}
 html[data-ui-theme="studio"] body[data-q-theme].quidence-home .q-studio-only[hidden]{display:none!important}
 html[data-ui-theme="studio"] body[data-q-theme].quidence-home .qh-site-header{padding:22px 24px 16px;gap:32px;border:0;background:transparent}
@@ -113,7 +113,6 @@ html[data-ui-theme="studio"] #cartoon-knowledge-map .map-num{background:#f5e2ab;
  html[data-ui-theme="studio"] body[data-q-theme].quidence-home .q-request-subject select{min-height:44px}
 }
 @media(max-width:600px){
- html[data-ui-theme="studio"] body[data-q-theme].quidence-home::before{display:none}
  html[data-ui-theme="studio"] body[data-q-theme].quidence-home .qh-brand{flex-basis:180px}
  html[data-ui-theme="studio"] body[data-q-theme].quidence-home .q-brand-logo{width:180px}
  html[data-ui-theme="studio"] body[data-q-theme].quidence-home .qh-language-label select{font-size:12px;min-width:86px;width:100%;padding-left:8px}
@@ -140,4 +139,4 @@ html[data-ui-theme="studio"] #cartoon-knowledge-map .map-num{background:#f5e2ab;
  html[data-ui-theme="studio"] body[data-q-theme].quidence-home footer{padding:10px 4px}
 }
 @media(prefers-reduced-motion:reduce){html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card{transition:none}}
-@media print{html[data-ui-theme="studio"] body[data-q-theme].quidence-home::before,html[data-ui-theme="studio"] body[data-q-theme].quidence-home :is(.q-studio-shapes,.q-studio-bulb){display:none}}
+@media print{html[data-ui-theme="studio"] body[data-q-theme].quidence-home :is(.q-studio-shapes,.q-studio-bulb){display:none}}
