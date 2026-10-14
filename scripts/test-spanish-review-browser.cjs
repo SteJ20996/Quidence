@@ -11,8 +11,8 @@ async function run(){
   page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()));
   const collect=async()=>{await page.evaluate(()=>QuidenceI18n.apply());for(const key of await page.evaluate(()=>QuidenceI18n.missing))missing.add(key);};
   const storage=()=>page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([k])=>k!=='quidence_ui_locale_v1')));
-  await page.goto(origin+'/?lang=en');assert(!requests.some(r=>r.includes('i18n-es.js')),'English loaded the Spanish catalog');
-  await page.locator('#quidence-language').selectOption('es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');assert(requests.some(r=>r.includes('i18n-es.js')));
+  await page.goto(origin+'/?lang=en');assert(!requests.some(r=>/i18n-es(?:\.js|\/)/.test(r)),'English loaded the Spanish catalog');
+  await page.locator('#quidence-language').selectOption('es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');assert(requests.some(r=>/i18n-es(?:\.js|\/)/.test(r)));
   assert.equal(await page.evaluate(()=>QuidenceI18n.text('The new student sentence is in your notebook.')),'The new student sentence is in your notebook.');
   for(const course of ['pre-algebra','algebra-1','geometry','algebra-2','physics','physics-1','physics-2','af01','ae01','ad01']){
    await page.goto(origin+(['af01','ae01','ad01'].includes(course)?'/modules/'+course+'/dist/':'/courses/'+course+'/')+'?lang=es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');await collect();

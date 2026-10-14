@@ -1,3 +1,7 @@
+## 2026-10-14 · Corrected external review
+
+Implemented scope, evidence and remaining conditions: [external-review-2026-10-14.md](review/external-review-2026-10-14.md). The source inventory contains 405 records (385 active, 20 historical-only), all still not-cleared.
+
 ## 2026-10-13 · 下拉控件箭头间距
 
 - 语言按钮的箭头距右边框 12px，右侧预留 36px，避免文字与箭头重叠。

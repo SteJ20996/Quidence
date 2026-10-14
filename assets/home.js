@@ -7,8 +7,9 @@
     const es=window.QuidenceI18n?.locale==='es';
     for(const button of root.querySelectorAll('[data-compact-physics]')){
       const number=button.dataset.learningSubject==='physics-1'?'1':'2';
-      button.textContent=es?'Física '+number+' · Bases':'Physics '+number+' · Basics';
-      button.setAttribute('aria-label',es?'Fundamentos de física '+number:'Physics '+number+' Foundations');
+      button.textContent=es?'Fundamentos de física '+number:'Physics '+number+' Foundations';
+      // The visible course name is also its accessible name.
+      button.removeAttribute('aria-label');
     }
   }
   document.addEventListener('quidence:language',compactSubjectLabels);compactSubjectLabels();

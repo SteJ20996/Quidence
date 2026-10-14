@@ -64,7 +64,7 @@ npm -v
 
 ### 2. 获取最新版程序并进入文件夹
 
-打开 [GitHub 仓库](https://github.com/SteJ20996/AA01)，确认分支为 **main**，点击 **Code → Download ZIP** 并解压。不要在 ZIP 内直接操作。解压后找到包含 `package.json`、`README.md`、`assets/` 和 `backend/` 的文件夹。
+打开 [GitHub 仓库](https://github.com/SteJ20996/Quidence)，确认分支为 **main**，点击 **Code → Download ZIP** 并解压。不要在 ZIP 内直接操作。解压后找到包含 `package.json`、`README.md`、`assets/` 和 `backend/` 的文件夹。
 
 如果解压在 Downloads，文件夹名为 `AA01-main`，使用以下命令；如果放在其他位置，请替换成实际路径。
 
@@ -202,3 +202,7 @@ Current record behavior is described at `data-use/`. See [Claude follow-up statu
 ## 博弈论（AC01）恢复
 
 Game Theory 已恢复到大学数学知识地图、Further Mathematics 的 Subject 选项和 College Level 课程卡片。提供四个原有英文教学单元、八道课后检查，以及单独的 15 题基础检查和 6 题进一步检查；旧 AC01 学习记录与报告继续兼容。正式发布包含 modules/ac01/dist，原有封存快照保留。
+
+## Repository access
+
+The GitHub repository is now `SteJ20996/Quidence`. Cloning or downloading this private repository requires access as its owner or an authorized collaborator. The public website does not require repository access.

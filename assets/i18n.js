@@ -178,19 +178,29 @@ function apply(scope=root.document){
 function schedule(){if(pending)return;pending=true;root.queueMicrotask(()=>{pending=false;observer?.disconnect();apply();observe();});}
 function observe(){observer?.observe(root.document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['aria-label','placeholder','title','alt']});}
 function loadCatalog(){
+ if(catalogPromise)return catalogPromise;
  if(root.QuidenceSpanish||!root.document)return Promise.resolve();
- if(!catalogPromise)catalogPromise=new Promise((resolve,reject)=>{
-  const script=root.document.createElement('script'),url=new URL('i18n-es.js',sourceURL);
-  // The page pins the catalog independently of the small loader.
-  url.search=root.document.querySelector('script[data-es-catalog]')?.dataset.esCatalog||'';
-  script.src=url.href;script.onload=resolve;script.onerror=()=>{catalogPromise=null;script.remove();reject(Error('Spanish translations could not load.'));};root.document.head.appendChild(script);
- });return catalogPromise;
+ if(!catalogPromise){
+  const pathname=root.location?.pathname||'',moduleId=new URL(root.location.href).searchParams.get('module');
+  const all=/^\/(?:records|reports)\//.test(pathname);
+  const group=pathname.match(/\/modules\/(aa01|ab01|ac01|ad01|ae01|af01)\//)?.[1]||
+    (pathname.includes('/number-theory/')?'number-theory':moduleId);
+  const names=all?['i18n-es.js']:['i18n-es/common.js',...(['aa01','ab01','ac01','ad01','ae01','af01','number-theory'].includes(group)?['i18n-es/'+group+'.js']:[])];
+  const loaded=[];
+  catalogPromise=(async()=>{
+   try{for(const name of names)await new Promise((resolve,reject)=>{
+    const script=root.document.createElement('script'),url=new URL(name,sourceURL);
+    url.search=root.document.querySelector('script[data-es-catalog]')?.dataset.esCatalog||'';
+    script.src=url.href;script.onload=()=>{loaded.push(script);resolve();};script.onerror=()=>{script.remove();reject(Error('Spanish translations could not load.'));};root.document.head.appendChild(script);
+   });}catch(error){loaded.forEach(script=>script.remove());delete root.QuidenceSpanish;delete root.QuidenceSpanishQuantities;catalogPromise=null;throw error;}
+  })();
+ }return catalogPromise;
 }
 async function setLocale(next){
  const sequence=++requestSequence;
- if(next==='es'&&!root.QuidenceSpanish&&root.document){
+ if(next==='es'&&(!root.QuidenceSpanish||catalogPromise)&&root.document){
   control?.setAttribute('aria-busy','true');
-  try{await loadCatalog();}catch{if(control){control.value=locale;control.removeAttribute('aria-busy');}const note=root.document.createElement('p');note.className='language-error';note.setAttribute('role','status');note.textContent='No se pudieron cargar las traducciones. Selecciona Español para intentarlo de nuevo.';control?.closest('nav')?.appendChild(note);return locale;}
+  try{await loadCatalog();}catch{if(sequence!==requestSequence)return locale;if(control){control.value=locale;control.removeAttribute('aria-busy');}const note=root.document.createElement('p');note.className='language-error';note.setAttribute('role','status');note.textContent='No se pudieron cargar las traducciones. Selecciona Español para intentarlo de nuevo.';control?.closest('nav')?.appendChild(note);return locale;}
   if(sequence!==requestSequence)return locale;
  }
  control?.removeAttribute('aria-busy');root.document?.querySelectorAll('.language-error').forEach(e=>e.remove());
