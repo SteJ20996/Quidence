@@ -12,6 +12,7 @@ function install(check = false) {
     if (!html.includes('/paper-explorer.css')) html = html.replace('</head>',`<link rel="stylesheet" href="${prefix}/paper-explorer.css">\n</head>`);
     if (!html.includes('/learning-atlas.css')) html = html.replace('</head>',`<link rel="stylesheet" href="${prefix}/learning-atlas.css">\n</head>`);
     if (!html.includes('/appearance-layout.css')) html = html.replace('</head>',`<link rel="stylesheet" href="${prefix}/appearance-layout.css">\n</head>`);
+    if (!html.includes('/geometric-studio.css')) html = html.replace(/(<link rel="stylesheet" href="[^"]*\/appearance-layout.css[^"]*">)/,`<link rel="stylesheet" href="${prefix}/geometric-studio.css">\n$1`);
     // The initial Studio surface is light; keep both original logo variants
     // available so Classic's dark headers can use the white wordmark.
     html = html.replace(/<img\b[^>]*class="[^"]*\bq-brand-logo\b[^"]*"[^>]*>/g, tag => {
