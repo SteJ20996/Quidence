@@ -32,6 +32,10 @@ Actual Chromium screenshots of the implemented page, not generated mockups:
 
 The final mobile navigation sizing adjustment is included in the PR CI rerun of these browser checks. The new Atlas test also verifies original Unicode input preservation, per-course link equality, Classic row restoration, saved Atlas reloads, translated deep links, map navigation, and asset availability.
 
+## CI follow-up
+
+The first full CI run identified the map teaser’s separate accessible label as unreviewed authored text. The teaser now derives its accessible name and description from the visible, component-translated title and description via `aria-labelledby` and `aria-describedby`. This keeps the accessible and visible wording synchronized in both languages. The Atlas browser test now checks that accessible name after applying localization. The full localization browser suite passed after the correction: 96 layouts, 72 tasks and 20 reports, with zero page errors or English residue.
+
 ## Asset provenance and reproduction
 
 Execution mode: built-in image-generation tool, with the user-provided “Quidence’s illustrated learning atlas-2.png” as a style reference; transparent background enabled. Two decorative illustrations were generated separately. The generated PNGs were converted to WebP at their original dimensions (quality 84, method 6), without visual edits.

@@ -35,6 +35,7 @@ async function main(){
    }
    await page.locator('button[data-category="all"]').click();await page.locator('button[data-home-view="courses"]').click();
    if([375,1512].includes(width))await page.screenshot({path:path.join(shots,'atlas-'+lang+'-'+width+'.png')});
+   await page.evaluate(()=>QuidenceI18n.apply());assert.equal(await page.getByRole('button',{name:lang==='es'?'Explora el mapa de conocimientos':'Explore the knowledge map',exact:true}).count(),1,'map link accessible name follows the visible translated title');
    await page.locator('.q-atlas-map-link').click();assert.equal(await page.locator('#quidence-home').getAttribute('data-home-view'),'map');await page.locator('button[data-home-view="courses"]').click();result.layouts++;
   }
   await page.locator('.subject-card[data-subject="geometry"] summary').click();assert(await page.locator('.subject-card[data-subject="geometry"] .project-link').isVisible());

@@ -11,8 +11,14 @@ function install(check = false) {
     if (!html.includes('/themes.css')) html = html.replace('</head>',`<link rel="stylesheet" href="${prefix}/themes.css">\n</head>`);
     if (!html.includes('/paper-explorer.css')) html = html.replace('</head>',`<link rel="stylesheet" href="${prefix}/paper-explorer.css">\n</head>`);
     if (!html.includes('/learning-atlas.css')) html = html.replace('</head>',`<link rel="stylesheet" href="${prefix}/learning-atlas.css">\n</head>`);
-    // Shared theme headers all use a light surface and the original dark-ink logo.
-    html = html.replace(/quidence-logo-dark\.svg(?:\?v=[a-f0-9]+)?/g,'quidence-logo-light.svg');
+    if (!html.includes('/appearance-layout.css')) html = html.replace('</head>',`<link rel="stylesheet" href="${prefix}/appearance-layout.css">\n</head>`);
+    // The initial Studio surface is light; keep both original logo variants
+    // available so Classic's dark headers can use the white wordmark.
+    html = html.replace(/<img\b[^>]*class="[^"]*\bq-brand-logo\b[^"]*"[^>]*>/g, tag => {
+      let logo = tag.replace(/\ssrc="([^"]*)quidence-logo-dark\.svg(?:\?v=[a-f0-9]+)?"/, ' src="$1quidence-logo-light.svg"');
+      if (!logo.includes('data-logo-light-src=')) logo = logo.replace(/>$/,` data-logo-light-src="${prefix}/quidence-logo-light.svg" data-logo-dark-src="${prefix}/quidence-logo-dark.svg">`);
+      return logo;
+    });
     if (html !== source) { changed.push(file); if (!check) fs.writeFileSync(filename,html); }
   }
   if (check && changed.length) throw Error('Missing theme integration: '+changed.join(', '));

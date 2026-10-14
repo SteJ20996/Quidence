@@ -1,0 +1,21 @@
+/* Keep the appearance controls stationary while each theme changes the page. */
+html[data-ui-theme] body[data-q-theme] .q-theme-bar {
+  font:13px/1.4 system-ui,sans-serif;
+}
+@media (min-width:960px) {
+  html[data-ui-theme] body[data-q-theme].quidence-home {
+    box-sizing:border-box;width:100%;max-width:1528px;margin:0 auto;padding:0 24px 18px;
+  }
+  html[data-ui-theme] body[data-q-theme].quidence-home .q-theme-bar {
+    width:100%;max-width:1480px;min-height:72px;margin:0 auto;padding:12px 16px;
+    border:0;border-bottom:1px solid transparent;background:transparent;
+    font:13px/1.4 system-ui,sans-serif;
+  }
+  html[data-ui-theme] body[data-q-theme].quidence-home .q-theme-note {max-width:180px}
+  html[data-ui-theme] body[data-q-theme].quidence-home :is(.qh-site-header,.qf-layout,.feedback-section,footer,.q-paper-footer,.q-atlas-footer) {
+    box-sizing:border-box;width:100%;max-width:1480px;margin-left:auto;margin-right:auto;
+  }
+  html[data-ui-theme] body[data-q-theme].quidence-home::before {
+    top:72px;left:12px;right:12px;
+  }
+}

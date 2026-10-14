@@ -38,8 +38,24 @@
     root.document?.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEMES[value].page);
     if (save) { try { root.localStorage.setItem(KEY, value); persistent = true; } catch { persistent = false; } }
     render();
+    updateLogos();
     if(root.document?.dispatchEvent&&root.CustomEvent)root.document.dispatchEvent(new root.CustomEvent('quidence:theme',{detail:{theme:value,illustrated:value!=='classic'}}));
     return true;
+  }
+  function updateLogos() {
+    const luminance = rgb => rgb.map(v => v / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4).reduce((sum,v,i) => sum + v * [.2126,.7152,.0722][i],0);
+    const contrast = (a,b) => (Math.max(a,b) + .05) / (Math.min(a,b) + .05);
+    for (const logo of root.document?.querySelectorAll?.('.q-brand-logo[data-logo-light-src][data-logo-dark-src]') || []) {
+      let surface = logo.parentElement, background = [255,255,255];
+      while (surface) {
+        const rgba = root.getComputedStyle(surface).backgroundColor.match(/[\d.]+/g)?.map(Number);
+        if (rgba?.length >= 3 && (rgba.length === 3 || rgba[3] === 1)) { background = rgba.slice(0,3); break; }
+        surface = surface.parentElement;
+      }
+      const bg = luminance(background), white = luminance([246,247,249]), ink = luminance([20,34,54]);
+      const source = contrast(bg,white) > contrast(bg,ink) ? logo.dataset.logoDarkSrc : logo.dataset.logoLightSrc;
+      if (logo.getAttribute('src') !== source) logo.setAttribute('src',source);
+    }
   }
   // Only trusted theme values enter the standalone report. No assets or storage needed offline.
   function reportAppearance() {
