@@ -51,3 +51,6 @@ jobs:
 
       - name: Check illustrated maps, filters and all three new foundation sessions
         run: npm run test:cartoon:browser
+
+      - name: Check Paper Explorer layouts, original links and request preservation
+        run: npm run test:paper:browser

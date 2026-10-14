@@ -6,7 +6,7 @@ const pictures={
  calculator:'<rect x="14" y="4" width="31" height="39" rx="6" fill="var(--mint)"/><path d="M20 12h19M21 23h5m-2-2v5m9-3h5M21 32h5m7-2 5 5m0-5-5 5"/>',
  balance:'<path d="M30 6v34M17 42h26M6 13l46-6M13 12v16m31-19v19"/><path d="M4 28h18a9 9 0 0 1-18 0Z" fill="var(--coral)"/><path d="M35 28h18a9 9 0 0 1-18 0Z" fill="var(--mint)"/>',
  parabola:'<path d="M4 33h49M27 44V3m-3 4 3-4 3 4m19 23 4 3-4 3"/><path d="M8 6Q27 66 47 6" stroke="var(--coral)" stroke-width="3"/>',
- shapes:'<circle cx="37" cy="17" r="12" fill="var(--coral)"/><path d="m6 18 18-7 14 9-18 7Z" fill="var(--lilac)"/><path d="M6 18v20l14 8V27m0 19 18-8V20" fill="var(--lilac)"/>',
+ shapes:'<circle cx="37" cy="17" r="12" fill="var(--coral)"/><path d="m6 18 18-7 14 9-18 7Z" fill="var(--lilac)"/><path d="m6 18 14 9v19L6 38Z" fill="var(--lilac)"/><path d="m20 27 18-7v18l-18 8Z" fill="var(--yellow)"/>',
  triangle:'<path d="M8 40 28 5l25 35Z" fill="var(--mint)"/><path d="M28 5v35M28 33h7v7"/><circle cx="28" cy="5" r="2" fill="var(--ink)"/>',
  axes:'<path d="M5 38h49M15 44V5m-3 4 3-4 3 4m32 26 4 3-4 3"/><path d="m18 33 11-13 17-9" stroke="var(--coral)" stroke-width="3"/><circle cx="29" cy="20" r="3" fill="var(--coral)"/>',
  bars:'<path d="M7 7v35h48"/><path d="M14 41V29h8v12" fill="var(--mint)"/><path d="M26 41V12h8v29" fill="var(--coral)"/><path d="M38 41V21h8v20" fill="var(--lilac)"/>',

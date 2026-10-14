@@ -7,10 +7,10 @@ const roots = ['index.html', 'assets', 'account', 'data-use', 'records', 'report
   'foundations', 'diagnostics', 'projects',
   ...['pre-algebra', 'algebra-1', 'geometry', 'algebra-2', 'physics', 'physics-1', 'physics-2', 'number-theory'].map(id => 'courses/' + id),
   ...['aa01', 'ab01', 'ac01', 'ad01', 'ae01', 'af01'].map(id => 'modules/' + id + '/dist')];
-const types = /\.(?:html|js|css|svg|png|ico|webmanifest)$/;
+const types = /\.(?:html|js|css|svg|png|webp|woff|ico|webmanifest)$/;
 const excluded = new Set(['assets/account-app.js', 'assets/sync-client.js']);
 function allowed(file) {
-  return (types.test(file) || file === 'courses/number-theory/data.json') && !excluded.has(file) &&
+  return (types.test(file) || file === 'assets/fonts/Nunito-OFL.txt' || file === 'courses/number-theory/data.json') && !excluded.has(file) &&
     !file.split('/').some(part => part.startsWith('.')) &&
     !file.startsWith('modules/ab01/dist/beta01/') &&
     (!file.startsWith('modules/aa01/dist/sketch-lab/') || file.endsWith('/math.js'));

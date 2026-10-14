@@ -27,7 +27,8 @@
     "build:seo": "node scripts/build-seo.cjs",
     "test:seo": "node --test tests/seo.test.cjs",
     "test:themes:browser": "node scripts/test-themes-browser.cjs",
-    "test:cartoon:browser": "node scripts/test-cartoon-browser.cjs"
+    "test:cartoon:browser": "node scripts/test-cartoon-browser.cjs",
+    "test:paper:browser": "node scripts/test-paper-browser.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"
