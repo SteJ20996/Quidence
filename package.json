@@ -25,7 +25,8 @@
     "test:number-theory:browser": "node scripts/test-number-theory-browser.cjs",
     "test:reviewed:browser": "node scripts/test-reviewed-release-browser.cjs",
     "build:seo": "node scripts/build-seo.cjs",
-    "test:seo": "node --test tests/seo.test.cjs"
+    "test:seo": "node --test tests/seo.test.cjs",
+    "test:themes:browser": "node scripts/test-themes-browser.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"

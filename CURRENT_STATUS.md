@@ -1,3 +1,7 @@
+## 2026-10-14 · Remembered site-wide appearance
+
+Paper, Atlas and Studio are available on all 24 public pages. The shared head initializer restores the browser preference before styles load; live changes preserve locale, activity inputs and saved records. Portable reports embed the selected style and print on white paper. Validation and scope: [themes-2026-10-14.md](review/themes-2026-10-14.md).
+
 ## 2026-10-14 · Corrected external review
 
 Implemented scope, evidence and remaining conditions: [external-review-2026-10-14.md](review/external-review-2026-10-14.md). The source inventory contains 405 records (385 active, 20 historical-only), all still not-cleared.

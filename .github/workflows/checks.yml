@@ -45,3 +45,6 @@ jobs:
         run: npm run test:number-theory:browser
       - name: Check real-motion, map criteria and current-note recovery regressions
         run: npm run test:reviewed:browser
+
+      - name: Check all three themes, every public page and remembered preferences
+        run: npm run test:themes:browser

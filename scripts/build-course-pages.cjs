@@ -8,6 +8,7 @@ function shell(id,body,active){const c=catalog.COURSES[id];return`<!doctype html
 `;}
 function build(){for(const id of [...content.IDS,'physics-1','physics-2']){fs.mkdirSync(path.join(root,'courses',id),{recursive:true});let html=shell(id,'',true);if(id.startsWith('physics-'))html=html.replace('<script src="../../assets/school-course-content.js" defer></script>','').replace('<script src="content.js"', '<script src="../../courses/physics/content.js" defer></script><script src="../../assets/physics-foundation-content.js" defer></script><script src="content.js"').replace('<script src="../../assets/course-graphs.js"','<script src="../../assets/physics-models.js" defer></script><script src="../../assets/physics-foundation-models.js" defer></script><script src="../../assets/course-graphs.js"');fs.writeFileSync(path.join(root,'courses',id,'index.html'),html);}
  require('./build-seo.cjs').buildSEO();
+ require('./install-themes.cjs').install();
  require('./version-activity-assets.cjs').versionActivities();
  require('./build-seo.cjs').buildSEO();
 }
