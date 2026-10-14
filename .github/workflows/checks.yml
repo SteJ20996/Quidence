@@ -54,3 +54,6 @@ jobs:
 
       - name: Check Paper Explorer layouts, original links and request preservation
         run: npm run test:paper:browser
+
+      - name: Check Learning Atlas groups, theme round trips and responsive navigation
+        run: npm run test:atlas:browser

@@ -10,7 +10,7 @@ const roots = ['index.html', 'assets', 'account', 'data-use', 'records', 'report
 const types = /\.(?:html|js|css|svg|png|webp|woff|ico|webmanifest)$/;
 const excluded = new Set(['assets/account-app.js', 'assets/sync-client.js']);
 function allowed(file) {
-  return (types.test(file) || file === 'assets/fonts/Nunito-OFL.txt' || file === 'courses/number-theory/data.json') && !excluded.has(file) &&
+  return (types.test(file) || ['assets/fonts/Nunito-OFL.txt','assets/fonts/SourceSerif4-OFL.txt'].includes(file) || file === 'courses/number-theory/data.json') && !excluded.has(file) &&
     !file.split('/').some(part => part.startsWith('.')) &&
     !file.startsWith('modules/ab01/dist/beta01/') &&
     (!file.startsWith('modules/aa01/dist/sketch-lab/') || file.endsWith('/math.js'));
