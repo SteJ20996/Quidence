@@ -1,0 +1,26 @@
+(function(){'use strict';
+const home=document.getElementById('quidence-home');if(!home)return;
+const copy={en:{explore:'Explore subject',foundations:'Check foundations',check:'Check understanding',records:'My records',options:'More options & sharing',note:'Your learning records stay in this browser.',review:'Review with a teacher or parent.',break:'Take a puzzle break at Qidolab',subject:'Subject'},es:{explore:'Explora la materia',foundations:'Comprueba los fundamentos',check:'Comprueba lo que sabes',records:'Mis registros',options:'Más opciones y cómo compartir',note:'Tus registros de aprendizaje se guardan en este navegador.',review:'Revísalo con un docente, madre o padre.',break:'Tómate un descanso con Qidolab',subject:'Materia'}};
+function label(tag,key,className=''){const el=document.createElement(tag);el.dataset.paperCopy=key;el.setAttribute('data-no-translate','');if(className)el.className=className;return el;}
+const records=label('a','records','q-paper-only q-paper-records');records.href='records/';home.querySelector('.qf-page-nav').append(records);
+const categoryArt={all:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',school:'<rect x="4" y="2" width="16" height="21" rx="2"/><path d="M7 7h10M7 11h2m4 0h3m-9 4h2m4 0h3m-9 4h2m4 0h3"/>',further:'<path d="M12 5v5L5 17m7-7 7 7"/><circle cx="12" cy="4" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/>',science:'<path d="M9 2h6m-5 0v8L4 20q-1 2 2 2h12q3 0 2-2l-6-10V2M7 17h10"/>'};
+for(const button of home.querySelectorAll('#subject-categories button[data-category]')){const icon=document.createElement('span');icon.className='q-paper-only q-paper-category-icon';icon.setAttribute('aria-hidden','true');icon.innerHTML='<svg viewBox="0 0 24 25" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+categoryArt[button.dataset.category]+'</svg>';button.prepend(icon);}
+const rail=home.querySelector('.qf-right-rail'),shelf=document.createElement('div');shelf.className='q-paper-only q-paper-shelf';shelf.setAttribute('aria-hidden','true');rail.prepend(shelf);
+const note=label('a','note','q-paper-only q-paper-record-note');note.href='records/';rail.append(note);
+const review=label('p','review','q-paper-only q-paper-review');home.querySelector('.goal-actions').after(review);
+const options=document.createElement('details');options.className='q-paper-only q-paper-options';options.append(label('summary','options'));const optionsBody=document.createElement('div');optionsBody.className='q-paper-options-body';options.append(optionsBody);home.querySelector('.learning-request').append(options);
+const moves=[];function movable(el,target,after=null){if(!el)return;const marker=document.createComment('Paper Explorer layout position');el.before(marker);moves.push({el,marker,target,after});}
+movable(home.querySelector('.goal-report-option'),optionsBody);movable(home.querySelector('.goal-sharing-note'),optionsBody);movable(home.querySelector('.qs-request-details'),optionsBody);
+for(const a of home.querySelectorAll('.goal-actions>a'))movable(a,optionsBody);
+for(const card of home.querySelectorAll('.subject-card')){
+ const picture=document.createElement('div');picture.className='q-paper-only q-paper-cover';picture.innerHTML=QuidencePaperArt.icon(card.dataset.subject);card.querySelector('.q-cartoon-cover').after(picture);
+ const primary=card.querySelector(':scope>.subject-link'),secondary=card.querySelector(':scope>.foundation-link')||card.querySelector(':scope>.challenge-link');
+ for(const [a,key]of [[primary,'explore'],[secondary,secondary?.getAttribute('href')?.includes('foundations/')?'foundations':'check']]){if(!a)continue;a.classList.add('q-paper-entry');const original=document.createElement('span');original.className='q-paper-original';original.append(...a.childNodes);a.append(original,label('span',key,'q-paper-only q-paper-link-label'));}
+ const details=card.querySelector('.card-more');movable(card.querySelector(':scope>p'),details,details?.querySelector('summary'));
+}
+const footer=document.createElement('a');footer.className='q-paper-only q-paper-footer';footer.href='https://qidolab.com/';const logo=document.createElement('img');logo.src=home.querySelector('.q-header-qidolab img').src;logo.alt='Qidolab';logo.width=150;logo.height=54;logo.setAttribute('data-no-translate','');footer.append(logo,label('span','break'));home.querySelector('.feedback-section').before(footer);
+let isPaper;
+function theme(){const active=document.documentElement.dataset.uiTheme==='paper';if(active===isPaper)return;isPaper=active;for(const {el,marker,target,after}of moves){if(active){if(after)after.after(el);else target.append(el);}else marker.after(el);}if(!active)options.open=false;}
+function language(){const t=copy[window.QuidenceI18n?.locale==='es'?'es':'en'];for(const el of home.querySelectorAll('[data-paper-copy]'))el.textContent=t[el.dataset.paperCopy];}
+document.addEventListener('quidence:theme',theme);document.addEventListener('quidence:language',language);theme();language();
+})();

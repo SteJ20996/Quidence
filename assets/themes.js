@@ -8,7 +8,7 @@
   const KEY = 'quidence_ui_theme_v1', DEFAULT = 'studio';
   const THEMES = Object.freeze({
     classic: {page:'#f8f5ec',paper:'#ffffff',ink:'#20383e',muted:'#53666b',line:'#ddd7e6',control:'#6e8588',primary:'#15565b',soft:'#ddf1e8',mist:'#eee9f5',accent:'#b94f3d',radius:'12px',shadow:'none',heading:'system-ui, sans-serif'},
-    paper: {page:'#fff9ec', paper:'#fffdf6', ink:'#23463e', muted:'#52665a', line:'#c8cbb6', control:'#748675', primary:'#285647', soft:'#e1eacf', mist:'#f4e7be', accent:'#b14d36', radius:'17px', shadow:'3px 4px 0 #d8dcc6', heading:'ui-rounded, "Trebuchet MS", system-ui, sans-serif'},
+    paper: {page:'#fff9ec', paper:'#fffdf6', ink:'#23463e', muted:'#52665a', line:'#dacdac', control:'#78927b', primary:'#285647', soft:'#e1eacf', mist:'#f4e7be', accent:'#b14d36', radius:'13px', shadow:'0 4px 9px #9e804919', heading:'"Quidence Nunito", ui-rounded, "Trebuchet MS", system-ui, sans-serif'},
     atlas: {page:'#f7f4ee', paper:'#fffefb', ink:'#203b40', muted:'#58636d', line:'#d4d1db', control:'#79858c', primary:'#235761', soft:'#e1ece7', mist:'#eeebf5', accent:'#925034', radius:'6px', shadow:'0 5px 20px #203b4009', heading:'Georgia, "Times New Roman", serif'},
     studio: {page:'#fffcf5', paper:'#ffffff', ink:'#173f42', muted:'#53666a', line:'#c8d7d5', control:'#708889', primary:'#205b5d', soft:'#cce8df', mist:'#e8e1f4', accent:'#ac4938', radius:'24px', shadow:'none', heading:'system-ui, sans-serif'}
   });
