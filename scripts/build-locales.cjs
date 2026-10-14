@@ -18,6 +18,7 @@ for(const file of fs.readdirSync(path.join(root,'localization')).filter(f=>f.end
 }
 // Rendered Markdown headings omit their source markup prefix.
 Object.assign(catalog,require('./number-theory-locales.cjs').numberTheoryCatalog());
+Object.assign(catalog,require('../assets/additional-foundations.js').SPANISH);
 for(const [key,value]of Object.entries(catalog)){if(/^#{1,6}\s/.test(key)){const clean=key.replace(/^#{1,6}\s+/,'');if(!Object.hasOwn(catalog,clean))catalog[clean]=value.replace(/^#{1,6}\s+/,'');}}
 // US spelling changes are presentation aliases, not new question definitions.
 const american=s=>s.replace(/\bAnalyse\b/g,'Analyze').replace(/\banalyse\b/g,'analyze').replace(/\bmodelling\b/g,'modeling').replace(/\btravelled\b/g,'traveled').replace(/\bkilometres\b/g,'kilometers').replace(/\bkilometre\b/g,'kilometer').replace(/\bmetres\b/g,'meters').replace(/\bmetre\b/g,'meter').replace(/\blitres\b/g,'liters').replace(/\blitre\b/g,'liter');

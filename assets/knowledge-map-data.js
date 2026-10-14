@@ -2,7 +2,7 @@
 const data={
   "words": {
     "en": {
-      "title": "Mathematics Knowledge Map",
+      "title": "Mathematics & Physics Knowledge Map",
       "chapters": [
         "Foundations",
         "University Maths",
@@ -65,7 +65,7 @@ const data={
       "grouped": "Courses by level · Choose any course"
     },
     "es": {
-      "title": "Mapa de conocimientos matemáticos",
+      "title": "Mapa de conocimientos de matemáticas y física",
       "chapters": [
         "Fundamentos",
         "Matemáticas universitarias",

@@ -13,11 +13,11 @@ test('every published page restores its theme before loading styles, with versio
   require('../scripts/install-themes.cjs').install(true);
 });
 test('saved appearance restores without touching learning records; unknown and blocked storage fall back safely',()=>{
-  for(const value of ['paper','atlas','studio','unknown',null]){
+  for(const value of ['classic','paper','atlas','studio','unknown',null]){
     const writes=[],attrs={};
     const window={localStorage:{getItem:key=>{assert.equal(key,Themes.KEY);return value;},setItem:(...args)=>writes.push(args)},document:{readyState:'loading',documentElement:{setAttribute:(k,v)=>attrs[k]=v},querySelector:()=>null,addEventListener:()=>{}}};
     vm.runInNewContext(fs.readFileSync(path.join(root,'assets/themes.js'),'utf8'),{window});
-    assert.equal(attrs['data-ui-theme'],Themes.valid(value)?value:'paper');assert.deepEqual(writes,[]);
+    assert.equal(attrs['data-ui-theme'],Themes.valid(value)?value:'studio');assert.deepEqual(writes,[]);
     assert.equal(window.QuidenceThemes.apply('invalid',true),false);
     window.QuidenceThemes.apply('studio',true);assert.deepEqual(writes,[[Themes.KEY,'studio']]);
     Object.defineProperty(window,'localStorage',{get(){throw Error('blocked');}});

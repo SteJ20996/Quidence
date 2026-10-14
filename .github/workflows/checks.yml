@@ -46,5 +46,8 @@ jobs:
       - name: Check real-motion, map criteria and current-note recovery regressions
         run: npm run test:reviewed:browser
 
-      - name: Check all three themes, every public page and remembered preferences
+      - name: Check all four themes, every public page and remembered preferences
         run: npm run test:themes:browser
+
+      - name: Check illustrated maps, filters and all three new foundation sessions
+        run: npm run test:cartoon:browser

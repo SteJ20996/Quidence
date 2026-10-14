@@ -1,0 +1,117 @@
+{
+  "date": "2026-10-14",
+  "scope": "Local Chromium and server verification before GitHub CI; not a guarantee for all browsers or production load.",
+  "features": {
+    "themes": [
+      "classic",
+      "paper",
+      "atlas",
+      "studio"
+    ],
+    "default": "studio",
+    "categories": [
+      "all",
+      "school",
+      "further",
+      "science"
+    ],
+    "newFoundationSubjects": [
+      "number-theory",
+      "physics-1",
+      "physics-2"
+    ],
+    "newQuestions": 45
+  },
+  "checks": {
+    "themes": {
+      "layouts": 192,
+      "pages": 24,
+      "themes": 4,
+      "errors": [],
+      "failures": []
+    },
+    "brand": {
+      "pages": 24,
+      "languages": 2,
+      "layouts": 192,
+      "offlineReports": 2,
+      "errors": [],
+      "failures": []
+    },
+    "cartoon": {
+      "layouts": 18,
+      "mapViews": 72,
+      "questions": 45,
+      "errors": [],
+      "failedRequests": [],
+      "missing": []
+    },
+    "localization": {
+      "layouts": 96,
+      "tasks": 72,
+      "reports": 20,
+      "errors": [],
+      "englishResidue": 0
+    },
+    "spanish": {
+      "lessons": 45,
+      "steps": 180,
+      "controlStates": 836,
+      "numericCases": 4,
+      "errors": [],
+      "missing": 0
+    },
+    "reviewed": {
+      "matrixCycles": 30,
+      "conflictExports": 2,
+      "unreadableExports": 2,
+      "quotaExports": 1,
+      "mapBrowseActions": 7,
+      "errors": [],
+      "missing": 0
+    },
+    "numberTheory": {
+      "projects": 10,
+      "steps": 43,
+      "layouts": 12,
+      "languages": [
+        "en",
+        "es"
+      ],
+      "errors": [],
+      "failedRequests": [],
+      "spanishProofSteps": 86,
+      "interactiveModels": 10,
+      "result": "passed"
+    },
+    "classicMap": {
+      "scope": "Local browser and local server; not a production capacity guarantee.",
+      "layouts": 12,
+      "mapStates": 36,
+      "errors": [],
+      "failedRequests": [],
+      "stress": {
+        "savedReports": 100,
+        "archiveCharacters": 535128,
+        "subjectChanges": 200,
+        "pageChanges": 20,
+        "languageChanges": 6,
+        "elapsedMs": 350,
+        "localRequests": {
+          "concurrency": 40,
+          "total": 120,
+          "failed": 0
+        }
+      }
+    },
+    "mathematicsAndState": "npm test passed, including independent arithmetic for 45 new questions, exact legacy migration and immutable report checks.",
+    "authoredAudit": "Recomputed diagnostic and project audits; existing references unchanged.",
+    "activities": {
+      "pages": 88,
+      "drafts": 48,
+      "oldCacheUpgrade": "passed",
+      "pageErrors": 0,
+      "failedRequests": 0
+    }
+  }
+}

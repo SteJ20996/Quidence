@@ -25,7 +25,7 @@ test('Physics picker uses its visible course name as its accessible name',()=>{
  // Run the label setup only; the rest of home navigation is tested separately.
  const source=fs.readFileSync(path.join(root,'assets/home.js'),'utf8').split('  function show(')[0]+'})();';
  for(const locale of ['en','es']){
-  vm.runInNewContext(source,{window:{QuidenceI18n:{locale}},document:{getElementById:id=>id==='quidence-home'?subroot:{hidden:false},addEventListener(){}}});
+  vm.runInNewContext(source,{window:{QuidenceI18n:{locale}},document:{documentElement:{dataset:{uiTheme:"classic"}},getElementById:id=>id==='quidence-home'?subroot:{hidden:false},addEventListener(){}}});
   buttons.forEach((button,i)=>{assert.equal(button.textContent,locale==='es'?'Fundamentos de física '+(i+1):'Physics '+(i+1)+' Foundations');assert.equal(button.attrs['aria-label'],undefined);});
  }
 });

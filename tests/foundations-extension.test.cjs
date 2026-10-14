@@ -7,10 +7,10 @@ const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-10,`${a} differs from ${b}`);
 const mv=(a,v)=>a.map(row=>row.reduce((s,x,i)=>s+x*v[i],0));
 const response=t=>({...E.blank(t),values:Object.fromEntries(t.fields.map(f=>[f.id,f.kind==='multi'?[...f.answer]:String(f.answer)])),explanation:'I checked the relevant quantities and connections.'});
 test('thirty supplemental items have distinct IDs, valid choices, explicit reason requests, and retained entry definitions',()=>{
- const ids=new Set(Object.values(B.MODULES).flatMap(m=>m.tasks.map(t=>t.id)));assert.equal(ids.size,90);
+ const ids=new Set(Object.values(B.MODULES).flatMap(m=>m.tasks.map(t=>t.id)));assert.equal(ids.size,135);
  assert.deepEqual(Object.values(X.MODULES).map(m=>m.tasks.length),[8,8,6,8]);
  for(const[module,m]of Object.entries(X.MODULES))for(const t of m.tasks){assert.ok(!ids.has(t.id));ids.add(t.id);assert.equal(t.module,module);assert.equal(t.groupName,m.groups[t.group]);assert.ok(t.reason.length>25&&t.solution.length>30&&t.next.length>25);assert.match(t.provenance,/source clearance has not been independently verified/);assert.equal(new Set(t.fields.map(f=>f.id)).size,t.fields.length);for(const f of t.fields){if(f.kind==='number')assert.ok(Number.isFinite(f.answer));else{assert.ok(f.options.some(o=>o.value===f.answer));assert.equal(new Set(f.options.map(o=>o.value)).size,f.options.length);}}}
- assert.equal(ids.size,120);assert.equal(B.VERSION,'cluevera-foundations-1');
+ assert.equal(ids.size,165);assert.equal(B.VERSION,'cluevera-foundations-1');
 });
 test('supplemental school mathematics checks portions, operation order, changing percentage bases, and solution sets',()=>{
  close(refs('aa-x01').cups*(1/8),3/4);assert.deepEqual(refs('aa-x02'),{value:-2*(3-5)+1,valid:'no'});assert.notEqual(-2*3-5+1,refs('aa-x02').value);

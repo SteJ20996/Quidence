@@ -110,7 +110,7 @@ const definition=s=>s.bankVersion===X.VERSION?X.MODULES[s.module]:(B.HISTORY?.[s
 const tasks=s=>definition(s).tasks;
 const checkName=s=>definition(s)?.checkTitle||settings.checkTitle||(s.bankVersion===X.VERSION?'Further foundation check':'Entry foundation check');
 const task=s=>tasks(s)[s.index];
-function blank(t){return{values:Object.fromEntries(t.fields.map(f=>[f.id,settings.fieldTypes?.[f.kind]?.blank?.()??(f.kind==='multi'?[]:'')])),explanation:'',unsure:false,otherHelp:false,...(settings.challenge?{notStudied:false}:{})};}
+function blank(t){return{values:Object.fromEntries(t.fields.map(f=>[f.id,settings.fieldTypes?.[f.kind]?.blank?.()??(f.kind==='multi'?[]:'')])),explanation:'',unsure:false,otherHelp:false,...(settings.challenge||B.MODULES[t.module]?.allowNotStudied?{notStudied:false}:{})};}
 function record(s,t){return s.records[t.id]||(s.records[t.id]={draft:blank(t),status:'draft',submissions:[],reviews:[],...(settings.projects?{partReviews:[]}: {})});}
 function edit(s,t,answer){const r=record(s,t);r.draft=clone(answer);r.status='draft';}
 function validDraft(t,a){
@@ -167,7 +167,7 @@ const FOLLOWUP_UNCHECKED={
  ac01:['Expected payoffs and mixed strategies','Sequential decisions, backward induction, repeated games, and incomplete information','Larger action spaces and independent construction of a complete payoff model'],
  ad01:['General differentiation rules and wider limit techniques','Function analysis, optimization, differential equations, and wider integration applications','Exact derivatives inferred from finite data alone']
 };
-function scopeReview(s){const further=s.bankVersion===X.VERSION,d=definition(s);return{scope:B.MODULES[s.module].scope,groups:[...d.groups],notChecked:[...(settings.challenge?d.notChecked:(further?FOLLOWUP_UNCHECKED:UNCHECKED)[s.module])],suppliedInformation:settings.challenge?clone(d.suppliedInformation||[]):further?[]:clone(CONDITIONS[s.module]),interpretation:(settings.projects?'These limits describe these '+(tasks(s).length===2?'two':tasks(s).length)+' California-inspired field projects.':'These limits describe this '+tasks(s).length+'-question '+checkName(s).toLowerCase()+'.')+' Matching components do not establish complete subject mastery.'};}
+function scopeReview(s){const further=s.bankVersion===X.VERSION,d=definition(s);return{scope:B.MODULES[s.module].scope,groups:[...d.groups],notChecked:[...(settings.challenge?d.notChecked:((further?FOLLOWUP_UNCHECKED:UNCHECKED)[s.module]||d.notChecked||[]))],suppliedInformation:settings.challenge?clone(d.suppliedInformation||[]):further?[]:clone(CONDITIONS[s.module]||d.suppliedInformation||[]),interpretation:(settings.projects?'These limits describe these '+(tasks(s).length===2?'two':tasks(s).length)+' California-inspired field projects.':'These limits describe this '+tasks(s).length+'-question '+checkName(s).toLowerCase()+'.')+' Matching components do not establish complete subject mastery.'};}
 function evidenceSummary(s){const obs=observations(s),parts=obs.flatMap(o=>o.components);return{matched:parts.filter(x=>x.state==='matched').length,recheck:parts.filter(x=>x.state==='recheck').length,unsure:parts.filter(x=>x.state==='unsure').length,notStudied:parts.filter(x=>x.state==='not-studied').length,missing:parts.filter(x=>x.state==='missing').length,review:parts.filter(x=>x.state==='review').length,reviewed:parts.filter(x=>x.state==='reviewed').length,roundingReview:parts.filter(x=>x.state==='rounding-review').length,explanations:{open:obs.filter(o=>!o.explanationReview||o.explanationReview.points===null).length,revise:obs.filter(o=>o.explanationReview?.points===0).length,partial:obs.filter(o=>o.explanationReview?.points===1).length,connected:obs.filter(o=>o.explanationReview?.points===2).length}};}
 function nextChecks(s){return observations(s).flatMap(o=>{
  const a=last(s,tasks(s).find(t=>t.id===o.id)),reasons=[];
@@ -218,7 +218,8 @@ function markdown(s){
  return out+'These are task observations. All original explanations and earlier attempts remain available for review.\n';
 }
 function hydrate(value){
- if(!object(value)||value.schema!==SCHEMA||!ENTRY_VERSIONS.includes(value.bankVersion)||!object(value.modules)||Object.keys(value.modules).some(id=>!B.MODULES[id])||(settings.challenge?Object.keys(B.HISTORY?.[value.bankVersion]||B.MODULES):['aa01','ab01','ac01','ad01']).some(id=>!value.modules[id])||!settings.challenge&&Object.keys(value.modules).length!==4&&Object.keys(value.modules).length!==Object.keys(B.MODULES).length)return null;
+ const entryLayouts=[['aa01','ab01','ac01','ad01'],['aa01','ab01','ac01','ad01','ae01','af01'],Object.keys(B.MODULES)];
+ if(!object(value)||value.schema!==SCHEMA||!ENTRY_VERSIONS.includes(value.bankVersion)||!object(value.modules)||Object.keys(value.modules).some(id=>!B.MODULES[id])||(settings.challenge?Object.keys(B.HISTORY?.[value.bankVersion]||B.MODULES):['aa01','ab01','ac01','ad01']).some(id=>!value.modules[id])||!settings.challenge&&!entryLayouts.some(ids=>ids.length===Object.keys(value.modules).length&&ids.every(id=>Object.hasOwn(value.modules,id))))return null;
  const ids=new Set();
  for(const [module,m]of Object.entries(value.modules)){
   if(!object(m)||!Array.isArray(m.sessions)||!(m.active===null||typeof m.active==='string'))return null;
