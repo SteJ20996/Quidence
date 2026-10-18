@@ -206,3 +206,13 @@ Game Theory 已恢复到大学数学知识地图、Further Mathematics 的 Subje
 ## Repository access
 
 The GitHub repository is now `SteJ20996/Quidence`. Cloning or downloading this private repository requires access as its owner or an authorized collaborator. The public website does not require repository access.
+
+## Licensing and rights / 版权与授权
+
+This project is not offered under an open-source license. See [LICENSE](LICENSE) for the scoped proprietary notice covering implementation code and brand artwork only to the extent owned by Yizhen Jia. Ordinary use of the official website remains permitted as described there.
+
+Questions, teaching text, solutions, educational illustrations, game instructions/copy, and translations are excluded from this notice pending separate provenance review, including when embedded in code. Their exclusion is not a reuse license or an originality claim. Third-party terms, valid prior grants, GitHub platform rights, and applicable legal exceptions remain unchanged; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+本次声明仅涵盖 Yizhen Jia 拥有相应权利的程序实现及品牌素材，保留相关权利；题目、教学文字、解答、教学插图、游戏说明及文案、翻译暂不纳入，待另行核查。排除不代表允许转载，也不代表已经确认原创。第三方授权及已有合法授权不受影响，网站正常使用不变。
+
+Permission requests / 授权联系：hello@quidence.com
