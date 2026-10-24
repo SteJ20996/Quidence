@@ -8,7 +8,7 @@ permissions:
 jobs:
   local-records-and-mathematics:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -30,6 +30,8 @@ jobs:
         run: |
           npm ci
           npx playwright install --with-deps chromium
+      - name: Check Intuition Lab modes, translations, numerical checks and record preservation
+        run: npm run test:intuition:browser
       - name: Check activity layouts, drafts and cached-version upgrades in Chromium
         run: npm run test:browser
       - name: Check bilingual layouts, complete reports and original answer preservation
@@ -63,6 +65,3 @@ jobs:
 
       - name: Check Game Theory projects, cases, exports and record preservation
         run: npm run test:game-projects:browser
-
-      - name: Check Intuition Lab modes, translations, numerical checks and record preservation
-        run: npm run test:intuition:browser

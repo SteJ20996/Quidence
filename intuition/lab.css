@@ -14,3 +14,8 @@
 html[data-ui-theme="classic"]{--q-page:#f8f5ec;--q-paper:#ffffff;--q-ink:#20383e;--q-muted:#53666b;--q-line:#ddd7e6;--q-primary:#15565b;--theme-heading:system-ui,sans-serif}
 .q-theme-bar button{min-height:44px}.lab-header .q-brand-logo{min-width:180px;width:190px;height:auto}.lab-header .q-brand{display:inline-flex;flex:none}.lab-header select{appearance:none;padding-right:34px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10'%3E%3Cpath d='m2 3 5 5 5-5' fill='none' stroke='%2320383e' stroke-width='2'/%3E%3C/svg%3E");background-position:right 12px center;background-repeat:no-repeat}
 @media(max-width:720px){.lab-header .q-brand-logo{width:180px}.lab-header{gap:14px}.lab-header label{max-width:130px}.lab-header nav{flex-wrap:wrap}.q-theme-bar{min-height:110px}}
+
+/* Keep long localized labels and numerical values inside narrow columns. */
+.readout{min-width:0;overflow-wrap:anywhere}.readout strong{overflow-wrap:anywhere}.stage,.evidence-panel{min-width:0}.step-nav button{overflow-wrap:anywhere}
+
+@media(max-width:420px){.activity-card{display:flex;flex-direction:column}.card-art{height:135px;min-height:0;flex:none}.card-copy{min-width:0}}
