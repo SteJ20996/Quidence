@@ -15,7 +15,7 @@ for(const file of ['app.js','content.js','engine.js','style.css'])reportAssets.a
 for(const file of ['app.js','matrix-guide.js','style.css'])reportAssets.add('modules/ab01/dist/'+file);
 for(const file of ['app.js','content.js','core.js','style.css'])reportAssets.add('modules/ac01/dist/projects/'+file);
 reportAssets.add('assets/course-catalog.js');reportAssets.add('assets/sync-policy.js');
-reportAssets.add('assets/seo-config.js');reportAssets.add('assets/seo.js');
+reportAssets.add('assets/exploration.css');reportAssets.add('assets/seo-config.js');reportAssets.add('assets/seo.js');
 for (const file of ['color-review.css', 'qidolab-lockup.svg', 'qidolab-water-puzzle.svg']) reportAssets.add('assets/' + file);
 function versionActivities(check = false) {
   const updates = new Map();
