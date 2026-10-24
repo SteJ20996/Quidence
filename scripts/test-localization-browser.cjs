@@ -47,7 +47,11 @@ async function run(){
   assert.equal(await page.evaluate(()=>localStorage.getItem('quidence_ui_locale_v1')),'es');
  }
  const secondary=await context.newPage();await secondary.goto(origin+'/modules/ad01/dist/checks/?lang=es');
- await secondary.locator('#quidence-language').selectOption('en');await secondary.locator('#quidence-language').selectOption('es');
+ await secondary.locator('#quidence-language').selectOption('en');
+ await page.waitForFunction(()=>new URL(document.querySelector('.top-right a').href).searchParams.get('lang')==='en');
+ assert.equal(await page.locator('html').getAttribute('lang'),'en');
+ await secondary.locator('#quidence-language').selectOption('es');
+ await page.waitForFunction(()=>new URL(document.querySelector('.top-right a').href).searchParams.get('lang')==='es');
  assert.equal(await page.locator('html').getAttribute('lang'),'en');assert.equal(await page.locator('#draft').inputValue(),exactDraft);await secondary.close();
  await page.reload();assert.equal(await page.locator('#draft').inputValue(),exactDraft);
  await page.locator('.top-right a').click();await page.waitForFunction(()=>QuidenceI18n.locale==='es');

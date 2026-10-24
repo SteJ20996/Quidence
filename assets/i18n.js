@@ -247,7 +247,7 @@ function start(){
  else root.document.body.prepend(toolbar);
  }
  apply();observer=new root.MutationObserver(schedule);observe();setLocale(desired);
- root.addEventListener('storage',event=>{if(event.key===KEY&&!fixedEnglish)setLocale(event.newValue);});
+ root.addEventListener('storage',event=>{if(event.key===KEY){if(fixedEnglish)apply();else setLocale(event.newValue);}});
 }
 if(root.document){if(root.document.readyState==='loading')root.document.addEventListener('DOMContentLoaded',start,{once:true});else start();}
 return {text,markdown,markdownArea,html,apply,setLocale,date,get missing(){return [...missing];},clearMissing(){missing.clear();},get locale(){return locale;},normalize,KEY,protectedSelector};
