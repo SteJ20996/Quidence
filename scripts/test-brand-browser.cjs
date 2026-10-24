@@ -21,7 +21,7 @@ async function run() {
       await page.setViewportSize({width, height: 1000});
       for (const file of files().filter(f => f.endsWith('.html'))) {
         await page.goto(origin + '/' + file + '?lang=' + lang);
-        const fixed=fs.readFileSync(path.join(__dirname,'..',file),'utf8').includes('data-fixed-language="en"');
+        const fixed=/<html\b[^>]*\bdata-fixed-language="en"/.test(fs.readFileSync(path.join(__dirname,'..',file),'utf8'));
         await page.waitForFunction(locale => window.QuidenceI18n?.locale === locale, fixed?'en':lang);
         assert.equal(await page.locator('.q-brand-logo').count(), 1, file);
         await page.waitForFunction(() => [...document.querySelectorAll('.q-brand-logo')].every(e => e.complete && e.naturalWidth));

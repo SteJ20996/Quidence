@@ -48,7 +48,7 @@ async function main(){
    for(const width of [320,1440])for(const file of files().filter(f=>f.endsWith('.html'))){
     const lang=width===320?'es':'en';await page.setViewportSize({width,height:1000});
     await page.goto(origin+'/'+file+'?lang='+lang);
-    const fixed=fs.readFileSync(path.join(__dirname,'..',file),'utf8').includes('data-fixed-language="en"');
+    const fixed=/<html\b[^>]*\bdata-fixed-language="en"/.test(fs.readFileSync(path.join(__dirname,'..',file),'utf8'));
     await page.waitForFunction(lang=>window.QuidenceI18n?.locale===lang,fixed?'en':lang);
     assert.equal(await page.locator('html').getAttribute('data-ui-theme'),theme,file);
     assert.equal(await page.locator('.q-theme-bar').count(),1,file);

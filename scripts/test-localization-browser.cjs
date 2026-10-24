@@ -13,7 +13,7 @@ async function run(){
  for(const width of [320,375,768,1440]){
   await page.setViewportSize({width,height:900});
   for(const file of files().filter(f=>f.endsWith('.html'))){
-   await page.goto(origin+'/'+file+'?lang=es');const fixed=fs.readFileSync(path.join(__dirname,'..',file),'utf8').includes('data-fixed-language="en"');
+   await page.goto(origin+'/'+file+'?lang=es');const fixed=/<html\b[^>]*\bdata-fixed-language="en"/.test(fs.readFileSync(path.join(__dirname,'..',file),'utf8'));
    await page.waitForFunction(expected=>window.QuidenceI18n?.locale===expected,fixed?'en':'es');
    assert.equal(await page.locator('html').getAttribute('lang'),fixed?'en':'es');await collect();
    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth);
