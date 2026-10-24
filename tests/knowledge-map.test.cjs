@@ -28,3 +28,12 @@ test('continuing upward only crosses to the matching concepts on the next chapte
  }
  assert.equal(Data.bridges[0].geometry,undefined);assert.equal(Data.bridges[1].real,undefined);
 });
+
+test('every topic has a bilingual introduction and a real related starting course',()=>{
+ for(const [i,c] of Data.chapters.entries())for(const n of c.nodes){const p=Map.topicPreview(i,n.id);assert(p?.en.length>30,n.id);assert(p.es.length>30,n.id+' Spanish');assert(Catalog.COURSES[p.relatedModule],n.id+' course');}
+ for(const [chapter,id]of [[0,'__proto__'],[999,'calculus'],[0,'not-a-topic']])assert.equal(Map.topicPreview(chapter,id),null);
+ const cartoons=require('../assets/cartoon-map-data.js');
+ for(const map of cartoons.maps)for(const n of map.nodes){assert(n.desc.en&&n.desc.es);assert(Catalog.COURSES[n.module||n.relatedModule],map.id+':'+n.id);}
+ // A related foundation is not silently advertised as an advanced course.
+ assert.deepEqual(Map.courseCandidates(1,['real']),[]);assert.equal(Map.topicPreview(1,'real').relatedModule,'ad01');
+});

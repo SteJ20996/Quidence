@@ -10,6 +10,7 @@
     if(chapter===1&&nodes[0]==='mathstats')return[];
     return Object.hasOwn(data.bindings,nodes[0])?data.bindings[nodes[0]].filter(id=>data.courses.some(c=>c.id===id)):[];
   }
+  function topicPreview(chapter,id){if(!data.chapters[chapter]?.nodes.some(n=>n.id===id)||!Object.hasOwn(data.previews,id))return null;return data.previews[id];}
   function mount(document,window){
     const root=document.getElementById('knowledge-map'),catalog=window.QuidenceCourseCatalog;
     if(!root||!data||!catalog)return;
@@ -46,7 +47,7 @@
         button.addEventListener('click',()=>focusNodes(current().nodes.filter(n=>n.layer===layer).map(n=>n.id),layer));layerBar.append(button);
       }
       for(const node of [...current().nodes].sort((a,b)=>a.y-b.y)){
-        const button=document.createElement('button');button.type='button';button.className='qa-node';button.dataset.node=node.id;button.append(document.createElement('span'));
+        const button=document.createElement('button');button.type='button';button.className='qa-node';button.dataset.node=node.id;button.append(document.createElement('span'));button.setAttribute('aria-controls','qa-topic-intro');
         button.addEventListener('click',()=>focusNodes([node.id],null,true));cities.append(button);
       }
     }
@@ -58,6 +59,9 @@
     }
     function renderSelection(w,select=false){
       const body=root.querySelector('.qa-course-body'),title=body.querySelector('.qa-course-title'),meta=body.querySelector('.qa-course-meta'),actions=body.querySelector('.qa-actions'),choices=body.querySelector('.qa-course-choices');
+      let intro=root.querySelector('#qa-topic-intro');if(!intro){intro=document.createElement('div');intro.id='qa-topic-intro';intro.className='q-topic-intro';intro.setAttribute('aria-live','polite');root.querySelector('.qa-selection').append(intro);}
+      intro.replaceChildren();const preview=frontier.length===1?topicPreview(chapter,frontier[0]):null;
+      if(preview){const heading=document.createElement('strong'),description=document.createElement('p');heading.textContent=name(frontier[0]);description.textContent=preview[language];intro.append(heading,description);}
       const candidates=courseCandidates(chapter,frontier).filter(id=>courses.has(id));
       if(!candidates.includes(chosenCourse))chosenCourse=candidates.find(id=>courses.get(id).module===selectedModule)||candidates[0]||null;
       const course=chosenCourse?courses.get(chosenCourse):null;
@@ -72,7 +76,9 @@
       }
       const learn=root.querySelector('.qa-learn'),diagnose=root.querySelector('.qa-diagnose');
       if(course){learn.onclick=diagnose.onclick=()=>selectSubject(course.module);learn.href=courseLink(course.module,'course');diagnose.hidden=!catalog.COURSES[course.module].challenge;if(!diagnose.hidden)diagnose.href=courseLink(course.module,'challenge');else diagnose.removeAttribute('href');if(select)selectSubject(course.module);}
-      else{learn.onclick=diagnose.onclick=null;learn.removeAttribute('href');diagnose.removeAttribute('href');}
+      else{if(preview){const module=preview.relatedModule,c=catalog.COURSES[module],links=document.createElement('div');links.className='qa-topic-links';const note=document.createElement('small');note.textContent=language==='es'?'Orientación conceptual. Este curso relacionado no cubre toda la rama avanzada.':'Concept introduction. This related starting course does not cover the full advanced branch.';intro.append(note);
+        const related=document.createElement('a');related.href=courseLink(module,'course');related.textContent=(language==='es'?'Base relacionada: ':'Related start: ')+c.title;const subjects=document.createElement('a');subjects.href='?view=courses&lang='+language+'#subject-'+module;subjects.dataset.mapSubjects=module;subjects.textContent=language==='es'?'Ver la materia →':'View subject →';links.append(related,subjects);intro.append(links);}
+        learn.onclick=diagnose.onclick=null;learn.removeAttribute('href');diagnose.removeAttribute('href');}
     }
     function update(select=false){
       const w=data.words[language],following=children(frontier),parents=current().links.filter(([,b])=>frontier.includes(b)).map(([a])=>a),related=new Set([...frontier,...following,...parents]);
@@ -136,5 +142,6 @@
     new window.ResizeObserver(scheduleLayout).observe(map);document.fonts?.ready.then(scheduleLayout);
     return{layout:scheduleLayout};
   }
-  return{courseCandidates,mount};
+  return{courseCandidates,topicPreview,mount};
 });
+

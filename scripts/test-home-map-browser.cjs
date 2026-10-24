@@ -26,6 +26,8 @@ async function main(){
    await page.addInitScript(()=>localStorage.setItem('quidence_ui_theme_v1','classic'));await page.goto(origin+'/?lang=en');await ready(page);
    assert.deepEqual(await page.locator('#quidence-language option').evaluateAll(es=>es.map(e=>e.value)),['en','es']);
    assert.equal(await page.locator('.q-brand-logo').count(),1);
+   if(width===1280){await page.locator('[data-node="calculus"]').click();assert.match(await page.locator('#qa-topic-intro').textContent(),/derivatives|derivadas/);await page.locator('.q-map-subjects').click();assert(await page.locator('.home-course-view').isVisible());await page.locator('button[data-home-view="map"]').click();}
+
    for(const language of ['en','es']){
     await page.locator('#quidence-language').selectOption(language);await page.waitForFunction(language=>QuidenceI18n.locale===language,language);
     for(let chapter=0;chapter<3;chapter++){await page.locator('button[data-chapter="'+chapter+'"]').click();await geometry(page);}

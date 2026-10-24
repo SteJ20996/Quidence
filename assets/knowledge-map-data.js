@@ -1360,5 +1360,294 @@ const data={
     }
   ]
 };
+// Brief orientation only; related starts are not equivalent advanced courses.
+data.previews={
+  "operations": {
+    "en": "Combine and compare numbers using addition, subtraction, multiplication and division.",
+    "es": "Combina y compara números mediante suma, resta, multiplicación y división.",
+    "relatedModule": "pre-algebra"
+  },
+  "fractions": {
+    "en": "Fractions describe parts of a whole; ratios compare quantities, including quantities with different units.",
+    "es": "Las fracciones describen partes de un todo; las razones comparan cantidades, incluso con distintas unidades.",
+    "relatedModule": "pre-algebra"
+  },
+  "signed": {
+    "en": "Positive and negative numbers describe positions, changes and opposite directions relative to zero.",
+    "es": "Los números positivos y negativos describen posiciones, cambios y sentidos opuestos respecto de cero.",
+    "relatedModule": "pre-algebra"
+  },
+  "shapes": {
+    "en": "Describe figures and measure lengths, angles, areas and volumes.",
+    "es": "Describe figuras y mide longitudes, ángulos, áreas y volúmenes.",
+    "relatedModule": "geometry"
+  },
+  "prealgebra": {
+    "en": "Use variables and expressions to describe numerical relationships and prepare for equations.",
+    "es": "Usa variables y expresiones para describir relaciones numéricas y prepararte para las ecuaciones.",
+    "relatedModule": "pre-algebra"
+  },
+  "data": {
+    "en": "Use tables and graphs to represent data, compare patterns and question what a display shows.",
+    "es": "Usa tablas y gráficas para representar datos, comparar patrones y cuestionar lo que muestra una imagen.",
+    "relatedModule": "ae01"
+  },
+  "algebra1": {
+    "en": "Model relationships with equations, linear functions, systems and introductory quadratics.",
+    "es": "Modela relaciones con ecuaciones, funciones lineales, sistemas y cuadráticas introductorias.",
+    "relatedModule": "algebra-1"
+  },
+  "geometry": {
+    "en": "Study shapes, angles and spatial relationships, and explain why geometric claims hold.",
+    "es": "Estudia figuras, ángulos y relaciones espaciales, y explica por qué se cumplen las afirmaciones geométricas.",
+    "relatedModule": "geometry"
+  },
+  "coordinate": {
+    "en": "Use coordinates and equations to connect geometric figures with algebra.",
+    "es": "Usa coordenadas y ecuaciones para conectar figuras geométricas con el álgebra.",
+    "relatedModule": "geometry"
+  },
+  "probability": {
+    "en": "Describe uncertainty by studying events, their possible outcomes and their likelihoods.",
+    "es": "Describe la incertidumbre mediante sucesos, resultados posibles y sus probabilidades.",
+    "relatedModule": "ae01"
+  },
+  "algebra2": {
+    "en": "Explore polynomial, rational, exponential and logarithmic relationships and their restrictions.",
+    "es": "Explora relaciones polinómicas, racionales, exponenciales y logarítmicas y sus restricciones.",
+    "relatedModule": "algebra-2"
+  },
+  "trig": {
+    "en": "Connect angles, triangles and periodic functions such as sine and cosine.",
+    "es": "Relaciona ángulos, triángulos y funciones periódicas como seno y coseno.",
+    "relatedModule": "af01"
+  },
+  "precalculus": {
+    "en": "Connect functions, graphs, trigonometry and growth before studying change with calculus.",
+    "es": "Relaciona funciones, gráficas, trigonometría y crecimiento antes de estudiar el cambio con cálculo.",
+    "relatedModule": "af01"
+  },
+  "linear": {
+    "en": "Study vectors, linear combinations and matrices as tools for describing linear relationships.",
+    "es": "Estudia vectores, combinaciones lineales y matrices para describir relaciones lineales.",
+    "relatedModule": "ab01"
+  },
+  "statistics": {
+    "en": "Describe variation in data and use evidence to investigate questions about a population.",
+    "es": "Describe la variación en los datos y usa evidencia para investigar preguntas sobre una población.",
+    "relatedModule": "ae01"
+  },
+  "calculus": {
+    "en": "Use derivatives to study instantaneous change and integrals to study accumulation.",
+    "es": "Usa derivadas para estudiar el cambio instantáneo e integrales para estudiar la acumulación.",
+    "relatedModule": "ad01"
+  },
+  "proof": {
+    "en": "Build arguments from definitions and assumptions; use examples and counterexamples to test claims.",
+    "es": "Construye argumentos desde definiciones y supuestos; usa ejemplos y contraejemplos para examinar afirmaciones.",
+    "relatedModule": "number-theory"
+  },
+  "ode": {
+    "en": "Relate an unknown function of one variable to its derivatives to model how a quantity changes.",
+    "es": "Relaciona una función desconocida de una variable con sus derivadas para modelar cómo cambia una cantidad.",
+    "relatedModule": "ad01"
+  },
+  "number": {
+    "en": "Explore integers, primes, divisibility and congruences, often through proof.",
+    "es": "Explora enteros, números primos, divisibilidad y congruencias, a menudo mediante demostraciones.",
+    "relatedModule": "number-theory"
+  },
+  "advancedlinear": {
+    "en": "Study vector spaces and linear maps, including eigenvalues, bases and structure beyond basic matrix calculations.",
+    "es": "Estudia espacios vectoriales y aplicaciones lineales, incluidos valores propios, bases y estructuras más allá del cálculo matricial básico.",
+    "relatedModule": "ab01"
+  },
+  "multivariable": {
+    "en": "Extend derivatives and integrals to functions of several variables, curves and surfaces.",
+    "es": "Extiende derivadas e integrales a funciones de varias variables, curvas y superficies.",
+    "relatedModule": "ad01"
+  },
+  "abstract": {
+    "en": "Study algebraic structures and the rules their operations obey, rather than only particular numbers.",
+    "es": "Estudia estructuras algebraicas y las reglas de sus operaciones, más allá de números particulares.",
+    "relatedModule": "number-theory"
+  },
+  "real": {
+    "en": "Make ideas about real numbers, limits, continuity, derivatives and integrals precise through proof.",
+    "es": "Da precisión a las ideas sobre números reales, límites, continuidad, derivadas e integrales mediante demostraciones.",
+    "relatedModule": "ad01"
+  },
+  "numerical": {
+    "en": "Design and analyze approximate computational methods, including their errors and stability.",
+    "es": "Diseña y analiza métodos de cálculo aproximados, incluidos sus errores y estabilidad.",
+    "relatedModule": "ad01"
+  },
+  "groups": {
+    "en": "Study operations with identity elements and inverses, including structures that describe symmetry.",
+    "es": "Estudia operaciones con elemento identidad e inversos, incluidas estructuras que describen simetrías.",
+    "relatedModule": "number-theory"
+  },
+  "rings": {
+    "en": "Study systems with addition and multiplication, and how the availability of division changes their structure.",
+    "es": "Estudia sistemas con suma y multiplicación, y cómo la posibilidad de dividir cambia su estructura.",
+    "relatedModule": "number-theory"
+  },
+  "optimization": {
+    "en": "Find choices that maximize or minimize an objective, often while satisfying constraints.",
+    "es": "Busca decisiones que maximicen o minimicen un objetivo, a menudo bajo restricciones.",
+    "relatedModule": "ad01"
+  },
+  "topology": {
+    "en": "Study continuity and properties of spaces that survive suitable continuous deformations.",
+    "es": "Estudia la continuidad y propiedades de los espacios que se conservan bajo deformaciones continuas adecuadas.",
+    "relatedModule": "geometry"
+  },
+  "complex": {
+    "en": "Study functions of complex numbers, where differentiability creates strong geometric and analytic relationships.",
+    "es": "Estudia funciones de números complejos, cuya diferenciabilidad genera relaciones geométricas y analíticas fuertes.",
+    "relatedModule": "ad01"
+  },
+  "measure": {
+    "en": "Develop notions of size and integration that handle more general sets and functions.",
+    "es": "Desarrolla nociones de tamaño e integración para conjuntos y funciones más generales.",
+    "relatedModule": "ad01"
+  },
+  "pde": {
+    "en": "Relate functions of several variables to partial derivatives to model phenomena such as heat and waves.",
+    "es": "Relaciona funciones de varias variables con derivadas parciales para modelar fenómenos como el calor y las ondas.",
+    "relatedModule": "ad01"
+  },
+  "algebraicnumber": {
+    "en": "Use algebraic structures to study number systems extending the integers and rational numbers.",
+    "es": "Usa estructuras algebraicas para estudiar sistemas numéricos que extienden los enteros y los racionales.",
+    "relatedModule": "number-theory"
+  },
+  "functional": {
+    "en": "Study spaces of functions and operators, often using ideas from linear algebra and analysis.",
+    "es": "Estudia espacios de funciones y operadores, a menudo con ideas del álgebra lineal y el análisis.",
+    "relatedModule": "ab01"
+  },
+  "diffgeometry": {
+    "en": "Use calculus to study curves, surfaces and more general curved spaces.",
+    "es": "Usa cálculo para estudiar curvas, superficies y espacios curvos más generales.",
+    "relatedModule": "ad01"
+  },
+  "probtheory": {
+    "en": "Build mathematical models of random variables, distributions and relationships between random events.",
+    "es": "Construye modelos matemáticos de variables aleatorias, distribuciones y relaciones entre sucesos aleatorios.",
+    "relatedModule": "ae01"
+  },
+  "harmonic": {
+    "en": "Study functions through oscillations and frequency components, including Fourier methods.",
+    "es": "Estudia funciones mediante oscilaciones y componentes de frecuencia, incluidos métodos de Fourier.",
+    "relatedModule": "ad01"
+  },
+  "mathstats": {
+    "en": "Use probability models to study estimation, uncertainty and inference from data.",
+    "es": "Usa modelos de probabilidad para estudiar estimación, incertidumbre e inferencia a partir de datos.",
+    "relatedModule": "ae01"
+  },
+  "gametheory": {
+    "en": "Study strategic choices when each participant's outcome depends on other participants' choices.",
+    "es": "Estudia decisiones estratégicas cuando el resultado de cada participante depende de las decisiones de otros.",
+    "relatedModule": "ac01"
+  },
+  "calclinear": {
+    "en": "Combine tools for continuous change with vectors and linear models in more advanced applications.",
+    "es": "Combina herramientas del cambio continuo con vectores y modelos lineales en aplicaciones avanzadas.",
+    "relatedModule": "ad01"
+  },
+  "physics": {
+    "en": "Build models of motion, forces, energy and fields, and compare their predictions with evidence.",
+    "es": "Construye modelos de movimiento, fuerzas, energía y campos, y compara sus predicciones con la evidencia.",
+    "relatedModule": "physics-1"
+  },
+  "ml": {
+    "en": "Fit models to examples and examine how well they make predictions on new data.",
+    "es": "Ajusta modelos a ejemplos y examina qué tan bien predicen datos nuevos.",
+    "relatedModule": "ae01"
+  },
+  "economics": {
+    "en": "Study choices and interactions under constraints; econometrics uses data to estimate and test economic relationships.",
+    "es": "Estudia decisiones e interacciones bajo restricciones; la econometría usa datos para estimar y examinar relaciones económicas.",
+    "relatedModule": "ae01"
+  },
+  "mechanics": {
+    "en": "Model how forces, motion, momentum and energy relate in physical systems.",
+    "es": "Modela cómo se relacionan fuerzas, movimiento, momento lineal y energía en sistemas físicos.",
+    "relatedModule": "physics-1"
+  },
+  "em": {
+    "en": "Study electric and magnetic fields, charges, currents and how they interact.",
+    "es": "Estudia campos eléctricos y magnéticos, cargas, corrientes y sus interacciones.",
+    "relatedModule": "physics-2"
+  },
+  "waves": {
+    "en": "Study disturbances that propagate and how wave ideas help explain light and other phenomena.",
+    "es": "Estudia perturbaciones que se propagan y cómo las ondas ayudan a explicar la luz y otros fenómenos.",
+    "relatedModule": "physics-2"
+  },
+  "thermo": {
+    "en": "Relate temperature, energy transfer, work and constraints on physical processes.",
+    "es": "Relaciona temperatura, transferencia de energía, trabajo y restricciones de los procesos físicos.",
+    "relatedModule": "physics-2"
+  },
+  "special": {
+    "en": "Study space and time when relative motion matters and the speed of light is invariant in inertial frames.",
+    "es": "Estudia espacio y tiempo cuando importa el movimiento relativo y la rapidez de la luz es invariante en sistemas inerciales.",
+    "relatedModule": "physics-1"
+  },
+  "quantum": {
+    "en": "Use quantum states and probabilities to describe measurements and behavior at atomic and related scales.",
+    "es": "Usa estados cuánticos y probabilidades para describir mediciones y comportamiento a escalas atómicas y relacionadas.",
+    "relatedModule": "physics-2"
+  },
+  "statphysics": {
+    "en": "Connect the statistical behavior of many microscopic constituents with large-scale physical properties.",
+    "es": "Relaciona el comportamiento estadístico de muchos componentes microscópicos con propiedades físicas macroscópicas.",
+    "relatedModule": "physics-2"
+  },
+  "crypto": {
+    "en": "Study methods for protecting information and checking authenticity, including mathematical constructions and their limits.",
+    "es": "Estudia métodos para proteger información y comprobar autenticidad, incluidas construcciones matemáticas y sus límites.",
+    "relatedModule": "number-theory"
+  },
+  "general": {
+    "en": "Describe gravity through the geometry of spacetime and its relationship with matter and energy.",
+    "es": "Describe la gravedad mediante la geometría del espacio-tiempo y su relación con materia y energía.",
+    "relatedModule": "physics-1"
+  },
+  "nuclear": {
+    "en": "Study atomic nuclei, their structures, interactions and transformations.",
+    "es": "Estudia núcleos atómicos, sus estructuras, interacciones y transformaciones.",
+    "relatedModule": "physics-2"
+  },
+  "plasma": {
+    "en": "Study ionized matter and collective behavior involving charged particles and electromagnetic fields.",
+    "es": "Estudia materia ionizada y comportamiento colectivo de partículas cargadas y campos electromagnéticos.",
+    "relatedModule": "physics-2"
+  },
+  "condensed": {
+    "en": "Study the collective behavior and properties of matter such as solids and liquids.",
+    "es": "Estudia el comportamiento colectivo y las propiedades de la materia, como sólidos y líquidos.",
+    "relatedModule": "physics-2"
+  },
+  "qft": {
+    "en": "Use quantum fields to describe particles and interactions in a framework consistent with special relativity.",
+    "es": "Usa campos cuánticos para describir partículas e interacciones en un marco compatible con la relatividad especial.",
+    "relatedModule": "physics-2"
+  },
+  "astro": {
+    "en": "Apply physics to stars, galaxies and other astronomical objects and processes.",
+    "es": "Aplica física a estrellas, galaxias y otros objetos y procesos astronómicos.",
+    "relatedModule": "physics-1"
+  },
+  "particle": {
+    "en": "Study elementary particles and their interactions, using experiments and mathematical models.",
+    "es": "Estudia partículas elementales y sus interacciones mediante experimentos y modelos matemáticos.",
+    "relatedModule": "physics-2"
+  }
+};
 if(typeof module==='object'&&module.exports)module.exports=data;else root.QuidenceKnowledgeMapData=data;
 })(typeof window==='object'?window:globalThis);
+

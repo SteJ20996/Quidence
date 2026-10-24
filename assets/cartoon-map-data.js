@@ -57,4 +57,8 @@ const maps=[
 ];
 
 const bindings={prealgebra:'pre-algebra',algebra1:'algebra-1',algebra2:'algebra-2',geometry:'geometry',precalc:'af01',linear:'ab01',calculus:'ad01',game:'ac01',number:'number-theory',statistics:'ae01',physics1:'physics-1',physics2:'physics-2'};for(const m of maps)for(const n of m.nodes)if(n.kind==='course')n.module=bindings[n.id];
+// Suggested starting courses only, never promises of a complete advanced course.
+const related={arithmetic:'pre-algebra',fractions:'pre-algebra',signed:'pre-algebra',shapes:'geometry',coordinate:'geometry',data:'ae01',schoolbridge:'pre-algebra',proof:'number-theory',probability:'ae01',multivar:'ad01',analysis:'ad01',algebra:'number-theory',space:'geometry',applied:'ae01',mathbridge:'algebra-1',motion:'physics-1',energy:'physics-1',heat:'physics-2',fields:'physics-2',waves:'physics-2',mechanics:'physics-1',thermal:'physics-2',relativity:'physics-1',quantum:'physics-2',materials:'physics-2'};
+for(const m of maps)for(const n of m.nodes)if(!n.module)n.relatedModule=related[n.id];
 const api={maps};if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceCartoonMapData=api;})(typeof window==='undefined'?globalThis:window);
+

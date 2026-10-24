@@ -17,5 +17,6 @@ const COURSES={
 };
 for(const id of ['pre-algebra','algebra-1']){COURSES[id].foundation='foundations/?module=aa01';COURSES[id].foundationLabel='Shared Pre-Algebra / Algebra I foundation check →';COURSES[id].foundationCardLabel='Shared school foundations · 15 questions →';}
 for(const[id,c]of Object.entries(COURSES)){if(id==='number-theory'||id==='ac01')continue;c.project='projects/?module='+id;c.projectCount=2;c.challenge='diagnostics/?module='+id;c.challengeCount=id==='ab01'?12:id.startsWith('physics-')?6:4;}
+COURSES.ad01.challenge='modules/ad01/dist/checks/';
 const api={GROUPS,COURSES};if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceCourseCatalog=api;
 })(typeof window==='undefined'?globalThis:window);
