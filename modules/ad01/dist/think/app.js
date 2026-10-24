@@ -11,7 +11,7 @@ const claimLabel=c=>({custom:L('我想提出自己的說法。','I have my own v
 function bubble(text){return `<div class="bubble"><span class="speaker">Q / QUIDENCE</span><p>${text}</p></div>`;}
 function quote(text){return `<div class="quote">${esc(text)}</div>`;}
 function button(id,text,cls='primary'){return `<button id="${id}" class="${cls}">${text}</button>`;}
-function field(id,label,value='',placeholder=''){return `<label class="field" for="${id}">${label}</label><textarea id="${id}" maxlength="2000" placeholder="${esc(placeholder)}">${esc(value)}</textarea>`;}
+function field(id,label,value='',hint=''){return `<label class="field" for="${id}">${label}</label>${hint?`<p id="${id}-hint" class="small">${esc(hint)}</p>`:''}<textarea id="${id}" maxlength="2000"${hint?` aria-describedby="${id}-hint"`:''}>${esc(value)}</textarea>`;}
 function bindText(id,key){$(id).addEventListener('input',e=>{s[key]=e.target.value;save();});}
 function advance(n){s.stage=n;ephemeral={direction:'',speed:''};save();render();$('conversationTitle').scrollIntoView({behavior:'auto',block:'start'});}
 function translation(){document.documentElement.lang=lang==='zh'?'zh-Hant':'en';document.querySelectorAll('[data-zh]').forEach(e=>{e.innerHTML=e.dataset[lang];});$('language').textContent=lang==='zh'?'English':'中文（繁體）';}
