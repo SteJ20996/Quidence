@@ -2,3 +2,5 @@
 .q-brand-logo{display:block;width:200px;height:auto;max-width:100%}body[data-q-theme]{background-color:var(--q-page);color:var(--q-ink)}
 
 .brand.q-brand{display:inline-flex;max-width:100%}.top{flex-wrap:wrap;gap:12px}.top-right{display:flex;flex-wrap:wrap;gap:12px;min-width:0}
+
+.entry-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:24px}.entry-header .back{display:inline-flex;align-items:center;min-height:44px;max-width:100%}
