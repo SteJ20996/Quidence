@@ -21,6 +21,7 @@ const COURSES={
   'physics-2':['/courses/physics-2/','Physics 2 Foundations','Fundamentos de Física 2','Explore heat, electric fields, circuits, magnetism, optics, waves, and photons after basic mechanics.','Explora calor, campos eléctricos, circuitos, magnetismo, óptica, ondas y fotones después de estudiar mecánica básica.'],
 };
 const PAGES={
+  '/intuition/':{en:['Intuition Lab','Test a mathematical hunch with interactive models, calculations and reflection across twelve subjects.'],es:['Laboratorio de intuición','Pon a prueba una idea matemática con modelos interactivos, cálculos y reflexión en doce materias.'],'zh-Hant':['直覺實驗室','透過十二個學科的互動模型、計算與反思，檢驗你的數學猜想。'],locales:['en','es','zh-Hant'],sitemap:true},
   '/modules/ad01/dist/checks/':{en:['Calculus · Test your understanding','Choose a graph-based reasoning activity or the original four-problem Calculus check.'],es:['Cálculo · Comprueba tu comprensión','Elige una actividad de razonamiento gráfico o la evaluación original de cuatro problemas de cálculo.']},
   '/modules/ad01/dist/think/':{fixedLocale:'en',en:['Calculus · Think in motion','Explore a claim about velocity and acceleration through graphs and your own explanation. This dialogue activity is English only.']},
 
@@ -48,7 +49,8 @@ function normalizePath(path){
 }
 function resolve(input,actualLocale){
   const url=new URL(input,ORIGIN),pathname=normalizePath(url.pathname);
-  const locale=PAGES[pathname]?.fixedLocale||(actualLocale==='en'||actualLocale==='es'?actualLocale:url.searchParams.get('lang')==='es'?'es':'en');
+  const supported=PAGES[pathname]?.locales||['en','es'];
+  const locale=PAGES[pathname]?.fixedLocale||(supported.includes(actualLocale)?actualLocale:supported.includes(url.searchParams.get('lang'))?url.searchParams.get('lang'):'en');
   let page=PAGES[pathname],moduleId=null;
   if(ACTIVITIES[pathname]){
     const id=url.searchParams.get('module'),valid=pathname==='/foundations/'?FOUNDATION_IDS.has(id):Object.hasOwn(COURSES,id)&&id!=='number-theory'&&id!=='ac01'||id==='physics';
@@ -63,7 +65,7 @@ function resolve(input,actualLocale){
   canonical.searchParams.set('lang',locale);
   const alternate=lang=>{const u=new URL(canonical);u.searchParams.set('lang',lang);return u.href;};
   return{pathname,locale,title:page[locale][0]+' · Quidence',description:page[locale][1],canonical:canonical.href,noindex:!!page.noindex,
-    alternates:page.noindex?[]:page.fixedLocale?[[page.fixedLocale,alternate(page.fixedLocale)]]:[['en',alternate('en')],['es',alternate('es')],['es-MX',alternate('es')]],sitemap:!!page.sitemap};
+    alternates:page.noindex?[]:page.fixedLocale?[[page.fixedLocale,alternate(page.fixedLocale)]]:[...supported.map(lang=>[lang,alternate(lang)]),['es-MX',alternate('es')]],sitemap:!!page.sitemap};
 }
 return{ORIGIN,COURSES,PAGES,ACTIVITIES,normalizePath,resolve};
 });

@@ -2,6 +2,7 @@
 'use strict';
 // Legacy persistence identifiers are intentionally retained; see BRAND_MIGRATION.md.
 const KEYS={
+ 'quidence_intuition_v1':{label:'Intuition Lab',schema:'quidence_intuition_v1'},
  'quidence_ac01_food_trucks_v1':{label:'Game Theory: food trucks',schema:'quidence_ac01_projects_v1'},
  'quidence_ac01_shared_printer_v1':{label:'Game Theory: shared printer',schema:'quidence_ac01_projects_v1'},
  'quidence_ac01_missed_deadline_v1':{label:'Game Theory: missed deadline',schema:'quidence_ac01_projects_v1'},

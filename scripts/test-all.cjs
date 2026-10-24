@@ -1,5 +1,6 @@
 'use strict';
 const path = require('node:path');
+const intuition = require('node:child_process').spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/intuition.test.cjs')],{stdio:'inherit'});if(intuition.status!==0)process.exit(intuition.status??1);
 const {spawnSync} = require('node:child_process');
 for (const script of ['test-aa01.cjs', 'test-ab01.cjs', 'test-ac01.cjs', 'test-ad01.cjs', 'test-foundations.cjs', 'test-new-subjects.cjs', 'test-number-theory.cjs']) {
   const result = spawnSync(process.execPath, [path.join(__dirname, script)], {stdio: 'inherit'});

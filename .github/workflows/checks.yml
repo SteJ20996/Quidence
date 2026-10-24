@@ -63,3 +63,6 @@ jobs:
 
       - name: Check Game Theory projects, cases, exports and record preservation
         run: npm run test:game-projects:browser
+
+      - name: Check Intuition Lab modes, translations, numerical checks and record preservation
+        run: npm run test:intuition:browser

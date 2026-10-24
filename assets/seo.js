@@ -24,9 +24,9 @@ function apply(locale){
   const wanted=new Set(metadata.alternates.map(([lang])=>lang));
   for(const link of document.head.querySelectorAll('link[rel="alternate"][hreflang]'))if(!wanted.has(link.getAttribute('hreflang')))link.remove();
   for(const [lang,href]of metadata.alternates)element('link[rel="alternate"][hreflang="'+lang+'"]','link',{rel:'alternate',hreflang:lang,href});
-  for(const [property,content]of [['og:type','website'],['og:site_name','Quidence'],['og:title',metadata.title],['og:description',metadata.description],['og:url',metadata.canonical],['og:locale',metadata.locale==='es'?'es_MX':'en_US'],['og:image',config.ORIGIN+'/assets/quidence-share.png']])element('meta[property="'+property+'"]','meta',{property,content});
+  for(const [property,content]of [['og:type','website'],['og:site_name','Quidence'],['og:title',metadata.title],['og:description',metadata.description],['og:url',metadata.canonical],['og:locale',metadata.locale==='es'?'es_MX':metadata.locale==='zh-Hant'?'zh_TW':'en_US'],['og:image',config.ORIGIN+'/assets/quidence-share.png']])element('meta[property="'+property+'"]','meta',{property,content});
 }
-function current(){apply(root.QuidenceI18n?.locale||'en');}
+function current(){apply(root.QuidenceI18n?.locale||document.documentElement?.lang||'en');}
 document.addEventListener('quidence:language',event=>apply(event.detail.locale));
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',current,{once:true});else current();
 })(typeof window==='object'?window:globalThis);
