@@ -17,3 +17,5 @@ html[data-ui-theme="classic"]{--q-page:#f8f5ec;--q-paper:#ffffff;--q-ink:#20383e
 
 /* Keep long localized labels and numerical values inside narrow columns. */
 .readout{min-width:0;overflow-wrap:anywhere}.readout strong{overflow-wrap:anywhere}.stage,.evidence-panel{min-width:0}.step-nav button{overflow-wrap:anywhere}
+
+@media(max-width:420px){.activity-card{display:flex;flex-direction:column}.card-art{height:135px;min-height:0;flex:none}.card-copy{min-width:0}}
