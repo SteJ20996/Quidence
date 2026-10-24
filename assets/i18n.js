@@ -5,6 +5,9 @@ const protectedSelector='[data-no-translate],textarea,input,pre,code,blockquote,
 const textMemory=new WeakMap(),attributeMemory=new WeakMap(),imageMemory=new WeakMap();
 let locale='en',observer=null,pending=false,control=null,catalogPromise=null,requestSequence=0;
 const missing=new Set(),sourceURL=root.document?.currentScript?.src;
+// English-only dialogue pages must not overwrite the rest of the site's language preference.
+const fixedEnglish=root.document?.documentElement?.getAttribute('data-fixed-language')==='en';
+function preferredLocale(){try{return root.localStorage.getItem(KEY)==='es'?'es':'en';}catch{return 'en';}}
 const markdownMemory=new WeakMap();
 const catalog=()=>root.QuidenceSpanish||{};
 const caption=source=>{const direct=catalog()[source]??catalog()[source+'.'];return direct===undefined?null:direct;};
@@ -170,7 +173,7 @@ function apply(scope=root.document){
  for(const element of scope.querySelectorAll?.('[data-i18n-date]')||[])element.textContent=date(element.getAttribute('data-i18n-date'))+(element.hasAttribute('data-date-caption')?' · '+text(element.getAttribute('data-date-caption')):'');
  for(const link of scope.querySelectorAll?.('a[href]')||[]){
   const href=link.getAttribute('href');if(!href||link.hasAttribute('download')||/^(?:#|mailto:|blob:|data:|javascript:)/i.test(href))continue;
-  try{const url=new URL(href,root.location.href);if(url.origin!==root.location.origin||/\.(?:json|md|zip|pdf)$/i.test(url.pathname))continue;url.searchParams.set('lang',locale);const next=href.split(/[?#]/)[0]+url.search+url.hash;if(href!==next)link.setAttribute('href',next);}catch{}
+  try{const url=new URL(href,root.location.href);if(url.origin!==root.location.origin||/\.(?:json|md|zip|pdf)$/i.test(url.pathname))continue;url.searchParams.set('lang',link.getAttribute('data-fixed-language')==='en'?'en':fixedEnglish?preferredLocale():locale);const next=href.split(/[?#]/)[0]+url.search+url.hash;if(href!==next)link.setAttribute('href',next);}catch{}
  }
  document.documentElement.lang=locale;
  if(control)control.value=locale;
@@ -198,13 +201,14 @@ function loadCatalog(){
 }
 async function setLocale(next){
  const sequence=++requestSequence;
+ if(fixedEnglish)next='en';
  if(next==='es'&&(!root.QuidenceSpanish||catalogPromise)&&root.document){
   control?.setAttribute('aria-busy','true');
   try{await loadCatalog();}catch{if(sequence!==requestSequence)return locale;if(control){control.value=locale;control.removeAttribute('aria-busy');}const note=root.document.createElement('p');note.className='language-error';note.setAttribute('role','status');note.textContent='No se pudieron cargar las traducciones. Selecciona Español para intentarlo de nuevo.';control?.closest('nav')?.appendChild(note);return locale;}
   if(sequence!==requestSequence)return locale;
  }
  control?.removeAttribute('aria-busy');root.document?.querySelectorAll('.language-error').forEach(e=>e.remove());
- locale=next==='es'?'es':'en';try{root.localStorage.setItem(KEY,locale);}catch{}
+ locale=next==='es'?'es':'en';if(!fixedEnglish)try{root.localStorage.setItem(KEY,locale);}catch{}
  if(root.location&&root.history){const url=new URL(root.location.href);url.searchParams.set('lang',locale);root.history.replaceState(root.history.state,'',url);}
  observer?.disconnect();apply();observe();root.document?.dispatchEvent(new root.CustomEvent('quidence:language',{detail:{locale}}));return locale;
 }
@@ -230,6 +234,7 @@ function html(source){
 function start(){
  const requested=new URL(root.location.href).searchParams.get('lang');let stored='';try{stored=root.localStorage.getItem(KEY)||'';}catch{}
  const desired=requested==='es'||requested==='en'?requested:stored==='es'?'es':'en';
+ if(!fixedEnglish){
  const toolbar=root.document.createElement('nav');toolbar.className='language-toolbar';toolbar.setAttribute('aria-label','Language');
  const label=root.document.createElement('label');label.className='language-label';label.appendChild(root.document.createTextNode('Language'));
  control=root.document.createElement('select');control.setAttribute('aria-label','Language');control.id='quidence-language';
@@ -240,8 +245,9 @@ function start(){
  if(languageHost){control.classList.add('qa-language');languageHost.appendChild(toolbar);}
  else if(header){const group=root.document.createElement('div');group.className='header-tools';const preview=header.querySelector('.preview-label');if(preview)group.appendChild(preview);group.appendChild(toolbar);header.appendChild(group);}
  else root.document.body.prepend(toolbar);
+ }
  apply();observer=new root.MutationObserver(schedule);observe();setLocale(desired);
- root.addEventListener('storage',event=>{if(event.key===KEY)setLocale(event.newValue);});
+ root.addEventListener('storage',event=>{if(event.key===KEY){if(fixedEnglish)apply();else setLocale(event.newValue);}});
 }
 if(root.document){if(root.document.readyState==='loading')root.document.addEventListener('DOMContentLoaded',start,{once:true});else start();}
 return {text,markdown,markdownArea,html,apply,setLocale,date,get missing(){return [...missing];},clearMissing(){missing.clear();},get locale(){return locale;},normalize,KEY,protectedSelector};

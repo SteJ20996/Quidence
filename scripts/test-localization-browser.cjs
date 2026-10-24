@@ -13,16 +13,51 @@ async function run(){
  for(const width of [320,375,768,1440]){
   await page.setViewportSize({width,height:900});
   for(const file of files().filter(f=>f.endsWith('.html'))){
-   await page.goto(origin+'/'+file+'?lang=es');await page.waitForFunction(()=>window.QuidenceI18n?.locale==='es');
-   assert.equal(await page.locator('html').getAttribute('lang'),'es');await collect();
+   await page.goto(origin+'/'+file+'?lang=es');const fixed=/<html\b[^>]*\bdata-fixed-language="en"/.test(fs.readFileSync(path.join(__dirname,'..',file),'utf8'));
+   await page.waitForFunction(expected=>window.QuidenceI18n?.locale===expected,fixed?'en':'es');
+   assert.equal(await page.locator('html').getAttribute('lang'),fixed?'en':'es');await collect();
    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth);
    assert(overflow<=1,file+' overflow '+overflow+' at '+width);
+   if(fixed){assert.equal(await page.locator('#quidence-language,#language').count(),0);}else{
    await page.locator('#quidence-language').selectOption('en');assert.equal(await page.locator('html').getAttribute('lang'),'en');
-   await page.locator('#quidence-language').selectOption('es');
+   await page.locator('#quidence-language').selectOption('es');}
    layouts++;
    if(screens&&file==='index.html'&&[375,1440].includes(width)){fs.mkdirSync(screens,{recursive:true});await page.screenshot({path:path.join(screens,'home-es-'+width+'.png'),fullPage:true});}
   }
  }
+ // English-only dialogue is a deliberate page policy, not a global preference change.
+ await page.goto(origin+'/modules/ad01/dist/checks/?lang=es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');
+ assert.equal(new URL(await page.locator('#dialogue-route').getAttribute('href'),origin).searchParams.get('lang'),'en');
+ assert.equal(new URL(await page.locator('#four-problem-route').getAttribute('href'),origin).searchParams.get('lang'),'es');
+ const exactDraft='My original reasoning: −3/4 < 0. 中文原话 remains evidence.';
+ for(const incoming of ['es','zh','zh-CN','zh-TW','zh-Hans','zh-Hant','en']){
+  await page.goto(origin+'/modules/ad01/dist/think/?lang='+incoming);
+  await page.waitForFunction(()=>QuidenceI18n.locale==='en'&&document.querySelector('#draft'));
+  assert.equal(await page.locator('html').getAttribute('lang'),'en');
+  assert.equal(new URL(page.url()).searchParams.get('lang'),'en');
+  assert.equal(await page.locator('#quidence-language,#language,[data-zh]').count(),0);
+  assert.equal(await page.locator('.q-theme-label').textContent(),'Appearance');
+  assert.equal(await page.locator('link[rel="alternate"]').count(),1);
+  assert.equal(await page.locator('link[rel="alternate"]').getAttribute('hreflang'),'en');
+  await page.locator('#draft').fill(exactDraft);
+  const before=await page.evaluate(()=>Object.fromEntries(Object.entries(localStorage)));
+  await page.evaluate(()=>QuidenceI18n.setLocale('es'));
+  assert.equal(await page.locator('#draft').inputValue(),exactDraft);
+  assert.deepEqual(await page.evaluate(()=>Object.fromEntries(Object.entries(localStorage))),before);
+  assert.equal(await page.evaluate(()=>localStorage.getItem('quidence_ui_locale_v1')),'es');
+ }
+ const secondary=await context.newPage();await secondary.goto(origin+'/modules/ad01/dist/checks/?lang=es');
+ await secondary.locator('#quidence-language').selectOption('en');
+ await page.waitForFunction(()=>new URL(document.querySelector('.top-right a').href).searchParams.get('lang')==='en');
+ assert.equal(await page.locator('html').getAttribute('lang'),'en');
+ await secondary.locator('#quidence-language').selectOption('es');
+ await page.waitForFunction(()=>new URL(document.querySelector('.top-right a').href).searchParams.get('lang')==='es');
+ assert.equal(await page.locator('html').getAttribute('lang'),'en');assert.equal(await page.locator('#draft').inputValue(),exactDraft);await secondary.close();
+ await page.reload();assert.equal(await page.locator('#draft').inputValue(),exactDraft);
+ await page.locator('.top-right a').click();await page.waitForFunction(()=>QuidenceI18n.locale==='es');
+ assert.equal(await page.locator('#quidence-language').inputValue(),'es');
+ await page.locator('#four-problem-route').click();await page.waitForFunction(()=>QuidenceI18n.locale==='es');
+ assert.equal(await page.locator('#quidence-language').inputValue(),'es');
  const raw='Save my answer\nYour explanation\nNo puedo calcular −3/4; x < 0 y y > 0. <script>alert(1)</script>';
  const storage=()=>page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([k])=>k!=='quidence_ui_locale_v1')));
  let tasks=0;
