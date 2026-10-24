@@ -14,7 +14,7 @@ async function main(){
   const listen=p=>{p.on('pageerror',e=>result.errors.push(e.message));p.on('response',r=>{if(r.status()>=400)result.failures.push(r.status()+' '+r.url());});};listen(page);
   // Switching styles must not move the controls under the user's pointer.
   for(const lang of ['en','es'])for(const width of [960,1024,1440,1920,2560]){
-   await page.setViewportSize({width,height:1000});await page.goto(origin+'/?lang='+lang+'&view=courses');await page.waitForFunction(l=>QuidenceI18n.locale===l,lang);let baseline;
+   await page.setViewportSize({width,height:1000});await page.goto(origin+'/?lang='+lang+'&view=courses');await page.waitForFunction(l=>window.QuidenceI18n?.locale===l,lang);let baseline;
    for(const theme of Object.keys(THEMES)){
     await page.locator('[data-theme-choice="'+theme+'"]').click();await page.evaluate(()=>document.fonts.ready);await page.evaluate(()=>scrollTo(0,0));
     const boxes=await page.evaluate(()=>{const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return[r.x,r.y,r.width,r.height]};return{bar:rect('.q-theme-bar'),label:rect('.q-theme-label'),buttons:[...document.querySelectorAll('[data-theme-choice]')].map(e=>{const r=e.getBoundingClientRect();return[r.x,r.y,r.width,r.height]}),header:rect('.qh-site-header'),layout:rect('.qf-layout')}});
@@ -52,7 +52,7 @@ async function main(){
    const expected=homeEdges.get([lang,width,theme].join(':'));
    for(const route of ['checks','think']){
     await page.goto(origin+'/modules/ad01/dist/'+route+'/?lang='+lang);
-    await page.waitForFunction(l=>QuidenceI18n.locale===l,route==='think'?'en':lang);
+    await page.waitForFunction(l=>window.QuidenceI18n?.locale===l,route==='think'?'en':lang);
     await page.locator('[data-theme-choice="'+theme+'"]').click();await page.evaluate(()=>document.fonts.ready);
     const bounds=await page.evaluate(()=>{const rect=selector=>{const r=document.querySelector(selector).getBoundingClientRect();return{x:r.x,width:r.width};};return{main:rect('main'),bar:rect('.q-theme-bar'),header:document.querySelector('.top')?rect('.top'):null,overflow:document.documentElement.scrollWidth-innerWidth};});
     for(const box of [bounds.main,bounds.bar,bounds.header].filter(Boolean)){
