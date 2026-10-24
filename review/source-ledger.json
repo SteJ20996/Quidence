@@ -9849,6 +9849,438 @@
       "automatedReference": "tests/game-projects.test.cjs"
     },
     {
+      "id": "intuition:ab01:transforms",
+      "family": "intuition",
+      "module": "ab01",
+      "taskId": "transforms",
+      "title": {
+        "en": "Same moves. Different order?",
+        "zh-Hant": "相同變換，不同順序？",
+        "es": "Mismos movimientos. ¿Otro orden?"
+      },
+      "bankVersion": "intuition-v1",
+      "availability": "active",
+      "fingerprint": "5a4e17072cd23d0b65735199bc9a43a86d15dedb6b504c416b0a7c86ba41e97b",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "intuition/data.js",
+          "sha256": "783303b537f2fe5074966a68cdab6d5e86083d349dfc10a7e2d1eb6828f4ab01"
+        },
+        {
+          "path": "intuition/math.js",
+          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/intuition.test.cjs"
+      },
+      "automatedReference": "tests/intuition.test.cjs"
+    },
+    {
+      "id": "intuition:ac01:choices",
+      "family": "intuition",
+      "module": "ac01",
+      "taskId": "choices",
+      "title": {
+        "en": "Best for each. Best together?",
+        "zh-Hant": "各自最好，合起來也最好嗎？",
+        "es": "Lo mejor para cada uno. ¿Para ambos?"
+      },
+      "bankVersion": "intuition-v1",
+      "availability": "active",
+      "fingerprint": "fbc5ed355ac5aebf7a6f60081af3b8356bca7f609cbb1b4699a8a4262c05d860",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "intuition/data.js",
+          "sha256": "783303b537f2fe5074966a68cdab6d5e86083d349dfc10a7e2d1eb6828f4ab01"
+        },
+        {
+          "path": "intuition/math.js",
+          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/intuition.test.cjs"
+      },
+      "automatedReference": "tests/intuition.test.cjs"
+    },
+    {
+      "id": "intuition:ad01:sphere",
+      "family": "intuition",
+      "module": "ad01",
+      "taskId": "sphere",
+      "title": {
+        "en": "Same width. Same surface area?",
+        "zh-Hant": "球帶一樣寬，面積也一樣嗎？",
+        "es": "Misma anchura. ¿Misma área?"
+      },
+      "bankVersion": "intuition-v1",
+      "availability": "active",
+      "fingerprint": "8a6161ef8f620a6d91fb4178d56ae0289d5f7c5f0828718d37c857d510667345",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "intuition/data.js",
+          "sha256": "783303b537f2fe5074966a68cdab6d5e86083d349dfc10a7e2d1eb6828f4ab01"
+        },
+        {
+          "path": "intuition/math.js",
+          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/intuition.test.cjs"
+      },
+      "automatedReference": "tests/intuition.test.cjs"
+    },
+    {
+      "id": "intuition:ae01:groups",
+      "family": "intuition",
+      "module": "ae01",
+      "taskId": "groups",
+      "title": {
+        "en": "Better in both groups. Better overall?",
+        "zh-Hant": "每組都較好，合起來也較好嗎？",
+        "es": "Mejor en ambos grupos. ¿Mejor en total?"
+      },
+      "bankVersion": "intuition-v1",
+      "availability": "active",
+      "fingerprint": "b2df433393ce638c4720bcf244cc9eef3f6c790bf0794ceb8a551a893426edb7",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "intuition/data.js",
+          "sha256": "783303b537f2fe5074966a68cdab6d5e86083d349dfc10a7e2d1eb6828f4ab01"
+        },
+        {
+          "path": "intuition/math.js",
+          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/intuition.test.cjs"
+      },
+      "automatedReference": "tests/intuition.test.cjs"
+    },
+    {
+      "id": "intuition:af01:waves",
+      "family": "intuition",
+      "module": "af01",
+      "taskId": "waves",
+      "title": {
+        "en": "Twice the input. Twice the width?",
+        "zh-Hant": "輸入乘二，圖像變寬兩倍嗎？",
+        "es": "El doble de entrada. ¿El doble de ancho?"
+      },
+      "bankVersion": "intuition-v1",
+      "availability": "active",
+      "fingerprint": "a5c68d8b05a92d1945ce5b25c586294bf4731f7314209d795c54ee47b089b1d6",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "intuition/data.js",
+          "sha256": "783303b537f2fe5074966a68cdab6d5e86083d349dfc10a7e2d1eb6828f4ab01"
+        },
+        {
+          "path": "intuition/math.js",
+          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/intuition.test.cjs"
+      },
+      "automatedReference": "tests/intuition.test.cjs"
+    },
+    {
+      "id": "intuition:algebra-1:plans",
+      "family": "intuition",
+      "module": "algebra-1",
+      "taskId": "plans",
+      "title": {
+        "en": "Cheaper each time. Cheaper overall?",
+        "zh-Hant": "單次較便宜，總價也較便宜嗎？",
+        "es": "Menos por visita. ¿Menos en total?"
+      },
+      "bankVersion": "intuition-v1",
+      "availability": "active",
+      "fingerprint": "c001654093619aa04a7c849e274651676ce023bde75c9632e3c41723db48da78",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "intuition/data.js",
+          "sha256": "783303b537f2fe5074966a68cdab6d5e86083d349dfc10a7e2d1eb6828f4ab01"
+        },
+        {
+          "path": "intuition/math.js",
+          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/intuition.test.cjs"
+      },
+      "automatedReference": "tests/intuition.test.cjs"
+    },
+    {
+      "id": "intuition:algebra-2:square",
+      "family": "intuition",
+      "module": "algebra-2",
+      "taskId": "square",
+      "title": {
+        "en": "Is a square always greater?",
+        "zh-Hant": "平方後一定變大嗎？",
+        "es": "¿El cuadrado siempre es mayor?"
+      },
+      "bankVersion": "intuition-v1",
+      "availability": "active",
+      "fingerprint": "a56e2b0fca2cefbca1645e7aaa013c47679f4804525d40079d849d7be221c736",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "intuition/data.js",
+          "sha256": "783303b537f2fe5074966a68cdab6d5e86083d349dfc10a7e2d1eb6828f4ab01"
+        },
+        {
+          "path": "intuition/math.js",
+          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/intuition.test.cjs"
+      },
+      "automatedReference": "tests/intuition.test.cjs"
+    },
+    {
+      "id": "intuition:geometry:perimeter",
+      "family": "intuition",
+      "module": "geometry",
+      "taskId": "perimeter",
+      "title": {
+        "en": "Same fence. Same space?",
+        "zh-Hant": "圍欄一樣長，面積也一樣嗎？",
+        "es": "Misma cerca. ¿Misma superficie?"
+      },
+      "bankVersion": "intuition-v1",
+      "availability": "active",
+      "fingerprint": "6080b7acb27519d41d62649ff2a0f095a6daba91888ce7d90668ad4a68fb8524",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "intuition/data.js",
+          "sha256": "783303b537f2fe5074966a68cdab6d5e86083d349dfc10a7e2d1eb6828f4ab01"
+        },
+        {
+          "path": "intuition/math.js",
+          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/intuition.test.cjs"
+      },
+      "automatedReference": "tests/intuition.test.cjs"
+    },
+    {
+      "id": "intuition:number-theory:primes",
+      "family": "intuition",
+      "module": "number-theory",
+      "taskId": "primes",
+      "title": {
+        "en": "A pattern. Or a proof?",
+        "zh-Hant": "找到規律，就等於證明了嗎？",
+        "es": "¿Un patrón o una prueba?"
+      },
+      "bankVersion": "intuition-v1",
+      "availability": "active",
+      "fingerprint": "f1156586da5eefe3ff69090c169634813a57e40a8840603190613345bc540355",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "intuition/data.js",
+          "sha256": "783303b537f2fe5074966a68cdab6d5e86083d349dfc10a7e2d1eb6828f4ab01"
+        },
+        {
+          "path": "intuition/math.js",
+          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/intuition.test.cjs"
+      },
+      "automatedReference": "tests/intuition.test.cjs"
+    },
+    {
+      "id": "intuition:physics-1:apex",
+      "family": "intuition",
+      "module": "physics-1",
+      "taskId": "apex",
+      "title": {
+        "en": "Stopped for a moment. No acceleration?",
+        "zh-Hant": "瞬間停住，就沒有加速度嗎？",
+        "es": "Se detiene un instante. ¿Sin aceleración?"
+      },
+      "bankVersion": "intuition-v1",
+      "availability": "active",
+      "fingerprint": "0e49c75f3c5953514e3abc1dd14df6405db87aea26f9783355bc0fb99a74815f",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "intuition/data.js",
+          "sha256": "783303b537f2fe5074966a68cdab6d5e86083d349dfc10a7e2d1eb6828f4ab01"
+        },
+        {
+          "path": "intuition/math.js",
+          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/intuition.test.cjs"
+      },
+      "automatedReference": "tests/intuition.test.cjs"
+    },
+    {
+      "id": "intuition:physics-2:circuit",
+      "family": "intuition",
+      "module": "physics-2",
+      "taskId": "circuit",
+      "title": {
+        "en": "More branches. More current?",
+        "zh-Hant": "多一條支路，總電流會增加嗎？",
+        "es": "Más ramas. ¿Más corriente?"
+      },
+      "bankVersion": "intuition-v1",
+      "availability": "active",
+      "fingerprint": "6dfe15809ece26c22889dee0cfd64949b5466df2155de6d2ec6ed1a95081b8f2",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "intuition/data.js",
+          "sha256": "783303b537f2fe5074966a68cdab6d5e86083d349dfc10a7e2d1eb6828f4ab01"
+        },
+        {
+          "path": "intuition/math.js",
+          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/intuition.test.cjs"
+      },
+      "automatedReference": "tests/intuition.test.cjs"
+    },
+    {
+      "id": "intuition:pre-algebra:multiply",
+      "family": "intuition",
+      "module": "pre-algebra",
+      "taskId": "multiply",
+      "title": {
+        "en": "Does multiplication always make it bigger?",
+        "zh-Hant": "乘法一定讓數字變大嗎？",
+        "es": "¿Multiplicar siempre aumenta el número?"
+      },
+      "bankVersion": "intuition-v1",
+      "availability": "active",
+      "fingerprint": "26e8448dc6ad8409a2a159a9e1a68dda7357a8fe588c830c1fcb9ad10b2dbf4c",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "intuition/data.js",
+          "sha256": "783303b537f2fe5074966a68cdab6d5e86083d349dfc10a7e2d1eb6828f4ab01"
+        },
+        {
+          "path": "intuition/math.js",
+          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/intuition.test.cjs"
+      },
+      "automatedReference": "tests/intuition.test.cjs"
+    },
+    {
       "id": "lesson:ac01:c1",
       "family": "lesson",
       "module": "ac01",
