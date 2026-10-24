@@ -6,6 +6,7 @@ const root = path.resolve(__dirname, '..');
 const entries = ['foundations/index.html', 'diagnostics/index.html', 'projects/index.html'];
 const reportAssets = new Set(['assets/themes.js', 'assets/themes.css', 'assets/brand.js', 'assets/brand.css', 'assets/quidence-logo-dark.svg', 'assets/quidence-logo-light.svg', 'assets/favicon.svg','assets/i18n.css', 'assets/i18n-es.js', 'assets/i18n.js', 'assets/hub.css', 'assets/hub-goals.js', 'assets/report-tools.js', 'assets/report-tools.css', 'assets/report-store.js', 'assets/report-viewer.js', 'assets/course-app.js', 'modules/aa01/dist/app.js', 'modules/ab01/dist/learning.js', 'modules/ad01/dist/app.js']);
 for (const file of ['assets/favicon-32.png', 'assets/apple-touch-icon.png', 'modules/aa01/dist/favicon.svg']) reportAssets.add(file);
+for(const name of ['checks/style.css','checks/entry.js','think/style.css','think/app.js','think/model.js','think/voice-local.js','think/recorder.js'])reportAssets.add('modules/ad01/dist/'+name);
 const digest = content => createHash('sha256').update(content).digest('hex').slice(0, 12);
 for(const file of ['paper-explorer.css','paper-home.js','paper-art.js','learning-atlas.css','atlas-home.js','atlas-art.js','appearance-layout.css','geometric-studio.css','studio-home.js','studio-art.js'])reportAssets.add('assets/'+file);
 for(const file of ['cartoon-art.js','cartoon-map-data.js','cartoon-map.js','cartoon-map.css','cartoon-home.js','cartoon-home.css','home.css','home.js','knowledge-map-data.js','knowledge-map.js','local-records.js'])reportAssets.add('assets/'+file);

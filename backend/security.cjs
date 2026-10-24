@@ -3,7 +3,7 @@ const net = require('node:net');
 const {createHash}=require('node:crypto');
 const {PRINT_SCRIPT}=require('../assets/report-tools.js');
 const PRINT_HASH=createHash('sha256').update(PRINT_SCRIPT).digest('base64');
-const CONTENT_SECURITY_POLICY="default-src 'self'; script-src 'self' 'sha256-"+PRINT_HASH+"'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'; form-action 'self'";
+const CONTENT_SECURITY_POLICY="default-src 'self'; script-src 'self' 'sha256-"+PRINT_HASH+"'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'self'; form-action 'self'";
 const fail = (status,message) => Object.assign(new Error(message),{status});
 // Bounded FIFO: strong hashes share a small memory budget instead of rejecting
 // the third student. A disconnected request never starts a queued hash.

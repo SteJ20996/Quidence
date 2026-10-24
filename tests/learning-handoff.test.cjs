@@ -3,7 +3,9 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const root=path.resolve(__dirname,'..'),Goals=require('../assets/hub-goals.js'),Tools=require('../assets/report-tools.js');
 function harness({clipboard=true,blocked=false,map=new Map()}={}){
  const host=new Element('html');host.innerHTML=fs.readFileSync(path.join(root,'index.html'),'utf8');
- const document={getElementById:id=>host.querySelector('#'+id),querySelectorAll:s=>host.querySelectorAll(s),createElement:tag=>new Element(tag)};
+ function enrich(el){el.classList={add(name){el.setAttribute('class',((el.attrs.class||'')+' '+name).trim());}};el.replaceChildren=(...children)=>{el.children=[];children.forEach(c=>el.appendChild(c));};el.append=(...children)=>children.forEach(c=>el.appendChild(c));return el;}
+ for(const el of host.all())enrich(el);
+ const document={addEventListener(){},getElementById:id=>host.querySelector('#'+id),querySelectorAll:s=>host.querySelectorAll(s),createElement:tag=>enrich(new Element(tag))};
  const storage={getItem:k=>map.has(k)?map.get(k):null,setItem:(k,v)=>map.set(k,v)},copied=[],tabs=[];
  const window={document,localStorage:storage,location:{href:'https://example.test/?stage=high',search:'?stage=high'},history:{state:null,replaceState(){}},addEventListener(){},navigator:{clipboard:{writeText:async text=>{if(!clipboard)throw Error('denied');copied.push(text);}}},open(){if(blocked)return null;const tab={opener:window,document:{open(){},write(s){tab.html=s;},close(){}},focus(){},print(){throw Error('Must not call print from the opener');}};tabs.push(tab);return tab;}};
  // Preserve independent filter and learning-entry listeners in this test DOM.
@@ -108,3 +110,4 @@ test('learning criteria reach readable exports, printable reports, summaries and
  for(const html of [Tools.printable('Geometry',payload),Tools.printableSummary('Geometry',payload)]){assert.match(html,/Your learning focus/);assert.match(html,/&lt;script&gt;/);assert.doesNotMatch(html,/<script>alert/);assert.match(html,/does not change fixed answer checks/);}
  const files=Tools.packageFiles('Geometry',payload);assert(files[0].content.includes(Tools.quote(text)));assert.match(files[1].content,/Your learning focus/);
 });
+

@@ -64,9 +64,16 @@ async function run() {
       page.on('response', response => {if (response.status() >= 400) failures.push(response.url() + ': ' + response.status());});
       await page.goto(origin + '/?view=courses');
       const activityLinks = await page.locator('.challenge-link, .project-link').evaluateAll(elements => elements.map(el => el.href).filter(href=>new URL(href).searchParams.has('module')));
-      assert.equal(activityLinks.length, 21);
+      assert.equal(activityLinks.length, 20);
       assert.equal(await page.locator('.project-link[href*="ac01/dist/projects"]').count(), 1);
       assert.equal(activityLinks.filter(href => new URL(href).pathname === '/foundations/' && new URL(href).searchParams.get('module') === 'ac01').length, 1);
+      const calculusEntry=await page.locator('.subject-card[data-subject="ad01"] .challenge-link').getAttribute('href');
+      assert.equal(new URL(calculusEntry,origin).pathname,'/modules/ad01/dist/checks/');
+      await page.goto(new URL(calculusEntry,origin).href);
+      assert.equal(await page.locator('#dialogue-route').count(),1);
+      const originalCheck=await page.locator('#four-problem-route').getAttribute('href');
+      const originalURL=new URL(originalCheck,page.url());assert.equal(originalURL.pathname,'/diagnostics/');assert.equal(originalURL.searchParams.get('module'),'ad01');
+      activityLinks.push(originalURL.href);assert.equal(activityLinks.length,21);
       const links = activityLinks.filter(href => ['/diagnostics/', '/projects/'].includes(new URL(href).pathname));
       assert.equal(links.length, 20);
       for (const href of links) {
@@ -271,3 +278,4 @@ async function checkLayout(page, width, label) {
   }
 }
 run().catch(error => {console.error(error); process.exitCode = 1;});
+
