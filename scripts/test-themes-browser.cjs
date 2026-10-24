@@ -48,7 +48,8 @@ async function main(){
    for(const width of [320,1440])for(const file of files().filter(f=>f.endsWith('.html'))){
     const lang=width===320?'es':'en';await page.setViewportSize({width,height:1000});
     await page.goto(origin+'/'+file+'?lang='+lang);
-    await page.waitForFunction(lang=>window.QuidenceI18n?.locale===lang,lang);
+    const fixed=fs.readFileSync(path.join(__dirname,'..',file),'utf8').includes('data-fixed-language="en"');
+    await page.waitForFunction(lang=>window.QuidenceI18n?.locale===lang,fixed?'en':lang);
     assert.equal(await page.locator('html').getAttribute('data-ui-theme'),theme,file);
     assert.equal(await page.locator('.q-theme-bar').count(),1,file);
     assert.equal(await page.locator('[data-theme-choice="'+theme+'"]').getAttribute('aria-pressed'),'true',file);
@@ -60,7 +61,8 @@ async function main(){
     assert(logoContrast>=4.5,`${theme} ${file}: low logo contrast ${logoContrast}`);result.logoContrastChecks++;
     const expected=THEMES[theme].page.match(/\w\w/g).map(v=>parseInt(v,16));assert.equal(bounds.bg,`rgb(${expected.join(', ')})`,file+' theme background');
     if(file==='index.html'||(width===1440&&['courses/algebra-1/index.html','foundations/index.html','reports/index.html'].includes(file)))await page.screenshot({path:path.join(shots,theme+'-'+file.replaceAll('/','-')+'-'+width+'.png'),fullPage:false});
-    assert.match(await page.locator('#quidence-language').evaluate(e=>getComputedStyle(e).backgroundImage),/%2320383e/,file+' visible language chevron');
+    if(fixed)assert.equal(await page.locator('#quidence-language,#language').count(),0,file+' has no language switch');
+    else assert.match(await page.locator('#quidence-language').evaluate(e=>getComputedStyle(e).backgroundImage),/%2320383e/,file+' visible language chevron');
     result.layouts++;
    }
    await page.goto(origin+'/?lang=en&view=courses');await page.waitForFunction(()=>window.QuidenceI18n?.locale==='en');

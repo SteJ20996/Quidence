@@ -22,7 +22,7 @@ const COURSES={
 };
 const PAGES={
   '/modules/ad01/dist/checks/':{en:['Calculus · Test your understanding','Choose a graph-based reasoning activity or the original four-problem Calculus check.'],es:['Cálculo · Comprueba tu comprensión','Elige una actividad de razonamiento gráfico o la evaluación original de cuatro problemas de cálculo.']},
-  '/modules/ad01/dist/think/':{en:['Calculus · Think in motion','Explore a claim about velocity and acceleration through graphs and your own explanation. Activity in English and Traditional Chinese.'],es:['Cálculo · Piensa con una gráfica','Explora velocidad y aceleración con gráficas y tu explicación. Actividad en inglés y chino tradicional.']},
+  '/modules/ad01/dist/think/':{fixedLocale:'en',en:['Calculus · Think in motion','Explore a claim about velocity and acceleration through graphs and your own explanation. This dialogue activity is English only.']},
 
   '/modules/ac01/dist/projects/':{en:['Game Theory Projects and Cases','Explore food-truck choices, shared maintenance and a missed deadline with payoff models and evidence-based plans.'],es:['Proyectos y casos de teoría de juegos','Explora decisiones de puestos de comida, mantenimiento compartido y un plazo incumplido con modelos de pagos y planes basados en pruebas.'],sitemap:true},
   '/':{en:['Mathematics and Science Learning','Explore the mathematics knowledge map, choose introductory lessons, and test your understanding with multi-part problems.'],es:['Aprendizaje de Matemáticas y Ciencias','Explora el mapa de conocimientos de matemáticas, elige lecciones introductorias y comprueba tu comprensión con problemas de varios pasos.'],sitemap:true},
@@ -48,7 +48,7 @@ function normalizePath(path){
 }
 function resolve(input,actualLocale){
   const url=new URL(input,ORIGIN),pathname=normalizePath(url.pathname);
-  const locale=actualLocale==='en'||actualLocale==='es'?actualLocale:url.searchParams.get('lang')==='es'?'es':'en';
+  const locale=PAGES[pathname]?.fixedLocale||(actualLocale==='en'||actualLocale==='es'?actualLocale:url.searchParams.get('lang')==='es'?'es':'en');
   let page=PAGES[pathname],moduleId=null;
   if(ACTIVITIES[pathname]){
     const id=url.searchParams.get('module'),valid=pathname==='/foundations/'?FOUNDATION_IDS.has(id):Object.hasOwn(COURSES,id)&&id!=='number-theory'&&id!=='ac01'||id==='physics';
@@ -63,7 +63,7 @@ function resolve(input,actualLocale){
   canonical.searchParams.set('lang',locale);
   const alternate=lang=>{const u=new URL(canonical);u.searchParams.set('lang',lang);return u.href;};
   return{pathname,locale,title:page[locale][0]+' · Quidence',description:page[locale][1],canonical:canonical.href,noindex:!!page.noindex,
-    alternates:page.noindex?[]:[['en',alternate('en')],['es',alternate('es')],['es-MX',alternate('es')]],sitemap:!!page.sitemap};
+    alternates:page.noindex?[]:page.fixedLocale?[[page.fixedLocale,alternate(page.fixedLocale)]]:[['en',alternate('en')],['es',alternate('es')],['es-MX',alternate('es')]],sitemap:!!page.sitemap};
 }
 return{ORIGIN,COURSES,PAGES,ACTIVITIES,normalizePath,resolve};
 });

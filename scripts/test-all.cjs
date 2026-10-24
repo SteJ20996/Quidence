@@ -23,4 +23,4 @@ const localization=spawnSync(process.execPath,['--test',path.join(__dirname,'../
 const seo=spawnSync(process.execPath,["--test",path.join(__dirname,"../tests/seo.test.cjs")],{stdio:"inherit"});if(seo.status!==0)process.exit(seo.status??1);
 
 const themes=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/themes.test.cjs')],{stdio:'inherit'});if(themes.status!==0)process.exit(themes.status??1);
-const dialogue=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/calculus-dialogue.test.mjs'),path.join(__dirname,'../tests/calculus-recorder.test.mjs')],{stdio:'inherit'});if(dialogue.status!==0)process.exit(dialogue.status??1);
+const dialogue=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/dialogue-language.test.cjs'),path.join(__dirname,'../tests/calculus-dialogue.test.mjs'),path.join(__dirname,'../tests/calculus-recorder.test.mjs')],{stdio:'inherit'});if(dialogue.status!==0)process.exit(dialogue.status??1);
