@@ -1,0 +1,11 @@
+/* Shared site controls surround the reviewed English-only activity. */
+body[data-q-ui="math-explain"]{background-color:var(--q-page);--page:var(--q-page);--ink:var(--q-ink);--muted:var(--q-muted);--line:var(--q-line)}
+body[data-q-ui="math-explain"] .site-header{max-width:1400px;background:var(--q-paper)}
+body[data-q-ui="math-explain"] .site-header .q-brand-logo{width:205px;max-width:100%;height:auto}
+body[data-q-ui="math-explain"] .header-tools a{display:inline-flex;align-items:center;min-height:44px}
+body[data-q-ui="math-explain"] .site-header{flex-wrap:wrap}
+body[data-q-ui="math-explain"] .model-panel,body[data-q-ui="math-explain"] .conversation{color:var(--ink)}
+body[data-q-ui="math-explain"] footer a{min-height:44px;display:inline-flex;align-items:center}
+body[data-q-ui="math-explain"] .primary{background:var(--q-primary);color:white}
+@media(max-width:600px){body[data-q-ui="math-explain"] .header-tools{flex-basis:100%;margin-left:0;justify-content:flex-start;gap:18px}body[data-q-ui="math-explain"] .header-tools .demo-pill{margin-left:auto}body[data-q-ui="math-explain"] .header-tools #export-top{display:none}body[data-q-ui="math-explain"] .site-header .q-brand-logo{width:190px}}
+body[data-q-ui="math-explain"] .site-header .text-button{color:var(--q-ink);background:transparent}

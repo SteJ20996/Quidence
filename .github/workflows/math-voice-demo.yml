@@ -5,10 +5,18 @@ on:
     paths:
       - 'demos/college-voice-lab/**'
       - '.github/workflows/math-voice-demo.yml'
+      - 'explain/**'
+      - 'checks/**'
+      - 'scripts/build-math-voice.cjs'
+      - 'tests/math-voice-release.test.cjs'
   pull_request:
     paths:
       - 'demos/college-voice-lab/**'
       - '.github/workflows/math-voice-demo.yml'
+      - 'explain/**'
+      - 'checks/**'
+      - 'scripts/build-math-voice.cjs'
+      - 'tests/math-voice-release.test.cjs'
 permissions:
   contents: read
 jobs:
@@ -33,3 +41,8 @@ jobs:
           node --check dist/core.js
           node --check dist/views.js
           node --check dist/recorder.js
+
+      - name: Check published copies, entry routes and local backup integration
+        run: |
+          node scripts/build-math-voice.cjs --check
+          node --test tests/math-voice-release.test.cjs

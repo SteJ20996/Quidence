@@ -17,6 +17,7 @@ const COURSES={
 };
 for(const id of ['pre-algebra','algebra-1']){COURSES[id].foundation='foundations/?module=aa01';COURSES[id].foundationLabel='Shared Pre-Algebra / Algebra I foundation check →';COURSES[id].foundationCardLabel='Shared school foundations · 15 questions →';}
 for(const[id,c]of Object.entries(COURSES)){if(id==='number-theory'||id==='ac01')continue;c.project='projects/?module='+id;c.projectCount=2;c.challenge='diagnostics/?module='+id;c.challengeCount=id==='ab01'?12:id.startsWith('physics-')?6:4;}
+for(const id of ['ab01','ae01','af01','ac01','geometry','algebra-2']){COURSES[id].originalChallenge=COURSES[id].challenge;COURSES[id].challenge='checks/?module='+id;}
 COURSES.ad01.challenge='modules/ad01/dist/checks/';
 const intuition={'pre-algebra':'multiply','algebra-1':'plans',geometry:'perimeter','algebra-2':'square',af01:'waves',ad01:'sphere',ae01:'groups',ab01:'transforms','number-theory':'primes',ac01:'choices','physics-1':'apex','physics-2':'circuit'};
 for(const[id,activity]of Object.entries(intuition))COURSES[id].intuition='intuition/#'+activity;

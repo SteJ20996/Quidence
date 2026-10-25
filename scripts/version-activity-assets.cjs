@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const {createHash} = require('node:crypto');
 const root = path.resolve(__dirname, '..');
-const entries = ['foundations/index.html', 'diagnostics/index.html', 'projects/index.html'];
+const entries = ['foundations/index.html', 'diagnostics/index.html', 'projects/index.html', 'checks/index.html'];
 const reportAssets = new Set(['assets/themes.js', 'assets/themes.css', 'assets/brand.js', 'assets/brand.css', 'assets/quidence-logo-dark.svg', 'assets/quidence-logo-light.svg', 'assets/favicon.svg','assets/i18n.css', 'assets/i18n-es.js', 'assets/i18n.js', 'assets/hub.css', 'assets/hub-goals.js', 'assets/report-tools.js', 'assets/report-tools.css', 'assets/report-store.js', 'assets/report-viewer.js', 'assets/course-app.js', 'modules/aa01/dist/app.js', 'modules/ab01/dist/learning.js', 'modules/ad01/dist/app.js']);
 for (const file of ['assets/favicon-32.png', 'assets/apple-touch-icon.png', 'modules/aa01/dist/favicon.svg']) reportAssets.add(file);
 for(const name of ['checks/style.css','checks/entry.js','think/style.css','think/app.js','think/model.js','think/voice-local.js','think/recorder.js'])reportAssets.add('modules/ad01/dist/'+name);
@@ -14,6 +14,7 @@ for(const file of ['app.js','core.js','style.css'])reportAssets.add('courses/num
 for(const file of ['app.js','content.js','engine.js','style.css'])reportAssets.add('modules/ac01/dist/'+file);
 for(const file of ['app.js','matrix-guide.js','style.css'])reportAssets.add('modules/ab01/dist/'+file);
 for(const file of ['app.js','content.js','core.js','style.css'])reportAssets.add('modules/ac01/dist/projects/'+file);
+for(const file of ['checks/app.js','checks/style.css','explain/app.js','explain/core.js','explain/views.js','explain/recorder.js','explain/style.css','assets/math-voice.css'])reportAssets.add(file);
 reportAssets.add('assets/course-catalog.js');reportAssets.add('assets/sync-policy.js');
 reportAssets.add('assets/exploration.css');reportAssets.add('assets/seo-config.js');reportAssets.add('assets/seo.js');
 for (const file of ['color-review.css', 'qidolab-lockup.svg', 'qidolab-water-puzzle.svg']) reportAssets.add('assets/' + file);
@@ -25,7 +26,8 @@ function versionActivities(check = false) {
   for (const file of entries) {
     const source = fs.readFileSync(path.join(root, file), 'utf8');
     const html = source.replace(/data-es-catalog="[^"]*"/g, 'data-es-catalog="?v=' + digest(fs.readFileSync(path.join(root, 'assets/i18n-es.js'))) + '"').replace(/<html\b[^>]*>/, tag => tag.replace(/\sdata-activity-version="[^"]*"/, '').replace(/>$/, ' data-activity-version="' + uiVersion + '">'))
-      .replace(/(src|href)="(\.\.\/assets\/[^"?]+\.(?:js|css|svg|png))(?:\?[^" ]*)?"/g, (_, attr, reference) => {
+      .replace(/(src|href)="([^"?#]+\.(?:js|css|svg|png))(?:\?[^" ]*)?"/g, (_, attr, reference) => {
+        if (/^(?:[a-z]+:|\/\/|#)/i.test(reference)) return attr+'="'+reference+'"';
         const hash = digest(fs.readFileSync(path.resolve(root, path.dirname(file), reference)));
         return attr + '="' + reference + '?v=' + hash + '"';
       });
@@ -33,6 +35,8 @@ function versionActivities(check = false) {
   }
   // Change the document URL too: an old cached project document cannot request new assets.
   const routeVersions = Object.fromEntries(entries.map(file => [file.split('/')[0], digest(updates.get(file))]));
+  const chooser=updates.get('checks/index.html').replace(/data-diagnostic-version="[^"]*"/, 'data-diagnostic-version="'+routeVersions.diagnostics+'"').replace(/data-foundation-version="[^"]*"/, 'data-foundation-version="'+routeVersions.foundations+'"');
+  updates.set('checks/index.html',chooser);routeVersions.checks=digest(chooser);
   const publicHTML = require('./build-static-release.cjs').files().filter(file => file.endsWith('.html'));
   for (const file of publicHTML) {
     const source = updates.get(file) ?? fs.readFileSync(path.join(root, file), 'utf8');
@@ -43,7 +47,7 @@ function versionActivities(check = false) {
       // Keep the original Algebra activity's public release version and pin its content too.
       const query = path.relative(root, resolved) === 'modules/aa01/dist/app.js' ? 'v=0.6&amp;asset=' + hash : 'v=' + hash;
       return attr + '="' + reference + '?' + query + '"';
-    }).replace(/href="([^"?]*\b(foundations|diagnostics|projects)\/\?[^" ]*)"/g, (_, reference, route) => {
+    }).replace(/href="([^"?]*\b(foundations|diagnostics|projects|checks)\/\?[^" ]*)"/g, (_, reference, route) => {
       const url = new URL(reference.replaceAll('&amp;', '&'), 'https://quidence.test/' + file);
       url.searchParams.set('v', routeVersions[route]);
       return 'href="' + reference.split('?')[0] + '?' + url.searchParams.toString().replaceAll('&', '&amp;') + '"';

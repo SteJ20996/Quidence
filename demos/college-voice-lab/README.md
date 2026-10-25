@@ -21,4 +21,4 @@ An English-only interaction and teaching demo for six mathematics subjects. This
 
 Run `npm test` in this directory for model, state and recorder lifecycle checks. Serve `dist/` as a static site; no dependency installation or credentials are required. The dedicated Math Voice Lab workflow runs these checks when the demo changes.
 
-This folder contains the reviewed demo source. It is not included in the main site's static release or course navigation. The separate preview is available at https://quidence-college-voice-demo.stej.chatgpt.site/.
+This folder is the source for the public activity at `/explain/`. Run `node scripts/build-math-voice.cjs` from the repository root after changing its browser modules, then regenerate asset versions. The public HTML integrates the existing theme, fixed-English language policy, home navigation and local-record backup. The six subject entries use `/checks/?module=...` to offer this activity alongside each original check.

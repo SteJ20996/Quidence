@@ -52,6 +52,12 @@ async function run() {
     await cached.locator('.f-mode-link[aria-current="page"]').waitFor();
     assert.equal(await cached.locator('.f-mode-link[aria-current="page"]').getAttribute('data-f-mode'), 'check');
     assert.equal(await cached.evaluate(() => window.staleActivityAsset), undefined);
+    await cached.goto(origin+'/?view=courses');
+    const chooserLink=cached.locator('[data-subject="af01"] .challenge-link');if(await chooserLink.isHidden())await cached.locator('[data-subject="af01"] .card-more summary').click();await chooserLink.click();
+    await cached.locator('html[data-check-module="af01"]').waitFor();
+    assert(new URL(await cached.locator('#original-route').getAttribute('href'),cached.url()).searchParams.has('v'));
+    await cached.locator('#original-route').click();await cached.locator('.f-mode-link').first().waitFor();
+    assert.equal(await cached.evaluate(()=>window.staleActivityAsset),undefined);
     await cacheContext.close();
 
     await checkHomepage(browser, origin, capture, errors, failures);
@@ -66,7 +72,19 @@ async function run() {
       const activityLinks = await page.locator('.challenge-link, .project-link').evaluateAll(elements => elements.map(el => el.href).filter(href=>new URL(href).searchParams.has('module')));
       assert.equal(activityLinks.length, 20);
       assert.equal(await page.locator('.project-link[href*="ac01/dist/projects"]').count(), 1);
+      const choosers=activityLinks.filter(href=>new URL(href).pathname==='/checks/');assert.equal(choosers.length,6);
+      for(const href of choosers){
+        const subject=new URL(href).searchParams.get('module');await page.goto(href);
+        await page.locator('html[data-check-module="'+subject+'"]').waitFor();
+        const original=new URL(await page.locator('#original-route').getAttribute('href'),page.url());
+        assert.equal(original.searchParams.get('module'),subject);assert(original.searchParams.has('v'));
+        assert.equal(original.pathname,subject==='ac01'?'/foundations/':'/diagnostics/');
+        const interactive=new URL(await page.locator('#dialogue-route').getAttribute('href'),page.url());
+        assert.equal(interactive.pathname,'/explain/');assert.equal(interactive.searchParams.get('lang'),'en');
+        activityLinks[activityLinks.indexOf(href)]=original.href;
+      }
       assert.equal(activityLinks.filter(href => new URL(href).pathname === '/foundations/' && new URL(href).searchParams.get('module') === 'ac01').length, 1);
+      await page.goto(origin+'/?view=courses');
       const calculusEntry=await page.locator('.subject-card[data-subject="ad01"] .challenge-link').getAttribute('href');
       assert.equal(new URL(calculusEntry,origin).pathname,'/modules/ad01/dist/checks/');
       await page.goto(new URL(calculusEntry,origin).href);
@@ -129,7 +147,10 @@ async function run() {
 async function checkRestoredGameTheory(page, origin, width) {
   const explanation = '先分别读取 A 和 B 的收益。 Keep each player’s payoff separate.';
   await page.goto(origin + '/?view=courses');
-  await page.locator('[data-subject="ac01"] .challenge-link').click();
+  const entry=page.locator('[data-subject="ac01"] .challenge-link');if(await entry.isHidden())await page.locator('[data-subject="ac01"] .card-more summary').click();await entry.click();
+  assert.equal(new URL(page.url()).pathname, '/checks/');
+  await page.locator('html[data-check-module="ac01"]').waitFor();
+  await page.locator('#original-route').click();
   assert.equal(new URL(page.url()).pathname, '/foundations/');
   assert.equal(await page.locator('#f-subject').inputValue(), 'ac01');
   assert.equal(await page.locator('#f-heading').textContent(), 'Game theory foundations');
