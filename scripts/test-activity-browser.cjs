@@ -84,6 +84,7 @@ async function run() {
         activityLinks[activityLinks.indexOf(href)]=original.href;
       }
       assert.equal(activityLinks.filter(href => new URL(href).pathname === '/foundations/' && new URL(href).searchParams.get('module') === 'ac01').length, 1);
+      await page.goto(origin+'/?view=courses');
       const calculusEntry=await page.locator('.subject-card[data-subject="ad01"] .challenge-link').getAttribute('href');
       assert.equal(new URL(calculusEntry,origin).pathname,'/modules/ad01/dist/checks/');
       await page.goto(new URL(calculusEntry,origin).href);
