@@ -53,7 +53,7 @@ async function run() {
     assert.equal(await cached.locator('.f-mode-link[aria-current="page"]').getAttribute('data-f-mode'), 'check');
     assert.equal(await cached.evaluate(() => window.staleActivityAsset), undefined);
     await cached.goto(origin+'/?view=courses');
-    await cached.locator('[data-subject="af01"] .challenge-link').click();
+    const chooserLink=cached.locator('[data-subject="af01"] .challenge-link');if(await chooserLink.isHidden())await cached.locator('[data-subject="af01"] .card-more summary').click();await chooserLink.click();
     await cached.locator('html[data-check-module="af01"]').waitFor();
     assert(new URL(await cached.locator('#original-route').getAttribute('href'),cached.url()).searchParams.has('v'));
     await cached.locator('#original-route').click();await cached.locator('.f-mode-link').first().waitFor();
@@ -146,7 +146,7 @@ async function run() {
 async function checkRestoredGameTheory(page, origin, width) {
   const explanation = '先分别读取 A 和 B 的收益。 Keep each player’s payoff separate.';
   await page.goto(origin + '/?view=courses');
-  await page.locator('[data-subject="ac01"] .challenge-link').click();
+  const entry=page.locator('[data-subject="ac01"] .challenge-link');if(await entry.isHidden())await page.locator('[data-subject="ac01"] .card-more summary').click();await entry.click();
   assert.equal(new URL(page.url()).pathname, '/checks/');
   await page.locator('html[data-check-module="ac01"]').waitFor();
   await page.locator('#original-route').click();
