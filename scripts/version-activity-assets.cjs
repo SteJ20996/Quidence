@@ -35,6 +35,8 @@ function versionActivities(check = false) {
   }
   // Change the document URL too: an old cached project document cannot request new assets.
   const routeVersions = Object.fromEntries(entries.map(file => [file.split('/')[0], digest(updates.get(file))]));
+  const chooser=updates.get('checks/index.html').replace(/data-diagnostic-version="[^"]*"/, 'data-diagnostic-version="'+routeVersions.diagnostics+'"').replace(/data-foundation-version="[^"]*"/, 'data-foundation-version="'+routeVersions.foundations+'"');
+  updates.set('checks/index.html',chooser);routeVersions.checks=digest(chooser);
   const publicHTML = require('./build-static-release.cjs').files().filter(file => file.endsWith('.html'));
   for (const file of publicHTML) {
     const source = updates.get(file) ?? fs.readFileSync(path.join(root, file), 'utf8');

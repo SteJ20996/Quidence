@@ -6,6 +6,7 @@ test('six course entries reach the chooser while their original checks remain av
  const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
  for(const id of ids){const c=Catalog.COURSES[id];assert.equal(c.challenge,'checks/?module='+id);assert(home.includes(c.challenge));assert(fs.readFileSync(path.join(root,c.course,'index.html'),'utf8').includes(c.challenge));assert.equal(c.originalChallenge,(id==='ac01'?'foundations':'diagnostics')+'/?module='+id);}
  const entry=fs.readFileSync(path.join(root,'checks/index.html'),'utf8');assert.match(entry,/id="original-route" aria-disabled="true"/);assert.match(entry,/id="dialogue-route" data-fixed-language="en" aria-disabled="true"/);
+ assert.match(entry,/data-diagnostic-version="[a-f0-9]{12}"/);assert.match(entry,/data-foundation-version="[a-f0-9]{12}"/);
  const chooser=fs.readFileSync(path.join(root,'checks/app.js'),'utf8');for(const hash of ['linear','statistics','precalculus','game-theory','geometry','algebra2'])assert(chooser.includes("hash:'"+hash+"'"));assert(chooser.includes("cfg.foundation?'foundations':'diagnostics'"));
 });
 test('published modules match the reviewed source and every local dependency is in the static bundle',()=>{
