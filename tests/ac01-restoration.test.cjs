@@ -6,7 +6,7 @@ test('the restored Game Theory entry opens actual lessons and its available foun
  assert.deepEqual(Map.courseCandidates(1,['gametheory']),['gametheory']);
  assert(Data.courses.some(x=>x.id==='gametheory'&&x.module==='ac01'));
  assert.equal(F.MODULES.ac01.tasks.length,15);
- assert.equal(c.challenge,c.foundation);
+ assert.equal(c.challenge,'checks/?module=ac01');assert.equal(c.originalChallenge,c.foundation);
  assert.equal(SEO.resolve('/foundations/?module=ac01').noindex,false);
  for(const route of ['/diagnostics/?module=ac01','/projects/?module=ac01'])assert.equal(SEO.resolve(route).noindex,true);
  const home=fs.readFileSync(path.join(root,'index.html'),'utf8');

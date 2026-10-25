@@ -21,6 +21,8 @@ const COURSES={
   'physics-2':['/courses/physics-2/','Physics 2 Foundations','Fundamentos de Física 2','Explore heat, electric fields, circuits, magnetism, optics, waves, and photons after basic mechanics.','Explora calor, campos eléctricos, circuitos, magnetismo, óptica, ondas y fotones después de estudiar mecánica básica.'],
 };
 const PAGES={
+  '/checks/':{en:['Test your understanding','Choose an interactive model and explanation activity or continue with the original subject check.'],es:['Comprueba tu comprensión','Elige una actividad con modelos interactivos y explicaciones o continúa con la evaluación original de la materia.']},
+  '/explain/':{fixedLocale:'en',locales:['en'],en:['Math Voice Lab','Explore six mathematics models, explain your reasoning, and keep original responses with local recording and scripted follow-ups. This activity is English only.']},
   '/intuition/':{en:['Intuition Lab','Test a mathematical hunch with interactive models, calculations and reflection across twelve subjects.'],es:['Laboratorio de intuición','Pon a prueba una idea matemática con modelos interactivos, cálculos y reflexión en doce materias.'],'zh-Hant':['直覺實驗室','透過十二個學科的互動模型、計算與反思，檢驗你的數學猜想。'],locales:['en','es','zh-Hant'],sitemap:true},
   '/modules/ad01/dist/checks/':{en:['Calculus · Test your understanding','Choose a graph-based reasoning activity or the original four-problem Calculus check.'],es:['Cálculo · Comprueba tu comprensión','Elige una actividad de razonamiento gráfico o la evaluación original de cuatro problemas de cálculo.']},
   '/modules/ad01/dist/think/':{fixedLocale:'en',en:['Calculus · Think in motion','Explore a claim about velocity and acceleration through graphs and your own explanation. This dialogue activity is English only.']},
@@ -38,6 +40,7 @@ const PAGES={
 };
 for(const c of Object.values(COURSES))PAGES[c[0]]={en:[c[1],c[3]],es:[c[2],c[4]],sitemap:true};
 const ACTIVITIES={
+  '/checks/':{en:'Test Your Understanding',es:'Comprueba tu comprensión'},
   '/diagnostics/':{en:'Test Your Understanding',es:'Comprueba tu comprensión'},
   '/projects/':{en:'Field Projects',es:'Proyectos de aplicación'},
   '/foundations/':{en:'Foundation Check',es:'Evaluación de fundamentos'},
@@ -53,7 +56,7 @@ function resolve(input,actualLocale){
   const locale=PAGES[pathname]?.fixedLocale||(supported.includes(actualLocale)?actualLocale:supported.includes(url.searchParams.get('lang'))?url.searchParams.get('lang'):'en');
   let page=PAGES[pathname],moduleId=null;
   if(ACTIVITIES[pathname]){
-    const id=url.searchParams.get('module'),valid=pathname==='/foundations/'?FOUNDATION_IDS.has(id):Object.hasOwn(COURSES,id)&&id!=='number-theory'&&id!=='ac01'||id==='physics';
+    const id=url.searchParams.get('module'),valid=pathname==='/checks/'?['ab01','ae01','af01','ac01','geometry','algebra-2'].includes(id):pathname==='/foundations/'?FOUNDATION_IDS.has(id):Object.hasOwn(COURSES,id)&&id!=='number-theory'&&id!=='ac01'||id==='physics';
     const title=id==='aa01'?(locale==='es'?'Preálgebra y Álgebra I':'Pre-Algebra and Algebra I'):id==='physics'?(locale==='es'?'Física':'Physics'):COURSES[id]?.[locale==='es'?2:1];
     moduleId=valid?id:null;
     const label=ACTIVITIES[pathname][locale];

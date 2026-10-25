@@ -3,14 +3,15 @@ import {extraView,sampleLabel} from './views.js?v=six-subjects-1';
 import {VoiceRecorder,appendTranscript} from './recorder.js';
 const $=id=>document.getElementById(id),E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const now=()=>new Date().toISOString(),fresh=()=>Object.fromEntries([['version',1],...ids.map(id=>[id,[blank(id)]])]);
-let db=fresh(),lastRaw=null,blocked=false,recovery=null,saveFailed=false;
-try{lastRaw=localStorage.getItem(KEY);if(lastRaw!==null){const parsed=JSON.parse(lastRaw);if(!validDB(parsed))throw Error('Unreadable notes');db=parsed;}}catch{blocked=true;recovery=lastRaw;}
+let db=fresh(),lastRaw=null,blocked=false,recovery=null,saveFailed=false,storage;
+try{storage=globalThis.QuidenceStorage||globalThis.localStorage;}catch{}
+try{lastRaw=storage.getItem(KEY);if(lastRaw!==null){const parsed=JSON.parse(lastRaw);if(!validDB(parsed))throw Error('Unreadable notes');db=parsed;}}catch{blocked=true;recovery=lastRaw;}
 for(const key of ids)if(!db[key])db[key]=[blank(key)];
 const route=()=>{const key=location.hash.slice(1),alias={statistics:'stats','algebra-2':'algebra2'}[key]||key;return ids.includes(alias)?alias:'linear';};
 let id=route();
 const session=()=>db[id].at(-1);
 function status(){const bad=blocked||saveFailed;$('save-status').textContent=bad?'Browser saving is unavailable or these notes changed elsewhere. Export before leaving.':'Demo field notes stay in this browser.';$('save-status').classList.toggle('error',bad);}
-function save(){if(!blocked)try{if(localStorage.getItem(KEY)!==lastRaw){blocked=true;}else{const raw=JSON.stringify(db);localStorage.setItem(KEY,raw);lastRaw=raw;saveFailed=false;}}catch{saveFailed=true;}status();}
+function save(){if(!blocked)try{if(storage.getItem(KEY)!==lastRaw){blocked=true;}else{const raw=JSON.stringify(db);storage.setItem(KEY,raw);lastRaw=raw;saveFailed=false;}}catch{saveFailed=true;}status();}
 window.addEventListener('storage',e=>{if(e.key===KEY||e.key===null){blocked=true;status();}});
 function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').classList.remove('show'),3000);}
 const labels=['Your idea','Find evidence','Test the claim','Try a new case','Reflect'];
