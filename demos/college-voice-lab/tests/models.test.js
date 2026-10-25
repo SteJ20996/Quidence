@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {vectorModel,intervalModel,parseNumber,numericMatch,followup,blank,copy,validDB,exampleAttempt} from '../dist/core.js';
+import {vectorModel,intervalModel,parseNumber,numericMatch,followup,blank,copy,validDB,exampleAttempt,waveModel,rectangleModel,growthModel,gameModel,ids,subject,modelFor,targetFor,checkpointCopy} from '../dist/core.js';
 import {VoiceRecorder,appendTranscript} from '../dist/recorder.js';
 test('vector model separates direction-dependent length from coordinate scaling',()=>{
  assert.ok(Math.abs(vectorModel(45).factor-Math.sqrt(2.5))<1e-12);
@@ -46,4 +46,40 @@ test('one-click journeys are labelled examples with complete, valid evidence',()
  const db={version:1,linear:[exampleAttempt('linear')],stats:[exampleAttempt('stats')]};assert(validDB(db));
  assert.equal(db.linear[0].isExample,true);assert.equal(db.stats[0].review.matches,true);assert.equal(db.linear[0].review.matches,false);
  assert.equal(db.linear[0].first.text,db.linear[0].voiceSources[0].rawText);
+});
+
+test('precalculus keeps the sine amplitude separate from its input scale',()=>{
+ for(const b of [1,2,3,4]){const m=waveModel(b,90/b);assert.equal(m.amplitude,1);assert.equal(m.period,360/b);assert.equal(m.cycles,b);assert.ok(Math.abs(m.value-1)<1e-12);}
+ const m=waveModel(2,30,true);assert.equal(m.amplitude,3);assert.equal(m.period,90);assert.equal(m.value,3);
+ assert.equal(followup('precalculus','period').target,90);
+});
+test('fixed perimeter permits different areas and the square maximizes them',()=>{
+ assert.equal(rectangleModel(3).area,27);assert.equal(rectangleModel(6).area,36);assert.equal(rectangleModel(2).area,20);
+ for(let w=1;w<=11;w++){const m=rectangleModel(w);assert.equal(2*(m.w+m.h),24);assert.ok(m.area<=36);assert.equal(m.area,36-(w-6)**2);}
+ const m=rectangleModel(3,true);assert.equal(m.perimeter,28);assert.equal(m.area,45);assert.equal(m.maxArea,49);
+});
+test('exponential functions have fixed ratios and changing differences',()=>{
+ assert.equal(growthModel(0).delta,50);assert.equal(growthModel(1).delta,75);assert.equal(growthModel(3).delta,168.75);
+ for(const b of [1.25,1.5,2])for(let x=0;x<=4;x++){const m=growthModel(x,b);assert.ok(Math.abs(m.next/m.value-b)<1e-12);assert.ok(Math.abs(m.delta-m.value*(b-1))<1e-12);}
+ const m=growthModel(1,1.5,true);assert.equal(m.value,125);assert.equal(m.next,156.25);assert.equal(m.delta,31.25);
+});
+test('game theory checks unilateral deviations separately from joint benefit',()=>{
+ const cc=gameModel(0,0);assert.equal(cc.total,6);assert.equal(cc.gainOwn,2);assert.equal(cc.stable,0);
+ const dd=gameModel(1,1);assert.equal(dd.total,2);assert.equal(dd.gainOwn,-1);assert.equal(dd.stable,1);
+ for(const a of [0,1])for(const b of [0,1]){const m=gameModel(a,b);assert.equal(m.stable,a===1&&b===1?1:0);}
+ const tr=gameModel(0,0,true);assert.equal(tr.total,8);assert.equal(tr.switchOwn,3);assert.equal(tr.gainOwn,-1);assert.equal(tr.stable,1);
+});
+test('all six subjects have valid examples, focus routing and fixed transfer checks',()=>{
+ const db=Object.fromEntries([['version',1],...ids.map(id=>[id,[exampleAttempt(id)]])]);assert(validDB(db));
+ for(const id of ids){const s=db[id][0];assert(s.isExample);assert.equal(s.review.target,targetFor(id,modelFor(id,s)));for(const [focus] of subject[id].focus){const f=followup(id,focus);assert(f.question.length>20);if(focus==='custom')assert.equal(f.target,null);else assert(Number.isFinite(f.target));}assert(Number.isFinite(targetFor(id,modelFor(id,s,true),true)));}
+ for(const [id,key,value] of [['precalculus','b',0],['geometry','w',12],['algebra2','x',5],['game-theory','a',2]]){const bad=copy(db);bad[id][0].model[key]=value;assert.equal(validDB(bad),false);}
+});
+
+test('checkpoint wording and targets stay aligned after changing model settings',()=>{
+ for(const [id,model,expected,prompt,label] of [
+  ['precalculus',{b:4,theta:30},90,'sin(4x)','Period'],
+  ['geometry',{w:2},20,'height 10','Area'],
+  ['algebra2',{x:4,b:2},1600,'x = 4 with x = 5','f(5) − f(4)'],
+  ['game-theory',{a:1,b:1},-1,'currently choose Compete','payoff change']
+ ]){const m=modelFor(id,{model}),c=checkpointCopy(id,m);assert.equal(targetFor(id,m),expected);assert(c.prompt.includes(prompt));assert(c.label.includes(label));}
 });

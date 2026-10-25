@@ -1,0 +1,35 @@
+name: Math Voice Lab checks
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'demos/college-voice-lab/**'
+      - '.github/workflows/math-voice-demo.yml'
+  pull_request:
+    paths:
+      - 'demos/college-voice-lab/**'
+      - '.github/workflows/math-voice-demo.yml'
+permissions:
+  contents: read
+jobs:
+  math-voice-demo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+      - name: Check six subject models, records and recorder lifecycle
+        working-directory: demos/college-voice-lab
+        run: npm test
+      - name: Check browser module syntax
+        working-directory: demos/college-voice-lab
+        run: |
+          node --check dist/app.js
+          node --check dist/core.js
+          node --check dist/views.js
+          node --check dist/recorder.js
