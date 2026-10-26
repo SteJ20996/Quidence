@@ -27,3 +27,5 @@ const themes=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/
 const dialogue=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/dialogue-language.test.cjs'),path.join(__dirname,'../tests/calculus-dialogue.test.mjs'),path.join(__dirname,'../tests/calculus-recorder.test.mjs')],{stdio:'inherit'});if(dialogue.status!==0)process.exit(dialogue.status??1);
 
 const voice=require('node:child_process').spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/math-voice-release.test.cjs'),path.join(__dirname,'../demos/college-voice-lab/tests/models.test.js')],{stdio:'inherit'});if(voice.status!==0)process.exit(voice.status??1);
+
+const speech=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/speech-review.test.cjs')],{stdio:'inherit'});if(speech.status!==0)process.exit(speech.status??1);

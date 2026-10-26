@@ -19,7 +19,7 @@ const mic='<svg viewBox="0 0 18 22" aria-hidden="true"><g fill="none" stroke="cu
 const quote=text=>'<div class="quote">'+E(text||'No written reason was added.')+'</div>';
 function bubble(text,key){return '<div class="bubble"'+(key?' id="'+key+'"':'')+'><span class="speaker">Q / QUIDENCE</span><p>'+E(text)+'</p></div>';}
 function primary(key,label){return '<button class="primary" id="'+key+'">'+label+' <span aria-hidden="true">↗</span></button>';}
-function field(key,label,value,optional=false,disabled=false){return '<label class="field" for="'+key+'">'+label+(optional?' <small>(optional)</small>':'')+'</label><textarea id="'+key+'" maxlength="2000"'+(disabled?' disabled':'')+'>'+E(value)+'</textarea>'+(disabled?'':'<button class="voice-button" type="button" data-voice="'+key+'">'+mic+' Record or try an example</button>');}
+function field(key,label,value,optional=false,disabled=false){return '<label class="field" for="'+key+'">'+label+(optional?' <small>(optional)</small>':'')+'</label><textarea id="'+key+'" maxlength="2000"'+(disabled?' disabled':'')+'>'+E(value)+'</textarea>'+(disabled?'':'<button class="voice-button" type="button" data-voice="'+key+'">'+mic+' Audio playback or examples</button>');}
 function numberField(key,label,value,disabled=false){return '<label class="field" for="'+key+'">'+E(label)+'</label><input type="text" inputmode="decimal" id="'+key+'" value="'+E(value)+'"'+(disabled?' disabled':'')+'><p class="hint">Use a decimal point or comma. Two decimal places are enough.</p>';}
 function bindField(key,property,dirty){const e=$(key);if(!e||e.disabled)return;e.oninput=()=>{session()[property||key]=e.value;if(dirty)dirty();save();};}
 function advance(phase){const s=session();s.phase=phase;s.reached=Math.max(s.reached,phase);save();render();$('conversation-title').scrollIntoView({block:'start'});}
@@ -169,3 +169,5 @@ $('preview-sample').onclick=()=>{db[id].push(exampleAttempt(id));save();render()
 $('new-attempt').onclick=()=>{db[id].push(blank(id));save();render();toast('New attempt started. Earlier attempts stay in your export.');};
 $('how-demo').onclick=()=>$('about-dialog').showModal();$('close-about').onclick=()=>$('about-dialog').close();
 render();
+
+document.addEventListener('quidence:speech-reviewed',event=>{if(!event.target.closest('#dialogue'))return;const s=session(),r=event.detail;s.voiceSources.push({field:event.target.id,rawText:r.rawTranscript,confirmedText:r.reviewedText,kind:r.kind,model:copy(s.model),at:r.confirmedAt});if(event.target.id==='reason'){s.focus='custom';if($('focus'))$('focus').value='custom';}save();});
