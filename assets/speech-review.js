@@ -29,7 +29,7 @@ function registry(storage){
 function mount(window){
  const document=window.document;if(document.documentElement.dataset.speechReviewMounted)return;document.documentElement.dataset.speechReviewMounted='true';
  const el=(tag,copy,cls)=>{const n=document.createElement(tag);if(copy)n.textContent=copy;if(cls)n.className=cls;return n;};
- const targetSelector='textarea[data-speech-explanation],textarea[data-f-explanation],#dialogue textarea,#samples textarea,#reason,#observation,#reflection';
+ const targetSelector='textarea[data-speech-explanation],textarea[data-f-explanation],#dialogue textarea,#samples textarea,#reason,#observation,#observations,#reflection';
  const mounted=new WeakMap(),drafts=new Map();let active=null,serial=0;
  function store(){return registry(window.QuidenceStorage||window.localStorage);}
  function context(field){const title=document.querySelector('#step-title,#f-heading,.stage-title,#conversation-title,#conversationTitle')?.textContent||document.title;return window.location.pathname+window.location.search+window.location.hash+'|'+title+'|'+field.id;}
