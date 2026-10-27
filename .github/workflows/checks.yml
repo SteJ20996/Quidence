@@ -30,6 +30,9 @@ jobs:
         run: |
           npm ci
           npx playwright install --with-deps chromium
+      - name: Check all four themes, every public page and remembered preferences
+        run: npm run test:themes:browser
+
       - name: Check activity layouts, drafts and cached-version upgrades in Chromium
         run: npm run test:browser
       - name: Check Intuition Lab modes, translations, numerical checks and record preservation
@@ -48,8 +51,6 @@ jobs:
       - name: Check real-motion, map criteria and current-note recovery regressions
         run: npm run test:reviewed:browser
 
-      - name: Check all four themes, every public page and remembered preferences
-        run: npm run test:themes:browser
 
       - name: Check illustrated maps, filters and all three new foundation sessions
         run: npm run test:cartoon:browser
