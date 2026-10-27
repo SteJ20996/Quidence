@@ -28,7 +28,7 @@ async function main(){
       const card=e.getBoundingClientRect(),box=selector=>{const el=e.querySelector(selector);if(!el)return null;const r=el.getBoundingClientRect();return{top:r.top-card.top,bottom:r.bottom-card.top,height:r.height,inside:r.left>=card.left&&r.right<=card.right+1&&r.bottom<=card.bottom+1&&el.scrollWidth<=el.clientWidth+1};};
       return{id:e.dataset.subject,top:card.top,height:card.height,slots:['.topic-label','.version','.subject-picture','h3',':scope>p',':scope>.subject-link','a[href*="foundations/"]','.challenge-link:not([href*="foundations/"])','.project-link','.scope-note'].map(box)};
      }));
-     assert.equal(cards.length,12);
+     assert.equal(cards.length,13);
      for(const card of cards){
       assert(card.slots[1].top>=card.slots[0].bottom+8,card.id+' activity label has its own line');
       assert(card.slots.filter(Boolean).every(slot=>slot.inside),`${lang} ${width} ${card.id}: clipped card content`);
