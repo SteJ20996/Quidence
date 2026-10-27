@@ -67,7 +67,7 @@
       const course=chosenCourse?courses.get(chosenCourse):null;
       root.dataset.selectedCourse=course?.module||'';
       title.textContent=course?w.course+course[language]:frontier.length===1?w.future:w.pick;
-      meta.textContent=course?((course.module==='number-theory'||course.module==='ac01')?course.scope[language]:w.report):frontier.length===1?w.futureMeta:'';
+      meta.textContent=course?((course.module==='number-theory'||course.module==='ac01'||course.module==='coordinate-geometry')?course.scope[language]:w.report):frontier.length===1?w.futureMeta:'';
       actions.hidden=!course;choices.replaceChildren();choices.hidden=candidates.length<2;
       for(const id of candidates){
         if(candidates.length<2)break;
@@ -75,7 +75,7 @@
         button.addEventListener('click',()=>{chosenCourse=id;update(true);});choices.append(button);
       }
       const learn=root.querySelector('.qa-learn'),diagnose=root.querySelector('.qa-diagnose');
-      if(course){learn.onclick=diagnose.onclick=()=>selectSubject(course.module);learn.href=courseLink(course.module,'course');diagnose.hidden=!catalog.COURSES[course.module].challenge;if(!diagnose.hidden)diagnose.href=courseLink(course.module,'challenge');else diagnose.removeAttribute('href');if(select)selectSubject(course.module);}
+      if(course){learn.textContent=course.module==='coordinate-geometry'?(language==='es'?'Explorar proyectos ↗':'Explore projects ↗'):w.learn;learn.onclick=diagnose.onclick=()=>selectSubject(course.module);learn.href=courseLink(course.module,'course');diagnose.hidden=!catalog.COURSES[course.module].challenge;if(!diagnose.hidden)diagnose.href=courseLink(course.module,'challenge');else diagnose.removeAttribute('href');if(select)selectSubject(course.module);}
       else{if(preview){const module=preview.relatedModule,c=catalog.COURSES[module],links=document.createElement('div');links.className='qa-topic-links';const note=document.createElement('small');note.textContent=language==='es'?'Orientación conceptual. Este curso relacionado no cubre toda la rama avanzada.':'Concept introduction. This related starting course does not cover the full advanced branch.';intro.append(note);
         const related=document.createElement('a');related.href=courseLink(module,'course');related.textContent=(language==='es'?'Base relacionada: ':'Related start: ')+c.title;const subjects=document.createElement('a');subjects.href='?view=courses&lang='+language+'#subject-'+module;subjects.dataset.mapSubjects=module;subjects.textContent=language==='es'?'Ver la materia →':'View subject →';links.append(related,subjects);intro.append(links);}
         learn.onclick=diagnose.onclick=null;learn.removeAttribute('href');diagnose.removeAttribute('href');}

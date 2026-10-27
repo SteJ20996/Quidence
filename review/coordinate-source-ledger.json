@@ -1,0 +1,367 @@
+{
+  "schema": "quidence-coordinate-source-review-1",
+  "module": "coordinate-geometry",
+  "status": "inventory-only",
+  "items": [
+    {
+      "id": "coordinate-project-step:plan:0",
+      "project": "plan",
+      "step": 0,
+      "title": {
+        "en": "Give the map a language",
+        "zh-TW": "先讓地圖有共同語言",
+        "es": "Dale un lenguaje al plano"
+      },
+      "fingerprint": "37a682b4c6296c9d2cb7467ebb7fe9c9d7705b5faeac5d65bdd341ef7ef5cd4d",
+      "sourceFiles": [
+        {
+          "path": "courses/coordinate-geometry/content.mjs",
+          "sha256": "c66b9dc4928d442d7abdad184419cf66916b64a233437c72a65138853e84b4df"
+        },
+        {
+          "path": "courses/coordinate-geometry/core.mjs",
+          "sha256": "1b08c5999dab407b1cb78ab1c4b6dd856d3f6ee84398026cded01ad72e1d849d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": []
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/coordinate-core.test.mjs"
+      }
+    },
+    {
+      "id": "coordinate-project-step:plan:1",
+      "project": "plan",
+      "step": 1,
+      "title": {
+        "en": "Give your station an address",
+        "zh-TW": "替補給站安排一個位置",
+        "es": "Dale una dirección al puesto"
+      },
+      "fingerprint": "03d103138855672f2d0460391cb2a31dfc22d7b4ffa5b5fedb31fddfad887f10",
+      "sourceFiles": [
+        {
+          "path": "courses/coordinate-geometry/content.mjs",
+          "sha256": "c66b9dc4928d442d7abdad184419cf66916b64a233437c72a65138853e84b4df"
+        },
+        {
+          "path": "courses/coordinate-geometry/core.mjs",
+          "sha256": "1b08c5999dab407b1cb78ab1c4b6dd856d3f6ee84398026cded01ad72e1d849d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": []
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/coordinate-core.test.mjs"
+      }
+    },
+    {
+      "id": "coordinate-project-step:plan:2",
+      "project": "plan",
+      "step": 2,
+      "title": {
+        "en": "Find the changes first",
+        "zh-TW": "先看水平與垂直變化",
+        "es": "Encuentra primero los cambios"
+      },
+      "fingerprint": "f33d2e7696032f8c0eb756aaee6c9fc7c6de56bf224f22223a05b2e530981bfa",
+      "sourceFiles": [
+        {
+          "path": "courses/coordinate-geometry/content.mjs",
+          "sha256": "c66b9dc4928d442d7abdad184419cf66916b64a233437c72a65138853e84b4df"
+        },
+        {
+          "path": "courses/coordinate-geometry/core.mjs",
+          "sha256": "1b08c5999dab407b1cb78ab1c4b6dd856d3f6ee84398026cded01ad72e1d849d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": []
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/coordinate-core.test.mjs"
+      }
+    },
+    {
+      "id": "coordinate-project-step:plan:3",
+      "project": "plan",
+      "step": 3,
+      "title": {
+        "en": "Build the distance formula",
+        "zh-TW": "一起建立距離公式",
+        "es": "Construye la fórmula de distancia"
+      },
+      "fingerprint": "4a537b12446795d195d8e4292789ec3da26256d42f5d4666505f80991bb5c58d",
+      "sourceFiles": [
+        {
+          "path": "courses/coordinate-geometry/content.mjs",
+          "sha256": "c66b9dc4928d442d7abdad184419cf66916b64a233437c72a65138853e84b4df"
+        },
+        {
+          "path": "courses/coordinate-geometry/core.mjs",
+          "sha256": "1b08c5999dab407b1cb78ab1c4b6dd856d3f6ee84398026cded01ad72e1d849d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": []
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/coordinate-core.test.mjs"
+      }
+    },
+    {
+      "id": "coordinate-project-step:plan:4",
+      "project": "plan",
+      "step": 4,
+      "title": {
+        "en": "Make the plan satisfy its purpose",
+        "zh-TW": "讓配置符合實際目標",
+        "es": "Haz que el plan cumpla su propósito"
+      },
+      "fingerprint": "bfa3ad639edd2c9eb54f81a91c5b7f46b1afc488fb543caa5ff5ebf1fb7521ff",
+      "sourceFiles": [
+        {
+          "path": "courses/coordinate-geometry/content.mjs",
+          "sha256": "c66b9dc4928d442d7abdad184419cf66916b64a233437c72a65138853e84b4df"
+        },
+        {
+          "path": "courses/coordinate-geometry/core.mjs",
+          "sha256": "1b08c5999dab407b1cb78ab1c4b6dd856d3f6ee84398026cded01ad72e1d849d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": []
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/coordinate-core.test.mjs"
+      }
+    },
+    {
+      "id": "coordinate-project-step:plan:5",
+      "project": "plan",
+      "step": 5,
+      "title": {
+        "en": "The entrance moved. Revise your plan.",
+        "zh-TW": "入口改了，重新檢驗方案",
+        "es": "La entrada cambió. Revisa el plan."
+      },
+      "fingerprint": "9bf2d7962219375e2ea96a3421aca35adecc9b6290c31031ec0317e4eaedbe33",
+      "sourceFiles": [
+        {
+          "path": "courses/coordinate-geometry/content.mjs",
+          "sha256": "c66b9dc4928d442d7abdad184419cf66916b64a233437c72a65138853e84b4df"
+        },
+        {
+          "path": "courses/coordinate-geometry/core.mjs",
+          "sha256": "1b08c5999dab407b1cb78ab1c4b6dd856d3f6ee84398026cded01ad72e1d849d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": []
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/coordinate-core.test.mjs"
+      }
+    },
+    {
+      "id": "coordinate-project-step:station:0",
+      "project": "station",
+      "step": 0,
+      "title": {
+        "en": "What would “fair” mean here?",
+        "zh-TW": "這裡的「公平」是什麼？",
+        "es": "¿Qué significa «justo» aquí?"
+      },
+      "fingerprint": "8e79335502f9a5572d5a557bc65a4e7bd1bea3945e5baaeea12c8cf39f549c5b",
+      "sourceFiles": [
+        {
+          "path": "courses/coordinate-geometry/content.mjs",
+          "sha256": "c66b9dc4928d442d7abdad184419cf66916b64a233437c72a65138853e84b4df"
+        },
+        {
+          "path": "courses/coordinate-geometry/core.mjs",
+          "sha256": "1b08c5999dab407b1cb78ab1c4b6dd856d3f6ee84398026cded01ad72e1d849d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": []
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/coordinate-core.test.mjs"
+      }
+    },
+    {
+      "id": "coordinate-project-step:station:1",
+      "project": "station",
+      "step": 1,
+      "title": {
+        "en": "One fair point—or a whole family?",
+        "zh-TW": "等距點只有一個嗎？",
+        "es": "¿Un punto justo o toda una familia?"
+      },
+      "fingerprint": "7b18159bf48e7706e103b8a63098749b55682415d2062e01ccc5be19cd631611",
+      "sourceFiles": [
+        {
+          "path": "courses/coordinate-geometry/content.mjs",
+          "sha256": "c66b9dc4928d442d7abdad184419cf66916b64a233437c72a65138853e84b4df"
+        },
+        {
+          "path": "courses/coordinate-geometry/core.mjs",
+          "sha256": "1b08c5999dab407b1cb78ab1c4b6dd856d3f6ee84398026cded01ad72e1d849d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": []
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/coordinate-core.test.mjs"
+      }
+    },
+    {
+      "id": "coordinate-project-step:station:2",
+      "project": "station",
+      "step": 2,
+      "title": {
+        "en": "Give the pattern an equation",
+        "zh-TW": "把規律寫成方程式",
+        "es": "Dale una ecuación al patrón"
+      },
+      "fingerprint": "12af09fc7517c393d2a7482339bcb611e483c941f386498f897ac56d78a02cc5",
+      "sourceFiles": [
+        {
+          "path": "courses/coordinate-geometry/content.mjs",
+          "sha256": "c66b9dc4928d442d7abdad184419cf66916b64a233437c72a65138853e84b4df"
+        },
+        {
+          "path": "courses/coordinate-geometry/core.mjs",
+          "sha256": "1b08c5999dab407b1cb78ab1c4b6dd856d3f6ee84398026cded01ad72e1d849d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": []
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/coordinate-core.test.mjs"
+      }
+    },
+    {
+      "id": "coordinate-project-step:station:3",
+      "project": "station",
+      "step": 3,
+      "title": {
+        "en": "Meet the path, too",
+        "zh-TW": "同時符合步道限制",
+        "es": "Cumple también con el sendero"
+      },
+      "fingerprint": "f337de4765fbe398bc707cc89f07a0f3e5d4b46203b20081afdfc75732f70660",
+      "sourceFiles": [
+        {
+          "path": "courses/coordinate-geometry/content.mjs",
+          "sha256": "c66b9dc4928d442d7abdad184419cf66916b64a233437c72a65138853e84b4df"
+        },
+        {
+          "path": "courses/coordinate-geometry/core.mjs",
+          "sha256": "1b08c5999dab407b1cb78ab1c4b6dd856d3f6ee84398026cded01ad72e1d849d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": []
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/coordinate-core.test.mjs"
+      }
+    },
+    {
+      "id": "coordinate-project-step:station:4",
+      "project": "station",
+      "step": 4,
+      "title": {
+        "en": "A gate moves. Rebuild your rule.",
+        "zh-TW": "入口移動，規律也要重建",
+        "es": "Una entrada cambia. Reconstruye la regla."
+      },
+      "fingerprint": "f793ae570837bebccca023c033d52bd0739d1bc4b0fdbec09a7b7be0ed66ad7d",
+      "sourceFiles": [
+        {
+          "path": "courses/coordinate-geometry/content.mjs",
+          "sha256": "c66b9dc4928d442d7abdad184419cf66916b64a233437c72a65138853e84b4df"
+        },
+        {
+          "path": "courses/coordinate-geometry/core.mjs",
+          "sha256": "1b08c5999dab407b1cb78ab1c4b6dd856d3f6ee84398026cded01ad72e1d849d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": []
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/coordinate-core.test.mjs"
+      }
+    },
+    {
+      "id": "coordinate-project-step:station:5",
+      "project": "station",
+      "step": 5,
+      "title": {
+        "en": "Deliver the revised station plan",
+        "zh-TW": "交出修改後的集合方案",
+        "es": "Entrega el diseño revisado"
+      },
+      "fingerprint": "c8f77f7cae7dcc9dd7ad51a3dcc2f58c5b5118118ced7f6caa571bd7cad8311b",
+      "sourceFiles": [
+        {
+          "path": "courses/coordinate-geometry/content.mjs",
+          "sha256": "c66b9dc4928d442d7abdad184419cf66916b64a233437c72a65138853e84b4df"
+        },
+        {
+          "path": "courses/coordinate-geometry/core.mjs",
+          "sha256": "1b08c5999dab407b1cb78ab1c4b6dd856d3f6ee84398026cded01ad72e1d849d"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": []
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/coordinate-core.test.mjs"
+      }
+    }
+  ]
+}

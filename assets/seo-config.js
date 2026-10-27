@@ -11,6 +11,7 @@ const COURSES={
   'algebra-1':['/courses/algebra-1/','Algebra I','Álgebra I','Explore equations, linear functions, systems, and quadratic roots with introductory activities.','Explora ecuaciones, funciones lineales, sistemas y raíces cuadráticas con actividades introductorias.'],
   geometry:['/courses/geometry/','Geometry','Geometría','Review angles, triangle relationships, similarity, and measurement with introductory activities.','Repasa ángulos, relaciones entre triángulos, semejanza y medición con actividades introductorias.'],
   'algebra-2':['/courses/algebra-2/','Algebra II','Álgebra II','Explore polynomial factors, rational expressions, exponentials, and logarithms in introductory lessons.','Explora factores de polinomios, expresiones racionales, funciones exponenciales y logaritmos en lecciones introductorias.'],
+  'coordinate-geometry':['/courses/coordinate-geometry/','Coordinate Geometry','Geometría analítica','Connect coordinates, distance and equations through two guided projects with six steps each.','Relaciona coordenadas, distancias y ecuaciones mediante dos proyectos guiados de seis pasos cada uno.'],
   af01:['/modules/af01/dist/','Pre-calculus','Precálculo','Connect functions to graphs, angles, and growth through selected introductory activities.','Relaciona las funciones con sus gráficas, los ángulos y el crecimiento mediante actividades introductorias seleccionadas.'],
   ad01:['/modules/ad01/dist/','Calculus','Cálculo','Explore limits, derivatives, and accumulation through interactive graphs and introductory questions.','Explora límites, derivadas y acumulación mediante gráficas interactivas y preguntas introductorias.'],
   ae01:['/modules/ae01/dist/','Statistics','Estadística','Read distributions, compare summaries, and examine study design with introductory statistics activities.','Interpreta distribuciones, compara resúmenes de datos y examina el diseño de estudios con actividades introductorias de estadística.'],
@@ -39,6 +40,8 @@ const PAGES={
   '/courses/physics/':{en:['Introductory Physics','Explore selected introductory physics models and questions.'],es:['Introducción a la física','Explora modelos y preguntas seleccionados de física introductoria.']},
 };
 for(const c of Object.values(COURSES))PAGES[c[0]]={en:[c[1],c[3]],es:[c[2],c[4]],sitemap:true};
+PAGES['/courses/coordinate-geometry/'].locales=['en','es','zh-Hant'];
+PAGES['/courses/coordinate-geometry/']['zh-Hant']=['解析幾何','透過兩個各六步的引導式專題，連接座標、距離與方程式。'];
 const ACTIVITIES={
   '/checks/':{en:'Test Your Understanding',es:'Comprueba tu comprensión'},
   '/diagnostics/':{en:'Test Your Understanding',es:'Comprueba tu comprensión'},
@@ -56,7 +59,7 @@ function resolve(input,actualLocale){
   const locale=PAGES[pathname]?.fixedLocale||(supported.includes(actualLocale)?actualLocale:supported.includes(url.searchParams.get('lang'))?url.searchParams.get('lang'):'en');
   let page=PAGES[pathname],moduleId=null;
   if(ACTIVITIES[pathname]){
-    const id=url.searchParams.get('module'),valid=pathname==='/checks/'?['ab01','ae01','af01','ac01','geometry','algebra-2'].includes(id):pathname==='/foundations/'?FOUNDATION_IDS.has(id):Object.hasOwn(COURSES,id)&&id!=='number-theory'&&id!=='ac01'||id==='physics';
+    const id=url.searchParams.get('module'),valid=pathname==='/checks/'?['ab01','ae01','af01','ac01','geometry','algebra-2'].includes(id):pathname==='/foundations/'?FOUNDATION_IDS.has(id):Object.hasOwn(COURSES,id)&&id!=='number-theory'&&id!=='ac01'&&id!=='coordinate-geometry'||id==='physics';
     const title=id==='aa01'?(locale==='es'?'Preálgebra y Álgebra I':'Pre-Algebra and Algebra I'):id==='physics'?(locale==='es'?'Física':'Physics'):COURSES[id]?.[locale==='es'?2:1];
     moduleId=valid?id:null;
     const label=ACTIVITIES[pathname][locale];

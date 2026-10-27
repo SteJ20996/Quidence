@@ -2,7 +2,7 @@
 const tr=(en,es,zh)=>({en,es,zh});
 const node=(id,x,y,title,kind,icon,desc,extra=[])=>({id,x,y,title,kind,icon,desc,extra});
 const maps=[
-{id:'school',number:'01',name:tr('School Mathematics','Matemáticas escolares','學校數學'),count:4,
+{id:'school',number:'01',name:tr('School Mathematics','Matemáticas escolares','學校數學'),count:5,
  intro:tr('A few strong foundations. More than one way forward.','Bases sólidas. Más de un camino para avanzar.','先站穩基礎，再選擇適合自己的路。'),
  note:tr('Algebra and geometry connect; they do not have to be studied in one fixed order.','El álgebra y la geometría se conectan; no exigen un único orden de estudio.','代數與幾何彼此連接，並不只有一種固定的學習順序。'),
  selected:'algebra1',nodes:[
@@ -14,7 +14,7 @@ const maps=[
  node('algebra2',980,225,tr('Algebra II','Álgebra II','代數 II'),'course','parabola',tr('An available course: polynomials, rational restrictions, exponentials and logarithms.','Curso disponible: polinomios, restricciones de expresiones racionales, exponenciales y logaritmos.','已開放課程：多項式、有理式限制、指數與對數。')),
  node('shapes',20,535,tr('Shapes & measurement','Figuras y medición','圖形與測量'),'concept','shapes',tr('Length, angle, area, volume and spatial relationships.','Longitud, ángulos, área, volumen y relaciones espaciales.','長度、角度、面積、體積與空間關係。')),
  node('geometry',500,535,tr('Geometry','Geometría','幾何'),'course','triangle',tr('An available course: angles, triangles, similarity and measurement.','Curso disponible: ángulos, triángulos, semejanza y medición.','已開放課程：角度、三角形、相似與測量。')),
- node('coordinate',980,535,tr('Coordinate geometry','Geometría analítica','座標幾何'),'concept','axes',tr('Use coordinates to connect algebraic relationships and geometric figures.','Usa coordenadas para relacionar el álgebra con las figuras geométricas.','用座標連接代數關係和幾何圖形。')),
+ node('coordinate',980,535,tr('Coordinate geometry','Geometría analítica','解析幾何'),'course','axes',tr('Use coordinates to connect algebraic relationships and geometric figures.','Usa coordenadas para relacionar el álgebra con las figuras geométricas.','用座標連接代數關係和幾何圖形。')),
  node('data',500,10,tr('Data & graphs','Datos y gráficas','資料與圖表'),'concept','bars',tr('Read scales and representations; this connects to probability and statistics.','Lee escalas y representaciones; se conecta con probabilidad y estadística.','閱讀刻度與資料表示，延伸至機率與統計。'))
  ],edges:[['arithmetic','fractions'],['arithmetic','signed'],['fractions','prealgebra'],['signed','prealgebra'],['prealgebra','algebra1'],['algebra1','algebra2'],['shapes','geometry'],['geometry','coordinate'],['algebra1','coordinate','related'],['fractions','data','related']]},
 {id:'further',number:'02',name:tr('Further Mathematics','Matemáticas avanzadas','進階數學'),count:6,
@@ -56,9 +56,9 @@ const maps=[
  ],edges:[['mathbridge','physics1'],['physics1','physics2'],['physics1','motion'],['physics1','energy'],['physics2','heat'],['physics2','fields'],['physics2','waves'],['motion','mechanics','related'],['energy','mechanics','related'],['heat','thermal','related'],['mechanics','relativity','related'],['waves','quantum','related'],['fields','materials','related'],['thermal','materials','related'],['quantum','materials','related']]}
 ];
 
-const bindings={prealgebra:'pre-algebra',algebra1:'algebra-1',algebra2:'algebra-2',geometry:'geometry',precalc:'af01',linear:'ab01',calculus:'ad01',game:'ac01',number:'number-theory',statistics:'ae01',physics1:'physics-1',physics2:'physics-2'};for(const m of maps)for(const n of m.nodes)if(n.kind==='course')n.module=bindings[n.id];
+const bindings={prealgebra:'pre-algebra',algebra1:'algebra-1',algebra2:'algebra-2',geometry:'geometry',coordinate:'coordinate-geometry',precalc:'af01',linear:'ab01',calculus:'ad01',game:'ac01',number:'number-theory',statistics:'ae01',physics1:'physics-1',physics2:'physics-2'};for(const m of maps)for(const n of m.nodes)if(n.kind==='course')n.module=bindings[n.id];
 // Suggested starting courses only, never promises of a complete advanced course.
-const related={arithmetic:'pre-algebra',fractions:'pre-algebra',signed:'pre-algebra',shapes:'geometry',coordinate:'geometry',data:'ae01',schoolbridge:'pre-algebra',proof:'number-theory',probability:'ae01',multivar:'ad01',analysis:'ad01',algebra:'number-theory',space:'geometry',applied:'ae01',mathbridge:'algebra-1',motion:'physics-1',energy:'physics-1',heat:'physics-2',fields:'physics-2',waves:'physics-2',mechanics:'physics-1',thermal:'physics-2',relativity:'physics-1',quantum:'physics-2',materials:'physics-2'};
+const related={arithmetic:'pre-algebra',fractions:'pre-algebra',signed:'pre-algebra',shapes:'geometry',coordinate:'coordinate-geometry',data:'ae01',schoolbridge:'pre-algebra',proof:'number-theory',probability:'ae01',multivar:'ad01',analysis:'ad01',algebra:'number-theory',space:'geometry',applied:'ae01',mathbridge:'algebra-1',motion:'physics-1',energy:'physics-1',heat:'physics-2',fields:'physics-2',waves:'physics-2',mechanics:'physics-1',thermal:'physics-2',relativity:'physics-1',quantum:'physics-2',materials:'physics-2'};
 for(const m of maps)for(const n of m.nodes)if(!n.module)n.relatedModule=related[n.id];
 const api={maps};if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceCartoonMapData=api;})(typeof window==='undefined'?globalThis:window);
 

@@ -1,5 +1,23 @@
 (function(root,factory){const api=factory(root);if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceI18n=api;})(typeof window==='object'?window:globalThis,root=>{
 'use strict';
+// COORDINATE_UI_ES_START
+const coordinateUI=Object.freeze({
+  "Coordinate Geometry": "Geometría analítica",
+  "COORDINATE GEOMETRY": "GEOMETRÍA ANALÍTICA",
+  "Start Coordinate Geometry": "Empezar Geometría analítica",
+  "High school → university bridge": "Puente entre secundaria y universidad",
+  "Connect coordinates, distance and equations through two guided projects.": "Relaciona coordenadas, distancias y ecuaciones mediante dos proyectos guiados.",
+  "Two projects with six steps each. Arithmetic and simple equations are enough to start; coordinates and distance are introduced within the first project. Later spatial and vector projects are planned.": "Dos proyectos de seis pasos cada uno. Para empezar bastan las operaciones básicas y las ecuaciones sencillas; el primer proyecto introduce las coordenadas y la distancia. Los proyectos posteriores de espacio y vectores están en preparación.",
+  "Explore coordinate projects →": "Explorar proyectos de geometría analítica →",
+  "Related coordinate geometry projects →": "Proyectos relacionados de geometría analítica →",
+  "Related coordinate geometry projects ↗": "Proyectos relacionados de geometría analítica ↗",
+  "Coordinate Geometry illustration": "Ilustración de geometría analítica",
+  "Eleven mathematics courses and two physics foundations courses · 52 diagnostic problems, 20 field projects, two Coordinate Geometry projects, 10 Number Theory proof projects, two Game Theory projects and one case study, and separate 15-question foundation checks in nine tracks. Coordinate Geometry and Number Theory keep separate project notebooks; explanations and proofs remain pending review.": "Once cursos de matemáticas y dos cursos de fundamentos de física · 52 problemas de diagnóstico, 20 proyectos de aplicación, dos proyectos de geometría analítica, 10 proyectos de demostración de teoría de números, dos proyectos de teoría de juegos y un caso de estudio, y evaluaciones de fundamentos de 15 preguntas en nueve áreas. La geometría analítica y la teoría de números tienen cuadernos de proyectos separados; las explicaciones y demostraciones quedan pendientes de revisión.",
+  "Coordinate Geometry projects": "Proyectos de geometría analítica",
+  "Explore coordinate projects": "Explorar proyectos de geometría analítica",
+  "Guided projects": "Proyectos guiados"
+});
+// COORDINATE_UI_ES_END
 const KEY='quidence_ui_locale_v1',normalize=s=>String(s??'').replace(/\s+/g,' ').trim();
 const protectedSelector='[data-no-translate],textarea,input,pre,code,blockquote,[contenteditable],.student-work,.f-quote,.f-answer-text';
 const textMemory=new WeakMap(),attributeMemory=new WeakMap(),imageMemory=new WeakMap();
@@ -10,7 +28,7 @@ const fixedEnglish=root.document?.documentElement?.getAttribute('data-fixed-lang
 function preferredLocale(){try{return root.localStorage.getItem(KEY)==='es'?'es':'en';}catch{return 'en';}}
 const markdownMemory=new WeakMap();
 const catalog=()=>root.QuidenceSpanish||{};
-const caption=source=>{const direct=catalog()[source]??catalog()[source+'.'];return direct===undefined?null:direct;};
+const caption=source=>{const direct=coordinateUI[source]??coordinateUI[source+'.']??catalog()[source]??catalog()[source+'.'];return direct===undefined?null:direct;};
 let quantitiesSource=null,quantities=[],quantityIndex=new Map();
 const quantityBucket=key=>key.match(/^[^\s\d−+.-]+/)?.[0]||'#number';
 function quantityCandidates(key){return quantityIndex.get(quantityBucket(key))||[];}
@@ -120,7 +138,7 @@ function template(key){
 let uppercaseCatalog=null,uppercaseIndex=null,memoCatalog=null;
 const memo=new Map();
 function translate(key,track=true){
- const direct=catalog()[key];if(direct!==undefined)return direct;
+ const direct=coordinateUI[key]??catalog()[key];if(direct!==undefined)return direct;
  if(memoCatalog!==catalog()){memoCatalog=catalog();memo.clear();}
  if(memo.has(key)){const out=memo.get(key);if(track&&out===key&&/[A-Za-z]{3}/.test(key)&&!quantityCandidates(key).some(([pattern])=>pattern.test(key)))missing.add(key);return out;}
  for(const mark of ['.',':'])if(catalog()[key+mark]!==undefined)return catalog()[key+mark].replace(/[.:]$/,'');

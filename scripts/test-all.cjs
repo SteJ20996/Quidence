@@ -29,3 +29,5 @@ const dialogue=spawnSync(process.execPath,['--test',path.join(__dirname,'../test
 const voice=require('node:child_process').spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/math-voice-release.test.cjs'),path.join(__dirname,'../demos/college-voice-lab/tests/models.test.js')],{stdio:'inherit'});if(voice.status!==0)process.exit(voice.status??1);
 
 const speech=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/speech-review.test.cjs')],{stdio:'inherit'});if(speech.status!==0)process.exit(speech.status??1);
+
+const coordinate=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/coordinate-core.test.mjs'),path.join(__dirname,'../tests/coordinate-content.test.mjs'),path.join(__dirname,'../tests/coordinate-integration.test.cjs')],{stdio:'inherit'});if(coordinate.status!==0)process.exit(coordinate.status??1);

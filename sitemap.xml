@@ -106,6 +106,27 @@
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/algebra-2/?lang=es" />
   </url>
   <url>
+    <loc>https://www.quidence.com/courses/coordinate-geometry/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/coordinate-geometry/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/coordinate-geometry/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.quidence.com/courses/coordinate-geometry/?lang=zh-Hant" />
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/coordinate-geometry/?lang=es" />
+  </url>
+  <url>
+    <loc>https://www.quidence.com/courses/coordinate-geometry/?lang=es</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/coordinate-geometry/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/coordinate-geometry/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.quidence.com/courses/coordinate-geometry/?lang=zh-Hant" />
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/coordinate-geometry/?lang=es" />
+  </url>
+  <url>
+    <loc>https://www.quidence.com/courses/coordinate-geometry/?lang=zh-Hant</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/coordinate-geometry/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/coordinate-geometry/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://www.quidence.com/courses/coordinate-geometry/?lang=zh-Hant" />
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/coordinate-geometry/?lang=es" />
+  </url>
+  <url>
     <loc>https://www.quidence.com/modules/af01/dist/?lang=en</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/modules/af01/dist/?lang=en" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/modules/af01/dist/?lang=es" />
