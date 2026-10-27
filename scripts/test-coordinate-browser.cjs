@@ -8,7 +8,7 @@ const KEY='quidence-coordinate-project-studio-v1',RAW='Original explanation — 
    const c=await browser.newContext({viewport:{width,height:960}}),p=await c.newPage();p.on('pageerror',e=>errors.push(e.message));
    await p.addInitScript(({theme,lang})=>{localStorage.setItem('quidence_ui_theme_v1',theme);localStorage.setItem('quidence_ui_locale_v1',lang==='es'?'es':'en');},{theme,lang});
    await p.goto(origin+'/courses/coordinate-geometry/?lang='+lang);await p.locator('[data-action="open"][data-project="plan"]').waitFor();
-   assert.equal(await p.locator('#quidence-language').inputValue(),lang==='zh-Hant'?'zh-TW':lang);
+   assert.equal(await p.locator('#quidence-language').inputValue(),lang==='zh-Hant'?'zh-TW':lang);await p.evaluate(()=>QuidenceI18n.apply());assert.deepEqual(await p.evaluate(()=>QuidenceI18n.missing),[]);
    for(const project of ['plan','station']){
     if(project==='station')await p.locator('.nav-button[data-action="home"]').click();
     await p.locator('[data-action="open"][data-project="'+project+'"]').click();
