@@ -15,6 +15,7 @@ for(const file of ['app.js','content.js','engine.js','style.css'])reportAssets.a
 for(const file of ['app.js','matrix-guide.js','style.css'])reportAssets.add('modules/ab01/dist/'+file);
 for(const file of ['app.js','content.js','core.js','style.css'])reportAssets.add('modules/ac01/dist/projects/'+file);
 for(const file of ['checks/app.js','checks/style.css','explain/app.js','explain/core.js','explain/views.js','explain/recorder.js','explain/style.css','assets/math-voice.css'])reportAssets.add(file);
+for(const name of ['app.mjs','content.mjs','core.mjs','style.css'])reportAssets.add('courses/coordinate-geometry/'+name);
 reportAssets.add('assets/speech-review.js');reportAssets.add('assets/speech-review.css');
 reportAssets.add('assets/course-catalog.js');reportAssets.add('assets/sync-policy.js');
 reportAssets.add('assets/exploration.css');reportAssets.add('assets/seo-config.js');reportAssets.add('assets/seo.js');
@@ -27,7 +28,7 @@ function versionActivities(check = false) {
   for (const file of entries) {
     const source = fs.readFileSync(path.join(root, file), 'utf8');
     const html = source.replace(/data-es-catalog="[^"]*"/g, 'data-es-catalog="?v=' + digest(fs.readFileSync(path.join(root, 'assets/i18n-es.js'))) + '"').replace(/<html\b[^>]*>/, tag => tag.replace(/\sdata-activity-version="[^"]*"/, '').replace(/>$/, ' data-activity-version="' + uiVersion + '">'))
-      .replace(/(src|href)="([^"?#]+\.(?:js|css|svg|png))(?:\?[^" ]*)?"/g, (_, attr, reference) => {
+      .replace(/(src|href)="([^"?#]+\.(?:js|mjs|css|svg|png))(?:\?[^" ]*)?"/g, (_, attr, reference) => {
         if (/^(?:[a-z]+:|\/\/|#)/i.test(reference)) return attr+'="'+reference+'"';
         const hash = digest(fs.readFileSync(path.resolve(root, path.dirname(file), reference)));
         return attr + '="' + reference + '?v=' + hash + '"';
@@ -41,7 +42,7 @@ function versionActivities(check = false) {
   const publicHTML = require('./build-static-release.cjs').files().filter(file => file.endsWith('.html'));
   for (const file of publicHTML) {
     const source = updates.get(file) ?? fs.readFileSync(path.join(root, file), 'utf8');
-    const html = source.replace(/data-es-catalog="[^"]*"/g, 'data-es-catalog="?v=' + digest(fs.readFileSync(path.join(root, 'assets/i18n-es.js'))) + '"').replace(/(src|href)="([^"?]+\.(?:js|css|svg|png))(?:\?[^" ]*)?"/g, (match, attr, reference) => {
+    const html = source.replace(/data-es-catalog="[^"]*"/g, 'data-es-catalog="?v=' + digest(fs.readFileSync(path.join(root, 'assets/i18n-es.js'))) + '"').replace(/(src|href)="([^"?]+\.(?:js|mjs|css|svg|png))(?:\?[^" ]*)?"/g, (match, attr, reference) => {
       const resolved = path.resolve(root, path.dirname(file), reference);
       if (!reportAssets.has(path.relative(root, resolved))) return match;
       const hash = digest(fs.readFileSync(resolved));

@@ -36,7 +36,7 @@ function mount(document,window){
   }catch{blockedNotice();}
  });
  function entryLinks(){const es=window.QuidenceI18n?.locale==='es';
-  for(const [a,title,detail,symbol]of [[course,es?'Empieza a explorar':'Start exploring',es?'Lecciones y ejemplos visuales':'Lessons & visual examples','↗'],[foundation,es?'Comprueba tus bases':'Check my foundations',es?'15 preguntas · conserva tus respuestas':'15 questions · keep your answers','✓']]){
+  for(const [a,title,detail,symbol]of [[course,SUBJECTS[goal.subject].projectOnly?(es?'Explora proyectos':'Explore projects'):(es?'Empieza a explorar':'Start exploring'),SUBJECTS[goal.subject].projectOnly?(es?'Dos proyectos · seis pasos conectados cada uno':'Two projects · six connected steps each'):(es?'Lecciones y ejemplos visuales':'Lessons & visual examples'),'↗'],[foundation,es?'Comprueba tus bases':'Check my foundations',es?'15 preguntas · conserva tus respuestas':'15 questions · keep your answers','✓']]){
    a.setAttribute('data-no-translate','');a.classList.add('q-entry-link');a.replaceChildren();const icon=document.createElement('span');icon.className='q-entry-icon';icon.setAttribute('aria-hidden','true');icon.textContent=symbol;const words=document.createElement('span'),heading=document.createElement('strong'),note=document.createElement('small');heading.textContent=title;note.textContent=detail;words.append(heading,note);a.append(icon,words);
   }
  }

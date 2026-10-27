@@ -1,0 +1,25 @@
+name: Coordinate Geometry projects
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  coordinate-geometry-projects:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Check project mathematics and storage integration
+        run: node --test tests/coordinate-core.test.mjs tests/coordinate-content.test.mjs tests/coordinate-integration.test.cjs
+      - name: Check three languages, four themes, dictation review and shared entry points
+        run: node scripts/test-coordinate-browser.cjs

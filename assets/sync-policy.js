@@ -2,6 +2,7 @@
 'use strict';
 // Legacy persistence identifiers are intentionally retained; see BRAND_MIGRATION.md.
 const KEYS={
+ 'quidence-coordinate-project-studio-v1':{label:'Coordinate Geometry projects'},
  'quidence-text-dictation-v1':{label:'Reviewed English dictation'},
  'quidence-college-voice-demo-v1':{label:'Math Voice Lab: six subjects'},
  'quidence_intuition_v1':{label:'Intuition Lab',schema:'quidence_intuition_v1'},

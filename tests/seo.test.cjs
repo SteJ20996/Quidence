@@ -21,7 +21,7 @@ test('all active courses have unique bilingual metadata and reciprocal alternati
     const p=SEO.resolve('/'+c.course+'?lang='+language);
     assert.equal(p.pathname,SEO.COURSES[id][0]);assert(p.sitemap);assert(!p.noindex);
     assert(!titles.has(p.title));titles.add(p.title);assert(p.description.length>45);
-    for(const [hreflang,href]of p.alternates){const q=SEO.resolve(href);assert.deepEqual(q.alternates,p.alternates);assert.equal(q.locale,hreflang==='en'?'en':'es');}
+    for(const [hreflang,href]of p.alternates){const q=SEO.resolve(href);assert.deepEqual(q.alternates,p.alternates);assert.equal(q.locale,hreflang==='es-MX'?'es':hreflang);}
     assert(p.alternates.some(([l])=>l==='es-MX'));
   }
 });
