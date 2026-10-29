@@ -15,7 +15,7 @@ for(const file of ['app.js','content.js','engine.js','style.css'])reportAssets.a
 for(const file of ['app.js','matrix-guide.js','style.css'])reportAssets.add('modules/ab01/dist/'+file);
 for(const file of ['app.js','content.js','core.js','style.css'])reportAssets.add('modules/ac01/dist/projects/'+file);
 for(const file of ['checks/app.js','checks/style.css','explain/app.js','explain/core.js','explain/views.js','explain/recorder.js','explain/style.css','assets/math-voice.css'])reportAssets.add(file);
-for(const name of ['app.mjs','content.mjs','core.mjs','style.css'])reportAssets.add('courses/coordinate-geometry/'+name);
+for(const name of ['app.mjs','content.mjs','core.mjs','lessons.mjs','style.css'])reportAssets.add('courses/coordinate-geometry/'+name);
 reportAssets.add('assets/speech-review.js');reportAssets.add('assets/speech-review.css');
 reportAssets.add('assets/course-catalog.js');reportAssets.add('assets/sync-policy.js');
 reportAssets.add('assets/exploration.css');reportAssets.add('assets/seo-config.js');reportAssets.add('assets/seo.js');

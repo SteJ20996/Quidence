@@ -7,7 +7,7 @@ function build(check=false){
  const localized=localeSource.replace(/\/\/ COORDINATE_UI_ES_START[\s\S]*?\/\/ COORDINATE_UI_ES_END/,block);
  if(localized!==localeSource){if(check)throw Error('Coordinate Geometry UI translations are stale.');fs.writeFileSync(localeFile,localized);}
  const file=path.join(dir,'app.mjs'),source=fs.readFileSync(file,'utf8');
- const updated=source.replace(/from '\.\/(core|content)\.mjs(?:\?[^']*)?'/g,(_,name)=>"from './"+name+'.mjs?v='+createHash('sha256').update(fs.readFileSync(path.join(dir,name+'.mjs'))).digest('hex').slice(0,12)+"'");
+ const updated=source.replace(/from '\.\/(core|content|lessons)\.mjs(?:\?[^']*)?'/g,(_,name)=>"from './"+name+'.mjs?v='+createHash('sha256').update(fs.readFileSync(path.join(dir,name+'.mjs'))).digest('hex').slice(0,12)+"'");
  if(updated!==source){if(check)throw Error('Coordinate Geometry imports are stale. Run node scripts/build-coordinate.cjs.');fs.writeFileSync(file,updated);}
  return{changed:Number(updated!==source)};
 }

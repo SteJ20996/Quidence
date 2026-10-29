@@ -16,11 +16,15 @@
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "3fce1684e6a52d6c7bdce56597eafeaa7cfbad0968fdddb4abef900fe7fac5ed"
+          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
-          "sha256": "04e92df274c545f21e88aab3ff7625dbbcd1e399b3b20315972eeec6c8608921"
+          "sha256": "06e23d8d269e87a271698d58f1e23d4cb5e98bf39720d7e252b9d3196faa48de"
+        },
+        {
+          "path": "courses/coordinate-geometry/lessons.mjs",
+          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
         }
       ],
       "sourceReview": {
@@ -46,11 +50,15 @@
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "3fce1684e6a52d6c7bdce56597eafeaa7cfbad0968fdddb4abef900fe7fac5ed"
+          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
-          "sha256": "04e92df274c545f21e88aab3ff7625dbbcd1e399b3b20315972eeec6c8608921"
+          "sha256": "06e23d8d269e87a271698d58f1e23d4cb5e98bf39720d7e252b9d3196faa48de"
+        },
+        {
+          "path": "courses/coordinate-geometry/lessons.mjs",
+          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
         }
       ],
       "sourceReview": {
@@ -76,11 +84,15 @@
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "3fce1684e6a52d6c7bdce56597eafeaa7cfbad0968fdddb4abef900fe7fac5ed"
+          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
-          "sha256": "04e92df274c545f21e88aab3ff7625dbbcd1e399b3b20315972eeec6c8608921"
+          "sha256": "06e23d8d269e87a271698d58f1e23d4cb5e98bf39720d7e252b9d3196faa48de"
+        },
+        {
+          "path": "courses/coordinate-geometry/lessons.mjs",
+          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
         }
       ],
       "sourceReview": {
@@ -106,11 +118,15 @@
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "3fce1684e6a52d6c7bdce56597eafeaa7cfbad0968fdddb4abef900fe7fac5ed"
+          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
-          "sha256": "04e92df274c545f21e88aab3ff7625dbbcd1e399b3b20315972eeec6c8608921"
+          "sha256": "06e23d8d269e87a271698d58f1e23d4cb5e98bf39720d7e252b9d3196faa48de"
+        },
+        {
+          "path": "courses/coordinate-geometry/lessons.mjs",
+          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
         }
       ],
       "sourceReview": {
@@ -136,11 +152,15 @@
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "3fce1684e6a52d6c7bdce56597eafeaa7cfbad0968fdddb4abef900fe7fac5ed"
+          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
-          "sha256": "04e92df274c545f21e88aab3ff7625dbbcd1e399b3b20315972eeec6c8608921"
+          "sha256": "06e23d8d269e87a271698d58f1e23d4cb5e98bf39720d7e252b9d3196faa48de"
+        },
+        {
+          "path": "courses/coordinate-geometry/lessons.mjs",
+          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
         }
       ],
       "sourceReview": {
@@ -166,11 +186,15 @@
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "3fce1684e6a52d6c7bdce56597eafeaa7cfbad0968fdddb4abef900fe7fac5ed"
+          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
-          "sha256": "04e92df274c545f21e88aab3ff7625dbbcd1e399b3b20315972eeec6c8608921"
+          "sha256": "06e23d8d269e87a271698d58f1e23d4cb5e98bf39720d7e252b9d3196faa48de"
+        },
+        {
+          "path": "courses/coordinate-geometry/lessons.mjs",
+          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
         }
       ],
       "sourceReview": {
@@ -196,11 +220,15 @@
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "3fce1684e6a52d6c7bdce56597eafeaa7cfbad0968fdddb4abef900fe7fac5ed"
+          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
-          "sha256": "04e92df274c545f21e88aab3ff7625dbbcd1e399b3b20315972eeec6c8608921"
+          "sha256": "06e23d8d269e87a271698d58f1e23d4cb5e98bf39720d7e252b9d3196faa48de"
+        },
+        {
+          "path": "courses/coordinate-geometry/lessons.mjs",
+          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
         }
       ],
       "sourceReview": {
@@ -226,11 +254,15 @@
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "3fce1684e6a52d6c7bdce56597eafeaa7cfbad0968fdddb4abef900fe7fac5ed"
+          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
-          "sha256": "04e92df274c545f21e88aab3ff7625dbbcd1e399b3b20315972eeec6c8608921"
+          "sha256": "06e23d8d269e87a271698d58f1e23d4cb5e98bf39720d7e252b9d3196faa48de"
+        },
+        {
+          "path": "courses/coordinate-geometry/lessons.mjs",
+          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
         }
       ],
       "sourceReview": {
@@ -256,11 +288,15 @@
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "3fce1684e6a52d6c7bdce56597eafeaa7cfbad0968fdddb4abef900fe7fac5ed"
+          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
-          "sha256": "04e92df274c545f21e88aab3ff7625dbbcd1e399b3b20315972eeec6c8608921"
+          "sha256": "06e23d8d269e87a271698d58f1e23d4cb5e98bf39720d7e252b9d3196faa48de"
+        },
+        {
+          "path": "courses/coordinate-geometry/lessons.mjs",
+          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
         }
       ],
       "sourceReview": {
@@ -286,11 +322,15 @@
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "3fce1684e6a52d6c7bdce56597eafeaa7cfbad0968fdddb4abef900fe7fac5ed"
+          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
-          "sha256": "04e92df274c545f21e88aab3ff7625dbbcd1e399b3b20315972eeec6c8608921"
+          "sha256": "06e23d8d269e87a271698d58f1e23d4cb5e98bf39720d7e252b9d3196faa48de"
+        },
+        {
+          "path": "courses/coordinate-geometry/lessons.mjs",
+          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
         }
       ],
       "sourceReview": {
@@ -316,11 +356,15 @@
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "3fce1684e6a52d6c7bdce56597eafeaa7cfbad0968fdddb4abef900fe7fac5ed"
+          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
-          "sha256": "04e92df274c545f21e88aab3ff7625dbbcd1e399b3b20315972eeec6c8608921"
+          "sha256": "06e23d8d269e87a271698d58f1e23d4cb5e98bf39720d7e252b9d3196faa48de"
+        },
+        {
+          "path": "courses/coordinate-geometry/lessons.mjs",
+          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
         }
       ],
       "sourceReview": {
@@ -346,11 +390,15 @@
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "3fce1684e6a52d6c7bdce56597eafeaa7cfbad0968fdddb4abef900fe7fac5ed"
+          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
-          "sha256": "04e92df274c545f21e88aab3ff7625dbbcd1e399b3b20315972eeec6c8608921"
+          "sha256": "06e23d8d269e87a271698d58f1e23d4cb5e98bf39720d7e252b9d3196faa48de"
+        },
+        {
+          "path": "courses/coordinate-geometry/lessons.mjs",
+          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
         }
       ],
       "sourceReview": {

@@ -20,6 +20,6 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - name: Check project mathematics and storage integration
-        run: node --test tests/coordinate-core.test.mjs tests/coordinate-content.test.mjs tests/coordinate-integration.test.cjs
+        run: node --test tests/coordinate-core.test.mjs tests/coordinate-content.test.mjs tests/coordinate-lessons.test.mjs tests/coordinate-integration.test.cjs
       - name: Check three languages, four themes, dictation review and shared entry points
         run: node scripts/test-coordinate-browser.cjs
