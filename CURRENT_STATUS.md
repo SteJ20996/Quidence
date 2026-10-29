@@ -1,3 +1,17 @@
+## 2026-10-29 · Status update
+
+Changes since the 2026-10-14 entries, with their release notes:
+
+- **Appearances:** Classic card rows follow the Physics 1 layout (#40), Geometric Studio is built from the approved reference (#41), the illustrated themes lose their outer frames (#43), and the desktop subject hub is wider in all four appearances (#44). The homepage interface from before the Intuition Lab view is restored, with a fixed Atlas Geometry pyramid and new Coordinate Geometry card art (#56). Cards note the activities a course does not have yet (#57). See [classic-card-rows-20261014.md](review/classic-card-rows-20261014.md) and [geometric-studio-20261014.md](review/geometric-studio-20261014.md).
+- **Game Theory:** bilingual projects and decision cases (#42).
+- **Knowledge map and Calculus:** map topics link to learning, Calculus has a dialogue route (#45) and a wider exploration interface (#47).
+- **Intuition Lab:** a third homepage view (#48, #49) with one design per appearance (#56). It now has 13 activities, one per subject. See [intuition-lab-integration.md](review/intuition-lab-integration.md).
+- **Voice:** voice dialogue activities stay in English without changing other language preferences (#46). The Math Voice Lab covers six subjects (#50–#52, #54), and reviewed English dictation is available in explanation fields (#53). See [AGENTS.md](AGENTS.md), [the Math Voice Lab README](demos/college-voice-lab/README.md) and [reviewed-dictation-20261026.md](review/reviewed-dictation-20261026.md).
+- **Coordinate Geometry:** two guided projects (#55), then a foundation check and understanding check (#59, with a card layout fix in #60), four lessons (#61), an Intuition Lab activity (#62) and a homepage projects link (#63). See [coordinate-geometry-integration.md](review/coordinate-geometry-integration.md) and the four 2026-10-29 notes in `review/`.
+- **Number Theory:** a four-problem understanding check (#58). See [number-theory-understanding-check-20261029.md](review/number-theory-understanding-check-20261029.md).
+
+Current inventory: 13 subject cards (5 School Mathematics, 6 Further Mathematics, 2 Science). The diagnostic bank has 60 current problems and 236 answer parts; Game Theory's 15-question check is separate. Every card has an understanding check and an Intuition Lab activity. Geometry and Algebra II have no foundation check yet. The 当前状态 section below still reflects the 2026-10-08 review, except for its inventory bullets, which are updated.
+
 ## 2026-10-14 · Remembered site-wide appearance
 
 Paper, Atlas and Studio are available on all 24 public pages. The shared head initializer restores the browser preference before styles load; live changes preserve locale, activity inputs and saved records. Portable reports embed the selected style and print on white paper. Validation and scope: [themes-2026-10-14.md](review/themes-2026-10-14.md).
@@ -68,8 +82,8 @@ Implemented scope, evidence and remaining conditions: [external-review-2026-10-1
 
 - 物理学习页课数从实际内容读取；八个原表格活动补上本项目绘制的 SVG，数值读数统一三位有效数字。修正源电荷固定约束、运动图等距刻度、导航间距和项目新标签页行为。手机表格已调整，仍待真实浏览器与 Safari 验收。
 
-- 八个数学学科、40 道诊断、16 个分步项目；经济学和博弈论不提供活动。
-- Science 现拆成 Physics 1 Foundations 与 Physics 2 Foundations。分别有 6/7 个学习单元、24/28 个活动、18/21 个学习题，各有 6 道多分量检查和 2 道项目。八个数学学科加两个物理基础课，当前主页共 52 道诊断、20 个项目；不宣称完整进阶课、实验课程或考试准备。
+- 2026-10-29 更新：11 个数学学科和 2 个物理基础课；诊断题库 60 道当前题、236 个答案分量，博弈论 15 题另计；20 个 field projects，另有数论 10 个、博弈论 2 个加 1 个决策案例、解析几何 2 个项目；Intuition Lab 13 个活动。博弈论已恢复，经济学不提供活动。
+- Science 现拆成 Physics 1 Foundations 与 Physics 2 Foundations。分别有 6/7 个学习单元、24/28 个活动、18/21 个学习题，各有 6 道多分量检查和 2 道项目。（10-08 时为八个数学学科加两个物理基础课，共 52 道诊断、20 个项目；当前数字见上一条。）不宣称完整进阶课、实验课程或考试准备。
 - 两个物理基础课分别关联当前 Physics 1/2 的部分主题；Physics 2 包含热学、电磁学、光学、波和光子。公开入口暂用中性名称；AP 相关产品表述需要另行完成商标样稿程序。原四单元 Physics、旧题和记录保留供历史读取，不自动迁入新科目。
 - 新物理活动从单变量比较推进到反例、约束和模型边界，均分开呈现预测、比较、解释。新题采用本项目编写的虚构情境；独立复算与自动流程验证已加入，仍需教师审题、学生试做和真机体验。分课版本及第三轮整改（PR #16）已按用户要求合并，域名正式发布另行核对。
 - 本地保存，账户及云同步暂停；备份、恢复预检查、删除记录、公用设备提醒。
