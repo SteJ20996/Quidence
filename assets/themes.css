@@ -50,17 +50,22 @@ html body[data-q-theme] .q-theme-bar {
 }
 .q-theme-label {font-weight:650}
 .q-theme-choices {display:flex;gap:5px;min-width:0}
+/* Each choice shows a small preview of its appearance. The selected one gets a tint, an outline and a
+   check badge on its preview; the font weight never changes, so no control moves between themes. */
 html body[data-q-theme] .q-theme-bar button {
-  display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;
-  margin:0;padding:8px 13px;border:1px solid var(--q-line);border-radius:999px;
+  position:relative;display:inline-flex;align-items:center;justify-content:flex-start;gap:9px;min-height:44px;text-align:left;
+  margin:0;padding:5px 12px 5px 5px;border:1px solid var(--q-line);border-radius:12px;
   font:inherit;font-weight:500;background:var(--q-paper);color:var(--q-ink);box-shadow:none;cursor:pointer;
 }
-html body[data-q-theme] .q-theme-bar button:hover {background:var(--q-mint);border-color:var(--q-primary)}
-html body[data-q-theme] .q-theme-bar button[aria-pressed="true"] {background:var(--q-primary);color:white;border-color:var(--q-primary);box-shadow:inset 0 0 0 1px var(--q-primary)}
-.q-theme-swatch {box-sizing:border-box;display:block;width:15px;height:15px;border:1px solid #fff9;border-radius:50%;flex:none}
-[data-theme-choice="paper"] .q-theme-swatch {background:linear-gradient(135deg,#f4e7be 50%,#88a178 50%)}
-[data-theme-choice="atlas"] .q-theme-swatch {background:linear-gradient(135deg,#eeebf5 50%,#7e9299 50%)}
-[data-theme-choice="studio"] .q-theme-swatch {background:linear-gradient(135deg,#e9a391 50%,#bbddd2 50%)}
+html body[data-q-theme] .q-theme-bar button:hover {border-color:var(--q-primary)}
+html body[data-q-theme] .q-theme-bar button[aria-pressed="true"] {background:var(--q-mint);border-color:var(--q-primary);box-shadow:inset 0 0 0 1px var(--q-primary)}
+html body[data-q-theme] .q-theme-bar button:focus-visible {outline:3px solid var(--q-focus);outline-offset:2px}
+.q-theme-thumb {display:block;flex:none;width:40px;height:29px;border-radius:7px;overflow:hidden;box-shadow:0 0 0 1px #0000001f}
+.q-theme-thumb svg {display:block;width:100%;height:100%}
+.q-theme-check {position:absolute;left:35px;top:calc(50% + 3px);display:grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--q-primary);color:#fff;box-shadow:0 0 0 2px var(--q-mint);visibility:hidden}
+html body[data-q-theme] .q-theme-bar button[aria-pressed="true"] .q-theme-check {visibility:visible}
+html body[data-q-theme] .q-theme-bar .q-theme-toggle {display:none}
+.q-theme-caret {display:grid;place-items:center;color:var(--q-muted)}
 .q-theme-note {margin-left:auto;font-size:12px;color:var(--q-muted)}
 html:not([data-ui-theme="classic"]) body[data-q-theme] .challenge-link {background:var(--q-mist);border-color:var(--q-control);color:var(--q-ink)}
 html:not([data-ui-theme="classic"]) body[data-q-theme] .project-link {background:var(--q-mint);color:var(--q-primary)}
@@ -89,13 +94,33 @@ html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card:nth-
 html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card:nth-child(3n+2) {border-top-color:#9386b8;background:#faf8ff}
 html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card:nth-child(3n) {border-top-color:#6d9d8e;background:#f4fbf7}
 html[data-ui-theme="studio"] body[data-q-theme].quidence-home .qf-page-heading::after {content:"";display:block;flex:0 0 68px;height:68px;border-radius:50% 50% 12% 50%;background:conic-gradient(#e9a391 0 25%,#bbddd2 0 50%,#e8e1f4 0 75%,#f3e4ac 0);transform:rotate(-12deg)}
+/* Tablets: the label and note share the first row; the choices fill an even grid below them. */
+@media(min-width:601px) and (max-width:959px) {
+  html body[data-q-theme] .q-theme-bar .q-theme-choices {order:3;flex-basis:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  html body[data-q-theme] .q-theme-bar .q-theme-choices button {min-width:0}
+  .q-theme-choices .q-theme-name {flex:1;min-width:0}
+  .q-theme-note {order:2;margin-left:auto}
+}
+@media(min-width:900px) and (max-width:959px) {
+  html body[data-q-theme] .q-theme-bar .q-theme-choices {grid-template-columns:repeat(4,minmax(0,1fr))}
+}
 @media(max-width:600px) {
-  html body[data-q-theme] .q-theme-bar {gap:8px;padding:10px 12px}
-  .q-theme-label {flex-basis:100%}
+  /* Phones: one button with the current appearance opens the same choices as a two-column grid. */
+  html body[data-q-theme] .q-theme-bar {gap:8px;padding:8px 12px}
+  .q-theme-label {flex:1}
+  html body[data-q-theme] .q-theme-bar .q-theme-toggle {display:inline-flex;padding-right:10px}
+  html body[data-q-theme] .q-theme-bar:not([data-open]) :is(.q-theme-choices,.q-theme-note) {display:none}
+  html body[data-q-theme] .q-theme-bar[data-open] .q-theme-choices {flex-basis:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  html body[data-q-theme] .q-theme-bar[data-open] .q-theme-choices button {min-width:0;padding-right:8px;line-height:1.2}
+  .q-theme-choices .q-theme-name {flex:1;min-width:0}
   .q-theme-note {margin-left:0;flex-basis:100%;font-size:11px}
-  html body[data-q-theme] .q-theme-bar button {padding:8px 11px}
   html body[data-q-theme].quidence-home .subject-card {padding:20px}
   html[data-ui-theme="studio"] body[data-q-theme].quidence-home .qf-page-heading::after {display:none}
+}
+@media(max-width:360px) {
+  /* The narrowest phones keep the label and the button on one line. */
+  html body[data-q-theme] .q-theme-bar .q-theme-toggle {gap:6px;padding-right:8px}
+  .q-theme-toggle .q-theme-thumb {width:32px;height:23px}
 }
 @media print {
   html body[data-q-theme] .q-theme-bar {display:none!important}
@@ -108,5 +133,4 @@ html body[data-q-theme] select#quidence-language {
 }
 
 :root[data-ui-theme="classic"]{--q-page:#f8f5ec;--q-paper:#fff;--q-ink:#20383e;--q-muted:#53666b;--q-line:#ddd7e6;--q-control:#6e8588;--q-teal:#153f44;--q-primary:#15565b;--q-mint:#ddf1e8;--q-mist:#eee9f5;--q-focus:#15565b}
-[data-theme-choice="classic"] .q-theme-swatch{background:linear-gradient(135deg,#eee9f5 50%,#15565b 50%)}
 .q-theme-choices{flex-wrap:wrap}
