@@ -219,7 +219,7 @@ function markdown(s){
 }
 function hydrate(value){
  // Every published set of entry subjects stays readable; hydrate adds the subjects added since.
- const entryLayouts=[['aa01','ab01','ac01','ad01'],['aa01','ab01','ac01','ad01','ae01','af01'],['aa01','ab01','ac01','ad01','ae01','af01','number-theory','physics-1','physics-2'],Object.keys(B.MODULES)];
+ const entryLayouts=[['aa01','ab01','ac01','ad01'],['aa01','ab01','ac01','ad01','ae01','af01'],['aa01','ab01','ac01','ad01','ae01','af01','number-theory','physics-1','physics-2'],['aa01','ab01','ac01','ad01','ae01','af01','number-theory','physics-1','physics-2','coordinate-geometry'],Object.keys(B.MODULES)];
  if(!object(value)||value.schema!==SCHEMA||!ENTRY_VERSIONS.includes(value.bankVersion)||!object(value.modules)||Object.keys(value.modules).some(id=>!B.MODULES[id])||(settings.challenge?Object.keys(B.HISTORY?.[value.bankVersion]||B.MODULES):['aa01','ab01','ac01','ad01']).some(id=>!value.modules[id])||!settings.challenge&&!entryLayouts.some(ids=>ids.length===Object.keys(value.modules).length&&ids.every(id=>Object.hasOwn(value.modules,id))))return null;
  const ids=new Set();
  for(const [module,m]of Object.entries(value.modules)){
