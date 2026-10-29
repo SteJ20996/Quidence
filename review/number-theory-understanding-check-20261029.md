@@ -34,3 +34,15 @@ One gap is shared with the other modules. The "Recheck after <field>. This resul
 - The diagnostics page offers no "Field projects" link for Number Theory. Its proof projects are on the course page, which "Start learning" already opens. `projects/?module=number-theory` stays out of search indexing; the check itself is indexable.
 - The homepage scope line now counts 56 diagnostic problems (English and Spanish).
 - The Number Theory card no longer shows "Understanding check: not available yet".
+
+## Validation
+
+Local runs used Node 22; CI uses the pinned 24.19.
+
+- `npm test`: 332 of 332 Node tests pass. This includes the 62-task math audit, the bank 6 → 7 compatibility test and the source ledger check.
+- All 14 browser suites in `checks.yml` pass in Chromium.
+  - Activity suite: 92 pages and 50 drafts across four widths, including the Number Theory check, with no page errors or failed requests.
+  - Spanish suite: 76 tasks and 21 reports with no English residue.
+  - Themes suite: the Classic card row alignment and the card-height rule still hold.
+- Screenshots in all four appearances at 1440px and 320px show no horizontal overflow in English or Spanish. At 320px the course page's two top-bar links stack, adding 31px to the bar.
+- Not checked: Safari and real devices.
