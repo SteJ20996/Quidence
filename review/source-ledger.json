@@ -569,14 +569,14 @@
       "module": "ab01",
       "taskId": "la-c01",
       "title": "A parameter changes the solution set",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "6703f6d63d418da999cbecfa5783dc9e95104090722a129c62bc11c5984c4582",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -609,6 +609,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -629,14 +637,14 @@
       "module": "ab01",
       "taskId": "la-c02",
       "title": "A complete solution, not just one vector",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "f31e2b81d0b5843844b6897d4ca214b5fcf4f3e6b13680a0942ae4ed186f2ae4",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -669,6 +677,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -689,14 +705,14 @@
       "module": "ab01",
       "taskId": "la-c03",
       "title": "Compose and then undo two maps",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "42f52c7f7d433b800d30433ff6f15310c07ea09415196bcfe1b4ae9fa485de59",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -729,6 +745,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -749,14 +773,14 @@
       "module": "ab01",
       "taskId": "la-c04",
       "title": "The same map in a different basis",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "539151d341affaa5fdaed75d9cac0b40a00eab28f599e16fffe3250ea5da71e2",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -789,6 +813,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -809,14 +841,14 @@
       "module": "ab01",
       "taskId": "la-c05",
       "title": "Project and test the residual",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "91ef92117af179eb09ea809461077459170b2b37c9f1b3de005ff6e209c16e49",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -849,6 +881,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -869,14 +909,14 @@
       "module": "ab01",
       "taskId": "la-c06",
       "title": "Fit a line without pretending it is exact",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "c261edca701c8ed58f82383a5a927488c89b2d1a09d5d3c52137e8380c1e748d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -909,6 +949,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -929,14 +977,14 @@
       "module": "ab01",
       "taskId": "la-c07",
       "title": "Eigenvectors are more than coordinate-wise ratios",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "b23453e0cbed0e9fac504f460c8ebf7ab6c68d3408a25030c8c2f144b377023e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -969,6 +1017,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -989,14 +1045,14 @@
       "module": "ab01",
       "taskId": "la-c08",
       "title": "Area change and orientation are different signs",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "571eb5d4b5c31869f0a37d9713ae7c77739a0df16736d679e13725a7448427e8",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1029,6 +1085,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1049,14 +1113,14 @@
       "module": "ab01",
       "taskId": "la-c09",
       "title": "An unreachable target still has a closest image",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "23024c36819588c6f58165d9745974798111b05a4bc06862f5357528b95f86df",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1089,6 +1153,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1109,14 +1181,14 @@
       "module": "ab01",
       "taskId": "la-c10",
       "title": "A translation hidden inside a map",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "c8647aaa76cc602c6fe3cdca18af433d9e27554a015e69c8ee3e9a42972b3c8a",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1149,6 +1221,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1169,14 +1249,14 @@
       "module": "ab01",
       "taskId": "la-c11",
       "title": "A zero determinant does not finish the analysis",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "8674d6b6d72d21ccf8835f62bf5fe0171bb791103b29438e66d4fbaabca8a16e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1209,6 +1289,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1229,14 +1317,14 @@
       "module": "ab01",
       "taskId": "la-c12",
       "title": "Subspace tests must survive addition",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "ce9c4728bab46107f0cf0aac520cfd96613a93461c3080b4dd8582191a041370",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1269,6 +1357,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1289,14 +1385,14 @@
       "module": "ad01",
       "taskId": "ca-c01",
       "title": "Continuity is only the first condition",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "e8b9b69806d0d593f6962c80b1e8b4e76218be1d6804d9661f9a3da527c90ae4",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1329,6 +1425,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1349,14 +1453,14 @@
       "module": "ad01",
       "taskId": "ca-c02",
       "title": "Find a global maximum with endpoints",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "b8051ce2d3f571b569aff693500072e0d0a72c290fd9086ddd8e062cfab28fbb",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1389,6 +1493,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1409,14 +1521,14 @@
       "module": "ad01",
       "taskId": "ca-c03",
       "title": "Distance needs the internal sign changes",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "0a5550f983c81f30d2fcab2a90dd6e2135b6e982ca3da1202a4a2589ba6f5bd4",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1449,6 +1561,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1469,14 +1589,14 @@
       "module": "ad01",
       "taskId": "ca-c04",
       "title": "The accumulation maximum is not the tallest point",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "9c497bcc96b139c9c37f8b08b189028de86436c79d5173f89a93d57b6ff8911d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1509,6 +1629,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1529,14 +1657,14 @@
       "module": "ae01",
       "taskId": "st-c01",
       "title": "Reverse a flag probability carefully",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "d8134bed664639c759ebf3a6d26ae827b899477ffbf3f37b52d744045812a886",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1569,6 +1697,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1589,14 +1725,14 @@
       "module": "ae01",
       "taskId": "st-c02",
       "title": "Group comparisons can reverse when combined",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "206127111661b9800ddee132900e80164fec61f5bbecf91493b616fe6fbea6a8",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1629,6 +1765,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1649,14 +1793,14 @@
       "module": "ae01",
       "taskId": "st-c03",
       "title": "Compute variance, then transform it",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "7dfeb98ee312b30e331265c949aea0dfd132702202fc62956e1384f299ed8868",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1689,6 +1833,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1709,14 +1861,14 @@
       "module": "ae01",
       "taskId": "st-c04",
       "title": "Fit, inspect a residual, and interpret r²",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "6865a41d0a00da8e2f7e5d4f5d21ec07ccca0ad7a6c147d77bce77c566fa8769",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1749,6 +1901,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1769,14 +1929,14 @@
       "module": "af01",
       "taskId": "pc-c01",
       "title": "Both composition domains need a fresh check",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "058671d94d7ecf9a11ce449b01a6cc4a696f2a70fdf176f6d62028f858dceaa3",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1809,6 +1969,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1829,14 +1997,14 @@
       "module": "af01",
       "taskId": "pc-c02",
       "title": "Return from a quadratic to every angle",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "35bed5531f896dcaba9703f85605e78bf5206cf6648df4cdb76444639ee1d4b1",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1869,6 +2037,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1889,14 +2065,14 @@
       "module": "af01",
       "taskId": "pc-c03",
       "title": "A cancelled factor leaves a hole",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "9c2d8648c67915bc42d04e72be847b6b22cae638cd1476bcfa4fd7a55f4b3ea5",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1929,6 +2105,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -1949,14 +2133,14 @@
       "module": "af01",
       "taskId": "pc-c04",
       "title": "Interpret a periodic model across a full cycle",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "7e382471b12babe6337bef934f2db895e236a364f10c95f0e768fc4184915c6e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -1989,6 +2173,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2009,14 +2201,14 @@
       "module": "algebra-1",
       "taskId": "a1-c01",
       "title": "When elimination loses a pivot",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "7947034d2de119aee3866e1f4fb24ddabf3e7f3387aaed3f4a93568fb44f1095",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2049,6 +2241,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2069,14 +2269,14 @@
       "module": "algebra-1",
       "taskId": "a1-c02",
       "title": "An absolute-value bound needs two sides",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "f5968fa5481abac5bde17c6c14e7c98d40e7c5a17583767fe043f1b0bebbf695",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2109,6 +2309,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2129,14 +2337,14 @@
       "module": "algebra-1",
       "taskId": "a1-c03",
       "title": "A quadratic comes from a geometric constraint",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "f1bb2efbf0dca384aaf861b2c70a0bbb2109e5be1f28a24beecd64d89b8f808f",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2169,6 +2377,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2189,14 +2405,14 @@
       "module": "algebra-1",
       "taskId": "a1-c04",
       "title": "Choose a rule over a whole interval",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "6a66f45cb6dc3189029e49ee3ed858da873cddab904c4f35c296956211bf3a46",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2229,6 +2445,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2249,14 +2473,14 @@
       "module": "algebra-2",
       "taskId": "a2-c01",
       "title": "Solve without losing the forbidden inputs",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "26bd76206dc233bd78a27dae16d30c7555265d81b9405b8c3c6df24346dc0c72",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2289,6 +2513,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2309,14 +2541,14 @@
       "module": "algebra-2",
       "taskId": "a2-c02",
       "title": "A product equation can invent a log solution",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "639b51220572d4cbb11fd791de04f1beb7b3f63258ac583cecdf7006b6b8378a",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2349,6 +2581,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2369,14 +2609,14 @@
       "module": "algebra-2",
       "taskId": "a2-c03",
       "title": "Multiplicity controls a sign change",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "df2d3b973a69f0aa901dfaaf213ee4aa43d2524d7718e199168a7086ddd492fb",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2409,6 +2649,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2429,14 +2677,14 @@
       "module": "algebra-2",
       "taskId": "a2-c04",
       "title": "An exponential substitution still has a domain",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "1c758702493efefda7a6319f5cec5c18dd10fd1cecea0ebbdc7f233e00cb7afb",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2469,6 +2717,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2489,14 +2745,14 @@
       "module": "geometry",
       "taskId": "ge-c01",
       "title": "Coordinates must support a similarity claim",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "89cdf0f835cf8e53217ff8c986c297d32832c028f0d9f7f82ee1d998e550c7f3",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2529,6 +2785,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2549,14 +2813,14 @@
       "module": "geometry",
       "taskId": "ge-c02",
       "title": "An altitude splits the hypotenuse",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "892e7060159d7a67feaa549de7782d62baa0d34cab88a8693dd5c1a219064608",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2589,6 +2853,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2609,14 +2881,14 @@
       "module": "geometry",
       "taskId": "ge-c03",
       "title": "Cutting a cone uses a cubic scale",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "2359ea9c0e5b673474921da4916a4bd60f02c0ec55f64bb8ccd7a1e3f00df3fc",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2649,6 +2921,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2669,14 +2949,14 @@
       "module": "geometry",
       "taskId": "ge-c04",
       "title": "A tangent and a secant describe one power",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "a71d0c92bb436d4871b85b36bc1d14db985256e0428047b4a43f58c7a5a49c78",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2709,6 +2989,286 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "review/challenge-math-audit.json"
+      },
+      "automatedReference": "review/challenge-math-audit.json"
+    },
+    {
+      "id": "diagnostic:number-theory:nt-c01",
+      "family": "diagnostic",
+      "module": "number-theory",
+      "taskId": "nt-c01",
+      "title": "One gcd, many combinations",
+      "bankVersion": "quidence-challenges-7",
+      "availability": "active",
+      "fingerprint": "596d2ccfa17d747e63011944b290e16e1dae44392b42147f5b883ca9487c7ed7",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
+        },
+        {
+          "path": "assets/challenge-bank-v4.js",
+          "sha256": "485bc689c88bc2d248132b14b290aa3a6f766e626efc1a28e588b9808bcea021"
+        },
+        {
+          "path": "assets/physics-foundation-bank-v1.js",
+          "sha256": "c7281aa4b84f299f4a7feb293f976a917ecf909d6dd3375fc87eb516e28ec30d"
+        },
+        {
+          "path": "assets/challenge-bank-v5.js",
+          "sha256": "817c5c4149765ea608b38e9a6d7fdeecf4825498db52215427215c05fd643181"
+        },
+        {
+          "path": "assets/physics-foundation-bank.js",
+          "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "review/challenge-math-audit.json"
+      },
+      "automatedReference": "review/challenge-math-audit.json"
+    },
+    {
+      "id": "diagnostic:number-theory:nt-c02",
+      "family": "diagnostic",
+      "module": "number-theory",
+      "taskId": "nt-c02",
+      "title": "Count divisors without listing them",
+      "bankVersion": "quidence-challenges-7",
+      "availability": "active",
+      "fingerprint": "0b8696324497e22eaa1935e018fb6fdbd010dea9fd13e623d07c6682b81f858c",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
+        },
+        {
+          "path": "assets/challenge-bank-v4.js",
+          "sha256": "485bc689c88bc2d248132b14b290aa3a6f766e626efc1a28e588b9808bcea021"
+        },
+        {
+          "path": "assets/physics-foundation-bank-v1.js",
+          "sha256": "c7281aa4b84f299f4a7feb293f976a917ecf909d6dd3375fc87eb516e28ec30d"
+        },
+        {
+          "path": "assets/challenge-bank-v5.js",
+          "sha256": "817c5c4149765ea608b38e9a6d7fdeecf4825498db52215427215c05fd643181"
+        },
+        {
+          "path": "assets/physics-foundation-bank.js",
+          "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "review/challenge-math-audit.json"
+      },
+      "automatedReference": "review/challenge-math-audit.json"
+    },
+    {
+      "id": "diagnostic:number-theory:nt-c03",
+      "family": "diagnostic",
+      "module": "number-theory",
+      "taskId": "nt-c03",
+      "title": "When can you divide in a congruence?",
+      "bankVersion": "quidence-challenges-7",
+      "availability": "active",
+      "fingerprint": "56421549da916eee8ae5b3fe1451c4a66cef50701c2e240d8daf71452bbb2f18",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
+        },
+        {
+          "path": "assets/challenge-bank-v4.js",
+          "sha256": "485bc689c88bc2d248132b14b290aa3a6f766e626efc1a28e588b9808bcea021"
+        },
+        {
+          "path": "assets/physics-foundation-bank-v1.js",
+          "sha256": "c7281aa4b84f299f4a7feb293f976a917ecf909d6dd3375fc87eb516e28ec30d"
+        },
+        {
+          "path": "assets/challenge-bank-v5.js",
+          "sha256": "817c5c4149765ea608b38e9a6d7fdeecf4825498db52215427215c05fd643181"
+        },
+        {
+          "path": "assets/physics-foundation-bank.js",
+          "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "review/challenge-math-audit.json"
+      },
+      "automatedReference": "review/challenge-math-audit.json"
+    },
+    {
+      "id": "diagnostic:number-theory:nt-c04",
+      "family": "diagnostic",
+      "module": "number-theory",
+      "taskId": "nt-c04",
+      "title": "Powers repeat in cycles",
+      "bankVersion": "quidence-challenges-7",
+      "availability": "active",
+      "fingerprint": "ee6de9b00a9d209200dd3ad2573d6c8627f298b5570a4589b22efcd55fbbf781",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "assets/challenge-bank.js",
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
+        },
+        {
+          "path": "assets/challenge-bank-v1.js",
+          "sha256": "7a78a490b9505fa9a3e40e3cbbc1c783b9c6fd2748211e445e02d7511e5b24e1"
+        },
+        {
+          "path": "assets/challenge-bank-v2.js",
+          "sha256": "74f369f3e460d743c7fdb90e17ed4056824d0267fb1625708494251d5a8ce4df"
+        },
+        {
+          "path": "assets/challenge-bank-v3.js",
+          "sha256": "b1deda5a7b8c71b72a71f27ce46c3569806175266febbd07241dd7279212b625"
+        },
+        {
+          "path": "assets/physics-bank.js",
+          "sha256": "753994ecdf71b331850bbf54979efb61413fc1ef2d075608a98964c322d2e04d"
+        },
+        {
+          "path": "assets/challenge-bank-v4.js",
+          "sha256": "485bc689c88bc2d248132b14b290aa3a6f766e626efc1a28e588b9808bcea021"
+        },
+        {
+          "path": "assets/physics-foundation-bank-v1.js",
+          "sha256": "c7281aa4b84f299f4a7feb293f976a917ecf909d6dd3375fc87eb516e28ec30d"
+        },
+        {
+          "path": "assets/challenge-bank-v5.js",
+          "sha256": "817c5c4149765ea608b38e9a6d7fdeecf4825498db52215427215c05fd643181"
+        },
+        {
+          "path": "assets/physics-foundation-bank.js",
+          "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2729,14 +3289,14 @@
       "module": "physics-1",
       "taskId": "p1-c01",
       "title": "A cart turns around",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "385d74657c10a2c3f007396315f2d1a108aa1bacbc528ada2f5ba7d493d8a1b4",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2769,6 +3329,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2789,14 +3357,14 @@
       "module": "physics-1",
       "taskId": "p1-c02",
       "title": "A collision with opposite directions",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "a21affa3d90c27e8cc3c4b5ab28d0f482fffa951aac9af42ce61328173cde1ef",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2829,6 +3397,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2849,14 +3425,14 @@
       "module": "physics-1",
       "taskId": "p1-c03",
       "title": "A descent with a measured transfer",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "b94f0dd8d17b922248b06bdfb5733777d730d0a96b712cce9310d0c5d7433d88",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2889,6 +3465,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2909,14 +3493,14 @@
       "module": "physics-1",
       "taskId": "p1-c04",
       "title": "A lever arm does two jobs",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "cdf820b6fb90c12473a9e69f441ca277968f2e444fb360c5114b17bf288899d1",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -2949,6 +3533,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -2969,14 +3561,14 @@
       "module": "physics-1",
       "taskId": "p1-c05",
       "title": "Same period, different oscillator",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "6c9f2550e941593bfe8f312c263e4af617bbffe5476712aefb5c1cea62c0b80e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3009,6 +3601,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3029,14 +3629,14 @@
       "module": "physics-1",
       "taskId": "p1-c06",
       "title": "Pressure is not buoyant force",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "cd0521d31e3e081d76a95214fa69a68bbe30b7bf74fba2555d6380d049e6adc0",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3069,6 +3669,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3089,14 +3697,14 @@
       "module": "physics-2",
       "taskId": "p2-c01",
       "title": "An insulated sample and a gas",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "f56a84d498670bddef79a194c3a5668e88e922cb6da271417537c1e1e1f5926f",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3129,6 +3737,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3149,14 +3765,14 @@
       "module": "physics-2",
       "taskId": "p2-c02",
       "title": "Field, probe and potential",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "3e5171e7e95aedf0ac0d9c7ec9f167c033179e740aca439a45e3e3403c5b8c3e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3189,6 +3805,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3209,14 +3833,14 @@
       "module": "physics-2",
       "taskId": "p2-c03",
       "title": "One source, two connections",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "32a6bfc68998f78b8c274b0fb6ad40ca1792831e4db8f2363130848e2eb17ac9",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3249,6 +3873,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3269,14 +3901,14 @@
       "module": "physics-2",
       "taskId": "p2-c04",
       "title": "Force and flux are not the same model",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "c3718284d36e4ac06bf4c7f10c6cf4672afc0f19e91ecff78751b8c071c697b0",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3309,6 +3941,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3329,14 +3969,14 @@
       "module": "physics-2",
       "taskId": "p2-c05",
       "title": "A lens, a wave and a return trip",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "79ebdae3b0de1113c366891e2a845083348a94281cb47a7d19087f268325c4e6",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3369,6 +4009,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3389,14 +4037,14 @@
       "module": "physics-2",
       "taskId": "p2-c06",
       "title": "A photon threshold and a brightness claim",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "4871b54a5b3f71a851f2576f4afba36c56db48fc651cad8f8d1bdc75fb15aafd",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3429,6 +4077,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3449,14 +4105,14 @@
       "module": "physics",
       "taskId": "ph-c01",
       "title": "The runner returns partway",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "historical-only",
       "fingerprint": "23fb6e4af40e081b37742637d36a851154aeba596a3b2e81e400dd6094dc2bac",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3489,6 +4145,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3509,14 +4173,14 @@
       "module": "physics",
       "taskId": "ph-c02",
       "title": "Does the data support the force model?",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "historical-only",
       "fingerprint": "92a1893af50cb5b03a7523109c82530467372277b25a78fbda6d09c020092b6c",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3549,6 +4213,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3569,14 +4241,14 @@
       "module": "physics",
       "taskId": "ph-c03",
       "title": "Two carts join; not everything is conserved",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "historical-only",
       "fingerprint": "24b2cc0b27999c5aca2c6cdd84a792b2b3aa5cae968a73df9a4f2067076260fb",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3609,6 +4281,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3629,14 +4309,14 @@
       "module": "physics",
       "taskId": "ph-c04",
       "title": "A rolling model with an energy transfer",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "historical-only",
       "fingerprint": "d79772dc4f3b941d64f588f08e6db4dc0951dc9a4dbbdf9b3f02cb5a407d746d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3669,6 +4349,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3689,14 +4377,14 @@
       "module": "physics",
       "taskId": "ph-c05",
       "title": "Watts are not watt-hours",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "historical-only",
       "fingerprint": "52480684d29f0744f32f69400595295b4ce051bd9fee2ee34f050ec461f8ec89",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3729,6 +4417,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3749,14 +4445,14 @@
       "module": "physics",
       "taskId": "ph-c06",
       "title": "One wave, two kinds of distance",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "historical-only",
       "fingerprint": "2d07bdbc31b60714f52e88a471f5cb50e19a7a64ec9ce5d061e4b0fb40ca3706",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3789,6 +4485,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3809,14 +4513,14 @@
       "module": "pre-algebra",
       "taskId": "pa-c01",
       "title": "Remove a mixture, then dilute it",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "2cdeedf30ddb3bdf1dd62a37dfdbb3a47b02b8e7746fe23ceb709feea4606feb",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3849,6 +4553,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3869,14 +4581,14 @@
       "module": "pre-algebra",
       "taskId": "pa-c02",
       "title": "Recover a price through two changing bases",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "643bfd83d8433c88c24087ea6eb4d3d6aef2ef0466bfb6e6ad55418686741673",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3909,6 +4621,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3929,14 +4649,14 @@
       "module": "pre-algebra",
       "taskId": "pa-c03",
       "title": "Add filling rates, not filling times",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "32ed369669fb25aa13e54fe401f9f5defd3fb873a6578281c3a46923eb15c15c",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -3969,6 +4689,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
@@ -3989,14 +4717,14 @@
       "module": "pre-algebra",
       "taskId": "pa-c04",
       "title": "Find the counts behind a changed ratio",
-      "bankVersion": "quidence-challenges-6",
+      "bankVersion": "quidence-challenges-7",
       "availability": "active",
       "fingerprint": "0abc285c3c0911899841d9ddbc561f0347e35715a8403fd5bba861b720bba9f6",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "assets/challenge-bank.js",
-          "sha256": "1c1799d5b7242183ab5304cd2cdea226a798c53abd936250f46104ac2f84603a"
+          "sha256": "e6fe9b48e28ffd48dfd4088f8fe6cac2abffba8bca0c58de6006b2842a418e89"
         },
         {
           "path": "assets/challenge-bank-v1.js",
@@ -4029,6 +4757,14 @@
         {
           "path": "assets/physics-foundation-bank.js",
           "sha256": "f4a3d34dd7643b98835bc4c16b1c359932a1c3d53781a9b77bb1267bebd4d9d3"
+        },
+        {
+          "path": "assets/challenge-bank-v6.js",
+          "sha256": "39e2344d979b92701993570194cfe9d2e266805ca8a6ded50375481d90bede39"
+        },
+        {
+          "path": "assets/number-theory-challenge-bank.js",
+          "sha256": "f9042f634ba8b6d6d9b002fa148fc6850ba4f91fe69b266b58bdfec85d0a2a90"
         }
       ],
       "sourceReview": {
