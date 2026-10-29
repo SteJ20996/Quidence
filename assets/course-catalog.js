@@ -20,7 +20,7 @@ for(const id of ['pre-algebra','algebra-1']){COURSES[id].foundation='foundations
 for(const[id,c]of Object.entries(COURSES)){if(id==='number-theory'||id==='ac01'||id==='coordinate-geometry')continue;c.project='projects/?module='+id;c.projectCount=2;c.challenge='diagnostics/?module='+id;c.challengeCount=id==='ab01'?12:id.startsWith('physics-')?6:4;}
 for(const id of ['ab01','ae01','af01','ac01','geometry','algebra-2']){COURSES[id].originalChallenge=COURSES[id].challenge;COURSES[id].challenge='checks/?module='+id;}
 COURSES.ad01.challenge='modules/ad01/dist/checks/';
-const intuition={'pre-algebra':'multiply','algebra-1':'plans',geometry:'perimeter','algebra-2':'square',af01:'waves',ad01:'sphere',ae01:'groups',ab01:'transforms','number-theory':'primes',ac01:'choices','physics-1':'apex','physics-2':'circuit'};
+const intuition={'pre-algebra':'multiply','algebra-1':'plans',geometry:'perimeter','coordinate-geometry':'fair','algebra-2':'square',af01:'waves',ad01:'sphere',ae01:'groups',ab01:'transforms','number-theory':'primes',ac01:'choices','physics-1':'apex','physics-2':'circuit'};
 for(const[id,activity]of Object.entries(intuition))COURSES[id].intuition='intuition/#'+activity;
 for(const id of ['geometry','ab01'])COURSES[id].relatedProject='courses/coordinate-geometry/';
 const api={GROUPS,COURSES};if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceCourseCatalog=api;
