@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  const root=document.getElementById('quidence-home'),mapView=root?.querySelector('.home-map-view'),courseView=root?.querySelector('.home-course-view'),intuitionView=root?.querySelector('.home-intuition-view');
+  const root=document.getElementById('quidence-home'),mapView=root?.querySelector('.home-map-view'),courseView=root?.querySelector('.home-course-view');
   if(!root||!mapView||!courseView||document.getElementById('knowledge-map').hidden)return;
   const defaultView=document.documentElement.dataset.uiTheme==='classic'?'map':'courses';
   const choices=[...root.querySelectorAll('[data-home-view]')];
@@ -15,10 +15,9 @@
   }
   document.addEventListener('quidence:language',compactSubjectLabels);compactSubjectLabels();
   function show(view,updateURL=true){
-    const selected=['map','courses','intuition'].includes(view)?view:defaultView;
-    mapView.hidden=selected!=='map';courseView.hidden=selected!=='courses';if(intuitionView)intuitionView.hidden=selected!=='intuition';root.dataset.homeView=selected;
-    for(const choice of choices){const active=choice.dataset.homeView===root.dataset.homeView;if(active)choice.setAttribute('aria-current','page');else choice.removeAttribute('aria-current');choice.setAttribute('aria-controls',choice.dataset.homeView==='intuition'?'intuition-view':choice.dataset.homeView==='courses'?'course-cards':'knowledge-map');}
-    if(updateURL){const url=new URL(location.href);url.searchParams.set('view',selected);history.replaceState(history.state,'',url);}
+    const cards=view==='courses';mapView.hidden=cards;courseView.hidden=!cards;root.dataset.homeView=cards?'courses':'map';
+    for(const choice of choices){const active=choice.dataset.homeView===root.dataset.homeView;if(active)choice.setAttribute('aria-current','page');else choice.removeAttribute('aria-current');choice.setAttribute('aria-controls',choice.dataset.homeView==='courses'?'course-cards':'knowledge-map');}
+    if(updateURL){const url=new URL(location.href);if(cards)url.searchParams.set('view','courses');else url.searchParams.set('view','map');history.replaceState(history.state,'',url);}
     document.dispatchEvent(new CustomEvent('quidence:home-view',{detail:{view:root.dataset.homeView}}));
   }
   for(const choice of choices)choice.addEventListener('click',()=>show(choice.dataset.homeView));
@@ -32,6 +31,6 @@
     if(module)root.querySelector('[data-learning-subject="'+module+'"]')?.click();
     root.querySelector('[data-category="all"]')?.click();show('courses');const target=module?root.querySelector('.subject-card[data-subject="'+module+'"]'):courseView;target?.scrollIntoView({block:'start',behavior:'instant'});if(module)target?.querySelector('.subject-link')?.focus({preventScroll:true});
   });
-  const requested=new URL(location.href).searchParams.get('view');show(['map','courses','intuition'].includes(requested)?requested:location.hash==='#practice-heading'?'courses':defaultView,false);
+  const requested=new URL(location.href).searchParams.get('view');show(requested==='map'?'map':requested==='courses'||location.hash==='#practice-heading'?'courses':defaultView,false);
 })();
 

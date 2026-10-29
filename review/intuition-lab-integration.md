@@ -1,6 +1,8 @@
 # Intuition Lab integration
 
-Intuition Lab is the third homepage view (`?view=intuition`), alongside the map and subject views. It offers twelve authored activities with prediction, an interactive model, reference reasoning, a numerical transfer check, and reflection. The same activity is linked from its subject card and real course page.
+Intuition Lab offers twelve authored activities with prediction, an interactive model, reference reasoning, a numerical transfer check, and reflection. Its own directory is `/intuition/`, and each activity is linked from its real course page.
+
+2026-10-29: the third homepage view (`?view=intuition`) and the “Test your intuition” links on homepage subject cards were withdrawn at the owner's request. The view used one layout in every appearance and did not follow Paper Explorer or Learning Atlas. The homepage is back to its earlier Knowledge map / Subjects interface; an old `?view=intuition` link opens the appearance's default view. The activities, course-page entries and `quidence_intuition_v1` records are unchanged.
 
 The homepage follows the existing English/Spanish locale. The activity has authored English, Spanish, and Traditional Chinese catalogs. Original written answers and original submitted choice snapshots are preserved. Written explanations are not automatically assessed. First predictions are not scored.
 
