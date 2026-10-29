@@ -45,7 +45,7 @@ Definitions were checked against these primary university teaching sources; no s
 The module was added to this GitHub repository only. Website hosting and domain configuration are separate.
 
 
-## 基础检查与报告副本
+## 基礎檢查與報告副本
 
-公共导航新增 [15 题基础检查](../../foundations/index.html?module=ac01) 和 [Saved reports](../../reports/index.html)。新检查要求每题解释，保留草稿、历次提交和审核；原课程题目和旧记录格式保持兼容。打开本模块报告时，在浏览器另存一份报告副本。保存不等于云端同步，跨设备使用请下载报告。范围与限制见 [全站基础审核](../../FOUNDATION_AUDIT.md)。
+公共導覽新增 [15 題基礎檢查](../../foundations/index.html?module=ac01) 和 [Saved reports](../../reports/index.html)。新檢查要求每題附上解釋，並保留草稿、歷次提交和審核；原課程題目和舊紀錄格式保持相容。開啟本模組報告時，會在瀏覽器另存一份報告副本。儲存不等於雲端同步，跨裝置使用請下載報告。範圍與限制見 [全站基礎審核](../../FOUNDATION_AUDIT.md)。
 
