@@ -5,10 +5,13 @@ on:
   pull_request:
 permissions:
   contents: read
+# Browser suites run as three parallel jobs. Run one after another, they took about
+# 13 minutes, so a slow Playwright install pushed the single job past its time limit.
+# The suites start their own servers on random ports and do not read each other's output.
 jobs:
   local-records-and-mathematics:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -26,43 +29,79 @@ jobs:
         run: npm test
       - name: Build the public static bundle
         run: npm run build:static
+
+  browser-layouts-and-themes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
       - name: Install browser test dependencies
         run: |
           npm ci
           npx playwright install --with-deps chromium
       - name: Check all four themes, every public page and remembered preferences
         run: npm run test:themes:browser
-
       - name: Check activity layouts, drafts and cached-version upgrades in Chromium
         run: npm run test:browser
-      - name: Check Intuition Lab modes, translations, numerical checks and record preservation
-        run: npm run test:intuition:browser
+      - name: Check illustrated maps, filters and all three new foundation sessions
+        run: npm run test:cartoon:browser
+      - name: Check Paper Explorer layouts, original links and request preservation
+        run: npm run test:paper:browser
+      - name: Check Learning Atlas groups, theme round trips and responsive navigation
+        run: npm run test:atlas:browser
+      - name: Check Geometric Studio layouts, original form nodes and responsive navigation
+        run: npm run test:studio:browser
+
+  browser-languages-and-records:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+      - name: Install browser test dependencies
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
       - name: Check bilingual layouts, complete reports and original answer preservation
         run: npm run test:localization:browser
       - name: Check the supplied logo across both languages and offline reports
         run: npm run test:brand:browser
       - name: Check Spanish course evidence, number formats and lazy loading
         run: npm run test:spanish:review
-
       - name: Check knowledge map, bilingual course navigation and saved evidence
         run: npm run test:home:browser
       - name: Check Number Theory steps, proofs, exports and phone layouts
         run: npm run test:number-theory:browser
       - name: Check real-motion, map criteria and current-note recovery regressions
         run: npm run test:reviewed:browser
-
-
-      - name: Check illustrated maps, filters and all three new foundation sessions
-        run: npm run test:cartoon:browser
-
-      - name: Check Paper Explorer layouts, original links and request preservation
-        run: npm run test:paper:browser
-
-      - name: Check Learning Atlas groups, theme round trips and responsive navigation
-        run: npm run test:atlas:browser
-
-      - name: Check Geometric Studio layouts, original form nodes and responsive navigation
-        run: npm run test:studio:browser
-
       - name: Check Game Theory projects, cases, exports and record preservation
         run: npm run test:game-projects:browser
+
+  browser-intuition-lab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+      - name: Install browser test dependencies
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Check Intuition Lab modes, translations, numerical checks and record preservation
+        run: npm run test:intuition:browser
