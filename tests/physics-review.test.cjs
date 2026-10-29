@@ -46,6 +46,6 @@ test('published HTML loads current and pinned banks in browser order for new and
  for(const [folder,title]of [['diagnostics','Challenge'],['projects','Project']]){
   const window={},context=vm.createContext({window}),dir=path.resolve(__dirname,'..',folder),html=fs.readFileSync(path.join(dir,'index.html'),'utf8');
   for(const[,reference]of html.matchAll(/<script src="([^"]+)"/g)){const src=new URL(reference,'https://quidence.test/'+folder+'/').pathname;if(/(?:bank[^/]*|subject-foundations|additional-foundations|foundation-extension|project-tools|foundation-engine)\.js$/.test(src))vm.runInContext(fs.readFileSync(path.resolve(dir,'..','.'+src),'utf8'),context,{filename:src});}
-  const bank=window['Quidence'+title+'Bank'];assert(bank.MODULES['physics-2']);assert(bank.HISTORY[title==='Challenge'?'quidence-challenges-5':'quidence-projects-5']);
+  const bank=window['Quidence'+title+'Bank'];assert(bank.MODULES['physics-2']);assert(bank.HISTORY[title==='Challenge'?'quidence-challenges-5':'quidence-projects-5']);if(title==='Challenge'){assert(bank.MODULES['number-theory']);assert(bank.HISTORY['quidence-challenges-6']);}
  }
 });

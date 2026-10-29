@@ -1,9 +1,9 @@
 (function(root){
 'use strict';
-const old=typeof module==='object'&&module.exports?require('./challenge-bank-v5.js'):root.QuidenceChallengeBankV5;
-const tracks=typeof module==='object'&&module.exports?require('./physics-foundation-bank.js'):root.QuidencePhysicsFoundationBank;
-const VERSION='quidence-challenges-6';
-const MODULES={...old.MODULES,...tracks.CHALLENGES};
-const api={VERSION,MODULES,HISTORY:{...old.HISTORY,[old.VERSION]:old.MODULES},SOURCE_FILES:[...old.SOURCE_FILES,'assets/challenge-bank-v5.js','assets/physics-foundation-bank.js']};
+const old=typeof module==='object'&&module.exports?require('./challenge-bank-v6.js'):root.QuidenceChallengeBankV6;
+const numberTheory=typeof module==='object'&&module.exports?require('./number-theory-challenge-bank.js'):root.QuidenceNumberTheoryChallenges;
+const VERSION='quidence-challenges-7';
+const MODULES={...old.MODULES,...numberTheory.CHALLENGES};
+const api={VERSION,MODULES,HISTORY:{...old.HISTORY,[old.VERSION]:old.MODULES},SOURCE_FILES:[...old.SOURCE_FILES,'assets/challenge-bank-v6.js','assets/number-theory-challenge-bank.js']};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceChallengeBank=api;
 })(typeof window==='undefined'?globalThis:window);

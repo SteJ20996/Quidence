@@ -10,7 +10,7 @@ function harness(kind='diagnostic',map=new Map(),width=620){
  const storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)},body=new Element('body');
  const document={body,getElementById:id=>host.querySelector('#'+id),createElement:tag=>new Element(tag)};
  const window={document,localStorage:storage,navigator:{}},context=vm.createContext({window,document,Blob,URL:{createObjectURL:()=> 'blob:test',revokeObjectURL(){}},setTimeout:fn=>fn()});
- for(const file of ['challenge-bank-v1.js','challenge-bank-v2.js','challenge-bank-v3.js','physics-bank.js','challenge-bank-v4.js','physics-foundation-bank-v1.js','challenge-bank-v5.js','physics-foundation-bank.js','challenge-bank.js','project-bank-v1.js','project-bank-v2.js','project-bank-v3.js','physics-bank.js','project-bank-v4.js','physics-foundation-bank-v1.js','project-bank-v5.js','physics-foundation-bank.js','project-bank.js','project-tools.js','subject-foundations.js','additional-foundations.js','foundation-bank.js','foundation-extension.js','foundation-engine.js','foundation-graphs.js','report-tools.js','report-store.js','foundation-app.js','report-viewer.js'])vm.runInContext(fs.readFileSync(path.join(root,'assets',file),'utf8'),context);
+ for(const file of ['challenge-bank-v1.js','challenge-bank-v2.js','challenge-bank-v3.js','physics-bank.js','challenge-bank-v4.js','physics-foundation-bank-v1.js','challenge-bank-v5.js','physics-foundation-bank.js','challenge-bank-v6.js','number-theory-challenge-bank.js','challenge-bank.js','project-bank-v1.js','project-bank-v2.js','project-bank-v3.js','physics-bank.js','project-bank-v4.js','physics-foundation-bank-v1.js','project-bank-v5.js','physics-foundation-bank.js','project-bank.js','project-tools.js','subject-foundations.js','additional-foundations.js','foundation-bank.js','foundation-extension.js','foundation-engine.js','foundation-graphs.js','report-tools.js','report-store.js','foundation-app.js','report-viewer.js'])vm.runInContext(fs.readFileSync(path.join(root,'assets',file),'utf8'),context);
  const bank=kind==='project'?window.QuidenceProjectBank:kind==='foundation'?window.QuidenceFoundationBank:window.QuidenceChallengeBank;
  const engine=kind==='foundation'?window.QuidenceFoundationEngine:window.QuidenceFoundationEngine.forBank(bank,empty,{...settings,...(kind==='project'?{schema:'cluevera_project_portfolio_v1',projects:true,fieldTypes:window.QuidenceProjectTools.fieldTypes,checkTitle:'California-inspired field projects'}:{})});
  const controller=window.QuidenceFoundationApp.mount(host,{bank,engine,extension:kind==='foundation'?window.QuidenceFoundationExtension:empty,module:'ab01',storage});
@@ -225,8 +225,10 @@ test('activity navigation follows all ten subjects and preserves unfinished work
  for(const kind of ['diagnostic','project']){
   const h=harness(kind);
   for(const [id,c]of Object.entries(catalog.COURSES).filter(([,c])=>c.challenge?.startsWith('diagnostics/'))){
+   // Number Theory's projects live on its course page, so it has no field-projects route.
+   const field=c.project?.startsWith('projects/');if(kind==='project'&&!field)continue;
    h.controller.select(id);const links=h.host.querySelectorAll('[data-f-mode]');
-   assert.equal(links.length,3);const mode=kind==='project'?'projects':'check';
+   assert.equal(links.length,field?3:2);const mode=kind==='project'?'projects':'check';
    for(const link of links){const url=new URL(link.attrs.href,'https://quidence.test/'+(kind==='project'?'projects':'diagnostics')+'/');
     assert.equal(link.attrs['aria-current']==='page',link.dataset.fMode===mode);
     if(link.dataset.fMode==='learn')assert.equal(url.pathname,'/'+c.course);else assert.equal(url.searchParams.get('module'),id);

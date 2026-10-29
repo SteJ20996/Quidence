@@ -159,6 +159,13 @@ image=1/(F(1,12)-F(1,36));magnification=-image/36
 R['p2-c05']=dict(image=image,magnification=magnification,height=4*magnification,wavelength=F(18,6),echo=340*F(8,10)/2)
 h=F(414,100)*F(1,10**15);photon=h*(8*10**14)
 R['p2-c06']=dict(photon=photon,kinetic=photon-2,threshold=2/h,brighter=photon)
-assert len(R)==58
-output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
+def euclid(a,b):
+    while b:a,b=b,a%b
+    return a
+g=euclid(252,198);x=next(x for x in range(11)if (g-252*x)%198==0);R['nt-c01']={'gcd':g,'thirty':yn(30%g==0),'x':x,'y':(g-252*x)//198}
+d=[k for k in range(1,361)if 360%k==0];R['nt-c02']={'divisors':len(d),'odd':sum(k%2 for k in d),'rectangles':sum(k*k<=360 for k in d),'squares':sum(isqrt(k)**2==k for k in d)}
+R['nt-c03']={'inverse':next(k for k in range(26)if 11*k%26==1),'x':next(x for x in range(26)if 11*x%26==7),'countFour':sum(6*x%10==4 for x in range(10)),'countFive':sum(6*x%10==5 for x in range(10))}
+R['nt-c04']={'order':next(k for k in range(1,12)if pow(2,k,11)==1),'remainder':pow(2,2026,11),'digit':pow(7,2026,10),'primes':[p for p in ['2','3','5','7']if all((n**5-n)%int(p)==0 for n in range(-60,61))]}
+assert len(R)==62
+output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors and residues, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
 path=Path(__file__).resolve().parents[1]/'review'/'challenge-math-audit.json';path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(output,indent=2)+'\n');print(json.dumps({'questions':len(R),'components':sum(len(x)for x in R.values()),'output':str(path)}))

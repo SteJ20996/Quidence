@@ -70,7 +70,7 @@ async function run() {
       page.on('response', response => {if (response.status() >= 400) failures.push(response.url() + ': ' + response.status());});
       await page.goto(origin + '/?view=courses');
       const activityLinks = await page.locator('.challenge-link, .project-link').evaluateAll(elements => elements.map(el => el.href).filter(href=>new URL(href).searchParams.has('module')));
-      assert.equal(activityLinks.length, 20);
+      assert.equal(activityLinks.length, 21);
       assert.equal(await page.locator('.project-link[href*="ac01/dist/projects"]').count(), 1);
       const choosers=activityLinks.filter(href=>new URL(href).pathname==='/checks/');assert.equal(choosers.length,6);
       for(const href of choosers){
@@ -91,9 +91,9 @@ async function run() {
       assert.equal(await page.locator('#dialogue-route').count(),1);
       const originalCheck=await page.locator('#four-problem-route').getAttribute('href');
       const originalURL=new URL(originalCheck,page.url());assert.equal(originalURL.pathname,'/diagnostics/');assert.equal(originalURL.searchParams.get('module'),'ad01');
-      activityLinks.push(originalURL.href);assert.equal(activityLinks.length,21);
+      activityLinks.push(originalURL.href);assert.equal(activityLinks.length,22);
       const links = activityLinks.filter(href => ['/diagnostics/', '/projects/'].includes(new URL(href).pathname));
-      assert.equal(links.length, 20);
+      assert.equal(links.length, 21);
       for (const href of links) {
         const url = new URL(href), subject = url.searchParams.get('module'), projects = url.pathname === '/projects/';
         await page.goto(href);
@@ -119,13 +119,17 @@ async function run() {
           assert.equal(await page.locator('[data-f-field="' + fieldID + '"]').inputValue(), '123/7');
           assert.equal(await page.locator('[data-f-explanation]').inputValue(), 'Unfinished browser regression draft.');
           assert.equal(await page.locator('[data-f-action="report"]').isDisabled(), true);
-          const mode = projects ? 'check' : 'projects', target = page.locator('[data-f-mode="' + mode + '"]');
-          assert.equal(await target.getAttribute('target'), '_blank');
-          const [popup] = await Promise.all([page.waitForEvent('popup'), target.click()]);
-          await popup.waitForLoadState();
-          assert.equal(new URL(popup.url()).searchParams.get('module'), subject);
-          assert.equal(await popup.locator('.f-mode-link[aria-current="page"]').getAttribute('data-f-mode'), mode);
-          await popup.close();
+          // Number Theory's proof projects are its course page, so its check offers no field-projects link.
+          if (subject === 'number-theory') assert.equal(await page.locator('[data-f-mode="projects"]').count(), 0);
+          else {
+            const mode = projects ? 'check' : 'projects', target = page.locator('[data-f-mode="' + mode + '"]');
+            assert.equal(await target.getAttribute('target'), '_blank');
+            const [popup] = await Promise.all([page.waitForEvent('popup'), target.click()]);
+            await popup.waitForLoadState();
+            assert.equal(new URL(popup.url()).searchParams.get('module'), subject);
+            assert.equal(await popup.locator('.f-mode-link[aria-current="page"]').getAttribute('data-f-mode'), mode);
+            await popup.close();
+          }
           assert.equal(await page.locator('[data-f-field="' + fieldID + '"]').inputValue(), '123/7');
           drafts++;
         }

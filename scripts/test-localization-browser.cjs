@@ -60,8 +60,8 @@ async function run(){
  assert.equal(await page.locator('#quidence-language').inputValue(),'es');
  const raw='Save my answer\nYour explanation\nNo puedo calcular −3/4; x < 0 y y > 0. <script>alert(1)</script>';
  const storage=()=>page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([k])=>k!=='quidence_ui_locale_v1')));
- let tasks=0;
- for(const mode of ['diagnostics','projects'])for(const module of ['pre-algebra','algebra-1','geometry','algebra-2','af01','ad01','ae01','ab01','physics-1','physics-2']){
+ let tasks=0,reports=0;
+ for(const mode of ['diagnostics','projects'])for(const module of ['pre-algebra','algebra-1','geometry','algebra-2','af01','ad01','ae01','ab01','physics-1','physics-2',...(mode==='diagnostics'?['number-theory']:[])]){
   await page.goto(origin+'/'+mode+'/?module='+module+'&lang=es');await page.locator('[data-f-action="resume"]').click();
   const count=await page.locator('.f-question-list li').count();
   for(let i=0;i<count;i++){
@@ -83,7 +83,7 @@ async function run(){
    untranslated.push(...await page.locator('.f-question').evaluate(e=>e.innerText.split('\n').filter(t=>/\b(?:the|your|with|choose|which|question|answer|before|after|because|where|when|this|that|could|should)\b/i.test(t)&&!t.includes('No puedo')&&!t.includes('Save my answer')&&!t.includes('Your explanation'))));
    if(i<count-1)await page.locator('[data-f-action="next"]').click();
   }
-  await page.locator('[data-f-action="next"]').click();
+  await page.locator('[data-f-action="next"]').click();reports++;
   await collect();const quotes=await page.locator('.f-quote').allTextContents();assert(quotes.every(q=>q===raw),'student report quote changed');
   const before=await storage();await page.locator('#quidence-language').selectOption('en');await page.locator('#quidence-language').selectOption('es');assert.deepEqual(await storage(),before,'report switch added a snapshot');
   const markdown=await page.locator('textarea[data-i18n-markdown]').inputValue();assert(markdown.includes('> Save my answer\n> Your explanation\n> No puedo'),'Markdown changed original multiline explanation');
@@ -101,7 +101,7 @@ async function run(){
  assert.deepEqual(authoredMissing,[],'unreviewed authored text in introductions, reports, controls or exports');
  assert.equal(errors.length,0,errors.join('\n'));
  fs.writeFileSync(path.join(__dirname,'../localization/browser-english-residue.json'),JSON.stringify([...new Set(untranslated)],null,2)+'\n');
- console.log(JSON.stringify({layouts,tasks,reports:20,errors,englishResidue:[...new Set(untranslated)].length}));
+ console.log(JSON.stringify({layouts,tasks,reports,errors,englishResidue:[...new Set(untranslated)].length}));
  }finally{await browser?.close();await new Promise(r=>server.close(r));}
 }
 run().catch(e=>{console.error(e);process.exitCode=1;});

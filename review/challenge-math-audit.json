@@ -1,5 +1,5 @@
 {
-  "method": "Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.",
+  "method": "Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors and residues, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.",
   "questions": {
     "la-c01": {
       "k": "3",
@@ -358,6 +358,34 @@
       "kinetic": "164/125",
       "threshold": "100000000000000000/207",
       "brighter": "414/125"
+    },
+    "nt-c01": {
+      "gcd": "18",
+      "thirty": "no",
+      "x": "4",
+      "y": "-5"
+    },
+    "nt-c02": {
+      "divisors": "24",
+      "odd": "6",
+      "rectangles": "12",
+      "squares": "4"
+    },
+    "nt-c03": {
+      "inverse": "19",
+      "x": "3",
+      "countFour": "2",
+      "countFive": "0"
+    },
+    "nt-c04": {
+      "order": "10",
+      "remainder": "9",
+      "digit": "9",
+      "primes": [
+        "2",
+        "3",
+        "5"
+      ]
     }
   }
 }
