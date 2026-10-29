@@ -18,7 +18,7 @@ function build(){
   const file=school.IDS.includes(module)?'assets/school-course-content.js':`modules/${module}/dist/content.js`,content=school.IDS.includes(module)?school.create(module):require(path.join(root,file));
   for(const lesson of content.LESSONS)for(const task of [lesson.predict,...lesson.checks])add('lesson',module,task,[file,'assets/course-models.js','assets/course-graphs.js'],{bankVersion:content.VERSION});
  }
- const intuition=require('../intuition/data.js'),courseFor={multiply:'pre-algebra',plans:'algebra-1',perimeter:'geometry',square:'algebra-2',waves:'af01',sphere:'ad01',groups:'ae01',transforms:'ab01',primes:'number-theory',choices:'ac01',apex:'physics-1',circuit:'physics-2'};
+ const intuition=require('../intuition/data.js'),courseFor={multiply:'pre-algebra',plans:'algebra-1',perimeter:'geometry',fair:'coordinate-geometry',square:'algebra-2',waves:'af01',sphere:'ad01',groups:'ae01',transforms:'ab01',primes:'number-theory',choices:'ac01',apex:'physics-1',circuit:'physics-2'};
  for(const task of intuition)add('intuition',courseFor[task.id],task,['intuition/data.js','intuition/math.js'],{bankVersion:'intuition-v1',automatedReference:'tests/intuition.test.cjs'});
  const projects=require('../modules/ac01/dist/projects/content.js');for(const task of projects.ACTIVITIES)add('game-theory-project','ac01',task,['modules/ac01/dist/projects/content.js','modules/ac01/dist/projects/core.js'],{bankVersion:projects.VERSION,automatedReference:'tests/game-projects.test.cjs'});
  const game=require('../modules/ac01/dist/content.js');for(const lesson of game.LESSONS)for(const task of [lesson.predict,...lesson.checks])add('lesson','ac01',task,['modules/ac01/dist/content.js','modules/ac01/dist/engine.js'],{bankVersion:game.VERSION});

@@ -11941,11 +11941,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e62e7b72dab2cb3bc436d12ec7cea78a4454ee0737dc94e72d4e845df1e93cb"
+          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
         }
       ],
       "sourceReview": {
@@ -11977,11 +11977,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e62e7b72dab2cb3bc436d12ec7cea78a4454ee0737dc94e72d4e845df1e93cb"
+          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
         }
       ],
       "sourceReview": {
@@ -12013,11 +12013,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e62e7b72dab2cb3bc436d12ec7cea78a4454ee0737dc94e72d4e845df1e93cb"
+          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
         }
       ],
       "sourceReview": {
@@ -12049,11 +12049,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e62e7b72dab2cb3bc436d12ec7cea78a4454ee0737dc94e72d4e845df1e93cb"
+          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
         }
       ],
       "sourceReview": {
@@ -12085,11 +12085,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e62e7b72dab2cb3bc436d12ec7cea78a4454ee0737dc94e72d4e845df1e93cb"
+          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
         }
       ],
       "sourceReview": {
@@ -12121,11 +12121,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e62e7b72dab2cb3bc436d12ec7cea78a4454ee0737dc94e72d4e845df1e93cb"
+          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
         }
       ],
       "sourceReview": {
@@ -12157,11 +12157,47 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e62e7b72dab2cb3bc436d12ec7cea78a4454ee0737dc94e72d4e845df1e93cb"
+          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/intuition.test.cjs"
+      },
+      "automatedReference": "tests/intuition.test.cjs"
+    },
+    {
+      "id": "intuition:coordinate-geometry:fair",
+      "family": "intuition",
+      "module": "coordinate-geometry",
+      "taskId": "fair",
+      "title": {
+        "en": "One midpoint. One fair spot?",
+        "zh-Hant": "中點只有一個，公平的地點也只有一個嗎？",
+        "es": "Un punto medio. ¿Un solo lugar justo?"
+      },
+      "bankVersion": "intuition-v1",
+      "availability": "active",
+      "fingerprint": "0d3499312230f9e68d428c7a572b59b936452c0ec9b6e4ed33fbebd9d4b7e244",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "intuition/data.js",
+          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
+        },
+        {
+          "path": "intuition/math.js",
+          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
         }
       ],
       "sourceReview": {
@@ -12193,11 +12229,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e62e7b72dab2cb3bc436d12ec7cea78a4454ee0737dc94e72d4e845df1e93cb"
+          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
         }
       ],
       "sourceReview": {
@@ -12229,11 +12265,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e62e7b72dab2cb3bc436d12ec7cea78a4454ee0737dc94e72d4e845df1e93cb"
+          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
         }
       ],
       "sourceReview": {
@@ -12265,11 +12301,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e62e7b72dab2cb3bc436d12ec7cea78a4454ee0737dc94e72d4e845df1e93cb"
+          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
         }
       ],
       "sourceReview": {
@@ -12301,11 +12337,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e62e7b72dab2cb3bc436d12ec7cea78a4454ee0737dc94e72d4e845df1e93cb"
+          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
         }
       ],
       "sourceReview": {
@@ -12337,11 +12373,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e62e7b72dab2cb3bc436d12ec7cea78a4454ee0737dc94e72d4e845df1e93cb"
+          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "c979f2435123e7dc55c35e4b41655ed11489db57abdd379be033966513ab4194"
+          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
         }
       ],
       "sourceReview": {
