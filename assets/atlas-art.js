@@ -3,8 +3,9 @@
 const line=(d,extra='')=>'<path d="'+d+'" '+extra+'/>';
 const grid='<path d="M25 16v94m25-94v94m25-94v94m25-94v94m25-94v94m25-94v94m25-94v94M18 25h180M18 50h180M18 75h180M18 100h180" stroke="#b5cbc9" stroke-width=".65" opacity=".65"/>';
 const axes=line('M24 100h173m-7-4 7 4-7 4M45 112V12m-4 7 4-7 4 7','stroke-width="1.4"');
-function icon(id){
- const p='atlas-'+id,blue='url(#'+p+'-blue)',green='url(#'+p+'-green)',gold='url(#'+p+'-gold)';
+// scope keeps gradient ids unique when the same subject is drawn twice on one page.
+function icon(id,scope='atlas'){
+ const p=scope+'-'+id,blue='url(#'+p+'-blue)',green='url(#'+p+'-green)',gold='url(#'+p+'-gold)';
  const circle=(x,y,r,fill)=>'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+fill+'"/>';
  const rect=(x,y,w,h,fill)=>'<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+fill+'"/>';
  const art={

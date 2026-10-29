@@ -20,7 +20,7 @@ reportAssets.add('assets/speech-review.js');reportAssets.add('assets/speech-revi
 reportAssets.add('assets/course-catalog.js');reportAssets.add('assets/sync-policy.js');
 reportAssets.add('assets/exploration.css');reportAssets.add('assets/seo-config.js');reportAssets.add('assets/seo.js');
 for (const file of ['color-review.css', 'qidolab-lockup.svg', 'qidolab-water-puzzle.svg']) reportAssets.add('assets/' + file);
-for(const file of ['intuition/data.js','intuition/math.js','intuition/records.js','intuition/answer.js','intuition/lab.js','intuition/lab.css','assets/intuition-links.js','assets/intuition-links.css'])reportAssets.add(file);
+for(const file of ['intuition/data.js','intuition/math.js','intuition/records.js','intuition/answer.js','intuition/lab.js','intuition/lab.css','assets/intuition-home.js','assets/intuition-home.css','assets/intuition-links.js','assets/intuition-links.css'])reportAssets.add(file);
 function versionActivities(check = false) {
   const updates = new Map();
   const uiVersion = digest(['foundation.css', 'foundation-app.js', 'project.css']
