@@ -12,7 +12,6 @@ const coordinateUI=Object.freeze({
   "Related coordinate geometry projects →": "Proyectos relacionados de geometría analítica →",
   "Related coordinate geometry projects ↗": "Proyectos relacionados de geometría analítica ↗",
   "Coordinate Geometry illustration": "Ilustración de geometría analítica",
-  "Eleven mathematics courses and two physics foundations courses · 56 diagnostic problems, 20 field projects, two Coordinate Geometry projects, 10 Number Theory proof projects, two Game Theory projects and one case study, and separate 15-question foundation checks in nine tracks. Coordinate Geometry and Number Theory keep separate project notebooks; explanations and proofs remain pending review.": "Once cursos de matemáticas y dos cursos de fundamentos de física · 56 problemas de diagnóstico, 20 proyectos de aplicación, dos proyectos de geometría analítica, 10 proyectos de demostración de teoría de números, dos proyectos de teoría de juegos y un caso de estudio, y evaluaciones de fundamentos de 15 preguntas en nueve áreas. La geometría analítica y la teoría de números tienen cuadernos de proyectos separados; las explicaciones y demostraciones quedan pendientes de revisión.",
   "Coordinate Geometry projects": "Proyectos de geometría analítica",
   "Explore coordinate projects": "Explorar proyectos de geometría analítica",
   "Guided projects": "Proyectos guiados",
@@ -22,7 +21,11 @@ const coordinateUI=Object.freeze({
   "Lessons": "Lecciones",
   "Foundation check": "Comprobación de fundamentos",
   "Understanding check": "Comprobación de comprensión",
-  "Intuition Lab activity": "Actividad del Laboratorio de intuición"
+  "Intuition Lab activity": "Actividad del Laboratorio de intuición",
+  "Eleven mathematics courses and two physics foundations courses · 60 diagnostic problems, 20 field projects, two Coordinate Geometry projects, 10 Number Theory proof projects, two Game Theory projects and one case study, and separate 15-question foundation checks in ten tracks. Coordinate Geometry and Number Theory keep separate project notebooks; explanations and proofs remain pending review.": "Once cursos de matemáticas y dos cursos de fundamentos de física · 60 problemas de diagnóstico, 20 proyectos de aplicación, dos proyectos de geometría analítica, 10 proyectos de demostración de teoría de números, dos proyectos de teoría de juegos y un caso de estudio, y evaluaciones de fundamentos de 15 preguntas en diez áreas. La geometría analítica y la teoría de números tienen cuadernos de proyectos separados; las explicaciones y demostraciones quedan pendientes de revisión.",
+  "Lessons: not available yet": "Lecciones: aún no disponibles",
+  "Intuition Lab activity: not available yet": "Actividad del Laboratorio de intuición: aún no disponible",
+  "Two six-step projects with foundation and understanding checks. Lessons are planned.": "Dos proyectos de seis pasos con comprobaciones de fundamentos y de comprensión. Las lecciones vendrán después."
 });
 // COORDINATE_UI_ES_END
 const KEY='quidence_ui_locale_v1',normalize=s=>String(s??'').replace(/\s+/g,' ').trim();
