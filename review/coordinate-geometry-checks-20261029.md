@@ -39,7 +39,7 @@ The level follows the other foundation checks: 1 to 3 parts per question, five g
 
 ## Where the checks appear
 
-- **Homepage card:** shows both checks. The "not available yet" note now lists only what is missing: lessons and the Intuition Lab activity. In Classic, the bridge label moves into the empty project row and the short note fits the Intuition Lab row, so neighbouring cards keep the same height. The scope line is shortened so it does not add a line at 960px.
+- **Homepage card:** shows both checks. The "not available yet" note now lists only what is missing: lessons and the Intuition Lab activity. In Classic, the note takes the empty project row, which is tall enough for three lines, and the bridge label takes the Intuition Lab row, so neighbouring cards keep the same height. CI's wider DejaVu Sans fonts wrap the note to three lines at 960px, so this was checked with both fonts. The scope line is shortened so it does not add a line at 960px.
 - **Course overview:** "Your starting tools" links to both checks. In Traditional Chinese the links say the checks are in English and Spanish.
 - **Knowledge map and diagnostics page:** the map now offers "Test your understanding". On the diagnostics page Coordinate Geometry has no "Field projects" link, because its projects are on the course page. The diagnostic check can be indexed by search engines; `projects/?module=coordinate-geometry` stays out of the index.
 - **Homepage scope line:** 60 diagnostic problems and foundation checks in ten tracks, in English and Spanish.
