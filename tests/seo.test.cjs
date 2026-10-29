@@ -10,9 +10,10 @@ test('canonical URLs keep subjects and languages but drop tracking, versions and
     assert.notEqual(p.canonical,SEO.resolve('/diagnostics/?module=ad01&lang='+lang).canonical);
     assert.equal(SEO.resolve('/courses/number-theory?lang='+lang).canonical,SEO.resolve('/courses/number-theory/index.html?lang='+lang).canonical);
   }
-  for(const route of ['/diagnostics/?module=ac01','/projects/?module=number-theory','/projects/?module=../../reports/'])assert(SEO.resolve(route).noindex);
-  // Number Theory has an understanding check, but its projects live on the course page.
+  for(const route of ['/diagnostics/?module=ac01','/projects/?module=number-theory','/projects/?module=coordinate-geometry','/projects/?module=../../reports/'])assert(SEO.resolve(route).noindex);
+  // Number Theory and Coordinate Geometry have understanding checks, but their projects live on the course page.
   const numberTheory=SEO.resolve('/diagnostics/?module=number-theory&lang=es');assert.equal(numberTheory.noindex,false);assert.match(numberTheory.title,/^Teoría de números · /);
+  const coordinate=SEO.resolve('/diagnostics/?module=coordinate-geometry');assert.equal(coordinate.noindex,false);assert.match(coordinate.title,/^Coordinate Geometry · /);
   assert(!SEO.resolve('/foundations/?module=aa01').noindex);assert(!SEO.resolve('/foundations/?module=ac01').noindex);assert.equal(SEO.resolve('/unpublished/'),null);
 });
 test('all active courses have unique bilingual metadata and reciprocal alternatives',()=>{

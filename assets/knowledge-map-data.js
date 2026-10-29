@@ -196,8 +196,8 @@ const data={
       "en": "Coordinate Geometry",
       "es": "Geometría analítica",
       "scope": {
-        "en": "Two guided projects · Six steps each · Explanations remain open for review",
-        "es": "Dos proyectos guiados · Seis pasos cada uno · Explicaciones pendientes de revisión"
+        "en": "Two guided projects · A foundation check and four understanding problems · Explanations remain open for review",
+        "es": "Dos proyectos guiados · Una comprobación de fundamentos y cuatro problemas de comprensión · Explicaciones pendientes de revisión"
       },
       "module": "coordinate-geometry"
     },

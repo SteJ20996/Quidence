@@ -1,7 +1,7 @@
 (function(root){
 'use strict';
 // Legacy persistence identifiers are intentionally retained; see BRAND_MIGRATION.md.
-const KEY='cluevera_saved_reports_v1',SUBJECTS={aa01:'Secondary-school math',ab01:'Linear Algebra',ac01:'Game theory foundations',ad01:'Calculus',ae01:'Statistics',af01:'Pre-calculus','pre-algebra':'Pre-Algebra','algebra-1':'Algebra I',geometry:'Geometry','algebra-2':'Algebra II','number-theory':'Number Theory',microeconomics:'Microeconomics',physics:'Earlier introductory Physics','physics-1':'Physics 1 Foundations','physics-2':'Physics 2 Foundations'};
+const KEY='cluevera_saved_reports_v1',SUBJECTS={aa01:'Secondary-school math',ab01:'Linear Algebra',ac01:'Game theory foundations',ad01:'Calculus',ae01:'Statistics',af01:'Pre-calculus','pre-algebra':'Pre-Algebra','algebra-1':'Algebra I',geometry:'Geometry','algebra-2':'Algebra II','number-theory':'Number Theory','coordinate-geometry':'Coordinate Geometry',microeconomics:'Microeconomics',physics:'Earlier introductory Physics','physics-1':'Physics 1 Foundations','physics-2':'Physics 2 Foundations'};
 const clone=v=>JSON.parse(JSON.stringify(v));
 const GOAL_KEY='cluevera_learning_goal_v1';
 function sessionKey(payload,sessionId){return String(sessionId||payload.session?.id||payload.session_id||payload.sessionId||payload.state?.sessionId||payload.state?.id||payload.id||'current-session');}

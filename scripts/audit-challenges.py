@@ -166,6 +166,13 @@ g=euclid(252,198);x=next(x for x in range(11)if (g-252*x)%198==0);R['nt-c01']={'
 d=[k for k in range(1,361)if 360%k==0];R['nt-c02']={'divisors':len(d),'odd':sum(k%2 for k in d),'rectangles':sum(k*k<=360 for k in d),'squares':sum(isqrt(k)**2==k for k in d)}
 R['nt-c03']={'inverse':next(k for k in range(26)if 11*k%26==1),'x':next(x for x in range(26)if 11*x%26==7),'countFour':sum(6*x%10==4 for x in range(10)),'countFive':sum(6*x%10==5 for x in range(10))}
 R['nt-c04']={'order':next(k for k in range(1,12)if pow(2,k,11)==1),'remainder':pow(2,2026,11),'digit':pow(7,2026,10),'primes':[p for p in ['2','3','5','7']if all((n**5-n)%int(p)==0 for n in range(-60,61))]}
-assert len(R)==62
-output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors and residues, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
+def dist(p,q):return F(isqrt(int((p[0]-q[0])**2+(p[1]-q[1])**2)))
+def mid(p,q):return (F(p[0]+q[0],2),F(p[1]+q[1],2))
+A,B,P=(-2,1),(4,9),(8,1);assert dist(A,B)**2==(4+2)**2+(9-1)**2;M=mid(A,B);R['cg-c01']={'distance':dist(A,B),'mx':M[0],'my':M[1],'same':yn(dist(A,P)==dist(A,B))}
+A,B,C=(1,2),(5,10),(4,1);m=F(B[1]-A[1],B[0]-A[0]);p=-1/m;assert m*p==-1;R['cg-c02']={'slope':m,'intercept':A[1]-m*A[0],'perpendicular':p,'pathIntercept':C[1]-p*C[0]}
+A,B=(0,0),(6,4);M=mid(A,B);m=F(B[1]-A[1],B[0]-A[0]);p=-1/m;b=M[1]-p*M[0];x=-b/p;assert x**2==(x-6)**2+16;fair=[(X,Y)for X in range(-20,21)for Y in range(-20,21)if X*X+Y*Y==(X-6)**2+(Y-4)**2];assert len(fair)>1 and all(Y==p*X+b for X,Y in fair)
+R['cg-c03']={'slope':p,'intercept':b,'axis':x,'only':yn(len(fair)==1)}
+A,B,P=(-1,2),(5,10),(5,2);c=mid(A,B);r2=(B[0]-c[0])**2+(B[1]-c[1])**2;assert isqrt(int(r2))**2==r2;R['cg-c04']={'cx':c[0],'cy':c[1],'radius':isqrt(int(r2)),'right':yn((A[0]-P[0])*(B[0]-P[0])+(A[1]-P[1])*(B[1]-P[1])==0)}
+assert len(R)==66
+output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues and equidistant grid points, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
 path=Path(__file__).resolve().parents[1]/'review'/'challenge-math-audit.json';path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(output,indent=2)+'\n');print(json.dumps({'questions':len(R),'components':sum(len(x)for x in R.values()),'output':str(path)}))
