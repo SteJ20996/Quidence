@@ -69,8 +69,9 @@ for raw in re.split(r"(?=^### 项目 \d+ ·)", text, flags=re.M)[1:]:
                           proof=quoted(chunk.split("**Reference proof（`referenceSolution`）**", 1)[1]),
                           fields=[fields[i] for i in ids]))
     assert len({f["id"] for st in steps for f in st["fields"]}) == len(fields), pid
+    # The Chinese teacher guide stays in the source notes; quidence.com publishes English and Spanish only.
     projects.append(dict(id=pid, order=int(order), title=head.group(3), level=meta[0], difficulty=meta[1],
-                         topic=meta[2], prompt=prompt, approach=approach, teacherGuide=teacher,
+                         topic=meta[2], prompt=prompt, approach=approach,
                          uses=uses, steps=steps,
                          nextCheck=raw.split("**Next check：**", 1)[1].strip().split("\n---", 1)[0]))
 

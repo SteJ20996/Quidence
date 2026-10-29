@@ -8,7 +8,6 @@
     "topic": "Divisibility and the greatest common divisor",
     "prompt": "An invented community center wants to cover a rectangular floor 924 cm by 588 cm with identical square tiles, without cutting any tile. Tiles are laid in an aligned rectangular grid. Each tile side must be a whole number of centimeters, and the center wants the largest possible tiles. Do not list all divisors; use the reasoning below.",
     "approach": "Do not search for divisors. Prove that (a, b) and (b, r) have the same common divisors when a = qb + r, so each division keeps the answer and makes the numbers smaller. The last nonzero remainder is the gcd, and every common divisor divides it. The tile count and the lcm follow from these two facts.",
-    "teacherGuide": "核心想法：不去列出 924 和 588 的所有因数，而是证明\"(a, b) 和 (b, a 除以 b 的余数) 有完全相同的公因数\"。这样问题每一步都变小，最后一个非零余数就是最大公因数，而且顺带证明了\"所有公因数都整除 gcd\"。第 3 步的多选题和第 4 步的最小公倍数都直接用这两个结论推出，不需要试数。常见卡点：学生会说\"余数越来越小所以会停\"，但没有说清\"余数是非负整数\"这个前提。",
     "uses": "Division with remainder; well-ordering (a decreasing sequence of nonnegative integers stops).",
     "steps": [
       {
@@ -178,7 +177,6 @@
     "topic": "Linear Diophantine equations",
     "prompt": "At an invented science fair, you have only two unmarked jugs that hold 7 L and 11 L, plus a large tank of water. You may fill a jug, empty a jug, or pour from one jug into the other until the receiving jug is full or the pouring jug is empty. You need exactly 1 L.",
     "approach": "Run the Euclidean algorithm backward to write 1 = 2·11 − 3·7, and read it as fills and empties. Then prove what every solution looks like. For jugs that cannot make some amounts, find a quantity that no move can change: every amount stays a multiple of the gcd.",
-    "teacherGuide": "核心想法有两个。第一，\"能量出 1 升\"等价于找整数 x、y 使 7x + 11y = 1，扩展欧几里得算法把这个解\"倒推\"出来，并且给出一个具体的倒水顺序。第二，\"量不出 4 升\"要用不变量来证明：不管怎么操作，两个壶里的水量永远是 3 的倍数。这样学生不用尝试所有倒法，就能同时证明\"能\"和\"不能\"。常见卡点：求通解时，学生只验证 (x + 11k, y − 7k) 是解，却没有证明\"所有解都长这样\"。",
     "uses": "Euclidean algorithm (nt-p01); induction on the number of moves; if m | kn and gcd(m, n) = 1 then m | k (proved for 7 and 11 in Step 2, assumed in general in Step 4).",
     "steps": [
       {
@@ -383,7 +381,6 @@
     "topic": "Linear combinations with nonnegative coefficients",
     "prompt": "An invented museum sells tickets only in packs of 5 and packs of 7. A group can buy any number of each kind of pack, including zero, and must buy exactly as many tickets as people. Work with remainders, not with a list of all sizes.",
     "approach": "Sort sizes by their remainder mod 5. Adding a 5-pack keeps the remainder, so each class has one threshold: the smallest size in that class made with 7-packs only. Every size at or above the threshold works, and every size below it fails. The largest impossible size and the count both follow from the thresholds, with no list.",
-    "teacherGuide": "核心想法：不要从 1 一个个试到 30，而是按\"除以 5 的余数\"把所有人数分成 5 类。每一类里，只要用到的 7 张包数 b 确定了（b 只能是 0–4），能买的人数就是\"从 7b 开始，每次加 5\"。这样每一类都有一个\"门槛\"，门槛以下买不了，门槛以上全都能买。最大的门槛是 28，所以最大的买不了的数是 28 − 5 = 23；每类买不了的个数也能直接算出来，不需要列表。最后一步把同样的推理推广到任意互素的 a、b。",
     "uses": "Division with remainder; if a | bj and gcd(a, b) = 1 then a | j (assumed); a floor-function lemma (proved in Step 3).",
     "steps": [
       {
@@ -529,7 +526,6 @@
     "topic": "Prime numbers",
     "prompt": "Suppose someone claims to have a complete, finite list of all primes. Euclid’s argument shows how to find a prime that is missing from any such list, without factoring anything.",
     "approach": "Multiply the primes on a list and add 1. The result leaves remainder 1 on division by each listed prime, so its prime factors are new. Prove that every number above 1 has a prime factor, and the argument is complete. Working with remainders mod 4 gives infinitely many primes of the form 4k + 3.",
-    "teacherGuide": "核心想法：不需要知道 Q 是不是质数，也不需要把 Q 分解出来。只要证明两件事：(1) 任何大于 1 的整数都有质因数；(2) 名单上的质数都不整除 Q（因为余数都是 1）。所以 Q 的质因数一定不在名单上。题目里直接给出 30031 = 59 × 509，学生只需用乘法核对，这个反例的作用是说明\"Q 本身不一定是质数\"。第 4 步把同样的推理用到 4k + 3 型质数，关键是\"几个 4k + 1 型的数相乘，还是 4k + 1 型\"。",
     "uses": "Well-ordering (least divisor greater than 1, smallest counterexample); remainders.",
     "steps": [
       {
@@ -666,7 +662,6 @@
     "topic": "Modular arithmetic",
     "prompt": "At an invented school store, a clerk checks long totals with quick digit tests instead of a calculator. You will prove why the tests work and exactly what they can and cannot catch.",
     "approach": "Write a number as digits times powers of 10. Since 10 ≡ 1 (mod 9) and 10 ≡ −1 (mod 11), the digit tests become theorems. The same expression shows that swapping two neighboring digits changes the number by 9·10ʲ(u − v), which is always a multiple of 9 and never a multiple of the prime 11.",
-    "teacherGuide": "核心想法：把一个数写成\"各位数字 × 10 的幂\"之和，再用两个事实：10 ≡ 1 (mod 9)，10 ≡ −1 (mod 11)。这样数位和、交错和的检验就从\"口诀\"变成了可以证明的定理。接着用同样的写法，算出\"交换相邻两位\"会让数值改变 9 × 10ʲ × (两数字之差)，于是一般地证明：模 9 永远查不出这种错误，模 11 永远能查出。最后的校验码题，用\"11 是质数\"证明它能查出所有单个数字错误和相邻互换。整个过程都是一般证明，不靠举例。",
     "uses": "Rules for adding and multiplying congruences (proved in Step 2); Euclid’s lemma: if a prime divides a product, it divides a factor (assumed).",
     "steps": [
       {
@@ -829,7 +824,6 @@
     "topic": "Congruences and the Chinese Remainder Theorem",
     "prompt": "A puzzle recorded in an ancient Chinese mathematics text asks for a number of objects that leaves remainder 2 when counted by threes, remainder 3 when counted by fives, and remainder 2 when counted by sevens. Solve it by reasoning, not by searching.",
     "approach": "Do not count up from 1. Write the condition with the largest modulus as x = 7k + 2 and substitute it into the next condition; each step is a small linear congruence. Then prove the answer is unique modulo 105, because coprime divisors multiply. Finally, find the exact condition for when two congruences can hold together.",
-    "teacherGuide": "核心想法：用\"逐个代入\"代替\"从 1 开始找\"。先把最大模数的条件写成 x = 7k + 2，再代入下一个条件解出 k，这样每一步都是解一个很小的一次同余方程。然后证明解\"在模 105 意义下唯一\"——这一步要用\"两两互素的数都整除 N，则它们的乘积也整除 N\"。第 3 步给出孙子的\"拼装法\"并证明它为什么对。第 4 步讨论模不互素的情况，给出一般判别法：有解当且仅当两个余数模 gcd 同余。",
     "uses": "Bézout’s identity in general (from the extended Euclidean algorithm, nt-p02; assumed in general); the coprime-divisor lemma (proved in Step 2).",
     "steps": [
       {
@@ -993,7 +987,6 @@
     "topic": "Pythagorean triples",
     "prompt": "A Pythagorean triple (a, b, c) consists of positive integers with a² + b² = c². It is primitive if gcd(a, b, c) = 1. Find a formula for triples and prove that it produces every primitive triple.",
     "approach": "First prove the formula always gives a triple. Then go backward: factor b² = (c − a)(c + a), show that (c + a)/2 and (c − a)/2 are coprime, and use unique factorization to show they are squares. This describes every primitive triple at once, so nothing needs to be counted.",
-    "teacherGuide": "核心想法：先用代数恒等式证明公式一定给出勾股数；再证明在\"m、n 互素、一奇一偶\"时得到的是本原勾股数；最难也最漂亮的是第 4 步——反过来证明\"每一个本原勾股数都来自这个公式\"，关键是把 b² = c² − a² 分解成 (c − a)(c + a)，并用\"两个互素的正整数相乘是平方数，则各自都是平方数\"。这样就不需要列出所有勾股数，而是用定理一次性刻画全部。第 5 步从几何角度再看一次：过 (−1, 0) 的有理斜率直线与单位圆的另一个交点，用韦达定理求出，不用解二次方程。",
     "uses": "Unique factorization of integers (assumed); squares modulo 4; Vieta’s formula for the product of roots.",
     "steps": [
       {
@@ -1216,7 +1209,6 @@
     "topic": "Powers modulo n and Fermat’s little theorem",
     "prompt": "Huge powers can be reduced by reasoning instead of by multiplying out. You will prove Fermat’s little theorem, use it to compute quickly, and then see exactly what it can and cannot prove about a number.",
     "approach": "Make huge exponents small. Find a power that is ≡ 1 or ≡ −1, prove Fermat’s little theorem by showing that a, 2a, …, (p − 1)a rearrange 1, …, p − 1 modulo p, and use repeated squaring. Then separate a theorem from its converse: passing the base-2 test does not establish primality, but failing the base-3 test proves that 341 is composite.",
-    "teacherGuide": "核心想法：把大指数\"变小\"。第 1 步用 7² ≡ −1 (mod 10) 一下子得到 7⁴ ≡ 1，不需要把 7 的各次方都列出来。第 2 步证明费马小定理：a, 2a, …, (p − 1)a 除以 p 的余数恰好是 1, 2, …, p − 1 换了顺序——这是全题的理论核心。第 3 步用\"反复平方\"把 3⁴⁵ 拆成 3³²·3⁸·3⁴·3，只需 5 次平方。第 4、5 步讨论\"反过来对不对\"：341 = 11 × 31 是合数，却满足 2³⁴⁰ ≡ 1 (mod 341)；换成底数 3，分别模 11、模 31 计算，再用中国剩余定理合并，得到 56 ≠ 1。最后用完全不依赖因数的反复平方（模 341）再算一次，说明\"费马检验失败\"本身就能证明一个数是合数，不需要先找到因数。",
     "uses": "Euclid’s lemma (assumed); the alternating test for 11 (nt-p03); the coprime-divisor lemma (nt-p04).",
     "steps": [
       {
@@ -1423,7 +1415,6 @@
     "topic": "Applications: public-key cryptography",
     "prompt": "An invented math club builds a toy lock: anyone can lock a message with public numbers, but only the holder of a secret number can unlock it. Build the keys, lock and unlock a message, and prove that unlocking always works.",
     "approach": "The lock uses only earlier tools. The Euclidean algorithm finds d, Fermat’s theorem shrinks exponents, and the Chinese Remainder Theorem lets you work modulo 11 and 13 separately. The proof that unlocking always works treats the case p | m on its own, because Fermat’s theorem does not apply there.",
-    "teacherGuide": "核心想法：RSA 只用到前面学过的三件事——扩展欧几里得算法（求 d）、费马小定理（缩小指数）、中国剩余定理（分开模 11 和模 13 计算再合并）。φ(143) 用容斥原理计数（数 11 的倍数和 13 的倍数），不需要列出 1 到 143。第 4 步证明\"对所有消息都能正确解锁\"，包括与 n 不互素的消息，这是很多讲义略过的地方。最后讨论安全性：知道 p、q 就能算出 d，所以安全性取决于\"分解大数很难\"；追问里还有\"知道 φ(n) 就能用一元二次方程求出 p、q\"。",
     "uses": "Fermat’s little theorem (nt-p05); the coprime-divisor lemma (nt-p04); extended Euclidean algorithm (nt-p02); inclusion–exclusion; unique factorization (assumed; used for “the only primes dividing 143 are 11 and 13”).",
     "steps": [
       {
@@ -1600,7 +1591,6 @@
     "topic": "Divisor sums, perfect and Mersenne numbers",
     "prompt": "A positive integer is perfect if it equals the sum of its positive divisors smaller than itself. Explore divisor sums and numbers of the form 2ᵖ − 1, proving each step.",
     "approach": "Use unique factorization to turn a sum over all divisors into a product of short geometric sums. For 2ᵖ − 1 with p an odd prime, prove that every prime factor q satisfies q ≡ 1 (mod 2p), using the smallest exponent d with 2ᵈ ≡ 1 (mod q). This leaves very few candidates, so 127 is proved prime and 2047 is factored with one division.",
-    "teacherGuide": "核心想法：用唯一分解定理把\"求所有因数之和\"变成乘积公式 σ(n) = ∏(1 + p + ⋯ + pᵃ)，不需要列出因数。第 2 步是本题的理论核心：用\"阶\"的引理和费马小定理证明 2ᵖ − 1 的质因数都 ≡ 1 (mod 2p)。这样判断 127 是质数只需要一句话（最小可能的质因数是 15，而 15 > √127），分解 2047 也只需要检验一个候选数 23。第 3 步证明欧几里得的完全数构造；第 4 步证明指数是合数时 2ᵏ − 1 一定是合数，再指出\"指数是质数\"仍然不够（2047）。",
     "uses": "Unique factorization (assumed); Fermat’s little theorem (nt-p05); the coprime-divisor lemma (nt-p04); the √n lemma (proved in Step 2); geometric sums.",
     "steps": [
       {
