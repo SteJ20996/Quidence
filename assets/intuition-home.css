@@ -83,7 +83,8 @@ html[data-ui-theme="paper"] #intuition-view{grid-column:1/-1;grid-row:1}
 #intuition-view[data-qi-theme="paper"] .qi-filters button[data-intuition-filter="all"]{flex:0 0 auto;padding-inline:16px}
 #intuition-view[data-qi-theme="paper"] .qi-filters button:hover{background-color:#e8edd9}
 #intuition-view[data-qi-theme="paper"] .qi-filters button[aria-pressed="true"]{background:#dce6c6 var(--paper-texture);border-color:#87a07b;border-bottom-color:transparent;box-shadow:inset 0 -3px 9px #bed09a35}
-#intuition-view[data-qi-theme="paper"] .q-paper-category-icon{width:26px;height:27px;flex-shrink:0}
+#intuition-view[data-qi-theme="paper"] .qi-filter-icon{display:block;width:26px;height:27px;flex-shrink:0}
+#intuition-view[data-qi-theme="paper"] .qi-filter-icon svg{display:block;width:100%;height:100%}
 #intuition-view[data-qi-theme="paper"] .qi-count{font-size:12px;color:#627057;margin:0 0 12px 3px}
 #intuition-view[data-qi-theme="paper"] .qi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:stretch}
 #intuition-view[data-qi-theme="paper"] .qi-card{display:grid;grid-template-columns:36% minmax(0,1fr);gap:6px 12px;min-height:170px;padding:13px 13px 12px;border:1px solid #ded1af;border-radius:11px 14px 12px 13px;background:#fffcf2 var(--paper-texture);box-shadow:0 4px 8px #af8c3f16;transition:background-color .15s,border-color .15s,box-shadow .15s}
@@ -115,7 +116,7 @@ html[data-ui-theme="paper"] #intuition-view{grid-column:1/-1;grid-row:1}
 @media(max-width:1200px){#intuition-view[data-qi-theme="paper"] .qi-layout{grid-template-columns:minmax(0,1fr) 300px;gap:0 22px}
 #intuition-view[data-qi-theme="paper"] h1{font-size:43px}
 #intuition-view[data-qi-theme="paper"] .qi-filters button{font-size:13px;gap:5px}
-#intuition-view[data-qi-theme="paper"] .q-paper-category-icon{width:22px;height:23px}
+#intuition-view[data-qi-theme="paper"] .qi-filter-icon{width:22px;height:23px}
 #intuition-view[data-qi-theme="paper"] .qi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 #intuition-view[data-qi-theme="paper"] .qi-card h3{font-size:18px}
 #intuition-view[data-qi-theme="paper"] .qi-shelf{height:195px}
@@ -135,7 +136,7 @@ html[data-ui-theme="paper"] #intuition-view{grid-column:1/-1;grid-row:1}
 #intuition-view[data-qi-theme="paper"] .qi-filters{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:5px 0 8px}
 #intuition-view[data-qi-theme="paper"] .qi-filters button,#intuition-view[data-qi-theme="paper"] .qi-filters button[data-intuition-filter="all"]{min-height:44px;padding:10px 7px;font-size:13px;gap:7px;border-radius:9px 12px 8px 10px}
 #intuition-view[data-qi-theme="paper"] .qi-filters button[aria-pressed="true"]{border-color:#87a07b}
-#intuition-view[data-qi-theme="paper"] .q-paper-category-icon{width:19px;height:21px}
+#intuition-view[data-qi-theme="paper"] .qi-filter-icon{width:19px;height:21px}
 #intuition-view[data-qi-theme="paper"] .qi-grid{grid-template-columns:minmax(0,1fr);gap:11px}
 #intuition-view[data-qi-theme="paper"] .qi-card{grid-template-columns:34% minmax(0,1fr);min-height:0;padding:14px 13px 12px}
 #intuition-view[data-qi-theme="paper"] .qi-card h3{font-size:19px}

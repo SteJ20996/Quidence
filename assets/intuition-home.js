@@ -30,7 +30,8 @@ function card(d,lang,c,theme,progress){
 }
 function filters(c,theme){
  // Paper Explorer reuses the category drawings already placed in its subject tabs.
- const icon=group=>theme==='paper'&&group!=='all'?(home.querySelector('#subject-categories [data-category="'+group+'"] .q-paper-category-icon')?.outerHTML||''):'';
+ const drawing=group=>home.querySelector('#subject-categories [data-category="'+group+'"] .q-paper-category-icon svg')?.outerHTML;
+ const icon=group=>theme==='paper'&&group!=='all'&&drawing(group)?'<span class="qi-filter-icon" aria-hidden="true">'+drawing(group)+'</span>':'';
  return `<div class="qi-filters" role="group" aria-label="${c.filterLabel}">${['all',...GROUPS].map((g,i)=>`<button type="button" data-intuition-filter="${g}" aria-pressed="${filter===g}">${icon(g)}<span>${c.groups[i]}</span></button>`).join('')}</div><p class="qi-count">${c.count}</p>`;
 }
 function grouped(items,render,c){
