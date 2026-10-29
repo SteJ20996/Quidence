@@ -2,7 +2,7 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const C=require('../assets/course-catalog.js'),M=require('../assets/knowledge-map.js'),P=require('../assets/sync-policy.js'),Local=require('../assets/local-records.js');
 test('Coordinate Geometry has one course entry with its projects, both checks and its own map binding',()=>{
- const c=C.COURSES['coordinate-geometry'];assert.equal(c.group,'school');assert.equal(c.course,c.project);assert.equal(c.projectCount,2);assert.equal(c.challenge,'diagnostics/?module=coordinate-geometry');assert.equal(c.challengeCount,4);assert.equal(c.foundation,'foundations/?module=coordinate-geometry');
+ const c=C.COURSES['coordinate-geometry'];assert.equal(c.group,'school');assert.equal(c.project,c.course+'#projects');assert.equal(c.projectCount,2);assert.equal(c.challenge,'diagnostics/?module=coordinate-geometry');assert.equal(c.challengeCount,4);assert.equal(c.foundation,'foundations/?module=coordinate-geometry');
  assert.deepEqual(M.courseCandidates(0,['coordinate']),['coordinate-geometry']);
  for(const id of ['geometry','ab01'])assert.equal(C.COURSES[id].relatedProject,c.course);
  const h=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');assert.match(h,/data-subject="coordinate-geometry"/);assert.match(h,/High school → university bridge/);
