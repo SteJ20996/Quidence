@@ -2,7 +2,9 @@
 (function(){'use strict';
 const line=(d,extra='')=>'<path d="'+d+'" '+extra+'/>';
 const grid='<path d="M25 16v94m25-94v94m25-94v94m25-94v94m25-94v94m25-94v94m25-94v94M18 25h180M18 50h180M18 75h180M18 100h180" stroke="#b5cbc9" stroke-width=".65" opacity=".65"/>';
-const axes=line('M24 100h173m-7-4 7 4-7 4M45 112V12m-4 7 4-7 4 7','stroke-width="1.4"');
+// Chart grid: lines stop at the baseline instead of running past the axes.
+const plot=x0=>'<path d="'+Array.from({length:(175-x0)/25+1},(_,i)=>'M'+(x0+25*i)+' 16V100').join('')+'M'+x0+' 25H198M'+x0+' 50H198M'+x0+' 75H198" stroke="#b5cbc9" stroke-width=".65" opacity=".65"/>';
+const axes=line('M24 100h173m-7-4 7 4-7 4M50 112V12m-4 7 4-7 4 7','stroke-width="1.4"');
 // scope keeps gradient ids unique when the same subject is drawn twice on one page.
 function icon(id,scope='atlas'){
  const p=scope+'-'+id,blue='url(#'+p+'-blue)',green='url(#'+p+'-green)',gold='url(#'+p+'-gold)';
@@ -10,14 +12,14 @@ function icon(id,scope='atlas'){
  const rect=(x,y,w,h,fill)=>'<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+fill+'"/>';
  const art={
   'pre-algebra':line('M12 66H208M24 59v14m32-14v14m32-14v14m32-14v14m32-14v14m32-14v14')+circle(56,66,7,gold)+circle(152,66,6,green)+'<g fill="#173d4d" stroke="none" text-anchor="middle" font-family="Georgia,serif" font-size="12">'+[-2,-1,0,1,2].map((n,i)=>'<text x="'+(56+i*32)+'" y="91">'+n+'</text>').join('')+'</g>',
-  'algebra-1':line('M45 29 110 20 175 29M110 13v90m-25 8h50m-42-8h34M45 29 28 83m17-54 17 54m113-54-17 54m17-54 17 54','stroke="#565c50" stroke-width="2"')+rect(29,61,14,23,blue)+rect(45,61,14,23,blue)+rect(160,61,14,23,gold)+rect(176,61,14,23,gold)+line('M24 84q21 17 42 0Zm130 0q21 17 42 0Z','fill="#bec4ad"')+circle(110,20,4,'#7c8472'),
+  'algebra-1':line('M45 29 110 20 175 29M110 13v90m-25 8h50m-42-8h34M45 29 28 83m17-54 17 54m113-54-17 54m17-54 17 54','stroke="#565c50" stroke-width="2"')+rect(29,61,15,23,blue)+rect(44,61,15,23,blue)+rect(160,61,15,23,gold)+rect(175,61,15,23,gold)+line('M24 84q21 17 42 0Zm130 0q21 17 42 0Z','fill="#bec4ad"')+circle(110,20,4,'#7c8472'),
   geometry:grid+line('M22 48 52 36 80 48 50 61Z','fill="#b6d8bc"')+line('M22 48 50 61v43L22 90Z','fill="'+green+'"')+line('M50 61 80 48v42l-30 14Z','fill="#75b695"')+line('M92 94 118 33 116 104Z','fill="'+gold+'"')+line('M118 33 143 94 116 104Z','fill="#e9b756"')+circle(175,76,29,blue)+line('M157 60q12-12 24-4','stroke="#e5f1f0" stroke-width="7" opacity=".65"'),
-  'coordinate-geometry':grid+axes+circle(115,57,39.8,green).replace('/>',' opacity=".4" stroke="#6eaa8c"/>')+line('M80 76H150V38','stroke="#c5a45b" stroke-dasharray="4 4"')+line('M142 76v-8h8','stroke="#c5a45b"')+line('M80 76 150 38','stroke="#337ca5" stroke-width="2.3"')+circle(80,76,5.5,gold)+circle(150,38,5.5,blue)+circle(115,57,3,'#173d4d'),
+  'coordinate-geometry':grid+axes+circle(112.5,50,45.1,green).replace('/>',' opacity=".4" stroke="#6eaa8c"/>')+line('M75 75H150V25','stroke="#c5a45b" stroke-dasharray="4 4"')+line('M142 75v-8h8','stroke="#c5a45b"')+line('M75 75 150 25','stroke="#337ca5" stroke-width="2.3"')+circle(75,75,5.5,gold)+circle(150,25,5.5,blue)+circle(112.5,50,3,'#173d4d'),
   'algebra-2':grid+line('M23 100h175m-7-4 7 4-7 4M110 113V12m-4 7 4-7 4 7')+line('M48 16Q110 184 172 16','stroke="#377dab" stroke-width="2.8"'),
   af01:grid+line('M12 93C43 7 65 7 98 73S154 137 204 39','stroke="#bf993c" stroke-width="2.3"')+line('M12 73C49 137 74 137 108 52S166 6 207 81','stroke="#367990" stroke-width="2.3"'),
-  ad01:grid+line('M45 99C96 133 118 13 187 38V100H45Z','fill="'+green+'" opacity=".55"')+Array.from({length:10},(_,i)=>line('M'+(54+i*13)+' 100V'+[103,99,91,78,64,50,40,34,32,34][i],'stroke="#7aa99e" stroke-width=".8"')).join('')+axes+line('M24 94C96 139 118 13 187 38','stroke="#255e68" stroke-width="2"'),
-  ae01:grid+[24,40,65,90,75,48,27].map((h,i)=>rect(32+i*23,104-h,20,h,i<3?green:blue)).join('')+line('M20 105h186'),
-  ab01:grid+axes+line('M45 100 143 20m-4 13 4-13-13 6','stroke="#337ca5" stroke-width="2.3"')+line('M45 100 174 82m-11-4 11 4-9 7','stroke="#173d4d" stroke-width="2.3"'),
+  ad01:plot(50)+line('M50 100V88C105 88 120 30 187 32V100Z','fill="'+green+'" opacity=".55"')+[86.9,83.6,77.7,69.6,60.4,51.3,43.6,37.9,34.2,32.3].map((y,i)=>line('M'+(62.5+i*12.5)+' 100V'+y,'stroke="#7aa99e" stroke-width=".8"')).join('')+line('M50 100H197m-7-4 7 4-7 4M50 100V12m-4 7 4-7 4 7','stroke-width="1.4"')+line('M50 88C105 88 120 30 187 32','stroke="#255e68" stroke-width="2"'),
+  ae01:plot(25)+[24,40,65,90,75,48,27].map((h,i)=>rect(36+i*22,100-h,22,h,i<3?green:blue)).join('')+line('M20 100h186'),
+  ab01:grid+axes+line('M50 100 150 25M143.7 36.6 150 25 137.1 27.8','stroke="#337ca5" stroke-width="2.3"')+line('M50 100 175 75M164.3 82.7 175 75 162.2 72','stroke="#173d4d" stroke-width="2.3"'),
   'number-theory':Array.from({length:24},(_,i)=>circle(37+(i%6)*29,26+Math.floor(i/6)*25,4.7,[gold,blue,green,blue][i%4])).join(''),
   ac01:'<g fill="#234957" stroke="none" font-family="Georgia,serif" text-anchor="middle" font-size="14"><text x="94" y="22">A</text><text x="153" y="22">B</text><text x="34" y="58">A</text><text x="34" y="94">B</text></g>'+rect(61,32,121,76,'#fcfaf2')+line('M121 32v76M61 70h121','stroke="#789598"')+'<g fill="#234957" stroke="none" font-family="Georgia,serif" text-anchor="middle" font-size="13"><text x="90" y="57">3, 3</text><text x="151" y="57">0, 4</text><text x="90" y="94">4, 0</text><text x="151" y="94">1, 1</text></g>',
   'physics-1':line('M110 11 44 82m66-71-27 92m27-92 25 92m-25-92 66 71','stroke-width="1.2"')+line('M26 55Q110 153 194 55','stroke="#99b7c1" stroke-dasharray="3 5"')+[ [44,82],[83,103],[135,103],[176,82]].map(([x,y],i)=>circle(x,y,12,i===2?gold:blue)).join('')+circle(110,11,2,'#173d4d'),
