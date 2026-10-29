@@ -3,6 +3,9 @@ node_modules/
 .DS_Store
 *.log
 /static-release/
+/review/atlas-screenshots/
+/review/paper-screenshots/
+/review/studio-screenshots/
 /review/theme-screenshots/
 
 # Credentials and original-platform configuration
