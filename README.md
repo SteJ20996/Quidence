@@ -1,3 +1,9 @@
+## 2026-10-29 · 数论与解析几何补齐
+
+- 数论新增 4 道 **Test your understanding** 问题（16 个答案分量），规模与其他学科的检查一致。见 [数论理解检查](review/number-theory-understanding-check-20261029.md)。
+- 解析几何补齐了其他学科已有的活动：15 题基础检查、4 道理解检查（16 个答案分量）、4 节入门课（英文、繁体中文、西班牙文）和 Intuition Lab 活动 “One midpoint. One fair spot?”。主页卡片恢复两个项目的入口。见 [检查](review/coordinate-geometry-checks-20261029.md)、[入门课](review/coordinate-geometry-lessons-20261029.md)、[Intuition Lab 活动](review/coordinate-geometry-intuition-20261029.md)和[项目入口](review/coordinate-geometry-card-projects-20261029.md)。
+- 10 月 14 日至 27 日的其他更新（四种外观、Intuition Lab、Math Voice Lab、英文听写复核、博弈论项目和解析几何项目）列在 [CURRENT_STATUS.md](CURRENT_STATUS.md)。
+
 ## 2026-10-12 · 薄雾紫 × 深青绿与 Qidolab 入口
 
 - 用户已审核的新配色覆盖主页、课程、检查、项目和报告；阅读卡片保持明亮，图表及正误反馈继续保留原有语义。
@@ -17,18 +23,21 @@
 
 公测已暂停账户与云端同步，新学习记录仅保存在当前浏览器。所有活动页提供 [保存、恢复与删除记录](records/) 入口，公用设备离开前应清除本地记录和下载文件。默认 `npm start` 不开启账户 API 或打开学生数据库；开发测试中的 `accountsEnabled: true` 不用于公测。当前规则见 [LOCAL_ONLY_REVIEW.md](LOCAL_ONLY_REVIEW.md)。
 
-主页提供 8 个数学学科（含统计学），Science 分组拆成 Physics 1 Foundations 和 Physics 2 Foundations。物理按对应课程主题选取代数型入门内容，不规定统一开课年级，不宣称完整进阶课程或考试准备；范围与缺口见 [两课设计稿](PHYSICS_TRACKS_DESIGN_2026-10-08.md)。经济学和博弈论不再提供课程活动。
+主页共 13 张学科卡片：School Mathematics 5 科、Further Mathematics 6 科，Science 分组拆成 Physics 1 Foundations 和 Physics 2 Foundations。物理按对应课程主题选取代数型入门内容，不规定统一开课年级，不宣称完整进阶课程或考试准备；范围与缺口见 [两课设计稿](PHYSICS_TRACKS_DESIGN_2026-10-08.md)。博弈论已于 2026-10-12 恢复；经济学仍不提供课程活动。
 
 | 分类 | 学科 | 检查题 |
 | --- | --- | ---: |
-| School Mathematics | Pre-Algebra、Algebra I、Geometry、Algebra II | 各 4 题 |
-| Further Mathematics | Pre-calculus、Calculus、Statistics | 各 4 题 |
+| School Mathematics | Pre-Algebra、Algebra I、Geometry、Algebra II、Coordinate Geometry | 各 4 题 |
+| Further Mathematics | Pre-calculus、Calculus、Statistics、Number Theory | 各 4 题 |
 | Further Mathematics | Linear Algebra | 12 题 |
+| Further Mathematics | Game Theory | 15 题（Think in Choices，不在诊断题库中） |
 | Science | Physics 1 Foundations、Physics 2 Foundations | 各 6 题（公式提供） |
 
-当前主页共 52 道检查题、204 个独立检查的答案分量。主页每科均提供 **Test your understanding**，可以直接测试。物理两课另有 6/7 个学习单元，包含 18/21 个学习题和 24/28 个活动。原四单元 Physics 与历史题库保留读取历史记录，不混入新课报告。
+诊断题库（`assets/challenge-bank.js`，版本 `quidence-challenges-8`）共 60 道当前检查题、236 个独立检查的答案分量；博弈论的 15 题另计。主页每科均提供 **Test your understanding**，可以直接测试。15 题基础检查覆盖 Pre-Algebra 与 Algebra I（共用）、Coordinate Geometry、Pre-calculus、Calculus、Statistics、Linear Algebra、Number Theory、Game Theory 和两门物理课；Geometry 与 Algebra II 尚无基础检查。物理两课另有 6/7 个学习单元，包含 18/21 个学习题和 24/28 个活动。原四单元 Physics 与历史题库保留读取历史记录，不混入新课报告。
 
-当前共 20 个 California-inspired field projects，10 科各两个；包含 64 个阶段、162 个数值输入、6 个模型公式、2 个几何构造和 51 个开放回应。项目不是选择题。主页 **Explore two field projects** 可直接进入。内部挑战目标尚未由学生试做校准，不公开数值难度。
+当前共 20 个 California-inspired field projects，10 科各两个；包含 64 个阶段、162 个数值输入、6 个模型公式、2 个几何构造和 51 个开放回应。项目不是选择题。主页 **Explore two field projects** 可直接进入。另有数论 10 个证明项目、博弈论 2 个项目和 1 个决策案例、解析几何 2 个六步引导项目，在各自的课程页进行。内部挑战目标尚未由学生试做校准，不公开数值难度。
+
+Intuition Lab 是主页的第三种视图，每科一个活动，共 13 个：先预测，再操作互动模型，最后看参考推理、迁移题和反思。活动提供英文、西班牙文和繁体中文。语音、听写和 AI 对话类活动按 [语言政策](AGENTS.md) 只提供英文。
 
 几何可轻点放点、输入分数坐标、用按钮连线及撤销；答案和图形一起保存。等价多项式用系数核验，解释不按关键词、语法或长度自动判分。每小问有理解要点及可记录的本地复核；未审核的理解保留待复核。见 [PROJECTS_REVIEW.md](PROJECTS_REVIEW.md)。
 
@@ -171,10 +180,13 @@ npm run test:browser
 | `review/project-math-audit.json` | 从情境数据独立推导的答案参照 |
 | `review/project-graphics.svg` | 给定图与独立审核的几何构造 |
 | `PROJECTS_REVIEW.md` | 逐项目审核、解释标准和验证范围 |
-| `review/challenge-math-audit.json` | 52 道当前题及 6 道历史 Physics 题的复算答案参照 |
+| `review/challenge-math-audit.json` | 60 道当前题及 6 道历史 Physics 题的复算答案参照 |
 | `scripts/audit-challenges.py` | 不读取题库答案的精确分数、消元、积分与统计验证 |
 | `review/challenge-graphics.svg` | 新图在 320px 和 520px 宽度下的审核页 |
 | `courses/`、`modules/aa01`、`ab01`、`ad01`、`ae01`、`af01` | 当前数学教学与视觉活动，另含 `courses/physics-1/`、`courses/physics-2/`，旧 `courses/physics/` 保留历史读取 |
+| `intuition/` | Intuition Lab 的 13 个活动及其数值模型 |
+| `modules/ac01/` | 博弈论课程、Think in Choices 检查、项目与决策案例 |
+| `demos/college-voice-lab/` | 六个学科的英文 Math Voice Lab 示范 |
 | `foundations/`、`reports/` | 旧数学基础检查、保存的报告；历史记录保持兼容 |
 | `backend/`、`account/` | 账号及带版本冲突保护的跨设备同步 |
 | `archive/retired-subjects/` | 经济学封存源文件及博弈论的历史快照；博弈论现恢复于 modules/ac01 |
