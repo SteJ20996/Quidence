@@ -1,20 +1,20 @@
 (function(root){'use strict';
 const host=document.getElementById('cartoon-knowledge-map');if(!host)return;
-const tr=(en,es,zh)=>({en,es,zh});
+const tr=(en,es)=>({en,es});
 const maps=root.QuidenceCartoonMapData.maps,icon=root.QuidenceCartoonArt.icon;
 let lang=root.QuidenceI18n?.locale==='es'?'es':'en',activeMap='all';
 const selected={},W=200,H=124,routes={};
 const t=v=>v[lang];const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const strings={
- nav:tr('Knowledge map','Mapa de conocimientos','知識地圖'),puzzle:tr('A little puzzle break','Una pausa con juegos','休息一下，玩個解謎'),
- eyebrow:tr('Three connected worlds · design preview','Tres mundos conectados · vista previa','三個相連的領域 · 設計預覽'),
- title:tr('Mathematics & Physics Knowledge Map','Mapa de conocimientos de matemáticas y física','數學與物理知識地圖'),
- subtitle:tr('Find a starting point. Follow a connection. Build your own route.','Encuentra un punto de partida. Sigue una conexión. Construye tu propia ruta.','找到起點，沿著連線探索，走出自己的學習路線。'),
- all:tr('All','Todas','全部'),style:tr('Preview style','Estilo de vista previa','預覽風格'),course:tr('COURSE','CURSO','課程入口'),concept:tr('CONCEPT','CONCEPTO','基礎概念'),branch:tr('EXPLORE','EXPLORAR','延伸探索'),bridge:tr('CONNECTION','CONEXIÓN','跨區連接'),
- courseCount:tr('course entrances','entradas a cursos','個課程入口'),keyCourse:tr('Available course','Curso disponible','已開放課程'),keyConcept:tr('Concept / later direction','Concepto / área posterior','概念／後續方向'),keySolid:tr('Common foundation','Base habitual','常見基礎關係'),keyRelated:tr('Useful connection','Conexión útil','有用的概念連接'),
- details:tr('Selected on the map','Selección en el mapa','目前選取'),hint:tr('Swipe the map sideways to explore →','Desliza el mapa para explorar →','左右滑動探索地圖 →'),
- footer:tr('Click a node to explore its connections. These paths are guides, not compulsory prerequisites.','Selecciona un nodo para explorar sus conexiones. Las rutas orientan; no son requisitos obligatorios.','點選節點，查看相關概念。路線提供方向，不代表一律必須按順序修習。'),
- version:tr('Map preview · Website unchanged','Vista previa · Sitio sin cambios','地圖預覽 · 尚未修改網站')
+ nav:tr('Knowledge map','Mapa de conocimientos'),puzzle:tr('A little puzzle break','Una pausa con juegos'),
+ eyebrow:tr('Three connected worlds · design preview','Tres mundos conectados · vista previa'),
+ title:tr('Mathematics & Physics Knowledge Map','Mapa de conocimientos de matemáticas y física'),
+ subtitle:tr('Find a starting point. Follow a connection. Build your own route.','Encuentra un punto de partida. Sigue una conexión. Construye tu propia ruta.'),
+ all:tr('All','Todas'),style:tr('Preview style','Estilo de vista previa'),course:tr('COURSE','CURSO'),concept:tr('CONCEPT','CONCEPTO'),branch:tr('EXPLORE','EXPLORAR'),bridge:tr('CONNECTION','CONEXIÓN'),
+ courseCount:tr('course entrances','entradas a cursos'),keyCourse:tr('Available course','Curso disponible'),keyConcept:tr('Concept / later direction','Concepto / área posterior'),keySolid:tr('Common foundation','Base habitual'),keyRelated:tr('Useful connection','Conexión útil'),
+ details:tr('Selected on the map','Selección en el mapa'),hint:tr('Swipe the map sideways to explore →','Desliza el mapa para explorar →'),
+ footer:tr('Click a node to explore its connections. These paths are guides, not compulsory prerequisites.','Selecciona un nodo para explorar sus conexiones. Las rutas orientan; no son requisitos obligatorios.'),
+ version:tr('Map preview · Website unchanged','Vista previa · Sitio sin cambios')
 };
 function route(m,a,b){
  if(m.id==='science'&&a.id==='thermal'&&b.id==='materials'){

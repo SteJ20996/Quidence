@@ -15,14 +15,14 @@ export function grade(answer,t,transfer=false){if(answer.mode==='custom')return 
 // Prewritten viewpoints are numerical claims, never a classifier for learner prose.
 export const viewpoints = {
  challenge:[
-  {id:'a',direction:'forward',speed:'faster',zh:'向前走，而且越來越快。',en:'Moving forward and speeding up.'},
-  {id:'b',direction:'backward',speed:'slower',zh:'向後走，但正在慢下來。',en:'Moving backward, but slowing down.'},
-  {id:'c',direction:'backward',speed:'faster',zh:'向後走，而且越來越快。',en:'Moving backward and speeding up.'}
+  {id:'a',direction:'forward',speed:'faster',en:'Moving forward and speeding up.'},
+  {id:'b',direction:'backward',speed:'slower',en:'Moving backward, but slowing down.'},
+  {id:'c',direction:'backward',speed:'faster',en:'Moving backward and speeding up.'}
  ],
  transfer:[
-  {id:'a',direction:'backward',speed:'faster',zh:'加速度是負的，所以向後走，而且越來越快。',en:'Acceleration is negative, so the rider moves backward and speeds up.'},
-  {id:'b',direction:'forward',speed:'faster',zh:'速度是正的，所以向前走，而且越來越快。',en:'Velocity is positive, so the rider moves forward and speeds up.'},
-  {id:'c',direction:'still',speed:'instant',zh:'速度圖一直往下，因此此刻已經停下來。',en:'The velocity graph is falling, so the rider has already stopped.'}
+  {id:'a',direction:'backward',speed:'faster',en:'Acceleration is negative, so the rider moves backward and speeds up.'},
+  {id:'b',direction:'forward',speed:'faster',en:'Velocity is positive, so the rider moves forward and speeds up.'},
+  {id:'c',direction:'still',speed:'instant',en:'The velocity graph is falling, so the rider has already stopped.'}
  ]
 };
 export function makeAnswer(kind,pick,reason,hinted){

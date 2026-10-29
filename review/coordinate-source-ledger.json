@@ -9,14 +9,13 @@
       "step": 0,
       "title": {
         "en": "Give the map a language",
-        "zh-TW": "先讓地圖有共同語言",
         "es": "Dale un lenguaje al plano"
       },
-      "fingerprint": "37a682b4c6296c9d2cb7467ebb7fe9c9d7705b5faeac5d65bdd341ef7ef5cd4d",
+      "fingerprint": "39bf2c0d6db648e3d4150303ed3f46fb684caa292820e3db399de1c296f47d10",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
+          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -24,7 +23,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
+          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
         }
       ],
       "sourceReview": {
@@ -43,14 +42,13 @@
       "step": 1,
       "title": {
         "en": "Give your station an address",
-        "zh-TW": "替補給站安排一個位置",
         "es": "Dale una dirección al puesto"
       },
-      "fingerprint": "03d103138855672f2d0460391cb2a31dfc22d7b4ffa5b5fedb31fddfad887f10",
+      "fingerprint": "c9ab6b5b35acff3a1099809eac49d850a32fa499db9493664213db6b71841b20",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
+          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -58,7 +56,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
+          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
         }
       ],
       "sourceReview": {
@@ -77,14 +75,13 @@
       "step": 2,
       "title": {
         "en": "Find the changes first",
-        "zh-TW": "先看水平與垂直變化",
         "es": "Encuentra primero los cambios"
       },
-      "fingerprint": "f33d2e7696032f8c0eb756aaee6c9fc7c6de56bf224f22223a05b2e530981bfa",
+      "fingerprint": "251809ef6112673bd2b514214dfea6b558b3ba6ab9906a8c67aeda5c87ad4b7b",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
+          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -92,7 +89,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
+          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
         }
       ],
       "sourceReview": {
@@ -111,14 +108,13 @@
       "step": 3,
       "title": {
         "en": "Build the distance formula",
-        "zh-TW": "一起建立距離公式",
         "es": "Construye la fórmula de distancia"
       },
-      "fingerprint": "4a537b12446795d195d8e4292789ec3da26256d42f5d4666505f80991bb5c58d",
+      "fingerprint": "815f147130cc6c2ad5813df151acddfd719b01149cd1f6e631774868b865ff24",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
+          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -126,7 +122,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
+          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
         }
       ],
       "sourceReview": {
@@ -145,14 +141,13 @@
       "step": 4,
       "title": {
         "en": "Make the plan satisfy its purpose",
-        "zh-TW": "讓配置符合實際目標",
         "es": "Haz que el plan cumpla su propósito"
       },
-      "fingerprint": "bfa3ad639edd2c9eb54f81a91c5b7f46b1afc488fb543caa5ff5ebf1fb7521ff",
+      "fingerprint": "a95d10c6653b33bda820fd9222cfbc47f590add7703a96e396a4b09c9ab059d7",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
+          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -160,7 +155,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
+          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
         }
       ],
       "sourceReview": {
@@ -179,14 +174,13 @@
       "step": 5,
       "title": {
         "en": "The entrance moved. Revise your plan.",
-        "zh-TW": "入口改了，重新檢驗方案",
         "es": "La entrada cambió. Revisa el plan."
       },
-      "fingerprint": "9bf2d7962219375e2ea96a3421aca35adecc9b6290c31031ec0317e4eaedbe33",
+      "fingerprint": "9d0d9a8870b7090346c5761e17d1f95f881c4e032a66088ae97a4b7a3943e148",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
+          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -194,7 +188,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
+          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
         }
       ],
       "sourceReview": {
@@ -213,14 +207,13 @@
       "step": 0,
       "title": {
         "en": "What would “fair” mean here?",
-        "zh-TW": "這裡的「公平」是什麼？",
         "es": "¿Qué significa «justo» aquí?"
       },
-      "fingerprint": "8e79335502f9a5572d5a557bc65a4e7bd1bea3945e5baaeea12c8cf39f549c5b",
+      "fingerprint": "7137fba4a3838d546e0b0e0191a12e4bc04d4801b21dbd585bdc48571ad2be38",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
+          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -228,7 +221,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
+          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
         }
       ],
       "sourceReview": {
@@ -247,14 +240,13 @@
       "step": 1,
       "title": {
         "en": "One fair point—or a whole family?",
-        "zh-TW": "等距點只有一個嗎？",
         "es": "¿Un punto justo o toda una familia?"
       },
-      "fingerprint": "7b18159bf48e7706e103b8a63098749b55682415d2062e01ccc5be19cd631611",
+      "fingerprint": "759dc0b1e800b621a8eb79019bf38643301d848cb0c9b631a24890fda271910e",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
+          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -262,7 +254,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
+          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
         }
       ],
       "sourceReview": {
@@ -281,14 +273,13 @@
       "step": 2,
       "title": {
         "en": "Give the pattern an equation",
-        "zh-TW": "把規律寫成方程式",
         "es": "Dale una ecuación al patrón"
       },
-      "fingerprint": "12af09fc7517c393d2a7482339bcb611e483c941f386498f897ac56d78a02cc5",
+      "fingerprint": "ba2443c03ba4f7eaa086929c6b7225a27cda3397305ee6e1691e91d29bef7efb",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
+          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -296,7 +287,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
+          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
         }
       ],
       "sourceReview": {
@@ -315,14 +306,13 @@
       "step": 3,
       "title": {
         "en": "Meet the path, too",
-        "zh-TW": "同時符合步道限制",
         "es": "Cumple también con el sendero"
       },
-      "fingerprint": "f337de4765fbe398bc707cc89f07a0f3e5d4b46203b20081afdfc75732f70660",
+      "fingerprint": "4051cc7d777d9477882405dbedf9ad7099eee32aec219a0ffaa146a09e07a8d0",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
+          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -330,7 +320,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
+          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
         }
       ],
       "sourceReview": {
@@ -349,14 +339,13 @@
       "step": 4,
       "title": {
         "en": "A gate moves. Rebuild your rule.",
-        "zh-TW": "入口移動，規律也要重建",
         "es": "Una entrada cambia. Reconstruye la regla."
       },
-      "fingerprint": "f793ae570837bebccca023c033d52bd0739d1bc4b0fdbec09a7b7be0ed66ad7d",
+      "fingerprint": "61dc5b50c33925e596e97814709e917890a6adb2bfdf9fb5ffa36668f47ee648",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
+          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -364,7 +353,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
+          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
         }
       ],
       "sourceReview": {
@@ -383,14 +372,13 @@
       "step": 5,
       "title": {
         "en": "Deliver the revised station plan",
-        "zh-TW": "交出修改後的集合方案",
         "es": "Entrega el diseño revisado"
       },
-      "fingerprint": "c8f77f7cae7dcc9dd7ad51a3dcc2f58c5b5118118ced7f6caa571bd7cad8311b",
+      "fingerprint": "0d2948bc8776c89a27681a98cb0fd10843866994c4e74335937f4ba2fc534d60",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "d726cd264167e8e5db250c91ded2fd595927bac9ea08b0faf14a253f02205db9"
+          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -398,7 +386,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "10510cb2980bfb36afb95b7a83445138701674b659f3c7ceceed22743c5f1c47"
+          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
         }
       ],
       "sourceReview": {

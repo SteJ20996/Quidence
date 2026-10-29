@@ -24,7 +24,7 @@ const COURSES={
 const PAGES={
   '/checks/':{en:['Test your understanding','Choose an interactive model and explanation activity or continue with the original subject check.'],es:['Comprueba tu comprensión','Elige una actividad con modelos interactivos y explicaciones o continúa con la evaluación original de la materia.']},
   '/explain/':{fixedLocale:'en',locales:['en'],en:['Math Voice Lab','Explore six mathematics models, explain your reasoning, and keep original responses with local recording and scripted follow-ups. This activity is English only.']},
-  '/intuition/':{en:['Intuition Lab','Test a mathematical hunch with interactive models, calculations and reflection across thirteen subjects.'],es:['Laboratorio de intuición','Pon a prueba una idea matemática con modelos interactivos, cálculos y reflexión en trece materias.'],'zh-Hant':['直覺實驗室','透過十二個學科的互動模型、計算與反思，檢驗你的數學猜想。'],locales:['en','es','zh-Hant'],sitemap:true},
+  '/intuition/':{en:['Intuition Lab','Test a mathematical hunch with interactive models, calculations and reflection across thirteen subjects.'],es:['Laboratorio de intuición','Pon a prueba una idea matemática con modelos interactivos, cálculos y reflexión en trece materias.'],sitemap:true},
   '/modules/ad01/dist/checks/':{en:['Calculus · Test your understanding','Choose a graph-based reasoning activity or the original four-problem Calculus check.'],es:['Cálculo · Comprueba tu comprensión','Elige una actividad de razonamiento gráfico o la evaluación original de cuatro problemas de cálculo.']},
   '/modules/ad01/dist/think/':{fixedLocale:'en',en:['Calculus · Think in motion','Explore a claim about velocity and acceleration through graphs and your own explanation. This dialogue activity is English only.']},
 
@@ -40,8 +40,6 @@ const PAGES={
   '/courses/physics/':{en:['Introductory Physics','Explore selected introductory physics models and questions.'],es:['Introducción a la física','Explora modelos y preguntas seleccionados de física introductoria.']},
 };
 for(const c of Object.values(COURSES))PAGES[c[0]]={en:[c[1],c[3]],es:[c[2],c[4]],sitemap:true};
-PAGES['/courses/coordinate-geometry/'].locales=['en','es','zh-Hant'];
-PAGES['/courses/coordinate-geometry/']['zh-Hant']=['解析幾何','透過兩個各六步的引導式專題，連接座標、距離與方程式。'];
 const ACTIVITIES={
   '/checks/':{en:'Test Your Understanding',es:'Comprueba tu comprensión'},
   '/diagnostics/':{en:'Test Your Understanding',es:'Comprueba tu comprensión'},

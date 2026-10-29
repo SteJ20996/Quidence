@@ -13011,17 +13011,16 @@
       "taskId": "transforms",
       "title": {
         "en": "Same moves. Different order?",
-        "zh-Hant": "相同變換，不同順序？",
         "es": "Mismos movimientos. ¿Otro orden?"
       },
       "bankVersion": "intuition-v1",
       "availability": "active",
-      "fingerprint": "5a4e17072cd23d0b65735199bc9a43a86d15dedb6b504c416b0a7c86ba41e97b",
+      "fingerprint": "5b902f47c79d3efbbae6e5798ff70a94691a5b0d8e3299d63c394545e3fab7c3",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
+          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
         },
         {
           "path": "intuition/math.js",
@@ -13047,17 +13046,16 @@
       "taskId": "choices",
       "title": {
         "en": "Best for each. Best together?",
-        "zh-Hant": "各自最好，合起來也最好嗎？",
         "es": "Lo mejor para cada uno. ¿Para ambos?"
       },
       "bankVersion": "intuition-v1",
       "availability": "active",
-      "fingerprint": "fbc5ed355ac5aebf7a6f60081af3b8356bca7f609cbb1b4699a8a4262c05d860",
+      "fingerprint": "da5384ab88f70cf45945f0707887f9eef9b357be4e6ca86d437808d82946ea01",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
+          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
         },
         {
           "path": "intuition/math.js",
@@ -13083,17 +13081,16 @@
       "taskId": "sphere",
       "title": {
         "en": "Same width. Same surface area?",
-        "zh-Hant": "球帶一樣寬，面積也一樣嗎？",
         "es": "Misma anchura. ¿Misma área?"
       },
       "bankVersion": "intuition-v1",
       "availability": "active",
-      "fingerprint": "8a6161ef8f620a6d91fb4178d56ae0289d5f7c5f0828718d37c857d510667345",
+      "fingerprint": "cbb0d1200dd36ac82a5e24fec07d596b77eb287381f99d32c95ca82a08052b82",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
+          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
         },
         {
           "path": "intuition/math.js",
@@ -13119,17 +13116,16 @@
       "taskId": "groups",
       "title": {
         "en": "Better in both groups. Better overall?",
-        "zh-Hant": "每組都較好，合起來也較好嗎？",
         "es": "Mejor en ambos grupos. ¿Mejor en total?"
       },
       "bankVersion": "intuition-v1",
       "availability": "active",
-      "fingerprint": "b2df433393ce638c4720bcf244cc9eef3f6c790bf0794ceb8a551a893426edb7",
+      "fingerprint": "d2721497997f26fbdbb45eb4f76fc5207fe548d04c54de68fbfa74930540f4b9",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
+          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
         },
         {
           "path": "intuition/math.js",
@@ -13155,17 +13151,16 @@
       "taskId": "waves",
       "title": {
         "en": "Twice the input. Twice the width?",
-        "zh-Hant": "輸入乘二，圖像變寬兩倍嗎？",
         "es": "El doble de entrada. ¿El doble de ancho?"
       },
       "bankVersion": "intuition-v1",
       "availability": "active",
-      "fingerprint": "a5c68d8b05a92d1945ce5b25c586294bf4731f7314209d795c54ee47b089b1d6",
+      "fingerprint": "92e8f232ed61410682a987f055e979ea6e43ceb55a0295902d5fa7e1eb317b8d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
+          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
         },
         {
           "path": "intuition/math.js",
@@ -13191,17 +13186,16 @@
       "taskId": "plans",
       "title": {
         "en": "Cheaper each time. Cheaper overall?",
-        "zh-Hant": "單次較便宜，總價也較便宜嗎？",
         "es": "Menos por visita. ¿Menos en total?"
       },
       "bankVersion": "intuition-v1",
       "availability": "active",
-      "fingerprint": "407f8aa3d2f8a1424975c9aa44706bb987f7e8b95d565a242d886f7a11955acc",
+      "fingerprint": "def569318f4900646eee059044d86dd88f5c2276d6eb60f1da3273e1181a6de0",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
+          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
         },
         {
           "path": "intuition/math.js",
@@ -13227,17 +13221,16 @@
       "taskId": "square",
       "title": {
         "en": "Is a square always greater?",
-        "zh-Hant": "平方後一定變大嗎？",
         "es": "¿El cuadrado siempre es mayor?"
       },
       "bankVersion": "intuition-v1",
       "availability": "active",
-      "fingerprint": "a56e2b0fca2cefbca1645e7aaa013c47679f4804525d40079d849d7be221c736",
+      "fingerprint": "99039e47b084f7336d1d0a021861f4bc86d49dd489d8e2315fd2d4ac7492fb66",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
+          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
         },
         {
           "path": "intuition/math.js",
@@ -13263,17 +13256,16 @@
       "taskId": "fair",
       "title": {
         "en": "One midpoint. One fair spot?",
-        "zh-Hant": "中點只有一個，公平的地點也只有一個嗎？",
         "es": "Un punto medio. ¿Un solo lugar justo?"
       },
       "bankVersion": "intuition-v1",
       "availability": "active",
-      "fingerprint": "0d3499312230f9e68d428c7a572b59b936452c0ec9b6e4ed33fbebd9d4b7e244",
+      "fingerprint": "36dd8b1c565a199da3d8f09fcc507ed1c63c36a7b2fb71841bfed704b4deb561",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
+          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
         },
         {
           "path": "intuition/math.js",
@@ -13299,17 +13291,16 @@
       "taskId": "perimeter",
       "title": {
         "en": "Same fence. Same space?",
-        "zh-Hant": "圍欄一樣長，面積也一樣嗎？",
         "es": "Misma cerca. ¿Misma superficie?"
       },
       "bankVersion": "intuition-v1",
       "availability": "active",
-      "fingerprint": "6080b7acb27519d41d62649ff2a0f095a6daba91888ce7d90668ad4a68fb8524",
+      "fingerprint": "f9738815ea3798fe849a8b81b8c3910e1b9a145f460ee22bb1d67b97d4097375",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
+          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
         },
         {
           "path": "intuition/math.js",
@@ -13335,17 +13326,16 @@
       "taskId": "primes",
       "title": {
         "en": "A pattern. Or a proof?",
-        "zh-Hant": "找到規律，就等於證明了嗎？",
         "es": "¿Un patrón o una prueba?"
       },
       "bankVersion": "intuition-v1",
       "availability": "active",
-      "fingerprint": "f1156586da5eefe3ff69090c169634813a57e40a8840603190613345bc540355",
+      "fingerprint": "dcb3a34eb08d15292618d280331aced2e020255c4f7e9f2565889a94421da09a",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
+          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
         },
         {
           "path": "intuition/math.js",
@@ -13371,17 +13361,16 @@
       "taskId": "apex",
       "title": {
         "en": "Stopped for a moment. No acceleration?",
-        "zh-Hant": "瞬間停住，就沒有加速度嗎？",
         "es": "Se detiene un instante. ¿Sin aceleración?"
       },
       "bankVersion": "intuition-v1",
       "availability": "active",
-      "fingerprint": "e7cc1c773fb02a90d06321ab6beb887ca2ef3cb89e59f3abd7fd5de957821363",
+      "fingerprint": "643a69c15e74491e7e27799f68047acadd6f1b95ba3d31f5a0f91fe7ed4accae",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
+          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
         },
         {
           "path": "intuition/math.js",
@@ -13407,17 +13396,16 @@
       "taskId": "circuit",
       "title": {
         "en": "More branches. More current?",
-        "zh-Hant": "多一條支路，總電流會增加嗎？",
         "es": "Más ramas. ¿Más corriente?"
       },
       "bankVersion": "intuition-v1",
       "availability": "active",
-      "fingerprint": "6dfe15809ece26c22889dee0cfd64949b5466df2155de6d2ec6ed1a95081b8f2",
+      "fingerprint": "d87a6836b0c2202497caeef08d6a38fe19e6cb8b71f91b116518a11f3efc8ad8",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
+          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
         },
         {
           "path": "intuition/math.js",
@@ -13443,17 +13431,16 @@
       "taskId": "multiply",
       "title": {
         "en": "Does multiplication always make it bigger?",
-        "zh-Hant": "乘法一定讓數字變大嗎？",
         "es": "¿Multiplicar siempre aumenta el número?"
       },
       "bankVersion": "intuition-v1",
       "availability": "active",
-      "fingerprint": "26e8448dc6ad8409a2a159a9e1a68dda7357a8fe588c830c1fcb9ad10b2dbf4c",
+      "fingerprint": "61f2914b1aadc29b1a4509b1f150e264221b77778cc94798275aca1fd9e59ff3",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6e0d5659fe11395516fadaf4f4171cb286da479b735cf85a36b3ec3abf284af2"
+          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
         },
         {
           "path": "intuition/math.js",
@@ -18955,7 +18942,7 @@
       "title": "Square tiles and Euclid’s shortcut",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "37c957cd75e73dbea98371e9a4ac78cf8229b78eb87063a5c02bee5aa1db2ee1",
+      "fingerprint": "40c0e2ab13524560506982c6e15781c2d2db6434f940c9cc4650f827ed8f2de8",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -18964,7 +18951,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
+          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
         }
       ],
       "sourceReview": {
@@ -18987,7 +18974,7 @@
       "title": "Two jugs and no measuring cup",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "2a16431569a651b0bd79d32abac365d96a5b09e2fa728d682b6cd1709f113d8d",
+      "fingerprint": "cd1b750ed0cafcea1521b7a761d60f8e6ed75ceeedc11d6dd828b5303d9a5c4a",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -18996,7 +18983,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
+          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
         }
       ],
       "sourceReview": {
@@ -19019,7 +19006,7 @@
       "title": "Why digit tests work",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "3be989bb00e9cc1680a2b04166ddc519b88353549d78bf0fb41796cf758948be",
+      "fingerprint": "fcdd7c4ef88257b5ff44600869dfa632501e63aa55272e345787b721ed865c6b",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -19028,7 +19015,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
+          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
         }
       ],
       "sourceReview": {
@@ -19051,7 +19038,7 @@
       "title": "An ancient remainder puzzle",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "4761e3c11d55cbf8afbed439a4aa04fedbfc33a8c9ed249702d624d1e5e421c8",
+      "fingerprint": "ece303400f9f23c0a3be4da2d03dfe59e2800e6de652d14ff85132fbe1cc2237",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -19060,7 +19047,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
+          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
         }
       ],
       "sourceReview": {
@@ -19083,7 +19070,7 @@
       "title": "Last digits and a theorem that can be fooled",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "f7b243af2477db1ebc12c7a14ba07c50c144b521dad2b2796e54fadaae7574ab",
+      "fingerprint": "41fc46b1ee680532e0fb647f8fbe5d6f50b45a81da6bc78ae028e84069932095",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -19092,7 +19079,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
+          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
         }
       ],
       "sourceReview": {
@@ -19115,7 +19102,7 @@
       "title": "A toy public-key lock",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "8bad6ff6115c3a3bdc9c17cdd26f33ec812957ea7405c782db1aa0d96fc537b3",
+      "fingerprint": "b827cd038c207131a59a8941f6ac5f5cc4ff77ab2c32d9e6e48248b9d8ffff0e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -19124,7 +19111,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
+          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
         }
       ],
       "sourceReview": {
@@ -19147,7 +19134,7 @@
       "title": "Right triangles with whole-number sides",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "b885349612c19503644f509835bf879b821f90f44f6ec9287a1678beb1b0e79e",
+      "fingerprint": "dc34c08e893a1dfc7e88002f5b2775c367401533e77501f8f394545e1719989f",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -19156,7 +19143,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
+          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
         }
       ],
       "sourceReview": {
@@ -19179,7 +19166,7 @@
       "title": "Perfect numbers and a prime that isn’t",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "6208049a05a61cb787568a22a9f690b2d14297d70e281021fe2adc4bdef918b1",
+      "fingerprint": "903f448ff8ab7c8dbc1abf3a11b70a12bff69250e11b804162df6f3627b99bc1",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -19188,7 +19175,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
+          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
         }
       ],
       "sourceReview": {
@@ -19211,7 +19198,7 @@
       "title": "Ticket packs and the largest impossible order",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "7fe4254618f7d27a27a7f4ce3cf1f23d2361674bc7f29b5ebdbbaf232520f841",
+      "fingerprint": "135ad68cef224b4bec801cb2ff925ecc5301b6075633625f9de2491bb6782661",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -19220,7 +19207,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
+          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
         }
       ],
       "sourceReview": {
@@ -19243,7 +19230,7 @@
       "title": "Euclid’s argument for endless primes",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "e7485cb879a17c07164f9be08b2191483796a5a64a4c0ffd32c30961cc56d111",
+      "fingerprint": "b956299fc922624a09ca4653399e116ef25224762cd9fe36bc04acfe39b3b556",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -19252,7 +19239,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "6ca36f555f9cf368c64e88580bf4b9699443925a0013f6d97a37931ded30954b"
+          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
         }
       ],
       "sourceReview": {
