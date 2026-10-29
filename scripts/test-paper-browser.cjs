@@ -1,6 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {chromium}=require('playwright'),{createServer}=require('../backend/server.cjs');
+const {chooseTheme}=require('./theme-choice.cjs');
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
  const result={layouts:0,categories:0,themeRoundTrips:0,errors:[],failedRequests:[]};
@@ -11,7 +12,7 @@ async function main(){
   const language=lang=>page.waitForFunction(l=>window.QuidenceI18n?.locale===l,lang);
   await page.goto(origin+'/?lang=en');await language('en');
   const originalLinks=await page.locator('.subject-card').evaluateAll(es=>Object.fromEntries(es.map(e=>[e.dataset.subject,[...e.querySelectorAll('a')].map(a=>a.getAttribute('href'))])));
-  await page.locator('[data-theme-choice="paper"]').click();
+  await chooseTheme(page,'paper');
   assert.equal(await page.locator('.q-paper-category-icon').count(),4,'category decorations stay in the four filter buttons');
   await page.locator('#request-subject').selectOption('geometry');
   const raw='Geometry: −1/3\n原始答案 <keep>  x² = 9';await page.locator('#learning-goal').fill(raw);await page.locator('#learning-goal').blur();
@@ -22,7 +23,7 @@ async function main(){
   await page.waitForFunction(()=>/cop|select/i.test(document.getElementById('goal-status').textContent));
   assert.match(await page.locator('#goal-status').textContent(),/cop|Copy|select/i);
   for(const theme of ['classic','studio','atlas','paper','studio','paper']){
-   await page.locator('[data-theme-choice="'+theme+'"]').click();
+   await chooseTheme(page,theme);
    assert.equal(await page.locator('#learning-goal').inputValue(),raw);
    assert.equal(await page.locator('#request-subject').inputValue(),'geometry');
    assert.equal(await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1')),stored);

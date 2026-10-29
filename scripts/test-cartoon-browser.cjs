@@ -1,6 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {chromium}=require('playwright'),{createServer}=require('../backend/server.cjs');
+const {chooseTheme}=require('./theme-choice.cjs');
 const B=require('../assets/foundation-bank.js'),E=require('../assets/foundation-engine.js');
 const RAW='My original work\n  −1/3 <test> 我的原文';
 async function main(){
@@ -17,7 +18,7 @@ async function main(){
   await page.locator('#request-subject').selectOption('number-theory');await page.locator('#learning-goal').fill(RAW);await page.locator('#learning-goal').blur();
   const original=await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1'));
   for(const theme of ['studio','paper','atlas'])for(const lang of ['en','es'])for(const width of [320,768,1440]){
-   await page.setViewportSize({width,height:1000});await page.locator('[data-theme-choice="'+theme+'"]').click();await page.locator('#quidence-language').selectOption(lang);await locale(lang);
+   await page.setViewportSize({width,height:1000});await chooseTheme(page,theme);await page.locator('#quidence-language').selectOption(lang);await locale(lang);
    assert.equal(await page.locator('#learning-goal').inputValue(),RAW);assert.equal(await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1')),original);
    for(const [group,count]of [['all',13],['school',5],['further',6],['science',2]]){
     await page.locator('button[data-home-view="courses"]').click();await page.locator('button[data-category="'+group+'"]').click();assert.equal(await page.locator('.subject-card:visible').count(),count);await bounds();
@@ -32,8 +33,8 @@ async function main(){
   // Every routed edge avoids unrelated cards (including the manually approved lanes).
   const geometry=await page.evaluate(()=>{const bad=[];for(const m of QuidenceCartoonMap.maps)for(const r of QuidenceCartoonMap.routes[m.id])for(let i=1;i<r.points.length;i++){const [a,b]=[r.points[i-1],r.points[i]];for(const n of m.nodes.filter(n=>n.id!==r.from&&n.id!==r.to)){if(a[0]===b[0]?a[0]>n.x&&a[0]<n.x+200&&Math.max(a[1],b[1])>n.y&&Math.min(a[1],b[1])<n.y+124:a[1]>n.y&&a[1]<n.y+124&&Math.max(a[0],b[0])>n.x&&Math.min(a[0],b[0])<n.x+200)bad.push(m.id+':'+r.from+'→'+r.to+' crosses '+n.id);}}return bad;});assert.deepEqual(geometry,[]);
   await page.locator('button[data-category="science"]').click();await page.reload();assert.equal(await page.locator('#cartoon-knowledge-map .map-panel').count(),1);assert.equal(await page.locator('[data-map="science"]').count(),1);
-  await page.locator('[data-theme-choice="classic"]').click();await page.locator('button[data-home-view="courses"]').click();assert.equal(await page.locator('.subject-card:visible').count(),13);assert(await page.locator('.qf-left-rail').isVisible());assert(await page.locator('.subject-card details').first().getAttribute('open')!==null);
-  await page.locator('[data-theme-choice="studio"]').click();assert.equal(await page.locator('.subject-card:visible').count(),2);assert(await page.locator('.subject-card details').first().getAttribute('open')===null);
+  await chooseTheme(page,'classic');await page.locator('button[data-home-view="courses"]').click();assert.equal(await page.locator('.subject-card:visible').count(),13);assert(await page.locator('.qf-left-rail').isVisible());assert(await page.locator('.subject-card details').first().getAttribute('open')!==null);
+  await chooseTheme(page,'studio');assert.equal(await page.locator('.subject-card:visible').count(),2);assert(await page.locator('.subject-card details').first().getAttribute('open')===null);
   // All new questions, drafts, uncertainty, complete reports and exports in a real browser.
   for(const module of ['number-theory','physics-1','physics-2','coordinate-geometry','geometry','algebra-2']){
    await page.goto(origin+'/foundations/?module='+module+'&lang=es');await locale('es');await page.locator('[data-f-action="resume"]').click();
@@ -41,7 +42,7 @@ async function main(){
    for(const [i,t]of tasks.entries()){
     for(const f of t.fields){if(f.kind==='number')await page.locator('[data-f-field="'+f.id+'"]').fill(String(f.answer));else await page.locator('[data-f-field="'+f.id+'"][data-f-option="'+f.options.findIndex(o=>o.value===f.answer)+'"]').check();}
     await page.locator('[data-f-explanation]').fill(RAW+' '+t.id);await page.locator('[data-f-explanation]').blur();
-    if(i===0){const before=await page.evaluate(key=>localStorage.getItem(key),E.SCHEMA);await page.locator('[data-theme-choice="paper"]').click();await page.reload();await locale('es');assert.equal(await page.evaluate(key=>localStorage.getItem(key),E.SCHEMA),before);assert.equal(await page.locator('[data-f-explanation]').inputValue(),RAW+' '+t.id);await page.locator('[data-f-not-studied]').check();await page.locator('[data-f-not-studied]').uncheck();}
+    if(i===0){const before=await page.evaluate(key=>localStorage.getItem(key),E.SCHEMA);await chooseTheme(page,'paper');await page.reload();await locale('es');assert.equal(await page.evaluate(key=>localStorage.getItem(key),E.SCHEMA),before);assert.equal(await page.locator('[data-f-explanation]').inputValue(),RAW+' '+t.id);await page.locator('[data-f-not-studied]').check();await page.locator('[data-f-not-studied]').uncheck();}
     for(const x of await page.evaluate(()=>QuidenceI18n.missing))result.missing.push(x);
     await page.locator('button[type="submit"]').click();await page.locator('[data-f-action="next"]').click();result.questions++;
    }

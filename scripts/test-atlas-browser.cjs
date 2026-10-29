@@ -1,6 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {chromium}=require('playwright'),{createServer}=require('../backend/server.cjs');
+const {chooseTheme}=require('./theme-choice.cjs');
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
  const result={layouts:0,categories:0,mapViews:0,themeRoundTrips:0,errors:[],failedRequests:[]};
@@ -11,14 +12,14 @@ async function main(){
   const language=lang=>page.waitForFunction(l=>window.QuidenceI18n?.locale===l,lang);
   const links=()=>page.locator('.subject-card').evaluateAll(es=>Object.fromEntries(es.map(e=>[e.dataset.subject,[...e.querySelectorAll('a')].map(a=>a.getAttribute('href'))])));
   await page.goto(origin+'/?lang=en');await language('en');const originalLinks=await links();
-  await page.locator('[data-theme-choice="atlas"]').click();await page.evaluate(()=>document.fonts.ready);
+  await chooseTheme(page,'atlas');await page.evaluate(()=>document.fonts.ready);
   assert.deepEqual(await page.locator('.q-atlas-group').evaluateAll(es=>es.map(e=>[e.dataset.atlasGroup,e.querySelectorAll('.subject-card').length])),[['school',5],['further',6],['science',2]]);
   const raw='Keep this exact work: −1/3\n幾何 x² = 9 <original>';await page.locator('#request-subject').selectOption('geometry');await page.locator('#learning-goal').fill(raw);await page.locator('#learning-goal').blur();
   await page.locator('.q-paper-options>summary').click();await page.locator('#goal-include-report').check();
   const saved=await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1'));
   await page.locator('#goal-copy').click();await page.waitForFunction(()=>/cop|select/i.test(document.getElementById('goal-status').textContent));
   for(const theme of ['paper','classic','atlas','studio','paper','atlas']){
-   await page.locator('[data-theme-choice="'+theme+'"]').click();assert.deepEqual(await links(),originalLinks);assert.equal(await page.locator('#learning-goal').inputValue(),raw);assert.equal(await page.locator('#request-subject').inputValue(),'geometry');assert(await page.locator('#goal-include-report').isChecked());assert.equal(await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1')),saved);assert.equal(await page.locator('.subject-card').count(),13);
+   await chooseTheme(page,theme);assert.deepEqual(await links(),originalLinks);assert.equal(await page.locator('#learning-goal').inputValue(),raw);assert.equal(await page.locator('#request-subject').inputValue(),'geometry');assert(await page.locator('#goal-include-report').isChecked());assert.equal(await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1')),saved);assert.equal(await page.locator('.subject-card').count(),13);
    if(theme==='classic')assert.deepEqual(await page.locator('.catalogue-group').evaluateAll(es=>es.map(e=>e.querySelectorAll('.subject-card').length)),[1,7,5]);
    if(theme==='paper')assert.equal(await page.locator('.q-atlas-group:visible').count(),0);
    result.themeRoundTrips++;

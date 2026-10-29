@@ -1,6 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {performance}=require('node:perf_hooks'),{chromium}=require('playwright');
+const {chooseTheme}=require('./theme-choice.cjs');
 const {createServer}=require('../backend/server.cjs'),Store=require('../assets/report-store.js');
 const RAW='My original question: compare an equation with a diagram.\n  Keep my spaces. Español / 我的原文 / <script>no execution</script>';
 async function main(){
@@ -92,7 +93,7 @@ async function main(){
   }
   const unavailable=await browser.newContext(),blocked=await unavailable.newPage();listen(blocked);
   await blocked.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw Error('Storage denied');}}));
-  await blocked.goto(origin+'/');await blocked.locator('[data-theme-choice="classic"]').click();await ready(blocked);await blocked.locator('button[data-home-view="courses"]').click();assert.equal(await blocked.locator('.subject-card:visible').count(),13);await unavailable.close();
+  await blocked.goto(origin+'/');await chooseTheme(blocked,'classic');await ready(blocked);await blocked.locator('button[data-home-view="courses"]').click();assert.equal(await blocked.locator('.subject-card:visible').count(),13);await unavailable.close();
   const routes=['/','/assets/home.js','/assets/knowledge-map.js','/assets/knowledge-map-data.js'];let failed=0;
   for(let batch=0;batch<3;batch++)await Promise.all(Array.from({length:40},async(_,i)=>{const response=await fetch(origin+routes[i%routes.length]);if(response.status!==200||!(await response.text()).length)failed++;}));
   output.stress.localRequests={concurrency:40,total:120,failed};assert.equal(failed,0);

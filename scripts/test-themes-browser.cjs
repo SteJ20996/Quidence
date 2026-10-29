@@ -1,6 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {chromium}=require('playwright'),{createServer}=require('../backend/server.cjs'),{files}=require('./build-static-release.cjs');
+const {chooseTheme}=require('./theme-choice.cjs');
 const {KEY,THEMES}=require('../assets/themes.js');
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
@@ -16,7 +17,7 @@ async function main(){
   for(const lang of ['en','es'])for(const width of [960,1024,1440,1920,2560]){
    await page.setViewportSize({width,height:1000});await page.goto(origin+'/?lang='+lang+'&view=courses');await page.waitForFunction(l=>window.QuidenceI18n?.locale===l,lang);let baseline;
    for(const theme of Object.keys(THEMES)){
-    await page.locator('[data-theme-choice="'+theme+'"]').click();await page.evaluate(()=>document.fonts.ready);await page.evaluate(()=>scrollTo(0,0));
+    await chooseTheme(page,theme);await page.evaluate(()=>document.fonts.ready);await page.evaluate(()=>scrollTo(0,0));
     const boxes=await page.evaluate(()=>{const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return[r.x,r.y,r.width,r.height]};return{bar:rect('.q-theme-bar'),label:rect('.q-theme-label'),buttons:[...document.querySelectorAll('[data-theme-choice]')].map(e=>{const r=e.getBoundingClientRect();return[r.x,r.y,r.width,r.height]}),header:rect('.qh-site-header'),layout:rect('.qf-layout')}});
     homeEdges.set([lang,width,theme].join(':'),{x:boxes.layout[0],width:boxes.layout[2]});
     if(!baseline)baseline=boxes;
@@ -53,7 +54,7 @@ async function main(){
    for(const route of ['checks','think']){
     await page.goto(origin+'/modules/ad01/dist/'+route+'/?lang='+lang);
     await page.waitForFunction(l=>window.QuidenceI18n?.locale===l,route==='think'?'en':lang);
-    await page.locator('[data-theme-choice="'+theme+'"]').click();await page.evaluate(()=>document.fonts.ready);
+    await chooseTheme(page,theme);await page.evaluate(()=>document.fonts.ready);
     const bounds=await page.evaluate(()=>{const rect=selector=>{const r=document.querySelector(selector).getBoundingClientRect();return{x:r.x,width:r.width};};return{main:rect('main'),bar:rect('.q-theme-bar'),header:document.querySelector('.top')?rect('.top'):null,overflow:document.documentElement.scrollWidth-innerWidth};});
     for(const box of [bounds.main,bounds.bar,bounds.header].filter(Boolean)){
      assert(Math.abs(box.x-expected.x)<=1,`${route} ${theme} ${lang} ${width}: content left edge`);
@@ -69,7 +70,7 @@ async function main(){
    }
   }
   for(const theme of Object.keys(THEMES)){
-   await page.goto(origin+'/?lang=en');await page.locator('[data-theme-choice="'+theme+'"]').click();
+   await page.goto(origin+'/?lang=en');await chooseTheme(page,theme);
    for(const width of [320,1440])for(const file of files().filter(f=>f.endsWith('.html'))){
     const lang=width===320?'es':'en';await page.setViewportSize({width,height:1000});
     await page.goto(origin+'/'+file+'?lang='+lang);
@@ -78,9 +79,9 @@ async function main(){
     assert.equal(await page.locator('html').getAttribute('data-ui-theme'),theme,file);
     assert.equal(await page.locator('.q-theme-bar').count(),1,file);
     assert.equal(await page.locator('[data-theme-choice="'+theme+'"]').getAttribute('aria-pressed'),'true',file);
-    const bounds=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-innerWidth,buttons:[...document.querySelectorAll('[data-theme-choice]')].map(e=>{const r=e.getBoundingClientRect();return{x:r.left,right:r.right,h:r.height};}),bg:getComputedStyle(document.body).backgroundColor}));
+    const bounds=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-innerWidth,buttons:[...document.querySelectorAll('[data-theme-choice],.q-theme-toggle')].filter(e=>e.getClientRects().length).map(e=>{const r=e.getBoundingClientRect();return{x:r.left,right:r.right,h:r.height};}),bg:getComputedStyle(document.body).backgroundColor}));
     assert(bounds.overflow<=1,`${theme} ${file} ${width}: overflow ${bounds.overflow}`);
-    assert(bounds.buttons.every(b=>b.x>=0&&b.right<=width+1&&b.h>=44),theme+' '+file+' clipped theme controls');
+    assert(bounds.buttons.length&&bounds.buttons.every(b=>b.x>=0&&b.right<=width+1&&b.h>=44),theme+' '+file+' clipped theme controls');
     await page.waitForFunction(()=>[...document.querySelectorAll('.q-brand-logo')].every(e=>e.complete&&e.naturalWidth));
     const logoContrast=await page.locator('.q-brand-logo').evaluate(e=>{let parent=e.parentElement,color='';while(parent){color=getComputedStyle(parent).backgroundColor;if(color!=='rgba(0, 0, 0, 0)'&&color!=='transparent')break;parent=parent.parentElement;}const bg=color.match(/[\d.]+/g).slice(0,3).map(Number),fg=e.src.includes('logo-dark')?[246,247,249]:[20,34,54];const luminance=rgb=>rgb.map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((s,v,i)=>s+v*[.2126,.7152,.0722][i],0),a=luminance(bg),b=luminance(fg);return(Math.max(a,b)+.05)/(Math.min(a,b)+.05);});
     assert(logoContrast>=4.5,`${theme} ${file}: low logo contrast ${logoContrast}`);result.logoContrastChecks++;
@@ -99,11 +100,26 @@ async function main(){
    assert.equal(await offline.locator('.student-work').textContent(),'My exact answer: −1/3');
    await offline.emulateMedia({media:'print'});assert.equal(await offline.locator('body').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(255, 255, 255)');await offline.close();
   }
+  // Phones show one button with the current appearance; it opens the four previews as an even two-column grid.
+  {const phone=await browser.newContext({viewport:{width:390,height:800}}),p=await phone.newPage();listen(p);await p.goto(origin+'/?lang=en');
+   const toggle=p.locator('.q-theme-toggle'),bar=p.locator('.q-theme-bar');
+   assert(await toggle.isVisible(),'phone menu button');assert.equal(await p.locator('[data-theme-choice]:visible').count(),0);assert.equal(await toggle.getAttribute('aria-expanded'),'false');
+   assert((await bar.boundingBox()).height<=80,'collapsed appearance bar height');
+   await toggle.click();assert.equal(await toggle.getAttribute('aria-expanded'),'true');
+   const tiles=await p.locator('[data-theme-choice]').evaluateAll(es=>es.map(e=>{const r=e.getBoundingClientRect();return[Math.round(r.x),Math.round(r.y),Math.round(r.width)];}));
+   assert.equal(new Set(tiles.map(t=>t[0])).size,2,'two columns');assert.equal(new Set(tiles.map(t=>t[1])).size,2,'two rows');assert.equal(new Set(tiles.map(t=>t[2])).size,1,'equal widths');
+   await p.keyboard.press('Escape');assert.equal(await toggle.getAttribute('aria-expanded'),'false');assert.equal(await p.evaluate(()=>document.activeElement.className),'q-theme-toggle');
+   await chooseTheme(p,'paper');assert.equal(await p.locator('html').getAttribute('data-ui-theme'),'paper');assert.equal(await toggle.getAttribute('aria-expanded'),'false','menu closes after a choice');
+   assert.match(await toggle.getAttribute('aria-label'),/^Appearance: Paper Explorer\./);await phone.close();}
+  // Each desktop choice previews its appearance; only the selected one shows the check badge.
+  await page.setViewportSize({width:1440,height:900});await page.goto(origin+'/?lang=en');await chooseTheme(page,'atlas');
+  assert.equal(await page.locator('[data-theme-choice] .q-theme-thumb svg').count(),4);
+  assert.deepEqual(await page.locator('[data-theme-choice] .q-theme-check').evaluateAll(es=>es.map(e=>getComputedStyle(e).visibility)),['hidden','hidden','visible','hidden']);
   // Switch live without losing exact in-progress input, locale or report history.
   await page.goto(origin+'/?lang=es');await page.waitForFunction(()=>window.QuidenceI18n?.locale==='es');
   const raw='My exact question\n  −1/3 <test> 我的原文';await page.locator('#learning-goal').fill(raw);
   const before=await page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([key])=>key!=='quidence_ui_theme_v1')));
-  for(const theme of ['classic','paper','atlas','studio'])await page.locator('[data-theme-choice="'+theme+'"]').click();
+  for(const theme of ['classic','paper','atlas','studio'])await chooseTheme(page,theme);
   assert.equal(await page.locator('#learning-goal').inputValue(),raw);
   assert.deepEqual(await page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([key])=>key!=='quidence_ui_theme_v1'))),before);
   await page.reload();assert.equal(await page.locator('html').getAttribute('data-ui-theme'),'studio');assert.equal(await page.locator('#learning-goal').inputValue(),raw);
@@ -119,7 +135,7 @@ async function main(){
   const answer=other.locator('input[data-f-field][type="text"]').first();await answer.fill('123/7');
   await other.locator('[data-f-explanation]').fill(raw);await other.locator('[data-f-explanation]').blur();
   const recordBefore=await other.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([key])=>key!=='quidence_ui_theme_v1')));
-  for(const theme of ['classic','paper','studio','atlas']){await other.locator('[data-theme-choice="'+theme+'"]').click();assert.equal(await other.evaluate(()=>localStorage.getItem('quidence_ui_theme_v1')),theme,'live saved selection');}
+  for(const theme of ['classic','paper','studio','atlas']){await chooseTheme(other,theme);assert.equal(await other.evaluate(()=>localStorage.getItem('quidence_ui_theme_v1')),theme,'live saved selection');}
   assert.equal(await answer.inputValue(),'123/7');assert.equal(await other.locator('[data-f-explanation]').inputValue(),raw);
   assert.deepEqual(await other.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([key])=>key!=='quidence_ui_theme_v1'))),recordBefore);
   await other.reload();assert.equal(await other.locator('[data-f-explanation]').inputValue(),raw);
@@ -134,7 +150,7 @@ async function main(){
   await again.goto(origin+'/',{waitUntil:'commit'});await again.waitForFunction(()=>document.documentElement.dataset.uiTheme==='atlas');await reopened.close();
   const blocked=await browser.newContext(),b=await blocked.newPage();listen(b);
   await b.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw Error('Storage denied');}}));
-  await b.goto(origin+'/');await b.locator('[data-theme-choice="studio"]').click();
+  await b.goto(origin+'/');await chooseTheme(b,'studio');
   assert.equal(await b.locator('html').getAttribute('data-ui-theme'),'studio');assert.match(await b.locator('.q-theme-note').textContent(),/For this visit only/);await blocked.close();
   assert.deepEqual(result.errors,[]);assert.deepEqual(result.failures,[]);console.log(JSON.stringify(result));
  }finally{await browser?.close();await new Promise(r=>server.close(r));}
