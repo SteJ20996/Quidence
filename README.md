@@ -33,7 +33,7 @@
 | Further Mathematics | Game Theory | 15 题（Think in Choices，不在诊断题库中） |
 | Science | Physics 1 Foundations、Physics 2 Foundations | 各 6 题（公式提供） |
 
-诊断题库（`assets/challenge-bank.js`，版本 `quidence-challenges-8`）共 60 道当前检查题、236 个独立检查的答案分量；博弈论的 15 题另计。主页每科均提供 **Test your understanding**，可以直接测试。15 题基础检查覆盖 Pre-Algebra 与 Algebra I（共用）、Coordinate Geometry、Pre-calculus、Calculus、Statistics、Linear Algebra、Number Theory、Game Theory 和两门物理课；Geometry 与 Algebra II 尚无基础检查。物理两课另有 6/7 个学习单元，包含 18/21 个学习题和 24/28 个活动。原四单元 Physics 与历史题库保留读取历史记录，不混入新课报告。
+诊断题库（`assets/challenge-bank.js`，版本 `quidence-challenges-8`）共 60 道当前检查题、236 个独立检查的答案分量；博弈论的 15 题另计。主页每科均提供 **Test your understanding**，可以直接测试。每科都有 15 题基础检查：Pre-Algebra 与 Algebra I 共用一份，其余 11 科各一份。物理两课另有 6/7 个学习单元，包含 18/21 个学习题和 24/28 个活动。原四单元 Physics 与历史题库保留读取历史记录，不混入新课报告。
 
 当前共 20 个 California-inspired field projects，10 科各两个；包含 64 个阶段、162 个数值输入、6 个模型公式、2 个几何构造和 51 个开放回应。项目不是选择题。主页 **Explore two field projects** 可直接进入。另有数论 10 个证明项目、博弈论 2 个项目和 1 个决策案例、解析几何 2 个六步引导项目，在各自的课程页进行。内部挑战目标尚未由学生试做校准，不公开数值难度。
 

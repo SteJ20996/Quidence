@@ -3,14 +3,19 @@ const {test}=require('node:test'),assert=require('node:assert/strict');
 const B=require('../assets/foundation-bank.js'),E=require('../assets/foundation-engine.js'),S=require('../assets/report-store.js');
 // Independent arithmetic from the question conditions, not from the stored key.
 const gcd=(a,b)=>b?gcd(b,a%b):a,division=(a,b)=>[Math.floor(a/b),a-b*Math.floor(a/b)];
+const grid=[...Array(401)].map((_,i)=>(i-200)/4),roots=f=>grid.filter(x=>Math.abs(f(x))<1e-9),pick=(options,f)=>options.filter(([,g])=>grid.every(x=>Math.abs(g(x)-f(x))<1e-6)).map(([id])=>id).join(),lowest=(f,xs)=>{const x=xs.reduce((a,b)=>f(b)<f(a)?b:a);return[x,f(x)];},solve=rows=>{for(let x=-20;x<=20;x++)for(let y=-20;y<=20;y++)if(rows.every(([a,b,c])=>a*x+b*y===c))return[x,y];};
 const references={
  'number-theory':[division(47,6),division(-17,5),['yes','no'],['two'],[2,1,1],['no',7],[gcd(42,66)],[18*24/gcd(18,24)],[gcd(91,65)],[(27+38)%7],[(8*13)%5],[[0,1,2,3,4,5,6].find(x=>(3*x)%7===1)],['odd',(2*3+1)**2],['nine'],['yes']],
  'physics-1':[[-5-3,Math.abs(-5-3)],[(6-(-2))/(5-1)],[(-2-6)/4],[10-4,(10-4)/2],[4*10,4*10],['book'],[.5*2*3**2,.5*2*6**2],[3*4+1*(-2),(3*4+1*(-2))/(3+1)],[8*3,Math.sqrt(2*8*3/3)],[6*.5],[6/2],[1/.4],[1000*10*.8],[1000*10*.003,'up'],[.04*1.5/.02]],
  // Coordinate Geometry: distances, changes, reflections, Pythagoras and solved equations from each condition.
  'coordinate-geometry':[[Math.abs(5-(-3)),Math.abs(-2-(-7))],[9-(-4),-4-9],[(-6+10)/2,(-9+(-1))/2],['two','four','axis'],[-1+5,3-4],[-4,-(-2)],[Math.hypot(5,12),Math.hypot(1,2)],[Math.sqrt(13**2-5**2)],[7**2+24**2===25**2?'yes':'no',6**2+7**2===9**2?'yes':'no'],[(-9-6)/(5-2)],[2*-3-5,2*4-5===3?'yes':'no'],[(8+1)/3,2*(8+1)/3-1],[(30-12)/(8-2),12-2*(30-12)/(8-2)],[7-4,4+(7-4)*10],[(-5)**2,'full']],
+ // Geometry: turns, shares, scale, areas and roots recomputed from each condition.
+ 'geometry':[[360/60*15,360/60*40],[360/(2+3+4)*2,360/(2+3+4)*4],[(180-40)/4,Math.max(3*(180-40)/4+10,(180-40)/4+30)],[6*10/15,4*8===6*6?'yes':'no'],[6.4*250,750/250],[15/6,4*15/6],[2*(9+4),2*(9+4)===4*6?'yes':'no'],[10*8-4*3,2*(10+8)],[2*3,200*300],[54/6,2*(54/6+6)],[5*3-4,6*5/2],[(34/2-3)/2,(34/2-3)/2+3],[Math.sqrt(144),Math.sqrt(9+16)],[{6:'five',7:'seven',24:'twentyfour'}[Math.floor(Math.sqrt(50))],Math.sqrt(50)],[(3+4)**2,3**2+4**2]],
+ // Algebra II: choices are found by evaluating every option, and solutions by searching a grid of inputs.
+ 'algebra-2':[[3+4,2*3],[5**0,2**-3],[(-2)**4,-(2**4)],[pick([['short',x=>x*x-15],['full',x=>x*x-2*x-15],['sign',x=>x*x+2*x-15],['sum',x=>x*x-8*x-15]],x=>(x+3)*(x-5))],[pick([['pos',x=>(x+3)*(x+4)],['neg',x=>(x-3)*(x-4)],['twosix',x=>(x-2)*(x-6)],['mixed',x=>(x-12)*(x+1)]],x=>x*x-7*x+12)],[pick([['square',x=>(x-7)**2],['pair',x=>(x-7)*(x+7)],['plus',x=>(x+7)**2]],x=>x*x-49),101**2-99**2],[...roots(x=>(2*x-3)*(x+4))],[...roots(x=>x*x-5*x)],[roots(x=>x*x+2*x+5).length?'yes':'no',...roots(x=>x*x-6*x+9)],[2*(-2)**2-3*(-2),2*3**2-3*3],[...roots(x=>x-2),1-3>=0?'yes':'no'],lowest(x=>x*x-4*x+1,[0,1,2,3,4]),[40*(1-.15),(50-40)/40*100],[((12-3*4)/2-(12-3*0)/2)/4,(12-3*0)/2],solve([[1,2,7],[3,-1,7]])],
  'physics-2':[[.25*4000*6],[150-60],[20+273.15],[-.02*200],[.003*(-20)],[1/2**2],[4+8,12/(4+8)],[1/(1/6+1/3),9*(1/6+1/3)],[6*.5],[2e-6*500*.4],[.02*.3/.1],[1/(1/10-1/30),-(1/(1/10-1/30))/30],[12/3],[1*.6/1.5],[4.14e-15*1e15,4.14e-15*1e15-2.14,'no']]
 };
-test('74 new foundation answers agree with independently recomputed arithmetic and counterexamples',()=>{
+test('every new foundation answer agrees with independently recomputed arithmetic and counterexamples',()=>{
  assert.equal(2**2*3*7,84);assert.equal(49%7,0);assert.equal(9%2,1);assert.equal(9%3,0);assert(4.14/2<2.14);
  for(let k=-50;k<=50;k++)assert.equal(Math.abs(((2*k+1)**2)%2),1);
  for(const [id,rows]of Object.entries(references))for(const[i,values]of rows.entries()){
@@ -29,12 +34,21 @@ test('six-subject portfolios upgrade without rewriting drafts, submissions or pr
  const corrupt=structuredClone(old);delete corrupt.modules.ab01;assert.equal(E.hydrate(corrupt),null);assert.equal(E.hydrate({...old,modules:{...old.modules,unknown:{active:null,sessions:[]}}}),null);
 });
 test('nine-subject portfolios saved before Coordinate Geometry upgrade without rewriting earlier work',()=>{
- const old=E.fresh();delete old.modules['coordinate-geometry'];assert.equal(Object.keys(old.modules).length,9);
+ const old=E.fresh();for(const id of ['coordinate-geometry','geometry','algebra-2'])delete old.modules[id];assert.equal(Object.keys(old.modules).length,9);
  const s=E.createSession(old,'number-theory'),t=E.task(s),a=E.blank(t);a.values.q='7';a.explanation='Original reasoning kept exactly';E.edit(s,t,a);E.submit(s,t);
  const before=JSON.stringify(old),restored=E.hydrate(old);assert(restored,'a nine-subject record was rejected');assert.equal(JSON.stringify(old),before);
  for(const id of Object.keys(old.modules))assert.deepEqual(restored.modules[id],old.modules[id]);
- assert.deepEqual(restored.modules['coordinate-geometry'],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
+ for(const id of ['coordinate-geometry','geometry','algebra-2'])assert.deepEqual(restored.modules[id],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
  const seven=structuredClone(old);delete seven.modules['physics-2'];delete seven.modules['physics-1'];assert.equal(E.hydrate(seven),null);
+});
+test('ten-subject portfolios saved before Geometry and Algebra II upgrade without rewriting earlier work',()=>{
+ const old=E.fresh();delete old.modules.geometry;delete old.modules['algebra-2'];assert.equal(Object.keys(old.modules).length,10);
+ const s=E.createSession(old,'coordinate-geometry'),t=E.task(s),a=E.blank(t);a.values.first='8';a.explanation='Original reasoning kept exactly';E.edit(s,t,a);E.submit(s,t);
+ const before=JSON.stringify(old),restored=E.hydrate(old);assert(restored,'a ten-subject record was rejected');assert.equal(JSON.stringify(old),before);
+ for(const id of Object.keys(old.modules))assert.deepEqual(restored.modules[id],old.modules[id]);
+ for(const id of ['geometry','algebra-2'])assert.deepEqual(restored.modules[id],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
+ // A set that was never published stays rejected.
+ const eleven=structuredClone(restored);delete eleven.modules['algebra-2'];assert.equal(E.hydrate(eleven),null);
 });
 test('unfamiliar and uncertain new topics stay separate from wrong answers, with immutable exports and reports',()=>{
  for(const id of Object.keys(references)){

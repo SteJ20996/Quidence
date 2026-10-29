@@ -10,7 +10,7 @@ Changes since the 2026-10-14 entries, with their release notes:
 - **Coordinate Geometry:** two guided projects (#55), then a foundation check and understanding check (#59, with a card layout fix in #60), four lessons (#61), an Intuition Lab activity (#62) and a homepage projects link (#63). See [coordinate-geometry-integration.md](review/coordinate-geometry-integration.md) and the four 2026-10-29 notes in `review/`.
 - **Number Theory:** a four-problem understanding check (#58). See [number-theory-understanding-check-20261029.md](review/number-theory-understanding-check-20261029.md).
 
-Current inventory: 13 subject cards (5 School Mathematics, 6 Further Mathematics, 2 Science). The diagnostic bank has 60 current problems and 236 answer parts; Game Theory's 15-question check is separate. Every card has an understanding check and an Intuition Lab activity. Geometry and Algebra II have no foundation check yet. The 当前状态 section below still reflects the 2026-10-08 review, except for its inventory bullets, which are updated.
+Current inventory: 13 subject cards (5 School Mathematics, 6 Further Mathematics, 2 Science). The diagnostic bank has 60 current problems and 236 answer parts; Game Theory's 15-question check is separate. Every card has a foundation check, an understanding check and an Intuition Lab activity; Geometry and Algebra II gained their foundation checks on 2026-10-29. The 当前状态 section below still reflects the 2026-10-08 review, except for its inventory bullets, which are updated.
 
 ## 2026-10-14 · Remembered site-wide appearance
 
