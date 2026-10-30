@@ -47,9 +47,9 @@ async function main(){
    assert.equal(await page.locator('#goal-include-report').isChecked(),false,'New subject needs its own report opt-in');
    await page.locator('#goal-include-report').check();
    await page.locator('button[data-home-view="courses"]').click();
-   assert.equal(await page.locator('.subject-card:visible').count(),13);
+   assert.equal(await page.locator('.subject-card:visible').count(),14);
    assert.deepEqual(await page.locator('.group-heading h2').allTextContents(),['Secundaria','Preparatoria','Nivel universitario']);
-   const levels=await page.locator('.catalogue-group').evaluateAll(groups=>groups.map(g=>g.querySelectorAll('.subject-card').length));assert.deepEqual(levels,[1,7,5]);
+   const levels=await page.locator('.catalogue-group').evaluateAll(groups=>groups.map(g=>g.querySelectorAll('.subject-card').length));assert.deepEqual(levels,[1,7,6]);
    assert.equal(await page.locator('.home-map-view').isVisible(),false);
    assert.equal(await page.locator('#learning-goal').inputValue(),RAW);assert(await page.locator('#goal-include-report').isChecked());
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
@@ -96,7 +96,7 @@ async function main(){
   }
   const unavailable=await browser.newContext(),blocked=await unavailable.newPage();listen(blocked);
   await blocked.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw Error('Storage denied');}}));
-  await blocked.goto(origin+'/');await chooseTheme(blocked,'classic');await ready(blocked);await blocked.locator('button[data-home-view="courses"]').click();assert.equal(await blocked.locator('.subject-card:visible').count(),13);await unavailable.close();
+  await blocked.goto(origin+'/');await chooseTheme(blocked,'classic');await ready(blocked);await blocked.locator('button[data-home-view="courses"]').click();assert.equal(await blocked.locator('.subject-card:visible').count(),14);await unavailable.close();
   const routes=['/','/assets/home.js','/assets/knowledge-map.js','/assets/knowledge-map-data.js'];let failed=0;
   for(let batch=0;batch<3;batch++)await Promise.all(Array.from({length:40},async(_,i)=>{const response=await fetch(origin+routes[i%routes.length]);if(response.status!==200||!(await response.text()).length)failed++;}));
   output.stress.localRequests={concurrency:40,total:120,failed};assert.equal(failed,0);

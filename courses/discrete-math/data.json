@@ -1,0 +1,1516 @@
+[
+ {
+  "id": "dm-p01",
+  "order": 1,
+  "title": "Exam timetables and graph coloring",
+  "level": "High-school foundation",
+  "difficulty": "medium",
+  "topic": "Graphs, coloring and lower bounds",
+  "prompt": "An invented school must schedule six exams: Algebra (A), Biology (B), Chemistry (C), Drama (D), English (E) and French (F). Two exams clash when some student takes both. The clashes are A–B, B–C, C–D, D–E, E–A, F–A and F–C. A time slot can hold any number of exams that do not clash. What is the fewest number of slots, and how can you prove that no timetable uses fewer?",
+  "approach": "Draw each exam as a vertex and each clash as an edge. A timetable is then a coloring: exams in the same slot share a color, and vertices joined by an edge must get different colors. A minimum needs two arguments: a coloring with that many colors, and a proof that fewer colors cannot work. Look for an odd cycle.",
+  "uses": "Graphs and degrees; colors alternate along a path; proof by contradiction.",
+  "steps": [
+   {
+    "title": "Draw the clash graph",
+    "prompt": "Draw six vertices A to F and join two exams by an edge when they clash. Count the edges, and count how many exams clash with Algebra.",
+    "proof": "The clash list gives one edge for each pair: A–B, B–C, C–D, D–E, E–A, F–A and F–C. That is 7 edges.\n\nAlgebra appears in A–B, E–A and F–A, so its degree is 3. Chemistry also has degree 3 (B–C, C–D and F–C); the other four exams have degree 2.\n\nExams joined by an edge cannot share a slot. So a timetable is exactly a coloring of the vertices in which every edge joins two different colors.",
+    "fields": [
+     {
+      "id": "edges",
+      "label": "Number of clashes (edges)",
+      "type": "number",
+      "answer": "7",
+      "accepted": [
+       "7"
+      ]
+     },
+     {
+      "id": "degree",
+      "label": "Exams that clash with Algebra (degree of A)",
+      "type": "number",
+      "answer": "3",
+      "accepted": [
+       "3"
+      ]
+     },
+     {
+      "id": "rule",
+      "label": "Two exams joined by an edge…",
+      "type": "choice",
+      "answer": "different",
+      "options": [
+       {
+        "value": "different",
+        "label": "must be in different slots"
+       },
+       {
+        "value": "same",
+        "label": "must be in the same slot"
+       },
+       {
+        "value": "short",
+        "label": "can share a slot if both are short"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Find a lower bound",
+    "prompt": "Follow the clashes A–B–C–D–E and back to A. How many edges does this cycle have? Then explain why two slots can never be enough.",
+    "proof": "The cycle A–B–C–D–E–A uses the edges A–B, B–C, C–D, D–E and E–A, so its length is 5.\n\nSuppose two colors, red and blue, were enough. Color A red. Then B must be blue, C red, D blue and E red. But E and A clash and are both red, a contradiction. In general, colors alternate along a path, so a cycle with an odd number of edges cannot be colored with two colors.\n\nSo every timetable needs at least 3 slots. This is a lower bound: it does not yet show that 3 slots are enough.",
+    "fields": [
+     {
+      "id": "cycle",
+      "label": "Length of the cycle A–B–C–D–E–A",
+      "type": "number",
+      "answer": "5",
+      "accepted": [
+       "5"
+      ]
+     },
+     {
+      "id": "two",
+      "label": "Prove that two slots are not enough",
+      "type": "reason",
+      "criteria": [
+       "Colors must alternate around the cycle, because neighboring exams clash.",
+       "After an odd number of steps the color differs from the starting color, but the cycle returns to A, so A would need two colors: a contradiction."
+      ],
+      "followup": "Would the same argument work for a cycle of length 6?"
+     }
+    ]
+   },
+   {
+    "title": "Build a timetable",
+    "prompt": "Find a timetable with as few slots as possible. Which plan has no clash inside a slot, and what is the fewest number of slots?",
+    "proof": "Put A and C in slot 1: they do not clash. B, D and F do not clash with each other, so they share slot 2. E clashes with A and with D, so it goes in slot 3.\n\nCheck every edge: A–B, B–C, C–D, D–E, E–A, F–A and F–C each join two different slots. So 3 slots are enough.\n\nTogether with the lower bound from step 2, the fewest number of slots is exactly 3. In graph language, the chromatic number of the clash graph is 3.",
+    "fields": [
+     {
+      "id": "plan",
+      "label": "Which plan has no clash inside a slot?",
+      "type": "choice",
+      "answer": "ac-bdf-e",
+      "options": [
+       {
+        "value": "ac-bdf-e",
+        "label": "Slot 1: A, C · Slot 2: B, D, F · Slot 3: E"
+       },
+       {
+        "value": "ad-be-cf",
+        "label": "Slot 1: A, D · Slot 2: B, E · Slot 3: C, F"
+       },
+       {
+        "value": "acf-bd-e",
+        "label": "Slot 1: A, C, F · Slot 2: B, D · Slot 3: E"
+       },
+       {
+        "value": "ab-cd-ef",
+        "label": "Slot 1: A, B · Slot 2: C, D · Slot 3: E, F"
+       }
+      ]
+     },
+     {
+      "id": "slots",
+      "label": "Fewest number of slots",
+      "type": "number",
+      "answer": "3",
+      "accepted": [
+       "3"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "A guarantee for any graph",
+    "prompt": "Place the exams one at a time, always in the lowest-numbered slot that has no clash with exams already placed. If the largest degree is Δ, explain why this greedy method never needs more than Δ + 1 slots. What is Δ + 1 here?",
+    "proof": "When an exam is placed, it clashes with at most Δ exams, so at most Δ slots are blocked. Among the slots 1, 2, …, Δ + 1 at least one is free, and the greedy method uses it.\n\nSo the greedy method never opens slot Δ + 2. Here the largest degree is 3 (Algebra and Chemistry), so the bound is Δ + 1 = 4.\n\nThe bound is a guarantee, not always the best answer: this graph needs only 3 slots. The odd cycle gives the lower bound, and a good choice gives a timetable that meets it.",
+    "fields": [
+     {
+      "id": "bound",
+      "label": "Δ + 1 for this clash graph",
+      "type": "number",
+      "answer": "4",
+      "accepted": [
+       "4"
+      ]
+     },
+     {
+      "id": "greedy",
+      "label": "Explain why greedy coloring uses at most Δ + 1 colors",
+      "type": "reason",
+      "criteria": [
+       "Each vertex has at most Δ neighbors, so at most Δ colors are unavailable when it is colored.",
+       "Therefore one of the colors 1 to Δ + 1 is always free, so no vertex ever needs color Δ + 2."
+      ],
+      "followup": "For an odd cycle, how does Δ + 1 compare with the number of colors it needs?"
+     }
+    ]
+   }
+  ],
+  "nextCheck": "Brooks’s theorem says that a connected graph that is neither a complete graph nor an odd cycle can be colored with Δ colors. Check this for the clash graph, and find a graph that really needs Δ + 1 colors."
+ },
+ {
+  "id": "dm-p02",
+  "order": 2,
+  "title": "City routes and Pascal’s triangle",
+  "level": "High-school foundation",
+  "difficulty": "medium",
+  "topic": "Counting paths and binomial coefficients",
+  "prompt": "In an invented city, the streets form a square grid. A courier rides from the school to the library, which is 5 blocks east and 3 blocks north, and always moves east or north. How many shortest routes are there? Why do the route counts at the corners form Pascal’s triangle?",
+  "approach": "Write each route as a word made of E and N. Counting routes becomes counting words, and a word is decided by where its N’s go. For the triangle, look at the last block of a route: every route arrives either from the west or from the south.",
+  "uses": "The product rule; choosing k positions out of n, C(n, k) = n! / (k!(n − k)!); splitting a count into cases that do not overlap.",
+  "steps": [
+   {
+    "title": "Turn routes into words",
+    "prompt": "Every shortest route uses the same number of blocks. Write a route as a word such as EENENENE. How many letters does each word have, and how many shortest routes are there?",
+    "proof": "A shortest route never goes west or south, so it uses exactly 5 east blocks and 3 north blocks: 8 blocks in all.\n\nEach route is an 8-letter word with 5 E’s and 3 N’s, and each such word is a route. The word is fixed once we choose which 3 of the 8 positions hold N.\n\nThere are C(8, 3) = 8 · 7 · 6 / (3 · 2 · 1) = 56 ways to choose those positions, so there are 56 shortest routes.",
+    "fields": [
+     {
+      "id": "blocks",
+      "label": "Blocks in every shortest route",
+      "type": "number",
+      "answer": "8",
+      "accepted": [
+       "8"
+      ]
+     },
+     {
+      "id": "routes",
+      "label": "Number of shortest routes",
+      "type": "number",
+      "answer": "56",
+      "accepted": [
+       "56"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Add the last block",
+    "prompt": "Every route to the library arrives through the corner just west of it, (4, 3), or just south of it, (5, 2). Count the shortest routes to each of those corners, and explain why adding them gives the total.",
+    "proof": "Routes to (4, 3) are words with 4 E’s and 3 N’s, so there are C(7, 3) = 35. Routes to (5, 2) are words with 5 E’s and 2 N’s, so there are C(7, 2) = 21.\n\nEvery route to (5, 3) ends with E or with N, not both. Removing the last letter gives a route to (4, 3) or to (5, 2), and adding it back reverses this. So the count is 35 + 21 = 56.\n\nThe same argument at every corner gives Pascal’s rule, C(n, k) = C(n − 1, k − 1) + C(n − 1, k). This is why the corner counts build Pascal’s triangle.",
+    "fields": [
+     {
+      "id": "west",
+      "label": "Routes to (4, 3)",
+      "type": "number",
+      "answer": "35",
+      "accepted": [
+       "35"
+      ]
+     },
+     {
+      "id": "south",
+      "label": "Routes to (5, 2)",
+      "type": "number",
+      "answer": "21",
+      "accepted": [
+       "21"
+      ]
+     },
+     {
+      "id": "add",
+      "label": "Explain why the two counts add up to the total",
+      "type": "reason",
+      "criteria": [
+       "Every route reaches the library from exactly one of the two corners, so the two groups do not overlap and together contain every route.",
+       "Removing the last block matches the routes to the library one-to-one with the routes to that corner."
+      ],
+      "followup": "Where would the argument fail if a route could also go west?"
+     }
+    ]
+   },
+   {
+    "title": "A closed intersection",
+    "prompt": "Roadworks close the intersection (2, 1). How many shortest routes pass through (2, 1), and how many avoid it?",
+    "proof": "A route through (2, 1) first goes from (0, 0) to (2, 1), in C(3, 1) = 3 ways, and then from (2, 1) to (5, 3), which needs 3 east and 2 north blocks, in C(5, 2) = 10 ways. By the product rule, 3 × 10 = 30 routes pass through (2, 1).\n\nThe routes that avoid it are the rest: 56 − 30 = 26. Counting the complement is often easier than counting the routes you want directly.",
+    "fields": [
+     {
+      "id": "through",
+      "label": "Routes through (2, 1)",
+      "type": "number",
+      "answer": "30",
+      "accepted": [
+       "30"
+      ]
+     },
+     {
+      "id": "avoid",
+      "label": "Routes that avoid (2, 1)",
+      "type": "number",
+      "answer": "26",
+      "accepted": [
+       "26"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Rows, subsets and the binomial theorem",
+    "prompt": "Add the numbers in row 8 of Pascal’s triangle, C(8, 0) + C(8, 1) + ⋯ + C(8, 8). Then find the coefficient of x⁵y³ in (x + y)⁸.",
+    "proof": "C(8, k) counts the 8-letter E/N words with exactly k N’s. Every word has some number of N’s from 0 to 8, so the row counts all 2⁸ = 256 words once each.\n\nExpanding (x + y)⁸ means choosing x or y from each of the 8 factors. A term x⁵y³ comes from choosing y in exactly 3 factors, in C(8, 3) = 56 ways. So the coefficient is 56, the same number as the routes.\n\nThis is the binomial theorem: (x + y)ⁿ = Σ C(n, k) xⁿ⁻ᵏ yᵏ. Setting x = y = 1 gives the row sum 2ⁿ again.",
+    "fields": [
+     {
+      "id": "rowsum",
+      "label": "Sum of row 8",
+      "type": "number",
+      "answer": "256",
+      "accepted": [
+       "256"
+      ]
+     },
+     {
+      "id": "coefficient",
+      "label": "Coefficient of x⁵y³ in (x + y)⁸",
+      "type": "number",
+      "answer": "56",
+      "accepted": [
+       "56"
+      ]
+     },
+     {
+      "id": "why",
+      "label": "Why is the sum of row 8 equal to 2⁸?",
+      "type": "choice",
+      "answer": "words",
+      "options": [
+       {
+        "value": "words",
+        "label": "Together the terms count every 8-letter E/N word once"
+       },
+       {
+        "value": "middle",
+        "label": "C(8, 4) is the largest term"
+       },
+       {
+        "value": "symmetric",
+        "label": "The row is symmetric"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "nextCheck": "Count the shortest routes from (0, 0) to (n, n) that never go above the diagonal y = x. For n = 3 there are 5. Find the general count."
+ },
+ {
+  "id": "dm-p03",
+  "order": 3,
+  "title": "Pigeonholes and guaranteed pairs",
+  "level": "High-school foundation",
+  "difficulty": "medium",
+  "topic": "The pigeonhole principle",
+  "prompt": "You choose some whole numbers from 1 to 20. How many must you choose to be sure that two of them add up to 21? How many to be sure that one of them divides another? You cannot check every choice, but the pigeonhole principle settles both questions.",
+  "approach": "If more than k objects go into k boxes, some box gets two. The work is in choosing boxes so that two objects in the same box always give what you want. Then check that one object fewer is not enough by building an example.",
+  "uses": "The pigeonhole principle; writing n = 2ᵏ · m with m odd; an example shows that a bound cannot be improved.",
+  "steps": [
+   {
+    "title": "Socks in the dark",
+    "prompt": "A drawer holds many socks in 4 colors. Without looking, how many socks must you take to be sure of a matching pair? How many to be sure of 3 socks of the same color?",
+    "proof": "The colors are the boxes. With 4 socks you might get one of each color, so 4 are not enough. With 5 socks, the 4 boxes hold 5 objects, so some color appears twice.\n\nFor three of a kind, 8 socks could still be two of each color. With 9 socks, if every color had at most 2 socks there would be at most 8. So some color has at least 3.\n\nIn general, kn + 1 objects in n boxes force some box to hold at least k + 1.",
+    "fields": [
+     {
+      "id": "pair",
+      "label": "Socks for a sure pair",
+      "type": "number",
+      "answer": "5",
+      "accepted": [
+       "5"
+      ]
+     },
+     {
+      "id": "triple",
+      "label": "Socks for a sure three of a kind",
+      "type": "number",
+      "answer": "9",
+      "accepted": [
+       "9"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Pairs that add up to 21",
+    "prompt": "Group the numbers 1 to 20 into pairs that add up to 21. How many pairs are there? What is the smallest number of choices that guarantees two chosen numbers add up to 21? Which sets of 10 numbers show that 10 choices are not enough?",
+    "proof": "The pairs are {1, 20}, {2, 19}, …, {10, 11}: 10 boxes that use every number exactly once.\n\nIf you choose 11 numbers, two of them land in the same pair, and those two add up to 21. So 11 choices are enough.\n\nTen choices are not enough. In {1, …, 10} the largest sum is 19; in {11, …, 20} the smallest sum is 23; and two odd numbers always add up to an even number, so the ten odd numbers never make 21. The set {1, …, 9, 12} fails because 9 + 12 = 21.",
+    "fields": [
+     {
+      "id": "boxes",
+      "label": "Number of pairs (boxes)",
+      "type": "number",
+      "answer": "10",
+      "accepted": [
+       "10"
+      ]
+     },
+     {
+      "id": "picks",
+      "label": "Choices that guarantee a sum of 21",
+      "type": "number",
+      "answer": "11",
+      "accepted": [
+       "11"
+      ]
+     },
+     {
+      "id": "safe",
+      "label": "Which sets of 10 numbers contain no two numbers that add up to 21?",
+      "type": "multi",
+      "answer": [
+       "low",
+       "high",
+       "odd"
+      ],
+      "options": [
+       {
+        "value": "low",
+        "label": "{1, 2, …, 10}"
+       },
+       {
+        "value": "high",
+        "label": "{11, 12, …, 20}"
+       },
+       {
+        "value": "odd",
+        "label": "{1, 3, 5, …, 19}"
+       },
+       {
+        "value": "mixed",
+        "label": "{1, 2, …, 9, 12}"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Boxes by odd part",
+    "prompt": "Every number from 1 to 20 can be written as 2ᵏ · m with m odd; call m its odd part. How many different odd parts are there? What is the odd part of 12? What happens when two chosen numbers have the same odd part?",
+    "proof": "Divide out factors of 2 until the number is odd: 12 = 2² · 3, so its odd part is 3. The odd parts are odd numbers from 1 to 19, and each of these ten appears, as the number itself. So there are 10 boxes.\n\nIf a = 2ʲ · m and b = 2ᵏ · m with j < k, then b = 2ᵏ⁻ʲ · a, so a divides b. Two numbers in the same box always form a dividing pair.",
+    "fields": [
+     {
+      "id": "parts",
+      "label": "Different odd parts",
+      "type": "number",
+      "answer": "10",
+      "accepted": [
+       "10"
+      ]
+     },
+     {
+      "id": "part12",
+      "label": "Odd part of 12",
+      "type": "number",
+      "answer": "3",
+      "accepted": [
+       "3"
+      ]
+     },
+     {
+      "id": "same",
+      "label": "Two different numbers with the same odd part…",
+      "type": "choice",
+      "answer": "divides",
+      "options": [
+       {
+        "value": "divides",
+        "label": "one divides the other"
+       },
+       {
+        "value": "equal",
+        "label": "must be equal"
+       },
+       {
+        "value": "coprime",
+        "label": "have no common factor"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Prove the guarantee",
+    "prompt": "Prove that any 11 numbers chosen from 1 to 20 include one that divides another. Which set of 10 numbers shows that 10 choices are not enough?",
+    "proof": "There are 10 odd parts and 11 chosen numbers, so two chosen numbers share an odd part. By step 3, the smaller one divides the larger one.\n\nIn {11, 12, …, 20} the smallest number is 11, so any multiple of a member other than the member itself is at least 22. No member divides another, so 10 choices can avoid a dividing pair.\n\nThe same argument shows that any n + 1 numbers from 1 to 2n include one that divides another, and that n numbers are not enough.",
+    "fields": [
+     {
+      "id": "guarantee",
+      "label": "Prove the guarantee for 11 numbers",
+      "type": "reason",
+      "criteria": [
+       "Use the 10 odd parts as boxes; 11 numbers force two into the same box.",
+       "Two numbers with the same odd part differ by a factor that is a power of 2, so the smaller divides the larger."
+      ],
+      "followup": "Where does your proof use that the numbers are at most 20?"
+     },
+     {
+      "id": "example",
+      "label": "A set of 10 numbers with no dividing pair",
+      "type": "choice",
+      "answer": "high",
+      "options": [
+       {
+        "value": "high",
+        "label": "{11, 12, …, 20}"
+       },
+       {
+        "value": "low",
+        "label": "{1, 2, …, 10}"
+       },
+       {
+        "value": "even",
+        "label": "{2, 4, …, 20}"
+       },
+       {
+        "value": "odd",
+        "label": "{1, 3, …, 19}"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "nextCheck": "Prove that among any 5 points inside a square of side 2, two are at distance at most √2."
+ },
+ {
+  "id": "dm-p04",
+  "order": 4,
+  "title": "The Tower of Hanoi",
+  "level": "High-school foundation",
+  "difficulty": "medium",
+  "topic": "Recurrences and induction",
+  "prompt": "A tower of n discs, largest at the bottom, sits on the left peg. Move the whole tower to the right peg, one disc at a time, never placing a larger disc on a smaller one. The middle peg may be used. What is the fewest number of moves, and how can you be sure that nobody can do better?",
+  "approach": "Focus on the largest disc. When it moves, every other disc must be out of its way, stacked on the third peg. That observation gives both a strategy and a lower bound, and the two meet in a recurrence that you can solve by induction.",
+  "uses": "Recursive thinking; the recurrence M(n) = 2M(n − 1) + 1; proof by induction.",
+  "steps": [
+   {
+    "title": "Small towers",
+    "prompt": "One disc needs 1 move and two discs need 3. Find the fewest moves for 3 discs and for 4 discs.",
+    "proof": "For 3 discs: move the top two to the middle peg (3 moves), move the largest disc to the right peg (1 move), then move the two discs onto it (3 moves). That is 7 moves.\n\nFor 4 discs the same plan uses 7 + 1 + 7 = 15 moves. Step 4 shows that these counts cannot be beaten.",
+    "fields": [
+     {
+      "id": "m3",
+      "label": "Moves for 3 discs",
+      "type": "number",
+      "answer": "7",
+      "accepted": [
+       "7"
+      ]
+     },
+     {
+      "id": "m4",
+      "label": "Moves for 4 discs",
+      "type": "number",
+      "answer": "15",
+      "accepted": [
+       "15"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Find the recurrence",
+    "prompt": "When the largest disc moves, where must the other n − 1 discs be? Use this to write M(n) in terms of M(n − 1), and compute M(10).",
+    "proof": "To move, the largest disc must have nothing on top of it, and it can only land on an empty peg, because every other disc is smaller. So when it moves, the other n − 1 discs are all on the third peg, the one it is neither leaving nor entering.\n\nSo a good plan moves n − 1 discs out of the way, moves the largest disc, and moves the n − 1 discs back on top: M(n) = 2M(n − 1) + 1.\n\nStarting from M(1) = 1: 3, 7, 15, 31, 63, 127, 255, 511, 1023. So M(10) = 1023.",
+    "fields": [
+     {
+      "id": "where",
+      "label": "When the largest disc moves, the other n − 1 discs are…",
+      "type": "choice",
+      "answer": "third",
+      "options": [
+       {
+        "value": "third",
+        "label": "all on the third peg"
+       },
+       {
+        "value": "target",
+        "label": "all on the target peg"
+       },
+       {
+        "value": "any",
+        "label": "anywhere, as long as they are in order"
+       }
+      ]
+     },
+     {
+      "id": "m10",
+      "label": "M(10)",
+      "type": "number",
+      "answer": "1023",
+      "accepted": [
+       "1023"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Solve the recurrence",
+    "prompt": "Guess a formula for M(n) from the values 1, 3, 7, 15, … and prove it by induction. Use it to find M(20).",
+    "proof": "Each value is one less than a power of 2, so guess M(n) = 2ⁿ − 1.\n\nBase case: M(1) = 1 = 2¹ − 1. Inductive step: if M(n − 1) = 2ⁿ⁻¹ − 1, then M(n) = 2(2ⁿ⁻¹ − 1) + 1 = 2ⁿ − 2 + 1 = 2ⁿ − 1.\n\nSo M(20) = 2²⁰ − 1 = 1048575.",
+    "fields": [
+     {
+      "id": "m20",
+      "label": "M(20)",
+      "type": "number",
+      "answer": "1048575",
+      "accepted": [
+       "1048575"
+      ]
+     },
+     {
+      "id": "induction",
+      "label": "Prove M(n) = 2ⁿ − 1 by induction",
+      "type": "reason",
+      "criteria": [
+       "Check the base case M(1) = 1.",
+       "Assume the formula for n − 1 and use M(n) = 2M(n − 1) + 1 to reach 2ⁿ − 1."
+      ],
+      "followup": "Which earlier step justifies the recurrence you used?"
+     }
+    ]
+   },
+   {
+    "title": "Nobody can do better",
+    "prompt": "Prove that every solution uses at least 2ⁿ − 1 moves. Then count how many times the smallest disc moves in the best solution for 5 discs.",
+    "proof": "Let L(n) be the fewest moves possible. The largest disc must move at least once. Before its first move, the other n − 1 discs have been moved together onto a single other peg, which takes at least L(n − 1) moves. After its last move it sits on the right peg, and the n − 1 discs must still be brought onto it, at least L(n − 1) more moves.\n\nSo L(n) ≥ 2L(n − 1) + 1, and induction gives L(n) ≥ 2ⁿ − 1. Step 3 shows a plan with exactly 2ⁿ − 1 moves, so the minimum is 2ⁿ − 1.\n\nIn the best plan, the smallest disc moves on every other move: 1, 2, 4, 8, 16 times for 1 to 5 discs. For 5 discs it moves 2⁴ = 16 times.",
+    "fields": [
+     {
+      "id": "lower",
+      "label": "Prove that 2ⁿ − 1 moves are necessary",
+      "type": "reason",
+      "criteria": [
+       "The largest disc must move, and when it does the other n − 1 discs are together on one other peg.",
+       "Getting them there, and later onto the target, each takes at least the minimum for n − 1 discs, so L(n) ≥ 2L(n − 1) + 1, and induction gives 2ⁿ − 1."
+      ],
+      "followup": "Why can the moves before the first move of the largest disc and after its last move not be the same moves?"
+     },
+     {
+      "id": "smallest",
+      "label": "Moves of the smallest disc for 5 discs",
+      "type": "number",
+      "answer": "16",
+      "accepted": [
+       "16"
+      ]
+     }
+    ]
+   }
+  ],
+  "nextCheck": "Suppose a disc may only move between neighboring pegs, left–middle or middle–right. Find the fewest number of moves for n discs."
+ },
+ {
+  "id": "dm-p05",
+  "order": 5,
+  "title": "A chessboard with two missing corners",
+  "level": "Bridge (high school to undergraduate)",
+  "difficulty": "medium",
+  "topic": "Invariants and proof by contradiction",
+  "prompt": "A domino covers two squares that share a side. An 8 × 8 chessboard can be covered by 32 dominoes. Now remove two opposite corner squares. Can the remaining 62 squares be covered by 31 dominoes, with no overlaps and nothing sticking out? Instead of searching, find something that every domino does in the same way.",
+  "approach": "Use the colors of the board. Count what is left of each color, and count what any set of dominoes must cover. If the two counts disagree, no covering exists, however clever. A quantity that every move changes in a predictable way is called an invariant.",
+  "uses": "Coloring arguments; proof by contradiction; necessary versus sufficient conditions.",
+  "steps": [
+   {
+    "title": "Count the colors",
+    "prompt": "A chessboard has 32 dark and 32 light squares. The corners a1 and h8 are dark. After removing them, how many dark and how many light squares remain?",
+    "proof": "Moving one square along a row or a column changes the color. From a1 to h8 you move 7 squares right and 7 squares up, 14 moves in all, an even number, so the two corners have the same color.\n\nRemoving two dark squares leaves 32 − 2 = 30 dark squares and 32 light squares.",
+    "fields": [
+     {
+      "id": "dark",
+      "label": "Dark squares left",
+      "type": "number",
+      "answer": "30",
+      "accepted": [
+       "30"
+      ]
+     },
+     {
+      "id": "light",
+      "label": "Light squares left",
+      "type": "number",
+      "answer": "32",
+      "accepted": [
+       "32"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "What every domino covers",
+    "prompt": "Look at the two squares under any domino. What colors are they? If 31 dominoes covered the board, how many dark squares would they cover?",
+    "proof": "Two squares that share a side are neighbors in a row or a column, so they have different colors. Every domino covers exactly one dark and one light square.\n\nSo 31 dominoes cover exactly 31 dark squares and 31 light squares, wherever they are placed.",
+    "fields": [
+     {
+      "id": "pair",
+      "label": "Every domino covers…",
+      "type": "choice",
+      "answer": "mixed",
+      "options": [
+       {
+        "value": "mixed",
+        "label": "one dark and one light square"
+       },
+       {
+        "value": "same",
+        "label": "two squares of the same color"
+       },
+       {
+        "value": "depends",
+        "label": "it depends on where it is placed"
+       }
+      ]
+     },
+     {
+      "id": "covered",
+      "label": "Dark squares covered by 31 dominoes",
+      "type": "number",
+      "answer": "31",
+      "accepted": [
+       "31"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Reach a contradiction",
+    "prompt": "Can the 62 squares be covered? Write a proof that does not depend on trying placements.",
+    "proof": "Suppose a covering existed. By step 2 it would cover 31 dark squares, but only 30 dark squares remain. This is impossible, so no covering exists.\n\nNotice what the argument did not need: no search, and no knowledge of where the dominoes go. One number that every domino changes in the same way was enough.",
+    "fields": [
+     {
+      "id": "possible",
+      "label": "Can the board be covered?",
+      "type": "choice",
+      "answer": "no",
+      "options": [
+       {
+        "value": "no",
+        "label": "No, never"
+       },
+       {
+        "value": "clever",
+        "label": "Yes, with a clever arrangement"
+       },
+       {
+        "value": "search",
+        "label": "Only a computer search can tell"
+       }
+      ]
+     },
+     {
+      "id": "impossible",
+      "label": "Prove that no covering exists",
+      "type": "reason",
+      "criteria": [
+       "Each domino covers one dark and one light square, so any covering by 31 dominoes covers 31 squares of each color.",
+       "Only 30 dark squares remain, so a covering would be a contradiction."
+      ],
+      "followup": "Which fact about the two removed corners did the proof use?"
+     }
+    ]
+   },
+   {
+    "title": "Other board sizes",
+    "prompt": "Remove two opposite corners from an n × n board with n ≥ 2. For which n can the rest be covered by dominoes? Explain both the even and the odd case.",
+    "proof": "Opposite corners of any n × n board are 2(n − 1) moves apart, an even number, so they always have the same color.\n\nIf n is even, the board has n²/2 squares of each color, and removing two of one color leaves the colors unbalanced, as in steps 1 to 3. If n is odd, n² − 2 is odd, but dominoes always cover an even number of squares.\n\nSo the answer is: for no n. The coloring gives a necessary condition, equal numbers of dark and light squares. It is not always sufficient, which is why the next challenge is worth trying.",
+    "fields": [
+     {
+      "id": "which",
+      "label": "For which n ≥ 2 can the board be covered?",
+      "type": "choice",
+      "answer": "none",
+      "options": [
+       {
+        "value": "none",
+        "label": "For no n"
+       },
+       {
+        "value": "even",
+        "label": "Only for even n"
+       },
+       {
+        "value": "odd",
+        "label": "Only for odd n"
+       },
+       {
+        "value": "all",
+        "label": "For every n"
+       }
+      ]
+     },
+     {
+      "id": "cases",
+      "label": "Explain the even and odd cases",
+      "type": "reason",
+      "criteria": [
+       "For even n, the two removed corners have the same color, so the colors are unbalanced.",
+       "For odd n, the number of remaining squares, n² − 2, is odd, but dominoes cover squares two at a time."
+      ],
+      "followup": "Are equal numbers of dark and light squares enough to guarantee a covering?"
+     }
+    ]
+   }
+  ],
+  "nextCheck": "Gomory’s theorem: remove one dark and one light square anywhere on an 8 × 8 board. Prove that the rest can always be covered by dominoes. Hint: use a closed path that visits all 64 squares, moving between neighbors."
+ },
+ {
+  "id": "dm-p06",
+  "order": 6,
+  "title": "Covering boards with L-trominoes",
+  "level": "Bridge (high school to undergraduate)",
+  "difficulty": "challenging",
+  "topic": "Mathematical induction",
+  "prompt": "An L-tromino is an L-shaped tile made of three squares. Take a 2ⁿ × 2ⁿ board and remove any one square. Can the rest always be covered by L-trominoes with no overlaps? Check small boards, count the tiles, and then prove it for every n.",
+  "approach": "Split the big board into four quadrants of size 2ⁿ⁻¹ × 2ⁿ⁻¹. One quadrant already has a missing square. Place one tromino at the center so that it takes one square from each of the other three quadrants. Now every quadrant is a smaller board with one square missing, which is exactly the case you assumed.",
+  "uses": "Mathematical induction; 4ⁿ − 1 is divisible by 3; splitting a problem into smaller copies of itself.",
+  "steps": [
+   {
+    "title": "Count the trominoes",
+    "prompt": "A covering of a 2ⁿ × 2ⁿ board with one square removed uses (4ⁿ − 1)/3 trominoes. How many trominoes cover an 8 × 8 board with one square removed? How many cover a 32 × 32 board? Why is 4ⁿ − 1 always divisible by 3?",
+    "proof": "The board has 4ⁿ squares, so 4ⁿ − 1 remain, and each tromino covers 3. For 8 × 8 (n = 3): (64 − 1)/3 = 21. For 32 × 32 (n = 5): (1024 − 1)/3 = 341.\n\nSince 4 leaves remainder 1 when divided by 3, so does every power of 4, and 4ⁿ − 1 is a multiple of 3. The count is always a whole number, so counting alone does not rule out a covering.",
+    "fields": [
+     {
+      "id": "t3",
+      "label": "Trominoes for 8 × 8",
+      "type": "number",
+      "answer": "21",
+      "accepted": [
+       "21"
+      ]
+     },
+     {
+      "id": "t5",
+      "label": "Trominoes for 32 × 32",
+      "type": "number",
+      "answer": "341",
+      "accepted": [
+       "341"
+      ]
+     },
+     {
+      "id": "divisible",
+      "label": "Why is 4ⁿ − 1 divisible by 3?",
+      "type": "choice",
+      "answer": "remainder",
+      "options": [
+       {
+        "value": "remainder",
+        "label": "4 leaves remainder 1 when divided by 3, so every power of 4 does too"
+       },
+       {
+        "value": "odd",
+        "label": "4ⁿ − 1 is odd"
+       },
+       {
+        "value": "prime",
+        "label": "3 is a prime number"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "The base case",
+    "prompt": "For n = 1 the board is 2 × 2. How many trominoes cover it after one square is removed, and does it matter which square?",
+    "proof": "A 2 × 2 board minus any one square is itself an L-tromino. So one tromino covers it, whichever square is missing.\n\nThis is the base case: the statement holds for n = 1 and for every position of the missing square.",
+    "fields": [
+     {
+      "id": "base",
+      "label": "Trominoes for n = 1",
+      "type": "number",
+      "answer": "1",
+      "accepted": [
+       "1"
+      ]
+     },
+     {
+      "id": "position",
+      "label": "Does the position of the missing square matter when n = 1?",
+      "type": "choice",
+      "answer": "no",
+      "options": [
+       {
+        "value": "no",
+        "label": "No: the three remaining squares always form an L"
+       },
+       {
+        "value": "two",
+        "label": "Yes: two of the four positions fail"
+       },
+       {
+        "value": "one",
+        "label": "Yes: only one position works"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "The inductive step",
+    "prompt": "Assume every 2ⁿ⁻¹ × 2ⁿ⁻¹ board with one square removed can be covered. Split a 2ⁿ × 2ⁿ board into four quadrants. Where do you place one tromino so that every quadrant becomes a smaller board with one square missing? How many quadrants does it touch?",
+    "proof": "The missing square lies in one quadrant. Each of the other three quadrants has a corner square at the center of the big board. Place one tromino on those three central squares.\n\nIt touches 3 quadrants, one square in each. Now each of the four quadrants is a 2ⁿ⁻¹ × 2ⁿ⁻¹ board with exactly one square missing or already covered, so the assumption covers each of them.\n\nThe count matches: if T(n) is the number of trominoes, then T(n) = 4T(n − 1) + 1 with T(1) = 1, which gives T(n) = (4ⁿ − 1)/3. For n = 4, T(4) = 85.",
+    "fields": [
+     {
+      "id": "center",
+      "label": "Where does the extra tromino go?",
+      "type": "choice",
+      "answer": "center",
+      "options": [
+       {
+        "value": "center",
+        "label": "On the central corner squares of the three quadrants without the missing square"
+       },
+       {
+        "value": "edge",
+        "label": "Along an outside edge of the board"
+       },
+       {
+        "value": "same",
+        "label": "Inside the quadrant that already has the missing square"
+       }
+      ]
+     },
+     {
+      "id": "touches",
+      "label": "Quadrants the central tromino touches",
+      "type": "number",
+      "answer": "3",
+      "accepted": [
+       "3"
+      ]
+     },
+     {
+      "id": "t4",
+      "label": "T(4), trominoes for a 16 × 16 board",
+      "type": "number",
+      "answer": "85",
+      "accepted": [
+       "85"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Write the proof",
+    "prompt": "Write the complete induction proof that, for every n ≥ 1 and every position of the missing square, the board can be covered.",
+    "proof": "Statement P(n): for every position of the missing square, a 2ⁿ × 2ⁿ board with that square removed can be covered by L-trominoes.\n\nBase case: P(1) holds by step 2. Inductive step: assume P(n − 1). For any missing square on a 2ⁿ × 2ⁿ board, place the central tromino as in step 3. Each quadrant is then a 2ⁿ⁻¹ × 2ⁿ⁻¹ board missing one square, so P(n − 1) covers it. Together with the central tromino this covers the whole board, so P(n) holds.\n\nBy induction, P(n) holds for every n ≥ 1. The statement had to allow every position of the missing square, because the inductive step applies it to the three central squares, which the original problem did not choose.",
+    "fields": [
+     {
+      "id": "proof",
+      "label": "Write the induction proof",
+      "type": "reason",
+      "criteria": [
+       "State P(n) for every position of the missing square, and check the base case n = 1.",
+       "Assume P(n − 1), place the central tromino, and apply the assumption to each of the four quadrants.",
+       "Conclude that P(n) holds for every n ≥ 1."
+      ],
+      "followup": "Why would the proof fail if P(n) only allowed a missing corner square?"
+     }
+    ]
+   }
+  ],
+  "nextCheck": "Can a 5 × 5 board with one square removed always be covered by L-trominoes? Find a square whose removal makes a covering impossible."
+ },
+ {
+  "id": "dm-p07",
+  "order": 7,
+  "title": "The bridges of Königsberg",
+  "level": "Bridge (high school to undergraduate)",
+  "difficulty": "medium",
+  "topic": "Degrees and Euler trails",
+  "prompt": "The old city of Königsberg had four land areas: an island A, the north bank B, the south bank C and an eastern area D. Seven bridges joined them: two from A to B, two from A to C, and one each from A to D, from B to D and from C to D. Could a walk cross every bridge exactly once? Degrees answer the question, and they also show why at every party an even number of people shake an odd number of hands.",
+  "approach": "Make each land area a vertex and each bridge an edge; two areas may be joined by more than one edge. The degree of a vertex is the number of bridge ends there. A walk passes through a vertex by arriving and leaving, which uses two bridge ends at a time.",
+  "uses": "The handshake lemma, Σ deg(v) = 2|E|; parity; the Euler trail condition for connected graphs.",
+  "steps": [
+   {
+    "title": "Degrees and edges",
+    "prompt": "Find the degree of each land area. Add the four degrees. How does the sum compare with the number of bridges?",
+    "proof": "A has 2 + 2 + 1 = 5 bridge ends, B has 2 + 1 = 3, C has 2 + 1 = 3 and D has 3. The sum is 5 + 3 + 3 + 3 = 14.\n\nEvery bridge has two ends, so it adds 2 to the sum of the degrees. Hence the sum is always twice the number of edges: 14 = 2 × 7. This is the handshake lemma, Σ deg(v) = 2|E|.",
+    "fields": [
+     {
+      "id": "sum",
+      "label": "Sum of the four degrees",
+      "type": "number",
+      "answer": "14",
+      "accepted": [
+       "14"
+      ]
+     },
+     {
+      "id": "bridges",
+      "label": "Number of bridges",
+      "type": "number",
+      "answer": "7",
+      "accepted": [
+       "7"
+      ]
+     },
+     {
+      "id": "rule",
+      "label": "In every graph, the sum of the degrees equals…",
+      "type": "choice",
+      "answer": "twice",
+      "options": [
+       {
+        "value": "twice",
+        "label": "twice the number of edges"
+       },
+       {
+        "value": "edges",
+        "label": "the number of edges"
+       },
+       {
+        "value": "vertices",
+        "label": "the number of vertices"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Odd vertices come in pairs",
+    "prompt": "How many land areas have odd degree? Can any graph have exactly three vertices of odd degree? Prove your answer.",
+    "proof": "All four areas have odd degree: 5, 3, 3 and 3.\n\nThe sum of all degrees is even. The even degrees add up to an even number, so the odd degrees must also add up to an even number, and a sum of odd numbers is even only when there is an even number of them. So no graph has exactly three vertices of odd degree.\n\nAt a party, make the people vertices and the handshakes edges: the number of people who shake an odd number of hands is even.",
+    "fields": [
+     {
+      "id": "odd",
+      "label": "Land areas with odd degree",
+      "type": "number",
+      "answer": "4",
+      "accepted": [
+       "4"
+      ]
+     },
+     {
+      "id": "three",
+      "label": "Can a graph have exactly three vertices of odd degree?",
+      "type": "choice",
+      "answer": "never",
+      "options": [
+       {
+        "value": "never",
+        "label": "No, never"
+       },
+       {
+        "value": "enough",
+        "label": "Yes, if it has enough edges"
+       },
+       {
+        "value": "multiple",
+        "label": "Only if some vertices are joined by several edges"
+       }
+      ]
+     },
+     {
+      "id": "parity",
+      "label": "Prove that the number of odd-degree vertices is even",
+      "type": "reason",
+      "criteria": [
+       "The sum of the degrees is 2|E|, an even number.",
+       "Without the even degrees, an even sum of odd numbers remains, which requires an even number of terms."
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Passing through a vertex",
+    "prompt": "In a walk that uses every bridge once, every visit to an area in the middle of the walk arrives by one bridge and leaves by another. Which areas must then have even degree? Is the Königsberg walk possible?",
+    "proof": "Each time the walk passes through a vertex, it uses two of its bridge ends. If the vertex is neither the start nor the end, all its bridge ends are used in such pairs, so its degree is even.\n\nOnly the start and the end can have odd degree. A walk that crosses every bridge once, an Euler trail, therefore needs 0 or 2 vertices of odd degree, and a closed walk needs 0.\n\nKönigsberg has 4 vertices of odd degree, so no such walk exists.",
+    "fields": [
+     {
+      "id": "even",
+      "label": "Which vertices must have even degree in an Euler trail?",
+      "type": "choice",
+      "answer": "middle",
+      "options": [
+       {
+        "value": "middle",
+        "label": "Every vertex except the start and the end"
+       },
+       {
+        "value": "all",
+        "label": "Every vertex"
+       },
+       {
+        "value": "ends",
+        "label": "Only the start and the end"
+       }
+      ]
+     },
+     {
+      "id": "walk",
+      "label": "Is the Königsberg walk possible?",
+      "type": "choice",
+      "answer": "no",
+      "options": [
+       {
+        "value": "no",
+        "label": "No: four areas have odd degree"
+       },
+       {
+        "value": "island",
+        "label": "Yes, starting on the island"
+       },
+       {
+        "value": "search",
+        "label": "Only an exhaustive search can decide"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Build new bridges",
+    "prompt": "The city may build new bridges. What is the fewest number of new bridges that makes a walk crossing every bridge exactly once possible? What is the fewest that makes a closed walk possible, one that ends where it starts?",
+    "proof": "A new bridge between two odd areas, say B and C, makes both of them even. Then only A and D are odd, so an Euler trail from A to D exists. One bridge is enough, and zero bridges are not.\n\nFor a closed walk every degree must be even. One new bridge changes the parity of only two areas, so it leaves two odd areas. Two new bridges, for example B–C and A–D, make all four degrees even.\n\nFor connected graphs these conditions are also sufficient, by Euler’s theorem: 0 odd vertices give a closed walk, and 2 give a trail between them. So the answers are 1 and 2.",
+    "fields": [
+     {
+      "id": "trail",
+      "label": "New bridges for a walk",
+      "type": "number",
+      "answer": "1",
+      "accepted": [
+       "1"
+      ]
+     },
+     {
+      "id": "closed",
+      "label": "New bridges for a closed walk",
+      "type": "number",
+      "answer": "2",
+      "accepted": [
+       "2"
+      ]
+     }
+    ]
+   }
+  ],
+  "nextCheck": "Prove the converse for connected graphs: if every vertex has even degree, there is a closed walk that uses every edge exactly once."
+ },
+ {
+  "id": "dm-p08",
+  "order": 8,
+  "title": "Domino strips and linear recurrences",
+  "level": "Intro undergraduate",
+  "difficulty": "challenging",
+  "topic": "Linear recurrences and the characteristic equation",
+  "prompt": "How many ways can a 2 × n strip be covered by 2 × 1 dominoes? The counts satisfy a recurrence. Find it, and then use the characteristic equation to turn a linear recurrence into a closed formula.",
+  "approach": "Look at the left end of the strip. Either a vertical domino covers the first column, or two horizontal dominoes cover the first two columns. Each case leaves a shorter strip. For a closed formula, try solutions of the form rⁿ.",
+  "uses": "Splitting into cases; strong induction; geometric sequences rⁿ; solving a quadratic equation.",
+  "steps": [
+   {
+    "title": "Small strips",
+    "prompt": "Let T(n) be the number of coverings of a 2 × n strip. T(1) = 1 and T(2) = 2. Find T(3) and T(4) by drawing them.",
+    "proof": "For n = 3: three vertical dominoes; one vertical domino and then two horizontal ones; or two horizontal dominoes and then one vertical. So T(3) = 3.\n\nFor n = 4 there are 5: four vertical dominoes; one horizontal pair at the left, in the middle or at the right, with vertical dominoes elsewhere (3 ways); and two horizontal pairs. So T(4) = 5.",
+    "fields": [
+     {
+      "id": "t3",
+      "label": "T(3)",
+      "type": "number",
+      "answer": "3",
+      "accepted": [
+       "3"
+      ]
+     },
+     {
+      "id": "t4",
+      "label": "T(4)",
+      "type": "number",
+      "answer": "5",
+      "accepted": [
+       "5"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "The recurrence",
+    "prompt": "Look at the leftmost column of a covering. What covers it? Use your answer to write T(n) in terms of earlier values, and compute T(10).",
+    "proof": "The leftmost column is covered either by one vertical domino, which leaves a 2 × (n − 1) strip, or by two horizontal dominoes stacked on top of each other, which leave a 2 × (n − 2) strip. A horizontal domino in the top row forces another one directly below it.\n\nThe two cases do not overlap, so T(n) = T(n − 1) + T(n − 2) for n ≥ 3.\n\nFrom 1, 2: 3, 5, 8, 13, 21, 34, 55, 89. So T(10) = 89. These are the Fibonacci numbers: T(n) = F(n + 1), with F(1) = F(2) = 1.",
+    "fields": [
+     {
+      "id": "left",
+      "label": "What covers the leftmost column?",
+      "type": "choice",
+      "answer": "cases",
+      "options": [
+       {
+        "value": "cases",
+        "label": "Either one vertical domino or two stacked horizontal dominoes"
+       },
+       {
+        "value": "vertical",
+        "label": "Always one vertical domino"
+       },
+       {
+        "value": "any",
+        "label": "One horizontal domino, with any domino below it"
+       }
+      ]
+     },
+     {
+      "id": "t10",
+      "label": "T(10)",
+      "type": "number",
+      "answer": "89",
+      "accepted": [
+       "89"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "The characteristic equation",
+    "prompt": "A sequence satisfies aₙ = 5aₙ₋₁ − 6aₙ₋₂ with a₀ = 2 and a₁ = 5. Try aₙ = rⁿ to find the roots of the characteristic equation, write aₙ as a combination of the two solutions, and compute a₅.",
+    "proof": "If aₙ = rⁿ, then rⁿ = 5rⁿ⁻¹ − 6rⁿ⁻² and, dividing by rⁿ⁻², r² − 5r + 6 = 0. So r = 2 or r = 3.\n\nAny combination aₙ = α · 2ⁿ + β · 3ⁿ satisfies the recurrence. The initial values give α + β = 2 and 2α + 3β = 5, so α = β = 1 and aₙ = 2ⁿ + 3ⁿ.\n\nThen a₅ = 32 + 243 = 275. A check with the recurrence: 2, 5, 13, 35, 97, 275.",
+    "fields": [
+     {
+      "id": "root",
+      "label": "The larger root",
+      "type": "number",
+      "answer": "3",
+      "accepted": [
+       "3"
+      ]
+     },
+     {
+      "id": "a5",
+      "label": "a₅",
+      "type": "number",
+      "answer": "275",
+      "accepted": [
+       "275"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Back to the dominoes",
+    "prompt": "The domino recurrence has the characteristic equation x² = x + 1. Explain why every solution of such a recurrence is fixed by its first two values, so the formula from the roots is the only one. For which n is T(n) = 144?",
+    "proof": "The roots of x² − x − 1 = 0 are φ = (1 + √5)/2 and ψ = (1 − √5)/2. As in step 3, T(n) = αφⁿ + βψⁿ for constants chosen from T(1) and T(2); this gives Binet’s formula.\n\nTwo sequences that satisfy the same second-order recurrence and agree in their first two terms agree everywhere, by strong induction: each later term is computed from the two before it. So the closed formula is not just one solution; it is the solution.\n\nContinuing the list, T(11) = 89 + 55 = 144. So T(n) = 144 when n = 11.",
+    "fields": [
+     {
+      "id": "n144",
+      "label": "n with T(n) = 144",
+      "type": "number",
+      "answer": "11",
+      "accepted": [
+       "11"
+      ]
+     },
+     {
+      "id": "unique",
+      "label": "Explain why the first two values fix the whole sequence",
+      "type": "reason",
+      "criteria": [
+       "Each term from the third on is computed from the two terms before it.",
+       "By strong induction, two sequences that satisfy the recurrence and agree in the first two terms agree in every term."
+      ],
+      "followup": "Where does this argument need two initial values rather than one?"
+     }
+    ]
+   }
+  ],
+  "nextCheck": "Count the coverings of a 3 × n strip by 2 × 1 dominoes for even n. Show that they satisfy U(n) = 4U(n − 2) − U(n − 4), with U(2) = 3 and U(4) = 11."
+ },
+ {
+  "id": "dm-p09",
+  "order": 9,
+  "title": "Inclusion–exclusion and the mixed-up hats",
+  "level": "Intro undergraduate",
+  "difficulty": "challenging",
+  "topic": "Inclusion–exclusion and derangements",
+  "prompt": "At an invented party, n guests leave their hats at the door, and the hats are handed back in a random order. What is the probability that nobody gets their own hat? First practice inclusion–exclusion on a smaller question, then count the orders in which no guest gets their own hat.",
+  "approach": "To count what avoids several properties, count everything, subtract each property, add back what you subtracted twice, and continue with alternating signs. For the hats, the property Fᵢ is “guest i gets their own hat”.",
+  "uses": "The principle of inclusion–exclusion; counting permutations; the series for e⁻¹.",
+  "steps": [
+   {
+    "title": "A warm-up count",
+    "prompt": "Among the whole numbers from 1 to 1000, let A₂, A₃ and A₅ be the multiples of 2, 3 and 5. Find |A₂ ∩ A₃|, the number of integers divisible by at least one of 2, 3 and 5, and the number divisible by none of them.",
+    "proof": "|A₂| = 500, |A₃| = 333 and |A₅| = 200. A number lies in A₂ ∩ A₃ when it is a multiple of 6, so |A₂ ∩ A₃| = ⌊1000/6⌋ = 166. Similarly |A₂ ∩ A₅| = 100, |A₃ ∩ A₅| = 66 and |A₂ ∩ A₃ ∩ A₅| = 33.\n\nInclusion–exclusion gives |A₂ ∪ A₃ ∪ A₅| = 500 + 333 + 200 − 166 − 100 − 66 + 33 = 734.\n\nSo 1000 − 734 = 266 numbers are divisible by none of 2, 3 and 5.",
+    "fields": [
+     {
+      "id": "a23",
+      "label": "|A₂ ∩ A₃|",
+      "type": "number",
+      "answer": "166",
+      "accepted": [
+       "166"
+      ]
+     },
+     {
+      "id": "union",
+      "label": "Divisible by at least one of 2, 3 and 5",
+      "type": "number",
+      "answer": "734",
+      "accepted": [
+       "734"
+      ]
+     },
+     {
+      "id": "none",
+      "label": "Divisible by none of them",
+      "type": "number",
+      "answer": "266",
+      "accepted": [
+       "266"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Four hats",
+    "prompt": "With 4 guests there are 4! = 24 orders. In how many of them does guest 1 get their own hat? Use inclusion–exclusion to count the orders in which nobody gets their own hat.",
+    "proof": "If guest 1 gets hat 1, the other 3 hats can be arranged in 3! = 6 ways, so |F₁| = 6. If k chosen guests get their own hats, the remaining hats can be arranged in (4 − k)! ways, and there are C(4, k) ways to choose those guests.\n\nInclusion–exclusion: D₄ = 24 − C(4, 1) · 3! + C(4, 2) · 2! − C(4, 3) · 1! + C(4, 4) · 0! = 24 − 24 + 12 − 4 + 1 = 9.",
+    "fields": [
+     {
+      "id": "f1",
+      "label": "|F₁|, orders in which guest 1 gets their own hat",
+      "type": "number",
+      "answer": "6",
+      "accepted": [
+       "6"
+      ]
+     },
+     {
+      "id": "d4",
+      "label": "D₄, orders in which nobody does",
+      "type": "number",
+      "answer": "9",
+      "accepted": [
+       "9"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "The general formula",
+    "prompt": "Prove that Dₙ = n!(1 − 1/1! + 1/2! − ⋯ + (−1)ⁿ/n!). Compute D₅ and the probability that none of 5 guests gets their own hat.",
+    "proof": "Let Fᵢ be the set of orders that give guest i hat i. Any k of these sets intersect in (n − k)! orders, because the other n − k hats are free. There are C(n, k) such intersections.\n\nInclusion–exclusion gives Dₙ = Σₖ (−1)ᵏ C(n, k)(n − k)! = Σₖ (−1)ᵏ n!/k!, which is the formula.\n\nFor n = 5: D₅ = 120 − 120 + 60 − 20 + 5 − 1 = 44. The probability is 44/120 = 11/30 ≈ 0.367.",
+    "fields": [
+     {
+      "id": "d5",
+      "label": "D₅",
+      "type": "number",
+      "answer": "44",
+      "accepted": [
+       "44"
+      ]
+     },
+     {
+      "id": "p5",
+      "label": "Probability for 5 guests",
+      "type": "number",
+      "answer": "11/30",
+      "accepted": [
+       "11/30",
+       "44/120"
+      ],
+      "minDecimalPlaces": 2
+     },
+     {
+      "id": "formula",
+      "label": "Prove the formula for Dₙ",
+      "type": "reason",
+      "criteria": [
+       "Each intersection of k of the sets Fᵢ has (n − k)! elements, and there are C(n, k) such intersections.",
+       "Inclusion–exclusion with alternating signs gives Σ (−1)ᵏ n!/k!."
+      ],
+      "followup": "Why does C(n, k)(n − k)! simplify to n!/k!?"
+     }
+    ]
+   },
+   {
+    "title": "Many guests",
+    "prompt": "Compute D₆. What happens to the probability Dₙ/n! as the number of guests grows?",
+    "proof": "D₆ = 720 − 720 + 360 − 120 + 30 − 6 + 1 = 265.\n\nDₙ/n! = 1 − 1/1! + 1/2! − ⋯ + (−1)ⁿ/n! is a partial sum of the series e⁻¹ = Σ (−1)ᵏ/k!. So the probability approaches 1/e ≈ 0.368.\n\nThe approach is very fast: for 5 guests the probability is already within 0.002 of 1/e. So the chance that nobody gets their own hat is about 37% whether there are ten guests or ten thousand.",
+    "fields": [
+     {
+      "id": "d6",
+      "label": "D₆",
+      "type": "number",
+      "answer": "265",
+      "accepted": [
+       "265"
+      ]
+     },
+     {
+      "id": "limit",
+      "label": "As the number of guests grows, the probability…",
+      "type": "choice",
+      "answer": "e",
+      "options": [
+       {
+        "value": "e",
+        "label": "approaches 1/e ≈ 0.368"
+       },
+       {
+        "value": "zero",
+        "label": "approaches 0"
+       },
+       {
+        "value": "half",
+        "label": "approaches 1/2"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "nextCheck": "Prove the recurrence Dₙ = (n − 1)(Dₙ₋₁ + Dₙ₋₂) by looking at whose hat guest 1 receives."
+ },
+ {
+  "id": "dm-p10",
+  "order": 10,
+  "title": "The cheapest network: spanning trees",
+  "level": "Intro undergraduate",
+  "difficulty": "challenging",
+  "topic": "Trees and minimum spanning trees",
+  "prompt": "An invented school district wants fiber cables that connect six schools, A to F, directly or through other schools. The possible cables and their costs, in thousands, are A–B 4, A–C 3, B–C 2, B–D 5, C–D 7, C–E 8, D–E 6, D–F 9 and E–F 1. Which cables connect every school at the lowest total cost, and why does choosing the cheapest safe cable each time give the best network?",
+  "approach": "A cheapest network has no cycle, because removing one cable of a cycle keeps everything connected and saves money. So it is a tree. Kruskal’s algorithm adds cables from cheapest to most expensive and skips any cable that would close a cycle. The proof that this works is an exchange argument.",
+  "uses": "Trees as connected graphs with no cycles; induction on the number of vertices; exchange arguments.",
+  "steps": [
+   {
+    "title": "Facts about trees",
+    "prompt": "A network that connects all six schools and has no cycle is a tree. How many cables does it have? What happens if you add one more cable to a tree?",
+    "proof": "Start with six separate schools. A cable that joins two different groups reduces the number of groups by one, and a cable inside a group would close a cycle. To go from six groups to one, a tree needs exactly 5 cables.\n\nAdding any cable between two schools of a tree creates exactly one cycle: the new cable together with the unique path that already joined its ends.",
+    "fields": [
+     {
+      "id": "edges",
+      "label": "Cables in a tree on 6 schools",
+      "type": "number",
+      "answer": "5",
+      "accepted": [
+       "5"
+      ]
+     },
+     {
+      "id": "extra",
+      "label": "Adding one cable to a tree…",
+      "type": "choice",
+      "answer": "cycle",
+      "options": [
+       {
+        "value": "cycle",
+        "label": "creates exactly one cycle"
+       },
+       {
+        "value": "disconnect",
+        "label": "disconnects it"
+       },
+       {
+        "value": "tree",
+        "label": "keeps it a tree"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Run Kruskal’s algorithm",
+    "prompt": "List the cables from cheapest to most expensive. Accept a cable if it joins two schools that are not yet connected, and reject it otherwise. What is the total cost? Which cables are rejected?",
+    "proof": "In order: E–F 1, accept; B–C 2, accept; A–C 3, accept; A–B 4, reject, because A and B are already connected through C; B–D 5, accept; D–E 6, accept, joining {A, B, C, D} with {E, F}.\n\nAll six schools are now connected by 5 cables, so C–D 7, C–E 8 and D–F 9 are rejected.\n\nThe total cost is 1 + 2 + 3 + 5 + 6 = 17.",
+    "fields": [
+     {
+      "id": "cost",
+      "label": "Total cost of the network",
+      "type": "number",
+      "answer": "17",
+      "accepted": [
+       "17"
+      ]
+     },
+     {
+      "id": "rejected",
+      "label": "Which cables are rejected?",
+      "type": "multi",
+      "answer": [
+       "ab",
+       "cd",
+       "ce",
+       "df"
+      ],
+      "options": [
+       {
+        "value": "ab",
+        "label": "A–B (4)"
+       },
+       {
+        "value": "bd",
+        "label": "B–D (5)"
+       },
+       {
+        "value": "de",
+        "label": "D–E (6)"
+       },
+       {
+        "value": "cd",
+        "label": "C–D (7)"
+       },
+       {
+        "value": "ce",
+        "label": "C–E (8)"
+       },
+       {
+        "value": "df",
+        "label": "D–F (9)"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Every tree has n − 1 edges",
+    "prompt": "Prove by induction that every tree with n vertices has exactly n − 1 edges. You may use that a tree with at least two vertices has a leaf, a vertex of degree 1. How many leaves does the network from step 2 have?",
+    "proof": "A tree with 1 vertex has 0 edges. Assume that every tree with n − 1 vertices has n − 2 edges, and take a tree with n ≥ 2 vertices.\n\nFollow a longest path. Its endpoint has no other neighbor, or the path could be extended or would close a cycle, so it is a leaf. Removing the leaf and its edge leaves a connected graph with no cycle on n − 1 vertices, which has n − 2 edges. Adding the edge back gives n − 1.\n\nIn the network from step 2, A is joined only to C and F only to E, while B, C, D and E each have two cables. So it has 2 leaves.",
+    "fields": [
+     {
+      "id": "treeEdges",
+      "label": "Prove that a tree with n vertices has n − 1 edges",
+      "type": "reason",
+      "criteria": [
+       "Every tree with at least two vertices has a leaf.",
+       "Removing a leaf and its edge leaves a tree with one vertex fewer, so induction gives n − 1 edges."
+      ],
+      "followup": "Why is the smaller graph still connected after the leaf is removed?"
+     },
+     {
+      "id": "leaves",
+      "label": "Leaves in the network from step 2",
+      "type": "number",
+      "answer": "2",
+      "accepted": [
+       "2"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Why the greedy choice is safe",
+    "prompt": "Explain why Kruskal’s network costs no more than any other network that connects all six schools. Then suppose the E–F cable costs 10 instead of 1. What is the new lowest cost?",
+    "proof": "Take a cheapest network T* that differs from Kruskal’s, and let e be the first cable Kruskal accepted that T* does not use. When Kruskal accepted e, its ends lay in two different groups. Adding e to T* creates a cycle; the cycle leaves the group of one end along e and must return along another cable f that also leaves that group.\n\nKruskal had not accepted f before e, although f joined two different groups all along, so Kruskal reached f no earlier than e: cost(f) ≥ cost(e). Replacing f by e gives a network that costs no more and agrees with Kruskal’s choices for longer. Repeating the exchange turns T* into Kruskal’s network without raising the cost.\n\nWith E–F at 10, the accepted cables are B–C 2, A–C 3, B–D 5, D–E 6 and D–F 9, for a total of 25.",
+    "fields": [
+     {
+      "id": "exchange",
+      "label": "Explain why Kruskal’s network is cheapest",
+      "type": "reason",
+      "criteria": [
+       "Take a cheapest network that differs from Kruskal’s, and the first cable e that Kruskal accepted but it lacks; adding e creates a cycle.",
+       "Another cable f on that cycle leaves the same group and costs at least as much as e, so swapping f for e keeps a cheapest network that agrees with Kruskal’s for longer."
+      ],
+      "followup": "Where does the argument use that Kruskal considers the cables in increasing order of cost?"
+     },
+     {
+      "id": "newCost",
+      "label": "Lowest cost if E–F costs 10",
+      "type": "number",
+      "answer": "25",
+      "accepted": [
+       "25"
+      ]
+     }
+    ]
+   }
+  ],
+  "nextCheck": "Prove that if all the cable costs are different, the cheapest network is unique."
+ }
+]

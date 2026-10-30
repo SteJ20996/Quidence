@@ -142,6 +142,18 @@ const data={
       "module": "number-theory"
     },
     {
+      "id": "discrete-math",
+      "chapter": 1,
+      "node": "proof",
+      "en": "Discrete Mathematics",
+      "es": "Matemáticas discretas",
+      "scope": {
+        "en": "Ten bilingual projects on graphs, counting, recurrences and induction",
+        "es": "Diez proyectos bilingües sobre grafos, conteo, recurrencias e inducción"
+      },
+      "module": "discrete-math"
+    },
+    {
       "id": "prealgebra",
       "chapter": 0,
       "node": "prealgebra",
@@ -289,6 +301,9 @@ const data={
   "bindings": {
     "number": [
       "number-theory"
+    ],
+    "proof": [
+      "discrete-math"
     ],
     "operations": [
       "prealgebra"
@@ -1455,7 +1470,7 @@ const data={
     "proof": {
       "en": "Build arguments from definitions and assumptions; use examples and counterexamples to test claims.",
       "es": "Construye argumentos desde definiciones y supuestos; usa ejemplos y contraejemplos para examinar afirmaciones.",
-      "relatedModule": "number-theory"
+      "relatedModule": "discrete-math"
     },
     "ode": {
       "en": "Relate an unknown function of one variable to its derivatives to model how a quantity changes.",

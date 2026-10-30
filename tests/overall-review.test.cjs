@@ -109,8 +109,11 @@ test('static release includes public dependencies and excludes internal document
   assert(files.includes('records/index.html'));
   assert(files.includes('courses/number-theory/data.json'));
   assert(files.includes('courses/number-theory/app.js'));
+  assert(files.includes('courses/discrete-math/data.json'));
+  assert(files.includes('courses/discrete-math/app.js'));
   assert(!files.includes('content/number-theory/source-v2.md'));
-  assert(!files.some(file => /^(review|tests|archive|backend)\//.test(file) || (/\.(?:md|json)$/.test(file)&&file!=='courses/number-theory/data.json')));
+  assert(!files.some(file => file.startsWith('content/')), 'bilingual course sources stay out of the release');
+  assert(!files.some(file => /^(review|tests|archive|backend)\//.test(file) || (/\.(?:md|json)$/.test(file)&&!['courses/number-theory/data.json','courses/discrete-math/data.json'].includes(file))));
   assert(!files.includes('assets/sync-client.js')); assert(!files.includes('assets/account-app.js'));
   assert(!files.includes('modules/aa01/dist/sketch-lab/index.html'));
   assert(!files.some(file => file.includes('/beta01/')));

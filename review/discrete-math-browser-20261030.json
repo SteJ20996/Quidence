@@ -1,0 +1,14 @@
+{
+  "projects": 10,
+  "steps": 40,
+  "layouts": 12,
+  "languages": [
+    "en",
+    "es"
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "spanishProofSteps": 40,
+  "interactiveModels": 10,
+  "result": "passed"
+}

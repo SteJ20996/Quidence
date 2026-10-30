@@ -137,10 +137,10 @@ body[data-q-theme] :is(.answer-option,.option):has(input:checked) {
   background: var(--q-mint); border-color: var(--q-primary);
 }
 body[data-q-theme] .explore-tabs button[aria-current] { color: var(--q-primary); border-color: var(--q-primary); }
-body[data-q-ui="nt"] .route-item[aria-current="true"] {
+body:is([data-q-ui="nt"],[data-q-ui="dm"]) .route-item[aria-current="true"] {
   background: var(--q-mint); color: var(--q-teal); border-color: var(--q-primary);
 }
-body[data-q-ui="nt"] .route-item[aria-current="true"] .route-number {
+body:is([data-q-ui="nt"],[data-q-ui="dm"]) .route-item[aria-current="true"] .route-number {
   background: var(--q-primary); color: #ffffff; border-color: var(--q-primary);
 }
 body[data-q-theme] .f-view-controls,
