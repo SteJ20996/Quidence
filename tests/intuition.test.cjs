@@ -3,7 +3,7 @@ const test=require('node:test'),assert=require('node:assert/strict'),D=require('
 const d=id=>D.find(x=>x.id===id);
 const store=()=>{const values=new Map();return {values,getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k),keys:()=>[...values.keys()]};};
 function attempt(){return {id:'a',locale:'en',createdAt:'2026-10-24',value:3,draftPrediction:0,draftReason:'A larger circumference.',confidence:1,original:{choice:0,choiceText:'The middle band',question:d('sphere').claim.en,reason:'A larger circumference.',confidence:1,locale:'en'},observations:'Both areas match.',settings:[],transfer:'20',checks:[],reflection:'The ds factor matters.',final:2,completedAt:null,step:3};}
-test('all thirteen subjects have complete authored language variants and finite slider states',()=>{assert.equal(D.length,13);assert.equal(new Set(D.map(x=>x.id)).size,13);for(const row of D){for(const lang of ['en','es']){for(const k of ['title','claim','options','control','explain','transfer','transferWhy']){assert.ok(row[k][lang]?.length,`${row.id} ${k} ${lang}`);assert.deepEqual(Object.keys(row[k]).sort(),['en','es'],`${row.id} ${k} has only English and Spanish`);}assert.equal(row.options[lang].length,4);if(typeof row.formula==='object')assert.ok(row.formula[lang]);}assert.ok(row.answer>=0&&row.answer<4);for(let v=row.range[0];v<=row.range[1]+1e-9;v+=row.range[2])assert.ok(calc(row,+v.toFixed(6)).every(Number.isFinite),`${row.id}: ${v}`);}});
+test('all fourteen subjects have complete authored language variants and finite slider states',()=>{assert.equal(D.length,14);assert.equal(new Set(D.map(x=>x.id)).size,14);for(const row of D){for(const lang of ['en','es']){for(const k of ['title','claim','options','control','explain','transfer','transferWhy']){assert.ok(row[k][lang]?.length,`${row.id} ${k} ${lang}`);assert.deepEqual(Object.keys(row[k]).sort(),['en','es'],`${row.id} ${k} has only English and Spanish`);}assert.equal(row.options[lang].length,4);if(typeof row.formula==='object')assert.ok(row.formula[lang]);}assert.ok(row.answer>=0&&row.answer<4);for(let v=row.range[0];v<=row.range[1]+1e-9;v+=row.range[2])assert.ok(calc(row,+v.toFixed(6)).every(Number.isFinite),`${row.id}: ${v}`);}});
 test('models agree with independently calculated counterexamples, boundaries and transfer values',()=>{assert.equal(calc(d('multiply'),.5)[2],4);assert.deepEqual(calc(d('plans'),6),[24,24,0]);assert.equal(calc(d('perimeter'),6)[2],36);assert.equal(calc(d('perimeter'),5)[2],35);assert.equal(calc(d('square'),.5)[2],-.25);assert.equal(calc(d('square'),-.5)[2],.75);assert.equal(calc(d('waves'),.5)[1],4);assert.deepEqual(calc(d('groups'),10),[36,74,10]);assert.deepEqual(calc(d('groups'),50),[60,50,50]);assert.deepEqual(calc(d('transforms'),2),[-1,2,-2,1]);assert.deepEqual(calc(d('transforms'),1),[-1,1,-1,1]);assert.deepEqual(calc(d('primes'),40),[40,1681,41]);for(let n=0;n<40;n++)assert.equal(calc(d('primes'),n)[2],0);assert.deepEqual(calc(d('choices'),3),[1,1]);assert.deepEqual(calc(d('apex'),1),[5,0,-10]);assert.equal(calc(d('apex'),1.2)[1],-2);assert.deepEqual(calc(d('circuit'),3),[4,3,1]);});
 test('every point the fair-meeting model visits is equally far from both friends, and the transfer point is (4, 0)',()=>{
  const f=d('fair');assert.equal(f.answer,1);for(let v=f.range[0];v<=f.range[1]+1e-9;v+=f.range[2]){const [x,y,pa,pb]=calc(f,+v.toFixed(6));assert.ok(Math.abs(3*x+2*y-6)<1e-12,'on 3x + 2y = 6');assert.ok(Math.abs(pa-pb)<1e-12,'PA = PB at x = '+x);}
@@ -19,3 +19,21 @@ test('unreadable records, denied storage and simultaneous tabs cannot overwrite 
 test('site-wide record clearing recognizes Intuition Lab records',()=>{const s=store();s.setItem(R.KEY,JSON.stringify(R.fresh()));const api=require('../assets/local-records.js').create(s,P);assert.equal(api.usage().groups,1);api.clear();assert.equal(s.getItem(R.KEY),null);});
 
 test("impossible stored slider settings cannot crash a restored activity",()=>{for(const value of [4,1.5,NaN]){const x={...attempt(),value};const raw=JSON.stringify({...R.fresh(),activities:{choices:{attempts:[x]}}});const s=store();s.setItem(R.KEY,raw);const r=R.create(s);assert.equal(r.save(),false);assert.equal(s.getItem(R.KEY),raw);}});
+
+test('the circle model counts regions correctly: the drawn points give distinct crossings, and Euler’s formula agrees with every readout',()=>{
+ const r=d('regions');assert.equal(r.answer,1);assert.equal(r.target,57);
+ // The lab draws the points at these angles; the test reads them from the source so the two cannot drift apart.
+ const src=require('node:fs').readFileSync(require('node:path').join(__dirname,'../intuition/lab.js'),'utf8'),angles=JSON.parse(src.match(/case'regions':\{[^\n]*\n?const A=(\[[^\]]+\])/)[1]);
+ assert.equal(angles.length,8);
+ for(let n=r.range[0];n<=r.range[1];n++){
+  const P=angles.slice(0,n).map(a=>[Math.cos(a*Math.PI/180),Math.sin(a*Math.PI/180)]),chords=[];for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)chords.push([P[i],P[j]]);
+  const cuts=chords.map(()=>0),points=[];
+  for(let a=0;a<chords.length;a++)for(let b=a+1;b<chords.length;b++){const[[px,py],[qx,qy]]=chords[a],[[rx,ry],[sx,sy]]=chords[b],den=(qx-px)*(sy-ry)-(qy-py)*(sx-rx);if(Math.abs(den)<1e-12)continue;const t=((rx-px)*(sy-ry)-(ry-py)*(sx-rx))/den,u=((rx-px)*(qy-py)-(ry-py)*(qx-px))/den;if(t>1e-9&&t<1-1e-9&&u>1e-9&&u<1-1e-9){points.push([px+t*(qx-px),py+t*(qy-py)]);cuts[a]++;cuts[b]++;}}
+  // No three chords meet: every crossing point is a different point.
+  for(let i=0;i<points.length;i++)for(let j=i+1;j<points.length;j++)assert.ok(Math.hypot(points[i][0]-points[j][0],points[i][1]-points[j][1])>0.01,'separate crossings for n = '+n);
+  // Euler's formula for the drawing: V − E + F = 2, counting the outside as one face.
+  const V=n+points.length,E=(n>=2?n:0)+cuts.reduce((t,c)=>t+c+1,0),regions=n===1?1:E-V+2-1;
+  assert.deepEqual(calc(r,n),[n,regions,2**(n-1)],'n = '+n);
+ }
+ assert.deepEqual(calc(r,6).slice(1),[31,32]);assert.equal(calc(r,7)[1],r.target);
+});
