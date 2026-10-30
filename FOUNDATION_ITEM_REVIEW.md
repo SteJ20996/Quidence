@@ -388,7 +388,7 @@
 
 題幹：The matrix shown has two horizontal rows. Give its numbers of rows and columns. How many components must an input vector have for multiplication by this matrix?
 
-給定矩陣（各行）：`[[1,2,3],[4,5,6]]`
+給定矩陣（各列）：`[[1,2,3],[4,5,6]]`
 
 回答欄位：
 
@@ -408,7 +408,7 @@
 
 題幹：Apply the identity matrix I shown to v = (−2, 3). Find Iv.
 
-給定矩陣（各行）：`[[1,0],[0,1]]`
+給定矩陣（各列）：`[[1,0],[0,1]]`
 
 回答欄位：
 
@@ -427,7 +427,7 @@
 
 題幹：Give the first column of the matrix A shown, from top to bottom.
 
-給定矩陣（各行）：`[[2,-1],[1,3]]`
+給定矩陣（各列）：`[[2,-1],[1,3]]`
 
 回答欄位：
 
@@ -446,7 +446,7 @@
 
 題幹：For the matrix A shown and v = (1, 3), find Av.
 
-給定矩陣（各行）：`[[2,1],[0,-1]]`
+給定矩陣（各列）：`[[2,1],[0,-1]]`
 
 回答欄位：
 
@@ -465,7 +465,7 @@
 
 題幹：For the matrix A shown, where does the old up-step e₂ = (0, 1) go?
 
-給定矩陣（各行）：`[[2,-1],[1,3]]`
+給定矩陣（各列）：`[[2,-1],[1,3]]`
 
 回答欄位：
 
@@ -500,7 +500,7 @@
 
 題幹：Apply the matrix R shown to (2, 3). Find the output.
 
-給定矩陣（各行）：`[[1,0],[0,-1]]`
+給定矩陣（各列）：`[[1,0],[0,-1]]`
 
 回答欄位：
 
@@ -519,7 +519,7 @@
 
 題幹：The matrix A shown has columns (1, 2) and (2, 4). As the input ranges over the plane, what outputs are possible?
 
-給定矩陣（各行）：`[[1,2],[2,4]]`
+給定矩陣（各列）：`[[1,2],[2,4]]`
 
 回答欄位：
 
