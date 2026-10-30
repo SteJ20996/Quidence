@@ -38,6 +38,14 @@ A separate review checked all 17 answers, confirmed that both receipt bounds can
   - The negation of claim 3 is written "At least one fruit buyer did not buy vegetables".
 - **Spanish.** Volunteer hours are now in «el laboratorio del club», so «taller» means only the safety workshop. Two questions were reworded.
 
+The interface review completed both projects in English and Spanish at 1280, 768 and 375 px. It found no page errors, no horizontal scroll, and no translated learner text. It also found some issues that all subjects' project pages share and that this change leaves as they were:
+- **Spanish report:** the saved-answer block shows the site's English field labels next to the learner's answers, because label and answer are protected together.
+- **Spanish PDF pop-up:** its subtitle and suggested file name stay in English.
+- **Spanish at 375 px:** the "Probar problemas de diagnóstico más breves" pill wraps and its second line covers the first.
+- **Spanish headings:** small headings are not in capitals.
+
+The Basic Logic projects page shows two activity links in a three-column bar, as the Number Theory and Discrete Mathematics check pages already do. The third column fills when the understanding check is added.
+
 ## Saved work
 
 - The field-project bank is now `quidence-projects-7`.
