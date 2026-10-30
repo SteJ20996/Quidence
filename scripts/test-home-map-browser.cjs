@@ -33,6 +33,9 @@ async function main(){
     await page.locator('#quidence-language').selectOption(language);await page.waitForFunction(language=>QuidenceI18n.locale===language,language);
     for(let chapter=0;chapter<3;chapter++){await page.locator('button[data-chapter="'+chapter+'"]').click();await geometry(page);}
     await page.locator('button[data-chapter="0"]').click();
+    // The subject rail stays pinned only when all of it fits; otherwise it scrolls with the page and nothing in it is cut off.
+    if(width>=960){const rail=await page.evaluate(()=>{const r=document.querySelector('.qf-left-rail'),p=r.querySelector('.qs-subject-panel');return{hidden:p.scrollHeight-p.clientHeight,position:getComputedStyle(r).position};});
+     assert(rail.hidden<=1,`${width}x${height} ${language}: ${rail.hidden}px of the subject rail is cut off`);assert.equal(rail.position,height>=1080?'sticky':'static',`${width}x${height} ${language} rail position`);}
     if((width===1280&&language==='en')||(width===1200&&language==='es')||(width===375&&language==='es')){
      await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:path.join(__dirname,'../review/screenshots/home-map-'+width+'-'+language+'.webp'),type:'webp'});
     }

@@ -154,7 +154,7 @@ npm.cmd start
 
 ## 發布與開發檢查
 
-靜態託管前執行 `npm run build:static`，只發布產生的 `static-release/`，不要發布整個儲存庫。腳本要求輸出目錄不存在，避免舊檔案混入新包。產生的 `_headers` 適用於 Cloudflare Pages 和 Workers 的靜態回應；其他託管服務須設定同等的安全回應標頭。這個指令只準備檔案，不部署網站，也不代表來源審核已經通過。詳見 [OVERALL_REVIEW_2026-10-07.md](OVERALL_REVIEW_2026-10-07.md)。現有 Worker `shy-thunder-f1c9` 的 GitHub 自動部署設定和連接步驟見 [Cloudflare 部署說明](DEPLOYMENT.zh-CN.md)。
+靜態託管前執行 `npm run build:static`，只發布產生的 `static-release/`，不要發布整個儲存庫。腳本要求輸出目錄不存在，避免舊檔案混入新包。產生的 `_headers` 適用於 Cloudflare Pages 和 Workers 的靜態回應；其他託管服務須設定同等的安全回應標頭。這個指令只準備檔案，不部署網站，也不代表來源審核已經通過。詳見 [OVERALL_REVIEW_2026-10-07.md](OVERALL_REVIEW_2026-10-07.md)。現有 Worker `shy-thunder-f1c9` 的 GitHub 自動部署設定和連接步驟見 [Cloudflare 部署說明](DEPLOYMENT.zh-TW.md)。
 
 `npm test` 檢查紀錄保護、題目數學、DOM 流程、活動資源版本和來源清單；GitHub Actions 會自動執行這些檢查、發布包建置及 Chromium 活動頁檢查。macOS／iPad、Safari、Firefox 和列印互動仍需實際測試。帳戶相關程式碼僅供開發測試，不能據此重新開放公測帳戶。
 

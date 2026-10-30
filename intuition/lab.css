@@ -5,15 +5,14 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.activity-card{transition:none}}
 
 :root[data-ui-theme="studio"],:root[data-ui-theme="paper"]{--theme-heading:"Quidence Nunito",system-ui,sans-serif}
-.q-theme-bar{max-width:1600px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:12px 4%;font-size:12px}.q-theme-choices{display:flex;flex-wrap:wrap;gap:5px}.q-theme-bar button{font-weight:500;padding:8px 12px;font-size:12px}.q-theme-bar button[aria-pressed=true]{background:#173f42;color:white}.q-theme-note{margin-left:auto;font-size:11px;color:#53666a}.q-theme-swatch{display:none}.q-theme-label{font-size:11px;font-weight:600}.q-theme-name{white-space:nowrap}@media(max-width:720px){.q-theme-bar{gap:7px;flex-wrap:wrap;padding:10px 5%}.q-theme-choices{gap:4px}.q-theme-bar button{font-size:10px;padding:7px 9px}.q-theme-note{display:none}.q-theme-label{width:100%}}
 
 .card-art img{width:100%;height:100%;object-fit:contain}.lab-header nav{flex-wrap:wrap}@media(max-width:720px){.lab-header nav{font-size:11px}}
 
 .numeric-answer{padding:13px;border:1px solid #c8d7d5;border-radius:12px;width:100%;background:white;color:inherit}
 
 html[data-ui-theme="classic"]{--q-page:#f8f5ec;--q-paper:#ffffff;--q-ink:#20383e;--q-muted:#53666b;--q-line:#ddd7e6;--q-primary:#15565b;--theme-heading:system-ui,sans-serif}
-.q-theme-bar button{min-height:44px}.lab-header .q-brand-logo{min-width:180px;width:190px;height:auto}.lab-header .q-brand{display:inline-flex;flex:none}.lab-header select{appearance:none;padding-right:34px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10'%3E%3Cpath d='m2 3 5 5 5-5' fill='none' stroke='%2320383e' stroke-width='2'/%3E%3C/svg%3E");background-position:right 12px center;background-repeat:no-repeat}
-@media(max-width:720px){.lab-header .q-brand-logo{width:180px}.lab-header{gap:14px}.lab-header label{max-width:130px}.lab-header nav{flex-wrap:wrap}.q-theme-bar{min-height:110px}}
+.lab-header .q-brand-logo{min-width:180px;width:190px;height:auto}.lab-header .q-brand{display:inline-flex;flex:none}.lab-header select{appearance:none;padding-right:34px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10'%3E%3Cpath d='m2 3 5 5 5-5' fill='none' stroke='%2320383e' stroke-width='2'/%3E%3C/svg%3E");background-position:right 12px center;background-repeat:no-repeat}
+@media(max-width:720px){.lab-header .q-brand-logo{width:180px}.lab-header{gap:14px}.lab-header label{max-width:130px}.lab-header nav{flex-wrap:wrap}}
 
 /* Keep long localized labels and numerical values inside narrow columns. */
 .readout{min-width:0;overflow-wrap:anywhere}.readout strong{overflow-wrap:anywhere}.stage,.evidence-panel{min-width:0}.step-nav button{overflow-wrap:anywhere}
