@@ -2,7 +2,7 @@
 const tr=(en,es)=>({en,es});
 const node=(id,x,y,title,kind,icon,desc,extra=[])=>({id,x,y,title,kind,icon,desc,extra});
 const maps=[
-{id:'school',number:'01',name:tr('School Mathematics','Matemáticas escolares'),count:5,
+{id:'school',number:'01',name:tr('School Mathematics','Matemáticas escolares'),count:6,
  intro:tr('A few strong foundations. More than one way forward.','Bases sólidas. Más de un camino para avanzar.'),
  note:tr('Algebra and geometry connect; they do not have to be studied in one fixed order.','El álgebra y la geometría se conectan; no exigen un único orden de estudio.'),
  selected:'algebra1',nodes:[
@@ -12,11 +12,12 @@ const maps=[
  node('prealgebra',500,225,tr('Pre-Algebra','Preálgebra'),'course','calculator',tr('An available course: signed numbers, fractions, ratios and expressions.','Curso disponible: números con signo, fracciones, razones y expresiones.')),
  node('algebra1',740,225,tr('Algebra I','Álgebra I'),'course','balance',tr('An available course: equations, linear functions, systems and quadratic roots.','Curso disponible: ecuaciones, funciones lineales, sistemas y raíces cuadráticas.')),
  node('algebra2',980,225,tr('Algebra II','Álgebra II'),'course','parabola',tr('An available course: polynomials, rational restrictions, exponentials and logarithms.','Curso disponible: polinomios, restricciones de expresiones racionales, exponenciales y logaritmos.')),
+ node('logic',740,380,tr('Basic Logic','Lógica básica'),'course','venn',tr('An available course: statements, conditionals, valid arguments and syllogisms.','Curso disponible: proposiciones, condicionales, argumentos válidos y silogismos.')),
  node('shapes',20,535,tr('Shapes & measurement','Figuras y medición'),'concept','shapes',tr('Length, angle, area, volume and spatial relationships.','Longitud, ángulos, área, volumen y relaciones espaciales.')),
  node('geometry',500,535,tr('Geometry','Geometría'),'course','triangle',tr('An available course: angles, triangles, similarity and measurement.','Curso disponible: ángulos, triángulos, semejanza y medición.')),
  node('coordinate',980,535,tr('Coordinate geometry','Geometría analítica'),'course','axes',tr('Use coordinates to connect algebraic relationships and geometric figures.','Usa coordenadas para relacionar el álgebra con las figuras geométricas.')),
  node('data',500,10,tr('Data & graphs','Datos y gráficas'),'concept','bars',tr('Read scales and representations; this connects to probability and statistics.','Lee escalas y representaciones; se conecta con probabilidad y estadística.'))
- ],edges:[['arithmetic','fractions'],['arithmetic','signed'],['fractions','prealgebra'],['signed','prealgebra'],['prealgebra','algebra1'],['algebra1','algebra2'],['shapes','geometry'],['geometry','coordinate'],['algebra1','coordinate','related'],['fractions','data','related']]},
+ ],edges:[['arithmetic','fractions'],['arithmetic','signed'],['fractions','prealgebra'],['signed','prealgebra'],['prealgebra','algebra1'],['algebra1','algebra2'],['shapes','geometry'],['geometry','coordinate'],['algebra1','coordinate','related'],['fractions','data','related'],['algebra1','logic','related'],['geometry','logic','related']]},
 {id:'further',number:'02',name:tr('Further Mathematics','Matemáticas avanzadas'),count:7,
  intro:tr('Functions, proof and data — connected, without one compulsory route.','Funciones, demostraciones y datos: conectados, sin una ruta obligatoria.'),
  note:tr('Advanced branches are concept previews. Select one to see its topics; a node does not promise a complete course.','Las ramas avanzadas son vistas conceptuales. Selecciona una para ver sus temas; un nodo no indica un curso completo.'),
@@ -57,7 +58,7 @@ const maps=[
  ],edges:[['mathbridge','physics1'],['physics1','physics2'],['physics1','motion'],['physics1','energy'],['physics2','heat'],['physics2','fields'],['physics2','waves'],['motion','mechanics','related'],['energy','mechanics','related'],['heat','thermal','related'],['mechanics','relativity','related'],['waves','quantum','related'],['fields','materials','related'],['thermal','materials','related'],['quantum','materials','related']]}
 ];
 
-const bindings={prealgebra:'pre-algebra',algebra1:'algebra-1',algebra2:'algebra-2',geometry:'geometry',coordinate:'coordinate-geometry',precalc:'af01',linear:'ab01',calculus:'ad01',game:'ac01',number:'number-theory',discrete:'discrete-math',statistics:'ae01',physics1:'physics-1',physics2:'physics-2'};for(const m of maps)for(const n of m.nodes)if(n.kind==='course')n.module=bindings[n.id];
+const bindings={prealgebra:'pre-algebra',algebra1:'algebra-1',algebra2:'algebra-2',logic:'basic-logic',geometry:'geometry',coordinate:'coordinate-geometry',precalc:'af01',linear:'ab01',calculus:'ad01',game:'ac01',number:'number-theory',discrete:'discrete-math',statistics:'ae01',physics1:'physics-1',physics2:'physics-2'};for(const m of maps)for(const n of m.nodes)if(n.kind==='course')n.module=bindings[n.id];
 // Suggested starting courses only, never promises of a complete advanced course.
 const related={arithmetic:'pre-algebra',fractions:'pre-algebra',signed:'pre-algebra',shapes:'geometry',coordinate:'coordinate-geometry',data:'ae01',schoolbridge:'pre-algebra',proof:'discrete-math',probability:'ae01',multivar:'ad01',analysis:'ad01',algebra:'number-theory',space:'geometry',applied:'ae01',mathbridge:'algebra-1',motion:'physics-1',energy:'physics-1',heat:'physics-2',fields:'physics-2',waves:'physics-2',mechanics:'physics-1',thermal:'physics-2',relativity:'physics-1',quantum:'physics-2',materials:'physics-2'};
 for(const m of maps)for(const n of m.nodes)if(!n.module)n.relatedModule=related[n.id];

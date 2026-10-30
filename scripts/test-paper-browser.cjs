@@ -35,7 +35,7 @@ async function main(){
   const shots=path.join(__dirname,'../review/paper-screenshots');fs.mkdirSync(shots,{recursive:true});
   for(const lang of ['en','es'])for(const width of [320,375,768,920,1024,1199,1280,1440,1512]){
    await page.setViewportSize({width,height:1000});await page.locator('#quidence-language').selectOption(lang);await language(lang);await page.evaluate(()=>document.fonts.ready);
-   for(const [category,count]of [['all',14],['school',5],['further',7],['science',2]]){
+   for(const [category,count]of [['all',15],['school',6],['further',7],['science',2]]){
     await page.locator('button[data-home-view="courses"]').click();await page.locator('button[data-category="'+category+'"]').click();assert.equal(await page.locator('.subject-card:visible').count(),count);
     const bounds=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-innerWidth,links:[...document.querySelectorAll('.subject-card:not([hidden])>.q-paper-entry')].map(e=>{const a=e.getBoundingClientRect(),b=e.closest('.subject-card').getBoundingClientRect();return a.left>=b.left&&a.right<=b.right+1&&e.scrollWidth<=e.clientWidth+1;}),header:[...document.querySelector('.qh-site-header').children].filter(e=>getComputedStyle(e).display!=='none').map(e=>{const r=e.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth+1;})}));
     assert(bounds.overflow<=1,lang+' '+width+' overflow');assert(bounds.links.every(Boolean),lang+' '+width+' clipped links');assert(bounds.header.every(Boolean),lang+' '+width+' clipped header');result.categories++;

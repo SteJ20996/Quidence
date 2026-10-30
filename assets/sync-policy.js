@@ -24,6 +24,7 @@ const KEYS={
  'algebra-1_beta01_session_v1':{label:'Algebra I',schema:'algebra-1_beta01_session_v1'},
  geometry_beta01_session_v1:{label:'Geometry',schema:'geometry_beta01_session_v1'},
  'algebra-2_beta01_session_v1':{label:'Algebra II',schema:'algebra-2_beta01_session_v1'},
+ 'basic-logic_beta01_session_v1':{label:'Basic Logic',schema:'basic-logic_beta01_session_v1'},
  'physics-1_beta01_session_v1':{label:'Physics 1 Foundations',schema:'physics-1_beta01_session_v1'},
  'physics-2_beta01_session_v1':{label:'Physics 2 Foundations',schema:'physics-2_beta01_session_v1'},
  physics_beta01_session_v1:{label:'Physics',schema:'physics_beta01_session_v1'},

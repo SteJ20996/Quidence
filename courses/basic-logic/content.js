@@ -1,0 +1,1 @@
+(function(root){const C=typeof module==='object'&&module.exports?require('../../assets/school-course-content.js').create('basic-logic'):root.QuidenceSchoolCourseContent.create('basic-logic');if(typeof module==='object'&&module.exports)module.exports=C;else root.QuidenceCourseContent=C;})(typeof window==='undefined'?globalThis:window);

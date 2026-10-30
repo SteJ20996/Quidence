@@ -606,5 +606,13 @@
   [
     "Moves: [n]",
     "Movimientos: [n]"
+  ],
+  [
+    "True rows: [n] of [n]",
+    "Filas verdaderas: [n] de [n]"
+  ],
+  [
+    "Same truth value in [n] of [n] rows",
+    "Mismo valor de verdad en [n] de [n] filas"
   ]
 ]

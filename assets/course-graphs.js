@@ -46,7 +46,7 @@ function task(s){if(s.type==='course-model')return Models.model(s.course,s.index
 function lab(module,index,s){
  if(['physics-1','physics-2'].includes(module))return (typeof exports==='object'?require('./physics-foundation-models.js'):root.QuidencePhysicsFoundationModels).model(module,index,s);
  if(module==='physics')return (typeof exports==='object'?require('./physics-models.js'):root.QuidencePhysicsModels).model(index,s);
- if(['pre-algebra','algebra-1','geometry','algebra-2'].includes(module))return Models.model(module,index,s);
+ if(['pre-algebra','algebra-1','geometry','algebra-2','basic-logic'].includes(module))return Models.model(module,index,s);
  if(module==='ae01'){
   if(index===0){const data={symmetric:[1,2,2,3,3,3,4,4,5],skew:[1,2,2,3,3,4,5,9,13],split:[1,1,2,2,3,8,9,9,10]}[s.shape].map(x=>x+s.shift);return{graph:dots(data),readout:`n = ${data.length} · Minimum = ${Math.min(...data)} · Maximum = ${Math.max(...data)} · Shift = ${s.shift}`,formula:'Horizontal position = measured value; stacked dots = frequency.',note:'These are illustrative data sets. A shape does not establish its cause.'};}
   if(index===1){const data=[2,3,3,4,4,5,5,6,s.tail];return{graph:dots(data),readout:`n = 9 · Total = ${32+s.tail} · Mean = ${fmt(mean(data))} · Median = ${median(data)} · Range = ${s.tail-2}`,formula:'Mean = total / n; median = middle sorted value; range = max − min.',note:'Only the largest observation changes. The middle sorted observation stays at 4.'};}

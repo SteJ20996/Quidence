@@ -97,6 +97,18 @@
     <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/algebra-2/?lang=es" />
   </url>
   <url>
+    <loc>https://www.quidence.com/courses/basic-logic/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/basic-logic/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/basic-logic/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/basic-logic/?lang=es" />
+  </url>
+  <url>
+    <loc>https://www.quidence.com/courses/basic-logic/?lang=es</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/basic-logic/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/basic-logic/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/basic-logic/?lang=es" />
+  </url>
+  <url>
     <loc>https://www.quidence.com/courses/coordinate-geometry/?lang=en</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/coordinate-geometry/?lang=en" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/coordinate-geometry/?lang=es" />
