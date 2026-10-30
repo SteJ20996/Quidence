@@ -206,6 +206,26 @@ steps={'next':lambda n:n*n+(2*n+1),'same':lambda n:n*n+(2*n-1),'double':lambda n
 step=[k for k,f in steps.items()if all(f(n)==(n+1)**2 for n in range(1,50))];assert len(step)==1
 summed=finals(tuple(range(1,11)),'sum');assert len(summed)==1
 R['dm-c04']={'odd':sum(range(1,30,2)),'step':step[0],'last':next(iter(summed)),'zero':yn(0 in finals(tuple(range(1,11)),'diff'))}
-assert len(R)==70
+# Basic Logic: every truth assignment is listed; number claims are tested on every whole number in range; syllogisms try every choice of four groups among three students.
+from itertools import product
+rows=list(product([True,False],repeat=3))
+R['bl-c01']={'rows':len(rows),'first':sum(p and (q or r) for p,q,r in rows),'second':sum((p and q) or r for p,q,r in rows),'same':yn(all((p and (q or r))==((p and q) or r) for p,q,r in rows))}
+ends5=lambda k:k%10==5;div5=lambda k:k%5==0;implies=lambda a,b:(not a) or b
+forms={'contra':lambda k:implies(not div5(k),not ends5(k)),'inverse':lambda k:implies(not ends5(k),not div5(k)),'converse':lambda k:implies(div5(k),ends5(k))}
+same=[name for name,f in forms.items() if all(f(k)==implies(ends5(k),div5(k)) for k in range(0,1000))];assert len(same)==1
+R['bl-c02']={'s':yn(all(implies(ends5(k),div5(k)) for k in range(0,1000))),'converse':yn(all(implies(div5(k),ends5(k)) for k in range(0,1000))),'counter':sum(div5(k) and not ends5(k) for k in range(1,51)),'equivalent':same[0]}
+def valid_form(premises,conclusion):return all(conclusion(*v) for v in rows if all(f(*v) for f in premises))
+R['bl-c03']={'a':'follows' if valid_form([lambda p,q,r:implies(p,q),lambda p,q,r:implies(not p,r)],lambda p,q,r:q or r) else 'fails','rows':sum(implies(p,q) and implies(not p,r) for p,q,r in rows),'b':'follows' if valid_form([lambda p,q,r:p or q,lambda p,q,r:not p],lambda p,q,r:q) else 'fails','c':'follows' if valid_form([lambda p,q,r:p or q,lambda p,q,r:p],lambda p,q,r:not q) else 'fails'}
+# Every school is one choice of which of the 16 parts of the robotics, physics, art and music diagram hold students (2^16 cases).
+parts=list(product([0,1],repeat=4));has=lambda part,k:part['RPAM'.index(k)]
+fits=[]
+for code in range(2**16):
+    used=[part for i,part in enumerate(parts) if code>>i&1]
+    if all(has(x,'P') for x in used if has(x,'R')) and not any(has(x,'P') and has(x,'A') for x in used) and any(has(x,'A') and has(x,'M') for x in used):fits.append(used)
+must=lambda claim:all(claim(used) for used in fits)
+# The physics–art overlap can be nonempty only if some fitting school puts students there; none does.
+physics,art=80,50;overlap_possible=any(has(x,'P') and has(x,'A') for used in fits for x in used)
+R['bl-c04']={'noArt':yn(must(lambda used:not any(has(x,'R') and has(x,'A') for x in used))),'music':yn(must(lambda used:any(has(x,'R') and has(x,'M') for x in used))),'notPhysics':yn(must(lambda used:any(has(x,'M') and not has(x,'P') for x in used))),'either':physics+art if not overlap_possible else None}
+assert len(R)==74
 output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel–Hakimi degree tests, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
 path=Path(__file__).resolve().parents[1]/'review'/'challenge-math-audit.json';path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(output,indent=2)+'\n');print(json.dumps({'questions':len(R),'components':sum(len(x)for x in R.values()),'output':str(path)}))

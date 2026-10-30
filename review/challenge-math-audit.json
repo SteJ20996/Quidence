@@ -434,6 +434,30 @@
       "step": "next",
       "last": "55",
       "zero": "no"
+    },
+    "bl-c01": {
+      "rows": "8",
+      "first": "3",
+      "second": "5",
+      "same": "no"
+    },
+    "bl-c02": {
+      "s": "yes",
+      "converse": "no",
+      "counter": "5",
+      "equivalent": "contra"
+    },
+    "bl-c03": {
+      "a": "follows",
+      "rows": "4",
+      "b": "follows",
+      "c": "fails"
+    },
+    "bl-c04": {
+      "noArt": "yes",
+      "music": "no",
+      "notPhysics": "yes",
+      "either": "130"
     }
   }
 }

@@ -1,3 +1,9 @@
+## 2026-10-30 · Basic Logic, part 3
+
+Basic Logic has a 15-question foundation check and a four-problem understanding check, in English and Spanish. The diagnostic bank is now `quidence-challenges-10`, with 68 current problems; foundation records saved with thirteen subjects still open. A shared report sentence, "Recheck: …", now reads correctly and is translated on the Spanish site. The Intuition Lab activity is the only activity the card still lists as not available. See [basic-logic-checks-20261030.md](review/basic-logic-checks-20261030.md).
+
+Current inventory: 15 subject cards. Every card has a foundation check and an understanding check; every card except Basic Logic has an Intuition Lab activity.
+
 ## 2026-10-30 · Basic Logic, part 2
 
 Basic Logic has two bilingual field projects: a robotics club's rule (connectives, a conditional and its converse, and a rule with parentheses) and a farmers' market survey (a three-set Venn diagram, all/some claims, and bounds that premises force). The field-project bank is now `quidence-projects-7`; version 6 is frozen and its records still open. See [basic-logic-projects-20261030.md](review/basic-logic-projects-20261030.md).

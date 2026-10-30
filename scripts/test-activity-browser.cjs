@@ -70,7 +70,7 @@ async function run() {
       page.on('response', response => {if (response.status() >= 400) failures.push(response.url() + ': ' + response.status());});
       await page.goto(origin + '/?view=courses');
       const activityLinks = await page.locator('.challenge-link, .project-link').evaluateAll(elements => elements.map(el => el.href).filter(href=>new URL(href).searchParams.has('module')));
-      assert.equal(activityLinks.length, 24);
+      assert.equal(activityLinks.length, 25);
       assert.equal(await page.locator('.project-link[href*="ac01/dist/projects"]').count(), 1);
       const choosers=activityLinks.filter(href=>new URL(href).pathname==='/checks/');assert.equal(choosers.length,6);
       for(const href of choosers){
@@ -91,9 +91,9 @@ async function run() {
       assert.equal(await page.locator('#dialogue-route').count(),1);
       const originalCheck=await page.locator('#four-problem-route').getAttribute('href');
       const originalURL=new URL(originalCheck,page.url());assert.equal(originalURL.pathname,'/diagnostics/');assert.equal(originalURL.searchParams.get('module'),'ad01');
-      activityLinks.push(originalURL.href);assert.equal(activityLinks.length,25);
+      activityLinks.push(originalURL.href);assert.equal(activityLinks.length,26);
       const links = activityLinks.filter(href => ['/diagnostics/', '/projects/'].includes(new URL(href).pathname));
-      assert.equal(links.length, 24);
+      assert.equal(links.length, 25);
       for (const href of links) {
         const url = new URL(href), subject = url.searchParams.get('module'), projects = url.pathname === '/projects/';
         await page.goto(href);
@@ -121,8 +121,6 @@ async function run() {
           assert.equal(await page.locator('[data-f-action="report"]').isDisabled(), true);
           // Number Theory, Discrete Mathematics and Coordinate Geometry keep their projects on the course page, so their checks offer no field-projects link.
           if (['number-theory', 'discrete-math', 'coordinate-geometry'].includes(subject)) assert.equal(await page.locator('[data-f-mode="projects"]').count(), 0);
-          // Basic Logic has field projects but no understanding check yet, so its projects offer no check link.
-          else if (subject === 'basic-logic') assert.equal(await page.locator('[data-f-mode="check"]').count(), 0);
           else {
             const mode = projects ? 'check' : 'projects', target = page.locator('[data-f-mode="' + mode + '"]');
             assert.equal(await target.getAttribute('target'), '_blank');
