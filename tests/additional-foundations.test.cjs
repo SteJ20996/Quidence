@@ -24,6 +24,17 @@ const references={
   const powers={power:n=>2**n,two:()=>2,one:()=>1,double:n=>2**(2*n+1)},roots=range(-20,20).filter(r=>r*r-r-6===0);
   return [[range(15,42).length,range(15,42).filter(x=>x%2===0).length],[range(1,3).flatMap(s=>range(1,4)).length,range(1,3).flatMap(x=>range(1,3)).length],[range(1,4).flatMap(x=>range(x+1,4)).length,range(1,5).flatMap(x=>range(1,5).filter(y=>y!==x)).length],[7+19*4,range(1,100).find(k=>7+(k-1)*4===99)],[3*2**5,[1,2,4,8,16,32].reduce((x,y)=>x+y)],[a,b[5]],[sevenOdd.every(t=>t%2)?'odd':'even',evenOdd.every(t=>t%2===0)?'even':'odd'],[100%7,days[100%7]],[range(1,100).filter(x=>x%6===0).length,range(1,100).filter(x=>x%4===0&&x%6===0).length],[Object.keys(meaning).filter(k=>patterns.every(p=>meaning[k](p)===!p.every(Boolean))).join(),patterns.filter(p=>p.filter(x=>!x).length===1).every(p=>!p.every(Boolean))?'yes':'no'],[primes.every(p=>p%2)?'yes':'no',Number(primes.filter(p=>p%2===0).join())],[range(1,400).filter(n=>n%4===0).every(n=>n%2===0)?'yes':'no',range(1,400).filter(n=>n%2===0).every(n=>n%4===0)?'yes':'no',range(1,400).find(n=>n%2===0&&n%4)],[Math.log2(2**5*2**3),Object.keys(powers).filter(k=>range(0,12).every(n=>powers[k](n)===2**(n+1)-2**n)).join()],[12*11/2,range(1,100).find(n=>n*(n-1)/2===45)],[Math.min(...roots),Math.max(...roots)]];
  })(),
+ // Basic Logic: primes and parity by trial division, ranges by listing every whole number, a class by searching every split, and rules by testing each case.
+ 'basic-logic':(()=>{
+  const range=(a,b)=>[...Array(Math.max(0,b-a+1))].map((_,i)=>a+i),yn=v=>v?'yes':'no',prime=n=>n>1&&range(2,n-1).every(d=>n%d);
+  const list=[4,9,12,15,16,21,25],square=n=>range(0,n).some(k=>k*k===n),rule=(meetings,missed)=>meetings>=3&&missed<=2;
+  // Every split of the 32 students into sport only, instrument only, both and neither that matches the three given counts.
+  const splits=[];for(const sport of range(0,32))for(const music of range(0,32))for(const both of range(0,32)){const neither=32-sport-music-both;if(neither>=0&&sport+both===18&&music+both===12&&both===7)splits.push([sport,neither]);}assert.equal(splits.length,1);const split=splits[0];
+  // Quadrilaterals by side lengths and right angles: a rectangle has four right angles; a square is a rectangle with four equal sides.
+  const shapes=range(1,6).flatMap(a=>range(1,6).flatMap(b=>[true,false].map(right=>({sides:[a,b,a,b],right})))),rectangle=q=>q.right,squareShape=q=>q.right&&q.sides.every(x=>x===q.sides[0]);
+  const outcomes=['H','T'].flatMap(a=>['H','T'].map(b=>a+b)),settings=['on','off'].flatMap(a=>['on','off'].flatMap(b=>['on','off'].map(c=>a+b+c)));
+  return [[yn(prime(51)),range(2,51).find(d=>prime(d)&&51%d===0),yn(prime(1))],[yn(0%2===0),yn(Math.abs(-7%2)===1),range(-4,4).filter(x=>x%2===0).length],[['12','18','20','32'].find(x=>Number(x)%2===0&&Number(x)%4!==0),range(1,100).find(x=>x%2===0&&x%4!==0)],[range(-20,20).filter(x=>3<x&&x<=7).length,range(-20,20).filter(x=>-3<=x&&x<2).length],[[[-5,'m5'],[-2,'m2']].reduce((p,q)=>q[0]>p[0]?q:p)[1],yn(3>3),yn(-1<0)],[yn(5>3&&5<=5),yn(6>3&&6<=5),range(-20,20).filter(x=>x>3&&x<=5).length],split,[outcomes.length,settings.length],[list.filter(x=>x%2).length,list.filter(square).length,list.filter(x=>x%2&&square(x)).length],[yn(12<12),yn(11<12),range(0,20).filter(x=>x<12).length],[yn(rule(3,2)),yn(rule(5,3))],[yn(shapes.filter(squareShape).every(rectangle)),yn(shapes.filter(rectangle).every(squareShape)),[[4,4],[3,5],[6,6]].filter(([a,b])=>squareShape({sides:[a,b,a,b],right:true})).length],[yn(-2+1===5),grid.find(x=>x+1===5),grid.find(x=>2*x===x)],[(-4)**2,-(4**2),range(-20,20).find(n=>n<0&&n*n===49)],[40*3/8,40-40*3/8,40-22]];
+ })(),
  'physics-2':[[.25*4000*6],[150-60],[20+273.15],[-.02*200],[.003*(-20)],[1/2**2],[4+8,12/(4+8)],[1/(1/6+1/3),9*(1/6+1/3)],[6*.5],[2e-6*500*.4],[.02*.3/.1],[1/(1/10-1/30),-(1/(1/10-1/30))/30],[12/3],[1*.6/1.5],[4.14e-15*1e15,4.14e-15*1e15-2.14,'no']]
 };
 test('every new foundation answer agrees with independently recomputed arithmetic and counterexamples',()=>{
@@ -45,29 +56,37 @@ test('six-subject portfolios upgrade without rewriting drafts, submissions or pr
  const corrupt=structuredClone(old);delete corrupt.modules.ab01;assert.equal(E.hydrate(corrupt),null);assert.equal(E.hydrate({...old,modules:{...old.modules,unknown:{active:null,sessions:[]}}}),null);
 });
 test('nine-subject portfolios saved before Coordinate Geometry upgrade without rewriting earlier work',()=>{
- const old=E.fresh();for(const id of ['coordinate-geometry','geometry','algebra-2','discrete-math'])delete old.modules[id];assert.equal(Object.keys(old.modules).length,9);
+ const old=E.fresh();for(const id of ['coordinate-geometry','geometry','algebra-2','discrete-math','basic-logic'])delete old.modules[id];assert.equal(Object.keys(old.modules).length,9);
  const s=E.createSession(old,'number-theory'),t=E.task(s),a=E.blank(t);a.values.q='7';a.explanation='Original reasoning kept exactly';E.edit(s,t,a);E.submit(s,t);
  const before=JSON.stringify(old),restored=E.hydrate(old);assert(restored,'a nine-subject record was rejected');assert.equal(JSON.stringify(old),before);
  for(const id of Object.keys(old.modules))assert.deepEqual(restored.modules[id],old.modules[id]);
- for(const id of ['coordinate-geometry','geometry','algebra-2','discrete-math'])assert.deepEqual(restored.modules[id],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
+ for(const id of ['coordinate-geometry','geometry','algebra-2','discrete-math','basic-logic'])assert.deepEqual(restored.modules[id],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
  const seven=structuredClone(old);delete seven.modules['physics-2'];delete seven.modules['physics-1'];assert.equal(E.hydrate(seven),null);
 });
 test('ten-subject portfolios saved before Geometry and Algebra II upgrade without rewriting earlier work',()=>{
- const old=E.fresh();for(const id of ['geometry','algebra-2','discrete-math'])delete old.modules[id];assert.equal(Object.keys(old.modules).length,10);
+ const old=E.fresh();for(const id of ['geometry','algebra-2','discrete-math','basic-logic'])delete old.modules[id];assert.equal(Object.keys(old.modules).length,10);
  const s=E.createSession(old,'coordinate-geometry'),t=E.task(s),a=E.blank(t);a.values.first='8';a.explanation='Original reasoning kept exactly';E.edit(s,t,a);E.submit(s,t);
  const before=JSON.stringify(old),restored=E.hydrate(old);assert(restored,'a ten-subject record was rejected');assert.equal(JSON.stringify(old),before);
  for(const id of Object.keys(old.modules))assert.deepEqual(restored.modules[id],old.modules[id]);
- for(const id of ['geometry','algebra-2','discrete-math'])assert.deepEqual(restored.modules[id],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
+ for(const id of ['geometry','algebra-2','discrete-math','basic-logic'])assert.deepEqual(restored.modules[id],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
  // A set that was never published stays rejected.
- const unpublished=structuredClone(restored);delete unpublished.modules['algebra-2'];delete unpublished.modules['discrete-math'];assert.equal(Object.keys(unpublished.modules).length,11);assert.equal(E.hydrate(unpublished),null);
+ const unpublished=structuredClone(restored);delete unpublished.modules['algebra-2'];delete unpublished.modules['discrete-math'];delete unpublished.modules['basic-logic'];assert.equal(Object.keys(unpublished.modules).length,11);assert.equal(E.hydrate(unpublished),null);
 });
 test('twelve-subject portfolios saved before Discrete Mathematics upgrade without rewriting earlier work',()=>{
- const old=E.fresh();delete old.modules['discrete-math'];assert.equal(Object.keys(old.modules).length,12);
+ const old=E.fresh();delete old.modules['discrete-math'];delete old.modules['basic-logic'];assert.equal(Object.keys(old.modules).length,12);
  const s=E.createSession(old,'coordinate-geometry'),t=E.task(s),a=E.blank(t);a.values.first='8';a.explanation='Original reasoning kept exactly';E.edit(s,t,a);E.submit(s,t);
  const before=JSON.stringify(old),restored=E.hydrate(old);assert(restored,'a twelve-subject record was rejected');assert.equal(JSON.stringify(old),before);
  for(const id of Object.keys(old.modules))assert.deepEqual(restored.modules[id],old.modules[id]);
  assert.deepEqual(restored.modules['discrete-math'],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
  const unpublished=structuredClone(restored);delete unpublished.modules.geometry;assert.equal(E.hydrate(unpublished),null);
+});
+test('thirteen-subject portfolios saved before Basic Logic upgrade without rewriting earlier work',()=>{
+ const old=E.fresh();delete old.modules['basic-logic'];assert.equal(Object.keys(old.modules).length,13);
+ const s=E.createSession(old,'discrete-math'),t=E.task(s),a=E.blank(t);a.values.all='28';a.explanation='Original reasoning kept exactly';E.edit(s,t,a);E.submit(s,t);
+ const before=JSON.stringify(old),restored=E.hydrate(old);assert(restored,'a thirteen-subject record was rejected');assert.equal(JSON.stringify(old),before);
+ for(const id of Object.keys(old.modules))assert.deepEqual(restored.modules[id],old.modules[id]);
+ assert.deepEqual(restored.modules['basic-logic'],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
+ const n=E.createSession(restored,'basic-logic');assert.deepEqual(E.tasks(n).map(t=>t.id),[...Array(15)].map((_,i)=>'bl-f'+String(i+1).padStart(2,'0')));
 });
 test('unfamiliar and uncertain new topics stay separate from wrong answers, with immutable exports and reports',()=>{
  for(const id of Object.keys(references)){

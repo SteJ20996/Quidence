@@ -22,7 +22,7 @@ const coordinateUI=Object.freeze({
   "Foundation check": "Comprobación de fundamentos",
   "Understanding check": "Comprobación de comprensión",
   "Intuition Lab activity": "Actividad del Laboratorio de intuición",
-  "Thirteen mathematics courses and two physics foundations courses · 64 diagnostic problems, 22 field projects, two Coordinate Geometry projects, 10 Number Theory and 10 Discrete Mathematics proof projects, two Game Theory projects and one case study, and separate 15-question foundation checks in thirteen tracks. Coordinate Geometry, Number Theory and Discrete Mathematics keep separate project notebooks; explanations and proofs remain pending review.": "Trece cursos de matemáticas y dos cursos de fundamentos de física · 64 problemas de diagnóstico, 22 proyectos de aplicación, dos proyectos de geometría analítica, 10 proyectos de demostración de teoría de números y 10 de matemáticas discretas, dos proyectos de teoría de juegos y un caso de estudio, y evaluaciones de fundamentos de 15 preguntas en trece áreas. La geometría analítica, la teoría de números y las matemáticas discretas tienen cuadernos de proyectos separados; las explicaciones y demostraciones quedan pendientes de revisión.",
+  "Thirteen mathematics courses and two physics foundations courses · 68 diagnostic problems, 22 field projects, two Coordinate Geometry projects, 10 Number Theory and 10 Discrete Mathematics proof projects, two Game Theory projects and one case study, and separate 15-question foundation checks in fourteen tracks. Coordinate Geometry, Number Theory and Discrete Mathematics keep separate project notebooks; explanations and proofs remain pending review.": "Trece cursos de matemáticas y dos cursos de fundamentos de física · 68 problemas de diagnóstico, 22 proyectos de aplicación, dos proyectos de geometría analítica, 10 proyectos de demostración de teoría de números y 10 de matemáticas discretas, dos proyectos de teoría de juegos y un caso de estudio, y evaluaciones de fundamentos de 15 preguntas en catorce áreas. La geometría analítica, la teoría de números y las matemáticas discretas tienen cuadernos de proyectos separados; las explicaciones y demostraciones quedan pendientes de revisión.",
   "Lessons: not available yet": "Lecciones: aún no disponibles",
   "Intuition Lab activity: not available yet": "Actividad del Laboratorio de intuición: aún no disponible",
   "Four short lessons, two six-step projects, and foundation and understanding checks.": "Cuatro lecciones breves, dos proyectos de seis pasos y comprobaciones de fundamentos y de comprensión.",
@@ -144,7 +144,7 @@ function template(key){
  for(const separator of [' · ','; '])if(key.includes(separator)){const parts=key.split(separator),outputs=parts.map(part=>translate(part,false));if(parts.every((part,i)=>safe(part,outputs[i])))return outputs.join(separator);}
  for(const match of key.matchAll(/; /g)){const parts=[key.slice(0,match.index),key.slice(match.index+2)],outputs=parts.map(part=>translate(part,false));if(parts.every((part,i)=>safe(part,outputs[i])))return outputs.join('; ');}
  for(const match of key.matchAll(/: /g)){const parts=[key.slice(0,match.index),key.slice(match.index+2)],outputs=parts.map(part=>translate(part,false));if(parts.every((part,i)=>safe(part,outputs[i])))return outputs.join(': ');}
- for(const match of key.matchAll(/\. (?=[A-Z])/g)){const parts=[key.slice(0,match.index+1),key.slice(match.index+2)],outputs=parts.map(part=>translate(part,false));if(parts.every((part,i)=>safe(part,outputs[i])))return outputs.join(' ');}
+ for(const match of key.matchAll(/[.?!] (?=[A-Z])/g)){const parts=[key.slice(0,match.index+1),key.slice(match.index+2)],outputs=parts.map(part=>translate(part,false));if(parts.every((part,i)=>safe(part,outputs[i])))return outputs.join(' ');}
  if(key.endsWith('.')&&Object.hasOwn(catalog(),key.slice(0,-1)))return catalog()[key.slice(0,-1)]+'.';
  return null;
 }
@@ -160,6 +160,8 @@ function translate(key,track=true){
  if(key===key.toUpperCase()){
   if(uppercaseCatalog!==catalog()){uppercaseCatalog=catalog();uppercaseIndex=new Map(Object.entries(catalog()).map(([k,v])=>[k.toUpperCase(),v.toUpperCase()]));}if(uppercaseIndex.has(key))return uppercaseIndex.get(key);
  }
+ // A component label inside the shared recheck reason; the label itself is a reviewed catalog entry.
+ const recheck=key.match(/^Recheck: (.+?)(\.?)$/);if(recheck&&Object.hasOwn(catalog(),recheck[1]))return 'Vuelve a comprobar: '+catalog()[recheck[1]]+recheck[2];
  const rendered=template(key);if(rendered!==null){memo.set(key,rendered);return rendered;}
  if(track&&/[A-Za-z]{3}/.test(key))missing.add(key);
  memo.set(key,key);
