@@ -93,7 +93,7 @@ async function run() {
       const originalURL=new URL(originalCheck,page.url());assert.equal(originalURL.pathname,'/diagnostics/');assert.equal(originalURL.searchParams.get('module'),'ad01');
       activityLinks.push(originalURL.href);assert.equal(activityLinks.length,23);
       const links = activityLinks.filter(href => ['/diagnostics/', '/projects/'].includes(new URL(href).pathname));
-      assert.equal(links.length, 22);
+      assert.equal(links.length, 23);
       for (const href of links) {
         const url = new URL(href), subject = url.searchParams.get('module'), projects = url.pathname === '/projects/';
         await page.goto(href);
@@ -119,8 +119,8 @@ async function run() {
           assert.equal(await page.locator('[data-f-field="' + fieldID + '"]').inputValue(), '123/7');
           assert.equal(await page.locator('[data-f-explanation]').inputValue(), 'Unfinished browser regression draft.');
           assert.equal(await page.locator('[data-f-action="report"]').isDisabled(), true);
-          // Number Theory and Coordinate Geometry keep their projects on the course page, so their checks offer no field-projects link.
-          if (['number-theory', 'coordinate-geometry'].includes(subject)) assert.equal(await page.locator('[data-f-mode="projects"]').count(), 0);
+          // Number Theory, Discrete Mathematics and Coordinate Geometry keep their projects on the course page, so their checks offer no field-projects link.
+          if (['number-theory', 'discrete-math', 'coordinate-geometry'].includes(subject)) assert.equal(await page.locator('[data-f-mode="projects"]').count(), 0);
           else {
             const mode = projects ? 'check' : 'projects', target = page.locator('[data-f-mode="' + mode + '"]');
             assert.equal(await target.getAttribute('target'), '_blank');

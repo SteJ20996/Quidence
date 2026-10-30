@@ -1,5 +1,5 @@
 {
-  "method": "Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues and equidistant grid points, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.",
+  "method": "Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel\u2013Hakimi degree tests, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.",
   "questions": {
     "la-c01": {
       "k": "3",
@@ -410,6 +410,30 @@
       "cy": "6",
       "radius": "5",
       "right": "yes"
+    },
+    "dm-c01": {
+      "committees": "35",
+      "roles": "210",
+      "withAna": "15",
+      "withoutAna": "20"
+    },
+    "dm-c02": {
+      "w4": "3",
+      "rule": "three",
+      "w8": "13",
+      "startThree": "4"
+    },
+    "dm-c03": {
+      "all": "28",
+      "possible": "no",
+      "regular": "12",
+      "different": "no"
+    },
+    "dm-c04": {
+      "odd": "225",
+      "step": "next",
+      "last": "55",
+      "zero": "no"
     }
   }
 }

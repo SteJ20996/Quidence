@@ -13,6 +13,8 @@ async function main(){
   const context=await browser.newContext({viewport:{width:1440,height:900},reducedMotion:'reduce'}),page=await context.newPage();
   page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)failed.push([r.status(),r.url()]);});
   await page.goto(origin+'/courses/discrete-math/?lang=en');await page.locator('#app').waitFor({state:'visible'});
+  // Both checks open from the course page.
+  assert.deepEqual(await page.locator('.topbar-links a').evaluateAll(as=>as.map(a=>new URL(a.href).pathname+new URL(a.href).searchParams.get('module'))),['/foundations/discrete-math','/diagnostics/discrete-math']);
   for(const p of data){await page.locator('[data-project="'+p.id+'"]').click();for(let i=0;i<p.steps.length;i++){
    await page.locator('[data-step="'+i+'"]').click();assert.equal(await page.locator('#work h3').first().textContent(),p.steps[i].title);
    await page.locator('#proof').evaluate(e=>e.open=true);assert((await page.locator('.proof-content').textContent()).includes(p.steps[i].proof.split('\n')[0]));

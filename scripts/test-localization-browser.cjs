@@ -61,7 +61,7 @@ async function run(){
  const raw='Save my answer\nYour explanation\nNo puedo calcular −3/4; x < 0 y y > 0. <script>alert(1)</script>';
  const storage=()=>page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([k])=>k!=='quidence_ui_locale_v1')));
  let tasks=0,reports=0;
- for(const mode of ['diagnostics','projects'])for(const module of ['pre-algebra','algebra-1','geometry','algebra-2','af01','ad01','ae01','ab01','physics-1','physics-2',...(mode==='diagnostics'?['number-theory','coordinate-geometry']:[])]){
+ for(const mode of ['diagnostics','projects'])for(const module of ['pre-algebra','algebra-1','geometry','algebra-2','af01','ad01','ae01','ab01','physics-1','physics-2',...(mode==='diagnostics'?['number-theory','coordinate-geometry','discrete-math']:[])]){
   await page.goto(origin+'/'+mode+'/?module='+module+'&lang=es');await page.locator('[data-f-action="resume"]').click();
   const count=await page.locator('.f-question-list li').count();
   for(let i=0;i<count;i++){

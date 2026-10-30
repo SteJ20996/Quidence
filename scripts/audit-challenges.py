@@ -173,6 +173,39 @@ A,B,C=(1,2),(5,10),(4,1);m=F(B[1]-A[1],B[0]-A[0]);p=-1/m;assert m*p==-1;R['cg-c0
 A,B=(0,0),(6,4);M=mid(A,B);m=F(B[1]-A[1],B[0]-A[0]);p=-1/m;b=M[1]-p*M[0];x=-b/p;assert x**2==(x-6)**2+16;fair=[(X,Y)for X in range(-20,21)for Y in range(-20,21)if X*X+Y*Y==(X-6)**2+(Y-4)**2];assert len(fair)>1 and all(Y==p*X+b for X,Y in fair)
 R['cg-c03']={'slope':p,'intercept':b,'axis':x,'only':yn(len(fair)==1)}
 A,B,P=(-1,2),(5,10),(5,2);c=mid(A,B);r2=(B[0]-c[0])**2+(B[1]-c[1])**2;assert isqrt(int(r2))**2==r2;R['cg-c04']={'cx':c[0],'cy':c[1],'radius':isqrt(int(r2)),'right':yn((A[0]-P[0])*(B[0]-P[0])+(A[1]-P[1])*(B[1]-P[1])==0)}
-assert len(R)==66
-output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues and equidistant grid points, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
+# Discrete Mathematics: committees counted as sets, paths listed stone by stone, degree sequences tested by Havel–Hakimi, and every way of merging the board searched.
+from itertools import combinations, permutations
+from functools import lru_cache
+club=range(7);committees=list(combinations(club,3))
+R['dm-c01']={'committees':len(committees),'roles':len(list(permutations(club,3))),'withAna':sum(0 in c for c in committees),'withoutAna':sum(0 not in c for c in committees)}
+def paths(n):return [[]] if n==0 else [[s]+p for s in (1,3) if s<=n for p in paths(n-s)]
+W=[len(paths(n))for n in range(13)];rules={'three':lambda n:W[n-1]+W[n-3],'two':lambda n:W[n-1]+W[n-2],'double':lambda n:2*W[n-1],'plus':lambda n:W[n-1]+3}
+rule=[k for k,f in rules.items()if all(W[n]==f(n)for n in range(4,13))];assert len(rule)==1
+R['dm-c02']={'w4':W[4],'rule':rule[0],'w8':W[8],'startThree':sum(p[0]==3 for p in paths(8))}
+def graphical(seq):
+    seq=sorted(seq,reverse=True)
+    while seq and seq[0]>0:
+        d=seq.pop(0)
+        if d>len(seq):return False
+        for i in range(d):
+            seq[i]-=1
+            if seq[i]<0:return False
+        seq.sort(reverse=True)
+    return True
+cube=[(a,b)for a in range(8)for b in range(a+1,8)if bin(a^b).count('1')==1];assert all(sum(v in e for e in cube)==3 for v in range(8))
+R['dm-c03']={'all':len(list(combinations(range(8),2))),'possible':yn(graphical([1,2,3,3,4,4,5,5])),'regular':len(cube),'different':yn(any(graphical(list(c))for c in combinations(range(8),8)))}
+@lru_cache(maxsize=None)
+def finals(state,op):
+    if len(state)==1:return frozenset(state)
+    out=set()
+    for i,j in combinations(range(len(state)),2):
+        rest=[x for k,x in enumerate(state)if k not in(i,j)]
+        out|=finals(tuple(sorted(rest+[state[i]+state[j]if op=='sum'else abs(state[i]-state[j])])),op)
+    return frozenset(out)
+steps={'next':lambda n:n*n+(2*n+1),'same':lambda n:n*n+(2*n-1),'double':lambda n:n*n+2*n}
+step=[k for k,f in steps.items()if all(f(n)==(n+1)**2 for n in range(1,50))];assert len(step)==1
+summed=finals(tuple(range(1,11)),'sum');assert len(summed)==1
+R['dm-c04']={'odd':sum(range(1,30,2)),'step':step[0],'last':next(iter(summed)),'zero':yn(0 in finals(tuple(range(1,11)),'diff'))}
+assert len(R)==70
+output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel–Hakimi degree tests, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
 path=Path(__file__).resolve().parents[1]/'review'/'challenge-math-audit.json';path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(output,indent=2)+'\n');print(json.dumps({'questions':len(R),'components':sum(len(x)for x in R.values()),'output':str(path)}))
