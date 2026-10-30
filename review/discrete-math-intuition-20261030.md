@@ -43,5 +43,6 @@ Like the other Intuition Lab activities, it has no voice recognition or AI analy
 Local runs used Node 22; CI uses the pinned 24.19. Browser suites ran with the CI font configuration (DejaVu Sans).
 
 - `npm test`: 353 of 353 Node tests pass, including the new region-count test.
+- All 15 browser suites in `checks.yml` pass in Chromium. The Intuition Lab suite (120 checks) and the other suites now count 14 Intuition Lab cards.
 - Screenshots: the activity in English at 1280px and in Spanish at 375px, the homepage Intuition view in all four appearances, and the Classic subject card at 960px. They show no clipped or overlapping content and no page errors.
 - Not checked: Safari and real devices.
