@@ -132,6 +132,29 @@ put('p2-p01',dict(budget=budget,leak=leak,temperature=12+F(90000,mass*capacity),
 i1=F(6,12);i2=F(6,24);it=i1+i2;image=1/(F(1,10)-F(1,30));mag=-image/30
 h=F(414,100)*F(1,10**15);photon=h*6*10**14
 put('p2-p02',dict(i1=i1,i2=i2,total=it,resistance=6/it,power=6*it,expanded=6*(it+F(6,12)),image=image,magnification=mag,height=3*mag,nearer=1/(F(1,10)-F(1,20)),photon=photon,kinetic=photon-2,lower=h*4*10**14), 'Independent parallel current and power, reciprocal lens distances and signed scaling, photon threshold comparison.')
+# Basic Logic: every club member is listed with P, Q and H, and every statement is evaluated member by member.
+from itertools import product
+members=[]
+for (p,q),count,hours in [((1,1),18,9),((1,0),2,1),((0,1),12,5),((0,0),8,3)]:
+    members+=[(p,q,1)]*hours+[(p,q,0)]*(count-hours)
+assert len(members)==40
+count=lambda test:sum(1 for m in members if test(*m))
+implies=lambda a,b:(not a) or b
+put('bl-p01',dict(**{'or':count(lambda p,q,h:p or q)},xor=count(lambda p,q,h:p!=q),notBoth=count(lambda p,q,h:not(p and q)),counter=count(lambda p,q,h:not implies(p,q)),conditional=count(lambda p,q,h:implies(p,q)),converse=count(lambda p,q,h:not implies(q,p)),allowed=count(lambda p,q,h:q and (p or h)),misread=count(lambda p,q,h:(q and p) or h),unsafe=count(lambda p,q,h:((q and p) or h) and not q)), 'Forty listed members with three truth values each; every connective, conditional and reading of the rule evaluated member by member.')
+# Survey: the eight parts follow from the totals by inclusion and exclusion; the receipt bounds try every placement of the extra receipts.
+total=120;Fn,Vn,An,FV,FA,VA,FVA=70,60,41,32,25,20,11
+part={(1,1,1):FVA,(1,1,0):FV-FVA,(1,0,1):FA-FVA,(0,1,1):VA-FVA}
+part[(1,0,0)]=Fn-part[(1,1,0)]-part[(1,0,1)]-FVA;part[(0,1,0)]=Vn-part[(1,1,0)]-part[(0,1,1)]-FVA;part[(0,0,1)]=An-part[(1,0,1)]-part[(0,1,1)]-FVA
+part[(0,0,0)]=total-sum(part.values())
+assert all(v>=0 for v in part.values()) and sum(part.values())==total
+size=lambda test:sum(v for k,v in part.items() if test(*k))
+assert (size(lambda f,v,a:f),size(lambda f,v,a:v),size(lambda f,v,a:a),size(lambda f,v,a:f and v),size(lambda f,v,a:f and a),size(lambda f,v,a:v and a))==(Fn,Vn,An,FV,FA,VA)
+extra=48-An
+outside=[k for k in part if not k[2]]
+fruit=[]
+for split in product(*(range(min(part[k],extra)+1) for k in outside)):
+    if sum(split)==extra:fruit.append(size(lambda f,v,a:f and a)+sum(c for k,c in zip(outside,split) if k[0]))
+put('bl-p02',dict(none=part[(0,0,0)],onlyFruit=part[(1,0,0)],fruitVeg=part[(1,1,0)],appNotFruit=size(lambda f,v,a:a and not f),vegApp=size(lambda f,v,a:v and a),fruitNotVeg=size(lambda f,v,a:f and not v),minFruit=min(fruit),maxFruit=max(fruit)), 'Eight Venn parts recovered from the totals and checked against every total; claims counted part by part; every placement of the 7 receipts outside the app users tried.')
 target=Path(__file__).resolve().parent.parent/'review/project-math-audit.json'
 target.parent.mkdir(exist_ok=True);target.write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps({'projects':len(questions),'numericComponents':sum(len(q['numbers']) for q in questions.values()),'formulaComponents':sum(len(q['formulas']) for q in questions.values()),'drawings':sum(len(q['drawings']) for q in questions.values())}))

@@ -23,7 +23,7 @@ test('pre-calculus cover point lies exactly on a circle, and all six assets are 
 test('homepage offers thirteen mathematics courses plus introductory physics',()=>{
  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
  assert.equal([...html.matchAll(/data-subject="/g)].length,15);assert.equal([...html.matchAll(/data-course-state="available"/g)].length,15);assert.equal([...html.matchAll(/data-course-state="planned"/g)].length,0);assert.equal([...html.matchAll(/class="subject-link"/g)].length,15);
- assert.doesNotMatch(html,/Microeconomics|Macroeconomics/);assert.match(html,/Limits, derivatives, and accumulation activities are open/);assert.doesNotMatch(html,/AP Calculus|AP Statistics/);assert.match(html,/64 diagnostic problems, 20 field projects, two Coordinate Geometry projects, 10 Number Theory and 10 Discrete Mathematics proof projects/);
+ assert.doesNotMatch(html,/Microeconomics|Macroeconomics/);assert.match(html,/Limits, derivatives, and accumulation activities are open/);assert.doesNotMatch(html,/AP Calculus|AP Statistics/);assert.match(html,/64 diagnostic problems, 22 field projects, two Coordinate Geometry projects, 10 Number Theory and 10 Discrete Mathematics proof projects/);
 });
 test('active figure families render finite states; calculus labels stay inside the frame',()=>{
  const samples=A.collect();assert.ok(samples.length>290);for(const s of samples){assert.doesNotMatch(s.svg,/NaN|Infinity/,s.name);if(s.group!=='ab01')assert.match(s.svg,/role="img"/,s.name);
