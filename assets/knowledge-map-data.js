@@ -496,8 +496,8 @@ const data={
         },
         {
           "id": "logic",
-          "x": 0.235,
-          "y": 0.36,
+          "x": 0.31,
+          "y": 0.33,
           "layer": "algebra",
           "en": "Logic",
           "es": "Lógica"

@@ -82,7 +82,7 @@ function model(course,index,s){
    for(const k of 'ABC')defs+=`<clipPath id="${id}-${k}"><circle cx="${C[k][0]}" cy="${C[k][1]}" r="${R}"/></clipPath>`;
    for(const r of empty.filter(r=>r)){const ins=[...'ABC'].filter(k=>has(r,k)),outs=[...'ABC'].filter(k=>!has(r,k));defs+=`<mask id="${id}-m${r}"><rect width="520" height="300" fill="white"/>${outs.map(k=>`<circle cx="${C[k][0]}" cy="${C[k][1]}" r="${R}" fill="black"/>`).join('')}</mask>`;let g=`<rect width="520" height="300" fill="#c9c3d6"/>`;for(const k of ins)g=`<g clip-path="url(#${id}-${k})">${g}</g>`;shade+=`<g mask="url(#${id}-m${r})">${g}</g>`;}
    let body=`<defs>${defs}</defs>${shade}`+Object.entries(C).map(([k,[x,y]])=>`<circle cx="${x}" cy="${y}" r="${R}" fill="none" stroke="#6542c0" stroke-width="2.5"/><text x="${k==='A'?x-R-14:k==='C'?x+R+6:x+R*0.75}" y="${k==='B'?y+R*0.75+14:y-R+12}" class="axis-label">${k}</text>`).join('');
-   for(const r of some){const [x,y]=centre(r);body+=`<text x="${x}" y="${y+7}" text-anchor="middle" font-size="22" fill="#087f76">×</text>`;}
+   for(const r of some){const [x,y]=centre(r);body+=`<path d="M${x-9} ${y-9}l18 18m0-18-18 18" stroke="#087f76" stroke-width="4" stroke-linecap="round"/>`;}
    const red=counter&&parts.find(r=>counter[r]&&(conclusion[0]==='all'?has(r,conclusion[1])&&!has(r,conclusion[2]):has(r,conclusion[1])&&has(r,conclusion[2])));
    if(counter){const [x,y]=centre(red);body+=`<circle cx="${x}" cy="${y}" r="7" fill="#a84324"/>`;}
    // The caption names every marked part, so the diagram can be read without seeing it.
