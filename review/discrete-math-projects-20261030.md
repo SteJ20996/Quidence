@@ -75,5 +75,5 @@ Local runs used Node 22; CI uses the pinned 24.19. Browser suites ran with the C
   - It checks that learner text, including HTML-like text, is preserved through a language switch, a report and an export.
   - It checks that corrupted saved data is left untouched and that failed saves are reported.
   - It finds no horizontal overflow at six widths from 1920px to 320px in either language, no untranslated text, no page errors and no failed requests.
-- All other browser suites in `checks.yml` were run again; their card and course-node counts were updated from 13 to 14 (and Further Mathematics from 6 to 7).
+- All 15 browser suites in `checks.yml` pass in Chromium. The existing suites' card and course-node counts were updated from 13 to 14, Further Mathematics from 6 to 7 and College Level from 5 to 6. The themes suite caught the Classic card layout problem described above, and the illustrated map suite caught the edge crossing.
 - Not checked: Safari and real devices.
