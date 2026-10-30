@@ -4,7 +4,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const fmt=n=>Number(n.toFixed(3)).toString();
 let serial=0;
 function graphic(title,description,body){const id='model-'+(++serial);return`<figure class="graph-figure"><svg class="calculus-graph course-model-graph" viewBox="0 0 520 300" role="img" aria-labelledby="${id}-t ${id}-d"><title id="${id}-t">${esc(title)}</title><desc id="${id}-d">${esc(description)}</desc>${body}</svg><figcaption>${esc(description)}</figcaption></figure>`;}
-function table(title,headers,rows,note){return`<figure class="graph-figure"><div class="table-wrap"><table class="summary-table"><caption>${esc(title)}</caption><thead><tr>${headers.map(x=>`<th scope="col">${esc(x)}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((x,i)=>`<${i?'td':'th scope="row"'}>${esc(x)}</${i?'td':'th'}>`).join('')}</tr>`).join('')}</tbody></table></div>${note?`<figcaption>${esc(note)}</figcaption>`:''}</figure>`;}
+function table(title,headers,rows,note,kind){return`<figure class="graph-figure"><div class="table-wrap"><table class="summary-table${kind?' '+kind:''}"><caption>${esc(title)}</caption><thead><tr>${headers.map(x=>`<th scope="col">${esc(x)}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((x,i)=>`<${i?'td':'th scope="row"'}>${x&&typeof x==='object'?x.html:esc(x)}</${i?'td':'th'}>`).join('')}</tr>`).join('')}</tbody></table></div>${note?`<figcaption>${esc(note)}</figcaption>`:''}</figure>`;}
 function cartesian(title,series,{xmin=0,xmax=12,ymin=0,ymax=12,xlabel='x',ylabel='y',point,left=70,ylabelX=12,xticks,yticks}={}){
  const px=x=>left+(x-xmin)/(xmax-xmin)*(470-left),py=y=>240-(y-ymin)/(ymax-ymin)*195,clip='model-clip-'+(++serial);
  let b=`<defs><clipPath id="${clip}"><rect x="${left}" y="45" width="${470-left}" height="195"/></clipPath></defs>`;
@@ -47,6 +47,46 @@ function model(course,index,s){
   if(index===1){const k=s.k;graph=table('Original rational expression',['Input','(x² − k²)/(x − k)'],[k-1,k,k+1].map(x=>[x,x===k?'Undefined':x+k]),`k = ${k}. Cancellation is valid only when x ≠ k.`);readout=`Simplified rule: x + ${k}, for x ≠ ${k}`;formula=`(x² − ${k*k})/(x − ${k}) = x + ${k}, x ≠ ${k}`;}
   if(index===2){graph=cartesian('Repeated percentage change',[{label:`y = 100(${s.factor})ᵗ`,fn:t=>100*s.factor**t}],{xmin:0,xmax:4,ymin:0,ymax:250,xlabel:'Time (periods)',ylabel:'Amount'});readout=`Factor ${s.factor} · At t = 2: ${fmt(100*s.factor**2)}`;formula=`Amount after t periods = 100 × ${s.factor}ᵗ`;}
   if(index===3){graph=table('Powers and inverse questions',['Exponent x',`${s.base}ˣ`],[0,1,2,3,4].map(x=>[x,s.base**x]),'Read a power from left to right; a logarithm asks for the exponent from the positive output.');readout=`log base ${s.base} of ${s.base**3} = 3`;formula=`log_b(y) = x means bˣ = y, with b > 0, b ≠ 1, y > 0.`;}
+ }
+ if(course==='basic-logic'){
+  const T=v=>({html:`<span class="truth-value"><span class="truth-letter" aria-hidden="true" data-no-translate><span class="truth-en">${v?'T':'F'}</span><span class="truth-es">${v?'V':'F'}</span></span><span class="truth-word">${v?'True':'False'}</span></span>`}),rows=[[1,1],[1,0],[0,1],[0,0]];
+  if(index===0){
+   const ops={and:['P and Q',(p,q)=>p&&q,'“And” is true only when both parts are true.'],or:['P or Q',(p,q)=>p||q,'“Or” is true when at least one part is true, including both.'],xor:['P or Q, but not both',(p,q)=>p!==q,'The exclusive or is true when exactly one part is true.'],not:['not P',p=>!p,'“Not” gives the opposite truth value.']},[name,fn,rule]=ops[s.op]||ops.and;
+   const shown=s.op==='not'?[[1],[0]]:rows,trueRows=shown.filter(r=>fn(!!r[0],!!r[1])).length;
+   graph=table('Truth table: '+name,s.op==='not'?['P',name]:['P','Q',name],shown.map(r=>[...r.map(T),T(fn(!!r[0],!!r[1]))]),'T means true and F means false. Each row is one possible case.','truth-table');
+   readout=`True rows: ${trueRows} of ${shown.length}`;formula=rule;
+  }
+  if(index===1){
+   const imp=(a,b)=>!a||b,forms={converse:['If Q, then P',(p,q)=>imp(q,p)],inverse:['If not P, then not Q',(p,q)=>imp(!p,!q)],contrapositive:['If not Q, then not P',(p,q)=>imp(!q,!p)]},[name,fn]=forms[s.form]||forms.converse;
+   const same=rows.filter(([p,q])=>imp(!!p,!!q)===fn(!!p,!!q)).length;
+   graph=table('A conditional and a related statement',['P','Q','If P, then Q',name],rows.map(([p,q])=>[T(p),T(q),T(imp(!!p,!!q)),T(fn(!!p,!!q))]),'T means true and F means false. “If P, then Q” is false only in the row where P is true and Q is false.','truth-table');
+   readout=same===4?'Same truth value in all 4 rows':`Same truth value in ${same} of 4 rows`;formula=same===4?`“${name}” is equivalent to “If P, then Q”.`:`“${name}” is a different statement from “If P, then Q”.`;
+  }
+  if(index===2){
+   const imp=(a,b)=>!a||b,forms={mp:['Modus ponens','P',(p,q)=>p,'Q',(p,q)=>q],mt:['Modus tollens','not Q',(p,q)=>!q,'not P',(p,q)=>!p],ac:['Affirming the consequent','Q',(p,q)=>q,'P',(p,q)=>p],da:['Denying the antecedent','not P',(p,q)=>!p,'not Q',(p,q)=>!q]},[name,second,premise,conclusion,result]=forms[s.form]||forms.mp;
+   // A premise or conclusion that is just P or Q is read from that column, so the table never repeats a column.
+   const extra=[[second,premise],[conclusion,result]].filter(([label])=>!['P','Q'].includes(label));
+   const marked=rows.filter(([p,q])=>imp(!!p,!!q)&&premise(!!p,!!q)),bad=marked.find(([p,q])=>!result(!!p,!!q));
+   graph=table('Test the form row by row',['P','Q','If P, then Q',...extra.map(([label])=>label),'Premises true?'],rows.map(([p,q])=>[T(p),T(q),T(imp(!!p,!!q)),...extra.map(([,fn])=>T(fn(!!p,!!q))),imp(!!p,!!q)&&premise(!!p,!!q)?'Yes':'No']),`T means true and F means false. Premises: “If P, then Q” and “${second}”. Conclusion: “${conclusion}”. Look only at the rows where both premises are true.`,'truth-table');
+   readout=bad?`Invalid: when P is ${bad[0]?'true':'false'} and Q is ${bad[1]?'true':'false'}, the premises are true and the conclusion is false.`:'Valid: every row with true premises has a true conclusion.';formula=name;
+  }
+  if(index===3){
+   // Eight parts of the diagram, one for each choice of inside or outside A, B and C. A brute-force search over which parts are occupied decides validity.
+   const has=(r,x)=>!!(r>>'ABC'.indexOf(x)&1),parts=[0,1,2,3,4,5,6,7],forms={barbara:[[['all','A','B'],['all','B','C']],['all','A','C'],'All A are B. All B are C. So all A are C.'],middle:[[['all','A','B'],['all','C','B']],['all','A','C'],'All A are B. All C are B. So all A are C.'],ferio:[[['no','B','C'],['some','A','B']],['someNot','A','C'],'No B are C. Some A are B. So some A are not C.']},[premises,conclusion,text]=forms[s.form]||forms.barbara;
+   const holds=(occupied,[q,x,y])=>{const hit=f=>parts.some(r=>occupied[r]&&f(r));return q==='all'?!hit(r=>has(r,x)&&!has(r,y)):q==='no'?!hit(r=>has(r,x)&&has(r,y)):q==='some'?hit(r=>has(r,x)&&has(r,y)):hit(r=>has(r,x)&&!has(r,y));};
+   const models=[];for(let m=0;m<256;m++){const occupied=parts.map(r=>!!(m>>r&1));if(premises.every(p=>holds(occupied,p)))models.push(occupied);}
+   const counter=models.find(o=>!holds(o,conclusion)),empty=parts.filter(r=>models.every(o=>!o[r])),some=premises.filter(p=>p[0]==='some').map(([,x,y])=>parts.filter(r=>has(r,x)&&has(r,y)&&!empty.includes(r))).filter(c=>c.length===1).map(c=>c[0]);
+   const C={A:[215,128],B:[260,205],C:[305,128]},R=82,inside=(r,[x,y])=>['A','B','C'].every(k=>has(r,k)===((x-C[k][0])**2+(y-C[k][1])**2<R*R));
+   const centre=r=>{let sx=0,sy=0,n=0;for(let x=120;x<=400;x+=3)for(let y=40;y<=295;y+=3)if(inside(r,[x,y])){sx+=x;sy+=y;n++;}return [sx/n,sy/n];};
+   const id='venn-'+(++serial);let defs='',shade='';
+   for(const k of 'ABC')defs+=`<clipPath id="${id}-${k}"><circle cx="${C[k][0]}" cy="${C[k][1]}" r="${R}"/></clipPath>`;
+   for(const r of empty.filter(r=>r)){const ins=[...'ABC'].filter(k=>has(r,k)),outs=[...'ABC'].filter(k=>!has(r,k));defs+=`<mask id="${id}-m${r}"><rect width="520" height="300" fill="white"/>${outs.map(k=>`<circle cx="${C[k][0]}" cy="${C[k][1]}" r="${R}" fill="black"/>`).join('')}</mask>`;let g=`<rect width="520" height="300" fill="#c9c3d6"/>`;for(const k of ins)g=`<g clip-path="url(#${id}-${k})">${g}</g>`;shade+=`<g mask="url(#${id}-m${r})">${g}</g>`;}
+   let body=`<defs>${defs}</defs>${shade}`+Object.entries(C).map(([k,[x,y]])=>`<circle cx="${x}" cy="${y}" r="${R}" fill="none" stroke="#6542c0" stroke-width="2.5"/><text x="${k==='A'?x-R-14:k==='C'?x+R+6:x+R*0.75}" y="${k==='B'?y+R*0.75+14:y-R+12}" class="axis-label">${k}</text>`).join('');
+   for(const r of some){const [x,y]=centre(r);body+=`<text x="${x}" y="${y+7}" text-anchor="middle" font-size="22" fill="#087f76">×</text>`;}
+   if(counter){const r=parts.find(r=>counter[r]&&(conclusion[0]==='all'?has(r,conclusion[1])&&!has(r,conclusion[2]):has(r,conclusion[1])&&has(r,conclusion[2])));const [x,y]=centre(r);body+=`<circle cx="${x}" cy="${y}" r="7" fill="#a84324"/>`;}
+   graph=graphic('Three-set Venn diagram',counter?'Shaded parts are empty. The red point fits both premises but breaks the conclusion.':'Shaded parts are empty. Every diagram that fits the premises shows the conclusion.',body);
+   readout=counter?'Invalid: one diagram fits the premises but not the conclusion.':'Valid: the premises force the conclusion.';formula=text;note='Shaded parts are empty. An × marks a part that must contain something.';
+  }
  }
  if(!graph)throw new Error('Unknown course model: '+course+' / '+index);
  return{graph,readout,formula,note};

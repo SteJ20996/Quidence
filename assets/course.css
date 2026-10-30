@@ -10,6 +10,9 @@
 .learning-grid>*,.explorer,#lab-graphs,.graph-figure,.table-wrap{min-width:0;max-width:100%}
 .table-wrap{overflow-x:auto;overscroll-behavior-x:contain}
 .lab-readout,.formula-box{min-width:0}
-@media(max-width:620px){.graph-figure .summary-table{min-width:0;width:100%;table-layout:fixed}.graph-figure .summary-table th,.graph-figure .summary-table td{white-space:normal;overflow-wrap:anywhere;padding:10px 7px}.graph-figure .summary-table th:first-child{width:62%}}
+@media(max-width:620px){.graph-figure .summary-table{min-width:0;width:100%;table-layout:fixed}.graph-figure .summary-table th,.graph-figure .summary-table td{white-space:normal;overflow-wrap:anywhere;padding:10px 7px}.graph-figure .summary-table th:first-child{width:62%}.graph-figure .truth-table{table-layout:auto;width:100%}.graph-figure .truth-table th,.graph-figure .truth-table td{overflow-wrap:normal;padding:9px 4px}.graph-figure .truth-table th:first-child{width:auto}}
 
 .course-legacy-note{max-width:1120px;margin:16px auto;padding:12px 20px;background:#eaf0f7;color:#263c5b}
+.truth-table td,.truth-table th{text-align:center}
+.truth-word{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.truth-es,html[lang="es"] .truth-en{display:none}html[lang="es"] .truth-es{display:inline}
+.lab-controls .control-label.wide{grid-column:1/-1}

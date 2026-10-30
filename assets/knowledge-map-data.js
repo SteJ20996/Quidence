@@ -190,6 +190,18 @@ const data={
       "module": "algebra-2"
     },
     {
+      "id": "basic-logic",
+      "chapter": 0,
+      "node": "logic",
+      "en": "Basic Logic",
+      "es": "Lógica básica",
+      "scope": {
+        "en": "Statements, conditionals, valid arguments and syllogisms",
+        "es": "Proposiciones, condicionales, argumentos válidos y silogismos"
+      },
+      "module": "basic-logic"
+    },
+    {
       "id": "geometry",
       "chapter": 0,
       "node": "geometry",
@@ -331,6 +343,9 @@ const data={
     ],
     "algebra2": [
       "algebra2"
+    ],
+    "logic": [
+      "basic-logic"
     ],
     "data": [
       "statistics"
@@ -478,6 +493,14 @@ const data={
           "layer": "geometry",
           "en": "Coordinate geometry",
           "es": "Geometría analítica"
+        },
+        {
+          "id": "logic",
+          "x": 0.235,
+          "y": 0.36,
+          "layer": "algebra",
+          "en": "Logic",
+          "es": "Lógica"
         },
         {
           "id": "probability",
@@ -630,8 +653,12 @@ const data={
         ],
         [
           "algebra1",
-          "proof",
+          "logic",
           "r"
+        ],
+        [
+          "logic",
+          "proof"
         ],
         [
           "geometry",
@@ -1441,6 +1468,11 @@ const data={
       "en": "Explore polynomial, rational, exponential and logarithmic relationships and their restrictions.",
       "es": "Explora relaciones polinómicas, racionales, exponenciales y logarítmicas y sus restricciones.",
       "relatedModule": "algebra-2"
+    },
+    "logic": {
+      "en": "Decide when statements are true, test whether a conclusion follows, and spot common fallacies.",
+      "es": "Decide cuándo una proposición es verdadera, comprueba si una conclusión se deduce y reconoce falacias comunes.",
+      "relatedModule": "basic-logic"
     },
     "trig": {
       "en": "Connect angles, triangles and periodic functions such as sine and cosine.",

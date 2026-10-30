@@ -1,3 +1,9 @@
+## 2026-10-30 · Basic Logic, part 1
+
+Basic Logic is a new School Mathematics course at the High School level, with four bilingual lessons: statements and truth tables, conditionals, valid arguments and fallacies, and quantifiers and syllogisms. Its models are truth tables and a three-set Venn diagram. The knowledge map has a new "Logic" node, and the illustrated map has a Basic Logic course node. Lesson work is saved under `basic-logic_beta01_session_v1`. Two field projects, the foundation and understanding checks, and an Intuition Lab activity are planned as later parts; the card lists them as not available yet. See [basic-logic-course-20261030.md](review/basic-logic-course-20261030.md).
+
+Current inventory: 15 subject cards (6 School Mathematics, 7 Further Mathematics, 2 Science). Every card except Basic Logic has a foundation check, an understanding check and an Intuition Lab activity; Intuition Lab has 14 activities. The source inventory has 561 records, all still not-cleared.
+
 ## 2026-10-30 · Discrete Mathematics, part 3
 
 Intuition Lab has a fourteenth activity, "It doubles each time. Every time?", the circle-regions problem for Discrete Mathematics. Every subject card now has a foundation check, an understanding check and an Intuition Lab activity. See [discrete-math-intuition-20261030.md](review/discrete-math-intuition-20261030.md).

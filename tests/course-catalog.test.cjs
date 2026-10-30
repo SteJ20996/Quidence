@@ -4,9 +4,9 @@ const C=require('../assets/school-course-content.js'),S=require('../assets/repor
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} ≠ ${b}`);
 function submit(h,choice,explanation){h.choose(choice);h.input('explanation',explanation);h.submit();}
 function finish(h,i){const l=h.C.LESSONS[i];submit(h,'unsure','I need to compare the quantities before deciding.');h.click('next');for(let j=0;j<4;j++)h.click('next-step');for(const t of l.checks){submit(h,t.correct[0],t.explanation);h.click('next');}}
-test('four original course banks have distinct tasks, lessons, keys, and varied option positions',()=>{
+test('school course banks have distinct tasks, lessons, keys, and varied option positions',()=>{
  const taskIds=new Set(),keys=new Set(),prompts=new Set();for(const id of C.IDS){const h=harness(id);assert.equal(h.C.LESSONS.length,4);assert.equal(h.app.querySelector('h1')!==null,true);keys.add(h.E.SCHEMA);const positions=[];for(const l of h.C.LESSONS){assert.equal(l.steps.length,4);for(const t of[l.predict,...l.checks]){assert(!taskIds.has(t.id));taskIds.add(t.id);prompts.add(t.prompt);positions.push(t.options.findIndex(o=>o.id===t.correct[0]));assert.equal(h.E.score(t,{choices:['unsure'],explanation:'I need to check.',otherHelp:false}),'unsure');assert.equal(t.graph,undefined,'Do not reveal the lesson solution in a first-prediction diagram');}}assert.deepEqual([...new Set(positions)].sort(),[0,1,2]);}
- assert.equal(taskIds.size,48);assert.equal(prompts.size,48);assert.equal(keys.size,4);
+ assert.equal(taskIds.size,60);assert.equal(prompts.size,60);assert.equal(keys.size,5);
 });
 test('new courses resume exact drafts, preserve revisions, and archive separately alongside legacy reports',async()=>{
  const map=new Map([['aa01_beta06_session_v1','legacy untouched']]),storage={getItem:k=>map.get(k)||null,setItem:(k,v)=>map.set(k,v)};
@@ -16,7 +16,7 @@ test('new courses resume exact drafts, preserve revisions, and archive separatel
  const t=h.C.LESSONS[0].checks[0],first=JSON.stringify(h.saved().records[t.id].submissions[0]);h.click('revise',0);submit(h,t.correct[0],'A different valid route, retained for review.');assert.equal(JSON.stringify(h.saved().records[t.id].submissions[0]),first);assert.equal(h.saved().records[t.id].submissions[1].support.feedbackSeen,true);h.click('next');h.click('next');
  for(let i=1;i<4;i++){h.click('continue');finish(h,i);}h.click('continue');assert.equal(h.saved().view,'summary');assert.ok(h.E.hydrate(h.saved()));const report=JSON.parse(map.get(S.KEY)).items.find(r=>r.module===id);assert.ok(report);assert.match(report.versions[0].payload.reportText,/A different valid route/);assert.match(report.versions[0].payload.reportText,/not automatically scored/);assert.equal(h.app.all().find(x=>x.tagName==='A'&&x.textContent==='View saved reports').href,'../../reports/');
  h.click('export-md');assert.match(await h.blobs.at(-1).text(),new RegExp(h.C.TITLE));h.click('print');assert.match(h.window.preview.html,/Print \/ save as PDF/);assert.notEqual(h.window.printed,true);assert.equal(harness(id,map).saved().view,'summary');}
- assert.equal(map.get('aa01_beta06_session_v1'),'legacy untouched');assert.equal(JSON.parse(map.get(S.KEY)).items.length,5);
+ assert.equal(map.get('aa01_beta06_session_v1'),'legacy untouched');assert.equal(JSON.parse(map.get(S.KEY)).items.length,6);
 });
 test('course controls update the live model, restore settings, and leave submitted answers unchanged',()=>{
  for(const id of C.IDS)for(let i=0;i<4;i++){const h=harness(id),l=h.C.LESSONS[i];h.click('open',i);submit(h,'unsure','I will inspect this example.');h.click('next');const answers=JSON.stringify(h.saved().records);for(const c of l.controls){const value=c.options?c.options.at(-1)[0]:c.max;h.lab(c.name,value);assert.equal(h.saved().labs[i][c.name],value);assert.equal(JSON.stringify(h.saved().records),answers);assert.ok(h.E.hydrate(h.saved()));assert.doesNotMatch(h.app.innerHTML,/NaN|Infinity/);}const resumed=harness(id,h.map);assert.deepEqual(resumed.saved().labs,h.saved().labs);}
@@ -26,11 +26,26 @@ test('all model boundaries remain finite, with independent numeric checks for ma
  close(M.midpointElasticity(4,80,6,60),(20/70)/(2/5));close(M.midpointElasticity(6,60,4,80),5/7);close(M.unitRatio(3,4),.75);
  assert.match(M.model('geometry',1,{a:3}).readout,/c = 5/);assert.match(M.model('geometry',2,{k:3}).readout,/Area factor 9/);assert.match(M.model('algebra-1',2,{b:6}).readout,/\(2, 4\)/);assert.match(M.model('algebra-2',1,{k:4}).graph,/Undefined/);assert.match(M.model('algebra-1',3,{r:4}).graph,/data-zero-axis="y" d="M70 175H470"/);
 });
+test('Basic Logic readouts match truth tables and syllogism checks computed separately',()=>{
+ const rows=[[true,true],[true,false],[false,true],[false,false]],imp=(a,b)=>!a||b;
+ for(const[op,fn]of Object.entries({and:(p,q)=>p&&q,or:(p,q)=>p||q,xor:(p,q)=>p!==q}))assert.equal(M.model('basic-logic',0,{op}).readout,`True rows: ${rows.filter(([p,q])=>fn(p,q)).length} of 4`);
+ assert.equal(M.model('basic-logic',0,{op:'not'}).readout,'True rows: 1 of 2');
+ for(const[form,fn]of Object.entries({converse:(p,q)=>imp(q,p),inverse:(p,q)=>imp(!p,!q),contrapositive:(p,q)=>imp(!q,!p)})){const same=rows.filter(([p,q])=>fn(p,q)===imp(p,q)).length;assert.equal(M.model('basic-logic',1,{form}).readout,same===4?'Same truth value in all 4 rows':`Same truth value in ${same} of 4 rows`);}
+ for(const[form,premise,conclusion]of[['mp',p=>p,(p,q)=>q],['mt',(p,q)=>!q,p=>!p],['ac',(p,q)=>q,p=>p],['da',p=>!p,(p,q)=>!q]]){const valid=rows.every(([p,q])=>!(imp(p,q)&&premise(p,q))||conclusion(p,q));assert.match(M.model('basic-logic',2,{form}).readout,valid?/^Valid:/:/^Invalid:/,form);}
+ // Every choice of sets A, B and C among three things. A countermodel needs at most one thing for each "some" premise and one for the denied conclusion, so three things are enough.
+ const holds=([q,x,y],m)=>{const both=[0,1,2].some(i=>m[x][i]&&m[y][i]),outside=[0,1,2].some(i=>m[x][i]&&!m[y][i]);return q==='all'?!outside:q==='no'?!both:q==='some'?both:outside;};
+ const worlds=[];for(let code=0;code<512;code++){const bit=k=>[0,1,2].map(i=>!!(code>>(3*k+i)&1));worlds.push({A:bit(0),B:bit(1),C:bit(2)});}
+ for(const[form,premises,conclusion,valid]of[['barbara',[['all','A','B'],['all','B','C']],['all','A','C'],true],['middle',[['all','A','B'],['all','C','B']],['all','A','C'],false],['ferio',[['no','B','C'],['some','A','B']],['someNot','A','C'],true]]){
+  const fits=worlds.filter(m=>premises.every(p=>holds(p,m)));assert.equal(fits.every(m=>holds(conclusion,m)),valid,form);
+  const r=M.model('basic-logic',3,{form}),empty=[1,2,3,4,5,6,7].filter(region=>!fits.some(m=>[0,1,2].some(i=>['A','B','C'].every((k,j)=>m[k][i]===!!(region>>j&1))))).length;
+  assert.match(r.readout,valid?/^Valid:/:/^Invalid:/,form);assert.equal(r.graph.includes('#a84324'),!valid,form);assert.equal((r.graph.match(/ mask="url\(/g)||[]).length,empty,form);
+ }
+});
 test('new course recovery keeps corrupt data and other course records intact',()=>{
  for(const id of C.IDS){const key=id+'_beta01_session_v1',map=new Map([[key,'{unreadable'],['geometry_beta01_session_v1',id==='geometry'?'{unreadable':'preserve other']]),h=harness(id,map);h.click('reset-blocked');h.click('cancel-reset');assert.equal(map.get(key),'{unreadable');h.click('raw');h.click('reset-blocked');h.click('confirm-reset');assert.ok(h.E.hydrate(h.saved()));if(id!=='geometry')assert.equal(map.get('geometry_beta01_session_v1'),'preserve other');const denied=harness(id,new Map(),true);denied.click('start');submit(denied,'unsure','Keep working even if saving is unavailable.');denied.click('next');assert.match(denied.app.innerHTML,/Explore the example/);}
 });
 test('mathematics and physics entry links resolve and retired subjects cannot start activities',()=>{
- const root=path.resolve(__dirname,'..'),html=fs.readFileSync(path.join(root,'index.html'),'utf8');assert.equal(Catalog.GROUPS.length,3);assert.equal(Object.keys(Catalog.COURSES).length,14);assert.equal(Object.values(Catalog.COURSES).filter(c=>!c.planned).length,14);
+ const root=path.resolve(__dirname,'..'),html=fs.readFileSync(path.join(root,'index.html'),'utf8');assert.equal(Catalog.GROUPS.length,3);assert.equal(Object.keys(Catalog.COURSES).length,15);assert.equal(Object.values(Catalog.COURSES).filter(c=>!c.planned).length,15);
  for(const[id,c]of Object.entries(Catalog.COURSES)){const dir=path.join(root,c.course),page=fs.readFileSync(path.join(dir,'index.html'),'utf8');assert.match(html,new RegExp('data-subject="'+id+'"'));for(const[,link]of page.matchAll(/(?:href|src)="([^"]+)"/g))if(!/^(https?:|data:|#)/.test(link))assert.ok(fs.existsSync(path.resolve(dir,link.split(/[?#]/)[0])),id+' '+link);}
  const macro=fs.readFileSync(path.join(root,'courses/macroeconomics/index.html'),'utf8');assert.match(macro,/no longer offered/);assert.doesNotMatch(macro,/course-app.js|content.js|data-action="start"/);
  assert.deepEqual(Goals.hydrate({schema:Goals.KEY,subject:'aa01',text:'Keep my old request.'}),{subject:'algebra-1',text:'Keep my old request.',includeInReport:false});assert.equal(Goals.hydrate({schema:Goals.KEY,subject:'macroeconomics',text:'x'}),null);assert.equal(Goals.prompt({subject:'microeconomics',text:'Old request'}),'');

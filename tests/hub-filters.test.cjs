@@ -19,7 +19,7 @@ test('homepage temporarily removes filters and keeps separate course starts with
  assert.match(source,/Tell us what you're looking for/);assert.match(source,/>Optional</);assert.match(source,/No learning request is needed/);
  assert.match(source,/data-home-view="map"/);assert.match(source,/data-home-view="courses"/);assert.match(source,/id="knowledge-map"/);
  assert.match(source,/>Middle School</);assert.match(source,/>High School</);assert.match(source,/>College Level</);
- assert.equal([...source.matchAll(/class="subject-link"/g)].length,14);assert.equal([...source.matchAll(/data-learning-subject="/g)].length,14);
+ assert.equal([...source.matchAll(/class="subject-link"/g)].length,15);assert.equal([...source.matchAll(/data-learning-subject="/g)].length,15);
  assert.deepEqual([...source.matchAll(/data-subject="([^\"]+)"/g)].map(m=>m[1]).sort(),[...order].sort());
  assert.doesNotMatch(source,/<article[^>]*\bhidden\b/);
 });

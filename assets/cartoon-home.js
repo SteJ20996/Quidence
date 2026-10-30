@@ -4,7 +4,7 @@ const home=document.getElementById('quidence-home');if(!home)return;
 const catalog=window.QuidenceCourseCatalog,bar=document.getElementById('subject-categories');
 const validGroup=id=>id==='all'||catalog.GROUPS.some(g=>g.id===id);
 let group=new URL(location.href).searchParams.get('group')||'all';if(!validGroup(group))group='all';
-const iconNames={'pre-algebra':'numberline','algebra-1':'balance',geometry:'shapes','coordinate-geometry':'axes','algebra-2':'parabola',af01:'wave',ad01:'integral',ae01:'bars',ab01:'vectors','number-theory':'dots','discrete-math':'graph',ac01:'game','physics-1':'pendulum','physics-2':'circuit'};
+const iconNames={'pre-algebra':'numberline','algebra-1':'balance',geometry:'shapes','coordinate-geometry':'axes','algebra-2':'parabola','basic-logic':'venn',af01:'wave',ad01:'integral',ae01:'bars',ab01:'vectors','number-theory':'dots','discrete-math':'graph',ac01:'game','physics-1':'pendulum','physics-2':'circuit'};
 const requestSelect=document.getElementById('request-subject');
 function illustrated(){return document.documentElement.dataset.uiTheme!=='classic';}
 for(const [i,[id,course]]of Object.entries(catalog.COURSES).entries()){
