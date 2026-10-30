@@ -40,17 +40,22 @@ async function main(){
    assert(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=1,'Discrete Mathematics overflow '+p.id+' '+i+' at '+width);
   }}}
   await page.setViewportSize({width:1440,height:900});
+  // Labs show a result only after the learner acts, so they do not answer a step in advance.
+  const labText=async(project,step)=>{await chooseProject(project);await page.locator(`[data-step="${step}"]`).click();return page.locator('#lab').textContent();};
+  assert.doesNotMatch(await labText('dm-p02',0),/56/);assert.doesNotMatch(await labText('dm-p05',0),/30/);
+  assert.doesNotMatch(await labText('dm-p07',0),/[35]/);assert.doesNotMatch(await labText('dm-p09',1),/\b9\b/);
+  assert.doesNotMatch(await labText('dm-p04',0),/7/);assert.match(await labText('dm-p08',0),/T\(2\) = 2/);
   // Every lab control runs in Spanish, so its live text is checked for translations too.
   for(const [project,step,actions]of [
    ['dm-p01',0,['slot-A','slot-B','slot-B','slot-C','slot-D','slot-D','slot-E','slot-E','slot-E','slot-F','slot-F','slot-reset']],
-   ['dm-p02',2,['paths-close','paths-close']],
+   ['dm-p02',2,['paths-next','paths-next','paths-all','paths-close','paths-close','paths-reset']],
    ['dm-p03',1,['pick-1','pick-20','pick-7','pick-1','pigeon-odd','pick-12','pick-3','pigeon-sum','pick-clear']],
    ['dm-p04',0,['hanoi-0-2','hanoi-0-1','hanoi-2-1','hanoi-0-2','hanoi-1-0','hanoi-1-2','hanoi-0-2','hanoi-4','hanoi-0-1','hanoi-reset','hanoi-3']],
-   ['dm-p05',0,['board-colors','board-swap','board-swap','board-colors']],
+   ['dm-p05',0,['board-count','board-colors','board-swap','board-swap','board-colors','board-count']],
    ['dm-p06',2,['tromino-2','hole-3-1','tromino-3','hole-5-6','hole-0-0']],
-   ['dm-p07',3,['bridge-BC','bridge-AD','bridge-BC','bridge-AD']],
+   ['dm-p07',3,['bridge-degrees','bridge-BC','bridge-AD','bridge-BC','bridge-AD','bridge-degrees']],
    ['dm-p08',0,['strip-up','strip-up','strip-down']],
-   ['dm-p09',1,['perm-toggle','perm-toggle']],
+   ['dm-p09',1,['perm-mark','perm-toggle','perm-toggle','perm-mark']],
    ['dm-p10',1,['kruskal-next','kruskal-next','kruskal-next','kruskal-next','kruskal-next','kruskal-next','kruskal-next','kruskal-next','kruskal-next','kruskal-reset']]
   ]){await chooseProject(project);await page.locator(`[data-step="${step}"]`).click();for(const action of actions){await page.locator(`[data-lab="${action}"]`).click();await collect();}}
   // The Hanoi lab reaches the fewest-moves solution and blocks an illegal move without counting it.
@@ -59,7 +64,7 @@ async function main(){
   await page.locator('#quidence-language').selectOption('en');await page.waitForFunction(()=>QuidenceI18n.locale==='en');
   assert.match(await page.locator('#lab .lab-status').textContent(),/Solved in 7 moves/);
   await page.locator('[data-lab="hanoi-reset"]').click();await page.locator('[data-lab="hanoi-0-1"]').click();await page.locator('[data-lab="hanoi-0-1"]').click();
-  assert.match(await page.locator('#lab .lab-status').textContent(),/Moves: 1 /);
+  assert.equal(await page.locator('#lab .lab-status').textContent(),'Moves: 1');
   // Kruskal's algorithm stops at the cost proved in the project.
   await chooseProject('dm-p10');await page.locator('[data-step="1"]').click();for(let i=0;i<9;i++)await page.locator('[data-lab="kruskal-next"]').click();
   assert.match(await page.locator('#lab').textContent(),/Total cost: 17/);

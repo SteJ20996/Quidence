@@ -584,10 +584,6 @@
     "Resuelto en [n] movimientos."
   ],
   [
-    "Moves: [n] · Fewest possible: [n]",
-    "Movimientos: [n] · Mínimo posible: [n]"
-  ],
-  [
     "Row [n], column [n]",
     "Fila [n], columna [n]"
   ],
@@ -606,5 +602,9 @@
   [
     "Total cost: [n]",
     "Costo total: [n]"
+  ],
+  [
+    "Moves: [n]",
+    "Movimientos: [n]"
   ]
 ]

@@ -541,7 +541,7 @@ const data={
           "y": 0.075,
           "layer": "entry",
           "en": "Proof & discrete math",
-          "es": "Demostración y matemática discreta"
+          "es": "Demostración y matemáticas discretas"
         },
         {
           "id": "ode",
@@ -683,7 +683,7 @@ const data={
           "y": 0.94,
           "layer": "entry",
           "en": "Proof & discrete math",
-          "es": "Demostración y matemática discreta"
+          "es": "Demostración y matemáticas discretas"
         },
         {
           "id": "linear",

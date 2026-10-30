@@ -5592,11 +5592,11 @@
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "281844fe91c2543247996dffd52e6e58e50a4fef37502bb215864f470bde677e"
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "c0de95cff6836963c9c09b91355fd1c1e255a142147fa3ff1e46e876630721bd"
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
         }
       ],
       "sourceReview": {
@@ -5619,16 +5619,16 @@
       "title": "City routes and Pascal’s triangle",
       "bankVersion": "discrete-math-v1",
       "availability": "active",
-      "fingerprint": "bc8948b22392ff36ee26c7ca5f78bc077f49e64444573f9091b0d5204acbca13",
+      "fingerprint": "4cc16d001d7e2d2bb6b7c1011e5f3f89d4546b55a3b043af535fab56c42dd920",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "281844fe91c2543247996dffd52e6e58e50a4fef37502bb215864f470bde677e"
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "c0de95cff6836963c9c09b91355fd1c1e255a142147fa3ff1e46e876630721bd"
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
         }
       ],
       "sourceReview": {
@@ -5651,16 +5651,16 @@
       "title": "Pigeonholes and guaranteed pairs",
       "bankVersion": "discrete-math-v1",
       "availability": "active",
-      "fingerprint": "56f52e4e85d237fd83c0c4616e35efe922666ad167ba3775d9c03ba1e4a43d86",
+      "fingerprint": "1b44da4f6ed753c3ad131fe405c67d122784bc4ea1b588069d4b5fb1d13fcb24",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "281844fe91c2543247996dffd52e6e58e50a4fef37502bb215864f470bde677e"
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "c0de95cff6836963c9c09b91355fd1c1e255a142147fa3ff1e46e876630721bd"
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
         }
       ],
       "sourceReview": {
@@ -5683,16 +5683,16 @@
       "title": "The Tower of Hanoi",
       "bankVersion": "discrete-math-v1",
       "availability": "active",
-      "fingerprint": "9867dd8113dc32ae2d877f6d1990b768d4b6402c9436e967ff3aa0b53efe6754",
+      "fingerprint": "708fe3d9270d01d55d843dc36a6d542c4036491bf2fe5564825f362da29030f6",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "281844fe91c2543247996dffd52e6e58e50a4fef37502bb215864f470bde677e"
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "c0de95cff6836963c9c09b91355fd1c1e255a142147fa3ff1e46e876630721bd"
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
         }
       ],
       "sourceReview": {
@@ -5715,16 +5715,16 @@
       "title": "A chessboard with two missing corners",
       "bankVersion": "discrete-math-v1",
       "availability": "active",
-      "fingerprint": "9f181b898336ca7faeaf6511206f4c73ec3308680dd0f309aeb121d62f7e0afd",
+      "fingerprint": "d5b65d59d0dd64eb0fb16daadf0d3ae72414214016c2a91624cb55bb67532659",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "281844fe91c2543247996dffd52e6e58e50a4fef37502bb215864f470bde677e"
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "c0de95cff6836963c9c09b91355fd1c1e255a142147fa3ff1e46e876630721bd"
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
         }
       ],
       "sourceReview": {
@@ -5747,16 +5747,16 @@
       "title": "Covering boards with L-trominoes",
       "bankVersion": "discrete-math-v1",
       "availability": "active",
-      "fingerprint": "f5ae88eee8da44582fd76d7758703542a3e686d2510f9412b8aa0f01245fcd6b",
+      "fingerprint": "58df13455ccf7ca757b08c830cbf0ea7669b35bc267b18c9c87f4a1941be9973",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "281844fe91c2543247996dffd52e6e58e50a4fef37502bb215864f470bde677e"
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "c0de95cff6836963c9c09b91355fd1c1e255a142147fa3ff1e46e876630721bd"
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
         }
       ],
       "sourceReview": {
@@ -5779,16 +5779,16 @@
       "title": "The bridges of Königsberg",
       "bankVersion": "discrete-math-v1",
       "availability": "active",
-      "fingerprint": "1f4662b07d799ccaae1d327ac335b2c7d7b70acc4c6efad290de875571fe54bb",
+      "fingerprint": "9386ae9f8ec57a5539d78f63d8ad2999e54987ec890b950fe19f4c8cce6bc1db",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "281844fe91c2543247996dffd52e6e58e50a4fef37502bb215864f470bde677e"
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "c0de95cff6836963c9c09b91355fd1c1e255a142147fa3ff1e46e876630721bd"
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
         }
       ],
       "sourceReview": {
@@ -5811,16 +5811,16 @@
       "title": "Domino strips and linear recurrences",
       "bankVersion": "discrete-math-v1",
       "availability": "active",
-      "fingerprint": "013a39c007faba8a1cc55a4c3e12f91385efa78375525defa00e9a433d5ea71e",
+      "fingerprint": "6e880ad24352aa1ccd1fc783971f95a8b3e54f3bb755e049b2421db5ffeb6eb3",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "281844fe91c2543247996dffd52e6e58e50a4fef37502bb215864f470bde677e"
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "c0de95cff6836963c9c09b91355fd1c1e255a142147fa3ff1e46e876630721bd"
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
         }
       ],
       "sourceReview": {
@@ -5843,16 +5843,16 @@
       "title": "Inclusion–exclusion and the mixed-up hats",
       "bankVersion": "discrete-math-v1",
       "availability": "active",
-      "fingerprint": "3e57965f4bd06dd44f755fce85d28a0babafbd98d38c3417561cc38ee5e633c5",
+      "fingerprint": "3ee575a4997307b8b3a73f4a8a71063b42ca3040713e87462590f6ddb46e485c",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "281844fe91c2543247996dffd52e6e58e50a4fef37502bb215864f470bde677e"
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "c0de95cff6836963c9c09b91355fd1c1e255a142147fa3ff1e46e876630721bd"
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
         }
       ],
       "sourceReview": {
@@ -5880,11 +5880,11 @@
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "281844fe91c2543247996dffd52e6e58e50a4fef37502bb215864f470bde677e"
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "c0de95cff6836963c9c09b91355fd1c1e255a142147fa3ff1e46e876630721bd"
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
         }
       ],
       "sourceReview": {

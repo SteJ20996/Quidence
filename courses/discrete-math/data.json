@@ -157,7 +157,7 @@
   "level": "High-school foundation",
   "difficulty": "medium",
   "topic": "Counting paths and binomial coefficients",
-  "prompt": "In an invented city, the streets form a square grid. A courier rides from the school to the library, which is 5 blocks east and 3 blocks north, and always moves east or north. How many shortest routes are there? Why do the route counts at the corners form Pascal’s triangle?",
+  "prompt": "In an invented city, the streets form a square grid. A courier rides from the school to the library, which is 5 blocks east and 3 blocks north, and always moves east or north. Put the school at (0, 0) and the library at (5, 3): the first number counts blocks east and the second counts blocks north. How many shortest routes are there? Why do the route counts at the corners form Pascal’s triangle?",
   "approach": "Write each route as a word made of E and N. Counting routes becomes counting words, and a word is decided by where its N’s go. For the triangle, look at the last block of a route: every route arrives either from the west or from the south.",
   "uses": "The product rule; choosing k positions out of n, C(n, k) = n! / (k!(n − k)!); splitting a count into cases that do not overlap.",
   "steps": [
@@ -187,9 +187,9 @@
     ]
    },
    {
-    "title": "Add the last block",
+    "title": "Look at the last block",
     "prompt": "Every route to the library arrives through the corner just west of it, (4, 3), or just south of it, (5, 2). Count the shortest routes to each of those corners, and explain why adding them gives the total.",
-    "proof": "Routes to (4, 3) are words with 4 E’s and 3 N’s, so there are C(7, 3) = 35. Routes to (5, 2) are words with 5 E’s and 2 N’s, so there are C(7, 2) = 21.\n\nEvery route to (5, 3) ends with E or with N, not both. Removing the last letter gives a route to (4, 3) or to (5, 2), and adding it back reverses this. So the count is 35 + 21 = 56.\n\nThe same argument at every corner gives Pascal’s rule, C(n, k) = C(n − 1, k − 1) + C(n − 1, k). This is why the corner counts build Pascal’s triangle.",
+    "proof": "Routes to (4, 3) are words with 4 E’s and 3 N’s, so there are C(7, 3) = 35. Routes to (5, 2) are words with 5 E’s and 2 N’s, so there are C(7, 2) = 21.\n\nEvery route to (5, 3) ends with E or with N, not both. Removing the last letter gives a route to (4, 3) or to (5, 2), and adding it back reverses this. So the count is 35 + 21 = 56.\n\nThe same argument at every corner gives Pascal’s rule, C(n, k) = C(n − 1, k − 1) + C(n − 1, k). The corner (a, b) has C(a + b, b) routes, so the corners with a + b = n carry row n of the triangle, and the corners along the two edges, with a single route each, give the 1s at the ends of every row. This is why the corner counts build Pascal’s triangle.",
     "fields": [
      {
       "id": "west",
@@ -215,7 +215,7 @@
       "type": "reason",
       "criteria": [
        "Every route reaches the library from exactly one of the two corners, so the two groups do not overlap and together contain every route.",
-       "Removing the last block matches the routes to the library one-to-one with the routes to that corner."
+       "Removing the last block matches the routes that end with E one-to-one with the routes to (4, 3), and the routes that end with N with the routes to (5, 2)."
       ],
       "followup": "Where would the argument fail if a route could also go west?"
      }
@@ -223,7 +223,7 @@
    },
    {
     "title": "A closed intersection",
-    "prompt": "Roadworks close the intersection (2, 1). How many shortest routes pass through (2, 1), and how many avoid it?",
+    "prompt": "Roadworks close the intersection (2, 1). How many shortest routes would pass through (2, 1), and how many avoid it?",
     "proof": "A route through (2, 1) first goes from (0, 0) to (2, 1), in C(3, 1) = 3 ways, and then from (2, 1) to (5, 3), which needs 3 east and 2 north blocks, in C(5, 2) = 10 ways. By the product rule, 3 × 10 = 30 routes pass through (2, 1).\n\nThe routes that avoid it are the rest: 56 − 30 = 26. Counting the complement is often easier than counting the routes you want directly.",
     "fields": [
      {
@@ -249,7 +249,7 @@
    {
     "title": "Rows, subsets and the binomial theorem",
     "prompt": "Add the numbers in row 8 of Pascal’s triangle, C(8, 0) + C(8, 1) + ⋯ + C(8, 8). Then find the coefficient of x⁵y³ in (x + y)⁸.",
-    "proof": "C(8, k) counts the 8-letter E/N words with exactly k N’s. Every word has some number of N’s from 0 to 8, so the row counts all 2⁸ = 256 words once each.\n\nExpanding (x + y)⁸ means choosing x or y from each of the 8 factors. A term x⁵y³ comes from choosing y in exactly 3 factors, in C(8, 3) = 56 ways. So the coefficient is 56, the same number as the routes.\n\nThis is the binomial theorem: (x + y)ⁿ = Σ C(n, k) xⁿ⁻ᵏ yᵏ. Setting x = y = 1 gives the row sum 2ⁿ again.",
+    "proof": "C(8, k) counts the 8-letter E/N words with exactly k N’s. Every word has some number of N’s from 0 to 8, so the row counts all 2⁸ = 256 words once each.\n\nExpanding (x + y)⁸ means choosing x or y from each of the 8 factors. A term x⁵y³ comes from choosing y in exactly 3 factors, in C(8, 3) = 56 ways. So the coefficient is 56, the same number as the routes.\n\nThis is the binomial theorem: (x + y)ⁿ = Σ C(n, k) xⁿ⁻ᵏ yᵏ, summed over k = 0, 1, …, n. Setting x = y = 1 gives the row sum 2ⁿ again.",
     "fields": [
      {
       "id": "rowsum",
@@ -301,8 +301,8 @@
   "level": "High-school foundation",
   "difficulty": "medium",
   "topic": "The pigeonhole principle",
-  "prompt": "You choose some whole numbers from 1 to 20. How many must you choose to be sure that two of them add up to 21? How many to be sure that one of them divides another? You cannot check every choice, but the pigeonhole principle settles both questions.",
-  "approach": "If more than k objects go into k boxes, some box gets two. The work is in choosing boxes so that two objects in the same box always give what you want. Then check that one object fewer is not enough by building an example.",
+  "prompt": "You choose different whole numbers from 1 to 20. How many must you choose to be sure that two of them add up to 21? How many to be sure that one of them divides another? You cannot check every choice, but the pigeonhole principle settles both questions.",
+  "approach": "If more than n objects go into n boxes, some box gets at least two. The work is in choosing boxes so that two objects in the same box always give what you want. Then check that one object fewer is not enough by building an example.",
   "uses": "The pigeonhole principle; writing n = 2ᵏ · m with m odd; an example shows that a bound cannot be improved.",
   "steps": [
    {
@@ -510,8 +510,8 @@
    },
    {
     "title": "Find the recurrence",
-    "prompt": "When the largest disc moves, where must the other n − 1 discs be? Use this to write M(n) in terms of M(n − 1), and compute M(10).",
-    "proof": "To move, the largest disc must have nothing on top of it, and it can only land on an empty peg, because every other disc is smaller. So when it moves, the other n − 1 discs are all on the third peg, the one it is neither leaving nor entering.\n\nSo a good plan moves n − 1 discs out of the way, moves the largest disc, and moves the n − 1 discs back on top: M(n) = 2M(n − 1) + 1.\n\nStarting from M(1) = 1: 3, 7, 15, 31, 63, 127, 255, 511, 1023. So M(10) = 1023.",
+    "prompt": "When the largest disc moves, where must the other n − 1 discs be? Use this to build a plan for n discs from a plan for n − 1 discs. Let M(n) be the number of moves this recursive plan uses: write M(n) in terms of M(n − 1), and compute M(10).",
+    "proof": "To move, the largest disc must have nothing on top of it, and it can only land on an empty peg, because every other disc is smaller. So when it moves, the other n − 1 discs are all on the third peg, the one it is neither leaving nor entering.\n\nSo the recursive plan moves n − 1 discs out of the way, moves the largest disc, and moves the n − 1 discs back on top: M(n) = 2M(n − 1) + 1. Step 4 shows that no plan does better.\n\nStarting from M(1) = 1: 3, 7, 15, 31, 63, 127, 255, 511, 1023. So M(10) = 1023.",
     "fields": [
      {
       "id": "where",
@@ -525,7 +525,7 @@
        },
        {
         "value": "target",
-        "label": "all on the target peg"
+        "label": "all on the peg the largest disc moves to"
        },
        {
         "value": "any",
@@ -572,8 +572,8 @@
    },
    {
     "title": "Nobody can do better",
-    "prompt": "Prove that every solution uses at least 2ⁿ − 1 moves. Then count how many times the smallest disc moves in the best solution for 5 discs.",
-    "proof": "Let L(n) be the fewest moves possible. The largest disc must move at least once. Before its first move, the other n − 1 discs have been moved together onto a single other peg, which takes at least L(n − 1) moves. After its last move it sits on the right peg, and the n − 1 discs must still be brought onto it, at least L(n − 1) more moves.\n\nSo L(n) ≥ 2L(n − 1) + 1, and induction gives L(n) ≥ 2ⁿ − 1. Step 3 shows a plan with exactly 2ⁿ − 1 moves, so the minimum is 2ⁿ − 1.\n\nIn the best plan, the smallest disc moves on every other move: 1, 2, 4, 8, 16 times for 1 to 5 discs. For 5 discs it moves 2⁴ = 16 times.",
+    "prompt": "Prove that every solution uses at least 2ⁿ − 1 moves. Then count how many times the smallest disc moves in the recursive plan for 5 discs.",
+    "proof": "Let L(n) be the fewest moves possible. The largest disc must move at least once. Before its first move, the other n − 1 discs have been moved together onto a single other peg, which takes at least L(n − 1) moves. After its last move it sits on the right peg, and the n − 1 discs must still be brought onto it, at least L(n − 1) more moves.\n\nSo L(n) ≥ 2L(n − 1) + 1, and induction gives L(n) ≥ 2ⁿ − 1. Steps 2 and 3 give a plan with exactly 2ⁿ − 1 moves, so the minimum is 2ⁿ − 1.\n\nIn the recursive plan the smallest disc moves once for one disc. For n ≥ 2 the plan runs the plan for n − 1 discs twice, and the largest disc is not the smallest, so the smallest disc moves twice as often: 1, 2, 4, 8 and 16 times for 1 to 5 discs. For 5 discs it moves 2⁴ = 16 times.",
     "fields": [
      {
       "id": "lower",
@@ -606,13 +606,13 @@
   "level": "Bridge (high school to undergraduate)",
   "difficulty": "medium",
   "topic": "Invariants and proof by contradiction",
-  "prompt": "A domino covers two squares that share a side. An 8 × 8 chessboard can be covered by 32 dominoes. Now remove two opposite corner squares. Can the remaining 62 squares be covered by 31 dominoes, with no overlaps and nothing sticking out? Instead of searching, find something that every domino does in the same way.",
-  "approach": "Use the colors of the board. Count what is left of each color, and count what any set of dominoes must cover. If the two counts disagree, no covering exists, however clever. A quantity that every move changes in a predictable way is called an invariant.",
+  "prompt": "A domino covers two squares that share a side. An 8 × 8 chessboard can be covered by 32 dominoes. Now remove two diagonally opposite corner squares. Can the remaining 62 squares be covered by 31 dominoes, with no overlaps and nothing sticking out? Instead of searching, find something that every domino does in the same way.",
+  "approach": "Use the colors of the board. Count what is left of each color, and count what any set of dominoes must cover. If the two counts disagree, no covering exists, however clever. A quantity that stays the same however the dominoes are placed is called an invariant. Find one.",
   "uses": "Coloring arguments; proof by contradiction; necessary versus sufficient conditions.",
   "steps": [
    {
     "title": "Count the colors",
-    "prompt": "A chessboard has 32 dark and 32 light squares. The corners a1 and h8 are dark. After removing them, how many dark and how many light squares remain?",
+    "prompt": "A chessboard has 32 dark and 32 light squares. The corners a1 (bottom left) and h8 (top right) are dark. After removing them, how many dark and how many light squares remain?",
     "proof": "Moving one square along a row or a column changes the color. From a1 to h8 you move 7 squares right and 7 squares up, 14 moves in all, an even number, so the two corners have the same color.\n\nRemoving two dark squares leaves 32 − 2 = 30 dark squares and 32 light squares.",
     "fields": [
      {
@@ -674,7 +674,7 @@
    {
     "title": "Reach a contradiction",
     "prompt": "Can the 62 squares be covered? Write a proof that does not depend on trying placements.",
-    "proof": "Suppose a covering existed. By step 2 it would cover 31 dark squares, but only 30 dark squares remain. This is impossible, so no covering exists.\n\nNotice what the argument did not need: no search, and no knowledge of where the dominoes go. One number that every domino changes in the same way was enough.",
+    "proof": "Suppose a covering existed. By step 2 it would cover 31 dark squares, but only 30 dark squares remain. This is impossible, so no covering exists.\n\nNotice what the argument did not need: no search, and no knowledge of where the dominoes go. One invariant was enough: for any set of dominoes, the dark squares covered minus the light squares covered is 0, but on this board it would have to be 30 − 32 = −2.",
     "fields": [
      {
       "id": "possible",
@@ -710,8 +710,8 @@
    },
    {
     "title": "Other board sizes",
-    "prompt": "Remove two opposite corners from an n × n board with n ≥ 2. For which n can the rest be covered by dominoes? Explain both the even and the odd case.",
-    "proof": "Opposite corners of any n × n board are 2(n − 1) moves apart, an even number, so they always have the same color.\n\nIf n is even, the board has n²/2 squares of each color, and removing two of one color leaves the colors unbalanced, as in steps 1 to 3. If n is odd, n² − 2 is odd, but dominoes always cover an even number of squares.\n\nSo the answer is: for no n. The coloring gives a necessary condition, equal numbers of dark and light squares. It is not always sufficient, which is why the next challenge is worth trying.",
+    "prompt": "Remove two diagonally opposite corners from an n × n board with n ≥ 2. For which n can the rest be covered by dominoes? Explain both the even and the odd case.",
+    "proof": "Diagonally opposite corners of any n × n board are 2(n − 1) moves apart, an even number, so they always have the same color.\n\nIf n is even, the board has n²/2 squares of each color, and removing two of one color leaves the colors unbalanced, as in steps 1 to 3. If n is odd, n² − 2 is odd, but dominoes always cover an even number of squares.\n\nSo the answer is: for no n. The coloring gives a necessary condition, equal numbers of dark and light squares. It is not always sufficient: on the 8 × 8 board, remove a2, b1, g7 and h8. Two light and two dark squares are gone, so 30 of each remain, but the corner a1 has lost both of its neighbors and no domino can cover it.",
     "fields": [
      {
       "id": "which",
@@ -759,7 +759,7 @@
   "level": "Bridge (high school to undergraduate)",
   "difficulty": "challenging",
   "topic": "Mathematical induction",
-  "prompt": "An L-tromino is an L-shaped tile made of three squares. Take a 2ⁿ × 2ⁿ board and remove any one square. Can the rest always be covered by L-trominoes with no overlaps? Check small boards, count the tiles, and then prove it for every n.",
+  "prompt": "An L-tromino is an L-shaped tile made of three squares. Take a 2ⁿ × 2ⁿ board and remove any one square. Can the rest always be covered by L-trominoes with no overlaps? Check small boards, count the trominoes, and then prove it for every n.",
   "approach": "Split the big board into four quadrants of size 2ⁿ⁻¹ × 2ⁿ⁻¹. One quadrant already has a missing square. Place one tromino at the center so that it takes one square from each of the other three quadrants. Now every quadrant is a smaller board with one square missing, which is exactly the case you assumed.",
   "uses": "Mathematical induction; 4ⁿ − 1 is divisible by 3; splitting a problem into smaller copies of itself.",
   "steps": [
@@ -846,8 +846,8 @@
    },
    {
     "title": "The inductive step",
-    "prompt": "Assume every 2ⁿ⁻¹ × 2ⁿ⁻¹ board with one square removed can be covered. Split a 2ⁿ × 2ⁿ board into four quadrants. Where do you place one tromino so that every quadrant becomes a smaller board with one square missing? How many quadrants does it touch?",
-    "proof": "The missing square lies in one quadrant. Each of the other three quadrants has a corner square at the center of the big board. Place one tromino on those three central squares.\n\nIt touches 3 quadrants, one square in each. Now each of the four quadrants is a 2ⁿ⁻¹ × 2ⁿ⁻¹ board with exactly one square missing or already covered, so the assumption covers each of them.\n\nThe count matches: if T(n) is the number of trominoes, then T(n) = 4T(n − 1) + 1 with T(1) = 1, which gives T(n) = (4ⁿ − 1)/3. For n = 4, T(4) = 85.",
+    "prompt": "Assume every 2ⁿ⁻¹ × 2ⁿ⁻¹ board with one square removed can be covered. Split a 2ⁿ × 2ⁿ board into four quadrants. Where do you place one tromino so that every quadrant becomes a smaller board with one square missing? How many quadrants contain a square of this tromino?",
+    "proof": "The missing square lies in one quadrant. Each of the other three quadrants has a corner square at the center of the big board. Place one tromino on those three central squares.\n\nIt has one square in each of 3 quadrants. Now each of the four quadrants is a 2ⁿ⁻¹ × 2ⁿ⁻¹ board with exactly one square missing or already covered, so the induction hypothesis covers each of them.\n\nThe count matches: if T(n) is the number of trominoes, then T(n) = 4T(n − 1) + 1 with T(1) = 1, which gives T(n) = (4ⁿ − 1)/3. For n = 4, T(4) = 85.",
     "fields": [
      {
       "id": "center",
@@ -871,7 +871,7 @@
      },
      {
       "id": "touches",
-      "label": "Quadrants the central tromino touches",
+      "label": "Quadrants that contain a square of the central tromino",
       "type": "number",
       "answer": "3",
       "accepted": [
@@ -892,7 +892,7 @@
    {
     "title": "Write the proof",
     "prompt": "Write the complete induction proof that, for every n ≥ 1 and every position of the missing square, the board can be covered.",
-    "proof": "Statement P(n): for every position of the missing square, a 2ⁿ × 2ⁿ board with that square removed can be covered by L-trominoes.\n\nBase case: P(1) holds by step 2. Inductive step: assume P(n − 1). For any missing square on a 2ⁿ × 2ⁿ board, place the central tromino as in step 3. Each quadrant is then a 2ⁿ⁻¹ × 2ⁿ⁻¹ board missing one square, so P(n − 1) covers it. Together with the central tromino this covers the whole board, so P(n) holds.\n\nBy induction, P(n) holds for every n ≥ 1. The statement had to allow every position of the missing square, because the inductive step applies it to the three central squares, which the original problem did not choose.",
+    "proof": "Statement P(n): for every position of the missing square, a 2ⁿ × 2ⁿ board with that square removed can be covered by L-trominoes.\n\nBase case: P(1) holds by step 2. Inductive step: assume P(n − 1). For any missing square on a 2ⁿ × 2ⁿ board, place the central tromino as in step 3. Each quadrant is then a 2ⁿ⁻¹ × 2ⁿ⁻¹ board missing one square, so P(n − 1) covers it. Together with the central tromino this covers the whole board, so P(n) holds.\n\nBy induction, P(n) holds for every n ≥ 1. The statement has to allow every position of the missing square. In the quadrant that holds the original missing square, that square can be anywhere, so the inductive step needs P(n − 1) for every position, not only for a corner. (The three squares under the central tromino are always corners of their quadrants.)",
     "fields": [
      {
       "id": "proof",
@@ -900,10 +900,10 @@
       "type": "reason",
       "criteria": [
        "State P(n) for every position of the missing square, and check the base case n = 1.",
-       "Assume P(n − 1), place the central tromino, and apply the assumption to each of the four quadrants.",
+       "Assume P(n − 1), place the central tromino, and apply the induction hypothesis to each of the four quadrants.",
        "Conclude that P(n) holds for every n ≥ 1."
       ],
-      "followup": "Why would the proof fail if P(n) only allowed a missing corner square?"
+      "followup": "Which quadrant forces P(n − 1) to allow every position of the missing square, not only a corner?"
      }
     ]
    }
@@ -1061,7 +1061,7 @@
    {
     "title": "Build new bridges",
     "prompt": "The city may build new bridges. What is the fewest number of new bridges that makes a walk crossing every bridge exactly once possible? What is the fewest that makes a closed walk possible, one that ends where it starts?",
-    "proof": "A new bridge between two odd areas, say B and C, makes both of them even. Then only A and D are odd, so an Euler trail from A to D exists. One bridge is enough, and zero bridges are not.\n\nFor a closed walk every degree must be even. One new bridge changes the parity of only two areas, so it leaves two odd areas. Two new bridges, for example B–C and A–D, make all four degrees even.\n\nFor connected graphs these conditions are also sufficient, by Euler’s theorem: 0 odd vertices give a closed walk, and 2 give a trail between them. So the answers are 1 and 2.",
+    "proof": "A new bridge between two odd areas, say B and C, makes both of them even. Then only A and D are odd, and the bridges still connect all four areas, so by Euler’s theorem (below) a walk from A to D can cross every bridge once. One bridge is enough; with no new bridge all four areas stay odd.\n\nFor a closed walk every degree must be even. One new bridge changes the parity of only two areas, so it leaves two odd areas. Two new bridges, for example B–C and A–D, make all four degrees even.\n\nFor connected graphs these conditions are also sufficient, by Euler’s theorem: 0 odd vertices give a closed walk, and 2 give a trail between them. So the answers are 1 and 2.",
     "fields": [
      {
       "id": "trail",
@@ -1185,8 +1185,8 @@
    },
    {
     "title": "Back to the dominoes",
-    "prompt": "The domino recurrence has the characteristic equation x² = x + 1. Explain why every solution of such a recurrence is fixed by its first two values, so the formula from the roots is the only one. For which n is T(n) = 144?",
-    "proof": "The roots of x² − x − 1 = 0 are φ = (1 + √5)/2 and ψ = (1 − √5)/2. As in step 3, T(n) = αφⁿ + βψⁿ for constants chosen from T(1) and T(2); this gives Binet’s formula.\n\nTwo sequences that satisfy the same second-order recurrence and agree in their first two terms agree everywhere, by strong induction: each later term is computed from the two before it. So the closed formula is not just one solution; it is the solution.\n\nContinuing the list, T(11) = 89 + 55 = 144. So T(n) = 144 when n = 11.",
+    "prompt": "The domino recurrence has the characteristic equation r² = r + 1. Explain why every solution of such a recurrence is fixed by its first two values, so the formula from the roots is the only one. For which n is T(n) = 144?",
+    "proof": "The roots of r² − r − 1 = 0 are φ = (1 + √5)/2 and ψ = (1 − √5)/2. As in step 3, try T(n) = αφⁿ + βψⁿ. Since φ ≠ ψ, the equations αφ + βψ = T(1) and αφ² + βψ² = T(2) have exactly one solution, α = φ/√5 and β = −ψ/√5. This gives Binet’s formula, T(n) = (φⁿ⁺¹ − ψⁿ⁺¹)/√5.\n\nTwo sequences that satisfy the same second-order recurrence and agree in their first two terms agree everywhere, by strong induction: each later term is computed from the two before it. So the closed formula is not just one solution; it is the solution.\n\nContinuing the list, T(11) = 89 + 55 = 144. So T(n) = 144 when n = 11.",
     "fields": [
      {
       "id": "n144",
@@ -1220,7 +1220,7 @@
   "difficulty": "challenging",
   "topic": "Inclusion–exclusion and derangements",
   "prompt": "At an invented party, n guests leave their hats at the door, and the hats are handed back in a random order. What is the probability that nobody gets their own hat? First practice inclusion–exclusion on a smaller question, then count the orders in which no guest gets their own hat.",
-  "approach": "To count what avoids several properties, count everything, subtract each property, add back what you subtracted twice, and continue with alternating signs. For the hats, the property Fᵢ is “guest i gets their own hat”.",
+  "approach": "To count what avoids several properties, count everything, subtract each property, add back what you subtracted twice, and continue with alternating signs. For the hats, the property Fᵢ is “guest i gets their own hat”, and Dₙ is the number of orders of n hats in which nobody gets their own hat.",
   "uses": "The principle of inclusion–exclusion; counting permutations; the series for e⁻¹.",
   "steps": [
    {
@@ -1285,7 +1285,7 @@
    {
     "title": "The general formula",
     "prompt": "Prove that Dₙ = n!(1 − 1/1! + 1/2! − ⋯ + (−1)ⁿ/n!). Compute D₅ and the probability that none of 5 guests gets their own hat.",
-    "proof": "Let Fᵢ be the set of orders that give guest i hat i. Any k of these sets intersect in (n − k)! orders, because the other n − k hats are free. There are C(n, k) such intersections.\n\nInclusion–exclusion gives Dₙ = Σₖ (−1)ᵏ C(n, k)(n − k)! = Σₖ (−1)ᵏ n!/k!, which is the formula.\n\nFor n = 5: D₅ = 120 − 120 + 60 − 20 + 5 − 1 = 44. The probability is 44/120 = 11/30 ≈ 0.367.",
+    "proof": "Let Fᵢ be the set of orders that give guest i hat i. Any k of these sets intersect in (n − k)! orders, because the other n − k hats are free. There are C(n, k) such intersections.\n\nDₙ counts the orders outside F₁ ∪ ⋯ ∪ Fₙ, so Dₙ = n! − |F₁ ∪ ⋯ ∪ Fₙ|. Inclusion–exclusion, with the k = 0 term n! counting every order, gives Dₙ = Σ (−1)ᵏ C(n, k)(n − k)! = Σ (−1)ᵏ n!/k!, summed over k = 0, 1, …, n. This is the formula.\n\nFor n = 5: D₅ = 120 − 120 + 60 − 20 + 5 − 1 = 44. The probability is 44/120 = 11/30 ≈ 0.367.",
     "fields": [
      {
       "id": "d5",
@@ -1322,7 +1322,7 @@
    {
     "title": "Many guests",
     "prompt": "Compute D₆. What happens to the probability Dₙ/n! as the number of guests grows?",
-    "proof": "D₆ = 720 − 720 + 360 − 120 + 30 − 6 + 1 = 265.\n\nDₙ/n! = 1 − 1/1! + 1/2! − ⋯ + (−1)ⁿ/n! is a partial sum of the series e⁻¹ = Σ (−1)ᵏ/k!. So the probability approaches 1/e ≈ 0.368.\n\nThe approach is very fast: for 5 guests the probability is already within 0.002 of 1/e. So the chance that nobody gets their own hat is about 37% whether there are ten guests or ten thousand.",
+    "proof": "D₆ = 720 − 720 + 360 − 120 + 30 − 6 + 1 = 265.\n\nDₙ/n! = 1 − 1/1! + 1/2! − ⋯ + (−1)ⁿ/n! is a partial sum of the series e⁻¹ = Σ (−1)ᵏ/k!, summed over every k ≥ 0. So the probability approaches 1/e ≈ 0.368.\n\nThe approach is very fast: for 5 guests the probability is already within 0.002 of 1/e. So the chance that nobody gets their own hat is about 37% whether there are ten guests or ten thousand.",
     "fields": [
      {
       "id": "d6",
