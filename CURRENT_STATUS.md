@@ -1,3 +1,9 @@
+## 2026-10-30 · Basic Logic, part 2
+
+Basic Logic has two bilingual field projects: a robotics club's rule (connectives, a conditional and its converse, and a rule with parentheses) and a farmers' market survey (a three-set Venn diagram, all/some claims, and bounds that premises force). The field-project bank is now `quidence-projects-7`; version 6 is frozen and its records still open. See [basic-logic-projects-20261030.md](review/basic-logic-projects-20261030.md).
+
+Current inventory: 15 subject cards. Every card except Basic Logic has a foundation check, an understanding check and an Intuition Lab activity; Basic Logic has its lessons and field projects. The homepage counts 22 field projects.
+
 ## 2026-10-30 · Basic Logic, part 1
 
 Basic Logic is a new School Mathematics course at the High School level, with four bilingual lessons: statements and truth tables, conditionals, valid arguments and fallacies, and quantifiers and syllogisms. Its models are truth tables and a three-set Venn diagram. The knowledge map has a new "Logic" node, and the illustrated map has a Basic Logic course node. Lesson work is saved under `basic-logic_beta01_session_v1`. Two field projects, the foundation and understanding checks, and an Intuition Lab activity are planned as later parts; the card lists them as not available yet. See [basic-logic-course-20261030.md](review/basic-logic-course-20261030.md).

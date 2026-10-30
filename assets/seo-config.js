@@ -59,7 +59,7 @@ function resolve(input,actualLocale){
   const locale=PAGES[pathname]?.fixedLocale||(supported.includes(actualLocale)?actualLocale:supported.includes(url.searchParams.get('lang'))?url.searchParams.get('lang'):'en');
   let page=PAGES[pathname],moduleId=null;
   if(ACTIVITIES[pathname]){
-    const id=url.searchParams.get('module'),valid=pathname==='/checks/'?['ab01','ae01','af01','ac01','geometry','algebra-2'].includes(id):pathname==='/foundations/'?FOUNDATION_IDS.has(id):Object.hasOwn(COURSES,id)&&!['ac01','basic-logic'].includes(id)&&(!['number-theory','discrete-math','coordinate-geometry'].includes(id)||pathname==='/diagnostics/')||id==='physics';
+    const id=url.searchParams.get('module'),valid=pathname==='/checks/'?['ab01','ae01','af01','ac01','geometry','algebra-2'].includes(id):pathname==='/foundations/'?FOUNDATION_IDS.has(id):Object.hasOwn(COURSES,id)&&id!=='ac01'&&!(id==='basic-logic'&&pathname!=='/projects/')&&(!['number-theory','discrete-math','coordinate-geometry'].includes(id)||pathname==='/diagnostics/')||id==='physics';
     const title=id==='aa01'?(locale==='es'?'Preálgebra y Álgebra I':'Pre-Algebra and Algebra I'):id==='physics'?(locale==='es'?'Física':'Physics'):COURSES[id]?.[locale==='es'?2:1];
     moduleId=valid?id:null;
     const label=ACTIVITIES[pathname][locale];

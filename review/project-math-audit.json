@@ -416,6 +416,37 @@
       "formulas": {},
       "drawings": {},
       "method": "Independent parallel current and power, reciprocal lens distances and signed scaling, photon threshold comparison."
+    },
+    "bl-p01": {
+      "numbers": {
+        "or": "32",
+        "xor": "14",
+        "notBoth": "22",
+        "counter": "2",
+        "conditional": "38",
+        "converse": "12",
+        "allowed": "23",
+        "misread": "27",
+        "unsafe": "4"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Forty listed members with three truth values each; every connective, conditional and reading of the rule evaluated member by member."
+    },
+    "bl-p02": {
+      "numbers": {
+        "none": "15",
+        "onlyFruit": "24",
+        "fruitVeg": "21",
+        "appNotFruit": "16",
+        "vegApp": "20",
+        "fruitNotVeg": "38",
+        "minFruit": "25",
+        "maxFruit": "32"
+      },
+      "formulas": {},
+      "drawings": {},
+      "method": "Eight Venn parts recovered from the totals and checked against every total; claims counted part by part; every placement of the 7 receipts outside the app users tried."
     }
   }
 }
