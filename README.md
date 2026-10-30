@@ -1,8 +1,21 @@
+## 2026-10-30 · 顯示修正與說明文件正體化
+
+- 巡檢 quidence.com 後修正五個顯示問題：
+  - Classic 首頁左側欄在筆電視窗被截掉；
+  - Coordinate Geometry 的 Intuition Lab 提示卡出現在頁首上方；
+  - 入門課公式顯示成 `x_B` 而不是下標；
+  - Coordinate Geometry 頁首的「Learning notebook」在桌面版換行；
+  - Intuition Lab 外觀列在手機上多出空白。
+
+  見 [發布紀錄](review/display-fixes-20261030.md)。
+- 其餘 31 份簡體中文說明文件改為正體中文（台灣用語）。部署說明改名為 [DEPLOYMENT.zh-TW.md](DEPLOYMENT.zh-TW.md)。
+
 ## 2026-10-29 · 數論與解析幾何補齊
 
 - 數論新增 4 道 **Test your understanding** 問題（16 個答案部分），規模與其他學科的檢查一致。見 [數論理解檢查](review/number-theory-understanding-check-20261029.md)。
 - 解析幾何補齊了其他學科已有的活動：15 題基礎檢查、4 道理解檢查（16 個答案部分）、4 節入門課和 Intuition Lab 活動 “One midpoint. One fair spot?”。首頁卡片恢復兩個專題的入口。見 [檢查](review/coordinate-geometry-checks-20261029.md)、[入門課](review/coordinate-geometry-lessons-20261029.md)、[Intuition Lab 活動](review/coordinate-geometry-intuition-20261029.md)和[專題入口](review/coordinate-geometry-card-projects-20261029.md)。
 - Geometry 與 Algebra II 新增 15 題基礎檢查，現在每張學科卡片都有基礎檢查。見 [發布紀錄](review/geometry-algebra2-foundations-20261029.md)。
+- 外觀切換列改版：桌面和平板的每個選項都有該外觀的迷你預覽，手機收成一顆顯示目前外觀的按鈕。見 [發布紀錄](review/appearance-switcher-20261029.md)。
 - quidence.com 只提供英文和西班牙文：Coordinate Geometry 課程和 Intuition Lab 的繁體中文版本已移除，舊的學習紀錄仍可開啟，答案不變。見 [發布紀錄](review/site-languages-en-es-20261029.md)。
 - 10 月 14 日至 27 日的其他更新（四種外觀、Intuition Lab、Math Voice Lab、英文聽寫複核、賽局理論專題和解析幾何專題）列在 [CURRENT_STATUS.md](CURRENT_STATUS.md)。
 
