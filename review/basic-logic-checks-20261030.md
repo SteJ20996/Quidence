@@ -62,6 +62,15 @@ A separate review recomputed every keyed answer, and the recomputations agreed. 
   - The English uses serial commas, as the lessons do.
 - **Spanish.** «todo», «algún» y «ningún» follow the course, «no faltar a más de 2 prácticas» replaces an awkward phrase, and the coin uses «cara o sello», which is more common in Latin America.
 
+A separate interface review completed both checks in English and Spanish at 1280, 768 and 375 px, twelve runs in all, with wrong answers in each. It found:
+- **No problems:** no page errors, failed requests, horizontal scroll or untranslated text.
+- **Correct reports:** 38 matched and 2 to recheck for the foundation check, and 14 and 2 for the understanding check.
+- **Shared issues, left as they were:**
+  - **Inconsistent Spanish labels:** the Spanish names for "Test your understanding" and "Check foundations" differ between the map, the cards and the activity bar.
+  - **Difficulty tags:** they read «INTERMEDIO» and «AVANZADA» with different genders.
+  - **Word break:** "Discrete Mathematics" breaks inside a word in the Classic map's subject panel.
+  - **English labels:** the saved-answer block in Spanish reports keeps English labels.
+
 ## Saved work
 
 - **Diagnostic bank:** version 9 is frozen as `assets/challenge-bank-v9.js`. `challenge-bank.js` becomes `quidence-challenges-10`, and the Basic Logic problems are in `assets/basic-logic-challenge-bank.js`. A test opens records saved under versions 6, 7, 8 and 9 and checks that each gains an empty module for each subject added after it.
