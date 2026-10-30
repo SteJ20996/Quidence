@@ -12,7 +12,7 @@ test('the card model turns over exactly the cards whose hidden side could break 
  const must=face=>letters.includes(face)?digits.some(x=>breaks(face,x)):letters.some(x=>breaks(x,face));
  ['E','K','4','7'].forEach((face,i)=>assert.equal(calc(c,i+1)[2],must(face)?1:0,face));
  assert.deepEqual(['E','K','4','7'].filter(must),['E','7']);assert.equal(c.options.en[c.answer],'E and 7');
- assert.equal(['A','B','2','3','8','9'].filter(must).length,c.target);
+ assert.equal(['A','B','2','5','8','9'].filter(must).length,c.target);assert(!['A','B','2','5','8','9'].includes(String(c.target)),'the count is not also a card face');
 });
 test('every point the fair-meeting model visits is equally far from both friends, and the transfer point is (4, 0)',()=>{
  const f=d('fair');assert.equal(f.answer,1);for(let v=f.range[0];v<=f.range[1]+1e-9;v+=f.range[2]){const [x,y,pa,pb]=calc(f,+v.toFixed(6));assert.ok(Math.abs(3*x+2*y-6)<1e-12,'on 3x + 2y = 6');assert.ok(Math.abs(pa-pb)<1e-12,'PA = PB at x = '+x);}
