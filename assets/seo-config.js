@@ -25,7 +25,7 @@ const COURSES={
 const PAGES={
   '/checks/':{en:['Test your understanding','Choose an interactive model and explanation activity or continue with the original subject check.'],es:['Comprueba tu comprensión','Elige una actividad con modelos interactivos y explicaciones o continúa con la evaluación original de la materia.']},
   '/explain/':{fixedLocale:'en',locales:['en'],en:['Math Voice Lab','Explore six mathematics models, explain your reasoning, and keep original responses with local recording and scripted follow-ups. This activity is English only.']},
-  '/intuition/':{en:['Intuition Lab','Test a mathematical hunch with interactive models, calculations and reflection across thirteen subjects.'],es:['Laboratorio de intuición','Pon a prueba una idea matemática con modelos interactivos, cálculos y reflexión en trece materias.'],sitemap:true},
+  '/intuition/':{en:['Intuition Lab','Test a mathematical hunch with interactive models, calculations and reflection across fourteen subjects.'],es:['Laboratorio de intuición','Pon a prueba una idea matemática con modelos interactivos, cálculos y reflexión en catorce materias.'],sitemap:true},
   '/modules/ad01/dist/checks/':{en:['Calculus · Test your understanding','Choose a graph-based reasoning activity or the original four-problem Calculus check.'],es:['Cálculo · Comprueba tu comprensión','Elige una actividad de razonamiento gráfico o la evaluación original de cuatro problemas de cálculo.']},
   '/modules/ad01/dist/think/':{fixedLocale:'en',en:['Calculus · Think in motion','Explore a claim about velocity and acceleration through graphs and your own explanation. This dialogue activity is English only.']},
 

@@ -14744,11 +14744,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
+          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
+          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
         }
       ],
       "sourceReview": {
@@ -14779,11 +14779,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
+          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
+          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
         }
       ],
       "sourceReview": {
@@ -14814,11 +14814,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
+          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
+          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
         }
       ],
       "sourceReview": {
@@ -14849,11 +14849,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
+          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
+          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
         }
       ],
       "sourceReview": {
@@ -14884,11 +14884,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
+          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
+          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
         }
       ],
       "sourceReview": {
@@ -14919,11 +14919,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
+          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
+          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
         }
       ],
       "sourceReview": {
@@ -14954,11 +14954,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
+          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
+          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
         }
       ],
       "sourceReview": {
@@ -14989,11 +14989,46 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
+          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
+          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/intuition.test.cjs"
+      },
+      "automatedReference": "tests/intuition.test.cjs"
+    },
+    {
+      "id": "intuition:discrete-math:regions",
+      "family": "intuition",
+      "module": "discrete-math",
+      "taskId": "regions",
+      "title": {
+        "en": "It doubles each time. Every time?",
+        "es": "Se duplica cada vez. ¿Siempre?"
+      },
+      "bankVersion": "intuition-v1",
+      "availability": "active",
+      "fingerprint": "2c0b0a13cb9009bf75bcf6f164aff345b502c09142ff6f49d3f4196ace9d27c9",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "intuition/data.js",
+          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
+        },
+        {
+          "path": "intuition/math.js",
+          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
         }
       ],
       "sourceReview": {
@@ -15024,11 +15059,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
+          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
+          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
         }
       ],
       "sourceReview": {
@@ -15059,11 +15094,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
+          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
+          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
         }
       ],
       "sourceReview": {
@@ -15094,11 +15129,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
+          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
+          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
         }
       ],
       "sourceReview": {
@@ -15129,11 +15164,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
+          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
+          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
         }
       ],
       "sourceReview": {
@@ -15164,11 +15199,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "09c6d7fa3414e56714f62d07c085d8e079778fd9a8269ed9a280e23487e04271"
+          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "47f9534b80c9aea847993ec51eb32998166ee0aeed0ad9482054e4b9259b849c"
+          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
         }
       ],
       "sourceReview": {

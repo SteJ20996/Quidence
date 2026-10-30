@@ -1,3 +1,7 @@
+## 2026-10-30 · Discrete Mathematics, part 3
+
+Intuition Lab has a fourteenth activity, "It doubles each time. Every time?", the circle-regions problem for Discrete Mathematics. Every subject card now has a foundation check, an understanding check and an Intuition Lab activity. See [discrete-math-intuition-20261030.md](review/discrete-math-intuition-20261030.md).
+
 ## 2026-10-30 · Discrete Mathematics, part 2
 
 Discrete Mathematics has a 15-question foundation check and a four-problem understanding check, in English and Spanish. The diagnostic bank is now `quidence-challenges-9`, with 64 current problems. The Intuition Lab activity is the only activity the card still lists as not available. See [discrete-math-checks-20261030.md](review/discrete-math-checks-20261030.md).
