@@ -1,7 +1,7 @@
 # Account and cross-device learning records
 
 
-后续决定：公测暂停账户和云同步，新学习记录改为仅本地保存。默认账户 API 已关闭，已有云端数据未删除。本文件中的旧账户实现及未批准草案仅供历史/后续讨论，当前状态以 [LOCAL_ONLY_REVIEW.md](LOCAL_ONLY_REVIEW.md) 为准。
+後續決定：公測暫停帳戶和雲同步，新學習記錄改為僅本機儲存。預設帳戶 API 已關閉，已有云端資料未刪除。本文件中的舊帳戶實現及未批准草案僅供歷史/後續討論，當前狀態以 [LOCAL_ONLY_REVIEW.md](LOCAL_ONLY_REVIEW.md) 為準。
 This change supplies a runnable Node.js backend and account page. It has not been deployed to a public host. A GitHub Pages or Python static server can show the courses but cannot provide these account APIs.
 
 ## Run locally
@@ -77,7 +77,7 @@ Student-visible Beta/test labels and module codes were removed from active pages
 Native macOS Safari behavior and the deployed HTTPS reverse proxy still require testing after hosting. The tests do not establish educational validity or full curriculum coverage.
 
 
-本次项目扩展加入 `cluevera_project_portfolio_v1`：保存 8 科项目的原始分步回应、结构化几何点/线段、不可变提交及按提交绑定的本地复核。`projects/` 纳入允许静态路径。项目专项的实际 HTTP 检查验证第二设备恢复这些数据、保留版本历史和拒绝旧版本写入。旧诊断键及原学习记录未改写；后端仍需单独部署，冲突按整份组合记录处理。
+本次專題擴充加入 `cluevera_project_portfolio_v1`：儲存 8 科專題的原始分步回應、結構化幾何點/線段、不可變提交及按提交綁定的本機複核。`projects/` 納入允許靜態路徑。專題專項的實際 HTTP 檢查驗證第二裝置恢復這些資料、保留版本歷史和拒絕舊版本寫入。舊診斷鍵及原學習記錄未改寫；後端仍需單獨部署，衝突按整份組合記錄處理。
 
 ## Proxy rate limits
 

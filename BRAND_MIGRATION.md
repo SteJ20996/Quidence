@@ -1,7 +1,7 @@
 # Quidence brand and saved-record compatibility
 
 
-后续决定：公测暂停账户和云同步，新学习记录改为仅本地保存。默认账户 API 已关闭，已有云端数据未删除。本文件中的旧账户实现及未批准草案仅供历史/后续讨论，当前状态以 [LOCAL_ONLY_REVIEW.md](LOCAL_ONLY_REVIEW.md) 为准。
+後續決定：公測暫停帳戶和雲端同步，新學習紀錄改為僅本機儲存。預設帳戶 API 已關閉，已有雲端資料未刪除。本文件中的舊帳戶實作及未批准草案僅供歷史/後續討論，目前狀態以 [LOCAL_ONLY_REVIEW.md](LOCAL_ONLY_REVIEW.md) 為準。
 The display brand is **Quidence**. Package names, CSS classes, JavaScript globals, browser events, page tools, newly generated report titles and download names use `quidence` / `Quidence`. The Q icon links back to the subject homepage.
 
 ## Existing work
