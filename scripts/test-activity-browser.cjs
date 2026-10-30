@@ -70,7 +70,7 @@ async function run() {
       page.on('response', response => {if (response.status() >= 400) failures.push(response.url() + ': ' + response.status());});
       await page.goto(origin + '/?view=courses');
       const activityLinks = await page.locator('.challenge-link, .project-link').evaluateAll(elements => elements.map(el => el.href).filter(href=>new URL(href).searchParams.has('module')));
-      assert.equal(activityLinks.length, 22);
+      assert.equal(activityLinks.length, 23);
       assert.equal(await page.locator('.project-link[href*="ac01/dist/projects"]').count(), 1);
       const choosers=activityLinks.filter(href=>new URL(href).pathname==='/checks/');assert.equal(choosers.length,6);
       for(const href of choosers){
@@ -91,7 +91,7 @@ async function run() {
       assert.equal(await page.locator('#dialogue-route').count(),1);
       const originalCheck=await page.locator('#four-problem-route').getAttribute('href');
       const originalURL=new URL(originalCheck,page.url());assert.equal(originalURL.pathname,'/diagnostics/');assert.equal(originalURL.searchParams.get('module'),'ad01');
-      activityLinks.push(originalURL.href);assert.equal(activityLinks.length,23);
+      activityLinks.push(originalURL.href);assert.equal(activityLinks.length,24);
       const links = activityLinks.filter(href => ['/diagnostics/', '/projects/'].includes(new URL(href).pathname));
       assert.equal(links.length, 23);
       for (const href of links) {
