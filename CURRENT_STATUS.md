@@ -1,3 +1,9 @@
+## 2026-10-30 · Discrete Mathematics, part 2
+
+Discrete Mathematics has a 15-question foundation check and a four-problem understanding check, in English and Spanish. The diagnostic bank is now `quidence-challenges-9`, with 64 current problems. The Intuition Lab activity is the only activity the card still lists as not available. See [discrete-math-checks-20261030.md](review/discrete-math-checks-20261030.md).
+
+Current inventory: 14 subject cards. Every card has a foundation check and an understanding check; every card except Discrete Mathematics has an Intuition Lab activity.
+
 ## 2026-10-30 · Discrete Mathematics, part 1
 
 Discrete Mathematics is a new Further Mathematics course with ten bilingual proof projects (40 steps, 90 answer fields). Its labs cover graph coloring, grid paths, pigeonholes, Hanoi, chessboard and tromino coverings, Königsberg, domino strips, derangements and Kruskal's algorithm. The knowledge map and illustrated map open it, and its records are kept under `quidence:discrete-math:v1`. The foundation check, the understanding check and an Intuition Lab activity are planned as later parts; the card lists them as not available yet. See [discrete-math-projects-20261030.md](review/discrete-math-projects-20261030.md).

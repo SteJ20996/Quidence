@@ -13,6 +13,17 @@ const references={
  'geometry':[[360/60*15,360/60*40],[360/(2+3+4)*2,360/(2+3+4)*4],[(180-40)/4,Math.max(3*(180-40)/4+10,(180-40)/4+30)],[6*10/15,4*8===6*6?'yes':'no'],[6.4*250,750/250],[15/6,4*15/6],[2*(9+4),2*(9+4)===4*6?'yes':'no'],[10*8-4*3,2*(10+8)],[2*3,200*300],[54/6,2*(54/6+6)],[5*3-4,6*5/2],[(34/2-3)/2,(34/2-3)/2+3],[Math.sqrt(144),Math.sqrt(9+16)],[{6:'five',7:'seven',24:'twentyfour'}[Math.floor(Math.sqrt(50))],Math.sqrt(50)],[(3+4)**2,3**2+4**2]],
  // Algebra II: choices are found by evaluating every option, and solutions by searching a grid of inputs.
  'algebra-2':[[3+4,2*3],[5**0,2**-3],[(-2)**4,-(2**4)],[pick([['short',x=>x*x-15],['full',x=>x*x-2*x-15],['sign',x=>x*x+2*x-15],['sum',x=>x*x-8*x-15]],x=>(x+3)*(x-5))],[pick([['pos',x=>(x+3)*(x+4)],['neg',x=>(x-3)*(x-4)],['twosix',x=>(x-2)*(x-6)],['mixed',x=>(x-12)*(x+1)]],x=>x*x-7*x+12)],[pick([['square',x=>(x-7)**2],['pair',x=>(x-7)*(x+7)],['plus',x=>(x+7)**2]],x=>x*x-49),101**2-99**2],[...roots(x=>(2*x-3)*(x+4))],[...roots(x=>x*x-5*x)],[roots(x=>x*x+2*x+5).length?'yes':'no',...roots(x=>x*x-6*x+9)],[2*(-2)**2-3*(-2),2*3**2-3*3],[...roots(x=>x-2),1-3>=0?'yes':'no'],lowest(x=>x*x-4*x+1,[0,1,2,3,4]),[40*(1-.15),(50-40)/40*100],[((12-3*4)/2-(12-3*0)/2)/4,(12-3*0)/2],solve([[1,2,7],[3,-1,7]])],
+ // Discrete Mathematics: counts by listing, sequences by iterating each rule, and parity, logic and powers by checking every case.
+ 'discrete-math':(()=>{
+  const range=(a,b)=>[...Array(Math.max(0,b-a+1))].map((_,i)=>a+i),days=['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
+  let a=2;for(let k=2;k<=4;k++)a=3*a-1;const b=[1,3];while(b.length<6)b.push(b.at(-1)+b.at(-2));
+  const sevenOdd=[...Array(3**7)].map((_,m)=>[...Array(7)].reduce((t,_,i)=>t+[1,3,5][Math.floor(m/3**i)%3],0)),evenOdd=range(0,10).flatMap(e=>range(0,10).map(o=>(2*e)*(2*o+1)));
+  // Every pass/fail pattern for four students: only "at least one did not pass" agrees with "not every student passed".
+  const patterns=[...Array(16)].map((_,m)=>[0,1,2,3].map(i=>!!(m>>i&1))),meaning={some:p=>p.some(x=>!x),none:p=>p.every(x=>!x),most:p=>p.filter(x=>!x).length>2};
+  const prime=n=>n>1&&range(2,n-1).every(d=>n%d),primes=range(2,200).filter(prime);
+  const powers={power:n=>2**n,two:()=>2,one:()=>1,double:n=>2**(2*n+1)},roots=range(-20,20).filter(r=>r*r-r-6===0);
+  return [[range(15,42).length,range(15,42).filter(x=>x%2===0).length],[range(1,3).flatMap(s=>range(1,4)).length,range(1,3).flatMap(x=>range(1,3)).length],[range(1,4).flatMap(x=>range(x+1,4)).length,range(1,5).flatMap(x=>range(1,5).filter(y=>y!==x)).length],[7+19*4,range(1,100).find(k=>7+(k-1)*4===99)],[3*2**5,[1,2,4,8,16,32].reduce((x,y)=>x+y)],[a,b[5]],[sevenOdd.every(t=>t%2)?'odd':'even',evenOdd.every(t=>t%2===0)?'even':'odd'],[100%7,days[100%7]],[range(1,100).filter(x=>x%6===0).length,range(1,100).filter(x=>x%4===0&&x%6===0).length],[Object.keys(meaning).filter(k=>patterns.every(p=>meaning[k](p)===!p.every(Boolean))).join(),patterns.filter(p=>p.filter(x=>!x).length===1).every(p=>!p.every(Boolean))?'yes':'no'],[primes.every(p=>p%2)?'yes':'no',Number(primes.filter(p=>p%2===0).join())],[range(1,400).filter(n=>n%4===0).every(n=>n%2===0)?'yes':'no',range(1,400).filter(n=>n%2===0).every(n=>n%4===0)?'yes':'no',range(1,400).find(n=>n%2===0&&n%4)],[Math.log2(2**5*2**3),Object.keys(powers).filter(k=>range(0,12).every(n=>powers[k](n)===2**(n+1)-2**n)).join()],[12*11/2,range(1,100).find(n=>n*(n-1)/2===45)],[Math.min(...roots),Math.max(...roots)]];
+ })(),
  'physics-2':[[.25*4000*6],[150-60],[20+273.15],[-.02*200],[.003*(-20)],[1/2**2],[4+8,12/(4+8)],[1/(1/6+1/3),9*(1/6+1/3)],[6*.5],[2e-6*500*.4],[.02*.3/.1],[1/(1/10-1/30),-(1/(1/10-1/30))/30],[12/3],[1*.6/1.5],[4.14e-15*1e15,4.14e-15*1e15-2.14,'no']]
 };
 test('every new foundation answer agrees with independently recomputed arithmetic and counterexamples',()=>{
@@ -34,21 +45,29 @@ test('six-subject portfolios upgrade without rewriting drafts, submissions or pr
  const corrupt=structuredClone(old);delete corrupt.modules.ab01;assert.equal(E.hydrate(corrupt),null);assert.equal(E.hydrate({...old,modules:{...old.modules,unknown:{active:null,sessions:[]}}}),null);
 });
 test('nine-subject portfolios saved before Coordinate Geometry upgrade without rewriting earlier work',()=>{
- const old=E.fresh();for(const id of ['coordinate-geometry','geometry','algebra-2'])delete old.modules[id];assert.equal(Object.keys(old.modules).length,9);
+ const old=E.fresh();for(const id of ['coordinate-geometry','geometry','algebra-2','discrete-math'])delete old.modules[id];assert.equal(Object.keys(old.modules).length,9);
  const s=E.createSession(old,'number-theory'),t=E.task(s),a=E.blank(t);a.values.q='7';a.explanation='Original reasoning kept exactly';E.edit(s,t,a);E.submit(s,t);
  const before=JSON.stringify(old),restored=E.hydrate(old);assert(restored,'a nine-subject record was rejected');assert.equal(JSON.stringify(old),before);
  for(const id of Object.keys(old.modules))assert.deepEqual(restored.modules[id],old.modules[id]);
- for(const id of ['coordinate-geometry','geometry','algebra-2'])assert.deepEqual(restored.modules[id],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
+ for(const id of ['coordinate-geometry','geometry','algebra-2','discrete-math'])assert.deepEqual(restored.modules[id],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
  const seven=structuredClone(old);delete seven.modules['physics-2'];delete seven.modules['physics-1'];assert.equal(E.hydrate(seven),null);
 });
 test('ten-subject portfolios saved before Geometry and Algebra II upgrade without rewriting earlier work',()=>{
- const old=E.fresh();delete old.modules.geometry;delete old.modules['algebra-2'];assert.equal(Object.keys(old.modules).length,10);
+ const old=E.fresh();for(const id of ['geometry','algebra-2','discrete-math'])delete old.modules[id];assert.equal(Object.keys(old.modules).length,10);
  const s=E.createSession(old,'coordinate-geometry'),t=E.task(s),a=E.blank(t);a.values.first='8';a.explanation='Original reasoning kept exactly';E.edit(s,t,a);E.submit(s,t);
  const before=JSON.stringify(old),restored=E.hydrate(old);assert(restored,'a ten-subject record was rejected');assert.equal(JSON.stringify(old),before);
  for(const id of Object.keys(old.modules))assert.deepEqual(restored.modules[id],old.modules[id]);
- for(const id of ['geometry','algebra-2'])assert.deepEqual(restored.modules[id],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
+ for(const id of ['geometry','algebra-2','discrete-math'])assert.deepEqual(restored.modules[id],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
  // A set that was never published stays rejected.
- const eleven=structuredClone(restored);delete eleven.modules['algebra-2'];assert.equal(E.hydrate(eleven),null);
+ const unpublished=structuredClone(restored);delete unpublished.modules['algebra-2'];delete unpublished.modules['discrete-math'];assert.equal(Object.keys(unpublished.modules).length,11);assert.equal(E.hydrate(unpublished),null);
+});
+test('twelve-subject portfolios saved before Discrete Mathematics upgrade without rewriting earlier work',()=>{
+ const old=E.fresh();delete old.modules['discrete-math'];assert.equal(Object.keys(old.modules).length,12);
+ const s=E.createSession(old,'coordinate-geometry'),t=E.task(s),a=E.blank(t);a.values.first='8';a.explanation='Original reasoning kept exactly';E.edit(s,t,a);E.submit(s,t);
+ const before=JSON.stringify(old),restored=E.hydrate(old);assert(restored,'a twelve-subject record was rejected');assert.equal(JSON.stringify(old),before);
+ for(const id of Object.keys(old.modules))assert.deepEqual(restored.modules[id],old.modules[id]);
+ assert.deepEqual(restored.modules['discrete-math'],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
+ const unpublished=structuredClone(restored);delete unpublished.modules.geometry;assert.equal(E.hydrate(unpublished),null);
 });
 test('unfamiliar and uncertain new topics stay separate from wrong answers, with immutable exports and reports',()=>{
  for(const id of Object.keys(references)){

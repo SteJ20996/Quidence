@@ -36,7 +36,7 @@ async function main(){
   await chooseTheme(page,'classic');await page.locator('button[data-home-view="courses"]').click();assert.equal(await page.locator('.subject-card:visible').count(),14);assert(await page.locator('.qf-left-rail').isVisible());assert(await page.locator('.subject-card details').first().getAttribute('open')!==null);
   await chooseTheme(page,'studio');assert.equal(await page.locator('.subject-card:visible').count(),2);assert(await page.locator('.subject-card details').first().getAttribute('open')===null);
   // All new questions, drafts, uncertainty, complete reports and exports in a real browser.
-  for(const module of ['number-theory','physics-1','physics-2','coordinate-geometry','geometry','algebra-2']){
+  for(const module of ['number-theory','physics-1','physics-2','coordinate-geometry','geometry','algebra-2','discrete-math']){
    await page.goto(origin+'/foundations/?module='+module+'&lang=es');await locale('es');await page.locator('[data-f-action="resume"]').click();
    const tasks=B.MODULES[module].tasks;
    for(const [i,t]of tasks.entries()){
@@ -50,7 +50,7 @@ async function main(){
    const dl=page.waitForEvent('download');await page.locator('[data-f-action="export-json"]').click();const d=await dl,report=JSON.parse(fs.readFileSync(await d.path(),'utf8'));assert.equal(report.taskDefinitions.length,15);assert.equal(report.session.module,module);
    await page.reload();assert(await page.locator('[data-f-action="export-json"]').isVisible());
   }
-  const records=await page.evaluate(()=>JSON.parse(localStorage.getItem('cluevera_saved_reports_v1')));for(const id of ['number-theory','physics-1','physics-2','coordinate-geometry','geometry','algebra-2'])assert(records.items.some(i=>i.module===id));
+  const records=await page.evaluate(()=>JSON.parse(localStorage.getItem('cluevera_saved_reports_v1')));for(const id of ['number-theory','physics-1','physics-2','coordinate-geometry','geometry','algebra-2','discrete-math'])assert(records.items.some(i=>i.module===id));
   result.missing=[...new Set(result.missing)];assert.deepEqual(result.errors,[]);assert.deepEqual(result.failedRequests,[]);assert.deepEqual(result.missing,[]);console.log(JSON.stringify(result));await context.close();
  }finally{await browser?.close();await new Promise(r=>server.close(r));}
 }
