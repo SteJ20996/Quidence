@@ -19,8 +19,8 @@ async function main(){
   const saved=await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1'));
   await page.locator('#goal-copy').click();await page.waitForFunction(()=>/cop|select/i.test(document.getElementById('goal-status').textContent));
   for(const theme of ['paper','classic','atlas','studio','paper','atlas']){
-   await chooseTheme(page,theme);assert.deepEqual(await links(),originalLinks);assert.equal(await page.locator('#learning-goal').inputValue(),raw);assert.equal(await page.locator('#request-subject').inputValue(),'geometry');assert(await page.locator('#goal-include-report').isChecked());assert.equal(await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1')),saved);assert.equal(await page.locator('.subject-card').count(),14);
-   if(theme==='classic')assert.deepEqual(await page.locator('.catalogue-group').evaluateAll(es=>es.map(e=>e.querySelectorAll('.subject-card').length)),[1,7,6]);
+   await chooseTheme(page,theme);assert.deepEqual(await links(),originalLinks);assert.equal(await page.locator('#learning-goal').inputValue(),raw);assert.equal(await page.locator('#request-subject').inputValue(),'geometry');assert(await page.locator('#goal-include-report').isChecked());assert.equal(await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1')),saved);assert.equal(await page.locator('.subject-card').count(),15);
+   if(theme==='classic')assert.deepEqual(await page.locator('.catalogue-group').evaluateAll(es=>es.map(e=>e.querySelectorAll('.subject-card').length)),[1,8,6]);
    if(theme==='paper')assert.equal(await page.locator('.q-atlas-group:visible').count(),0);
    result.themeRoundTrips++;
   }
