@@ -227,6 +227,9 @@ body[data-q-theme].quidence-home .q-qidolab-link:target { outline: 2px solid var
   body[data-q-theme].quidence-home .qf-left-rail > .qs-subject-panel {
     flex: 0 1 auto; min-height: 0; overflow-y: auto; scrollbar-width: thin;
   }
+  /* home.js sets this when the window is shorter than the whole rail (36px is its top and bottom margin). */
+  body[data-q-theme].quidence-home .qf-left-rail.qf-rail-unpinned { position: static; max-height: none; }
+  body[data-q-theme].quidence-home .qf-left-rail.qf-rail-unpinned > .qs-subject-panel { overflow-y: hidden; }
 }
 @media (max-width: 959px) {
   body[data-q-theme].quidence-home .q-qidolab-float {

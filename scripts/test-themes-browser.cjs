@@ -79,8 +79,10 @@ async function main(){
     assert.equal(await page.locator('html').getAttribute('data-ui-theme'),theme,file);
     assert.equal(await page.locator('.q-theme-bar').count(),1,file);
     assert.equal(await page.locator('[data-theme-choice="'+theme+'"]').getAttribute('aria-pressed'),'true',file);
-    const bounds=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-innerWidth,buttons:[...document.querySelectorAll('[data-theme-choice],.q-theme-toggle')].filter(e=>e.getClientRects().length).map(e=>{const r=e.getBoundingClientRect();return{x:r.left,right:r.right,h:r.height};}),bg:getComputedStyle(document.body).backgroundColor}));
+    const bounds=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-innerWidth,buttons:[...document.querySelectorAll('[data-theme-choice],.q-theme-toggle')].filter(e=>e.getClientRects().length).map(e=>{const r=e.getBoundingClientRect();return{x:r.left,right:r.right,h:r.height};}),bg:getComputedStyle(document.body).backgroundColor,bar:document.querySelector('.q-theme-bar').getBoundingClientRect().height}));
     assert(bounds.overflow<=1,`${theme} ${file} ${width}: overflow ${bounds.overflow}`);
+    // One row, or two when a wide font pushes the menu button under the label; never reserved empty space.
+    if(width===320)assert(bounds.bar<=96,`${theme} ${file}: collapsed appearance bar is ${bounds.bar}px tall`);
     assert(bounds.buttons.length&&bounds.buttons.every(b=>b.x>=0&&b.right<=width+1&&b.h>=44),theme+' '+file+' clipped theme controls');
     await page.waitForFunction(()=>[...document.querySelectorAll('.q-brand-logo')].every(e=>e.complete&&e.naturalWidth));
     const logoContrast=await page.locator('.q-brand-logo').evaluate(e=>{let parent=e.parentElement,color='';while(parent){color=getComputedStyle(parent).backgroundColor;if(color!=='rgba(0, 0, 0, 0)'&&color!=='transparent')break;parent=parent.parentElement;}const bg=color.match(/[\d.]+/g).slice(0,3).map(Number),fg=e.src.includes('logo-dark')?[246,247,249]:[20,34,54];const luminance=rgb=>rgb.map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((s,v,i)=>s+v*[.2126,.7152,.0722][i],0),a=luminance(bg),b=luminance(fg);return(Math.max(a,b)+.05)/(Math.min(a,b)+.05);});

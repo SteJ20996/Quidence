@@ -32,6 +32,10 @@
     if(module)root.querySelector('[data-learning-subject="'+module+'"]')?.click();
     root.querySelector('[data-category="all"]')?.click();show('courses');const target=module?root.querySelector('.subject-card[data-subject="'+module+'"]'):courseView;target?.scrollIntoView({block:'start',behavior:'instant'});if(module)target?.querySelector('.subject-link')?.focus({preventScroll:true});
   });
+  // Pin the subject rail only while all of it fits in the window. On shorter windows it scrolls with the page, so its last cards are never cut off.
+  const rail=document.querySelector('.qf-left-rail'),panel=rail?.querySelector('.qs-subject-panel');
+  if(rail&&panel){const fit=()=>{const gap=parseFloat(getComputedStyle(rail).rowGap)||0,rest=[...rail.children].filter(e=>e!==panel).reduce((h,e)=>h+e.offsetHeight+gap,0);rail.classList.toggle('qf-rail-unpinned',panel.scrollHeight+rest+36>innerHeight);};
+    addEventListener('resize',fit);document.addEventListener('quidence:language',fit);if(window.ResizeObserver&&panel.firstElementChild)new ResizeObserver(fit).observe(panel.firstElementChild);fit();}
   const requested=new URL(location.href).searchParams.get('view');show(['map','courses','intuition'].includes(requested)?requested:location.hash==='#practice-heading'?'courses':defaultView,false);
 })();
 
