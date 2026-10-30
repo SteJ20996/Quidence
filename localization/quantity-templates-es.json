@@ -542,5 +542,69 @@
   [
     "Computed graph of (x − [n])² + [n]. The axes have labelled scales. Your chosen x-values appear on the given function.",
     "Gráfica calculada de (x − [n])² + [n]. Los ejes tienen escalas etiquetadas. Los valores de x que elegiste aparecen en la función dada."
+  ],
+  [
+    "Slot [n]",
+    "Horario [n]"
+  ],
+  [
+    "Clashes inside a slot: [n]",
+    "Choques dentro de un horario: [n]"
+  ],
+  [
+    "Exams without a slot: [n]",
+    "Exámenes sin horario: [n]"
+  ],
+  [
+    "No clash inside any slot. Slots used: [n]",
+    "Ningún horario tiene choques. Horarios usados: [n]"
+  ],
+  [
+    "Routes to the library: [n]",
+    "Rutas a la biblioteca: [n]"
+  ],
+  [
+    "Chosen: [n]",
+    "Elegidos: [n]"
+  ],
+  [
+    "A pair adding to 21: [n] + [n]",
+    "Una pareja que suma 21: [n] + [n]"
+  ],
+  [
+    "[n] divides [n]",
+    "[n] divide a [n]"
+  ],
+  [
+    "[n] discs",
+    "[n] discos"
+  ],
+  [
+    "Solved in [n] moves.",
+    "Resuelto en [n] movimientos."
+  ],
+  [
+    "Row [n], column [n]",
+    "Fila [n], columna [n]"
+  ],
+  [
+    "Trominoes used: [n]",
+    "Triminós usados: [n]"
+  ],
+  [
+    "Odd-degree areas: [n]",
+    "Zonas de grado impar: [n]"
+  ],
+  [
+    "Orders in which nobody gets their own hat: [n] of [n]",
+    "Órdenes en que nadie recibe su sombrero: [n] de [n]"
+  ],
+  [
+    "Total cost: [n]",
+    "Costo total: [n]"
+  ],
+  [
+    "Moves: [n]",
+    "Movimientos: [n]"
   ]
 ]

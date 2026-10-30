@@ -13,6 +13,7 @@ function build(){
   const bank=require(path.join(root,file));for(const[module,m]of Object.entries(bank.MODULES))for(const task of m.tasks)add(family,module,task,bank.SOURCE_FILES||(family==='foundation'?[file,'assets/subject-foundations.js']:[file]),{bankVersion:bank.VERSION,automatedReference:audit});
  }
  for(const task of JSON.parse(fs.readFileSync(path.join(root,'courses/number-theory/data.json'),'utf8')))add('number-theory-project','number-theory',task,['content/number-theory/source-v2.md','courses/number-theory/data.json'],{bankVersion:'number-theory-v2',automatedReference:'review/number-theory-validation-20261010.json'});
+ for(const task of JSON.parse(fs.readFileSync(path.join(root,'courses/discrete-math/data.json'),'utf8')))add('discrete-math-project','discrete-math',task,['content/discrete-math/projects.cjs','courses/discrete-math/data.json'],{bankVersion:'discrete-math-v1',automatedReference:'tests/discrete-math.test.cjs'});
  const school=require('../assets/school-course-content.js');
  for(const module of [...school.IDS,'ad01','ae01','af01']){
   const file=school.IDS.includes(module)?'assets/school-course-content.js':`modules/${module}/dist/content.js`,content=school.IDS.includes(module)?school.create(module):require(path.join(root,file));

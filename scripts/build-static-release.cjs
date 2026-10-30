@@ -5,12 +5,12 @@ const {CONTENT_SECURITY_POLICY} = require('../backend/security.cjs');
 const root = path.resolve(__dirname, '..');
 const roots = ['index.html', 'assets', 'account', 'data-use', 'records', 'reports',
   'foundations', 'diagnostics', 'projects', 'intuition', 'checks', 'explain',
-  ...['pre-algebra', 'algebra-1', 'geometry', 'algebra-2', 'physics', 'physics-1', 'physics-2', 'number-theory', 'coordinate-geometry'].map(id => 'courses/' + id),
+  ...['pre-algebra', 'algebra-1', 'geometry', 'algebra-2', 'physics', 'physics-1', 'physics-2', 'number-theory', 'coordinate-geometry', 'discrete-math'].map(id => 'courses/' + id),
   ...['aa01', 'ab01', 'ac01', 'ad01', 'ae01', 'af01'].map(id => 'modules/' + id + '/dist')];
 const types = /\.(?:html|js|mjs|css|svg|png|webp|woff|ico|webmanifest)$/;
 const excluded = new Set(['assets/account-app.js', 'assets/sync-client.js']);
 function allowed(file) {
-  return (types.test(file) || ['assets/fonts/Nunito-OFL.txt','assets/fonts/SourceSerif4-OFL.txt','explain/assets/Nunito-OFL.txt'].includes(file) || file === 'courses/number-theory/data.json') && !excluded.has(file) &&
+  return (types.test(file) || ['assets/fonts/Nunito-OFL.txt','assets/fonts/SourceSerif4-OFL.txt','explain/assets/Nunito-OFL.txt'].includes(file) || ['courses/number-theory/data.json', 'courses/discrete-math/data.json'].includes(file)) && !excluded.has(file) &&
     !file.split('/').some(part => part.startsWith('.')) &&
     !file.startsWith('modules/ab01/dist/beta01/') &&
     (!file.startsWith('modules/aa01/dist/sketch-lab/') || file.endsWith('/math.js'));

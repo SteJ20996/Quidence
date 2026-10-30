@@ -5580,6 +5580,326 @@
       "automatedReference": "review/challenge-math-audit.json"
     },
     {
+      "id": "discrete-math-project:discrete-math:dm-p01",
+      "family": "discrete-math-project",
+      "module": "discrete-math",
+      "taskId": "dm-p01",
+      "title": "Exam timetables and graph coloring",
+      "bankVersion": "discrete-math-v1",
+      "availability": "active",
+      "fingerprint": "0068112b02cd189654aa51896aebf7437d5f28ffeebef26aeb1c7b54eac8c581",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/discrete-math/projects.cjs",
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+        },
+        {
+          "path": "courses/discrete-math/data.json",
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/discrete-math.test.cjs"
+      },
+      "automatedReference": "tests/discrete-math.test.cjs"
+    },
+    {
+      "id": "discrete-math-project:discrete-math:dm-p02",
+      "family": "discrete-math-project",
+      "module": "discrete-math",
+      "taskId": "dm-p02",
+      "title": "City routes and Pascal’s triangle",
+      "bankVersion": "discrete-math-v1",
+      "availability": "active",
+      "fingerprint": "4cc16d001d7e2d2bb6b7c1011e5f3f89d4546b55a3b043af535fab56c42dd920",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/discrete-math/projects.cjs",
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+        },
+        {
+          "path": "courses/discrete-math/data.json",
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/discrete-math.test.cjs"
+      },
+      "automatedReference": "tests/discrete-math.test.cjs"
+    },
+    {
+      "id": "discrete-math-project:discrete-math:dm-p03",
+      "family": "discrete-math-project",
+      "module": "discrete-math",
+      "taskId": "dm-p03",
+      "title": "Pigeonholes and guaranteed pairs",
+      "bankVersion": "discrete-math-v1",
+      "availability": "active",
+      "fingerprint": "1b44da4f6ed753c3ad131fe405c67d122784bc4ea1b588069d4b5fb1d13fcb24",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/discrete-math/projects.cjs",
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+        },
+        {
+          "path": "courses/discrete-math/data.json",
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/discrete-math.test.cjs"
+      },
+      "automatedReference": "tests/discrete-math.test.cjs"
+    },
+    {
+      "id": "discrete-math-project:discrete-math:dm-p04",
+      "family": "discrete-math-project",
+      "module": "discrete-math",
+      "taskId": "dm-p04",
+      "title": "The Tower of Hanoi",
+      "bankVersion": "discrete-math-v1",
+      "availability": "active",
+      "fingerprint": "708fe3d9270d01d55d843dc36a6d542c4036491bf2fe5564825f362da29030f6",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/discrete-math/projects.cjs",
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+        },
+        {
+          "path": "courses/discrete-math/data.json",
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/discrete-math.test.cjs"
+      },
+      "automatedReference": "tests/discrete-math.test.cjs"
+    },
+    {
+      "id": "discrete-math-project:discrete-math:dm-p05",
+      "family": "discrete-math-project",
+      "module": "discrete-math",
+      "taskId": "dm-p05",
+      "title": "A chessboard with two missing corners",
+      "bankVersion": "discrete-math-v1",
+      "availability": "active",
+      "fingerprint": "d5b65d59d0dd64eb0fb16daadf0d3ae72414214016c2a91624cb55bb67532659",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/discrete-math/projects.cjs",
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+        },
+        {
+          "path": "courses/discrete-math/data.json",
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/discrete-math.test.cjs"
+      },
+      "automatedReference": "tests/discrete-math.test.cjs"
+    },
+    {
+      "id": "discrete-math-project:discrete-math:dm-p06",
+      "family": "discrete-math-project",
+      "module": "discrete-math",
+      "taskId": "dm-p06",
+      "title": "Covering boards with L-trominoes",
+      "bankVersion": "discrete-math-v1",
+      "availability": "active",
+      "fingerprint": "58df13455ccf7ca757b08c830cbf0ea7669b35bc267b18c9c87f4a1941be9973",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/discrete-math/projects.cjs",
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+        },
+        {
+          "path": "courses/discrete-math/data.json",
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/discrete-math.test.cjs"
+      },
+      "automatedReference": "tests/discrete-math.test.cjs"
+    },
+    {
+      "id": "discrete-math-project:discrete-math:dm-p07",
+      "family": "discrete-math-project",
+      "module": "discrete-math",
+      "taskId": "dm-p07",
+      "title": "The bridges of Königsberg",
+      "bankVersion": "discrete-math-v1",
+      "availability": "active",
+      "fingerprint": "9386ae9f8ec57a5539d78f63d8ad2999e54987ec890b950fe19f4c8cce6bc1db",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/discrete-math/projects.cjs",
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+        },
+        {
+          "path": "courses/discrete-math/data.json",
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/discrete-math.test.cjs"
+      },
+      "automatedReference": "tests/discrete-math.test.cjs"
+    },
+    {
+      "id": "discrete-math-project:discrete-math:dm-p08",
+      "family": "discrete-math-project",
+      "module": "discrete-math",
+      "taskId": "dm-p08",
+      "title": "Domino strips and linear recurrences",
+      "bankVersion": "discrete-math-v1",
+      "availability": "active",
+      "fingerprint": "6e880ad24352aa1ccd1fc783971f95a8b3e54f3bb755e049b2421db5ffeb6eb3",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/discrete-math/projects.cjs",
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+        },
+        {
+          "path": "courses/discrete-math/data.json",
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/discrete-math.test.cjs"
+      },
+      "automatedReference": "tests/discrete-math.test.cjs"
+    },
+    {
+      "id": "discrete-math-project:discrete-math:dm-p09",
+      "family": "discrete-math-project",
+      "module": "discrete-math",
+      "taskId": "dm-p09",
+      "title": "Inclusion–exclusion and the mixed-up hats",
+      "bankVersion": "discrete-math-v1",
+      "availability": "active",
+      "fingerprint": "3ee575a4997307b8b3a73f4a8a71063b42ca3040713e87462590f6ddb46e485c",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/discrete-math/projects.cjs",
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+        },
+        {
+          "path": "courses/discrete-math/data.json",
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/discrete-math.test.cjs"
+      },
+      "automatedReference": "tests/discrete-math.test.cjs"
+    },
+    {
+      "id": "discrete-math-project:discrete-math:dm-p10",
+      "family": "discrete-math-project",
+      "module": "discrete-math",
+      "taskId": "dm-p10",
+      "title": "The cheapest network: spanning trees",
+      "bankVersion": "discrete-math-v1",
+      "availability": "active",
+      "fingerprint": "473020fa4b131a30e7f5971ba85a0a7ea4d0456c9cc65f77e63041251c9dbad6",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/discrete-math/projects.cjs",
+          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+        },
+        {
+          "path": "courses/discrete-math/data.json",
+          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/discrete-math.test.cjs"
+      },
+      "automatedReference": "tests/discrete-math.test.cjs"
+    },
+    {
       "id": "followup:aa01:aa-x01",
       "family": "followup",
       "module": "aa01",

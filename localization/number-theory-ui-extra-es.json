@@ -108,5 +108,6 @@
   "Exact fractions or decimals correctly rounded to at least two places are accepted.": "Se aceptan fracciones exactas o decimales correctamente redondeados a dos o más cifras decimales.",
   "Response status": "Estado de la respuesta",
   "Check the response format": "Revisa el formato de la respuesta",
-  "No response yet": "Aún no hay respuesta"
+  "No response yet": "Aún no hay respuesta",
+  "challenging": "Avanzada"
 }

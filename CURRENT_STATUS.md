@@ -1,3 +1,9 @@
+## 2026-10-30 · Discrete Mathematics, part 1
+
+Discrete Mathematics is a new Further Mathematics course with ten bilingual proof projects (40 steps, 90 answer fields). Its labs cover graph coloring, grid paths, pigeonholes, Hanoi, chessboard and tromino coverings, Königsberg, domino strips, derangements and Kruskal's algorithm. The knowledge map and illustrated map open it, and its records are kept under `quidence:discrete-math:v1`. The foundation check, the understanding check and an Intuition Lab activity are planned as later parts; the card lists them as not available yet. See [discrete-math-projects-20261030.md](review/discrete-math-projects-20261030.md).
+
+Current inventory: 14 subject cards (5 School Mathematics, 7 Further Mathematics, 2 Science). Every card except Discrete Mathematics has a foundation check, an understanding check and an Intuition Lab activity. The source inventory has 529 records, all still not-cleared.
+
 ## 2026-10-29 · Status update
 
 Changes since the 2026-10-14 entries, with their release notes:

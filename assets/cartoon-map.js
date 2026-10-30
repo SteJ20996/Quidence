@@ -21,8 +21,9 @@ function route(m,a,b){
   const points=[[940,302],[954,302],[954,733],[1080,733],[1080,714]];
   return {points,path:points.map((p,i)=>`${i?'L':'M'}${p[0]},${p[1]}`).join(' ')};
  }
+ // Leave Number Theory from the top so its dashed link to algebra crosses the multivariable branch instead of running beside it.
  if(m.id==='further'&&a.id==='number'&&b.id==='algebra'){
-  const points=[[700,437],[916,437],[916,272],[980,272]];
+  const points=[[a.x+W/2,a.y],[a.x+W/2,b.y+H/2],[b.x,b.y+H/2]];
   return {points,path:points.map((p,i)=>`${i?'L':'M'}${p[0]},${p[1]}`).join(' ')};
  }
  const start=a.x===b.x?[a.x+W/2,a.y+H]:[a.x+W,a.y+H/2];

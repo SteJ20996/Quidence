@@ -83,6 +83,8 @@ jobs:
         run: npm run test:home:browser
       - name: Check Number Theory steps, proofs, exports and phone layouts
         run: npm run test:number-theory:browser
+      - name: Check Discrete Mathematics steps, labs, proofs, exports and phone layouts
+        run: npm run test:discrete-math:browser
       - name: Check real-motion, map criteria and current-note recovery regressions
         run: npm run test:reviewed:browser
       - name: Check Game Theory projects, cases, exports and record preservation
