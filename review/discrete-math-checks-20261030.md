@@ -8,7 +8,7 @@ Discrete Mathematics now has a 15-question foundation check and a four-problem u
 
 | Group | Questions | Common mistake targeted |
 | --- | --- | --- |
-| Counting carefully | whole numbers from 15 to 42 and the even ones; 3 soups × 4 sandwiches and two-letter codes; handshakes against captain and vice-captain | 42 − 15 = 27 numbers; adding choices instead of multiplying; counting a handshake twice, or ignoring order when it matters |
+| Counting carefully | whole numbers from 15 to 42 and the even ones; 3 soups × 4 sandwiches and two-letter codes; listing the cups with 2 of 4 flavors, against choosing a captain and a vice-captain | 42 − 15 = 27 numbers; adding choices instead of multiplying; counting AB and BA as different cups, or ignoring order when it matters |
 | Patterns and sequences | the 20th term of 7, 11, 15, … and the position of 99; the 6th term of 3, 6, 12, … and 1 + 2 + ⋯ + 32; terms from aₙ = 3aₙ₋₁ − 1 and from a two-term rule | 7 + 20 × 4; one doubling too many |
 | Even, odd and divisibility | the parity of a sum of 7 odd numbers and of an even × odd product; 100 ÷ 7 and the weekday 100 days after a Monday; multiples of 6, and of both 4 and 6, up to 100 | using 4 × 6 = 24 instead of the least common multiple 12 |
 | Logic in words | what "not every student passed" means; one counterexample to "every prime is odd"; a true statement whose converse is false | reading "not every" as "none"; believing a converse follows |
@@ -33,6 +33,20 @@ Later parts that depend on an earlier wrong value are marked "recheck after", as
 
 `scripts/audit-challenges.py` recomputes the answers without reading the authored keys. It lists committees as sets, lists every stone path, tests degree sequences with the Havel–Hakimi algorithm, builds a 3-regular graph on 8 vertices (the cube), and searches every way of merging the numbers on the board, for both a + b and |a − b|. From 1 to 10, the |a − b| version can end only at 1, 3, 5, 7 or 9. The audit now covers 70 tasks and 275 parts. Both implementations were written in this project, so this is a consistency check, not independent certification.
 
+## Pre-release review
+
+A separate review recomputed every keyed answer, including an exhaustive search for the board problem and a degree-sequence test for the league. All 22 graded keys were correct. These changes followed:
+
+- **Stone paths.** The question asked which rule "the values" follow, but the first values 1, 1, 2, 3 also fit the Fibonacci distractor, so a student matching the pattern would get W(8) = 21. The question now asks for the rule that holds for every n ≥ 4 and points to the first stone. The solution shows W(5) = 4, not 5.
+- **Scope.** A handshake question in the foundation check used the pair count and double counting that the course teaches. It now asks students to list the cups with 2 of 4 flavors. The not-checked list now says "setting up and solving recurrences", since one item does ask students to evaluate a given rule.
+- **Wording.**
+  - A follow-up asked about "whole numbers" from −5 to 5, and in US usage whole numbers are not negative; it now says "integers".
+  - Ben is introduced before the committee follow-up mentions him.
+  - The counterexample and powers solutions say what they mean more directly.
+- **Spanish.** Five corrections, including "Una tabla de posiciones" and "Una elección tras otra".
+
+The follow-up for the board problem, starting from 1 to 11, has a definite answer: the last number can be 0.
+
 ## Saved work
 
 - **Diagnostic bank.** Version 8 is frozen as `assets/challenge-bank-v8.js`, and `challenge-bank.js` becomes `quidence-challenges-9`, adding `assets/discrete-math-challenge-bank.js`. The thirteen earlier subjects are unchanged. A test opens records saved under versions 6, 7 and 8 and checks that each gains an empty module for each subject added after it.
@@ -56,4 +70,9 @@ Both checks are in English and Spanish, like the site's other checks; neither is
 Local runs used Node 22; CI uses the pinned 24.19. Browser suites ran with the CI font configuration (DejaVu Sans).
 
 - `npm test`: 352 of 352 Node tests pass, including the 31 recomputed foundation answers, the 70-task math audit, the bank 6, 7 and 8 compatibility tests and the twelve-subject foundation upgrade test.
+- All 15 browser suites in `checks.yml` pass in Chromium. The activity suite's homepage link counts rose by one for the new understanding check. After the review changes, the suites that answer the new questions (illustrated map, Spanish layouts and activities) were run again and pass:
+  - illustrated map suite: every foundation question answered in Spanish, with reports;
+  - Spanish layout suite: the understanding check in Spanish;
+  - activity suite: 100 pages and 54 drafts, with no page errors or failed requests.
+- Screenshots of both checks in English and Spanish, and of the Classic card at 960px, show no clipped or overlapping content.
 - Not checked: Safari and real devices.
