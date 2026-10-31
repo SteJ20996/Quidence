@@ -176,7 +176,7 @@ function polygon(poly,map,attrs){return `<polygon points="${poly.map(p=>pt(map(p
 function chordEnds(l,r=1){const c=X.chord(l,r);return [c.at(-c.half),c.at(c.half)];}
 function lineTag(l,map,attrs,r=1){const [a,b]=chordEnds(l,r).map(map);return `<line x1="${a[0].toFixed(1)}" y1="${a[1].toFixed(1)}" x2="${b[0].toFixed(1)}" y2="${b[1].toFixed(1)}" ${attrs}/>`;}
 // Crossings in the order the cuts make them: all of cut 2's, then cut 3's new ones, and so on.
-function crossingPoints(lines){const out=[];for(let j=1;j<lines.length;j++)for(let i=0;i<j;i++){const a=lines[i],b=lines[j],det=a.n[0]*b.n[1]-a.n[1]*b.n[0];if(Math.abs(det)<1e-12)continue;const p=[(a.d*b.n[1]-b.d*a.n[1])/det,(a.n[0]*b.d-b.n[0]*a.d)/det];if(Math.hypot(...p)<1&&!out.some(o=>Math.hypot(o[0]-p[0],o[1]-p[1])<1e-6))out.push(p);}return out;}
+function crossingPoints(lines){const out=[];for(let j=1;j<lines.length;j++)for(let i=0;i<j;i++){const a=lines[i],b=lines[j],det=a.n[0]*b.n[1]-a.n[1]*b.n[0];if(Math.abs(det)<1e-12)continue;const p=[(a.d*b.n[1]-b.d*a.n[1])/det,(a.n[0]*b.d-b.n[0]*a.d)/det];if(Math.hypot(...p)<1-1e-7&&!out.some(o=>Math.hypot(o[0]-p[0],o[1]-p[1])<1e-6))out.push(p);}return out;}
 // The point of a convex polygon farthest from its edges, where a label has the most room.
 function innerPoint(poly){
   const xs=poly.map(p=>p[0]),ys=poly.map(p=>p[1]),x0=Math.min(...xs),y0=Math.min(...ys),w=Math.max(...xs)-x0,h=Math.max(...ys)-y0;let best=centroid(poly),room=-1;
@@ -191,10 +191,11 @@ async function pop(id,token){const el=q(id);if(!el)return;const y=Number(el.getA
 
 /* ---------- The labs, one per step ---------- */
 const labState={};
-function lab(){const i=stepIndex();return labState[i]||(labState[i]={});}
-const LABS=[stickLab,pizzaLab,formulaLab,ballLab,trapLab,patternLab];
-function renderLab(){stop();LABS[stepIndex()]?.(lab());}
-function labAction(action,value){const l=lab();LABS[stepIndex()](l,action,value);}
+function lab(){const key=current().id+':'+stepIndex();return labState[key]||(labState[key]={});}
+const LABS={'cross-p01':[stickLab,pizzaLab,formulaLab,ballLab,trapLab,patternLab],'cross-p02':[circleLab,chordLab,fourLab,tableLab,pairLab,differenceLab]};
+function labFor(){return LABS[current().id]?.[stepIndex()];}
+function renderLab(){stop();labFor()?.(lab());}
+function labAction(action,value){labFor()?.(lab(),action,value);}
 
 // Step 1. A stick cut at points; each new cut lands inside one piece.
 const STICK=[.5,.25,.75,.12,.62,.38,.88,.2,.69,.44],SX=30,SW=360,SY=118,SH=26,GAP=7;
@@ -481,13 +482,22 @@ function trapLab(l,action){
     l.m++;draw();});
 }
 
+// A difference table: each row lists the differences of the row above. Hidden cells are also hidden from screen readers.
+function diffTable(rows,names,built,prefix){
+  return `<div class="x-diff" style="--cells:${2*rows[0].length}">${rows.map((r,i)=>`<p class="x-diff-name">${esc(names[i])}</p><div class="x-diff-row">${r.map((v,j)=>`<span class="x-diff-cell${built||i===0?' shown':''}"${built||i===0?'':' aria-hidden="true"'} id="${prefix}-${i}-${j}" style="grid-column:${2*j+i+1}/span 2">${v}</span>`).join('')}</div>`).join('')}</div>`;
+}
+async function buildDiff(token,rows,prefix){
+  for(let j=0;j<rows[0].length;j++){q(`${prefix}-0-${j}`)?.classList.add('shown');await pause(90);if(token.cancel)return false;}
+  for(let i=1;i<rows.length;i++)for(let j=0;j<rows[i].length;j++){const parents=[q(`${prefix}-${i-1}-${j}`),q(`${prefix}-${i-1}-${j+1}`)],cell=q(`${prefix}-${i}-${j}`);parents.forEach(p=>p?.classList.add('parent'));await pause(160);if(token.cancel)return false;cell?.classList.add('shown');cell?.removeAttribute('aria-hidden');parents.forEach(p=>p?.classList.remove('parent'));await pause(70);if(token.cancel)return false;}
+  return true;
+}
 // Step 6. One pattern: the difference table and Pascal's triangle.
 const SEQ=[1,2,4,8,15,26,42,64];
 function patternLab(l,action,value){
   l.view??='table';l.n??=4;l.dim??=3;
   const rows=[SEQ];while(rows.length<4){const r=rows[rows.length-1];rows.push(r.slice(1).map((v,i)=>v-r[i]));}
   const names=['Ball, B(n)','Pizza, P(n)','Stick, L(n)','Third differences'];
-  const table=()=>`<div class="x-diff">${rows.map((r,i)=>`<p class="x-diff-name">${esc(names[i])}</p><div class="x-diff-row" style="--offset:${i}">${r.map((v,j)=>`<span class="x-diff-cell${l.built||i===0?' shown':''}"${l.built||i===0?'':' aria-hidden="true"'} id="df-${i}-${j}" style="grid-column:${2*j+i+1}/span 2">${v}</span>`).join('')}</div>`).join('')}</div>`;
+  const table=()=>diffTable(rows,names,l.built,'df');
   const pascal=()=>{const out=[];for(let r=0;r<=8;r++){const row=[1];for(let k=1;k<=r;k++)row.push(row[k-1]*(r-k+1)/k);out.push(row);}
     return `<div class="x-pascal" role="img" aria-label="Pascal’s triangle, rows 0 to 8">${out.map((row,r)=>`<div class="x-pascal-row">${row.map((v,k)=>`<span class="x-pascal-cell${r===l.n&&k<=l.dim?' picked':''}" id="pc-${r}-${k}" style="grid-column:${8-r+2*k+1}/span 2">${v}</span>`).join('')}</div>`).join('')}</div>`;};
   const sum=()=>Array.from({length:l.dim+1},(_,k)=>X.choose(l.n,k)),total=()=>sum().reduce((a,b)=>a+b,0);
@@ -507,15 +517,202 @@ function patternLab(l,action,value){
   if(!action){draw();return;}
   if(action.startsWith('view-')){stop();l.view=action.slice(5);draw();return;}
   if(action==='table-all'){stop();l.built=true;draw();return;}
-  if(action==='table-build')play(async token=>{l.built=false;draw();
-    for(let j=0;j<rows[0].length;j++){q(`df-0-${j}`)?.classList.add('shown');await pause(90);if(token.cancel)return;}
-    for(let i=1;i<rows.length;i++)for(let j=0;j<rows[i].length;j++){const parents=[q(`df-${i-1}-${j}`),q(`df-${i-1}-${j+1}`)];parents.forEach(p=>p?.classList.add('parent'));await pause(160);if(token.cancel)return;q(`df-${i}-${j}`)?.classList.add('shown');q(`df-${i}-${j}`)?.removeAttribute('aria-hidden');parents.forEach(p=>p?.classList.remove('parent'));await pause(70);if(token.cancel)return;}
-    l.built=true;draw();});
+  if(action==='table-build')play(async token=>{l.built=false;draw();if(await buildDiff(token,rows,'df')){l.built=true;draw();}});
   if(action.startsWith('dim-')){stop();l.dim=Number(action.slice(4));draw();return;}
   if(action==='pascal-n'){stop();l.n=Math.max(0,Math.min(8,Number(value)||0));patch({picture:pascal(),status:pascalStatus(),equation:sum().join(' + ')+' = '+total()});rangeOutput(String(l.n));return;}
   if(action==='pascal-play')play(async token=>{draw();const cells=Array.from({length:l.dim+1},(_,k)=>q(`pc-${l.n}-${k}`)).filter(Boolean);cells.forEach(c=>c.classList.remove('picked'));let total=0;
     for(let k=0;k<cells.length;k++){cells[k].classList.add('picked','active');total+=X.choose(l.n,k);say(`Running total: ${total}.`);await pause(600);if(token.cancel)return;cells[k].classList.remove('active');}
     draw();});
+}
+
+/* ---------- Project 2: chords of a circle and cuts in four dimensions ---------- */
+// The circle is the pizza's disc. Each chord is the part of a line inside the disc, so the pizza's geometry counts the regions.
+const CIRCLE_BOX='60 -10 300 300';
+function chordLines(angles,n){return X.chords(angles,n).map(c=>c.line);}
+// The picture after the first k chords among n points: regions, chords, crossings and numbered points. With `newest`,
+// that chord is drawn red with its segments numbered.
+function circleScene(angles,n,k,{newest=null,pieceIds='cr-p',hideFrom=null}={}){
+  const lines=chordLines(angles,n),drawn=lines.slice(0,k),list=X.pieces(drawn);
+  let body=`<circle cx="210" cy="140" r="117" fill="#f8fbfa" stroke="#9db8b0" stroke-width="2"/>${list.map((p,i)=>polygon(p.poly,PZ,`id="${pieceIds}${i}" fill="${colorFor(p.address)}" stroke="#ffffff" stroke-width="1.2"`)).join('')}`;
+  body+=drawn.map((ln,i)=>lineTag(ln,PZ,`stroke="${i===newest?CUT:INK}" stroke-width="${i===newest?3:1.8}" stroke-linecap="round"`)).join('');
+  body+=crossingPoints(drawn).map(p=>{const [x,y]=PZ(p);return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.2" fill="${INK}"/>`;}).join('');
+  if(newest!==null&&newest<k){const s=segmentsOf(drawn,newest);body+=s.segments.map((g,j)=>{const [x,y]=PZ(g.mid);return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="8.5" fill="#ffffff" stroke="${CUT}" stroke-width="1.5"/><text x="${x.toFixed(1)}" y="${(y+3.8).toFixed(1)}" text-anchor="middle" class="x-badge-text">${j+1}</text>`;}).join('');}
+  body+=angles.slice(0,hideFrom??n).map((a,i)=>{const [x,y]=PZ(X.point(a)),[tx,ty]=PZ(X.point(a).map(v=>v*1.13));return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" fill="${CUT}" stroke="#ffffff" stroke-width="1.5"/><text x="${tx.toFixed(1)}" y="${(ty+4.5).toFixed(1)}" text-anchor="middle" class="x-small">${i+1}</text>`;}).join('');
+  return {body,list,lines};
+}
+// Animates chord k across the regions of the first k chords, from point `from` to its other end, splitting each region
+// it passes. The scene must have been drawn with circleScene(…, k) and the overlay that this function adds.
+function chordOverlay(lines,k){
+  const {bounds,segments}=segmentsOf(lines,k),before=X.pieces(lines.slice(0,k)),line=lines[k];
+  const parents=segments.map(s=>before.findIndex(p=>p.address===X.addressOf(s.mid,lines.slice(0,k))));
+  const kids=parents.map(i=>X.split(before[i].poly,line).map((part,side)=>part&&{poly:part,address:before[i].address+(side?'+':'−')}).filter(Boolean));
+  const svg=kids.map((pair,j)=>pair.map((c,s)=>polygon(c.poly,PZ,`id="cr-k${j}-${s}" fill="${colorFor(c.address)}" stroke="#ffffff" stroke-width="1.2" opacity="0"`)).join('')).join('')
+    +lines.slice(0,k).map(ln=>lineTag(ln,PZ,`stroke="${INK}" stroke-width="1.8" stroke-linecap="round"`)).join('')
+    +`<line id="cr-knife" stroke="${CUT}" stroke-width="3" stroke-linecap="round" x1="0" y1="0" x2="0" y2="0" opacity="0"/><circle id="cr-tip" r="5.5" fill="${CUT}" stroke="#ffffff" stroke-width="2" opacity="0"/>`
+    +segments.map((s,j)=>{const [x,y]=PZ(s.mid);return bubble('cr-plus'+j,[x+(line.n[0]>0?13:-13),y-11],'+1');}).join('');
+  return {svg,bounds,segments,parents,kids,before,line};
+}
+async function runChord(token,o,fromPoint){
+  const ch=X.chord(o.line),forward=Math.hypot(...ch.at(-ch.half).map((v,i)=>v-fromPoint[i]))<Math.hypot(...ch.at(ch.half).map((v,i)=>v-fromPoint[i]));
+  const order=forward?o.segments.map((_,j)=>j):o.segments.map((_,j)=>o.segments.length-1-j),knife=q('cr-knife'),tip=q('cr-tip');
+  const start=PZ(ch.at(forward?-ch.half:ch.half));attr(knife,{x1:start[0],y1:start[1],x2:start[0],y2:start[1],opacity:1});attr(tip,{cx:start[0],cy:start[1],opacity:1});
+  for(const j of order){
+    const s=o.segments[j],[a,b]=forward?[s.from,s.to]:[s.to,s.from],parent=q('cr-p'+o.parents[j]);attr(parent,{fill:HOT});
+    await animate(Math.max(260,700*Math.abs(b-a)/ch.half),t=>{const [x,y]=PZ(ch.at(a+t*(b-a)));attr(knife,{x2:x,y2:y});attr(tip,{cx:x,cy:y});});if(token.cancel)return false;
+    attr(parent,{opacity:0});o.kids[j].forEach((c,side)=>attr(q(`cr-k${j}-${side}`),{opacity:1}));
+    await pop('cr-plus'+j,token);if(token.cancel)return false;
+  }
+  return true;
+}
+function regionStatus(n,mode){
+  if(mode==='hexagon'&&n===6)return 'Three chords meet at the center, so the six equally spaced points make only 30 regions.';
+  if(n===1)return 'One point and no chords: the disc is 1 region.';
+  if(n===2)return 'Point 2 added 1 chord, which split the disc into 2 regions.';
+  const R=X.pieces(chordLines(mode==='hexagon'?X.HEXAGON:X.CIRCLE,n)).length,before=X.pieces(chordLines(mode==='hexagon'?X.HEXAGON:X.CIRCLE,n-1)).length;
+  return `Point ${n} added ${n-1} chords, which added ${R-before} regions: ${R} in all.`;
+}
+// Step 1. Add points one at a time; each new point's chords split regions.
+function circleLab(l,action){
+  l.mode??='general';l.n??=1;
+  const angles=l.mode==='hexagon'?X.HEXAGON:X.CIRCLE,max=angles.length;
+  const triple=l.mode==='hexagon'&&l.n===6?`<circle cx="210" cy="140" r="11" fill="none" stroke="${CUT}" stroke-width="3"/>`:'';
+  const draw=(picture)=>{const R=X.pieces(chordLines(angles,l.n)).length;
+    labShell({title:'Add points to the circle',views:views([['general','Points in general position'],['hexagon','Six equally spaced points']],l.mode),
+      picture:svg(picture??circleScene(angles,l.n,X.choose(l.n,2)).body+triple,`Circle picture. Points: ${l.n}. Regions: ${R}.`,280,CIRCLE_BOX),
+      rows:[['Points',l.n,'cr-n'],['Chords',X.choose(l.n,2),'cr-c'],['Regions',R,'cr-r']],
+      status:regionStatus(l.n,l.mode),caption:'Each new point is joined to every earlier point. Watch each new chord split the regions it passes through.',
+      buttons:button('circle-next','Add the next point',{disabled:l.n>=max,primary:true})+button('circle-reset','Start over',{disabled:l.n<=1})});};
+  if(!action){draw();return;}
+  if(action.startsWith('view-')){stop();l.mode=action.slice(5);l.n=1;circleLab(l);return;}
+  if(action==='circle-reset'){stop();l.n=1;draw();return;}
+  if(action==='circle-next'&&l.n<max)play(async token=>{
+    const n=l.n,lines=chordLines(angles,n+1),first=X.choose(n,2),from=X.point(angles[n]);l.n=n+1;
+    const joining=`Point ${n+1} is added to the circle. It will be joined to ${n===1?'the first point':'the '+n+' earlier points'}.`;
+    for(let k=first;k<lines.length;k++){
+      // Redrawing the scene resets the status, so the message about the new point is shown again.
+      const o=chordOverlay(lines,k);draw(circleScene(angles,n+1,k,{hideFrom:n+1}).body+o.svg);say(joining);
+      setText('cr-c',k);setText('cr-r',o.before.length);
+      if(!await runChord(token,o,from))return;setText('cr-c',k+1);setText('cr-r',o.before.length+o.segments.length);await pause(220);if(token.cancel)return;
+    }
+    draw();
+  });
+}
+// Step 2. Draw the chords of n points one at a time, keeping the tally 1 + chords + crossings.
+function chordLab(l,action,value){
+  l.n??=5;l.m??=0;
+  const lines=()=>chordLines(X.CIRCLE,l.n),total=()=>X.choose(l.n,2);
+  const tally=()=>{const drawn=lines().slice(0,l.m),c=crossingPoints(drawn).length;return {c,R:1+l.m+c};};
+  const content=()=>{const {c,R}=tally();return {picture:svg(circleScene(X.CIRCLE,l.n,l.m,{newest:l.m?l.m-1:null}).body,`Circle picture. Points: ${l.n}. Chords drawn: ${l.m}. Regions: ${R}.`,280,CIRCLE_BOX),
+    rows:[['Chords drawn',`${l.m} of ${total()}`],['Crossings so far',c],['Regions, 1 + chords + crossings',R]],
+    status:l.m?`1 + ${l.m} + ${c} = ${R} regions so far.`:'No chords yet: the disc is 1 region.'};};
+  const draw=(picture)=>{const c=content();labShell({title:'Draw the chords one at a time',...c,picture:picture??c.picture,
+    legend:`<label class="x-range"><span>Number of points, n</span><input type="range" min="2" max="7" step="1" value="${l.n}" data-lab="chord-n" aria-valuetext="${l.n}"><output aria-live="off">${l.n}</output></label>`,
+    caption:'A chord that crosses k earlier chords is cut into k + 1 segments, so it adds 1 region for itself and 1 for each crossing.',
+    buttons:button('chord-next','Draw the next chord',{disabled:l.m>=total(),primary:true})+button('chord-all','Draw them all',{disabled:l.m>=total()})+button('chord-reset','Start over',{disabled:l.m===0})});};
+  if(!action){draw();return;}
+  if(action==='chord-n'){stop();l.n=Math.max(2,Math.min(7,Number(value)||2));l.m=0;patch(content());rangeOutput(String(l.n));
+    for(const [a,on]of [['chord-next',true],['chord-all',true],['chord-reset',false]]){const b=document.querySelector(`#lab [data-lab="${a}"]`);if(b)b.disabled=!on;}return;}
+  if(action==='chord-reset'){stop();l.m=0;draw();return;}
+  if(action==='chord-all'){stop();l.m=total();draw();return;}
+  if(action==='chord-next'&&l.m<total())play(async token=>{
+    const k=l.m,all=lines(),o=chordOverlay(all,k),chord=X.chords(X.CIRCLE,l.n)[k];
+    draw(circleScene(X.CIRCLE,l.n,k).body+o.svg);const crossed=o.segments.length-1;
+    say(crossed===0?'This chord crosses no earlier chord, so it adds 1 region.':crossed===1?'This chord crosses 1 earlier chord, so it adds 2 regions.':`This chord crosses ${crossed} earlier chords, so it adds ${crossed+1} regions.`);
+    if(!await runChord(token,o,X.point(X.CIRCLE[chord.from])))return;await pause(350);if(token.cancel)return;l.m=k+1;draw();
+  });
+}
+// Step 3. Four points: the three pairings, and every crossing matched with its four points.
+const FOURS=[[20,95,200,290],[60,110,250,330],[5,140,175,250],[80,150,215,345]];
+function fourLab(l,action){
+  l.view??='pairs';l.set??=0;l.shown??=0;l.k??=0;
+  const pairs=[[[0,1],[2,3]],[[0,2],[1,3]],[[0,3],[1,2]]],names='ABCD';
+  const pairsPicture=()=>{const a=FOURS[l.set],pts=a.map(X.point);let body=`<circle cx="210" cy="140" r="117" fill="#f8fbfa" stroke="#9db8b0" stroke-width="2"/>`;
+    pairs.slice(0,l.shown).forEach((pair,i)=>{const current=i===l.shown-1,color=['#5c7fb0','#c2553d','#7a5aa8'][i];
+      body+=pair.map(([u,v])=>{const [x1,y1]=PZ(pts[u]),[x2,y2]=PZ(pts[v]);return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${color}" stroke-width="${current?3.2:1.4}" stroke-dasharray="${current?'':'5 4'}" stroke-linecap="round" opacity="${current?1:.55}"/>`;}).join('');
+      if(i===1){const ln=pair.map(([u,v])=>X.chordLine(a[u],a[v])),p=crossingPoints(ln)[0];if(p){const [x,y]=PZ(p);body+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${current?8:5}" fill="${CUT}" stroke="#ffffff" stroke-width="2"/>`;}}});
+    body+=pts.map((p,i)=>{const [x,y]=PZ(p),[tx,ty]=PZ(p.map(v=>v*1.14));return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="6" fill="${INK}" stroke="#ffffff" stroke-width="1.5"/><text x="${tx.toFixed(1)}" y="${(ty+5).toFixed(1)}" text-anchor="middle" class="x-letter">${names[i]}</text>`;}).join('');
+    return body;};
+  const pairStatus=()=>l.shown===0?'Four points in order around the circle. Pair them in each of the three ways.':l.shown===1?'Opposite sides, which do not cross: AB, CD.':l.shown===2?'Diagonals, which cross inside the circle: AC, BD.':'Opposite sides, which do not cross: AD, BC. Only 1 of the 3 pairings has chords that cross.';
+  const mapPicture=()=>{const n=6,lines=chordLines(X.CIRCLE,n),chords=X.chords(X.CIRCLE,n),pts=crossingPoints(lines);let body=circleScene(X.CIRCLE,n,lines.length).body;
+    if(l.k>0){const p=pts[l.k-1],on=chords.filter(c=>Math.abs(X.dot(c.line.n,p)-c.line.d)<1e-9),ends=[...new Set(on.flatMap(c=>[c.from,c.to]))];
+      body+=on.map(c=>lineTag(c.line,PZ,`stroke="${CUT}" stroke-width="3.2" stroke-linecap="round"`)).join('');
+      body+=ends.map(i=>{const [x,y]=PZ(X.point(X.CIRCLE[i]));return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" fill="none" stroke="${CUT}" stroke-width="2.5"/>`;}).join('');
+      const [x,y]=PZ(p);body+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" fill="${CUT}" stroke="#ffffff" stroke-width="2"/>`;}
+    return body;};
+  const mapStatus=()=>{if(!l.k)return 'Six points. Match each crossing with the endpoints of its two chords.';const lines=chordLines(X.CIRCLE,6),p=crossingPoints(lines)[l.k-1],chords=X.chords(X.CIRCLE,6).filter(c=>Math.abs(X.dot(c.line.n,p)-c.line.d)<1e-9),ends=[...new Set(chords.flatMap(c=>[c.from,c.to]))].map(i=>i+1).sort((a,b)=>a-b);
+    return `Crossing ${l.k} of ${crossingPoints(lines).length}: points ${ends.join(', ')}.`;};
+  const viewList=views([['pairs','Three pairings'],['map','Crossings and their points']],l.view);
+  const draw=()=>{
+    if(l.view==='pairs')labShell({title:'Pair four points in every way',views:viewList,picture:svg(pairsPicture(),'Four points A, B, C and D on a circle, joined in pairs',280,CIRCLE_BOX),
+      rows:[['Pairings shown',`${l.shown} of 3`],['Pairings whose chords cross',l.shown>=2?1:0]],status:pairStatus(),
+      caption:'Solid chords show the pairing just drawn; dashed chords show the earlier ones.',
+      buttons:button('pairs-play','Show the three pairings',{primary:true})+button('pairs-new','Try four other points')});
+    else labShell({title:'Every crossing has its own four points',views:viewList,picture:svg(mapPicture(),'Six points on a circle with all chords; one crossing and its four points are marked',280,CIRCLE_BOX),
+      rows:[['Crossings matched',l.k],['Sets of four points, C(6, 4)',X.choose(6,4)]],status:mapStatus(),
+      caption:'Each crossing lies on two chords, and their four endpoints are different. Different crossings have different sets of four points.',
+      buttons:button('map-play','Match every crossing',{primary:true})+button('map-next','Next crossing',{disabled:l.k>=15})+button('map-reset','Start over',{disabled:l.k===0})});
+  };
+  if(!action){draw();return;}
+  if(action.startsWith('view-')){stop();l.view=action.slice(5);draw();return;}
+  if(action==='pairs-new'){stop();l.set=(l.set+1)%FOURS.length;l.shown=0;draw();return;}
+  if(action==='pairs-play')play(async token=>{for(let i=1;i<=3;i++){l.shown=i;draw();await pause(1100);if(token.cancel)return;}});
+  if(action==='map-reset'){stop();l.k=0;draw();return;}
+  if(action==='map-next'&&l.k<15){stop();l.k++;draw();return;}
+  if(action==='map-play')play(async token=>{for(let k=1;k<=15;k++){l.k=k;draw();await pause(520);if(token.cancel)return;}});
+}
+// Step 4. One row for each dimension: each number is the number to its left plus the number above that one.
+const DIMENSIONS=['Point, 0 dimensions','Stick, 1 dimension','Pizza, 2 dimensions','Ball, 3 dimensions','Four dimensions, H(n)'];
+function tableLab(l,action){
+  l.cols??=1;
+  const value=(d,n)=>Array.from({length:d+1},(_,k)=>X.choose(n,k)).reduce((a,b)=>a+b,0),N=8;
+  const grid=()=>`<div class="x-dim" style="--cells:${N}"><p class="x-diff-name">Number of cuts, n</p><p class="x-dim-head" aria-hidden="true">${Array.from({length:N},(_,n)=>`<span>${n}</span>`).join('')}</p>${DIMENSIONS.map((name,d)=>`<p class="x-diff-name">${esc(name)}</p><div class="x-dim-row">${Array.from({length:N},(_,n)=>{const shown=n<l.cols||d===0;return `<span class="x-dim-cell${shown?' shown':''}${d===4?' last':''}"${shown?'':' aria-hidden="true"'} id="dm-${d}-${n}">${value(d,n)}</span>`;}).join('')}</div>`).join('')}</div>`;
+  const status=()=>l.cols<=1?'Column 0: before any cut, every dimension has 1 piece. A point is always 1 piece.':`Columns 0 to ${l.cols-1} are filled. The last row gives H(n) for four dimensions.`;
+  const draw=()=>labShell({title:'One row for each dimension',picture:grid(),status:status(),
+    caption:'A new cut adds as many pieces as its face has, and its face is one dimension lower: so each number is the number to its left plus the number above that one.',
+    buttons:button('table-next','Fill the next column',{disabled:l.cols>=N,primary:true})+button('table-fill','Fill the whole table',{disabled:l.cols>=N})+button('table-reset','Start over',{disabled:l.cols<=1})});
+  if(!action){draw();return;}
+  if(action==='table-reset'){stop();l.cols=1;draw();return;}
+  if(action==='table-fill'){stop();l.cols=N;draw();return;}
+  if(action==='table-next'&&l.cols<N)play(async token=>{
+    const n=l.cols;draw();
+    for(let d=1;d<DIMENSIONS.length;d++){const left=q(`dm-${d}-${n-1}`),above=q(`dm-${d-1}-${n-1}`),cell=q(`dm-${d}-${n}`);[left,above].forEach(c=>c?.classList.add('parent'));
+      say(`${value(d,n-1)} + ${value(d-1,n-1)} = ${value(d,n)}.`);await pause(520);if(token.cancel)return;
+      cell?.classList.add('shown');cell?.removeAttribute('aria-hidden');[left,above].forEach(c=>c?.classList.remove('parent'));await pause(160);if(token.cancel)return;}
+    l.cols=n+1;draw();
+  });
+}
+// Step 5. Pascal's rule turns the five numbers of row n − 1 into C(n, 0), C(n, 2) and C(n, 4).
+function pairLab(l,action,value){
+  l.n??=6;l.done??=false;
+  const row=r=>Array.from({length:r+1},(_,k)=>X.choose(r,k)),group=k=>k===0?'a':k<=2?'b':k<=4?'c':'out';
+  const picture=()=>{const rows=Array.from({length:10},(_,r)=>row(r));
+    return `<div class="x-pascal x-pairs" role="img" aria-label="Pascal’s triangle, rows 0 to 9, with row ${l.n-1} grouped in pairs">${rows.map((vals,r)=>`<div class="x-pascal-row" style="--cells:20">${vals.map((v,k)=>{let cls='';if(r===l.n-1)cls=' g-'+group(k);if(r===l.n&&[0,2,4].includes(k))cls=' t-'+({0:'a',2:'b',4:'c'})[k]+(l.done?' lit':'');return `<span class="x-pascal-cell${cls}" id="pp-${r}-${k}" style="grid-column:${9-r+2*k+1}/span 2">${v}</span>`;}).join('')}</div>`).join('')}</div>`;};
+  const prev=()=>row(l.n-1),H=()=>prev().slice(0,5).reduce((a,b)=>a+b,0),R=()=>1+X.choose(l.n,2)+X.choose(l.n,4);
+  const equation=()=>{const p=prev(),t=k=>p[k]??0;return `${t(0)} + (${t(1)} + ${t(2)}) + (${t(3)} + ${t(4)}) = 1 + ${X.choose(l.n,2)} + ${X.choose(l.n,4)} = ${H()}`;};
+  const status=()=>l.n>5?`Points: ${l.n}. Row ${l.n-1} has ${l.n} numbers and the sum uses only the first five, so R(${l.n}) = ${H()}, not ${2**(l.n-1)}.`:`Points: ${l.n}. Row ${l.n-1} has ${l.n} numbers and the sum uses all of them, so R(${l.n}) = ${H()}, a power of 2.`;
+  const draw=()=>labShell({title:'Pair the numbers with Pascal’s rule',picture:picture(),
+    legend:`<label class="x-range"><span>Number of points, n</span><input type="range" min="2" max="9" step="1" value="${l.n}" data-lab="pair-n" aria-valuetext="${l.n}"><output aria-live="off">${l.n}</output></label><p class="lab-equation" data-no-translate>${equation()}</p>`,
+    status:status(),caption:'Same color, same sum: each pair in row n − 1 adds up to the number below it in row n, by Pascal’s rule.',
+    buttons:button('pair-play','Add the pairs',{primary:true})});
+  if(!action){draw();return;}
+  if(action==='pair-n'){stop();l.n=Math.max(2,Math.min(9,Number(value)||2));l.done=false;patch({picture:picture(),status:status(),equation:equation()});rangeOutput(String(l.n));return;}
+  if(action==='pair-play')play(async token=>{l.done=false;draw();
+    for(const [g,k]of [['a',0],['b',2],['c',4]]){const from=[...document.querySelectorAll('#lab .g-'+g)],to=q(`pp-${l.n}-${k}`);from.forEach(c=>c.classList.add('active'));await pause(650);if(token.cancel)return;to?.classList.add('lit','active');from.forEach(c=>c.classList.remove('active'));await pause(450);if(token.cancel)return;to?.classList.remove('active');}
+    l.done=true;draw();});
+}
+// Step 6. The difference table of the circle counts reaches the ball, the pizza, the stick and then constant 1s.
+const CIRCLE_COUNTS=[1,2,4,8,16,31,57,99,163];
+function differenceLab(l,action){
+  // Rows are named by order, not by what they turn out to be, since step 6 asks which counts they are.
+  const names=['Points on a circle, R(n)','First differences','Second differences','Third differences','Fourth differences'];
+  const rows=[CIRCLE_COUNTS];while(rows.length<5){const r=rows[rows.length-1];rows.push(r.slice(1).map((v,i)=>v-r[i]));}
+  const draw=()=>labShell({title:'Build the difference table',picture:diffTable(rows,names,l.built,'cd'),
+    status:l.built?'The first differences are the ball counts, then come the pizza and stick counts, and the fourth differences are all 1.':'Start from the regions for 1 to 9 points.',
+    caption:'Each number in a lower row is the difference of the two numbers just above it.',
+    buttons:button('diff-build','Build the table',{primary:true})+button('diff-all','Show it all at once')});
+  if(!action){draw();return;}
+  if(action==='diff-all'){stop();l.built=true;draw();return;}
+  if(action==='diff-build')play(async token=>{l.built=false;draw();if(await buildDiff(token,rows,'cd')){l.built=true;draw();}});
 }
 
 document.addEventListener('input',e=>{if(e.target.dataset?.field&&(e.target.tagName==='TEXTAREA'||e.target.type==='text'))recordInput(e.target);else if(e.target.dataset?.lab&&e.target.type==='range')labAction(e.target.dataset.lab,e.target.value);});

@@ -363,6 +363,348 @@
     ]
    }
   ],
-  "nextCheck": "In four dimensions, each new cut is a three-dimensional space, and its face is a three-dimensional ball cut by the earlier cuts. Use the argument of step 4 once more to show that 5 cuts make at most 31 pieces, and find the formula. Then compare with the Discrete Mathematics Intuition Lab activity “It doubles each time. Every time?”, where the chords of a circle also give 1, 2, 4, 8, 16 and 31."
+  "nextCheck": "In four dimensions, each new cut is a three-dimensional space, and its face is a three-dimensional ball cut by the earlier cuts. Use the argument of step 4 once more to show that 5 cuts make at most 31 pieces, and find the formula. Then compare with the Discrete Mathematics Intuition Lab activity “It doubles each time. Every time?”, where the chords of a circle also give 1, 2, 4, 8, 16 and 31. The next cross-disciplinary project, “Two puzzles, one sequence”, works this out."
+ },
+ {
+  "id": "cross-p02",
+  "order": 2,
+  "name": "Chords and four dimensions",
+  "title": "Two puzzles, one sequence: chords of a circle and cuts in four dimensions",
+  "level": "Bridge (high school to undergraduate)",
+  "difficulty": "challenging",
+  "lab": "chords",
+  "subjects": [
+   "geometry",
+   "discrete-math",
+   "algebra-2",
+   "basic-logic"
+  ],
+  "topic": "Chords, crossings and a four-dimensional ball: counting with binomial coefficients",
+  "prompt": "Puzzle A: put n points on a circle and join every pair of them with a chord, so that no three chords meet at one point inside the circle. Into how many regions do the chords cut the disc? Puzzle B: cut a four-dimensional ball with n flat cuts, as the first project cut a ball, one dimension higher. What is the largest number of pieces? Puzzle A gives 1, 2, 4, 8 and 16 for 1 to 5 points, and puzzle B gives the same numbers for 0 to 4 cuts. This project counts both, shows where the doubling stops, and proves that the two puzzles always agree.",
+  "approach": "Count what each new chord adds, as the knife did in the first project: a chord that crosses k earlier chords adds k + 1 regions. Then count the crossings by asking which points make them. For four dimensions, look again at the face of a new cut, one dimension lower.",
+  "uses": "Geometry: chords, convex quadrilaterals and their diagonals. Discrete Mathematics: binomial coefficients, Pascal’s rule and recurrences. Algebra II: polynomials and finite differences. Basic Logic: conjectures, counterexamples and proofs for every n.",
+  "steps": [
+   {
+    "title": "Chords of a circle: a pattern that breaks",
+    "connects": [
+     "geometry",
+     "basic-logic"
+    ],
+    "banner": "1, 2, 4, 8, 16, ?",
+    "prompt": "Place n points on a circle and draw every chord between them, with no three chords meeting at one point inside the circle; we say the points are in general position. Let R(n) be the number of regions. In the lab, add the points one at a time and count the regions for 1 to 5 points. If the count kept doubling, how many regions would 6 points make? Then add the 6th point: how many regions does it add, and how many are there in all?",
+    "proof": "With 1, 2, 3, 4 and 5 points the chords make 1, 2, 4, 8 and 16 regions, so it is natural to guess 2ⁿ⁻¹ regions for n points. That guess gives 32 regions for 6 points.\n\nThe 6th point adds 15 regions, not the 16 that doubling needs, so the drawing with 6 points has 31 regions. A case where a general claim fails is a counterexample, and one counterexample is enough to show that the claim is false. Five agreeing cases cannot make up for it.\n\nThe count does not depend on where the points are, as long as no three chords meet at one point: the next two steps show that it depends only on the numbers of chords and crossings. When three chords do meet at a point, as in a regular hexagon, there are fewer regions: 30 for six equally spaced points.\n\nThis is the doubling trap of the first project in a new setting. The next steps find the real count and explain why the first five values are powers of 2.",
+    "fields": [
+     {
+      "id": "added6",
+      "label": "Regions added by the 6th point",
+      "type": "number",
+      "answer": "15",
+      "accepted": [
+       "15"
+      ]
+     },
+     {
+      "id": "guess",
+      "label": "Regions with 6 points if the count kept doubling",
+      "type": "number",
+      "answer": "32",
+      "accepted": [
+       "32"
+      ]
+     },
+     {
+      "id": "six",
+      "label": "Regions with 6 points",
+      "type": "number",
+      "answer": "31",
+      "accepted": [
+       "31"
+      ]
+     },
+     {
+      "id": "trap",
+      "label": "What does the 6th point show about the doubling rule?",
+      "type": "choice",
+      "answer": "refuted",
+      "options": [
+       {
+        "value": "refuted",
+        "label": "The rule is false: one counterexample is enough"
+       },
+       {
+        "value": "close",
+        "label": "The rule still holds, because 31 is close to 32"
+       },
+       {
+        "value": "drawing",
+        "label": "The drawing must be wrong, because five cases agreed"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "Each chord adds 1, plus 1 for each crossing",
+    "connects": [
+     "geometry",
+     "discrete-math"
+    ],
+    "banner": "R(6) = 1 + ? + ?",
+    "prompt": "Draw the chords one at a time. A new chord that crosses k earlier chords is cut into k + 1 segments, and each segment splits one region in two, as the knife did with the pizza. In the lab, watch each new chord split regions. Count the chords and the crossings inside the circle for 6 points, and explain why the number of regions is 1 + chords + crossings.",
+    "proof": "Start with the whole disc: 1 region. Add the chords one at a time. If a new chord crosses k earlier chords at k different points, those points cut it into k + 1 segments, and each segment splits one region in two. Each chord is the part of a line inside the disc, so every region is convex, like a piece of pizza: the new chord meets each region in at most one segment, so no region is split twice. So the chord adds k + 1 regions: 1 for itself and 1 for each crossing on it.\n\nAdding up over all the chords, every chord contributes 1 and every crossing contributes 1, counted when the second of its two chords is drawn. So the number of regions is 1 + (number of chords) + (number of crossings).\n\nWith 6 points there are C(6, 2) = 15 chords, one for each pair of points, and the drawing has 15 crossings. So there are 1 + 15 + 15 = 31 regions.\n\nThe rule needs every crossing to lie on exactly two chords. Where three chords meet at one point, the third chord crosses the other two at that single point: two crossings but one point, so it has one segment fewer and adds one region fewer. That is why the regular hexagon has 30 regions.",
+    "fields": [
+     {
+      "id": "chords6",
+      "label": "Chords for 6 points",
+      "type": "number",
+      "answer": "15",
+      "accepted": [
+       "15"
+      ]
+     },
+     {
+      "id": "crossings6",
+      "label": "Crossings inside the circle for 6 points",
+      "type": "number",
+      "answer": "15",
+      "accepted": [
+       "15"
+      ]
+     },
+     {
+      "id": "rule",
+      "label": "Explain why the number of regions is 1 + chords + crossings",
+      "type": "reason",
+      "criteria": [
+       "A new chord that crosses k earlier chords at different points is cut into k + 1 segments, and each segment splits one region in two.",
+       "Over all the chords, each chord adds 1 and each crossing adds 1, starting from 1 region."
+      ],
+      "followup": "What changes when three chords meet at one point?"
+     }
+    ]
+   },
+   {
+    "title": "Four points make one crossing",
+    "connects": [
+     "geometry",
+     "discrete-math"
+    ],
+    "banner": "R(10) = 1 + 45 + ?",
+    "prompt": "Which points make a crossing? Two chords that cross have four different endpoints. Take any four points on the circle and join them in pairs: there are three ways to pair them. In how many of the three pairings do the two chords cross inside the circle? Then count without drawing: how many crossings and how many regions do 10 points make? Explain why every set of four points gives exactly one crossing.",
+    "proof": "Name four points A, B, C and D in order around the circle. They are the corners of a convex quadrilateral ABCD. The pairing of AC with BD gives its two diagonals, which cross inside it. The other pairings, AB with CD and AD with BC, give opposite sides, which do not cross.\n\nGoing back, each crossing lies on exactly two chords, because no three chords meet at a point, and their four endpoints are different. By the first paragraph, those four points give exactly this crossing and no other. So crossings and sets of four points match one to one: C(n, 4) crossings.\n\nFor 6 points, C(6, 4) = 15, as in the drawing. For 10 points there are C(10, 4) = 210 crossings and C(10, 2) = 45 chords, so the chords make 1 + 45 + 210 = 256 regions.\n\n256 = 2⁸ is a power of 2, but the doubling rule predicts 2⁹ = 512 regions for 10 points. One value that happens to be a power of 2 does not rescue the rule.",
+    "fields": [
+     {
+      "id": "pairings",
+      "label": "Pairings of four points whose chords cross",
+      "type": "number",
+      "answer": "1",
+      "accepted": [
+       "1"
+      ]
+     },
+     {
+      "id": "chordCrossings10",
+      "label": "Crossings for 10 points",
+      "type": "number",
+      "answer": "210",
+      "accepted": [
+       "210"
+      ]
+     },
+     {
+      "id": "regions10",
+      "label": "Regions with 10 points",
+      "type": "number",
+      "answer": "256",
+      "accepted": [
+       "256"
+      ]
+     },
+     {
+      "id": "four",
+      "label": "Explain why every set of four points gives exactly one crossing",
+      "type": "reason",
+      "criteria": [
+       "Order the four points around the circle: they form a convex quadrilateral, whose diagonals cross and whose opposite sides do not.",
+       "Each crossing comes from the four endpoints of its two chords, and each set of four points gives one crossing, so there are C(n, 4) crossings."
+      ],
+      "followup": "Why do two chords that share an endpoint never cross inside the circle?"
+     }
+    ]
+   },
+   {
+    "title": "Cuts in four dimensions",
+    "connects": [
+     "geometry",
+     "discrete-math"
+    ],
+    "banner": "H(k + 1) = H(k) + ?",
+    "prompt": "Now puzzle B. Let H(n) be the largest number of pieces that n cuts make in a four-dimensional ball. No one can picture this, so climb the ladder of the first project. A cut is a point on a stick, a line across a pizza and a plane through a ball, and its face is a point, a segment and a disc. In four dimensions a cut is a three-dimensional space. What is its face, and what do the earlier cuts do to it? A new cut adds as many pieces as its face has. The lab builds a table with one row for each dimension, in which every number is the number to its left plus the number above that one. Find H(5) and H(6), and explain why each row comes from the row above it.",
+    "proof": "In the first project each dimension used the one below it: a new cut adds as many pieces as its face has, and its face is one dimension lower. In four dimensions the face of a new cut is a three-dimensional ball, and k earlier cuts meet it in k planes. Say the cuts are in general position when every two meet in a plane, every three in a line and every four at one point, all inside the ball, and no five pass through one point. Then the k planes on the face are in general position in that three-dimensional ball, so the face has B(k) pieces. Pieces of the four-dimensional ball are convex, so none is split twice: H(k + 1) = H(k) + B(k). A cut that is not in general position adds at most B(k).\n\nStart from H(0) = 1. With B = 1, 2, 4, 8, 15 and 26 for 0 to 5 cuts, H = 1, 2, 4, 8, 16, 31 and 57 for 0 to 6 cuts. So H(5) = 16 + 15 = 31 and H(6) = 31 + 26 = 57.\n\nThe induction of the first project’s last step works here too: H(0) = 1 = C(0, 0), and H(k + 1) = H(k) + B(k), where Pascal’s rule pairs C(k, j) with C(k, j − 1) to give C(k + 1, j). So H(n) = C(n, 0) + C(n, 1) + C(n, 2) + C(n, 3) + C(n, 4) for every n.\n\nThe same rule links every pair of neighboring dimensions: the count for d dimensions and n cuts is the count for n − 1 cuts plus the count for d − 1 dimensions and n − 1 cuts. The table builds each row from the row above, starting from a point, which no cut can split: it is always 1 piece.\n\nNo one can draw four dimensions, but the argument never needs a picture: it only uses what a new cut adds, one dimension lower. Reasoning by analogy suggested the rule, and the same argument as in the first project proves it.",
+    "fields": [
+     {
+      "id": "faceShape",
+      "label": "What is the face of a new cut in four dimensions?",
+      "type": "choice",
+      "answer": "ball",
+      "options": [
+       {
+        "value": "ball",
+        "label": "A three-dimensional ball, cut by the earlier cuts like the ball of the first project"
+       },
+       {
+        "value": "disc",
+        "label": "A disc, cut by the earlier cuts like a pizza"
+       },
+       {
+        "value": "segment",
+        "label": "A segment, cut by the earlier cuts like a stick"
+       }
+      ]
+     },
+     {
+      "id": "h5",
+      "label": "Most pieces with 5 cuts in four dimensions, H(5)",
+      "type": "number",
+      "answer": "31",
+      "accepted": [
+       "31"
+      ]
+     },
+     {
+      "id": "h6",
+      "label": "Most pieces with 6 cuts in four dimensions, H(6)",
+      "type": "number",
+      "answer": "57",
+      "accepted": [
+       "57"
+      ]
+     },
+     {
+      "id": "rows",
+      "label": "Explain why each row of the table comes from the row above it",
+      "type": "reason",
+      "criteria": [
+       "A new cut in d dimensions leaves a face of d − 1 dimensions, and the earlier cuts cut that face in general position.",
+       "So the cut adds the count for d − 1 dimensions and n − 1 cuts, which is the number above and to the left in the table."
+      ],
+      "followup": "What does the row for zero dimensions say, and why?"
+     }
+    ]
+   },
+   {
+    "title": "Two puzzles, one formula",
+    "connects": [
+     "discrete-math",
+     "algebra-2",
+     "basic-logic"
+    ],
+    "banner": "R(n) = H(n − 1)?",
+    "prompt": "Puzzle A gives R(n) = 1 + C(n, 2) + C(n, 4) regions for n points. Puzzle B gives H(m) = C(m, 0) + C(m, 1) + C(m, 2) + C(m, 3) + C(m, 4) pieces for m cuts, one more term than the ball. The two lists agree when m = n − 1. Check this for 7 points, decide what could show it for every n, and then prove it with Pascal’s rule.",
+    "proof": "R(7) = 1 + C(7, 2) + C(7, 4) = 1 + 21 + 35 = 57, and H(6) = 1 + 6 + 15 + 20 + 15 = 57.\n\nChecking cases cannot prove a statement about every n, however many cases agree: step 1 showed five agreeing cases followed by a counterexample. A proof has to work for a general n.\n\nProof. Group the terms: H(n − 1) = C(n − 1, 0) + [C(n − 1, 1) + C(n − 1, 2)] + [C(n − 1, 3) + C(n − 1, 4)]. By Pascal’s rule, C(n − 1, 1) + C(n − 1, 2) = C(n, 2) and C(n − 1, 3) + C(n − 1, 4) = C(n, 4), and C(n − 1, 0) = 1. So H(n − 1) = 1 + C(n, 2) + C(n, 4) = R(n) for every n ≥ 1.\n\nThis also explains the trap. Row n − 1 of Pascal’s triangle has n numbers, which add up to 2ⁿ⁻¹. Up to 5 points, H(n − 1) adds all of them, so R(n) = 2ⁿ⁻¹. From 6 points on, the row has more than five numbers and the sum leaves some out: for 6 points it leaves out C(5, 5) = 1, so R(6) = 32 − 1 = 31.",
+    "fields": [
+     {
+      "id": "r7",
+      "label": "R(7), regions with 7 points",
+      "type": "number",
+      "answer": "57",
+      "accepted": [
+       "57"
+      ]
+     },
+     {
+      "id": "proof",
+      "label": "The two formulas agree for n = 1, 2, …, 20. What shows that they agree for every n?",
+      "type": "choice",
+      "answer": "identity",
+      "options": [
+       {
+        "value": "identity",
+        "label": "An algebraic proof that works for a general n"
+       },
+       {
+        "value": "cases",
+        "label": "Checking many more values of n, say up to 1000"
+       },
+       {
+        "value": "picture",
+        "label": "One drawing that shows both puzzles at once"
+       }
+      ]
+     },
+     {
+      "id": "identity",
+      "label": "Prove that 1 + C(n, 2) + C(n, 4) = H(n − 1) for every n ≥ 1",
+      "type": "reason",
+      "criteria": [
+       "Group the five terms of H(n − 1) as C(n − 1, 0), then C(n − 1, 1) + C(n − 1, 2), then C(n − 1, 3) + C(n − 1, 4).",
+       "Use Pascal’s rule on each pair to get C(n, 2) and C(n, 4), and C(n − 1, 0) = 1."
+      ],
+      "followup": "Which numbers of row n − 1 of Pascal’s triangle does H(n − 1) leave out for 7 points?"
+     }
+    ]
+   },
+   {
+    "title": "A polynomial of degree 4",
+    "connects": [
+     "algebra-2",
+     "discrete-math"
+    ],
+    "banner": "1, 2, 4, 8, 16, 31, 57, 99, 163",
+    "prompt": "Build the difference table of 1, 2, 4, 8, 16, 31, 57, 99, 163, the regions for 1 to 9 points. Which counts from the first project do the first differences give? What number fills the row of fourth differences? Then use R(n) = 1 + C(n, 2) + C(n, 4) to find R(12), and explain what the table says about R(n).",
+    "proof": "The differences of 1, 2, 4, 8, 16, 31, 57, 99, 163 are 1, 2, 4, 8, 15, 26, 42, 64: the ball counts. Their differences are the pizza counts, 1, 2, 4, 7, 11, 16, 22, then come the stick counts, 1, 2, 3, 4, 5, 6, and the fourth differences are all 1.\n\nThis is step 4 read backward: R(n + 1) − R(n) = H(n) − H(n − 1) = B(n − 1), so each row of the difference table is the count one dimension lower.\n\nThe table shows nine values, but the rule above holds for every n, so the fourth differences are 1 for every n. So R(n) is a polynomial of degree 4, whose leading coefficient is the constant fourth difference divided by 4!, here 1/24. Expanding gives 1 + n(n − 1)/2 + n(n − 1)(n − 2)(n − 3)/24 = (n⁴ − 6n³ + 23n² − 18n + 24)/24.\n\nFor 12 points, R(12) = 1 + C(12, 2) + C(12, 4) = 1 + 66 + 495 = 562, and (20736 − 10368 + 3312 − 216 + 24)/24 = 562.",
+    "fields": [
+     {
+      "id": "first",
+      "label": "The first differences of the region counts are…",
+      "type": "choice",
+      "answer": "ball",
+      "options": [
+       {
+        "value": "ball",
+        "label": "the ball counts from the first project"
+       },
+       {
+        "value": "pizza",
+        "label": "the pizza counts from the first project"
+       },
+       {
+        "value": "powers",
+        "label": "powers of 2"
+       }
+      ]
+     },
+     {
+      "id": "fourth",
+      "label": "The number in the row of fourth differences",
+      "type": "number",
+      "answer": "1",
+      "accepted": [
+       "1"
+      ]
+     },
+     {
+      "id": "r12",
+      "label": "R(12), regions with 12 points",
+      "type": "number",
+      "answer": "562",
+      "accepted": [
+       "562"
+      ]
+     },
+     {
+      "id": "degree",
+      "label": "Explain what the difference table says about R(n)",
+      "type": "reason",
+      "criteria": [
+       "The fourth differences are 1 for every n, not only in the table, because each row of differences is the count one dimension lower; so R(n) is a polynomial of degree 4.",
+       "Its leading coefficient is the constant fourth difference divided by 4! = 24, so it is 1/24, and expanding 1 + C(n, 2) + C(n, 4) confirms it."
+      ],
+      "followup": "Which row of the table would be constant for the ball counts, and what would the constant be?"
+     }
+    ]
+   }
+  ],
+  "nextCheck": "In d dimensions, n cuts make at most C(n, 0) + C(n, 1) + ⋯ + C(n, d) pieces. Explain why this sum equals 2ⁿ exactly when n ≤ d. In how many dimensions do 10 cuts first make 2¹⁰ = 1024 pieces, and how many pieces do they make one dimension lower?"
  }
 ]

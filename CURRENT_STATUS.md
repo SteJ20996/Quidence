@@ -1,3 +1,9 @@
+## 2026-10-31 · Cross-disciplinary projects, part 2
+
+The Cross-disciplinary Projects section has a second project, "Two puzzles, one sequence" (`cross-disciplinary/?project=cross-p02`), in English and Spanish. It counts the regions made by the chords of a circle and the pieces made by cuts of a four-dimensional ball, and proves that the two always agree. See [cross-disciplinary-chords-20261031.md](review/cross-disciplinary-chords-20261031.md).
+
+Current inventory: 15 subject cards (6 School Mathematics, 7 Further Mathematics, 2 Science) and 2 cross-disciplinary projects.
+
 ## 2026-10-31 · Cross-disciplinary projects
 
 The homepage has a Cross-disciplinary Projects section with its first project, "How many pieces can n cuts make?" (`cross-disciplinary/`), in English and Spanish. It has six steps with animated labs, from a stick to a pizza to a ball, and draws on Geometry, Algebra II, Discrete Mathematics and Basic Logic. See [cross-disciplinary-ball-cuts-20261031.md](review/cross-disciplinary-ball-cuts-20261031.md).

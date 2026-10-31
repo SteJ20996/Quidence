@@ -95,7 +95,7 @@ async function main(){
     result.layouts++;
    }
    await page.goto(origin+'/?lang=en&view=courses');await page.waitForFunction(()=>window.QuidenceI18n?.locale==='en');
-   assert.equal(await page.locator('.subject-card:visible').count(),16);
+   assert.equal(await page.locator('.subject-card:visible').count(),17);
    await page.screenshot({path:path.join(shots,theme+'-courses.png')});
    const html=await page.evaluate(()=>QuidenceReportTools.documentHtml('Report','<h1>Report</h1><p class="student-work">My exact answer: −1/3</p>'));
    const offline=await context.newPage();await offline.setContent(html);

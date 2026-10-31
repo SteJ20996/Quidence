@@ -34,12 +34,13 @@
     return out;
   }
   // Where a cut line meets the boundary of the disc, and where the earlier cuts cross it, as distances along the line.
+  // Chords that share an endpoint meet on the circle itself, which is not a crossing inside the disc.
   function chord(l,r=1){
     const foot=scale(l.n,l.d),dir=[-l.n[1],l.n[0]],half=Math.sqrt(Math.max(0,r*r-l.d*l.d));
     return {foot,dir,half,at:t=>[foot[0]+t*dir[0],foot[1]+t*dir[1]]};
   }
   function crossings(l,earlier){
-    const c=chord(l);return earlier.map(e=>{const den=dot(e.n,c.dir);return Math.abs(den)<1e-12?null:(e.d-dot(e.n,c.foot))/den;}).filter(t=>t!==null&&Math.abs(t)<c.half).sort((a,b)=>a-b);
+    const c=chord(l);return earlier.map(e=>{const den=dot(e.n,c.dir);return Math.abs(den)<1e-12?null:(e.d-dot(e.n,c.foot))/den;}).filter(t=>t!==null&&Math.abs(t)<c.half-1e-7).sort((a,b)=>a-b);
   }
   // The face of ball cut k: a disc of radius √(1 − d²) centered at d·u, with basis vectors e1 and e2 and the lines
   // where the earlier cuts meet it, in face coordinates scaled to a unit disc.
@@ -74,6 +75,15 @@
     const center=[0,1,2].map(a=>corners.reduce((s,c)=>s+c[a],0)/4);return {corners,center,address:addressOf(center,planes)};
   }
   const flip=address=>[...address].map(s=>s==='+'?'−':'+').join('');
-  const api={PIZZA,CONCURRENT,TRIANGLE,BALL,dot,cross,unit,disc,split,pieces,chord,crossings,face,ballCounts,choose,addressOf,ballAddresses,tetrahedron,flip};
+  // Points on a circle, by angle in degrees, in the order the circle lab adds them. Their chords are in general
+  // position: no three meet at one point inside the circle. The hexagon's equally spaced points are not.
+  const CIRCLE=[257.6,155.7,49.2,102.8,207.3,356.8,306.7],HEXAGON=[31,91,151,211,271,331];
+  // The chord between the points at angles a and b is the part of a line inside the disc: its normal points to the
+  // chord's middle, at distance cos((b − a)/2) from the center.
+  const chordLine=(a,b)=>line((a+b)/2,Math.cos((b-a)*Math.PI/360));
+  // Every chord among the first n points, in drawing order: each new point is joined to the earlier ones.
+  function chords(angles,n=angles.length){const out=[];for(let i=1;i<n;i++)for(let j=0;j<i;j++)out.push({from:i,to:j,line:chordLine(angles[j],angles[i])});return out;}
+  const point=deg=>[Math.cos(deg*Math.PI/180),Math.sin(deg*Math.PI/180)];
+  const api={PIZZA,CONCURRENT,TRIANGLE,CIRCLE,HEXAGON,chordLine,chords,point,BALL,dot,cross,unit,disc,split,pieces,chord,crossings,face,ballCounts,choose,addressOf,ballAddresses,tetrahedron,flip};
   root.CrossCore=api;if(typeof module==='object'&&module.exports)module.exports=api;
 })(globalThis);
