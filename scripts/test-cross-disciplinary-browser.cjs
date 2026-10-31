@@ -50,6 +50,29 @@ async function main(){
   assert.match(await run(4,['view-stack','stack-next','stack-next','stack-next','stack-next']),/16 pieces/);
   await run(5,['table-build']);await idle();assert.deepEqual(await page.locator('#lab .x-diff-row').last().locator('.x-diff-cell').allTextContents(),['1','1','1','1','1']);
   assert.match(await run(5,['view-pascal','pascal-play']),/Row 4: the first 4 numbers add up to 15\./);
+  // Project 2: chords of a circle and cuts in four dimensions.
+  const p2=data[1],project=async id=>{await page.locator(`[data-project="${id}"]`).click();await page.locator('#project-head h2').waitFor();};
+  await project('cross-p02');
+  for(let i=0;i<p2.steps.length;i++){
+   await step(i);assert.equal(await page.locator('#work h3').first().textContent(),p2.steps[i].title);
+   assert.deepEqual(await page.locator('#work .x-chip').evaluateAll(as=>as.map(a=>new URL(a.href).pathname)),p2.steps[i].connects.map(id=>'/courses/'+id+'/'));
+   await page.locator('#proof').evaluate(e=>e.open=true);assert((await page.locator('.proof-content').textContent()).includes(p2.steps[i].proof.split('\n')[0]));
+   assert.equal(await page.locator('[data-field]').count(),p2.steps[i].fields.reduce((n,f)=>n+(f.type==='choice'?f.options.length:1),0));result.steps++;
+  }
+  assert.match(await labText(0),/One point and no chords/);assert.doesNotMatch(await labText(3),/\b(31|57)\b/);
+  assert.equal(await run(0,['circle-next','circle-next','circle-next','circle-next','circle-next']),'Point 6 added 5 chords, which added 15 regions: 31 in all.');
+  assert.equal(await run(0,['circle-next']),'Point 7 added 6 chords, which added 26 regions: 57 in all.');
+  assert.match(await run(0,['view-hexagon','circle-next','circle-next','circle-next','circle-next','circle-next']),/only 30 regions/);
+  await step(1);await page.locator('#lab [data-lab="chord-n"]').evaluate(e=>{e.value=6;e.dispatchEvent(new Event('input',{bubbles:true}));});
+  assert.match(await run(1,['chord-next','chord-next']),/^1 \+ 2 \+ 0 = 3 regions so far\.$/);
+  assert.equal(await run(1,['chord-all']),'1 + 15 + 15 = 31 regions so far.');
+  assert.match(await run(2,['pairs-play']),/Only 1 of the 3 pairings has chords that cross\./);
+  assert.match(await run(2,['view-map','map-play']),/^Crossing 15 of 15: points \d, \d, \d, \d\.$/);
+  await run(3,['table-fill']);assert.deepEqual([await page.locator('#dm-4-5').textContent(),await page.locator('#dm-4-6').textContent()],['31','57']);
+  await step(4);await page.locator('#lab [data-lab="pair-n"]').evaluate(e=>{e.value=7;e.dispatchEvent(new Event('input',{bubbles:true}));});
+  assert.match(await run(4,['pair-play']),/R\(7\) = 57, not 64\./);
+  await run(5,['diff-build']);assert.deepEqual(await page.locator('#lab .x-diff-row').last().locator('.x-diff-cell').allTextContents(),['1','1','1','1','1']);
+  await project('cross-p01');
   // Keyboard focus stays on the control that was used, even though the lab is redrawn.
   await step(0);await page.locator('#lab [data-lab="stick-reset"]').click().catch(()=>{});await page.locator('#lab [data-lab="stick-next"]').focus();await page.keyboard.press('Enter');await idle();
   assert.equal(await page.evaluate(()=>document.activeElement?.dataset.lab),'stick-next');
@@ -82,6 +105,23 @@ async function main(){
   }
   await page.locator('#lab [data-lab="pascal-n"]').evaluate(e=>{e.value=6;e.dispatchEvent(new Event('input',{bubbles:true}));});await page.evaluate(()=>QuidenceI18n.apply());
   assert.match(await page.locator('#lab-status').textContent(),/^Fila 6: los primeros 4 números suman 42\.$/);
+  // Project 2 in Spanish: authored text and every lab control.
+  await project('cross-p02');
+  for(const width of [1440,375]){await page.setViewportSize({width,height:900});for(let i=0;i<p2.steps.length;i++){
+   const authored=source[1].steps[i];await step(i);await page.locator('#proof').evaluate(e=>e.open=true);await page.evaluate(()=>QuidenceI18n.apply());
+   assert.equal(await page.locator('#project-head h2').textContent(),normalize(source[1].title.es));
+   assert.equal(await page.locator('#work h3').textContent(),normalize(authored.title.es));
+   assert.deepEqual((await page.locator('.proof-content > p:not(.proof-label)').allTextContents()).map(normalize),authored.proof.map(x=>normalize(x.es)));
+   assert(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=1,'overflow at project 2 step '+i+' and '+width);
+  }}
+  await page.setViewportSize({width:1440,height:900});
+  for(const [i,actions]of [[0,['view-general','circle-next','circle-next','circle-next','circle-reset','view-hexagon','circle-next']],[1,['chord-reset','chord-next','chord-next','chord-all']],
+   [2,['view-pairs','pairs-play','pairs-new','view-map','map-reset','map-next','map-play']],[3,['table-reset','table-next','table-fill']],[4,['pair-play']],[5,['diff-build','diff-all']]]){
+   await step(i);for(const a of actions){await page.locator(`#lab [data-lab="${a}"]`).click();await page.evaluate(()=>QuidenceI18n.apply());}await idle();await page.evaluate(()=>QuidenceI18n.apply());
+  }
+  await step(4);await page.locator('#lab [data-lab="pair-n"]').evaluate(e=>{e.value=8;e.dispatchEvent(new Event('input',{bubbles:true}));});await page.evaluate(()=>QuidenceI18n.apply());
+  assert.equal(await page.locator('#lab-status').textContent(),'Puntos: 8. La fila 7 tiene 8 números y la suma usa solo los primeros cinco, así que R(8) = 99, no 128.');
+  await project('cross-p01');
   await step(3);await page.locator('#session').click();assert((await page.locator('.student-work').allTextContents()).includes(RAW));assert.equal(await page.locator('.student-work img').count(),0);
   const downloadPromise=page.waitForEvent('download');await page.locator('#export').click();const download=await downloadPromise;assert.match(download.suggestedFilename(),/^Quidence-cross-disciplinary-/);
   const text=fs.readFileSync(await download.path(),'utf8');assert(text.includes(RAW));assert(text.includes('Historial de comprobaciones'));assert(text.includes('Estado de la respuesta:'));
@@ -90,7 +130,7 @@ async function main(){
    await page.setViewportSize({width,height});
    for(const language of ['en','es']){
     await page.locator('#quidence-language').selectOption(language);await page.waitForFunction(l=>QuidenceI18n.locale===l,language);
-    for(let i=0;i<p.steps.length;i++){await step(i);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow at '+width+' '+language+' step '+i);}
+    for(const id of ['cross-p02','cross-p01']){await project(id);for(let i=0;i<6;i++){await step(i);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow at '+width+' '+language+' '+id+' step '+i);}}
     result.layouts++;
    }
   }
@@ -108,7 +148,8 @@ async function main(){
    const hp=await home.newPage();hp.on('pageerror',e=>errors.push(theme+': '+e.message));await hp.goto(origin+'/?view=courses&lang=en');
    const card=hp.locator('.subject-card[data-subject="cross-p01"]');await card.waitFor({state:'visible'});
    assert.equal(new URL(await card.locator('.subject-link').getAttribute('href'),origin+'/').pathname,'/cross-disciplinary/');
-   if(theme!=='classic'){await hp.locator('#subject-categories [data-category="cross"]').click();assert.deepEqual(await hp.locator('.subject-card:visible').evaluateAll(cs=>cs.map(c=>c.dataset.subject)),['cross-p01']);}
+   assert.equal(new URL(await hp.locator('.subject-card[data-subject="cross-p02"] .subject-link').getAttribute('href'),origin+'/').searchParams.get('project'),'cross-p02');
+   if(theme!=='classic'){await hp.locator('#subject-categories [data-category="cross"]').click();assert.deepEqual(await hp.locator('.subject-card:visible').evaluateAll(cs=>cs.map(c=>c.dataset.subject)),['cross-p01','cross-p02']);}
    await home.close();
   }
   assert.deepEqual(errors,[]);assert.deepEqual(failed,[]);result.result='passed';

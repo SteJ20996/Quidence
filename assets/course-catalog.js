@@ -28,6 +28,8 @@ for(const id of ['geometry','ab01'])COURSES[id].relatedProject='courses/coordina
 // Cross-disciplinary projects are not courses: each draws on several courses and has its own homepage section.
 const CROSS={id:'cross',title:'Cross-disciplinary Projects',description:'Problems that need several subjects at once, with animated models and reference proofs.',
  projects:{'cross-p01':{title:'How many pieces can n cuts make?',course:'cross-disciplinary/?project=cross-p01',subjects:['geometry','algebra-2','discrete-math','basic-logic'],stepCount:6,illustration:'cross-ball-cuts',related:'intuition/#regions',
-  description:'Cut a stick, a pizza and a ball, and find out why the count stops doubling after 8.',scope:'One project in six steps with animated models, checked answers and reference proofs. Explanations remain pending review.'}}};
+  description:'Cut a stick, a pizza and a ball, and find out why the count stops doubling after 8.',scope:'One project in six steps with animated models, checked answers and reference proofs. Explanations remain pending review.'},
+  'cross-p02':{title:'Two puzzles, one sequence',course:'cross-disciplinary/?project=cross-p02',subjects:['geometry','discrete-math','algebra-2','basic-logic'],stepCount:6,illustration:'cross-chords',related:'intuition/#regions',
+  description:'Chords of a circle and cuts in four dimensions both start 1, 2, 4, 8, 16. Find out where the doubling stops and why the two always agree.',scope:'One project in six steps with animated models, checked answers and reference proofs. Explanations remain pending review.'}}};
 const api={GROUPS,COURSES,CROSS};if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceCourseCatalog=api;
 })(typeof window==='undefined'?globalThis:window);

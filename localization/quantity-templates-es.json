@@ -710,5 +710,61 @@
   [
     "Running total: [n].",
     "Total acumulado: [n]."
+  ],
+  [
+    "Circle picture. Points: [n]. Regions: [n].",
+    "Dibujo de la circunferencia. Puntos: [n]. Regiones: [n]."
+  ],
+  [
+    "Point [n] added [n] chords, which added [n] regions: [n] in all.",
+    "El punto [n] agregó [n] cuerdas, que agregaron [n] regiones: [n] en total."
+  ],
+  [
+    "Point [n] is added to the circle. It will be joined to the first point.",
+    "Se agrega el punto [n] a la circunferencia. Se unirá con el primer punto."
+  ],
+  [
+    "Point [n] is added to the circle. It will be joined to the [n] earlier points.",
+    "Se agrega el punto [n] a la circunferencia. Se unirá con los [n] puntos anteriores."
+  ],
+  [
+    "Circle picture. Points: [n]. Chords drawn: [n]. Regions: [n].",
+    "Dibujo de la circunferencia. Puntos: [n]. Cuerdas trazadas: [n]. Regiones: [n]."
+  ],
+  [
+    "[n] of [n]",
+    "[n] de [n]"
+  ],
+  [
+    "1 + [n] + [n] = [n] regions so far.",
+    "1 + [n] + [n] = [n] regiones hasta ahora."
+  ],
+  [
+    "This chord crosses [n] earlier chords, so it adds [n] regions.",
+    "Esta cuerda cruza [n] cuerdas anteriores, así que agrega [n] regiones."
+  ],
+  [
+    "Only [n] of the [n] pairings has chords that cross.",
+    "Solo [n] de los [n] emparejamientos tiene cuerdas que se cruzan."
+  ],
+  [
+    "Crossing [n] of [n]: points [n], [n], [n], [n].",
+    "Cruce [n] de [n]: puntos [n], [n], [n], [n]."
+  ],
+  [
+    "Columns 0 to [n] are filled. The last row gives H(n) for four dimensions.",
+    "Las columnas 0 a [n] están llenas. La última fila da H(n) para cuatro dimensiones."
+  ],
+  [
+    "Pascal’s triangle, rows 0 to 9, with row [n] grouped in pairs",
+    "Triángulo de Pascal, filas 0 a 9, con la fila [n] agrupada en parejas"
+  ],
+  [
+    "Points: [n]. Row [n] has [n] numbers and the sum uses only the first five, so R([n]) = [n], not [n].",
+    "Puntos: [n]. La fila [n] tiene [n] números y la suma usa solo los primeros cinco, así que R([n]) = [n], no [n]."
+  ],
+  [
+    "Points: [n]. Row [n] has [n] numbers and the sum uses all of them, so R([n]) = [n], a power of 2.",
+    "Puntos: [n]. La fila [n] tiene [n] números y la suma los usa todos, así que R([n]) = [n], una potencia de 2."
   ]
 ]

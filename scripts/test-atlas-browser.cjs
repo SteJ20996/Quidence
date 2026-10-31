@@ -13,14 +13,14 @@ async function main(){
   const links=()=>page.locator('.subject-card').evaluateAll(es=>Object.fromEntries(es.map(e=>[e.dataset.subject,[...e.querySelectorAll('a')].map(a=>a.getAttribute('href'))])));
   await page.goto(origin+'/?lang=en');await language('en');const originalLinks=await links();
   await chooseTheme(page,'atlas');await page.evaluate(()=>document.fonts.ready);
-  assert.deepEqual(await page.locator('.q-atlas-group').evaluateAll(es=>es.map(e=>[e.dataset.atlasGroup,e.querySelectorAll('.subject-card').length])),[['school',6],['further',7],['science',2],['cross',1]]);
+  assert.deepEqual(await page.locator('.q-atlas-group').evaluateAll(es=>es.map(e=>[e.dataset.atlasGroup,e.querySelectorAll('.subject-card').length])),[['school',6],['further',7],['science',2],['cross',2]]);
   const raw='Keep this exact work: −1/3\n幾何 x² = 9 <original>';await page.locator('#request-subject').selectOption('geometry');await page.locator('#learning-goal').fill(raw);await page.locator('#learning-goal').blur();
   await page.locator('.q-paper-options>summary').click();await page.locator('#goal-include-report').check();
   const saved=await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1'));
   await page.locator('#goal-copy').click();await page.waitForFunction(()=>/cop|select/i.test(document.getElementById('goal-status').textContent));
   for(const theme of ['paper','classic','atlas','studio','paper','atlas']){
-   await chooseTheme(page,theme);assert.deepEqual(await links(),originalLinks);assert.equal(await page.locator('#learning-goal').inputValue(),raw);assert.equal(await page.locator('#request-subject').inputValue(),'geometry');assert(await page.locator('#goal-include-report').isChecked());assert.equal(await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1')),saved);assert.equal(await page.locator('.subject-card').count(),16);
-   if(theme==='classic')assert.deepEqual(await page.locator('.catalogue-group').evaluateAll(es=>es.map(e=>e.querySelectorAll('.subject-card').length)),[1,8,6,1]);
+   await chooseTheme(page,theme);assert.deepEqual(await links(),originalLinks);assert.equal(await page.locator('#learning-goal').inputValue(),raw);assert.equal(await page.locator('#request-subject').inputValue(),'geometry');assert(await page.locator('#goal-include-report').isChecked());assert.equal(await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1')),saved);assert.equal(await page.locator('.subject-card').count(),17);
+   if(theme==='classic')assert.deepEqual(await page.locator('.catalogue-group').evaluateAll(es=>es.map(e=>e.querySelectorAll('.subject-card').length)),[1,8,6,2]);
    if(theme==='paper')assert.equal(await page.locator('.q-atlas-group:visible').count(),0);
    result.themeRoundTrips++;
   }
@@ -28,7 +28,7 @@ async function main(){
   const shots=path.join(__dirname,'../review/atlas-screenshots');fs.mkdirSync(shots,{recursive:true});
   for(const lang of ['en','es'])for(const width of [320,375,600,768,1000,1024,1280,1281,1512]){
    await page.setViewportSize({width,height:1000});await page.locator('#quidence-language').selectOption(lang);await language(lang);await page.evaluate(()=>document.fonts.ready);
-   for(const [category,count]of [['all',16],['school',6],['further',7],['science',2],['cross',1]]){
+   for(const [category,count]of [['all',17],['school',6],['further',7],['science',2],['cross',2]]){
     await page.locator('button[data-home-view="courses"]').click();await page.locator('button[data-category="'+category+'"]').click();assert.equal(await page.locator('.subject-card:visible').count(),count);assert.equal(await page.locator('.q-atlas-group:visible').count(),category==='all'?4:1);
     const bounds=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth-innerWidth,links:[...document.querySelectorAll('.subject-card:not([hidden])>.q-paper-entry')].map(e=>{const a=e.getBoundingClientRect(),b=e.closest('.subject-card').getBoundingClientRect();return a.left>=b.left&&a.right<=b.right+1&&e.scrollWidth<=e.clientWidth+1&&(innerWidth>700||a.height>=44);}),header:[...document.querySelector('.qh-site-header').children].filter(e=>getComputedStyle(e).display!=='none').map(e=>{const r=e.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth+1;})}));
     assert(bounds.overflow<=1,lang+' '+width+' overflow '+bounds.overflow);assert(bounds.links.every(Boolean),lang+' '+width+' clipped links/touch targets');assert(bounds.header.every(Boolean),lang+' '+width+' clipped header');result.categories++;

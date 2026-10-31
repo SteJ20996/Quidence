@@ -43,10 +43,12 @@ function generalCuts(count,dim,seed){
 }
 function counts(dim,max,seed){const cuts=generalCuts(max,dim,seed);return Array.from({length:max+1},(_,k)=>k<dim?2**k:piecesAroundCorners(cuts.slice(0,k),dim,10).size);}
 
-test('one bilingual project in six steps, with up-to-date page data and a homepage entry',()=>{
+test('two bilingual projects in six steps each, with up-to-date page data and homepage entries',()=>{
  assert.equal(fs.readFileSync(build.OUT,'utf8'),build.serialized(),'run node scripts/build-cross-disciplinary.cjs');
- assert.deepEqual(data.map(p=>p.id),['cross-p01']);assert.equal(data[0].steps.length,6);
- assert.equal(data[0].steps.reduce((n,s)=>n+s.fields.length,0),25);
+ assert.deepEqual(data.map(p=>p.id),['cross-p01','cross-p02']);assert.deepEqual(data.map(p=>p.steps.length),[6,6]);
+ assert.deepEqual(data.map(p=>p.steps.reduce((n,s)=>n+s.fields.length,0)),[25,22]);
+ assert.deepEqual(Object.keys(CROSS.projects),data.map(p=>p.id));
+ const ids=data.flatMap(p=>p.steps.flatMap(s=>s.fields.map(f=>f.id)));assert.equal(new Set(ids).size,ids.length,'field ids are unique across projects');
  const catalog=build.crossCatalog();
  for(const p of data){
   for(const key of ['name','title','topic','prompt','approach','uses','nextCheck'])assert.ok(catalog[p[key]],p.id+'.'+key+' has Spanish');
@@ -127,4 +129,64 @@ test('the lab arrangements are in general position and give the counts the labs 
  assert.deepEqual(X.ballCounts(),[1,2,4,8,15,26]);
  assert.deepEqual(X.ballAddresses(X.BALL.slice(0,4)).length,15);
  assert.equal(X.flip(X.tetrahedron().address).length,4);assert.ok(!X.ballAddresses(X.BALL.slice(0,4)).includes(X.flip(X.tetrahedron().address)));
+});
+
+// Chords of a circle. Regions come from Euler's formula for the drawing as a planar graph: its vertices are the points and
+// the crossings found by testing every two chords, its edges are the arcs and the pieces of chords between them.
+const onCircle=deg=>[Math.cos(deg*Math.PI/180),Math.sin(deg*Math.PI/180)];
+function crossesInside(p,q,r,s){
+ const d=(q[0]-p[0])*(s[1]-r[1])-(q[1]-p[1])*(s[0]-r[0]);if(Math.abs(d)<1e-12)return null;
+ const t=((r[0]-p[0])*(s[1]-r[1])-(r[1]-p[1])*(s[0]-r[0]))/d,u=((r[0]-p[0])*(q[1]-p[1])-(r[1]-p[1])*(q[0]-p[0]))/d;
+ return t>1e-9&&t<1-1e-9&&u>1e-9&&u<1-1e-9?[p[0]+t*(q[0]-p[0]),p[1]+t*(q[1]-p[1])]:null;
+}
+function chordDrawing(angles){
+ const pts=angles.map(onCircle),chords=subsets(pts.length,2),crossings=[];const onChord=chords.map(()=>0);
+ for(let a=0;a<chords.length;a++)for(let b=a+1;b<chords.length;b++){const [i,j]=chords[a],[k,l]=chords[b];if(new Set([i,j,k,l]).size<4)continue;const x=crossesInside(pts[i],pts[j],pts[k],pts[l]);if(x){crossings.push(x);onChord[a]++;onChord[b]++;}}
+ const n=pts.length,V=n+crossings.length,E=(n>1?n:0)+onChord.reduce((s,c)=>s+c+1,0),regions=n<2?1:E-V+1;
+ return {chords:chords.length,crossings,regions};
+}
+// Points at random angles, kept only when no three chords meet near one point, so that every run tests the same drawings.
+function generalPoints(n,seed){
+ for(;;seed++){const r=random(seed),angles=Array.from({length:n},()=>r()*360),{crossings}=chordDrawing(angles),pts=angles.map(onCircle);
+  const apart=angles.every((a,i)=>angles.every((b,j)=>i===j||Math.abs(((a-b)%360+540)%360-180)>2));
+  const fine=apart&&crossings.every((x,i)=>crossings.every((y,j)=>i===j||Math.hypot(x[0]-y[0],x[1]-y[1])>1e-4))&&crossings.every(x=>subsets(n,2).filter(([i,j])=>{const p=pts[i],q=pts[j],dx=q[0]-p[0],dy=q[1]-p[1];return Math.abs((x[0]-p[0])*dy-(x[1]-p[1])*dx)/Math.hypot(dx,dy)<1e-7;}).length===2);
+  if(fine)return angles;}
+}
+
+test('chords of a circle: Euler’s formula, crossings from every four points, and the regular hexagon',()=>{
+ const R=n=>chordDrawing(generalPoints(n,31+n)).regions;
+ const regions=Array.from({length:12},(_,i)=>R(i+1));assert.deepEqual(regions,[1,2,4,8,16,31,57,99,163,256,386,562]);
+ expect('added6',regions[5]-regions[4]);expect('guess',2*regions[4]);expect('six',regions[5]);expect('trap','refuted');
+ const six=chordDrawing(generalPoints(6,7));expect('chords6',six.chords);expect('crossings6',six.crossings.length);
+ const ten=chordDrawing(generalPoints(10,8));expect('chordCrossings10',ten.crossings.length);expect('regions10',ten.regions);
+ expect('r7',regions[6]);expect('r12',regions[11]);
+ // Four points: of the three ways to pair them, exactly one pair of chords crosses, for many random sets.
+ for(let seed=1;seed<=200;seed++){const r=random(seed),pts=Array.from({length:4},()=>onCircle(r()*360));const crossing=[[[0,1],[2,3]],[[0,2],[1,3]],[[0,3],[1,2]]].filter(([[a,b],[c,d]])=>crossesInside(pts[a],pts[b],pts[c],pts[d])).length;assert.equal(crossing,1);}
+ expect('pairings',1);
+ // Equally spaced points: three long diagonals of the hexagon meet at the center, and a fine grid finds 30 regions.
+ const grid=lines=>{const seen=new Set();for(let i=-500;i<=500;i++)for(let j=-500;j<=500;j++){const p=[i/500,j/500];if(Math.hypot(...p)<.995&&lines.every(l=>Math.abs(dot(l.n,p)-l.d)>.003))seen.add(sign(p,lines));}return seen.size;};
+ assert.equal(grid(X.chords(X.HEXAGON).map(c=>c.line)),30);
+});
+
+test('cuts in four dimensions: pieces around corners, one row per dimension, and the identity R(n) = H(n − 1)',()=>{
+ const H=counts(4,10,13);assert.deepEqual(H,[1,2,4,8,16,31,57,99,163,256,386]);
+ expect('h5',H[5]);expect('h6',H[6]);expect('faceShape','ball');
+ // Each count is the count to its left plus the count one dimension lower, starting from a point that no cut splits.
+ const B=counts(3,10,5),P=counts(2,10,11);
+ for(let n=1;n<=10;n++){assert.equal(H[n],H[n-1]+B[n-1]);assert.equal(B[n],B[n-1]+P[n-1]);assert.equal(P[n],P[n-1]+n);}
+ // The two puzzles agree: regions for n points equal the pieces for n − 1 cuts in four dimensions.
+ for(let n=1;n<=11;n++)assert.equal(chordDrawing(generalPoints(n,31+n)).regions,H[n-1],'R('+n+') = H('+(n-1)+')');
+ expect('proof','identity');
+ // The difference table of the regions reaches the ball counts, then constant fourth differences.
+ let row=Array.from({length:9},(_,i)=>chordDrawing(generalPoints(i+1,31+i+1)).regions);const first=row.slice(1).map((v,i)=>v-row[i]);
+ assert.deepEqual(first,B.slice(0,8));expect('first','ball');
+ for(let k=0;k<4;k++)row=row.slice(1).map((v,i)=>v-row[i]);assert.ok(row.every(v=>v===row[0]));expect('fourth',row[0]);
+});
+
+test('the chord lab arrangement is in general position and gives the counts the lab shows',()=>{
+ const counted=[1,2,3,4,5,6,7].map(n=>X.pieces(X.chords(X.CIRCLE,n).map(c=>c.line)).length);assert.deepEqual(counted,[1,2,4,8,16,31,57]);
+ assert.deepEqual([1,2,3,4,5,6,7].map(n=>chordDrawing(X.CIRCLE.slice(0,n)).regions),counted);
+ const {crossings}=chordDrawing(X.CIRCLE),pts=X.CIRCLE.map(onCircle);
+ for(const x of crossings){const near=subsets(7,2).filter(([i,j])=>{const p=pts[i],q=pts[j],dx=q[0]-p[0],dy=q[1]-p[1];return Math.abs((x[0]-p[0])*dy-(x[1]-p[1])*dx)/Math.hypot(dx,dy)<.05;}).length;assert.equal(near,2,'no third chord passes near a crossing');}
+ assert.equal(X.pieces(X.chords(X.HEXAGON).map(c=>c.line)).length,30);
 });
