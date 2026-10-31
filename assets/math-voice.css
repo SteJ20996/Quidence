@@ -1,6 +1,6 @@
 /* Shared site controls surround the reviewed English-only activity. */
 body[data-q-ui="math-explain"]{background-color:var(--q-page);--page:var(--q-page);--ink:var(--q-ink);--muted:var(--q-muted);--line:var(--q-line)}
-body[data-q-ui="math-explain"] .site-header{max-width:1400px;background:var(--q-paper)}
+body[data-q-ui="math-explain"] .site-header{max-width:1400px;background:var(--q-paper);color:var(--q-ink)}
 body[data-q-ui="math-explain"] .site-header .q-brand-logo{width:205px;max-width:100%;height:auto}
 body[data-q-ui="math-explain"] .header-tools a{display:inline-flex;align-items:center;min-height:44px}
 body[data-q-ui="math-explain"] .site-header{flex-wrap:wrap}

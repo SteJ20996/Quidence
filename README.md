@@ -1,3 +1,10 @@
+## 2026-10-31 · 頁首文字在每種外觀都看得清楚
+
+- Classic 外觀下，Math Voice Lab 頁首的「Teaching demo」和「Math Voice Lab」原本是白字配白底，看起來是空的；現在改用深色字。
+- 同類問題：離散數學、數論、跨學科專題頁首的副標題「Online learning foundations, charts and reports」，在三種插畫外觀中是淺灰字配淺色底，對比只有約 1.6:1；現在改用各外觀的次要文字色，對比約 6:1。
+- `npm run test:themes:browser` 新增檢查：每個已發布頁面、四種外觀、英文與西班牙文，頁首與工具列文字對比低於 4.5:1（WCAG AA）就會失敗；停用中的按鈕依 WCAG 例外不檢查。
+- 見[發布紀錄](review/header-contrast-20261031.md)。
+
 ## 2026-10-31 · 獨立的連結改成按鈕
 
 - 跨學科專題頁的「All subjects」「Related Intuition Lab activity ↗」「Review my work ↗」原本看起來像超連結（底線或純文字），現在依目前外觀顯示成按鈕；全站已發布的頁面中，同樣的情況也一併改正。

@@ -1,3 +1,7 @@
+## 2026-10-31 · Readable header text in every appearance
+
+Header text is now readable in every appearance. In Classic, the Math Voice Lab header had white text on a white background. In the illustrated appearances, the header subtitle on Discrete Mathematics, Number Theory and Cross-disciplinary Projects was light gray on a light background. The themes browser test now fails when header or toolbar text has less than 4.5:1 contrast. See [header-contrast-20261031.md](review/header-contrast-20261031.md).
+
 ## 2026-10-31 · Standalone links become buttons
 
 Standalone navigation links and actions now look like buttons in every appearance, on every released page. Before, some were underlined or plain text, such as the Cross-disciplinary Projects top bar and the course navigation strip on course pages. Links inside sentences and in page footers stay links. The themes browser test now fails if a standalone link or action looks like plain text. See [link-buttons-20261031.md](review/link-buttons-20261031.md).
