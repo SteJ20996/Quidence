@@ -614,5 +614,101 @@
   [
     "Same truth value in [n] of [n] rows",
     "Mismo valor de verdad en [n] de [n] filas"
+  ],
+  [
+    "[n]/[n] steps with responses",
+    "[n]/[n] pasos con respuestas"
+  ],
+  [
+    "Stick picture. Cuts: [n]. Pieces: [n].",
+    "Dibujo del palito. Cortes: [n]. Pedazos: [n]."
+  ],
+  [
+    "Cuts: [n]. Pieces: [n].",
+    "Cortes: [n]. Pedazos: [n]."
+  ],
+  [
+    "Cut [n] landed inside one piece and split it in two: [n] pieces.",
+    "El corte [n] cayó dentro de un pedazo y lo dividió en dos: [n] pedazos."
+  ],
+  [
+    "The knife landed on an earlier cut. Nothing was split: still [n] pieces.",
+    "El cuchillo cayó sobre un corte anterior. No se dividió nada: siguen siendo [n] pedazos."
+  ],
+  [
+    "Pizza picture. Cuts: [n]. Pieces: [n].",
+    "Dibujo de la pizza. Cortes: [n]. Pedazos: [n]."
+  ],
+  [
+    "Cut [n] crossed [n] earlier cut, so it has [n] segments and added [n] pieces: [n] in all.",
+    "El corte [n] cruzó [n] corte anterior, así que tiene [n] segmentos y agregó [n] pedazos: [n] en total."
+  ],
+  [
+    "Cut [n] crossed [n] earlier cuts, so it has [n] segments and added [n] pieces: [n] in all.",
+    "El corte [n] cruzó [n] cortes anteriores, así que tiene [n] segmentos y agregó [n] pedazos: [n] en total."
+  ],
+  [
+    "It will cross [n] earlier cuts.",
+    "Cruzará [n] cortes anteriores."
+  ],
+  [
+    "Staircase picture. Cuts: [n]. Squares: [n].",
+    "Dibujo de la escalera. Cortes: [n]. Cuadrados: [n]."
+  ],
+  [
+    "Two copies of the staircase fill a [n] by [n] rectangle, so the sum is half of [n] × [n]: [n].",
+    "Dos copias de la escalera llenan un rectángulo de [n] por [n], así que la suma es la mitad de [n] × [n]: [n]."
+  ],
+  [
+    "Column k holds the k pieces that cut k adds. With the whole pizza: [n] pieces.",
+    "La columna k tiene los k pedazos que agrega el corte k. Con la pizza entera: [n] pedazos."
+  ],
+  [
+    "Pizza picture. Cuts: [n]. Crossings: [n].",
+    "Dibujo de la pizza. Cortes: [n]. Cruces: [n]."
+  ],
+  [
+    "1 + [n] + [n] = [n] pieces: the whole pizza, one for each cut and one for each crossing.",
+    "1 + [n] + [n] = [n] pedazos: la pizza entera, uno por cada corte y uno por cada cruce."
+  ],
+  [
+    "Ball picture. Cuts: [n]. Pieces: [n].",
+    "Dibujo de la bola. Cortes: [n]. Pedazos: [n]."
+  ],
+  [
+    "Cut [n]: its face shows [n] line, which makes [n] pieces of the face, so the cut added [n] pieces: [n] in all.",
+    "Corte [n]: su cara muestra [n] recta, que forma [n] pedazos de la cara, así que el corte agregó [n] pedazos: [n] en total."
+  ],
+  [
+    "Cut [n]: its face shows [n] lines, which make [n] pieces of the face, so the cut added [n] pieces: [n] in all.",
+    "Corte [n]: su cara muestra [n] rectas, que forman [n] pedazos de la cara, así que el corte agregó [n] pedazos: [n] en total."
+  ],
+  [
+    "Its face meets the [n] earlier cuts in [n] lines. It turns toward you.",
+    "Su cara se encuentra con los [n] cortes anteriores en [n] rectas. Gira hacia ti."
+  ],
+  [
+    "[n] of the [n] addresses have a piece.",
+    "[n] de las [n] etiquetas tienen un pedazo."
+  ],
+  [
+    "Tower of pieces. Cuts: [n]. Pieces: [n].",
+    "Torre de pedazos. Cortes: [n]. Pedazos: [n]."
+  ],
+  [
+    "Every cut went through every piece, so the count doubled: [n] pieces.",
+    "Cada corte atravesó todos los pedazos, así que la cantidad se duplicó: [n] pedazos."
+  ],
+  [
+    "Stack the [n] halves again.",
+    "Vuelve a apilar las [n] mitades."
+  ],
+  [
+    "Row [n]: the first [n] numbers add up to [n].",
+    "Fila [n]: los primeros [n] números suman [n]."
+  ],
+  [
+    "Running total: [n].",
+    "Total acumulado: [n]."
   ]
 ]

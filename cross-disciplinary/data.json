@@ -1,0 +1,368 @@
+[
+ {
+  "id": "cross-p01",
+  "order": 1,
+  "name": "Cutting a ball",
+  "title": "How many pieces can n cuts make?",
+  "level": "Bridge (high school to undergraduate)",
+  "difficulty": "challenging",
+  "lab": "cuts",
+  "subjects": [
+   "geometry",
+   "algebra-2",
+   "discrete-math",
+   "basic-logic"
+  ],
+  "topic": "From a stick to a pizza to a ball: one counting idea in three dimensions",
+  "prompt": "A solid ball is cut with n flat cuts. Each cut is a plane that goes all the way through the ball, and the pieces stay where they are: you may not move or stack them between cuts. What is the largest number of pieces you can get? With 0, 1, 2 and 3 cuts the answers are 1, 2, 4 and 8, so the count seems to double with every cut. This project finds the real answer by starting in lower dimensions, with a stick and then a pizza, and uses Geometry, Algebra II, Discrete Mathematics and Basic Logic along the way.",
+  "approach": "Do not try to picture the whole ball at once. Ask what one new cut does. The new cut is itself cut by the earlier cuts, one dimension lower: points cut a stick, the earlier lines cut the new line across a pizza, and the earlier planes cut the flat face of a new plane through the ball. Count the pieces of the new cut, and you know how many pieces it adds.",
+  "uses": "Geometry: lines, planes and cross-sections. Algebra II: sums, polynomials and finite differences. Discrete Mathematics: recurrences, binomial coefficients and induction. Basic Logic: conjectures, counterexamples and truth tables.",
+  "steps": [
+   {
+    "title": "A stick: one new cut, one new piece",
+    "connects": [
+     "discrete-math"
+    ],
+    "banner": "L(0) = 1, L(1) = 2, L(3) = ?",
+    "prompt": "Start in one dimension. A stick is cut at n different points, and L(n) is the number of pieces. In the lab, watch where each new cut lands. How many pieces do 3 cuts make? How many do 10 cuts make? What happens when a new cut lands exactly on an earlier cut?",
+    "proof": "A new cut at a point that is not already a cut lies inside exactly one piece. That piece becomes two, and every other piece stays as it was, so the number of pieces goes up by exactly 1.\n\nStarting from 1 piece, n cuts at different points give L(n) = n + 1 pieces: 4 for 3 cuts and 11 for 10 cuts.\n\nA cut on an earlier cut splits nothing, so it adds 0 pieces. To get the most pieces, the cuts must be in different places. In two and three dimensions this becomes a condition on how the cuts meet.\n\nKeep this count in mind. In the next step the new cut across a pizza is a line, and the earlier cuts cut that line exactly as points cut a stick.",
+    "fields": [
+     {
+      "id": "stick3",
+      "label": "Pieces after 3 cuts, L(3)",
+      "type": "number",
+      "answer": "4",
+      "accepted": [
+       "4"
+      ]
+     },
+     {
+      "id": "stick10",
+      "label": "Pieces after 10 cuts, L(10)",
+      "type": "number",
+      "answer": "11",
+      "accepted": [
+       "11"
+      ]
+     },
+     {
+      "id": "repeat",
+      "label": "New pieces when a cut lands on an earlier cut",
+      "type": "number",
+      "answer": "0",
+      "accepted": [
+       "0"
+      ]
+     },
+     {
+      "id": "why",
+      "label": "A new cut at a new point adds…",
+      "type": "choice",
+      "answer": "one",
+      "options": [
+       {
+        "value": "one",
+        "label": "exactly 1 piece, because it splits the one piece it lands in"
+       },
+       {
+        "value": "double",
+        "label": "as many pieces as there already are, because it doubles the count"
+       },
+       {
+        "value": "two",
+        "label": "2 pieces, one on each side of the cut"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "A pizza: follow the knife",
+    "connects": [
+     "geometry",
+     "discrete-math"
+    ],
+    "banner": "P(0) = 1, P(1) = 2, P(2) = 4, P(3) = 7, P(4) = ?",
+    "prompt": "Now cut a round pizza with n straight cuts, and let P(n) be the largest number of pieces. Each cut is a line across the whole pizza, every two cuts cross inside the pizza, and no three cuts pass through one point. The lab makes one cut at a time. Watch the new cut: the earlier cuts cross it at points, and those points cut it into segments, just like the stick in step 1. Each segment splits one piece of pizza in two. How many earlier cuts does the 4th cut cross, into how many segments do they cut it, and how many pieces do 4 cuts make? Finally, which arrangement of three cuts makes only 6 pieces instead of 7?",
+    "proof": "Suppose k cuts are already made, and the next cut crosses all k of them at different points. Those k points cut the new cut into k + 1 segments, by the count for the stick.\n\nEach segment runs through one existing piece and splits it in two. A piece of pizza has no dents, so a straight cut crosses it at most once, and different segments lie in different pieces. So the new cut adds exactly k + 1 pieces. If it crossed fewer cuts, or two crossings fell at the same point, it would have fewer segments and add fewer pieces.\n\nThe 4th cut crosses the 3 earlier cuts, so it has 4 segments and adds 4 pieces. The counts for 0, 1, 2 and 3 cuts are 1, 2, 4 and 7, so P(4) = 7 + 4 = 11.\n\nWhen three cuts pass through one point, the third cut meets the first two at the same point. It has only 2 segments, adds 2 pieces instead of 3, and the three cuts make 6 pieces.",
+    "fields": [
+     {
+      "id": "cross4",
+      "label": "Earlier cuts that the 4th cut crosses",
+      "type": "number",
+      "answer": "3",
+      "accepted": [
+       "3"
+      ]
+     },
+     {
+      "id": "segments4",
+      "label": "Segments of the 4th cut",
+      "type": "number",
+      "answer": "4",
+      "accepted": [
+       "4"
+      ]
+     },
+     {
+      "id": "pizza4",
+      "label": "Most pieces with 4 cuts, P(4)",
+      "type": "number",
+      "answer": "11",
+      "accepted": [
+       "11"
+      ]
+     },
+     {
+      "id": "fewer",
+      "label": "Which three cuts make only 6 pieces instead of 7?",
+      "type": "choice",
+      "answer": "point",
+      "options": [
+       {
+        "value": "point",
+        "label": "Three cuts through one point"
+       },
+       {
+        "value": "triangle",
+        "label": "Three cuts that cross at three different points inside the pizza"
+       },
+       {
+        "value": "center",
+        "label": "Three cuts that cross at three different points inside the pizza, one of them the center"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "A formula for the pizza",
+    "connects": [
+     "algebra-2",
+     "discrete-math"
+    ],
+    "banner": "P(n) = P(n − 1) + n, P(10) = ?",
+    "prompt": "Step 2 shows that cut number k adds k pieces, so P(n) = P(n − 1) + n. Add up what each cut contributes to find P(10), and find a formula for P(n). Then count another way: every crossing point is made by two cuts. How many crossing points do 10 cuts make? The lab shows the new pieces of each cut as a column of squares, and the crossing points on the pizza.",
+    "proof": "With no cuts there is 1 piece, and cut number k adds k pieces, so P(n) = 1 + (1 + 2 + ⋯ + n).\n\nWrite the sum forward and backward and add the two rows: each of the n columns adds up to n + 1. So twice the sum is n(n + 1), and 1 + 2 + ⋯ + n = n(n + 1)/2. In the lab, two copies of the staircase fit together into a rectangle n squares wide and n + 1 squares tall.\n\nSo P(n) = 1 + n(n + 1)/2 = (n² + n + 2)/2. For 10 cuts, P(10) = 1 + 55 = 56. The formula 2ⁿ matches only up to P(2) = 4, and n(n + 1)/2 forgets the piece you start with.\n\nAnother count: a new cut that crosses k earlier cuts adds k + 1 pieces, which is 1 for the cut itself and 1 for each crossing on it. Every crossing point lies on exactly 2 cuts, and every 2 cuts cross once, so 10 cuts make C(10, 2) = 45 crossings. So P(n) = 1 + n + C(n, 2), and 1 + 10 + 45 = 56.",
+    "fields": [
+     {
+      "id": "pizza10",
+      "label": "Most pieces with 10 cuts, P(10)",
+      "type": "number",
+      "answer": "56",
+      "accepted": [
+       "56"
+      ]
+     },
+     {
+      "id": "crossings10",
+      "label": "Crossing points made by 10 cuts",
+      "type": "number",
+      "answer": "45",
+      "accepted": [
+       "45"
+      ]
+     },
+     {
+      "id": "formula",
+      "label": "Which formula gives P(n) for every n?",
+      "type": "choice",
+      "answer": "quadratic",
+      "options": [
+       {
+        "value": "quadratic",
+        "label": "P(n) = (n² + n + 2)/2"
+       },
+       {
+        "value": "power",
+        "label": "P(n) = 2ⁿ"
+       },
+       {
+        "value": "triangle",
+        "label": "P(n) = n(n + 1)/2"
+       }
+      ]
+     },
+     {
+      "id": "sum",
+      "label": "Explain why your formula for P(n) is correct for every n",
+      "type": "reason",
+      "criteria": [
+       "Start from 1 piece with no cuts, and use step 2: cut number k adds k pieces.",
+       "Find 1 + 2 + ⋯ + n = n(n + 1)/2, for example by writing the sum forward and backward and adding."
+      ],
+      "followup": "Why does 1 + n + C(n, 2) give the same number?"
+     }
+    ]
+   },
+   {
+    "title": "A ball: look at the face of the new cut",
+    "connects": [
+     "geometry",
+     "discrete-math"
+    ],
+    "banner": "B(3) = 8, B(4) = B(3) + ?",
+    "prompt": "Now the ball, and let B(n) be the largest number of pieces. Each cut is a plane. Every two cuts meet in a line, every three meet at one point inside the ball, and no four pass through one point. Cuts like these are in general position. A new cut through the ball leaves a flat face: a disc. Each earlier cut meets that disc in a line, so the face looks like a pizza. In the lab, make each new cut and watch its face turn toward you. Each piece of the face splits one piece of the ball in two. With 3 cuts already made, how many lines does the face of the 4th cut show, how many pieces does the face have, and how many pieces of the ball do 4 cuts make?",
+    "proof": "Suppose k cuts are made and the next cut is in general position. It meets each earlier cut in a line, so its face, a flat disc, carries k lines. Every two of them cross inside the face, because every three cuts meet inside the ball, and no three of them pass through one point, because no four cuts do. So the face is a pizza with k cuts, and it has P(k) pieces.\n\nEach piece of the face lies inside one piece of the ball and splits it in two. A piece of the ball is the part of the ball on one side of every cut, so it has no dents: it is convex. A flat cut meets a convex piece in one connected region, so the new cut meets each piece of the ball in at most one piece of the face, and no piece of the ball is split twice. So the new cut adds exactly P(k) pieces: B(k + 1) = B(k) + P(k).\n\nA cut that is not in general position has at most k lines on its face, and k lines cut a disc into at most P(k) pieces, so it adds at most P(k) pieces. Cuts in general position exist for every n: give each cut a different tilt and let them all pass very close to the center, so that every point where three cuts meet lies near the center.\n\nFor the 4th cut, k = 3. Its face shows 3 lines, which cut it into P(3) = 7 pieces, so B(4) = B(3) + 7 = 8 + 7 = 15.\n\nThis is the idea of step 2, one dimension higher: the pizza used the count for the stick, and the ball uses the count for the pizza.",
+    "fields": [
+     {
+      "id": "faceLines",
+      "label": "Lines on the face of the 4th cut",
+      "type": "number",
+      "answer": "3",
+      "accepted": [
+       "3"
+      ]
+     },
+     {
+      "id": "facePieces",
+      "label": "Pieces of the face of the 4th cut",
+      "type": "number",
+      "answer": "7",
+      "accepted": [
+       "7"
+      ]
+     },
+     {
+      "id": "ball4",
+      "label": "Most pieces of the ball with 4 cuts, B(4)",
+      "type": "number",
+      "answer": "15",
+      "accepted": [
+       "15"
+      ]
+     },
+     {
+      "id": "face",
+      "label": "Explain why a new cut adds as many pieces as its face has",
+      "type": "reason",
+      "criteria": [
+       "The earlier cuts meet the face of the new cut in lines that cross as pizza cuts do, so a face with k lines has P(k) pieces.",
+       "Each piece of the face lies inside one piece of the ball and splits it in two, and no piece of the ball is split twice, so B(k + 1) = B(k) + P(k)."
+      ],
+      "followup": "Why can one piece of the ball not meet the new cut in two separate pieces of the face?"
+     }
+    ]
+   },
+   {
+    "title": "The doubling trap",
+    "connects": [
+     "basic-logic",
+     "discrete-math"
+    ],
+    "banner": "1, 2, 4, 8, 16?",
+    "prompt": "The ball gives 1, 2, 4 and 8 pieces for 0 to 3 cuts, and then 15, not 16. Use B(n) = B(n − 1) + P(n − 1) to find B(5) and B(6). Then give every piece an address: for each cut, write + or − for the side of the cut that the piece is on. With n cuts there are 2ⁿ possible addresses, like the 2ⁿ rows of a truth table for n statements. With 4 cuts that make 15 pieces, how many of the 16 addresses belong to no piece? Finally, change one rule: if you may move and stack the pieces between cuts, how many pieces can 4 cuts make?",
+    "proof": "B(5) = B(4) + P(4) = 15 + 11 = 26, and B(6) = B(5) + P(5) = 26 + 16 = 42. Doubling would give 32 and 64.\n\nThe points of the ball with one address are the points on chosen sides of all the cuts. Like a piece, this set is convex, so it is one piece or it is empty. So two different pieces never share an address, and n cuts make at most 2ⁿ pieces. So 2ⁿ is an upper bound.\n\nUp to 3 cuts, every address belongs to a piece, so the count doubles. With 4 cuts there are 16 addresses and only 15 pieces, so 1 address has no piece. The pizza shows why: 3 cuts enclose a triangle, and no point is beyond all three sides of the triangle at once, so 1 of the 8 addresses has no piece. In the ball, 4 cuts enclose a small tetrahedron, and no point is beyond all four of its faces.\n\nFour cases that agreed suggested a rule, and the fifth case refuted it. Checking cases can suggest a conjecture, or refute one with a counterexample, but it cannot prove one. The rules matter too: if the pieces may be stacked, every cut can go through every piece, each cut doubles the count, and 4 cuts make 16 pieces. No cut can do better: a flat cut splits a convex piece into at most two.",
+    "fields": [
+     {
+      "id": "ball5",
+      "label": "Most pieces of the ball with 5 cuts, B(5)",
+      "type": "number",
+      "answer": "26",
+      "accepted": [
+       "26"
+      ]
+     },
+     {
+      "id": "ball6",
+      "label": "Most pieces of the ball with 6 cuts, B(6)",
+      "type": "number",
+      "answer": "42",
+      "accepted": [
+       "42"
+      ]
+     },
+     {
+      "id": "missing",
+      "label": "Addresses with no piece when 4 cuts make 15 pieces",
+      "type": "number",
+      "answer": "1",
+      "accepted": [
+       "1"
+      ]
+     },
+     {
+      "id": "stacked",
+      "label": "Most pieces with 4 cuts if the pieces may be moved and stacked",
+      "type": "number",
+      "answer": "16",
+      "accepted": [
+       "16"
+      ]
+     },
+     {
+      "id": "pattern",
+      "label": "What do the first four values, 1, 2, 4 and 8, show?",
+      "type": "choice",
+      "answer": "conjecture",
+      "options": [
+       {
+        "value": "conjecture",
+        "label": "A pattern worth testing; only a proof can show that it continues"
+       },
+       {
+        "value": "proof",
+        "label": "That the count doubles with every cut, since four cases agree"
+       },
+       {
+        "value": "useless",
+        "label": "Nothing, because small cases never predict larger ones"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "title": "One pattern in every dimension",
+    "connects": [
+     "algebra-2",
+     "discrete-math",
+     "basic-logic"
+    ],
+    "banner": "B(n) = (n³ + 5n + 6)/6 ?",
+    "prompt": "Put the three counts side by side: L(n) = 1 + n for the stick, P(n) = 1 + n + C(n, 2) for the pizza and, for the ball, B(n) = 1 + n + C(n, 2) + C(n, 3). Find C(10, 3) and B(10), and check B(10) against (n³ + 5n + 6)/6. In the lab, build the difference table of 1, 2, 4, 8, 15, 26, 42, 64: what number fills the row of third differences? Then prove the formula for B(n) for every n, by induction with Pascal’s rule.",
+    "proof": "Line up the counts: L(n) = C(n, 0) + C(n, 1), P(n) = C(n, 0) + C(n, 1) + C(n, 2), and B(n) = C(n, 0) + C(n, 1) + C(n, 2) + C(n, 3). Each dimension adds the next number in row n of Pascal’s triangle.\n\nProof by induction. For n = 0, B(0) = 1 = C(0, 0). Suppose the formula holds for n. Then B(n + 1) = B(n) + P(n) = [C(n, 0) + C(n, 1) + C(n, 2) + C(n, 3)] + [C(n, 0) + C(n, 1) + C(n, 2)]. Here C(n, 0) = 1 = C(n + 1, 0), and Pascal’s rule, C(n, k) + C(n, k − 1) = C(n + 1, k), pairs the rest: C(n, 1) + C(n, 0) = C(n + 1, 1), C(n, 2) + C(n, 1) = C(n + 1, 2), and C(n, 3) + C(n, 2) = C(n + 1, 3). So the formula holds for n + 1, and by induction it holds for every n.\n\nExpanding gives 1 + n + n(n − 1)/2 + n(n − 1)(n − 2)/6 = (n³ + 5n + 6)/6. For 10 cuts, C(10, 3) = 120 and B(10) = 1 + 10 + 45 + 120 = 176, and (1000 + 50 + 6)/6 = 176.\n\nThe difference table gives a check from Algebra II. The differences of 1, 2, 4, 8, 15, 26, 42, 64 are 1, 2, 4, 7, 11, 16, 22: the pizza counts. Their differences are 1, 2, 3, 4, 5, 6: the stick counts. The third differences are all 1. Constant third differences mean that the values fit a polynomial of degree 3, and its leading coefficient is the constant third difference divided by 3!, here 1/6, which matches the n³/6 in the formula.",
+    "fields": [
+     {
+      "id": "c103",
+      "label": "C(10, 3)",
+      "type": "number",
+      "answer": "120",
+      "accepted": [
+       "120"
+      ]
+     },
+     {
+      "id": "ball10",
+      "label": "Most pieces of the ball with 10 cuts, B(10)",
+      "type": "number",
+      "answer": "176",
+      "accepted": [
+       "176"
+      ]
+     },
+     {
+      "id": "third",
+      "label": "The number in the row of third differences",
+      "type": "number",
+      "answer": "1",
+      "accepted": [
+       "1"
+      ]
+     },
+     {
+      "id": "induction",
+      "label": "Prove that B(n) = 1 + n + C(n, 2) + C(n, 3) for every n ≥ 0",
+      "type": "reason",
+      "criteria": [
+       "Check the base case: B(0) = 1, and the formula gives 1 + 0 + 0 + 0 = 1.",
+       "In the inductive step, use B(n + 1) = B(n) + P(n) and Pascal’s rule, C(n, k) + C(n, k − 1) = C(n + 1, k), to pair the terms."
+      ],
+      "followup": "What would the formula be for a four-dimensional ball?"
+     }
+    ]
+   }
+  ],
+  "nextCheck": "In four dimensions, each new cut is a three-dimensional space, and its face is a three-dimensional ball cut by the earlier cuts. Use the argument of step 4 once more to show that 5 cuts make at most 31 pieces, and find the formula. Then compare with the Discrete Mathematics Intuition Lab activity “It doubles each time. Every time?”, where the chords of a circle also give 1, 2, 4, 8, 16 and 31."
+ }
+]

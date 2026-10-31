@@ -25,7 +25,8 @@ async function main(){
     for(const section of ['header','layout']){assert.equal(boxes[section][0],baseline[section][0],theme+' '+section+' left edge');assert.equal(boxes[section][2],baseline[section][2],theme+' '+section+' width');}
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${lang} ${width} ${theme}: overflow`);result.alignedHomeLayouts++;
     if(theme==='classic'){
-     const cards=await page.locator('.subject-card').evaluateAll(es=>es.map(e=>{
+     // Course cards share aligned rows; the cross-disciplinary project card sits alone in its own section.
+     const cards=await page.locator('.subject-card:not(.cross)').evaluateAll(es=>es.map(e=>{
       const card=e.getBoundingClientRect(),box=selector=>{const el=e.querySelector(selector);if(!el)return null;const r=el.getBoundingClientRect();return{top:r.top-card.top,bottom:r.bottom-card.top,height:r.height,inside:r.left>=card.left&&r.right<=card.right+1&&r.bottom<=card.bottom+1&&el.scrollWidth<=el.clientWidth+1};};
       return{id:e.dataset.subject,top:card.top,height:card.height,slots:['.topic-label','.version','.subject-picture','h3',':scope>p',':scope>.subject-link','a[href*="foundations/"]','.challenge-link:not([href*="foundations/"])','.project-link','.scope-note'].map(box)};
      }));
@@ -94,7 +95,7 @@ async function main(){
     result.layouts++;
    }
    await page.goto(origin+'/?lang=en&view=courses');await page.waitForFunction(()=>window.QuidenceI18n?.locale==='en');
-   assert.equal(await page.locator('.subject-card:visible').count(),15);
+   assert.equal(await page.locator('.subject-card:visible').count(),16);
    await page.screenshot({path:path.join(shots,theme+'-courses.png')});
    const html=await page.evaluate(()=>QuidenceReportTools.documentHtml('Report','<h1>Report</h1><p class="student-work">My exact answer: −1/3</p>'));
    const offline=await context.newPage();await offline.setContent(html);

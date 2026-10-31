@@ -11,6 +11,7 @@ const KEYS={
  'quidence_ac01_missed_deadline_v1':{label:'Game Theory: missed deadline',schema:'quidence_ac01_projects_v1'},
  'quidence:number-theory-preview:v1':{label:'Number Theory projects'},
  'quidence:discrete-math:v1':{label:'Discrete Mathematics projects'},
+ 'quidence:cross-disciplinary:v1':{label:'Cross-disciplinary projects'},
  cluevera_project_portfolio_v1:{label:"Field projects",schema:"cluevera_project_portfolio_v1"},
  cluevera_challenge_portfolio_v1:{label:'Diagnostic challenges',schema:'cluevera_challenge_portfolio_v1'},
  cluevera_algebra_progress_v06:{label:'Visual algebra activities',schema:'cluevera_algebra_progress_v06'},

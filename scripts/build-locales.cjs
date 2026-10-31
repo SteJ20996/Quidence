@@ -20,6 +20,8 @@ for(const file of fs.readdirSync(path.join(root,'localization')).filter(f=>f.end
 Object.assign(catalog,require('./number-theory-locales.cjs').numberTheoryCatalog());
 // Discrete Mathematics shares some short strings with earlier courses; a shared string must keep one Spanish wording.
 for(const [key,value]of Object.entries(require('./build-discrete-math.cjs').discreteMathCatalog())){if(Object.hasOwn(catalog,key)&&catalog[key]!==value)throw Error('Discrete Mathematics changes the Spanish for '+key+': '+catalog[key]+' → '+value);catalog[key]=value;}
+// Cross-disciplinary projects reuse course vocabulary; a shared string must keep one Spanish wording.
+for(const [key,value]of Object.entries(require('./build-cross-disciplinary.cjs').crossCatalog())){if(Object.hasOwn(catalog,key)&&catalog[key]!==value)throw Error('Cross-disciplinary projects change the Spanish for '+key+': '+catalog[key]+' → '+value);catalog[key]=value;}
 Object.assign(catalog,require('../assets/additional-foundations.js').SPANISH);
 for(const [key,value]of Object.entries(catalog)){if(/^#{1,6}\s/.test(key)){const clean=key.replace(/^#{1,6}\s+/,'');if(!Object.hasOwn(catalog,clean))catalog[clean]=value.replace(/^#{1,6}\s+/,'');}}
 // US spelling changes are presentation aliases, not new question definitions.
@@ -32,7 +34,7 @@ for(const [en,es]of quantities)if(en.split('[n]').length!==es.split('[n]').lengt
 fs.writeFileSync(path.join(root,'assets/i18n-es.js'),"(function(root){'use strict';root.QuidenceSpanish=Object.freeze("+JSON.stringify(catalog,null,2)+");root.QuidenceSpanishQuantities=Object.freeze("+JSON.stringify(quantities)+");})(typeof window==='object'?window:globalThis);\n");
 // Keep the complete catalog for portable reports and compatibility. Browser
 // pages load common copy plus their own course's long, source-scoped passages.
-const groups=['aa01','ab01','ac01','ad01','ae01','af01','number-theory','discrete-math'];
+const groups=['aa01','ab01','ac01','ad01','ae01','af01','number-theory','discrete-math','cross-disciplinary'];
 const buckets=Object.fromEntries(groups.map(group=>[group,{}]));
 const owner=new Map();
 for(const item of inventory){
@@ -44,6 +46,8 @@ for(const key of Object.keys(require('./number-theory-locales.cjs').numberTheory
 }
 // Long Discrete Mathematics passages load only on that course page.
 for(const key of Object.keys(require('./build-discrete-math.cjs').discreteMathCatalog()))if(key.length>80&&!owner.has(key))owner.set(key,'discrete-math');
+// Long cross-disciplinary passages load only on that page.
+for(const key of Object.keys(require('./build-cross-disciplinary.cjs').crossCatalog()))if(key.length>80&&!owner.has(key))owner.set(key,'cross-disciplinary');
 const common={};
 for(const [key,value]of Object.entries(catalog)){
  const group=owner.get(key)||owner.get(key.replace(/^#{1,6}\s+/,''));

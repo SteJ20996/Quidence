@@ -24,6 +24,7 @@
     "test:history:stress": "node scripts/test-history-stress-browser.cjs",
     "test:number-theory:browser": "node scripts/test-number-theory-browser.cjs",
     "test:discrete-math:browser": "node scripts/test-discrete-math-browser.cjs",
+    "test:cross-disciplinary:browser": "node scripts/test-cross-disciplinary-browser.cjs",
     "test:reviewed:browser": "node scripts/test-reviewed-release-browser.cjs",
     "build:seo": "node scripts/build-seo.cjs",
     "test:seo": "node --test tests/seo.test.cjs",

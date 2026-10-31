@@ -22,7 +22,7 @@ const coordinateUI=Object.freeze({
   "Foundation check": "Comprobación de fundamentos",
   "Understanding check": "Comprobación de comprensión",
   "Intuition Lab activity": "Actividad del Laboratorio de intuición",
-  "Thirteen mathematics courses and two physics foundations courses · 68 diagnostic problems, 22 field projects, two Coordinate Geometry projects, 10 Number Theory and 10 Discrete Mathematics proof projects, two Game Theory projects and one case study, and separate 15-question foundation checks in fourteen tracks. Coordinate Geometry, Number Theory and Discrete Mathematics keep separate project notebooks; explanations and proofs remain pending review.": "Trece cursos de matemáticas y dos cursos de fundamentos de física · 68 problemas de diagnóstico, 22 proyectos de aplicación, dos proyectos de geometría analítica, 10 proyectos de demostración de teoría de números y 10 de matemáticas discretas, dos proyectos de teoría de juegos y un caso de estudio, y evaluaciones de fundamentos de 15 preguntas en catorce áreas. La geometría analítica, la teoría de números y las matemáticas discretas tienen cuadernos de proyectos separados; las explicaciones y demostraciones quedan pendientes de revisión.",
+  "Thirteen mathematics courses and two physics foundations courses · 68 diagnostic problems, 22 field projects, two Coordinate Geometry projects, 10 Number Theory and 10 Discrete Mathematics proof projects, two Game Theory projects and one case study, one cross-disciplinary project, and separate 15-question foundation checks in fourteen tracks. Coordinate Geometry, Number Theory, Discrete Mathematics and the cross-disciplinary projects keep separate project notebooks; explanations and proofs remain pending review.": "Trece cursos de matemáticas y dos cursos de fundamentos de física · 68 problemas de diagnóstico, 22 proyectos de aplicación, dos proyectos de geometría analítica, 10 proyectos de demostración de teoría de números y 10 de matemáticas discretas, dos proyectos de teoría de juegos y un caso de estudio, un proyecto interdisciplinario, y evaluaciones de fundamentos de 15 preguntas en catorce áreas. La geometría analítica, la teoría de números, las matemáticas discretas y los proyectos interdisciplinarios tienen cuadernos de proyectos separados; las explicaciones y demostraciones quedan pendientes de revisión.",
   "Lessons: not available yet": "Lecciones: aún no disponibles",
   "Intuition Lab activity: not available yet": "Actividad del Laboratorio de intuición: aún no disponible",
   "Four short lessons, two six-step projects, and foundation and understanding checks.": "Cuatro lecciones breves, dos proyectos de seis pasos y comprobaciones de fundamentos y de comprensión.",
@@ -220,8 +220,8 @@ function loadCatalog(){
   const pathname=root.location?.pathname||'',moduleId=new URL(root.location.href).searchParams.get('module');
   const all=/^\/(?:records|reports)\//.test(pathname);
   const group=pathname.match(/\/modules\/(aa01|ab01|ac01|ad01|ae01|af01)\//)?.[1]||
-    (pathname.includes('/number-theory/')?'number-theory':pathname.includes('/discrete-math/')?'discrete-math':moduleId);
-  const names=all?['i18n-es.js']:['i18n-es/common.js',...(['aa01','ab01','ac01','ad01','ae01','af01','number-theory','discrete-math'].includes(group)?['i18n-es/'+group+'.js']:[])];
+    (pathname.includes('/number-theory/')?'number-theory':pathname.includes('/discrete-math/')?'discrete-math':pathname.includes('/cross-disciplinary/')?'cross-disciplinary':moduleId);
+  const names=all?['i18n-es.js']:['i18n-es/common.js',...(['aa01','ab01','ac01','ad01','ae01','af01','number-theory','discrete-math','cross-disciplinary'].includes(group)?['i18n-es/'+group+'.js']:[])];
   const loaded=[];
   catalogPromise=(async()=>{
    try{for(const name of names)await new Promise((resolve,reject)=>{

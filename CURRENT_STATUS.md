@@ -1,3 +1,9 @@
+## 2026-10-31 · Cross-disciplinary projects
+
+The homepage has a Cross-disciplinary Projects section with its first project, "How many pieces can n cuts make?" (`cross-disciplinary/`), in English and Spanish. It has six steps with animated labs, from a stick to a pizza to a ball, and draws on Geometry, Algebra II, Discrete Mathematics and Basic Logic. See [cross-disciplinary-ball-cuts-20261031.md](review/cross-disciplinary-ball-cuts-20261031.md).
+
+Current inventory: 15 subject cards (6 School Mathematics, 7 Further Mathematics, 2 Science) and 1 cross-disciplinary project.
+
 ## 2026-10-30 · Basic Logic, part 4
 
 Intuition Lab has a fifteenth activity, "Which cards would you turn over?", the card-selection task for Basic Logic. Every subject card now has a foundation check, an understanding check and an Intuition Lab activity. See [basic-logic-intuition-20261030.md](review/basic-logic-intuition-20261030.md).
