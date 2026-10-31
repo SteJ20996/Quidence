@@ -48,6 +48,47 @@ Both the test and the content were written in this project, so this is a consist
   - They can be exported like the Discrete Mathematics notebook.
 - **Search engines:** `/cross-disciplinary/` is in the sitemap in both languages.
 
+## Pre-release review
+
+A separate content review recomputed every answer, the formulas and the labs' arrangements. It found no wrong mathematics and no wrong answer key. These changes followed:
+- **Ambiguous questions:**
+  - "Every third difference" read like "every third one", so it now asks for "the number in the row of third differences".
+  - The address question now says "4 cuts that make 15 pieces": four parallel cuts would leave more addresses empty.
+  - The leading coefficient now reads "the constant third difference divided by 3!, here 1/6".
+- **Answers given away:**
+  - Step 1 no longer prints L(n) = n + 1 in the lab, and its prompt no longer says where a cut lands.
+  - Step 3's explanation asks why the learner's own formula is correct, instead of stating it.
+  - Step 5's chart legend reads "Short of doubling", and the stacking caption no longer states 16.
+- **Setup and proofs:**
+  - Step 2's prompt sets up the three-cut question.
+  - Step 4 defines "general position". It also adds a paragraph: a cut in a worse position adds at most P(k), and cuts in general position exist for every n.
+  - Step 2 says why different segments lie in different pieces.
+  - Step 5 says why no cut can do better than doubling.
+  - The induction separates C(n, 0) from Pascal's rule.
+- **Spanish:** «cada dos cortes» can mean "every other cut", so it became «dos cortes cualesquiera». «entrantes» became «partes hundidas», and «Duplicar coincide» became «La duplicación coincide».
+
+A separate interface review walked through the page and the homepage card at 1280, 768 and 375 px, in both languages, in all four appearances, with and without reduced motion. It found no page errors, no horizontal scroll and no untranslated text. These changes followed:
+- **Keyboard focus.** It now returns to the control that was used after a lab redraws. It goes to the lab's main button when that control is gone.
+- **Screen readers.** The lab status is one lasting live region, so each result is announced.
+- **Stopped animations.** An animation stopped by a step change can no longer write into the next step's lab.
+- **Addresses on a pizza.** The cut numbers sit outside the crust with longer "+" arrows, and each address label goes where its piece has the most room. Addresses in a sentence no longer break across lines.
+- **Phones.**
+  - The numbers in the stick, staircase and chart pictures are larger at 720 px and below.
+  - Long Spanish legend items wrap.
+- **Steady layout.**
+  - "Skip animation" sits over the picture, so the buttons do not move.
+  - Pictures in the side column are at most 340 px tall, so a lab's buttons fit on a laptop screen.
+  - At tablet width, the lab is at most 560 px wide.
+- **Reduced motion.** Pauses are not motion, so the tours ("Visit every piece", "Build the table") still go one item at a time.
+- **Smaller fixes:**
+  - The chart's numbers appear after their bars grow.
+  - The ball's connecting arrow points from the ball to its face.
+  - The step banners are separated by commas.
+  - Pascal cells have stronger contrast.
+  - The "+1" no longer covers the knife handle.
+  - The turn readout follows the automatic turn.
+- **Homepage card.** It shows "Cross-disciplinary" above its title in Paper Explorer and Geometric Studio. In Learning Atlas on narrow screens it fills its row.
+
 ## Language
 
 The project is not a voice or AI activity, so it is in English and Spanish, like the other projects. The project text is written side by side in `content/cross-disciplinary/projects.cjs`. The page and lab text is in `localization/cross-disciplinary-ui-extra-es.json`, and sentences with numbers use quantity templates. The Spanish uses the courses' terms: «proposición», «contraejemplo», «conjetura», «tabla de verdad», «recurrencia», «coeficientes binomiales». The dictation button stays English-only, as the language policy requires. Learner answers are never translated or rewritten.

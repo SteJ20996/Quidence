@@ -29,7 +29,8 @@ async function main(){
   const trap=await labText(4);assert.doesNotMatch(trap,/\b(26|42)\b/);
   await page.locator('[data-lab="view-ball"]').click();assert.doesNotMatch(await page.locator('#lab').textContent(),/\b15 of the 16\b|No piece/);
   // Each lab reaches the counts that the project proves.
-  const run=async(i,actions)=>{await step(i);for(const a of actions)await page.locator(`#lab [data-lab="${a}"]`).click();result.labs++;return normalize(await page.locator('#lab-status').textContent());};
+  const idle=()=>page.locator('#lab:not(.x-busy)').waitFor();
+  const run=async(i,actions)=>{await step(i);for(const a of actions)await page.locator(`#lab [data-lab="${a}"]`).click();await idle();result.labs++;return normalize(await page.locator('#lab-status').textContent());};
   assert.equal(await run(0,['stick-next','stick-next','stick-next']),'Cut 3 landed inside one piece and split it in two: 4 pieces.');
   assert.match(await run(0,['stick-repeat']),/still 4 pieces/);
   assert.equal(await run(1,['pizza-next','pizza-next','pizza-next','pizza-next']),'Cut 4 crossed 3 earlier cuts, so it has 4 segments and added 4 pieces: 11 in all.');
@@ -47,8 +48,13 @@ async function main(){
   assert.match(await run(4,['view-ball','ball-visit']),/^15 of the 16 addresses have a piece\./);
   assert.equal(await page.locator('#lab .x-address-cell.missing').count(),1);
   assert.match(await run(4,['view-stack','stack-next','stack-next','stack-next','stack-next']),/16 pieces/);
-  await run(5,['table-build']);assert.deepEqual(await page.locator('#lab .x-diff-row').last().locator('.x-diff-cell').allTextContents(),['1','1','1','1','1']);
+  await run(5,['table-build']);await idle();assert.deepEqual(await page.locator('#lab .x-diff-row').last().locator('.x-diff-cell').allTextContents(),['1','1','1','1','1']);
   assert.match(await run(5,['view-pascal','pascal-play']),/Row 4: the first 4 numbers add up to 15\./);
+  // Keyboard focus stays on the control that was used, even though the lab is redrawn.
+  await step(0);await page.locator('#lab [data-lab="stick-reset"]').click().catch(()=>{});await page.locator('#lab [data-lab="stick-next"]').focus();await page.keyboard.press('Enter');await idle();
+  assert.equal(await page.evaluate(()=>document.activeElement?.dataset.lab),'stick-next');
+  // The status line is one lasting live region; a redraw changes its text, not the element.
+  const status=await page.locator('#lab-status').elementHandle();await page.keyboard.press('Enter');await idle();assert(await status.evaluate(e=>e.isConnected));
   // Checked answers and saved explanations.
   await step(0);await page.locator('#f-stick3').fill('4');await page.locator('#f-stick10').fill('11');await page.locator('#check').click();assert.match(await page.locator('#feedback-stick3').textContent(),/Correct/);
   await page.locator('#f-stick3').fill('5');await page.locator('#check').click();assert.match(await page.locator('#feedback-stick3').textContent(),/Try again/);

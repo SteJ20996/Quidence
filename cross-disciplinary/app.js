@@ -114,12 +114,22 @@ function animate(duration,frame){
     requestAnimationFrame(tick);
   });
 }
-const pause=ms=>animate(ms,()=>{});
-function setBusy(on){const b=$('lab-skip');if(b)b.hidden=!on;$('lab')?.classList.toggle('x-busy',on);}
-function stop(){if(run)run.cancel=true;run=null;setBusy(false);}
+// A pause is not motion, so it keeps its length with reduced motion too; skipping or stopping ends it at once.
+function pause(ms){
+  const token=run;
+  return new Promise(resolve=>{
+    if(!token||token.cancel||token.skip)return resolve(!token?.cancel);
+    const timer=setTimeout(()=>{token.waits.delete(wake);resolve(!token.cancel);},ms),wake=()=>{clearTimeout(timer);resolve(!token.cancel);};
+    (token.waits??=new Set()).add(wake);
+  });
+}
+function wakeAll(token){for(const wake of token?.waits||[])wake();token?.waits?.clear();}
+function skip(){if(run){run.skip=true;wakeAll(run);}}
+function setBusy(on){const b=$('lab-skip'),had=b&&document.activeElement===b;if(b)b.hidden=!on;$('lab')?.classList.toggle('x-busy',on);if(had&&!on)restoreFocus('');}
+function stop(){if(run){run.cancel=true;wakeAll(run);}run=null;setBusy(false);}
 // Runs one animation; another lab action first finishes the running one at its end state.
 async function play(sequence){
-  if(run){run.skip=true;await run.done;}
+  if(run){const done=run.done;skip();await done;}
   const token={cancel:false,skip:false};run=token;setBusy(true);
   token.done=(async()=>{try{await sequence(token);}finally{if(run===token){run=null;setBusy(false);}}})();
   return token.done;
@@ -138,13 +148,25 @@ function svg(body,label,h=280,box=null){return `<svg class="lab-svg x-svg" viewB
 function button(action,label,{disabled=false,pressed=null,primary=false}={}){return `<button type="button" data-lab="${action}"${disabled?' disabled':''}${pressed===null?'':` aria-pressed="${pressed}"`}${primary?' class="x-lab-main"':''}>${esc(label)}</button>`;}
 function readouts(rows){return `<dl class="x-readouts" style="--cols:${rows.length===4?2:rows.length}">${rows.map(([label,value,id])=>`<div><dt>${esc(label)}</dt><dd${id?` id="${id}"`:''}>${esc(value)}</dd></div>`).join('')}</dl>`;}
 function views(list,active){return `<div class="x-views" role="group" aria-label="Views">${list.map(([id,label])=>button('view-'+id,label,{pressed:id===active})).join('')}</div>`;}
+// The status line stays in the page (index.html), so screen readers announce each change in one live region.
+// A rebuilt lab returns keyboard focus to the control that had it, or to the lab's main button.
 function labShell({title,views:v='',picture,legend='',rows,status,caption,buttons}){
+  const active=document.activeElement,key=active&&$('lab').contains(active)?(active.dataset.lab||active.id):null;
   $('lab-title').textContent=title;
-  $('lab').innerHTML=`${v}<div class="x-picture">${picture}</div>${legend}${rows?readouts(rows):''}<p class="lab-status x-status" id="lab-status" role="status">${esc(status)}</p><p class="lab-caption">${esc(caption)}</p><div class="lab-buttons">${buttons}<button type="button" id="lab-skip" class="x-skip" hidden>Skip animation</button></div>`;
+  $('lab-body').innerHTML=`${v}<div class="x-picture"><div class="x-art">${picture}</div><button type="button" id="lab-skip" class="x-skip" hidden>Skip animation</button></div>${legend}${rows?readouts(rows):''}`;
+  say(status);
+  $('lab-controls').innerHTML=`<p class="lab-caption">${esc(caption)}</p><div class="lab-buttons">${buttons}</div>`;
   setBusy(!!run);
+  if(key!==null)restoreFocus(key);
+}
+function restoreFocus(key){
+  const usable=el=>el&&!el.disabled&&!el.hidden&&el.getClientRects().length>0;
+  let el=key==='lab-skip'?$('lab-skip'):key?document.querySelector(`#lab [data-lab="${key}"]`):null;
+  if(!usable(el))el=document.querySelector('#lab .x-lab-main');if(!usable(el))el=[...document.querySelectorAll('#lab button')].find(usable);
+  el?.focus({preventScroll:true});
 }
 // Updates a lab without rebuilding its controls, so a slider keeps working while it is dragged.
-function patch({picture,rows,status,equation}){const box=document.querySelector('#lab .x-picture');if(picture!==undefined&&box)box.innerHTML=picture;const dl=document.querySelector('#lab .x-readouts');if(rows&&dl)dl.outerHTML=readouts(rows);if(status!==undefined)say(status);const eq=document.querySelector('#lab .lab-equation');if(equation!==undefined&&eq)eq.textContent=equation;}
+function patch({picture,rows,status,equation}){const box=document.querySelector('#lab .x-art');if(picture!==undefined&&box)box.innerHTML=picture;const dl=document.querySelector('#lab .x-readouts');if(rows&&dl)dl.outerHTML=readouts(rows);if(status!==undefined)say(status);const eq=document.querySelector('#lab .lab-equation');if(equation!==undefined&&eq)eq.textContent=equation;}
 function rangeOutput(text){const out=document.querySelector('#lab .x-range output'),input=document.querySelector('#lab .x-range input');if(out)out.textContent=text;input?.setAttribute('aria-valuetext',text);}
 function say(text){const el=$('lab-status');if(el)el.textContent=text;}
 function setText(id,value){const el=$(id);if(el&&el.textContent!==String(value))el.textContent=value;}
@@ -155,6 +177,14 @@ function chordEnds(l,r=1){const c=X.chord(l,r);return [c.at(-c.half),c.at(c.half
 function lineTag(l,map,attrs,r=1){const [a,b]=chordEnds(l,r).map(map);return `<line x1="${a[0].toFixed(1)}" y1="${a[1].toFixed(1)}" x2="${b[0].toFixed(1)}" y2="${b[1].toFixed(1)}" ${attrs}/>`;}
 // Crossings in the order the cuts make them: all of cut 2's, then cut 3's new ones, and so on.
 function crossingPoints(lines){const out=[];for(let j=1;j<lines.length;j++)for(let i=0;i<j;i++){const a=lines[i],b=lines[j],det=a.n[0]*b.n[1]-a.n[1]*b.n[0];if(Math.abs(det)<1e-12)continue;const p=[(a.d*b.n[1]-b.d*a.n[1])/det,(a.n[0]*b.d-b.n[0]*a.d)/det];if(Math.hypot(...p)<1&&!out.some(o=>Math.hypot(o[0]-p[0],o[1]-p[1])<1e-6))out.push(p);}return out;}
+// The point of a convex polygon farthest from its edges, where a label has the most room.
+function innerPoint(poly){
+  const xs=poly.map(p=>p[0]),ys=poly.map(p=>p[1]),x0=Math.min(...xs),y0=Math.min(...ys),w=Math.max(...xs)-x0,h=Math.max(...ys)-y0;let best=centroid(poly),room=-1;
+  const edge=(p,a,b)=>{const dx=b[0]-a[0],dy=b[1]-a[1],len=Math.hypot(dx,dy)||1;return ((p[0]-a[0])*dy-(p[1]-a[1])*dx)/len;};
+  const sign=Math.sign(poly.reduce((s,p,i)=>{const q2=poly[(i+1)%poly.length];return s+p[0]*q2[1]-q2[0]*p[1];},0))||1;
+  for(let i=1;i<40;i++)for(let j=1;j<40;j++){const p=[x0+w*i/40,y0+h*j/40];let d=Infinity;for(let k=0;k<poly.length;k++)d=Math.min(d,-sign*edge(p,poly[k],poly[(k+1)%poly.length]));if(d>room){room=d;best=p;}}
+  return best;
+}
 const centroid=poly=>{let a=0,x=0,y=0;poly.forEach((p,i)=>{const q=poly[(i+1)%poly.length],c=p[0]*q[1]-q[0]*p[1];a+=c;x+=(p[0]+q[0])*c;y+=(p[1]+q[1])*c;});return Math.abs(a)<1e-12?poly[0]:[x/(3*a),y/(3*a)];};
 const bubble=(id,[x,y],text,cls='x-plus')=>`<text id="${id}" class="${cls}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" opacity="0">${text}</text>`;
 async function pop(id,token){const el=q(id);if(!el)return;const y=Number(el.getAttribute('y'));await animate(260,t=>attr(el,{opacity:t,y:y-6*t}));if(token.cancel)return;}
@@ -189,14 +219,14 @@ function stickLab(l,action){
     await animate(650,t=>attr(knife,{transform:`translate(${x} ${(SY-SH/2-56+(SH+68)*t).toFixed(1)})`,opacity:Math.min(1,t*3)}));if(token.cancel)return;
     l.n++;const after=stickPieces(l.n);draw();const k2=q('st-knife');attr(k2,{transform:`translate(${x} ${SY+SH/2+12})`,opacity:1});
     const left=after.findIndex(p=>p.b===c),right=left+1;[left,right].forEach(i=>attr(q('st-'+i),{stroke:HOT,'stroke-width':3,...stickRect(after[i],{[c]:0})}));
-    await Promise.all([animate(420,t=>{for(const i of [left,right])attr(q('st-'+i),stickRect(after[i],{[c]:GAP*t}));}),(async()=>{const p=q('st-plus');attr(p,{x});await pop('st-plus',token);})()]);if(token.cancel)return;
+    await Promise.all([animate(420,t=>{for(const i of [left,right])attr(q('st-'+i),stickRect(after[i],{[c]:GAP*t}));}),(async()=>{const p=q('st-plus');attr(p,{x:(Number(x)+20).toFixed(1)});await pop('st-plus',token);})()]);if(token.cancel)return;
     await animate(380,t=>attr(k2,{opacity:1-t}));if(token.cancel)return;
     l.message=`Cut ${l.n} landed inside one piece and split it in two: ${l.n+1} pieces.`;draw();
   });
   if(action==='stick-repeat'&&l.n>0)play(async token=>{
     l.message='';draw();const c=STICK[l.n-1],x=(SX+c*SW).toFixed(1),knife=q('st-knife');
     await animate(650,t=>attr(knife,{transform:`translate(${x} ${(SY-SH/2-56+(SH+68)*t).toFixed(1)})`,opacity:Math.min(1,t*3)}));if(token.cancel)return;
-    attr(q('st-zero'),{x});await pop('st-zero',token);if(token.cancel)return;await pause(500);if(token.cancel)return;
+    attr(q('st-zero'),{x:(Number(x)+20).toFixed(1)});await pop('st-zero',token);if(token.cancel)return;await pause(500);if(token.cancel)return;
     l.message=`The knife landed on an earlier cut. Nothing was split: still ${l.n+1} pieces.`;draw();
   });
 }
@@ -279,7 +309,7 @@ function formulaLab(l,action,value){
       status:l.paired?`Two copies of the staircase fill a ${l.n} by ${l.n+1} rectangle, so the sum is half of ${l.n} × ${l.n+1}: ${T}.`:`Column k holds the k pieces that cut k adds. With the whole pizza: ${1+T} pieces.`};};
   const draw=()=>{const c=X.choose(l.m,2);
     if(l.view==='stairs')labShell({title:'Add up the new pieces',views:views([['stairs','Staircase'],['crossings','Cuts and crossings']],l.view),...stairsContent(),
-      legend:`<label class="x-range"><span>Number of cuts, n</span><input type="range" min="1" max="10" step="1" value="${l.n}" data-lab="stairs-n" aria-valuetext="${l.n}"><output>${l.n}</output></label>`,
+      legend:`<label class="x-range"><span>Number of cuts, n</span><input type="range" min="1" max="10" step="1" value="${l.n}" data-lab="stairs-n" aria-valuetext="${l.n}"><output aria-live="off">${l.n}</output></label>`,
       caption:'Fit a second, upside-down copy of the staircase on top: every column then has n + 1 squares.',
       buttons:button('stairs-pair',l.paired?'Take the copy away':'Fit two staircases together',{primary:true})});
     else labShell({title:'Count cuts and crossings',views:views([['stairs','Staircase'],['crossings','Cuts and crossings']],l.view),
@@ -341,7 +371,7 @@ function ballLab(l,action,value){
     if(newest>=0&&showFace){const f=X.face(newest),r=FR*f.r,map=discMap(0,0,r);
       body+=`<g id="face-2d" transform="translate(${FX} ${FY}) scale(1 ${faceScale.toFixed(3)})" opacity="${Math.min(1,faceScale*1.3).toFixed(2)}"><circle r="${(r+3).toFixed(1)}" fill="${CUT}" opacity=".9"/>${list.map((p,i)=>polygon(p.poly,map,`id="f2-${i}" fill="${colorFor(p.address)}" stroke="#ffffff" stroke-width="1.2"`)).join('')}${f.lines.map(ln=>lineTag(ln,map,`stroke="${INK}" stroke-width="2"`)).join('')}${crossingPoints(f.lines).map(p=>{const [x,y]=map(p);return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.4" fill="${INK}"/>`;}).join('')}${list.map((p,i)=>bubble('fp-'+i,map(centroid(p.poly)).map((v,a)=>a?v+4:v),'+1','x-plus x-plus-small')).join('')}</g>`;}
     else body+=`<circle cx="${FX}" cy="${FY}" r="${FR}" fill="none" stroke="#cbd9d4" stroke-width="1.5" stroke-dasharray="5 4"/>`;
-    return body+`<path d="M${BX+BR+14} ${BY}H${FX-FR-12}" stroke="#9db8b0" stroke-width="1.4" marker-end="url(#x-arrow)"/>`;
+    return body+`<path d="M${BX+BR+3} ${BY}H${FX-FR-4}" stroke="#9db8b0" stroke-width="1.4" marker-end="url(#x-arrow)"/>`;
   };
   const status=()=>{const k=l.n-1;if(k<0)return 'No cuts yet: the ball is 1 piece.';const face=counts[k+1]-counts[k];
     if(k===0)return 'The face of the first cut is a whole disc with no lines. It splits the ball into 2 pieces.';
@@ -349,14 +379,15 @@ function ballLab(l,action,value){
     return `Cut ${l.n}: its face shows ${k} lines, which make ${face} pieces of the face, so the cut added ${face} pieces: ${counts[l.n]} in all.`;};
   const label=()=>`Ball picture. Cuts: ${l.n}. Pieces: ${counts[l.n]}.`;
   const draw=(opts)=>{labShell({title:'Slide in a cut, then look at its face',picture:svg(picture(opts),label()),
-    legend:`<p class="x-legend"><span class="x-legend-item"><span class="x-key x-key-cut"></span>Newest cut</span> <span class="x-legend-item"><span class="x-key x-key-line"></span>Earlier cuts</span> <span class="x-legend-item"><span class="x-key x-key-dash"></span>Behind the ball</span></p><p class="x-legend x-legend-panels"><span>Left: the ball</span><span>Right: the face of the newest cut, turned toward you</span></p><label class="x-range"><span>Turn the ball</span><input type="range" min="-70" max="70" step="1" value="${l.turn}" data-lab="ball-turn" aria-valuetext="${l.turn}°"><output>${l.turn}°</output></label>`,
+    legend:`<p class="x-legend"><span class="x-legend-item"><span class="x-key x-key-cut"></span>Newest cut</span> <span class="x-legend-item"><span class="x-key x-key-line"></span>Earlier cuts</span> <span class="x-legend-item"><span class="x-key x-key-dash"></span>Behind the ball</span></p><p class="x-legend x-legend-panels"><span>Left: the ball</span><span>Right: the face of the newest cut, turned toward you</span></p><label class="x-range"><span>Turn the ball</span><input type="range" min="-70" max="70" step="1" value="${l.turn}" data-lab="ball-turn" aria-valuetext="${l.turn}°"><output aria-live="off">${l.turn}°</output></label>`,
     rows:[['Cuts',l.n,'b-n'],['Lines on the newest face',l.n?l.n-1:'–','b-lines'],['Pieces of the newest face',l.n?counts[l.n]-counts[l.n-1]:'–','b-face'],['Pieces of the ball',counts[l.n],'b-total']],
     status:status(),caption:'Before each cut the ball turns so that the new face is easy to see. Drag the slider to turn it yourself.',
     buttons:button('ball-next','Make the next cut',{disabled:l.n>=max,primary:true})+button('ball-replay','Replay the last cut',{disabled:l.n===0})+button('ball-reset','Start over',{disabled:l.n===0})});};
-  const turnTo=async(token,target)=>{const from=l.turn;if(Math.abs(target-from)<2)return;const input=document.querySelector('#lab [data-lab="ball-turn"]');
-    await animate(Math.min(900,250+8*Math.abs(target-from)),t=>{l.turn=Math.round(from+(target-from)*t);orient(l,null);if(input)input.value=l.turn;});rangeOutput(l.turn+'°');};
+  const turnTo=async(token,target)=>{const from=l.turn;if(Math.abs(target-from)<2)return;const input=document.querySelector('#lab [data-lab="ball-turn"]');let shown=from;
+    // The readout follows the turn in steps of 5°, so its text does not change on every frame.
+    await animate(Math.min(900,250+8*Math.abs(target-from)),t=>{l.turn=Math.round(from+(target-from)*t);orient(l,null);if(input)input.value=l.turn;if(Math.abs(l.turn-shown)>=5){shown=l.turn;rangeOutput(l.turn+'°');}});if(token.cancel)return;rangeOutput(l.turn+'°');};
   if(!action){draw();return;}
-  if(action==='ball-turn'){l.turn=Math.max(-70,Math.min(70,Number(value)||0));if(run)run.skip=true;else{orient(l);rangeOutput(l.turn+'°');}return;}
+  if(action==='ball-turn'){l.turn=Math.max(-70,Math.min(70,Number(value)||0));if(run)skip();else{orient(l);rangeOutput(l.turn+'°');}return;}
   if(action==='ball-reset'){stop();l.n=0;draw();return;}
   if(action==='ball-replay'&&l.n>0){l.n--;action='ball-next';}
   if(action==='ball-next'&&l.n<max)play(async token=>{
@@ -378,20 +409,25 @@ function ballLab(l,action,value){
 
 // Step 5. The doubling trap: the count against 2ⁿ, addresses on a pizza and on the ball, and stacking.
 function addressText(a){return [...a].join(' ');}
+// In a sentence an address is joined with word joiners, so it never breaks across lines.
+function addressWord(a){return [...a].join('\u2060');}
 function trapLab(l,action){
   l.view??='chart';l.m??=0;
   const counts=X.ballCounts().concat([42]);
   const viewList=views([['chart','Pieces and 2ⁿ'],['pizza','Addresses on a pizza'],['ball','Addresses in the ball'],['stack','Moving the pieces']],l.view);
   const chart=()=>{let body='<line x1="34" y1="236" x2="408" y2="236" stroke="#9db8b0"/>';const unit=196/64;
     // Bars for 5 and 6 cuts appear only when the learner grows them, since step 5 asks for those counts.
-    for(let n=0;n<=6;n++){const x=46+n*52,b=counts[n],p=2**n;if(n>4&&!l.grown){body+=`<text x="${x+19}" y="226" text-anchor="middle" class="x-small">?</text><text x="${x+19}" y="254" text-anchor="middle" class="x-small">${n}</text>`;continue;}body+=`<rect class="x-bar-ghost" x="${x+20}" y="${236-p*unit}" width="18" height="${p*unit}" rx="2" fill="#ffffff" stroke="#b07a2a" stroke-width="1.4" stroke-dasharray="3 2" data-grow="${p*unit}"/><rect class="x-bar" x="${x}" y="${236-b*unit}" width="18" height="${b*unit}" rx="2" fill="#4f8f83" data-grow="${b*unit}"/><text x="${x+9}" y="${230-b*unit}" text-anchor="middle" class="x-small">${b}</text><text x="${x+29}" y="${230-p*unit}" text-anchor="middle" class="x-small x-amber">${p}</text><text x="${x+19}" y="254" text-anchor="middle" class="x-small">${n}</text>${p>b?`<text x="${x+19}" y="272" text-anchor="middle" class="x-small x-red">−${p-b}</text>`:''}`;}
+    for(let n=0;n<=6;n++){const x=46+n*52,b=counts[n],p=2**n;if(n>4&&!l.grown){body+=`<text x="${x+19}" y="226" text-anchor="middle" class="x-small">?</text><text x="${x+19}" y="254" text-anchor="middle" class="x-small">${n}</text>`;continue;}body+=`<rect class="x-bar-ghost" x="${x+22}" y="${236-p*unit}" width="18" height="${p*unit}" rx="2" fill="#ffffff" stroke="#b07a2a" stroke-width="1.4" stroke-dasharray="3 2" data-grow="${p*unit}"/><rect class="x-bar" x="${x}" y="${236-b*unit}" width="18" height="${b*unit}" rx="2" fill="#4f8f83" data-grow="${b*unit}"/><g class="x-bar-label" data-n="${n}"><text x="${x+8}" y="${230-b*unit}" text-anchor="middle" class="x-small">${b}</text><text x="${x+32}" y="${230-p*unit}" text-anchor="middle" class="x-small x-amber">${p}</text>${p>b?`<text x="${x+19}" y="272" text-anchor="middle" class="x-small x-red">−${p-b}</text>`:''}</g><text x="${x+19}" y="254" text-anchor="middle" class="x-small">${n}</text>`;}
     return body;};
   const pizza=()=>{const lines=X.TRIANGLE,list=X.pieces(lines);
     let body=`<circle cx="210" cy="140" r="122" fill="#e2b77a"/><circle cx="210" cy="140" r="116" fill="#f7e7c6"/>${list.map((p,i)=>polygon(p.poly,PZ,`id="tp-${i}" fill="${colorFor(p.address)}" stroke="#ffffff" stroke-width="1.2"`)).join('')}${lines.map(ln=>lineTag(ln,PZ,`stroke="${INK}" stroke-width="2" stroke-linecap="round"`)).join('')}`;
-    // Each cut is numbered at one end, with a small arrow toward its "+" side.
-    // Each badge goes at the end of its cut that is farthest from the badges already placed.
-    const placed=[];body+=lines.map((ln,i)=>{const a=chordEnds(ln).sort((p,r)=>Math.min(9,...placed.map(b=>Math.hypot(b[0]-r[0],b[1]-r[1])))-Math.min(9,...placed.map(b=>Math.hypot(b[0]-p[0],b[1]-p[1]))))[0];placed.push(a);const [x,y]=PZ([a[0]*.9,a[1]*.9]),[ax,ay]=PZ([a[0]*.9+ln.n[0]*.14,a[1]*.9+ln.n[1]*.14]);return `<line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${ax.toFixed(1)}" y2="${ay.toFixed(1)}" stroke="${CUT}" stroke-width="2" marker-end="url(#tp-arrow)"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" fill="${INK}"/><text x="${x.toFixed(1)}" y="${(y+3.6).toFixed(1)}" text-anchor="middle" class="x-badge-text x-on-dark">${i+1}</text>`;}).join('');
-    body+=list.map((p,i)=>{const [x,y]=PZ(centroid(p.poly));return `<text x="${x.toFixed(1)}" y="${(y+4).toFixed(1)}" text-anchor="middle" class="x-address">${addressText(p.address)}</text>`;}).join('');
+    // Each cut is numbered just beyond one end, outside the crust, with an arrow toward its "+" side. A badge goes at
+    // the end farthest from the badges already placed.
+    const placed=[];body+=lines.map((ln,i)=>{const c=X.chord(ln),ends=[[c.half,1],[-c.half,-1]].map(([t,s])=>({end:c.at(t),out:c.dir.map(v=>v*s)}));
+      const far=e=>Math.min(9,...placed.map(b=>Math.hypot(b[0]-e.end[0],b[1]-e.end[1])));const e=ends.sort((a,b)=>far(b)-far(a))[0];placed.push(e.end);
+      const badge=e.end.map((v,k)=>v+.17*e.out[k]),[x,y]=PZ(badge),[ex,ey]=PZ(e.end),[a1,b1]=PZ(badge.map((v,k)=>v+.085*ln.n[k])),[a2,b2]=PZ(badge.map((v,k)=>v+.3*ln.n[k]));
+      return `<line x1="${ex.toFixed(1)}" y1="${ey.toFixed(1)}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="${INK}" stroke-width="1.4" stroke-dasharray="3 3"/><line x1="${a1.toFixed(1)}" y1="${b1.toFixed(1)}" x2="${a2.toFixed(1)}" y2="${b2.toFixed(1)}" stroke="${CUT}" stroke-width="2.2" marker-end="url(#tp-arrow)"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" fill="${INK}"/><text x="${x.toFixed(1)}" y="${(y+3.6).toFixed(1)}" text-anchor="middle" class="x-badge-text x-on-dark">${i+1}</text>`;}).join('');
+    body+=list.map(p=>{const [x,y]=PZ(innerPoint(p.poly));return `<text x="${x.toFixed(1)}" y="${(y+4).toFixed(1)}" text-anchor="middle" class="x-address">${addressText(p.address)}</text>`;}).join('');
     return `<defs><marker id="tp-arrow" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L8 4L0 8Z" fill="${CUT}"/></marker></defs>`+body;};
   const grid=(n,found,extra={},hidden=false)=>{const all=Array.from({length:2**n},(_,s)=>Array.from({length:n},(_,b)=>s&(1<<(n-1-b))?'−':'+').join(''));
     const note=a=>hidden?'':!found.has(a)?'No piece':extra[a]==='triangle'?extra.middle:'';
@@ -406,13 +442,13 @@ function trapLab(l,action){
       legend:'<p class="x-legend"><span class="x-legend-item"><span class="x-key x-key-bar"></span>Most pieces, B(n)</span> <span class="x-legend-item"><span class="x-key x-key-ghost"></span>Doubling, 2ⁿ</span> <span class="x-legend-item"><span class="x-key x-key-red">−</span>Short of doubling, 2ⁿ − B(n)</span></p>',
       status:l.grown?'Doubling matches up to 3 cuts. With 4 cuts the ball has 15 pieces, 1 fewer than 16; with 6 cuts it has 42, 22 fewer than 64.':'Doubling matches up to 3 cuts. With 4 cuts the ball has 15 pieces, 1 fewer than 16. Find B(5) and B(6) first, then grow the bars to check.',caption:'The numbers under the bars are the numbers of cuts.',buttons:button('chart-grow',l.grown?'Grow the bars again':'Grow the bars to 6 cuts',{primary:true})});
     else if(l.view==='pizza'){const list=X.pieces(X.TRIANGLE),tri=list.find(p=>p.poly.every(q2=>Math.hypot(...q2)<.999)),colors=Object.fromEntries(list.map(p=>[p.address,colorFor(p.address)]));
-      labShell({title:'Give each piece an address',views:viewList,picture:svg(pizza(),'A pizza with 3 numbered cuts and 7 pieces, each labeled with its address',280,PIZZA_BOX),
+      labShell({title:'Give each piece an address',views:viewList,picture:svg(pizza(),'A pizza with 3 numbered cuts and 7 pieces, each labeled with its address',280,'56 -16 308 312'),
         legend:grid(3,new Set(list.map(p=>p.address)),{colors,middle:'Triangle',[tri.address]:'triangle',[X.flip(tri.address)]:'opposite'}),
-        status:`Address of the triangle in the middle: ${addressText(tri.address)}. Its opposite would be beyond all three sides of the triangle at once, so no piece has it: ${addressText(X.flip(tri.address))}.`,
+        status:`Address of the triangle in the middle: ${addressWord(tri.address)}. Its opposite would be beyond all three sides of the triangle at once, so no piece has it: ${addressWord(X.flip(tri.address))}.`,
         caption:'For each cut, + means the side its arrow points to. The grid lists all 2³ = 8 addresses, like the rows of a truth table.',buttons:button('pizza-visit','Visit every piece',{primary:true})});}
     else if(l.view==='ball'){const found=new Set(X.ballAddresses(X.BALL.slice(0,4))),tet=X.tetrahedron();
       labShell({title:'Addresses with four cuts of the ball',views:viewList,picture:grid(4,found,{middle:'Tetrahedron',[tet.address]:'triangle',[X.flip(tet.address)]:'opposite'},!l.checked),
-        status:!l.checked?'Which of the 16 addresses have a piece? Count them first, then check every address.':`${found.size} of the 16 addresses have a piece. Address of the small tetrahedron in the middle: ${addressText(tet.address)}. Address with no piece, its opposite: ${addressText(X.flip(tet.address))}. No point is beyond all four faces of the tetrahedron.`,
+        status:!l.checked?'Which of the 16 addresses have a piece? Count them first, then check every address.':`${found.size} of the 16 addresses have a piece. Address of the small tetrahedron in the middle: ${addressWord(tet.address)}. Address with no piece, its opposite: ${addressWord(X.flip(tet.address))}. No point is beyond all four faces of the tetrahedron.`,
         caption:'The lab finds the addresses from the corners where three cuts meet: the eight points just around a corner lie in eight different pieces.',buttons:button('ball-visit','Check every address',{primary:true})});}
     else labShell({title:'What if the pieces could move?',views:viewList,picture:svg(stack(),`Tower of pieces. Cuts: ${l.m}. Pieces: ${2**l.m}.`,230),rows:[['Cuts',l.m],['Pieces',2**l.m]],
       status:l.m?`Every cut went through every piece, so the count doubled: ${2**l.m} pieces.`:'One piece. If you may move the pieces, stack them before each cut.',
@@ -422,16 +458,18 @@ function trapLab(l,action){
   if(!action){draw();return;}
   if(action.startsWith('view-')){stop();l.view=action.slice(5);trapLab(l);return;}
   if(action==='chart-grow')play(async token=>{l.grown=true;draw();const bars=[...document.querySelectorAll('#lab .x-bar,#lab .x-bar-ghost')];bars.forEach(b=>attr(b,{height:0,y:236}));
-    for(let n=0;n<=6;n++){const pair=bars.filter((b,i)=>Math.floor(i/2)===n);await animate(260,t=>pair.forEach(b=>{const h=Number(b.dataset.grow)*t;attr(b,{height:h.toFixed(1),y:(236-h).toFixed(1)});}));if(token.cancel)return;}});
+    // Each pair's numbers appear once its bars have grown.
+    const labels=[...document.querySelectorAll('#lab .x-bar-label')];labels.forEach(g=>attr(g,{opacity:0}));
+    for(let n=0;n<=6;n++){const pair=bars.filter((b,i)=>Math.floor(i/2)===n);await animate(260,t=>pair.forEach(b=>{const h=Number(b.dataset.grow)*t;attr(b,{height:h.toFixed(1),y:(236-h).toFixed(1)});}));if(token.cancel)return;attr(labels[n],{opacity:1});}});
   if(action==='pizza-visit')play(async token=>{draw();const list=X.pieces(X.TRIANGLE);
-    for(let i=0;i<list.length;i++){const poly=q('tp-'+i),cell=document.querySelector(`#lab [data-address="${list[i].address}"]`);attr(poly,{fill:HOT});cell?.classList.add('active');say(`This piece has the address: ${addressText(list[i].address)}.`);await pause(650);if(token.cancel)return;attr(poly,{fill:colorFor(list[i].address)});cell?.classList.remove('active');}
+    for(let i=0;i<list.length;i++){const poly=q('tp-'+i),cell=document.querySelector(`#lab [data-address="${list[i].address}"]`);attr(poly,{fill:HOT});cell?.classList.add('active');say(`This piece has the address: ${addressWord(list[i].address)}.`);await pause(650);if(token.cancel)return;attr(poly,{fill:colorFor(list[i].address)});cell?.classList.remove('active');}
     draw();document.querySelector('#lab .x-address-cell.opposite')?.classList.add('active');});
   if(action==='ball-visit')play(async token=>{l.checked=true;draw();const cells=[...document.querySelectorAll('#lab .x-address-cell')];cells.forEach(c=>c.classList.add('waiting'));
     for(const c of cells){c.classList.remove('waiting');c.classList.add('active');await pause(140);if(token.cancel)return;c.classList.remove('active');}
     document.querySelector('#lab .x-address-cell.missing')?.classList.add('active');});
   if(action==='stack-reset'){stop();l.m=0;draw();return;}
   if(action==='stack-next'&&l.m<4)play(async token=>{
-    const m=l.m,count=2**m,top=214-count*slabH(m);draw();q('lab').querySelector('.x-picture').innerHTML=svg(stack(true),`Tower of pieces. Cuts: ${m}. Pieces: ${count}.`,230);const knife=q('tk-knife');
+    const m=l.m,count=2**m,top=214-count*slabH(m);draw();q('lab').querySelector('.x-art').innerHTML=svg(stack(true),`Tower of pieces. Cuts: ${m}. Pieces: ${count}.`,230);const knife=q('tk-knife');
     // The knife comes down the middle; each slab it reaches opens into two halves.
     await animate(1100,t=>{const tip=top-30+(214-top+36)*t;attr(knife,{transform:`translate(210 ${tip.toFixed(1)})`,opacity:Math.min(1,t*4)});
       for(let i=0;i<count;i++){const r=slab(m,i),open=Math.max(0,Math.min(1,(tip-Number(r.y))/8));attr(q('sk-l'+i),{x:(135-5*open).toFixed(1)});attr(q('sk-r'+i),{x:(210+5*open).toFixed(1)});}});if(token.cancel)return;
@@ -461,7 +499,7 @@ function patternLab(l,action,value){
       caption:'Each number in a lower row is the difference of the two numbers just above it.',
       buttons:button('table-build','Build the table',{primary:true})+button('table-all','Show it all at once')});
     else{const terms=sum();labShell({title:'Find the counts in Pascal’s triangle',views:views([['table','Difference table'],['pascal','Pascal’s triangle']],l.view),picture:pascal(),
-      legend:`<div class="x-views x-dims" role="group" aria-label="Choose the count">${dims.map(([d,label])=>button('dim-'+d,label,{pressed:d===l.dim})).join('')}</div><label class="x-range"><span>Number of cuts, n</span><input type="range" min="0" max="8" step="1" value="${l.n}" data-lab="pascal-n" aria-valuetext="${l.n}"><output>${l.n}</output></label><p class="lab-equation" data-no-translate>${terms.join(' + ')} = ${total()}</p>`,
+      legend:`<div class="x-views x-dims" role="group" aria-label="Choose the count">${dims.map(([d,label])=>button('dim-'+d,label,{pressed:d===l.dim})).join('')}</div><label class="x-range"><span>Number of cuts, n</span><input type="range" min="0" max="8" step="1" value="${l.n}" data-lab="pascal-n" aria-valuetext="${l.n}"><output aria-live="off">${l.n}</output></label><p class="lab-equation" data-no-translate>${terms.join(' + ')} = ${total()}</p>`,
       status:pascalStatus(),
       caption:'Row n lists C(n, 0), C(n, 1), C(n, 2), …. The stick adds the first two, the pizza the first three and the ball the first four.',
       buttons:button('pascal-play','Add them one at a time',{primary:true})});}
@@ -487,7 +525,7 @@ document.addEventListener('click',e=>{
   if(b.dataset.project)selectProject(b.dataset.project);
   else if(b.dataset.step!==undefined)moveStep(Number(b.dataset.step));
   else if(b.dataset.lab)labAction(b.dataset.lab);
-  else if(b.id==='lab-skip'){if(run)run.skip=true;}
+  else if(b.id==='lab-skip')skip();
   else if(b.id==='check')checkStep();else if(b.id==='prev')moveStep(stepIndex()-1);
   else if(b.id==='next'){if(stepIndex()===current().steps.length-1)showSession(true);else moveStep(stepIndex()+1);}
   else if(['session','review-session','review-top'].includes(b.id))showSession();

@@ -23,7 +23,7 @@
     "connects": [
      "discrete-math"
     ],
-    "banner": "L(0) = 1    L(1) = 2    L(3) = ?",
+    "banner": "L(0) = 1, L(1) = 2, L(3) = ?",
     "prompt": "Start in one dimension. A stick is cut at n different points, and L(n) is the number of pieces. In the lab, watch where each new cut lands. How many pieces do 3 cuts make? How many do 10 cuts make? What happens when a new cut lands exactly on an earlier cut?",
     "proof": "A new cut at a point that is not already a cut lies inside exactly one piece. That piece becomes two, and every other piece stays as it was, so the number of pieces goes up by exactly 1.\n\nStarting from 1 piece, n cuts at different points give L(n) = n + 1 pieces: 4 for 3 cuts and 11 for 10 cuts.\n\nA cut on an earlier cut splits nothing, so it adds 0 pieces. To get the most pieces, the cuts must be in different places. In two and three dimensions this becomes a condition on how the cuts meet.\n\nKeep this count in mind. In the next step the new cut across a pizza is a line, and the earlier cuts cut that line exactly as points cut a stick.",
     "fields": [
@@ -82,7 +82,7 @@
      "geometry",
      "discrete-math"
     ],
-    "banner": "P(0) = 1    P(1) = 2    P(2) = 4    P(3) = 7    P(4) = ?",
+    "banner": "P(0) = 1, P(1) = 2, P(2) = 4, P(3) = 7, P(4) = ?",
     "prompt": "Now cut a round pizza with n straight cuts, and let P(n) be the largest number of pieces. Each cut is a line across the whole pizza, every two cuts cross inside the pizza, and no three cuts pass through one point. The lab makes one cut at a time. Watch the new cut: the earlier cuts cross it at points, and those points cut it into segments, just like the stick in step 1. Each segment splits one piece of pizza in two. How many earlier cuts does the 4th cut cross, into how many segments do they cut it, and how many pieces do 4 cuts make? Finally, which arrangement of three cuts makes only 6 pieces instead of 7?",
     "proof": "Suppose k cuts are already made, and the next cut crosses all k of them at different points. Those k points cut the new cut into k + 1 segments, by the count for the stick.\n\nEach segment runs through one existing piece and splits it in two. A piece of pizza has no dents, so a straight cut crosses it at most once, and different segments lie in different pieces. So the new cut adds exactly k + 1 pieces. If it crossed fewer cuts, or two crossings fell at the same point, it would have fewer segments and add fewer pieces.\n\nThe 4th cut crosses the 3 earlier cuts, so it has 4 segments and adds 4 pieces. The counts for 0, 1, 2 and 3 cuts are 1, 2, 4 and 7, so P(4) = 7 + 4 = 11.\n\nWhen three cuts pass through one point, the third cut meets the first two at the same point. It has only 2 segments, adds 2 pieces instead of 3, and the three cuts make 6 pieces.",
     "fields": [
@@ -141,7 +141,7 @@
      "algebra-2",
      "discrete-math"
     ],
-    "banner": "P(n) = P(n − 1) + n    P(10) = ?",
+    "banner": "P(n) = P(n − 1) + n, P(10) = ?",
     "prompt": "Step 2 shows that cut number k adds k pieces, so P(n) = P(n − 1) + n. Add up what each cut contributes to find P(10), and find a formula for P(n). Then count another way: every crossing point is made by two cuts. How many crossing points do 10 cuts make? The lab shows the new pieces of each cut as a column of squares, and the crossing points on the pizza.",
     "proof": "With no cuts there is 1 piece, and cut number k adds k pieces, so P(n) = 1 + (1 + 2 + ⋯ + n).\n\nWrite the sum forward and backward and add the two rows: each of the n columns adds up to n + 1. So twice the sum is n(n + 1), and 1 + 2 + ⋯ + n = n(n + 1)/2. In the lab, two copies of the staircase fit together into a rectangle n squares wide and n + 1 squares tall.\n\nSo P(n) = 1 + n(n + 1)/2 = (n² + n + 2)/2. For 10 cuts, P(10) = 1 + 55 = 56. The formula 2ⁿ matches only up to P(2) = 4, and n(n + 1)/2 forgets the piece you start with.\n\nAnother count: a new cut that crosses k earlier cuts adds k + 1 pieces, which is 1 for the cut itself and 1 for each crossing on it. Every crossing point lies on exactly 2 cuts, and every 2 cuts cross once, so 10 cuts make C(10, 2) = 45 crossings. So P(n) = 1 + n + C(n, 2), and 1 + 10 + 45 = 56.",
     "fields": [
@@ -201,7 +201,7 @@
      "geometry",
      "discrete-math"
     ],
-    "banner": "B(3) = 8    B(4) = B(3) + ?",
+    "banner": "B(3) = 8, B(4) = B(3) + ?",
     "prompt": "Now the ball, and let B(n) be the largest number of pieces. Each cut is a plane. Every two cuts meet in a line, every three meet at one point inside the ball, and no four pass through one point. Cuts like these are in general position. A new cut through the ball leaves a flat face: a disc. Each earlier cut meets that disc in a line, so the face looks like a pizza. In the lab, make each new cut and watch its face turn toward you. Each piece of the face splits one piece of the ball in two. With 3 cuts already made, how many lines does the face of the 4th cut show, how many pieces does the face have, and how many pieces of the ball do 4 cuts make?",
     "proof": "Suppose k cuts are made and the next cut is in general position. It meets each earlier cut in a line, so its face, a flat disc, carries k lines. Every two of them cross inside the face, because every three cuts meet inside the ball, and no three of them pass through one point, because no four cuts do. So the face is a pizza with k cuts, and it has P(k) pieces.\n\nEach piece of the face lies inside one piece of the ball and splits it in two. A piece of the ball is the part of the ball on one side of every cut, so it has no dents: it is convex. A flat cut meets a convex piece in one connected region, so the new cut meets each piece of the ball in at most one piece of the face, and no piece of the ball is split twice. So the new cut adds exactly P(k) pieces: B(k + 1) = B(k) + P(k).\n\nA cut that is not in general position has at most k lines on its face, and k lines cut a disc into at most P(k) pieces, so it adds at most P(k) pieces. Cuts in general position exist for every n: give each cut a different tilt and let them all pass very close to the center, so that every point where three cuts meet lies near the center.\n\nFor the 4th cut, k = 3. Its face shows 3 lines, which cut it into P(3) = 7 pieces, so B(4) = B(3) + 7 = 8 + 7 = 15.\n\nThis is the idea of step 2, one dimension higher: the pizza used the count for the stick, and the ball uses the count for the pizza.",
     "fields": [

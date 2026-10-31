@@ -305,3 +305,20 @@ html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card .av
 @supports (grid-template-rows:subgrid) and selector(details::details-content){@media(min-width:960px){html[data-ui-theme="classic"] body[data-q-theme].quidence-home .cross-group .subject-grid{grid-auto-rows:auto}html[data-ui-theme="classic"] body[data-q-theme].quidence-home .cross-group .subject-card{display:flex;flex-direction:column;grid-row:auto}}}
 html[data-ui-theme="classic"] body[data-q-theme].quidence-home .cross-group .subject-card .course-bridge-label{display:block}
 .cross-group .group-heading p{margin:4px 0 0;color:var(--q-muted);font-size:14px}
+/* Paper Explorer and Geometric Studio list the project card among the course cards, so its "Cross-disciplinary" label stays visible above the title. */
+html:is([data-ui-theme="paper"],[data-ui-theme="studio"]) body[data-q-theme].quidence-home .subject-card.cross .card-top{display:flex;grid-column:1/-1;grid-row:1;margin:0}
+html:is([data-ui-theme="paper"],[data-ui-theme="studio"]) body[data-q-theme].quidence-home .subject-card.cross .card-top .version{display:none}
+html[data-ui-theme="paper"] body[data-q-theme].quidence-home .subject-card.cross{grid-template-rows:auto auto auto auto auto}
+html[data-ui-theme="paper"] body[data-q-theme].quidence-home .subject-card.cross .q-paper-cover{grid-row:2/5}
+html[data-ui-theme="paper"] body[data-q-theme].quidence-home .subject-card.cross h3{grid-row:2}
+html[data-ui-theme="paper"] body[data-q-theme].quidence-home .subject-card.cross>.q-paper-entry{grid-row:3}
+html[data-ui-theme="paper"] body[data-q-theme].quidence-home .subject-card.cross .course-bridge-label{grid-column:2;grid-row:4;margin:0}
+html[data-ui-theme="paper"] body[data-q-theme].quidence-home .subject-card.cross .card-more{grid-row:5}
+html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card.cross{grid-template-rows:auto auto 108px minmax(50px,auto) auto}
+html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card.cross h3{grid-row:2}
+html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card.cross .q-studio-cover{grid-row:3}
+html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card.cross>.q-paper-entry{grid-row:4}
+html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card.cross .course-bridge-label{grid-column:2;grid-row:4;align-self:center;margin:0;font-size:11px}
+html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card.cross .card-more{grid-row:5}
+/* In Learning Atlas the single project card fills its row on narrow screens instead of sitting beside an empty column. */
+@media(max-width:900px){html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-atlas-group[data-atlas-group="cross"] .subject-card:only-child{grid-column:1/-1}}

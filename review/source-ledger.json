@@ -571,16 +571,16 @@
       "title": "How many pieces can n cuts make?",
       "bankVersion": "cross-disciplinary-v1",
       "availability": "active",
-      "fingerprint": "158cb597f3e8c1bcd4705fc1d2cdfa6a5b9e48ba1cc2e9be69a168d83d9db016",
+      "fingerprint": "9094b99d4b3862487db66439054b0dab09177121a36426cffb3603fdef357b86",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/cross-disciplinary/projects.cjs",
-          "sha256": "4dbd8ef36761840e93af248a3c144cb22b68e3ac15ff7ae98e19240e0c40b8c6"
+          "sha256": "072f965828ae6f6d654c7bc950ba53c1cd19ac7fc612ab5c6dd45b987f7c26cb"
         },
         {
           "path": "cross-disciplinary/data.json",
-          "sha256": "227ca663d6236760d0ae5ac1a04b7b3ac0c87816f1aa6db9f88d91928a7919e0"
+          "sha256": "aa02c950230673e50e203b5f327b5789f7edf91526800ec65b1b9cfc0e8a0384"
         }
       ],
       "sourceReview": {
