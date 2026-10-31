@@ -16212,11 +16212,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
+          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
+          "sha256": "ab1b23c2cee0e96fc9f2ef7588bb682f7f2a491baf6a69e24a4c000a5071cdd1"
         }
       ],
       "sourceReview": {
@@ -16247,11 +16247,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
+          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
+          "sha256": "ab1b23c2cee0e96fc9f2ef7588bb682f7f2a491baf6a69e24a4c000a5071cdd1"
         }
       ],
       "sourceReview": {
@@ -16282,11 +16282,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
+          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
+          "sha256": "ab1b23c2cee0e96fc9f2ef7588bb682f7f2a491baf6a69e24a4c000a5071cdd1"
         }
       ],
       "sourceReview": {
@@ -16317,11 +16317,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
+          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
+          "sha256": "ab1b23c2cee0e96fc9f2ef7588bb682f7f2a491baf6a69e24a4c000a5071cdd1"
         }
       ],
       "sourceReview": {
@@ -16352,11 +16352,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
+          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
+          "sha256": "ab1b23c2cee0e96fc9f2ef7588bb682f7f2a491baf6a69e24a4c000a5071cdd1"
         }
       ],
       "sourceReview": {
@@ -16387,11 +16387,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
+          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
+          "sha256": "ab1b23c2cee0e96fc9f2ef7588bb682f7f2a491baf6a69e24a4c000a5071cdd1"
         }
       ],
       "sourceReview": {
@@ -16422,11 +16422,46 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
+          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
+          "sha256": "ab1b23c2cee0e96fc9f2ef7588bb682f7f2a491baf6a69e24a4c000a5071cdd1"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/intuition.test.cjs"
+      },
+      "automatedReference": "tests/intuition.test.cjs"
+    },
+    {
+      "id": "intuition:basic-logic:cards",
+      "family": "intuition",
+      "module": "basic-logic",
+      "taskId": "cards",
+      "title": {
+        "en": "Which cards would you turn over?",
+        "es": "¿Qué tarjetas voltearías?"
+      },
+      "bankVersion": "intuition-v1",
+      "availability": "active",
+      "fingerprint": "7a4adcd0f758b344435381def65a05648ab4afdf0aebc23426090143dd3c5667",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "intuition/data.js",
+          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+        },
+        {
+          "path": "intuition/math.js",
+          "sha256": "ab1b23c2cee0e96fc9f2ef7588bb682f7f2a491baf6a69e24a4c000a5071cdd1"
         }
       ],
       "sourceReview": {
@@ -16457,11 +16492,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
+          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
+          "sha256": "ab1b23c2cee0e96fc9f2ef7588bb682f7f2a491baf6a69e24a4c000a5071cdd1"
         }
       ],
       "sourceReview": {
@@ -16492,11 +16527,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
+          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
+          "sha256": "ab1b23c2cee0e96fc9f2ef7588bb682f7f2a491baf6a69e24a4c000a5071cdd1"
         }
       ],
       "sourceReview": {
@@ -16527,11 +16562,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
+          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
+          "sha256": "ab1b23c2cee0e96fc9f2ef7588bb682f7f2a491baf6a69e24a4c000a5071cdd1"
         }
       ],
       "sourceReview": {
@@ -16562,11 +16597,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
+          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
+          "sha256": "ab1b23c2cee0e96fc9f2ef7588bb682f7f2a491baf6a69e24a4c000a5071cdd1"
         }
       ],
       "sourceReview": {
@@ -16597,11 +16632,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
+          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
+          "sha256": "ab1b23c2cee0e96fc9f2ef7588bb682f7f2a491baf6a69e24a4c000a5071cdd1"
         }
       ],
       "sourceReview": {
@@ -16632,11 +16667,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
+          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
+          "sha256": "ab1b23c2cee0e96fc9f2ef7588bb682f7f2a491baf6a69e24a4c000a5071cdd1"
         }
       ],
       "sourceReview": {
@@ -16667,11 +16702,11 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "6a23d6e0d38cccf18d29e2f81889f793ba0aa81daeabaefff762fe6e5f8bb2d0"
+          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
         },
         {
           "path": "intuition/math.js",
-          "sha256": "d4df001662da6c3fcfa28e4d883f2c11d3726046cf3c3a0e36140a13314fa1f8"
+          "sha256": "ab1b23c2cee0e96fc9f2ef7588bb682f7f2a491baf6a69e24a4c000a5071cdd1"
         }
       ],
       "sourceReview": {

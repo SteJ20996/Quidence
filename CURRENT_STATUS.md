@@ -1,3 +1,9 @@
+## 2026-10-30 · Basic Logic, part 4
+
+Intuition Lab has a fifteenth activity, "Which cards would you turn over?", the card-selection task for Basic Logic. Every subject card now has a foundation check, an understanding check and an Intuition Lab activity. See [basic-logic-intuition-20261030.md](review/basic-logic-intuition-20261030.md).
+
+Current inventory: 15 subject cards (6 School Mathematics, 7 Further Mathematics, 2 Science). Every card has a foundation check, an understanding check and an Intuition Lab activity; Intuition Lab has 15 activities.
+
 ## 2026-10-30 · Basic Logic, part 3
 
 Basic Logic has a 15-question foundation check and a four-problem understanding check, in English and Spanish. The diagnostic bank is now `quidence-challenges-10`, with 68 current problems; foundation records saved with thirteen subjects still open. A shared report sentence, "Recheck: …", now reads correctly and is translated on the Spanish site. The Intuition Lab activity is the only activity the card still lists as not available. See [basic-logic-checks-20261030.md](review/basic-logic-checks-20261030.md).
