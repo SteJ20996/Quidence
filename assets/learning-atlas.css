@@ -89,7 +89,7 @@ html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-paper-options>su
 html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-paper-options-body{display:flex;flex-direction:column;gap:15px;padding:9px 0}
 html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-paper-options-body .goal-report-option{display:flex;align-items:flex-start;gap:8px;font-size:12px;min-height:44px}
 html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-paper-options-body :is(.goal-sharing-note,.goal-note,.goal-option-help){font-size:11px;line-height:1.6}
-html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-paper-options-body>a{display:block;padding:8px 0;min-height:36px}
+html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-paper-options-body>a{align-self:flex-start}
 html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-atlas-note{display:flex;align-items:start;gap:15px;margin:15px 0 0;padding:22px 0 0;border-top:1px solid #b59c70;font:14px/1.5 'Quidence Atlas Serif',Georgia,serif;text-decoration:none;color:#254552}
 .q-atlas-note svg{width:36px;height:36px;flex-shrink:0;color:#ad854a}.q-atlas-note-title{display:block;text-transform:uppercase;letter-spacing:1.5px;font-size:10px;margin-bottom:4px}
 html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-atlas-books{height:200px;margin:0 -22px;background:url('atlas-books.webp') center bottom/contain no-repeat;pointer-events:none}

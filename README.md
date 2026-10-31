@@ -1,3 +1,12 @@
+## 2026-10-31 · 獨立的連結改成按鈕
+
+- 跨學科專題頁的「All subjects」「Related Intuition Lab activity ↗」「Review my work ↗」原本看起來像超連結（底線或純文字），現在依目前外觀顯示成按鈕；全站已發布的頁面中，同樣的情況也一併改正。
+- 規則：自成一項的導覽連結或操作（位於工具列、頁首、課程導覽列，或獨占一段的連結）一律顯示為按鈕，有外框或底色、不加底線。句子中的連結、頁尾連結、分頁列與課程步驟列維持原樣。
+- 涵蓋：8 門課程與 6 個科目頁頂端的課程導覽列、「Continue to…」連結、離散數學與數論的工具列、報告／紀錄／資料使用頁、Intuition Lab、Math Voice Lab、Visual Algebra、Linear Algebra、Think in Motion，以及首頁卡片上的 Intuition Lab 連結與 Classic 卡片上的基礎檢測連結。
+- 樣式統一寫在 `assets/appearance-layout.css`，沿用各外觀自己的顏色與圓角（Classic 8 px、Paper Explorer 手繪不規則圓角、Learning Atlas 4 px、Geometric Studio 24 px），觸控高度 44 px。
+- `npm run test:themes:browser` 新增檢查：每個已發布頁面、四種外觀、英文與西班牙文，只要有獨立連結或操作沒有外框與底色、或帶底線，測試就會失敗。
+- 見[發布紀錄](review/link-buttons-20261031.md)。
+
 ## 2026-10-31 · 跨學科專題（二）：圓上的弦與四維切割
 
 - 跨學科專題區新增第二個專題「Two puzzles, one sequence」（兩個謎題，一個數列），接續第一個專題最後一步的四維延伸，有英文和西班牙文：

@@ -1,3 +1,7 @@
+## 2026-10-31 · Standalone links become buttons
+
+Standalone navigation links and actions now look like buttons in every appearance, on every released page. Before, some were underlined or plain text, such as the Cross-disciplinary Projects top bar and the course navigation strip on course pages. Links inside sentences and in page footers stay links. The themes browser test now fails if a standalone link or action looks like plain text. See [link-buttons-20261031.md](review/link-buttons-20261031.md).
+
 ## 2026-10-31 · Cross-disciplinary projects, part 2
 
 The Cross-disciplinary Projects section has a second project, "Two puzzles, one sequence" (`cross-disciplinary/?project=cross-p02`), in English and Spanish. It counts the regions made by the chords of a circle and the pieces made by cuts of a four-dimensional ball, and proves that the two always agree. See [cross-disciplinary-chords-20261031.md](review/cross-disciplinary-chords-20261031.md).
