@@ -60,6 +60,6 @@ Pages that already hide or arrange one of these controls keep doing so. For exam
 - A separate sweep checked all 34 released pages and the homepage course cards in all four appearances, at 1280 px in English and 375 px in Spanish. It found no flagged control, no horizontal scroll and no page error.
 - Not checked: Safari and real devices.
 
-## Found but not changed
+## Follow-up
 
-In Classic, the Math Voice Lab's "Teaching demo" label has white text on a light background, so it looks empty. This was already the case on the live site and is not a link, so it is left for a separate fix.
+In Classic, the Math Voice Lab's "Teaching demo" label had white text on a light background, so it looked empty. It was fixed separately; see `review/header-contrast-20261031.md`.

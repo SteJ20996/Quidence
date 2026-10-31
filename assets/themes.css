@@ -35,6 +35,8 @@ html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.site-header,.qa-head
 }
 html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.language-toolbar,.subject-home-nav) {background:var(--q-page);color:var(--q-muted);border-color:var(--q-line)}
 html:not([data-ui-theme="classic"]) body[data-q-theme] .site-header .language-toolbar {background:transparent}
+/* Header text that was colored for the dark Classic header takes the muted ink on the light headers. */
+html:not([data-ui-theme="classic"]) body[data-q-theme] .site-header .header-copy small {color:var(--q-muted)}
 html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.language-label select,.header-button,.qa-language) {background-color:var(--q-paper);color:var(--q-ink);border-color:var(--q-control)}
 html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.site-header,header.q-brand-header) :is(a:not(.q-brand),.product-name,.preview-subject,.preview-purpose,.qh-description-title,.qh-description-detail,.language-label) {color:var(--q-ink)}
 html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.site-header,header.q-brand-header) :is(a,button,select):focus-visible {outline-color:var(--q-focus)}

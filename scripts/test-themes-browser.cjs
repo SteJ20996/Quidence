@@ -1,11 +1,11 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {chromium}=require('playwright'),{createServer}=require('../backend/server.cjs'),{files}=require('./build-static-release.cjs');
-const {chooseTheme}=require('./theme-choice.cjs'),{linkLikeControls}=require('./link-button-audit.cjs');
+const {chooseTheme}=require('./theme-choice.cjs'),{linkLikeControls}=require('./link-button-audit.cjs'),{lowContrastHeaderText}=require('./header-contrast-audit.cjs');
 const {KEY,THEMES}=require('../assets/themes.js');
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
- const result={layouts:0,buttonChecks:0,pages:files().filter(f=>f.endsWith('.html')).length,themes:4,alignedHomeLayouts:0,classicCardLayouts:0,logoContrastChecks:0,errors:[],failures:[]};
+ const result={layouts:0,buttonChecks:0,headerContrastChecks:0,pages:files().filter(f=>f.endsWith('.html')).length,themes:4,alignedHomeLayouts:0,classicCardLayouts:0,logoContrastChecks:0,errors:[],failures:[]};
  const homeEdges=new Map();
  const shots=path.join(__dirname,'../review/theme-screenshots');fs.mkdirSync(shots,{recursive:true});
  try{
@@ -92,6 +92,9 @@ async function main(){
     if(file==='index.html'||(width===1440&&['courses/algebra-1/index.html','foundations/index.html','reports/index.html'].includes(file)))await page.screenshot({path:path.join(shots,theme+'-'+file.replaceAll('/','-')+'-'+width+'.png'),fullPage:false});
     if(fixed)assert.equal(await page.locator('#quidence-language,#language').count(),0,file+' has no language switch');
     else assert.match(await page.locator('#quidence-language').evaluate(e=>getComputedStyle(e).backgroundImage),/%2320383e/,file+' visible language chevron');
+    // Header and toolbar text stays readable when an appearance repaints the header.
+    assert.deepEqual(await page.evaluate(lowContrastHeaderText),[],`${theme} ${file} ${width}: header text must have a 4.5:1 contrast`);
+    result.headerContrastChecks++;
     // Standalone navigation links and actions look like buttons in every appearance, including links that only
     // show once a disclosure is open.
     await page.evaluate(()=>document.querySelectorAll('details').forEach(d=>{d.open=true;}));
