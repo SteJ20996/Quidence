@@ -57,7 +57,8 @@ test('saving failure continues in memory; corrupt records are preserved through 
 });
 test('all course dashboard links and AC01 local assets resolve within the project',()=>{
  const root=path.resolve(__dirname,'../../..'),hub=fs.readFileSync(path.join(root,'index.html'),'utf8');
- const links=Array.from(hub.matchAll(/class="subject-link" href="([^"]+)"/g),m=>m[1]);assert.deepEqual(links.slice().sort(),Object.values(require('../../../assets/course-catalog.js').COURSES).map(c=>c.course).sort());
- links.forEach(l=>assert.ok(fs.existsSync(path.join(root,l,'index.html'))));
+ const catalog=require('../../../assets/course-catalog.js'),links=Array.from(hub.matchAll(/class="subject-link" href="([^"]+)"/g),m=>m[1]);
+ assert.deepEqual(links.slice().sort(),[...Object.values(catalog.COURSES).map(c=>c.course),...Object.values(catalog.CROSS.projects).map(p=>p.course)].sort());
+ links.forEach(l=>assert.ok(fs.existsSync(path.join(root,l.split('?')[0],'index.html'))));
  const entry=fs.readFileSync(path.join(__dirname,'../dist/index.html'),'utf8');for(const m of entry.matchAll(/(?:href|src)="([^"]+)"/g)){if(m[1]==='./')continue;assert.ok(fs.existsSync(path.resolve(__dirname,'../dist',m[1].split(/[?#]/)[0])),m[1]);}
 });

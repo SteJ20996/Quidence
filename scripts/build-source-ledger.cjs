@@ -4,7 +4,7 @@ const fs=require('node:fs'),path=require('node:path'),{createHash}=require('node
 const root=path.resolve(__dirname,'..'),digest=x=>createHash('sha256').update(x).digest('hex');
 function stable(value){if(Array.isArray(value))return value.map(stable);if(value&&typeof value==='object')return Object.fromEntries(Object.keys(value).sort().filter(k=>k!=='provenance').map(k=>[k,stable(value[k])]));return value;}
 function build(){
- const items=[],active=new Set(Object.keys(require('../assets/course-catalog.js').COURSES));
+ const items=[],active=new Set([...Object.keys(require('../assets/course-catalog.js').COURSES),'cross-disciplinary']);
  function add(family,module,task,sourceFiles,extra={}){
   const id=family+':'+module+':'+task.id;
   items.push({id,family,module,taskId:task.id,title:task.title||task.prompt,bankVersion:extra.bankVersion||task.version||null,availability:module==='aa01'||active.has(module)?'active':'historical-only',fingerprint:digest(JSON.stringify(stable(task))),fingerprintScope:'task definition excluding provenance label',sourceFiles:sourceFiles.map(file=>({path:file,sha256:digest(fs.readFileSync(path.join(root,file)))})),sourceReview:{status:'not-cleared',reviewer:null,evidence:[],next:'Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed.'},mathematicsReview:{status:'not-human-certified',automatedReference:extra.automatedReference||null},...extra});
@@ -14,6 +14,7 @@ function build(){
  }
  for(const task of JSON.parse(fs.readFileSync(path.join(root,'courses/number-theory/data.json'),'utf8')))add('number-theory-project','number-theory',task,['content/number-theory/source-v2.md','courses/number-theory/data.json'],{bankVersion:'number-theory-v2',automatedReference:'review/number-theory-validation-20261010.json'});
  for(const task of JSON.parse(fs.readFileSync(path.join(root,'courses/discrete-math/data.json'),'utf8')))add('discrete-math-project','discrete-math',task,['content/discrete-math/projects.cjs','courses/discrete-math/data.json'],{bankVersion:'discrete-math-v1',automatedReference:'tests/discrete-math.test.cjs'});
+ for(const task of JSON.parse(fs.readFileSync(path.join(root,'cross-disciplinary/data.json'),'utf8')))add('cross-disciplinary-project','cross-disciplinary',task,['content/cross-disciplinary/projects.cjs','cross-disciplinary/data.json'],{bankVersion:'cross-disciplinary-v1',automatedReference:'tests/cross-disciplinary.test.cjs'});
  const school=require('../assets/school-course-content.js');
  for(const module of [...school.IDS,'ad01','ae01','af01']){
   const file=school.IDS.includes(module)?'assets/school-course-content.js':`modules/${module}/dist/content.js`,content=school.IDS.includes(module)?school.create(module):require(path.join(root,file));

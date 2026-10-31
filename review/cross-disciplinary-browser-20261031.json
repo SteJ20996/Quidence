@@ -1,0 +1,13 @@
+{
+  "projects": 1,
+  "steps": 6,
+  "labs": 14,
+  "layouts": 12,
+  "languages": [
+    "en",
+    "es"
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "result": "passed"
+}

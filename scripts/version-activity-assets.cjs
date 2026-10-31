@@ -12,6 +12,7 @@ for(const file of ['paper-explorer.css','paper-home.js','paper-art.js','learning
 for(const file of ['cartoon-art.js','cartoon-map-data.js','cartoon-map.js','cartoon-map.css','cartoon-home.js','cartoon-home.css','home.css','home.js','knowledge-map-data.js','knowledge-map.js','local-records.js'])reportAssets.add('assets/'+file);
 for(const file of ['app.js','core.js','style.css'])reportAssets.add('courses/number-theory/'+file);
 for(const file of ['app.js','core.js','style.css'])reportAssets.add('courses/discrete-math/'+file);
+for(const file of ['app.js','core.js','style.css'])reportAssets.add('cross-disciplinary/'+file);
 for(const file of ['app.js','content.js','engine.js','style.css'])reportAssets.add('modules/ac01/dist/'+file);
 for(const file of ['app.js','matrix-guide.js','style.css'])reportAssets.add('modules/ab01/dist/'+file);
 for(const file of ['app.js','content.js','core.js','style.css'])reportAssets.add('modules/ac01/dist/projects/'+file);

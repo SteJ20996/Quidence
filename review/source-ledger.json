@@ -564,6 +564,38 @@
       }
     },
     {
+      "id": "cross-disciplinary-project:cross-disciplinary:cross-p01",
+      "family": "cross-disciplinary-project",
+      "module": "cross-disciplinary",
+      "taskId": "cross-p01",
+      "title": "How many pieces can n cuts make?",
+      "bankVersion": "cross-disciplinary-v1",
+      "availability": "active",
+      "fingerprint": "158cb597f3e8c1bcd4705fc1d2cdfa6a5b9e48ba1cc2e9be69a168d83d9db016",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/cross-disciplinary/projects.cjs",
+          "sha256": "4dbd8ef36761840e93af248a3c144cb22b68e3ac15ff7ae98e19240e0c40b8c6"
+        },
+        {
+          "path": "cross-disciplinary/data.json",
+          "sha256": "227ca663d6236760d0ae5ac1a04b7b3ac0c87816f1aa6db9f88d91928a7919e0"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/cross-disciplinary.test.cjs"
+      },
+      "automatedReference": "tests/cross-disciplinary.test.cjs"
+    },
+    {
       "id": "diagnostic:ab01:la-c01",
       "family": "diagnostic",
       "module": "ab01",

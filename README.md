@@ -1,3 +1,17 @@
+## 2026-10-31 · 新區塊：跨學科專題（第一個專題：切球最多幾塊）
+
+- 首頁新增「Cross-disciplinary Projects」（跨學科專題）區，排在 School／Further Mathematics／Science 之後；Paper Explorer、Learning Atlas、Geometric Studio 的分類列也多了「Cross-disciplinary」。四種外觀都有自己的卡片插圖。
+- 第一個專題「How many pieces can n cuts make?」（`cross-disciplinary/`），有英文和西班牙文，共六步，連結 Geometry、Algebra II、Discrete Mathematics、Basic Logic：
+  1. 線段：每一刀落在一段裡，多 1 段，L(n) = n + 1。
+  2. 披薩：新的一刀被之前的刀切成 k + 1 段，每段把一塊分成兩塊；三刀交於一點只剩 6 塊。
+  3. 披薩公式：P(n) = (n² + n + 2)/2 = 1 + n + C(n, 2)。
+  4. 切球：新切面上的線就是一張披薩，切面有幾塊，球就多幾塊；B(4) = 15。
+  5. 翻倍陷阱：1、2、4、8 之後是 15；每塊有一個「位置標籤」（像真值表的一列），四刀的 16 種標籤裡缺一種；如果能移動、疊起來切，才會是 16。
+  6. 同一個規律：B(n) = 1 + n + C(n, 2) + C(n, 3) = (n³ + 5n + 6)/6，用差分表、Pascal 三角形和歸納法證明。
+- 每一步都有動畫實驗：刀落下、披薩被切開時逐塊亮起並 +1、切面滑進球裡再轉向正面、長條圖、位置標籤、疊塊切割、差分表和 Pascal 三角形。實驗都要學生操作後才顯示結果，不會提前透露答案。
+- 測試另外用隨機擺放的切線／切面，從每個交點周圍的區域逐一計數，重新算出全部 25 個答案；這是一致性檢查，尚未經過人工審核。
+- 見[發布紀錄](review/cross-disciplinary-ball-cuts-20261031.md)。
+
 ## 2026-10-30 · 基礎邏輯學：Intuition Lab 活動（第四部分，完成）
 
 - Intuition Lab 新增第 15 個活動「Which cards would you turn over?」（你會翻哪幾張卡片？），有英文和西班牙文。
