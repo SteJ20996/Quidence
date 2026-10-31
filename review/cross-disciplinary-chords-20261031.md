@@ -39,6 +39,38 @@ Both the test and the content were written in this project, so this is a consist
 - **Project page:** the picker lists both projects.
 - **Saved work:** answers are saved in the same notebook as the first project's.
 
+## Pre-release review
+
+A separate content review recomputed every answer, the polynomial and the laboratory arrangements. It found no wrong mathematics or answer keys. These changes followed, before the project was merged:
+- **Answers given away:**
+  - Step 4's prompt and banner had stated that the face is a three-dimensional ball. The prompt now climbs the ladder of the first project (point, segment, disc) and asks what the face is.
+  - The difference table's rows are named "First differences" and so on, since step 6 asks which counts they are.
+  - The homepage card no longer gives 31.
+- **Proof gaps:**
+  - Step 4 now defines general position in four dimensions, uses convexity, and proves the closed form of H(n) by induction.
+  - Step 2 says why each segment splits exactly one region.
+  - Step 3 shows why crossings and sets of four points correspond one to one.
+  - Step 6 explains why the fourth differences are 1 for every n, not just the nine shown.
+- **Setup:**
+  - Step 1 defines R(n) and general position.
+  - Step 1 asks how many regions the 6th point adds (15), instead of repeating 16 from the banner.
+  - Step 3's prompt asks for its explanation.
+- **Spanish:** «circunferencia» is used for the curve in the title, and several lab phrases were reworded.
+
+A separate interface review walked through both projects at 1280, 768 and 375 px, in both languages, in all four appearances, with and without reduced motion. It found no page errors, no horizontal scroll and no untranslated text. These fixes followed the merge:
+- **Step 2 picture.** While a chord was drawn, the picture briefly showed bare text. It now stays a picture, and the browser test checks this.
+- **Skip button.** In the dimension table and Pascal's triangle, "Skip animation" now sits below the grid instead of covering numbers.
+- **Hexagon ring.** The hexagon's center ring now appears as soon as the sixth point is added.
+- **Endpoint rings.** The rings around a crossing's endpoints no longer cover the point numbers.
+- **Pascal's triangle at 375 px.** Row 9 fits.
+- **Steady layout.**
+  - Status messages have more room, so the buttons do not move.
+  - On short laptop screens the side pictures are smaller.
+- **Keyboard and screen readers.**
+  - Keyboard focus moves to "Start over" when the main button is finished, and stays on a step tab after it is clicked.
+  - The live region no longer repeats a message.
+- **Project link.** The address keeps the chosen project, so a reload or a shared link opens it.
+
 ## Language
 
 The project is not a voice or AI activity, so it is in English and Spanish, like the first project. The Spanish uses the courses' terms: «cuerda», «circunferencia» for the curve and «círculo» for the disc, «posición general», «contraejemplo», «regla de Pascal». The dictation button stays English-only, as the language policy requires. Learner answers are never translated or rewritten.

@@ -64,7 +64,7 @@ function renderWork(){
 const narrow=matchMedia('(max-width: 1000px)');
 function placeLab(){const card=$('lab-card'),slot=$('lab-slot');if(!card)return;if(narrow.matches&&slot){if(card.parentElement!==slot)slot.append(card);}else if(card.parentElement!==$('side'))$('side').prepend(card);}
 narrow.addEventListener?.('change',placeLab);
-function selectProject(id){if(!projects.some(p=>p.id===id))return;state.project=id;persist();renderProject();}
+function selectProject(id){if(!projects.some(p=>p.id===id))return;state.project=id;persist();renderProject();try{const u=new URL(location.href);u.searchParams.set('project',id);history.replaceState(history.state,'',u);}catch{}}
 function moveStep(i){const p=current();if(i<0||i>=p.steps.length)return;state.steps[p.id]=i;persist();renderProject();$('work').scrollIntoView({block:'start',behavior:reduced()?'instant':'smooth'});}
 function recordInput(el){
   const p=current(),i=stepIndex(),s=p.steps[i],f=s.fields.find(f=>f.id===el.dataset.field);if(!f)return;
@@ -162,13 +162,14 @@ function labShell({title,views:v='',picture,legend='',rows,status,caption,button
 function restoreFocus(key){
   const usable=el=>el&&!el.disabled&&!el.hidden&&el.getClientRects().length>0;
   let el=key==='lab-skip'?$('lab-skip'):key?document.querySelector(`#lab [data-lab="${key}"]`):null;
-  if(!usable(el))el=document.querySelector('#lab .x-lab-main');if(!usable(el))el=[...document.querySelectorAll('#lab button')].find(usable);
+  if(!usable(el))el=document.querySelector('#lab .x-lab-main');if(!usable(el))el=[...document.querySelectorAll('#lab .lab-buttons button')].find(usable);if(!usable(el))el=[...document.querySelectorAll('#lab button')].find(usable);
   el?.focus({preventScroll:true});
 }
 // Updates a lab without rebuilding its controls, so a slider keeps working while it is dragged.
 function patch({picture,rows,status,equation}){const box=document.querySelector('#lab .x-art');if(picture!==undefined&&box)box.innerHTML=picture;const dl=document.querySelector('#lab .x-readouts');if(rows&&dl)dl.outerHTML=readouts(rows);if(status!==undefined)say(status);const eq=document.querySelector('#lab .lab-equation');if(equation!==undefined&&eq)eq.textContent=equation;}
 function rangeOutput(text){const out=document.querySelector('#lab .x-range output'),input=document.querySelector('#lab .x-range input');if(out)out.textContent=text;input?.setAttribute('aria-valuetext',text);}
-function say(text){const el=$('lab-status');if(el)el.textContent=text;}
+// The live region is rewritten only when its message changes, so screen readers do not hear it twice.
+function say(text){const el=$('lab-status');if(el&&el.dataset.source!==text){el.dataset.source=text;el.textContent=text;}}
 function setText(id,value){const el=$(id);if(el&&el.textContent!==String(value))el.textContent=value;}
 // A piece of a pizza or a face is a polygon; the map turns unit-disc coordinates into picture coordinates.
 const discMap=(cx,cy,r)=>([x,y])=>[cx+r*x,cy-r*y];
@@ -575,12 +576,12 @@ function regionStatus(n,mode){
 function circleLab(l,action){
   l.mode??='general';l.n??=1;
   const angles=l.mode==='hexagon'?X.HEXAGON:X.CIRCLE,max=angles.length;
-  const triple=l.mode==='hexagon'&&l.n===6?`<circle cx="210" cy="140" r="11" fill="none" stroke="${CUT}" stroke-width="3"/>`:'';
-  const draw=(picture)=>{const R=X.pieces(chordLines(angles,l.n)).length;
+  const triple=()=>l.mode==='hexagon'&&l.n===6?`<circle cx="210" cy="140" r="11" fill="none" stroke="${CUT}" stroke-width="3"/>`:'';
+  const draw=(picture,status)=>{const R=X.pieces(chordLines(angles,l.n)).length;
     labShell({title:'Add points to the circle',views:views([['general','Points in general position'],['hexagon','Six equally spaced points']],l.mode),
-      picture:svg(picture??circleScene(angles,l.n,X.choose(l.n,2)).body+triple,`Circle picture. Points: ${l.n}. Regions: ${R}.`,280,CIRCLE_BOX),
+      picture:svg(picture??circleScene(angles,l.n,X.choose(l.n,2)).body+triple(),`Circle picture. Points: ${l.n}. Regions: ${R}.`,280,CIRCLE_BOX),
       rows:[['Points',l.n,'cr-n'],['Chords',X.choose(l.n,2),'cr-c'],['Regions',R,'cr-r']],
-      status:regionStatus(l.n,l.mode),caption:'Each new point is joined to every earlier point. Watch each new chord split the regions it passes through.',
+      status:status??regionStatus(l.n,l.mode),caption:'Each new point is joined to every earlier point. Watch each new chord split the regions it passes through.',
       buttons:button('circle-next','Add the next point',{disabled:l.n>=max,primary:true})+button('circle-reset','Start over',{disabled:l.n<=1})});};
   if(!action){draw();return;}
   if(action.startsWith('view-')){stop();l.mode=action.slice(5);l.n=1;circleLab(l);return;}
@@ -589,8 +590,7 @@ function circleLab(l,action){
     const n=l.n,lines=chordLines(angles,n+1),first=X.choose(n,2),from=X.point(angles[n]);l.n=n+1;
     const joining=`Point ${n+1} is added to the circle. It will be joined to ${n===1?'the first point':'the '+n+' earlier points'}.`;
     for(let k=first;k<lines.length;k++){
-      // Redrawing the scene resets the status, so the message about the new point is shown again.
-      const o=chordOverlay(lines,k);draw(circleScene(angles,n+1,k,{hideFrom:n+1}).body+o.svg);say(joining);
+      const o=chordOverlay(lines,k);draw(circleScene(angles,n+1,k,{hideFrom:n+1}).body+o.svg,joining);
       setText('cr-c',k);setText('cr-r',o.before.length);
       if(!await runChord(token,o,from))return;setText('cr-c',k+1);setText('cr-r',o.before.length+o.segments.length);await pause(220);if(token.cancel)return;
     }
@@ -605,7 +605,7 @@ function chordLab(l,action,value){
   const content=()=>{const {c,R}=tally();return {picture:svg(circleScene(X.CIRCLE,l.n,l.m,{newest:l.m?l.m-1:null}).body,`Circle picture. Points: ${l.n}. Chords drawn: ${l.m}. Regions: ${R}.`,280,CIRCLE_BOX),
     rows:[['Chords drawn',`${l.m} of ${total()}`],['Crossings so far',c],['Regions, 1 + chords + crossings',R]],
     status:l.m?`1 + ${l.m} + ${c} = ${R} regions so far.`:'No chords yet: the disc is 1 region.'};};
-  const draw=(picture)=>{const c=content();labShell({title:'Draw the chords one at a time',...c,picture:picture??c.picture,
+  const draw=(body)=>{const c=content();labShell({title:'Draw the chords one at a time',...c,picture:body===undefined?c.picture:svg(body,`Circle picture. Points: ${l.n}. Chords drawn: ${l.m}. Regions: ${tally().R}.`,280,CIRCLE_BOX),
     legend:`<label class="x-range"><span>Number of points, n</span><input type="range" min="2" max="7" step="1" value="${l.n}" data-lab="chord-n" aria-valuetext="${l.n}"><output aria-live="off">${l.n}</output></label>`,
     caption:'A chord that crosses k earlier chords is cut into k + 1 segments, so it adds 1 region for itself and 1 for each crossing.',
     buttons:button('chord-next','Draw the next chord',{disabled:l.m>=total(),primary:true})+button('chord-all','Draw them all',{disabled:l.m>=total()})+button('chord-reset','Start over',{disabled:l.m===0})});};
@@ -636,7 +636,7 @@ function fourLab(l,action){
   const mapPicture=()=>{const n=6,lines=chordLines(X.CIRCLE,n),chords=X.chords(X.CIRCLE,n),pts=crossingPoints(lines);let body=circleScene(X.CIRCLE,n,lines.length).body;
     if(l.k>0){const p=pts[l.k-1],on=chords.filter(c=>Math.abs(X.dot(c.line.n,p)-c.line.d)<1e-9),ends=[...new Set(on.flatMap(c=>[c.from,c.to]))];
       body+=on.map(c=>lineTag(c.line,PZ,`stroke="${CUT}" stroke-width="3.2" stroke-linecap="round"`)).join('');
-      body+=ends.map(i=>{const [x,y]=PZ(X.point(X.CIRCLE[i]));return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" fill="none" stroke="${CUT}" stroke-width="2.5"/>`;}).join('');
+      body+=ends.map(i=>{const [x,y]=PZ(X.point(X.CIRCLE[i]));return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" fill="none" stroke="${CUT}" stroke-width="2.2"/>`;}).join('');
       const [x,y]=PZ(p);body+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" fill="${CUT}" stroke="#ffffff" stroke-width="2"/>`;}
     return body;};
   const mapStatus=()=>{if(!l.k)return 'Six points. Match each crossing with the endpoints of its two chords.';const lines=chordLines(X.CIRCLE,6),p=crossingPoints(lines)[l.k-1],chords=X.chords(X.CIRCLE,6).filter(c=>Math.abs(X.dot(c.line.n,p)-c.line.d)<1e-9),ends=[...new Set(chords.flatMap(c=>[c.from,c.to]))].map(i=>i+1).sort((a,b)=>a-b);
@@ -647,7 +647,7 @@ function fourLab(l,action){
       rows:[['Pairings shown',`${l.shown} of 3`],['Pairings whose chords cross',l.shown>=2?1:0]],status:pairStatus(),
       caption:'Solid chords show the pairing just drawn; dashed chords show the earlier ones.',
       buttons:button('pairs-play','Show the three pairings',{primary:true})+button('pairs-new','Try four other points')});
-    else labShell({title:'Every crossing has its own four points',views:viewList,picture:svg(mapPicture(),'Six points on a circle with all chords; one crossing and its four points are marked',280,CIRCLE_BOX),
+    else labShell({title:'Every crossing has its own four points',views:viewList,picture:svg(mapPicture(),l.k?mapStatus():'Six points on a circle with all chords',280,CIRCLE_BOX),
       rows:[['Crossings matched',l.k],['Sets of four points, C(6, 4)',X.choose(6,4)]],status:mapStatus(),
       caption:'Each crossing lies on two chords, and their four endpoints are different. Different crossings have different sets of four points.',
       buttons:button('map-play','Match every crossing',{primary:true})+button('map-next','Next crossing',{disabled:l.k>=15})+button('map-reset','Start over',{disabled:l.k===0})});
@@ -720,7 +720,7 @@ document.addEventListener('change',e=>{if(e.target.dataset?.field&&e.target.type
 document.addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b||b.disabled)return;
   if(b.dataset.project)selectProject(b.dataset.project);
-  else if(b.dataset.step!==undefined)moveStep(Number(b.dataset.step));
+  else if(b.dataset.step!==undefined){moveStep(Number(b.dataset.step));document.querySelector(`[data-step="${b.dataset.step}"]`)?.focus({preventScroll:true});}
   else if(b.dataset.lab)labAction(b.dataset.lab);
   else if(b.id==='lab-skip')skip();
   else if(b.id==='check')checkStep();else if(b.id==='prev')moveStep(stepIndex()-1);

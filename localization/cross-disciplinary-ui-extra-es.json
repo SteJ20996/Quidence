@@ -174,7 +174,6 @@
   "Show the three pairings": "Muestra los tres emparejamientos",
   "Try four other points": "Prueba con otros cuatro puntos",
   "Every crossing has its own four points": "Cada cruce tiene sus propios cuatro puntos",
-  "Six points on a circle with all chords; one crossing and its four points are marked": "Seis puntos en una circunferencia con todas sus cuerdas; un cruce y sus cuatro puntos están marcados",
   "Crossings matched": "Cruces relacionados",
   "Sets of four points, C(6, 4)": "Conjuntos de cuatro puntos, C(6, 4)",
   "Six points. Match each crossing with the endpoints of its two chords.": "Seis puntos. Relaciona cada cruce con los extremos de sus dos cuerdas.",
@@ -201,5 +200,6 @@
   "Chords of a circle and cuts in four dimensions both start 1, 2, 4, 8, 16. Find out where the doubling stops and why the two always agree.": "Las cuerdas de una circunferencia y los cortes en cuatro dimensiones empiezan con 1, 2, 4, 8, 16. Descubre dónde deja de duplicarse la cantidad y por qué siempre coinciden.",
   "Pairings whose chords cross": "Emparejamientos cuyas cuerdas se cruzan",
   "First differences": "Primeras diferencias",
-  "Second differences": "Segundas diferencias"
+  "Second differences": "Segundas diferencias",
+  "Six points on a circle with all chords": "Seis puntos en una circunferencia con todas sus cuerdas"
 }

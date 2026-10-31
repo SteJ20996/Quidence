@@ -63,8 +63,11 @@ async function main(){
   assert.equal(await run(0,['circle-next','circle-next','circle-next','circle-next','circle-next']),'Point 6 added 5 chords, which added 15 regions: 31 in all.');
   assert.equal(await run(0,['circle-next']),'Point 7 added 6 chords, which added 26 regions: 57 in all.');
   assert.match(await run(0,['view-hexagon','circle-next','circle-next','circle-next','circle-next','circle-next']),/only 30 regions/);
+  assert.equal(await page.locator('#lab svg circle[r="11"]').count(),1,'the hexagon marks where three chords meet');
   await step(1);await page.locator('#lab [data-lab="chord-n"]').evaluate(e=>{e.value=6;e.dispatchEvent(new Event('input',{bubbles:true}));});
   assert.match(await run(1,['chord-next','chord-next']),/^1 \+ 2 \+ 0 = 3 regions so far\.$/);
+  // While a chord is drawn, the lab still shows a picture, not its raw parts.
+  await page.locator('#lab [data-lab="chord-next"]').click();assert.equal(await page.locator('#lab .x-art > svg').count(),1);await idle();
   assert.equal(await run(1,['chord-all']),'1 + 15 + 15 = 31 regions so far.');
   assert.match(await run(2,['pairs-play']),/Only 1 of the 3 pairings has chords that cross\./);
   assert.match(await run(2,['view-map','map-play']),/^Crossing 15 of 15: points \d, \d, \d, \d\.$/);
