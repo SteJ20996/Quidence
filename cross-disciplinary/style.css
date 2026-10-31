@@ -15,6 +15,7 @@
 .x-side{display:grid;gap:16px;position:sticky;top:18px;min-width:0;max-height:calc(100vh - 36px);overflow-y:auto;scrollbar-width:thin}
 /* Pictures stay short enough that the lab's status and buttons fit beside the step on a laptop screen. */
 .x-side .x-svg{max-height:340px}
+@media(min-width:1001px) and (max-height:860px){.x-side .x-svg{max-height:280px}}
 .x-topic{font-size:14px!important;color:var(--green-dark)!important;margin-bottom:10px}
 .x-connects{display:flex;flex-wrap:wrap;align-items:center;gap:6px 7px;margin:0 0 16px;font-size:11px;color:var(--muted)}
 .project-head .x-connects{margin-top:14px}
@@ -57,7 +58,9 @@
 .x-readouts div{background:#f3f7f8;border-radius:8px;padding:8px 11px;min-width:0}
 .x-readouts dt{font-size:10px;color:var(--muted);line-height:1.4}
 .x-readouts dd{margin:3px 0 0;font:600 17px/1.3 Georgia,serif;color:var(--ink);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
-.x-status{min-height:3.2em}
+.x-status{min-height:4.8em}
+/* Grids leave room under them for "Skip animation", so it never covers a number. */
+.x-picture:has(.x-dim,.x-pascal,.x-diff,.x-address-grid){padding-bottom:46px}
 .lab-buttons .x-lab-main{background:var(--green);border-color:var(--green);color:#fff}
 .lab-buttons .x-lab-main:hover{background:var(--green-dark)}
 .lab-buttons .x-lab-main:disabled{background:#9db8b0;border-color:#9db8b0}
@@ -103,8 +106,8 @@
 .x-pairs [class*=" t-"].lit{font-weight:700;color:var(--ink)}
 @media(max-width:1200px){.x-layout{grid-template-columns:minmax(0,1fr) minmax(330px,380px);gap:16px}}
 @media(max-width:1000px){.x-lab-slot .x-lab-card{max-width:560px;margin-inline:auto}.x-layout{grid-template-columns:minmax(0,1fr)}.x-side{position:static;max-height:none;overflow:visible;grid-template-columns:1fr 1fr;align-items:start}.x-side .learning-note{grid-column:1/-1}.x-side>.x-lab-card{grid-column:1/-1}}
-@media(max-width:720px){.x-svg .x-small{font-size:16px}.x-legend-item{white-space:normal}.x-status{min-height:4.8em}.x-side{grid-template-columns:1fr}.x-project{width:100%}.x-intro-art{display:none}.x-readouts{grid-template-columns:repeat(2,minmax(0,1fr))}.x-legend-panels{display:grid;gap:2px}}
+@media(max-width:720px){.x-svg .x-small{font-size:16px}.x-svg .x-badge-text{font-size:13px}.x-legend-item{white-space:normal}.x-status{min-height:6.4em}.x-readouts[style*="--cols:3"]{grid-template-columns:repeat(3,minmax(0,1fr))}.x-side{grid-template-columns:1fr}.x-project{width:100%}.x-intro-art{display:none}.x-readouts{grid-template-columns:repeat(2,minmax(0,1fr))}.x-legend-panels{display:grid;gap:2px}}
 .x-readouts dt,.x-address-cell small{font-size:11px}
-@media(max-width:420px){.x-diff-cell{font-size:13px;min-height:30px;margin:0 1px}.x-pascal-cell{font-size:11px;min-height:24px}.x-address-cell{font-size:12px}.x-range{grid-template-columns:minmax(0,1fr) 3em}.x-range span{grid-column:1/-1}}
+@media(max-width:420px){.x-diff-cell{font-size:13px;min-height:30px;margin:0 1px}.x-pascal{padding:10px 3px}.x-pascal-cell{font-size:10.5px;min-height:24px;margin:0}.x-address-cell{font-size:12px}.x-range{grid-template-columns:minmax(0,1fr) 3em}.x-range span{grid-column:1/-1}}
 @media(max-width:420px){.x-dim-cell{font-size:13px;min-height:28px}.x-dim,.x-dim-head,.x-dim-row{gap:3px}}
 @media(prefers-reduced-motion:reduce){.x-diff-cell,.x-address-cell,.x-pascal-cell,.x-dim-cell{transition:none}}
