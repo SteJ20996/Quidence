@@ -23065,6 +23065,326 @@
       "automatedReference": "review/number-theory-validation-20261010.json"
     },
     {
+      "id": "probability-project:probability:pr-p01",
+      "family": "probability-project",
+      "module": "probability",
+      "taskId": "pr-p01",
+      "title": "De Méré’s dice: when adding chances fails",
+      "bankVersion": "probability-v1",
+      "availability": "active",
+      "fingerprint": "8eea843420829a22692648388ce9ff6b3035d0799b815f9dfa092a35716e0078",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/probability/projects.cjs",
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
+        },
+        {
+          "path": "courses/probability/data.json",
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/probability.test.cjs"
+      },
+      "automatedReference": "tests/probability.test.cjs"
+    },
+    {
+      "id": "probability-project:probability:pr-p02",
+      "family": "probability-project",
+      "module": "probability",
+      "taskId": "pr-p02",
+      "title": "Dividing the stakes: the problem of points",
+      "bankVersion": "probability-v1",
+      "availability": "active",
+      "fingerprint": "9ef78ee01efafcb6c413344f2fc5dfdc9db439cee8a535b0490f0286bd452037",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/probability/projects.cjs",
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
+        },
+        {
+          "path": "courses/probability/data.json",
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/probability.test.cjs"
+      },
+      "automatedReference": "tests/probability.test.cjs"
+    },
+    {
+      "id": "probability-project:probability:pr-p03",
+      "family": "probability-project",
+      "module": "probability",
+      "taskId": "pr-p03",
+      "title": "A positive test, and what it really means",
+      "bankVersion": "probability-v1",
+      "availability": "active",
+      "fingerprint": "0c3a101107b38669c0c3e573e3135d9208459c5a74d2f2229f780f6051eb37f3",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/probability/projects.cjs",
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
+        },
+        {
+          "path": "courses/probability/data.json",
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/probability.test.cjs"
+      },
+      "automatedReference": "tests/probability.test.cjs"
+    },
+    {
+      "id": "probability-project:probability:pr-p04",
+      "family": "probability-project",
+      "module": "probability",
+      "taskId": "pr-p04",
+      "title": "Boxes, doors and what you are told",
+      "bankVersion": "probability-v1",
+      "availability": "active",
+      "fingerprint": "47346c01b56878d9380c5c79ddac7c67d641ac37b249643ef335fa492d6c6714",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/probability/projects.cjs",
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
+        },
+        {
+          "path": "courses/probability/data.json",
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/probability.test.cjs"
+      },
+      "automatedReference": "tests/probability.test.cjs"
+    },
+    {
+      "id": "probability-project:probability:pr-p05",
+      "family": "probability-project",
+      "module": "probability",
+      "taskId": "pr-p05",
+      "title": "Shared birthdays",
+      "bankVersion": "probability-v1",
+      "availability": "active",
+      "fingerprint": "829f29e386676c7e5a939fbd88f19ee5c6e5bde7770ed82e41a66c7a029f43f1",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/probability/projects.cjs",
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
+        },
+        {
+          "path": "courses/probability/data.json",
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/probability.test.cjs"
+      },
+      "automatedReference": "tests/probability.test.cjs"
+    },
+    {
+      "id": "probability-project:probability:pr-p06",
+      "family": "probability-project",
+      "module": "probability",
+      "taskId": "pr-p06",
+      "title": "How many cards stay in place?",
+      "bankVersion": "probability-v1",
+      "availability": "active",
+      "fingerprint": "836467249d32468abe20d8d309d61b0752955cb02fc34b5112acf0f747881d6b",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/probability/projects.cjs",
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
+        },
+        {
+          "path": "courses/probability/data.json",
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/probability.test.cjs"
+      },
+      "automatedReference": "tests/probability.test.cjs"
+    },
+    {
+      "id": "probability-project:probability:pr-p07",
+      "family": "probability-project",
+      "module": "probability",
+      "taskId": "pr-p07",
+      "title": "Waiting for a six",
+      "bankVersion": "probability-v1",
+      "availability": "active",
+      "fingerprint": "4be75b96b3e88e09e45e5cbee82d7acfdc90dd0e05ea1343fcd9846bb9e9fae1",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/probability/projects.cjs",
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
+        },
+        {
+          "path": "courses/probability/data.json",
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/probability.test.cjs"
+      },
+      "automatedReference": "tests/probability.test.cjs"
+    },
+    {
+      "id": "probability-project:probability:pr-p08",
+      "family": "probability-project",
+      "module": "probability",
+      "taskId": "pr-p08",
+      "title": "Collecting all the stickers",
+      "bankVersion": "probability-v1",
+      "availability": "active",
+      "fingerprint": "c23b896510130e8135c99fdf9dc4170e870ecc6da8ba7a83341c4689649c1a53",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/probability/projects.cjs",
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
+        },
+        {
+          "path": "courses/probability/data.json",
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/probability.test.cjs"
+      },
+      "automatedReference": "tests/probability.test.cjs"
+    },
+    {
+      "id": "probability-project:probability:pr-p09",
+      "family": "probability-project",
+      "module": "probability",
+      "taskId": "pr-p09",
+      "title": "The Galton board",
+      "bankVersion": "probability-v1",
+      "availability": "active",
+      "fingerprint": "088d827d7ec5fe8241e1f7d301decee1293d99009799fef1212845a0f457a038",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/probability/projects.cjs",
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
+        },
+        {
+          "path": "courses/probability/data.json",
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/probability.test.cjs"
+      },
+      "automatedReference": "tests/probability.test.cjs"
+    },
+    {
+      "id": "probability-project:probability:pr-p10",
+      "family": "probability-project",
+      "module": "probability",
+      "taskId": "pr-p10",
+      "title": "The law of large numbers",
+      "bankVersion": "probability-v1",
+      "availability": "active",
+      "fingerprint": "9a1d02c997542dbc527bfd38f8d30626a4122201a86c7e5b911e3395b4e9e8dd",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/probability/projects.cjs",
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
+        },
+        {
+          "path": "courses/probability/data.json",
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/probability.test.cjs"
+      },
+      "automatedReference": "tests/probability.test.cjs"
+    },
+    {
       "id": "project:ab01:la-p01",
       "family": "project",
       "module": "ab01",

@@ -1,3 +1,15 @@
+## 2026-11-01 · New course: Probability (part 1, ten proof projects)
+
+Probability is now its own Further Mathematics course (`courses/probability/`), instead of the last lesson of Statistics. Ten projects of four steps each run from de Méré's dice, the problem of points and a positive screening test, through Bertrand's boxes and Monty Hall, shared birthdays, fixed points of a shuffle, waiting for a six and collecting stickers, to the Galton board and the law of large numbers. They are in English and Spanish.
+
+- Numeric answers are exact fractions. Where a field says so, correctly rounded decimals are also accepted. Written proofs are saved for review.
+- Each project has a seeded simulation lab, which shows counts only after the learner acts.
+- A toolkit of four proofs supplies the rules the projects use.
+- An independent content review found one blocker (a stated number of decimal places that did not match the grader) and twelve other fixes; all were made. See [the review note](review/probability-projects-20261101.md).
+- Foundation and understanding checks, an Intuition Lab activity, and a Statistics lesson on sampling distributions come in later parts.
+
+Current inventory: 16 subject cards (6 School Mathematics, 8 Further Mathematics, 2 Science) and 3 cross-disciplinary projects. Probability has 10 proof projects, 40 steps and 83 answer fields.
+
 ## 2026-11-01 · Fixes from an outside site audit
 
 An outside audit listed seven problems, and all seven were confirmed in the source.

@@ -274,6 +274,18 @@ const data={
       "module": "ae01"
     },
     {
+      "id": "probability",
+      "chapter": 0,
+      "node": "probability",
+      "en": "Probability",
+      "es": "Probabilidad",
+      "scope": {
+        "en": "Ten bilingual proof projects on chance, conditional probability, expected value and the law of large numbers",
+        "es": "Diez proyectos bilingües de demostración sobre el azar, la probabilidad condicional, el valor esperado y la ley de los grandes números"
+      },
+      "module": "probability"
+    },
+    {
       "id": "physics1",
       "chapter": 2,
       "node": "mechanics",
@@ -351,7 +363,7 @@ const data={
       "statistics"
     ],
     "probability": [
-      "statistics"
+      "probability"
     ],
     "statistics": [
       "statistics"
@@ -1462,7 +1474,7 @@ const data={
     "probability": {
       "en": "Describe uncertainty by studying events, their possible outcomes and their likelihoods.",
       "es": "Describe la incertidumbre mediante sucesos, resultados posibles y sus probabilidades.",
-      "relatedModule": "ae01"
+      "relatedModule": "probability"
     },
     "algebra2": {
       "en": "Explore polynomial, rational, exponential and logarithmic relationships and their restrictions.",

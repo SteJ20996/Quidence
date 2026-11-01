@@ -67,7 +67,7 @@
       const course=chosenCourse?courses.get(chosenCourse):null;
       root.dataset.selectedCourse=course?.module||'';
       title.textContent=course?w.course+course[language]:frontier.length===1?w.future:w.pick;
-      meta.textContent=course?(['number-theory','discrete-math','ac01','coordinate-geometry'].includes(course.module)?course.scope[language]:w.report):frontier.length===1?w.futureMeta:'';
+      meta.textContent=course?(['number-theory','discrete-math','probability','ac01','coordinate-geometry'].includes(course.module)?course.scope[language]:w.report):frontier.length===1?w.futureMeta:'';
       actions.hidden=!course;choices.replaceChildren();choices.hidden=candidates.length<2;
       for(const id of candidates){
         if(candidates.length<2)break;
