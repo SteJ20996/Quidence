@@ -576,11 +576,11 @@
       "sourceFiles": [
         {
           "path": "content/cross-disciplinary/projects.cjs",
-          "sha256": "26f857c580099cfcdcdbb3f1cab21bed02120c5b42926cadc5fb39a7f69c3d63"
+          "sha256": "95f48b9d36ccba12f67c5119d608a6c39f637484a7384a38470c01f25217cd5e"
         },
         {
           "path": "cross-disciplinary/data.json",
-          "sha256": "743b09b0ee15833349e91188bad85c63541927a16a2e1f39f9f969391059f932"
+          "sha256": "20b0aeec224795edbcab826bfe63d99ba1be0ec1c92431d2c7d23844d2119a2d"
         }
       ],
       "sourceReview": {
@@ -608,11 +608,11 @@
       "sourceFiles": [
         {
           "path": "content/cross-disciplinary/projects.cjs",
-          "sha256": "26f857c580099cfcdcdbb3f1cab21bed02120c5b42926cadc5fb39a7f69c3d63"
+          "sha256": "95f48b9d36ccba12f67c5119d608a6c39f637484a7384a38470c01f25217cd5e"
         },
         {
           "path": "cross-disciplinary/data.json",
-          "sha256": "743b09b0ee15833349e91188bad85c63541927a16a2e1f39f9f969391059f932"
+          "sha256": "20b0aeec224795edbcab826bfe63d99ba1be0ec1c92431d2c7d23844d2119a2d"
         }
       ],
       "sourceReview": {
@@ -635,16 +635,16 @@
       "title": "Why do so many numbers start with 1?",
       "bankVersion": "cross-disciplinary-v1",
       "availability": "active",
-      "fingerprint": "93202f363b31f2dfb77e2909be91666452bb940d6a45f1b11363795dfb660237",
+      "fingerprint": "d14d2cd25584996e3fc87b2403da6ddee28f677924d957df029a15839a05da21",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/cross-disciplinary/projects.cjs",
-          "sha256": "26f857c580099cfcdcdbb3f1cab21bed02120c5b42926cadc5fb39a7f69c3d63"
+          "sha256": "95f48b9d36ccba12f67c5119d608a6c39f637484a7384a38470c01f25217cd5e"
         },
         {
           "path": "cross-disciplinary/data.json",
-          "sha256": "743b09b0ee15833349e91188bad85c63541927a16a2e1f39f9f969391059f932"
+          "sha256": "20b0aeec224795edbcab826bfe63d99ba1be0ec1c92431d2c7d23844d2119a2d"
         }
       ],
       "sourceReview": {

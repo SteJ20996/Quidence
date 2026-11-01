@@ -1,3 +1,7 @@
+## 2026-11-01 · Two course descriptions corrected (probability)
+
+Probability is taught only in the last Statistics lesson: events, conditional probability and independence. The Benford project's `uses` line no longer credits Statistics with expected counts and the chi-square test; step 6 introduces them. The knowledge map's Probability node now says what Statistics covers and that random variables, expected value and distributions are not yet covered. A separate Probability course is planned. See [cross-disciplinary-benford-20261101.md](review/cross-disciplinary-benford-20261101.md).
+
 ## 2026-11-01 · Cross-disciplinary projects, part 3: Benford's law
 
 The Cross-disciplinary Projects section has a third project, "Why do so many numbers start with 1?" (`cross-disciplinary/?project=cross-p03`), in English and Spanish. It counts the first digits of the powers of 2, derives Benford's law P(d) = log₁₀(1 + 1/d) from the mantissa on a log scale, proves that log₁₀ 2 is irrational, shows why a change of units keeps the law, and ends with the chi-square test and why a failed test is not proof of fraud. It draws on Statistics, Algebra II, Pre-calculus and Number Theory. See [cross-disciplinary-benford-20261101.md](review/cross-disciplinary-benford-20261101.md).
