@@ -75,6 +75,30 @@ async function main(){
   await step(4);await page.locator('#lab [data-lab="pair-n"]').evaluate(e=>{e.value=7;e.dispatchEvent(new Event('input',{bubbles:true}));});
   assert.match(await run(4,['pair-play']),/R\(7\) = 57, not 64\./);
   await run(5,['diff-build']);assert.deepEqual(await page.locator('#lab .x-diff-row').last().locator('.x-diff-cell').allTextContents(),['1','1','1','1','1']);
+  // Project 3: first digits and Benford's law.
+  const p3=data[2];await project('cross-p03');
+  for(let i=0;i<p3.steps.length;i++){
+   await step(i);assert.equal(await page.locator('#work h3').first().textContent(),p3.steps[i].title);
+   assert.deepEqual(await page.locator('#work .x-chip').evaluateAll(as=>as.map(a=>a.dataset.course)),p3.steps[i].connects);
+   await page.locator('#proof').evaluate(e=>e.open=true);assert((await page.locator('.proof-content').textContent()).includes(p3.steps[i].proof.split('\n')[0]));
+   assert.equal(await page.locator('[data-field]').count(),p3.steps[i].fields.reduce((n,f)=>n+(f.type==='choice'?f.options.length:1),0));result.steps++;
+  }
+  // The labs start empty or on other data, so the step's counts come from the learner's own presses.
+  assert.match(await labText(0),/Add the first power of 2/);assert.doesNotMatch(await labText(3),/\b53\b/);assert.doesNotMatch(await labText(5),/0\.22|401/);
+  assert.equal(await run(0,['pow-ten','pow-ten','pow-ten','pow-ten','pow-one','pow-one','pow-one','pow-one','pow-one','pow-one']),'The newest power starts with 7. Powers counted: 46.');
+  assert.match(await page.locator('#lab .lab-equation').textContent(),/2⁴⁶ = 70,368,744,177,664/);
+  await run(0,['pow-ten','pow-ten','pow-ten','pow-ten','pow-ten','pow-one','pow-one','pow-one','pow-one']);
+  assert.deepEqual(await page.locator('#lab .x-readouts dd').allTextContents(),['100','30','5']);assert(await page.locator('#lab [data-lab="pow-one"]').isDisabled());
+  assert.equal(await run(1,Array(10).fill('ruler-double')),'Its first digit is 1.');assert.equal(normalize(await page.locator('#lab .lab-equation').textContent()),'1,024 = 1.024 × 10³');
+  assert.match(await run(2,['shares-compare']),/Red marks show the shares among 2¹ to 2¹⁰⁰⁰\./);assert.equal(await page.locator('#lab svg circle').count(),9);
+  assert.equal(await run(3,['wheel-ten','wheel-ten','wheel-ten','wheel-ten','wheel-ten','wheel-one','wheel-one','wheel-one']),'The newest power lands in the arc for 9. Points so far: 53.');
+  assert.equal(await run(3,['view-ten','wheel-one','wheel-one','wheel-one']),'The newest power lands in the arc for 1. Points so far: 3.');
+  assert.equal(await run(4,['units-two']),'Every number is multiplied by 2. Powers of 2 starting with 1: 301 of 1000. Whole numbers starting with 1: 555 of 999.');
+  assert.match(await run(5,['view-heights']),/^χ² is about 116\.1, above 15\.51/);
+  assert.equal(await run(5,['view-threes']),'χ² is about 1.02, below 15.51: no evidence against Benford’s law.');
+  // Decimal answers are accepted when rounded correctly to the stated places.
+  await step(1);await page.locator('#f-width1').fill('0.301');await page.locator('#f-width9').fill('0.05');await page.locator('#check').click();
+  assert.match(await page.locator('#feedback-width1').textContent(),/Accepted|Correct/);assert.match(await page.locator('#feedback-width9').textContent(),/Try again/);
   await project('cross-p01');
   // Keyboard focus stays on the control that was used, even though the lab is redrawn.
   await step(0);await page.locator('#lab [data-lab="stick-reset"]').click().catch(()=>{});await page.locator('#lab [data-lab="stick-next"]').focus();await page.keyboard.press('Enter');await idle();
@@ -124,6 +148,22 @@ async function main(){
   }
   await step(4);await page.locator('#lab [data-lab="pair-n"]').evaluate(e=>{e.value=8;e.dispatchEvent(new Event('input',{bubbles:true}));});await page.evaluate(()=>QuidenceI18n.apply());
   assert.equal(await page.locator('#lab-status').textContent(),'Puntos: 8. La fila 7 tiene 8 números y la suma usa solo los primeros cinco, así que R(8) = 99, no 128.');
+  // Project 3 in Spanish: authored text and every lab control.
+  await project('cross-p03');
+  for(const width of [1440,375]){await page.setViewportSize({width,height:900});for(let i=0;i<p3.steps.length;i++){
+   const authored=source[2].steps[i];await step(i);await page.locator('#proof').evaluate(e=>e.open=true);await page.evaluate(()=>QuidenceI18n.apply());
+   assert.equal(await page.locator('#project-head h2').textContent(),normalize(source[2].title.es));
+   assert.equal(await page.locator('#work h3').textContent(),normalize(authored.title.es));
+   assert.deepEqual((await page.locator('.proof-content > p:not(.proof-label)').allTextContents()).map(normalize),authored.proof.map(x=>normalize(x.es)));
+   assert(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=1,'overflow at project 3 step '+i+' and '+width);
+  }}
+  await page.setViewportSize({width:1440,height:900});
+  for(const [i,actions]of [[0,['pow-reset','pow-one','pow-ten']],[1,['ruler-reset','ruler-double','view-plain','view-log']],[2,['view-bars','shares-compare','view-line','shares-compare']],
+   [3,['view-two','wheel-one','wheel-ten','view-ten','wheel-one','wheel-reset']],[4,['units-reset','units-two','units-three','units-reset']],[5,['view-threes','view-fib','view-heights']]]){
+   await step(i);for(const a of actions){await page.locator(`#lab [data-lab="${a}"]`).click();await page.evaluate(()=>QuidenceI18n.apply());}await idle();await page.evaluate(()=>QuidenceI18n.apply());
+  }
+  await step(4);await page.locator('#lab [data-lab="units-two"]').click();await page.evaluate(()=>QuidenceI18n.apply());
+  assert.equal(await page.locator('#lab-status').textContent(),'Cada número se multiplica por 2. Potencias de 2 que empiezan con 1: 301 de 1000. Números enteros que empiezan con 1: 555 de 999.');
   await project('cross-p01');
   await step(3);await page.locator('#session').click();assert((await page.locator('.student-work').allTextContents()).includes(RAW));assert.equal(await page.locator('.student-work img').count(),0);
   const downloadPromise=page.waitForEvent('download');await page.locator('#export').click();const download=await downloadPromise;assert.match(download.suggestedFilename(),/^Quidence-cross-disciplinary-/);
@@ -133,7 +173,7 @@ async function main(){
    await page.setViewportSize({width,height});
    for(const language of ['en','es']){
     await page.locator('#quidence-language').selectOption(language);await page.waitForFunction(l=>QuidenceI18n.locale===l,language);
-    for(const id of ['cross-p02','cross-p01']){await project(id);for(let i=0;i<6;i++){await step(i);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow at '+width+' '+language+' '+id+' step '+i);}}
+    for(const id of ['cross-p03','cross-p02','cross-p01']){await project(id);for(let i=0;i<6;i++){await step(i);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow at '+width+' '+language+' '+id+' step '+i);}}
     result.layouts++;
    }
   }
@@ -151,8 +191,8 @@ async function main(){
    const hp=await home.newPage();hp.on('pageerror',e=>errors.push(theme+': '+e.message));await hp.goto(origin+'/?view=courses&lang=en');
    const card=hp.locator('.subject-card[data-subject="cross-p01"]');await card.waitFor({state:'visible'});
    assert.equal(new URL(await card.locator('.subject-link').getAttribute('href'),origin+'/').pathname,'/cross-disciplinary/');
-   assert.equal(new URL(await hp.locator('.subject-card[data-subject="cross-p02"] .subject-link').getAttribute('href'),origin+'/').searchParams.get('project'),'cross-p02');
-   if(theme!=='classic'){await hp.locator('#subject-categories [data-category="cross"]').click();assert.deepEqual(await hp.locator('.subject-card:visible').evaluateAll(cs=>cs.map(c=>c.dataset.subject)),['cross-p01','cross-p02']);}
+   for(const id of ['cross-p02','cross-p03'])assert.equal(new URL(await hp.locator(`.subject-card[data-subject="${id}"] .subject-link`).getAttribute('href'),origin+'/').searchParams.get('project'),id);
+   if(theme!=='classic'){await hp.locator('#subject-categories [data-category="cross"]').click();assert.deepEqual(await hp.locator('.subject-card:visible').evaluateAll(cs=>cs.map(c=>c.dataset.subject)),['cross-p01','cross-p02','cross-p03']);}
    await home.close();
   }
   assert.deepEqual(errors,[]);assert.deepEqual(failed,[]);result.result='passed';

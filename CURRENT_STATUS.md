@@ -1,3 +1,9 @@
+## 2026-11-01 · Cross-disciplinary projects, part 3: Benford's law
+
+The Cross-disciplinary Projects section has a third project, "Why do so many numbers start with 1?" (`cross-disciplinary/?project=cross-p03`), in English and Spanish. It counts the first digits of the powers of 2, derives Benford's law P(d) = log₁₀(1 + 1/d) from the mantissa on a log scale, proves that log₁₀ 2 is irrational, shows why a change of units keeps the law, and ends with the chi-square test and why a failed test is not proof of fraud. It draws on Statistics, Algebra II, Pre-calculus and Number Theory. See [cross-disciplinary-benford-20261101.md](review/cross-disciplinary-benford-20261101.md).
+
+Current inventory: 15 subject cards (6 School Mathematics, 7 Further Mathematics, 2 Science) and 3 cross-disciplinary projects.
+
 ## 2026-11-01 · Logo requests are no longer cancelled by the swap
 
 When `themes.js` switched a logo to its other version while the first image was still loading, Chrome cancelled that request. Visitors saw nothing wrong, but on a busy machine the activity and brand browser tests counted it as a failed request. A request still loading is now handed to a detached image, so it finishes. The themes browser test delays the first version and checks that no request fails. See [logo-load-20261101.md](review/logo-load-20261101.md).

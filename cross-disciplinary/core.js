@@ -84,6 +84,18 @@
   // Every chord among the first n points, in drawing order: each new point is joined to the earlier ones.
   function chords(angles,n=angles.length){const out=[];for(let i=1;i<n;i++)for(let j=0;j<i;j++)out.push({from:i,to:j,line:chordLine(angles[j],angles[i])});return out;}
   const point=deg=>[Math.cos(deg*Math.PI/180),Math.sin(deg*Math.PI/180)];
-  const api={PIZZA,CONCURRENT,TRIANGLE,CIRCLE,HEXAGON,chordLine,chords,point,BALL,dot,cross,unit,disc,split,pieces,chord,crossings,face,ballCounts,choose,addressOf,ballAddresses,tetrahedron,flip};
+  // Benford's law. First digits are read from exact whole numbers (BigInt), so a number such as 2 or 1000 is never
+  // misread at the edge of a stretch; logarithms are used only to place points in the pictures.
+  const benford=d=>Math.log10(1+1/d);
+  const firstDigit=n=>Number(String(n)[0]);
+  // base¹ to base^count, each multiplied by factor.
+  function powers(base,count,factor=1n){const b=BigInt(base),out=[];let x=BigInt(factor);for(let i=0;i<count;i++){x*=b;out.push(x);}return out;}
+  function fibonacci(count){const out=[1n,1n];while(out.length<count)out.push(out[out.length-1]+out[out.length-2]);return out.slice(0,count);}
+  // How many of the values start with 1, 2, …, 9.
+  function tally(values){const c=Array(9).fill(0);for(const v of values)c[firstDigit(v)-1]++;return c;}
+  function chiSquare(counts){const n=counts.reduce((a,b)=>a+b,0);return counts.reduce((s,o,i)=>{const e=n*benford(i+1);return s+(o-e)**2/e;},0);}
+  // The mantissa of a positive whole number: the part after the decimal point of its logarithm.
+  function mantissa(n){const s=String(n),lead=s.slice(0,15);return Math.log10(Number(lead))-(lead.length-1);}
+  const api={benford,firstDigit,powers,fibonacci,tally,chiSquare,mantissa,PIZZA,CONCURRENT,TRIANGLE,CIRCLE,HEXAGON,chordLine,chords,point,BALL,dot,cross,unit,disc,split,pieces,chord,crossings,face,ballCounts,choose,addressOf,ballAddresses,tetrahedron,flip};
   root.CrossCore=api;if(typeof module==='object'&&module.exports)module.exports=api;
 })(globalThis);

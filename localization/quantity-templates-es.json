@@ -798,5 +798,33 @@
   [
     "With t = [n], the buyer gets [n] roosters, [n] hens and [n] chicks.",
     "Con t = [n], quien compra recibe [n] gallos, [n] gallinas y [n] pollitos."
+  ],
+  [
+    "The newest power starts with [n]. Powers counted: [n].",
+    "La potencia más reciente empieza con [n]. Potencias contadas: [n]."
+  ],
+  [
+    "Its first digit is [n].",
+    "Su primer dígito es [n]."
+  ],
+  [
+    "The newest power lands in the arc for [n]. Points so far: [n].",
+    "La potencia más reciente cae en el arco del [n]. Puntos hasta ahora: [n]."
+  ],
+  [
+    "Every number is multiplied by [n]. Powers of 2 starting with 1: [n] of 1000. Whole numbers starting with 1: [n] of 999.",
+    "Cada número se multiplica por [n]. Potencias de 2 que empiezan con 1: [n] de 1000. Números enteros que empiezan con 1: [n] de 999."
+  ],
+  [
+    "Original units. Powers of 2 starting with 1: [n] of 1000. Whole numbers starting with 1: [n] of 999.",
+    "Unidades originales. Potencias de 2 que empiezan con 1: [n] de 1000. Números enteros que empiezan con 1: [n] de 999."
+  ],
+  [
+    "χ² is about [n], below 15.51: no evidence against Benford’s law.",
+    "χ² es aproximadamente [n], menor que 15.51: no hay evidencia en contra de la ley de Benford."
+  ],
+  [
+    "χ² is about [n], above 15.51: these first digits do not follow Benford’s law.",
+    "χ² es aproximadamente [n], mayor que 15.51: estos primeros dígitos no siguen la ley de Benford."
   ]
 ]
