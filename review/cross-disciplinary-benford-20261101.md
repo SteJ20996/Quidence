@@ -92,4 +92,4 @@ A separate content review recomputed every answer and every quoted number with e
 
 An inventory of probability across the site found that the Statistics course teaches events, conditional probability and independence in its last lesson, but not expected counts or the chi-square test. The project's `uses` line had credited Statistics with both. It now says that step 6 introduces them.
 
-The knowledge map's Probability node still suggests Statistics as the place to start, but it no longer promises distributions or mixed strategies. It now says what the last Statistics lesson covers, and that random variables, expected value and distributions are not yet covered. A separate Probability course is planned.
+The knowledge map's Probability node still suggests Statistics as the place to start, but it no longer promises distributions or mixed strategies. It now says what the last Statistics lesson covers, and that the Statistics course does not yet teach random variables, expected value or probability distributions. A separate Probability course is planned.
