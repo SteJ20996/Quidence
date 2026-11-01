@@ -209,7 +209,9 @@ test('first digits: powers of 2, log stretches, Benford’s shares and the first
  expect('firstSeven',two.findIndex(v=>lead(v)===7)+1);expect('firstNine',two.findIndex(v=>lead(v)===9)+1);
  assert.equal(String(2n**46n),'70368744177664');assert.equal(String(2n**53n),'9007199254740992');
  expect('equalShares','no');
- close('width1',Math.log10(2),3);close('width9',Math.log10(10/9),3);close('mantissa1024',Math.log10(1024)-3,3);
+ close('width1',Math.log10(2),3);
+ // A calculator's display, ten significant digits, and a full double for log₁₀ 2 and log₁₀ 4 are correct roundings too.
+ for(const [id,v]of [['width1',(Math.log10(2)).toPrecision(10)],['width9',(Math.log10(10/9)).toPrecision(10)],['share123',(Math.log10(4)).toPrecision(10)],['width1',String(Math.log10(2))],['share123',String(Math.log10(4))]])assert.equal(C.grade(field(id),v).status,'correct',id+' accepts '+v);close('width9',Math.log10(10/9),3);close('mantissa1024',Math.log10(1024)-3,3);
  close('share123',P(1)+P(2)+P(3),3);close('oneToNine',P(1)/P(9),1);
  assert.ok(Math.abs([1,2,3,4,5,6,7,8,9].reduce((s,d)=>s+P(d),0)-1)<1e-12,'the nine shares add up to 1');
  expect('expected1000',Math.round(1000*P(1)));assert.equal(firstDigits(two)[0],301,'301 of 2¹ to 2¹⁰⁰⁰ start with 1');
@@ -226,7 +228,7 @@ test('first digits: changing units, the chi-square test and data that should not
  assert.deepEqual(firstDigits(whole),Array(9).fill(111));expect('doubled999',firstDigits(whole.map(x=>2n*x))[0]);
  // Turning evenly spread mantissas keeps the shares: the powers of 2 in new units stay within 5 of Benford's counts.
  for(const c of [2n,3n,6n,1024n,729n]){const shifted=firstDigits(powersOf(2,1000).map(v=>v*c));shifted.forEach((n,i)=>assert.ok(Math.abs(n-1000*P(i+1))<5,'c = '+c+', digit '+(i+1)));}
- close('chiPowers',chi(firstDigits(powersOf(2,100))),2);close('chiWhole',chi(firstDigits(whole)),1);
+ close('chiPowers',chi(firstDigits(powersOf(2,100))),2);expect('chiWhole',Math.round(chi(firstDigits(whole))));
  assert.ok(chi(firstDigits(whole))>15.51&&chi(firstDigits(powersOf(2,100)))<15.51);
  expect('notBenford','heights');
  const heights=Array.from({length:61},(_,i)=>140+i);assert.ok(firstDigits(heights)[0]>=60,'heights from 140 to 200 cm almost all start with 1');

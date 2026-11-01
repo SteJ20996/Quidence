@@ -722,8 +722,8 @@
    "number-theory"
   ],
   "topic": "Benford’s law: powers of 2, logarithms, changing units and testing data",
-  "prompt": "Write down the powers of 2: 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, … and look only at the first digit of each. You might expect each digit from 1 to 9 to come first about one time in nine. It does not: far more powers of 2 start with 1 than with 9. The same lopsided pattern appears in many tables of real numbers, such as the populations of towns and the areas of rivers that Frank Benford collected in 1938, and it is called Benford’s law. This project finds the exact pattern, proves why the powers of 2 follow it, shows why changing units cannot break it, and tests when a data set should and should not follow it.",
-  "approach": "The first digit of a number depends only on where the number sits between two powers of 10, and logarithms measure exactly that. Take log₁₀ of the number and keep only the part after the decimal point, the mantissa. The first digit is 1 when the mantissa is between 0 and log₁₀ 2 ≈ 0.301, and 9 when it is between log₁₀ 9 and 1, a much shorter stretch. So the question becomes: how are the mantissas spread out?",
+  "prompt": "Write down the powers of 2: 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, … and look only at the first digit of each. You might expect each digit from 1 to 9 to come first about one time in nine. Does it? Many tables of real numbers, such as the populations of towns and the areas of rivers that Frank Benford collected in 1938, follow a lopsided pattern of first digits now called Benford’s law; Simon Newcomb had noticed it in 1881. This project finds the exact pattern, proves why the powers of 2 follow it, shows why changing units cannot break it, and tests when a data set should and should not follow it.",
+  "approach": "The first digit of a number depends only on where the number sits between two powers of 10, and logarithms measure exactly that. Take log₁₀ of the number and keep only its fractional part, log₁₀ x − ⌊log₁₀ x⌋, called the mantissa; for a number of at least 1 it is the part after the decimal point. The first digit is 1 when the mantissa is between 0 and log₁₀ 2, and 9 when it is between log₁₀ 9 and 1, a much shorter stretch. So the question becomes: how are the mantissas spread out?",
   "uses": "Statistics: relative frequencies, expected counts and the chi-square statistic. Algebra II: logarithms and their rules. Pre-calculus: the fractional part of a number and wrapping a line around a circle. Number Theory: unique prime factorization, used to show that log₁₀ 2 is irrational.",
   "steps": [
    {
@@ -800,16 +800,16 @@
      "af01"
     ],
     "banner": "1024 = 1.024 × 10³",
-    "prompt": "Every positive number can be written as x = m × 10ᵏ with 1 ≤ m < 10 and k a whole number, and the first digit of x is the first digit of m. Taking log₁₀ gives log₁₀ x = k + log₁₀ m, where 0 ≤ log₁₀ m < 1. This part after the decimal point is the mantissa of x. Show that x starts with the digit d exactly when log₁₀ d ≤ mantissa < log₁₀(d + 1). The lab marks numbers on a ruler from 1 to 10 drawn on a log scale. How long is the stretch of mantissas for the first digit 1, and for 9? What is the mantissa of 2¹⁰ = 1024? Give each to three decimal places.",
+    "prompt": "Every positive number can be written as x = m × 10ᵏ with 1 ≤ m < 10 and k an integer, and the first digit of x is the first digit of m. Taking log₁₀ gives log₁₀ x = k + log₁₀ m, where 0 ≤ log₁₀ m < 1. This fractional part, log₁₀ m = log₁₀ x − k, is the mantissa of x. Show that x starts with the digit d exactly when log₁₀ d ≤ mantissa < log₁₀(d + 1). The lab marks numbers on a ruler from 1 to 10 drawn on a log scale. How long is the stretch of mantissas for the first digit 1, and for 9? What is the mantissa of 2¹⁰ = 1024? Give each to three decimal places.",
     "proof": "If x = m × 10ᵏ with 1 ≤ m < 10, then x has the same digits as m, shifted by k places, so both have the same first digit. That digit is d exactly when d ≤ m < d + 1.\n\nlog₁₀ is increasing, so d ≤ m < d + 1 exactly when log₁₀ d ≤ log₁₀ m < log₁₀(d + 1). And log₁₀ m is the mantissa, since log₁₀ x = k + log₁₀ m with 0 ≤ log₁₀ m < 1.\n\nThe stretch for 1 runs from log₁₀ 1 = 0 to log₁₀ 2 ≈ 0.301, nearly a third of the ruler. The stretch for 9 runs from log₁₀ 9 ≈ 0.954 to log₁₀ 10 = 1, a length of log₁₀(10/9) ≈ 0.046, between six and seven times shorter.\n\nFor 1024 = 1.024 × 10³, the mantissa is log₁₀ 1.024 ≈ 0.010, just inside the stretch for 1. Multiplying a number by 10 adds 1 to its logarithm and leaves the mantissa, and the first digit, unchanged.",
     "fields": [
      {
       "id": "width1",
       "label": "Length of the stretch for the first digit 1",
       "type": "number",
-      "answer": "0.301029995663981",
+      "answer": "0.3010299956639811952137388947",
       "accepted": [
-       "0.301029995663981"
+       "0.3010299956639811952137388947"
       ],
       "minDecimalPlaces": 3
      },
@@ -817,9 +817,9 @@
       "id": "width9",
       "label": "Length of the stretch for the first digit 9",
       "type": "number",
-      "answer": "0.045757490560675",
+      "answer": "0.0457574905606751254099441935",
       "accepted": [
-       "0.045757490560675"
+       "0.0457574905606751254099441935"
       ],
       "minDecimalPlaces": 3
      },
@@ -827,9 +827,9 @@
       "id": "mantissa1024",
       "label": "Mantissa of 1024",
       "type": "number",
-      "answer": "0.010299956639812",
+      "answer": "0.0102999566398119521373889472",
       "accepted": [
-       "0.010299956639812"
+       "0.0102999566398119521373889472"
       ],
       "minDecimalPlaces": 3
      },
@@ -852,16 +852,16 @@
      "algebra-2"
     ],
     "banner": "P(d) = log₁₀(d + 1) − log₁₀ d",
-    "prompt": "Suppose the mantissas of a data set are spread evenly from 0 to 1, so that the share of mantissas in any stretch equals its length. Then the share of numbers with first digit d is P(d) = log₁₀(d + 1) − log₁₀ d = log₁₀(1 + 1/d). This is Benford’s law. Use the rules of logarithms to show that the nine shares add up to 1. To three decimal places, what share of the numbers start with 1, 2 or 3? How many times as likely is a first digit 1 as a first digit 9, to one decimal place? In 1,000 numbers that follow the law, how many would you expect to start with 1, to the nearest whole number? The lab draws the nine shares.",
+    "prompt": "Suppose the mantissas of a data set are spread evenly from 0 to 1, so that the share of mantissas in any stretch equals its length. Then the share of numbers with first digit d is P(d) = log₁₀(d + 1) − log₁₀ d = log₁₀(1 + 1/d). This is Benford’s law. Use the rules of logarithms to show that the nine shares add up to 1. Keep logarithms to at least five decimal places while you calculate. To three decimal places, what share of the numbers start with 1, 2 or 3? What is the ratio P(1)/P(9), to one decimal place? In 1,000 numbers that follow the law, how many would you expect to start with 1, to the nearest whole number? The lab draws the nine shares.",
     "proof": "The share with first digit d is the length of its stretch of mantissas: P(d) = log₁₀(d + 1) − log₁₀ d = log₁₀((d + 1)/d) = log₁₀(1 + 1/d).\n\nWhen the nine shares are added, the terms cancel in pairs: (log₁₀ 2 − log₁₀ 1) + (log₁₀ 3 − log₁₀ 2) + ⋯ + (log₁₀ 10 − log₁₀ 9) = log₁₀ 10 − log₁₀ 1 = 1.\n\nIn the same way, P(1) + P(2) + P(3) = log₁₀ 4 − log₁₀ 1 ≈ 0.602: more than half of the numbers start with 1, 2 or 3.\n\nP(1)/P(9) = log₁₀ 2 / log₁₀(10/9) ≈ 0.30103/0.04576 ≈ 6.6. In 1,000 numbers, about 1000 × 0.30103 ≈ 301 start with 1. The powers of 2 agree: exactly 301 of 2¹ to 2¹⁰⁰⁰ start with 1.\n\nThe law is a statement about how the mantissas are spread. Steps 4 and 5 give two reasons why they can be spread evenly.",
     "fields": [
      {
       "id": "share123",
       "label": "Share of numbers that start with 1, 2 or 3",
       "type": "number",
-      "answer": "0.602059991327962",
+      "answer": "0.6020599913279623904274777894",
       "accepted": [
-       "0.602059991327962"
+       "0.6020599913279623904274777894"
       ],
       "minDecimalPlaces": 3
      },
@@ -869,9 +869,9 @@
       "id": "oneToNine",
       "label": "P(1)/P(9)",
       "type": "number",
-      "answer": "6.578813478960584",
+      "answer": "6.5788134789605837830895515973",
       "accepted": [
-       "6.578813478960584"
+       "6.5788134789605837830895515973"
       ],
       "minDecimalPlaces": 1
      },
@@ -903,8 +903,8 @@
      "af01"
     ],
     "banner": "log₁₀ 2ⁿ = n × 0.30103…",
-    "prompt": "The mantissa of 2ⁿ is the part after the decimal point of n log₁₀ 2 ≈ 0.30103n. Picture the mantissas on a circle of circumference 1: each new power of 2 moves the point 0.30103 of a turn further. Prove that log₁₀ 2 is irrational, using the fact that a whole number has only one prime factorization, and explain why no two powers of 2 have the same mantissa. The lab places the mantissas of 2¹, 2², 2³, … on the circle, which is split into nine arcs, one for each first digit. Which power of 2 is the first to start with 9? What happens to the powers of 10 instead?",
-    "proof": "The mantissa of 2ⁿ is the part after the decimal point of log₁₀ 2ⁿ = n log₁₀ 2. Multiplying by 2 adds log₁₀ 2 to the logarithm, so on the circle each power lies log₁₀ 2 ≈ 0.30103 of a turn after the one before.\n\nSuppose log₁₀ 2 = p/q with whole numbers p, q ≥ 1. Then 10ᵖ = 2^q. The left side is divisible by 5 and the right side is not, which contradicts the uniqueness of prime factorization. So log₁₀ 2 is irrational.\n\nIf 2ᵃ and 2ᵇ with a > b had the same mantissa, then (a − b) log₁₀ 2 would be a whole number, and log₁₀ 2 would be rational. So no two powers of 2 share a mantissa, and the points on the circle never repeat.\n\nWeyl’s equidistribution theorem (1916) says more: when α is irrational, the fractional parts of α, 2α, 3α, … spread evenly, so the share that falls in any arc approaches the arc’s length. We use this theorem without proof. With step 3, it shows that the share of powers of 2 that start with d approaches log₁₀(1 + 1/d).\n\nThe arc for 9 runs from about 0.954 to 1. The first n for which 0.30103n has its part after the decimal point in that arc is n = 53, and indeed 2⁵³ = 9,007,199,254,740,992.\n\nThe powers of 10 behave differently: log₁₀ 10 = 1, so each step is a whole turn, every mantissa is 0, and every power of 10 starts with 1. A rational step visits only finitely many points.",
+    "prompt": "The mantissa of 2ⁿ is the fractional part of n log₁₀ 2. Picture the mantissas on a circle of circumference 1: each new power of 2 moves the point log₁₀ 2 ≈ 0.30103 of a turn further. Prove that log₁₀ 2 is irrational, using the fact that every whole number greater than 1 has only one prime factorization, and explain why no two powers of 2 have the same mantissa. The lab places the mantissas of 2¹, 2², 2³, … on the circle, which is split into nine arcs, one for each first digit. Which power of 2 is the first to start with 9? What happens to the powers of 10 instead?",
+    "proof": "The mantissa of 2ⁿ is the fractional part of log₁₀ 2ⁿ = n log₁₀ 2. Multiplying by 2 adds log₁₀ 2 to the logarithm, so on the circle each power lies log₁₀ 2 ≈ 0.30103 of a turn after the one before.\n\nlog₁₀ 2 is positive, so if it were rational it would be r/s with whole numbers r, s ≥ 1. Then 10ʳ = 2ˢ. The left side is divisible by 5 and the right side is not, which contradicts the uniqueness of prime factorization. So log₁₀ 2 is irrational.\n\nIf 2ᵃ and 2ᵇ with a > b had the same mantissa, then (a − b) log₁₀ 2 would be a whole number, and log₁₀ 2 would be rational. So no two powers of 2 share a mantissa, and the points on the circle never repeat.\n\nThe equidistribution theorem, proved in 1909 and 1910 by Piers Bohl, Wacław Sierpiński and Hermann Weyl, says more: when α is irrational, the fractional parts of α, 2α, 3α, … spread evenly, so the share that falls in any arc approaches the arc’s length. We use this theorem without proof. With step 3, it shows that the share of powers of 2 that start with d approaches log₁₀(1 + 1/d).\n\nThe arc for 9 runs from about 0.954 to 1. The first n for which the fractional part of n log₁₀ 2 lies in that arc is n = 53, and indeed 2⁵³ = 9,007,199,254,740,992.\n\nThe powers of 10 behave differently: log₁₀ 10 = 1, so each step is a whole turn, every mantissa is 0, and every power of 10 starts with 1. A rational step visits only finitely many points.",
     "fields": [
      {
       "id": "firstNine",
@@ -940,7 +940,7 @@
       "label": "Prove that log₁₀ 2 is irrational and that no two powers of 2 share a mantissa",
       "type": "reason",
       "criteria": [
-       "If log₁₀ 2 = p/q, then 10ᵖ = 2^q, but 5 divides 10ᵖ and not 2^q, which contradicts unique prime factorization.",
+       "If log₁₀ 2 = r/s with r, s ≥ 1, then 10ʳ = 2ˢ, but 5 divides 10ʳ and not 2ˢ, which contradicts unique prime factorization.",
        "Equal mantissas for 2ᵃ and 2ᵇ with a ≠ b would make (a − b) log₁₀ 2 a whole number, so log₁₀ 2 would be rational."
       ],
       "followup": "The points never repeat. Why does that alone not prove that they spread out evenly?"
@@ -954,7 +954,7 @@
      "algebra-2"
     ],
     "banner": "log₁₀(cx) = log₁₀ c + log₁₀ x",
-    "prompt": "A table of prices in dollars is converted to another currency by multiplying every price by the same number c. Multiplying by c adds log₁₀ c to every logarithm, so it turns the whole circle of mantissas by the same amount. If the first digits follow Benford’s law before the change, show that they still follow it afterwards. Then look at doubling, c = 2: which first digits of x give 2x the first digit 1? Under Benford’s law, what share of numbers start with one of those digits, to three decimal places? The lab doubles or triples two tables, one that follows Benford’s law and the whole numbers 1 to 999, and tallies their first digits. How many of the doubled numbers 2, 4, …, 1998 start with 1?",
+    "prompt": "A table of prices in dollars is converted to another currency by multiplying every price by the same number c. Multiplying by c adds log₁₀ c to every logarithm, so it turns the whole circle of mantissas by the same amount. If the mantissas are spread evenly before the change, show that they are still spread evenly afterwards, so the first digits keep Benford’s shares. Then look at doubling, c = 2: which first digits of x give 2x the first digit 1? Under Benford’s law, what share of numbers start with one of those digits, to three decimal places? The lab doubles or triples two tables, one that follows Benford’s law and the whole numbers 1 to 999, and tallies their first digits. How many of the doubled numbers 2, 4, …, 1998 start with 1?",
     "proof": "log₁₀(cx) = log₁₀ c + log₁₀ x, so multiplying every number by c adds the same amount to every logarithm, and turns every mantissa around the circle by the fractional part of log₁₀ c.\n\nIf the mantissas are spread evenly, the turned mantissas are spread evenly too: an arc of length ℓ receives the mantissas that were in another arc of the same length ℓ. So each first digit keeps its share log₁₀(1 + 1/d) in the new units.\n\nFor doubling, 2x starts with 1 exactly when x starts with 5, 6, 7, 8 or 9, since 5 ≤ m < 10 gives 10 ≤ 2m < 20. Under Benford’s law that share is log₁₀ 10 − log₁₀ 5 = log₁₀ 2 ≈ 0.301, which is P(1) again, as it must be.\n\nThe whole numbers 1 to 999 have 111 numbers with each first digit. After doubling, all the numbers that started with 5 to 9 start with 1: 5 + 50 + 500 = 555 of them. Equal shares do not survive a change of units.\n\nRoger Pinkham (1961) argued the converse: a first-digit law that stays the same under every change of units must be Benford’s law. Theodore Hill (1995) later gave a rigorous version. This is one reason the law appears in data measured in arbitrary units.",
     "fields": [
      {
@@ -979,11 +979,11 @@
      },
      {
       "id": "shareFiveUp",
-      "label": "Share of numbers that start with 5, 6, 7, 8 or 9 under Benford’s law",
+      "label": "Share of numbers that start with one of those digits, under Benford’s law",
       "type": "number",
-      "answer": "0.301029995663981",
+      "answer": "0.3010299956639811952137388947",
       "accepted": [
-       "0.301029995663981"
+       "0.3010299956639811952137388947"
       ],
       "minDecimalPlaces": 3
      },
@@ -998,7 +998,7 @@
      },
      {
       "id": "unitChange",
-      "label": "Explain why a change of units keeps Benford’s law",
+      "label": "Explain why a change of units keeps evenly spread mantissas, and Benford’s shares",
       "type": "reason",
       "criteria": [
        "Multiplying by c adds log₁₀ c to every logarithm, so it turns every mantissa by the fractional part of log₁₀ c.",
@@ -1015,28 +1015,27 @@
      "algebra-2"
     ],
     "banner": "χ² = Σ (O − E)²/E",
-    "prompt": "To test whether a data set follows Benford’s law, compare the observed count O of each first digit with the expected count E = n × P(d), using the chi-square statistic χ² = Σ (O − E)²/E over the nine digits. With 8 degrees of freedom, a value above 15.51 would happen less than 5% of the time if the data followed the law. The lab runs the test on a few data sets. Using the counts you found in step 1, find χ² for 2¹ to 2¹⁰⁰ to two decimal places, and find χ² for the whole numbers 1 to 999 to one decimal place. Which kind of data should not be expected to follow Benford’s law? Explain why a data set that fails the test is not proof that someone made up the numbers.",
-    "proof": "For 2¹ to 2¹⁰⁰ the expected counts are 100 × P(d): 30.10, 17.61, 12.49, 9.69, 7.92, 6.69, 5.80, 5.12 and 4.58. Adding (O − E)²/E over the nine digits gives χ² ≈ 0.22, far below 15.51, so the test finds no difference from Benford’s law.\n\nA value this small would itself be unusual for a random sample, whose χ² averages 8, the number of degrees of freedom. The powers of 2 are not a random sample: their mantissas are spread more evenly than chance would spread them.\n\nFor 1 to 999, each digit is observed 111 times. The expected counts are 999 × P(d), from 300.7 for the digit 1 to 45.7 for the digit 9, and χ² ≈ 401.3: these numbers clearly do not follow Benford’s law. Every whole number with up to three digits appears exactly once, so their first digits are equal by design.\n\nAdult heights in centimeters lie between about 140 and 200, less than one power of 10, so almost all of them start with 1: their mantissas cannot spread around the circle. The law fits data that range over several powers of 10 and come from multiplying many factors, such as populations, and sequences such as the powers of 3.\n\nA failed test shows only that the first digits differ from Benford’s law. Data can fail for honest reasons, like the heights, and invented data can be made to pass. Auditors use the test to choose what to check more closely, not as proof of fraud, and studies of election results have found that honest vote counts often fail it.",
+    "prompt": "To test whether a data set follows Benford’s law, compare the observed count O of each first digit with the expected count E = n × P(d), using the chi-square statistic χ² = Σ (O − E)²/E over the nine digits. There are 9 digits, so the test has 8 degrees of freedom, and a value above 15.51 would happen less than 5% of the time if the data were a random sample from Benford’s law. The lab runs the test on a few data sets. Using the nine counts for 2¹ to 2¹⁰⁰ from the lab in step 1, and keeping P(d) to at least five decimal places, find χ² for 2¹ to 2¹⁰⁰ to two decimal places, and find χ² for the whole numbers 1 to 999 to the nearest whole number. Which kind of data should not be expected to follow Benford’s law? Explain why a data set that fails the test is not proof that someone made up the numbers.",
+    "proof": "For 2¹ to 2¹⁰⁰ the expected counts are 100 × P(d): 30.10, 17.61, 12.49, 9.69, 7.92, 6.69, 5.80, 5.12 and 4.58. Adding (O − E)²/E over the nine digits gives χ² ≈ 0.22, far below 15.51, so the test finds no difference from Benford’s law. One expected count, 4.58, is just under the usual rule of thumb of 5, so the test is only approximate here.\n\nA value this small would itself be unusual for a random sample from Benford’s law, whose χ² averages 8, the number of degrees of freedom. The powers of 2 are not a random sample: their mantissas are spread more evenly than chance would spread them.\n\nFor 1 to 999, each digit is observed 111 times. The expected counts are 999 × P(d), from 300.7 for the digit 1 to 45.7 for the digit 9, and χ² ≈ 401: these numbers clearly do not follow Benford’s law. Every whole number with up to three digits appears exactly once, so their first digits are equal by design.\n\nAdult heights in centimeters lie between about 140 and 200, less than one power of 10, so almost all of them start with 1: their mantissas cannot spread around the circle. The law tends to fit data that range over several powers of 10 and come from multiplying many factors, such as populations, and it holds for sequences such as the powers of 3.\n\nA failed test shows only that the first digits differ from Benford’s law. Data can fail for honest reasons, like the heights, and invented data can be made to pass. Auditors use the test to choose what to check more closely, not as proof of fraud, and studies of election results have found that honest vote counts can fail it.",
     "fields": [
      {
       "id": "chiPowers",
       "label": "χ² for 2¹ to 2¹⁰⁰",
       "type": "number",
-      "answer": "0.221047198086573",
+      "answer": "0.2210471980865731118690620050",
       "accepted": [
-       "0.221047198086573"
+       "0.2210471980865731118690620050"
       ],
       "minDecimalPlaces": 2
      },
      {
       "id": "chiWhole",
-      "label": "χ² for the whole numbers 1 to 999",
+      "label": "χ² for the whole numbers 1 to 999, to the nearest whole number",
       "type": "number",
-      "answer": "401.296594619268028",
+      "answer": "401",
       "accepted": [
-       "401.296594619268028"
-      ],
-      "minDecimalPlaces": 1
+       "401"
+      ]
      },
      {
       "id": "notBenford",
@@ -1071,6 +1070,6 @@
     ]
    }
   ],
-  "nextCheck": "The second digit follows a law too. Use mantissas to show that the share of numbers whose first two digits are 1 and 0 is log₁₀(11/10) ≈ 0.041, and add over the nine possible first digits to find the share of numbers whose second digit is 0. Then check whether the Fibonacci numbers 1, 1, 2, 3, 5, 8, … follow Benford’s law, using the fact that the n-th Fibonacci number is close to φⁿ/√5, where φ = (1 + √5)/2."
+  "nextCheck": "The second digit follows a law too. Assuming the mantissas are spread evenly, show that the share of numbers whose first two digits are 1 and 0 is log₁₀(11/10) ≈ 0.041, and add over the nine possible first digits to find the share of numbers whose second digit is 0. Then check whether the Fibonacci numbers 1, 1, 2, 3, 5, 8, … follow Benford’s law, using the fact that the n-th Fibonacci number is close to φⁿ/√5, where φ = (1 + √5)/2."
  }
 ]

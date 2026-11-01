@@ -104,10 +104,11 @@ function exportOriginal(){if(blockedOriginal===null)return;let json=true;try{JSO
 const SUP='⁰¹²³⁴⁵⁶⁷⁸⁹',sup=n=>String(n).replace(/\d/g,d=>SUP[d]);
 const grouped=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,',');
 // A power written exactly while it is short, and as m × 10ᵏ once it is long.
-function powerText(base,n){const v=BigInt(base)**BigInt(n),s=String(v);return s.length<=16?`${base}${sup(n)} = ${grouped(s)}`:`${base}${sup(n)} ≈ ${s[0]}.${s.slice(1,4)} × 10${sup(s.length-1)}`;}
+function powerText(base,n){const v=BigInt(base)**BigInt(n),s=String(v);if(s.length<=16)return `${base}${sup(n)} = ${grouped(s)}`;
+  let lead=String(Math.round(Number(s.slice(0,5))/10)),exp=s.length-1;if(lead.length>4){lead=lead.slice(0,4);exp++;}return `${base}${sup(n)} ≈ ${lead[0]}.${lead.slice(1)} × 10${sup(exp)}`;}
 const DIGIT_FILL=['#2f6f63','#4f8f83','#6fa597','#8fbaa9','#b0cbb9','#c9d9c3','#dfe5c8','#ece3c2','#f2dcb8'];
 // Nine bars, one per first digit, in a 420 × 250 picture. `value` gives each bar's height on the scale 0 to max.
-function digitBars({values,max,ticks,format=v=>String(v),reference=null,dots=null,highlight=0,ghosts=null,under=null,h=250,id='bf'}){
+function digitBars({values,max,ticks,format=v=>String(v),reference=null,dots=null,highlight=0,ghosts=null,under=null,labels=false,h=250,id='bf'}){
   const x0=52,step=40,base=h-46,top=24,Y=v=>base-(base-top)*Math.min(v,max)/max;let body='';
   for(const t of ticks)body+=`<line x1="${x0-8}" y1="${Y(t).toFixed(1)}" x2="${x0+9*step-6}" y2="${Y(t).toFixed(1)}" stroke="#e3ebe8"/><text class="x-small" x="${x0-12}" y="${(Y(t)+4).toFixed(1)}" text-anchor="end">${format(t)}</text>`;
   values.forEach((v,i)=>{const x=x0+i*step,hot=highlight===i+1;
@@ -115,6 +116,7 @@ function digitBars({values,max,ticks,format=v=>String(v),reference=null,dots=nul
     body+=`<rect id="${id}-bar-${i+1}" x="${x}" y="${Y(v).toFixed(1)}" width="${ghosts?15:28}" height="${(base-Y(v)).toFixed(1)}" rx="3" fill="${hot?HOT:DIGIT_FILL[Math.min(i,3)]}"/>`;
     body+=`<text class="x-small" x="${x+(ghosts?15:14)}" y="${base+17}" text-anchor="middle" font-weight="700">${i+1}</text>`;
     if(under)body+=`<text class="x-small" x="${x+(ghosts?15:14)}" y="${base+34}" text-anchor="middle">${under[i]}</text>`;
+    if(labels)body+=`<text class="x-small" x="${x+14}" y="${(Y(v)-5).toFixed(1)}" text-anchor="middle">${v}</text>`;
     if(dots)body+=`<circle cx="${x+14}" cy="${Y(dots[i]).toFixed(1)}" r="5" fill="#ffffff" stroke="${CUT}" stroke-width="2.2"/>`;});
   if(reference!==null)body+=`<line x1="${x0-6}" y1="${Y(reference).toFixed(1)}" x2="${x0+9*step-6}" y2="${Y(reference).toFixed(1)}" stroke="${CUT}" stroke-width="2" stroke-dasharray="6 4"/>`;
   body+=`<line x1="${x0-8}" y1="${base}" x2="${x0+9*step-6}" y2="${base}" stroke="#9aaeb1"/>`;
@@ -125,7 +127,7 @@ const niceTicks=max=>{const step=max<=6?1:max<=15?3:max<=30?5:max<=60?10:max<=15
 function powersLab(l,action){
   l.n??=0;
   const counts=()=>X.tally(X.powers(2,l.n)),newest=()=>l.n?X.firstDigit(2n**BigInt(l.n)):0;
-  const picture=()=>{const c=counts(),max=Math.max(4,...c,Math.ceil(l.n/9));return svg(digitBars({values:c,max,ticks:niceTicks(max),reference:l.n?l.n/9:null,highlight:newest()}),'First digits of the powers of 2 counted so far',250);};
+  const picture=()=>{const c=counts(),max=Math.max(4,...c,Math.ceil(l.n/9));return svg(digitBars({values:c,max:max*1.12,ticks:niceTicks(max),reference:l.n?l.n/9:null,highlight:newest(),labels:l.n>0}),'First digits of the powers of 2 counted so far',250);};
   const status=()=>l.n?`The newest power starts with ${newest()}. Powers counted: ${l.n}.`:'Add the first power of 2 to start the tally.';
   const rows=()=>{const c=counts();return [['Powers counted',String(l.n)],['Start with 1',String(c[0])],['Start with 9',String(c[8])]];};
   const draw=()=>labShell({title:'First digits of the powers of 2',picture:picture(),
@@ -137,7 +139,7 @@ function powersLab(l,action){
   if(action==='pow-ten'){stop();l.n=Math.min(100,l.n+10);draw();return;}
   if(action==='pow-one'&&l.n<100)play(async token=>{const before=counts();l.n++;draw();const d=newest(),bar=q('bf-bar-'+d);if(!bar)return;
     const y=Number(bar.getAttribute('y')),hgt=Number(bar.getAttribute('height')),c=counts(),grow=before[d-1]?hgt*(1-before[d-1]/c[d-1]):hgt;
-    await animate(320,t=>attr(bar,{y:(y+grow*(1-t)).toFixed(1),height:(hgt-grow*(1-t)).toFixed(1)}));});
+    await animate(320,t=>attr(bar,{y:(y+grow*(1-t)).toFixed(1),height:(hgt-grow*(1-t)).toFixed(1)}));if(!token.cancel)draw();});
 }
 // Step 2. A ruler from 1 to 10 on a log scale, and the same ruler with equal steps.
 function rulerLab(l,action,value){
@@ -154,7 +156,7 @@ function rulerLab(l,action,value){
     body+=`<path d="M${px.toFixed(1)} 92 l-8 -14 h16 z" fill="${CUT}"/><text class="x-small" data-no-translate x="${Math.min(380,Math.max(40,px)).toFixed(1)}" y="56" text-anchor="middle" font-weight="700">m = ${m()}</text>`;
     if(l.view==='log')body+=`<line x1="${X0}" y1="172" x2="${X0+W}" y2="172" stroke="#9aaeb1" stroke-dasharray="4 3"/><text class="x-small" data-no-translate x="${X0}" y="190">log₁₀ m = 0</text><text class="x-small" data-no-translate x="${X0+W}" y="190" text-anchor="end">log₁₀ m = 1</text>`;
     return svg(body,l.view==='log'?'A ruler from 1 to 10 on a log scale, with the stretch for each first digit':'A ruler from 1 to 10 with equal steps, with the stretch for each first digit',200);};
-  const status=()=>`Its first digit is ${X.firstDigit(x())}.`;
+  const status=()=>`The first digit of the number is ${X.firstDigit(x())}.`;
   const draw=()=>labShell({title:'The first digit on a log scale',views:views([['log','Log scale'],['plain','Equal steps']],l.view),picture:picture(),
     legend:`<p class="lab-equation" data-no-translate>${l.k?`${grouped(String(x()))} = ${m()} × 10${sup(digits()-1)}`:'1 = 1 × 10⁰'}</p>`,
     status:status(),caption:l.view==='log'?'The marker shows m, where the number is m × 10ᵏ with 1 ≤ m < 10. On the log scale, every doubling moves the marker the same distance and wraps around at 10.':'The marker shows m, where the number is m × 10ᵏ with 1 ≤ m < 10. With equal steps, the stretch for each first digit has the same length.',
@@ -198,7 +200,7 @@ function wheelLab(l,action){
     body+=`<circle cx="${cx}" cy="${cy}" r="3" fill="#193347"/>`;
     return svg(body,l.view==='two'?'Mantissas of the powers of 2 on a circle split into nine arcs':'Mantissas of the powers of 10 on a circle split into nine arcs',260);};
   const status=()=>{if(!l.n)return l.view==='two'?'Each press adds the next power of 2, a turn of log₁₀ 2 ≈ 0.301 further.':'Each press adds the next power of 10, a whole turn further.';
-    const d=X.firstDigit(BigInt(base())**BigInt(l.n));return `The newest power lands in the arc for ${d}. Points so far: ${l.n}.`;};
+    const d=X.firstDigit(BigInt(base())**BigInt(l.n));return l.view==='ten'&&l.n>1?`Every power so far lands on the same point, in the arc for ${d}. Points so far: ${l.n}.`:`The newest power lands in the arc for ${d}. Points so far: ${l.n}.`;};
   const draw=()=>labShell({title:'Mantissas on a circle',views:views([['two','Powers of 2'],['ten','Powers of 10']],l.view),picture:picture(),
     legend:`<p class="lab-equation" data-no-translate>${l.n?`${powerText(base(),l.n)} → ${turn(l.n).toFixed(3)}`:`${base()}⁰ = 1 → 0.000`}</p>`,
     status:status(),caption:'The circle has circumference 1, and the arc for each digit d has length log₁₀(1 + 1/d). The number after the arrow is the mantissa.',
@@ -216,7 +218,7 @@ function unitsLab(l,action){
   const panel=(counts,total,dx,title)=>{const max=Math.max(...counts,Math.ceil(total*.31)),Y=v=>186-150*v/max;let body=`<text class="x-small" x="${dx+90}" y="16" text-anchor="middle" font-weight="700">${title}</text>`;
     counts.forEach((v,i)=>{const x=dx+4+i*20,e=total*X.benford(i+1);body+=`<rect x="${x}" y="${Y(v).toFixed(1)}" width="15" height="${(186-Y(v)).toFixed(1)}" rx="2" fill="${DIGIT_FILL[Math.min(i,3)]}"/><line x1="${x-2}" y1="${Y(e).toFixed(1)}" x2="${x+17}" y2="${Y(e).toFixed(1)}" stroke="${CUT}" stroke-width="2.2"/><text class="x-small" x="${x+7.5}" y="202" text-anchor="middle">${i+1}</text>`;});
     return body+`<line x1="${dx}" y1="186" x2="${dx+182}" y2="186" stroke="#9aaeb1"/>`;};
-  const picture=()=>svg(panel(A(),1000,14,'2¹ to 2¹⁰⁰⁰')+panel(B(),999,224,'1 to 999'),'First digits of two tables after a change of units',212);
+  const picture=()=>{const f=l.twos+l.threes?c()+' × ':'';return svg(panel(A(),1000,14,f?f+'(2¹ to 2¹⁰⁰⁰)':'2¹ to 2¹⁰⁰⁰')+panel(B(),999,224,f?f+'(1 to 999)':'1 to 999'),'First digits of two tables after a change of units',212);};
   const status=()=>{const a=A()[0],b=B()[0];return l.twos+l.threes?`Every number is multiplied by ${c()}. Powers of 2 starting with 1: ${a} of 1000. Whole numbers starting with 1: ${b} of 999.`:`Original units. Powers of 2 starting with 1: ${a} of 1000. Whole numbers starting with 1: ${b} of 999.`;};
   const draw=()=>labShell({title:'Change the units',picture:picture(),
     legend:`<p class="x-legend"><span class="x-legend-item"><span class="x-key" style="border-top-color:${CUT}"></span>Counts that Benford’s law predicts</span></p>`,
@@ -236,10 +238,11 @@ function testLab(l,action){
   const counts=()=>X.tally(TEST_SETS[l.set].values()),total=()=>counts().reduce((a,b)=>a+b,0);
   const picture=()=>{const o=counts(),n=total(),e=o.map((_,i)=>n*X.benford(i+1)),max=Math.max(...o,...e),parts=o.map((v,i)=>((v-e[i])**2/e[i]).toFixed(1));
     return svg(digitBars({values:o,ghosts:e,max,ticks:niceTicks(max),under:parts,h:262}),'Observed and expected first digits, with each digit’s share of chi-square',262);};
-  const status=()=>{const chi=X.chiSquare(counts());return chi<15.51?`χ² is about ${chi.toFixed(2)}, below 15.51: no evidence against Benford’s law.`:`χ² is about ${chi.toFixed(1)}, above 15.51: these first digits do not follow Benford’s law.`;};
+  const chiText=()=>{const chi=X.chiSquare(counts());return chi<15.51?chi.toFixed(2):chi.toFixed(1);};
+  const status=()=>X.chiSquare(counts())<15.51?`χ² is about ${chiText()}, below 15.51: no evidence against Benford’s law.`:`χ² is about ${chiText()}, above 15.51: these first digits do not follow Benford’s law.`;
   const draw=()=>labShell({title:'Test a data set',views:views([['threes','Powers of 3'],['fib','Fibonacci numbers'],['heights','Heights in cm']],l.set),picture:picture(),
     legend:`<p class="x-legend"><span class="x-legend-item"><span class="x-key x-key-bar"></span>Observed count O</span><span class="x-legend-item"><span class="x-key x-key-ghost"></span>Expected count E = n × P(d)</span></p>`,
-    rows:[['Numbers',String(total())],['χ²',X.chiSquare(counts()).toFixed(2)],['Limit at the 5% level','15.51']],
+    rows:[['Numbers',String(total())],['χ²',chiText()],['Critical value at the 5% level','15.51']],
     status:status(),caption:TEST_SETS[l.set].label+' The number under each digit is (O − E)²/E. Their sum is χ².',buttons:''});
   if(!action){draw();return;}
   if(action.startsWith('view-')&&TEST_SETS[action.slice(5)]){l.set=action.slice(5);draw();}

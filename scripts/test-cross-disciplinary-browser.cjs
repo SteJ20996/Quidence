@@ -88,11 +88,12 @@ async function main(){
   assert.equal(await run(0,['pow-ten','pow-ten','pow-ten','pow-ten','pow-one','pow-one','pow-one','pow-one','pow-one','pow-one']),'The newest power starts with 7. Powers counted: 46.');
   assert.match(await page.locator('#lab .lab-equation').textContent(),/2⁴⁶ = 70,368,744,177,664/);
   await run(0,['pow-ten','pow-ten','pow-ten','pow-ten','pow-ten','pow-one','pow-one','pow-one','pow-one']);
-  assert.deepEqual(await page.locator('#lab .x-readouts dd').allTextContents(),['100','30','5']);assert(await page.locator('#lab [data-lab="pow-one"]').isDisabled());
-  assert.equal(await run(1,Array(10).fill('ruler-double')),'Its first digit is 1.');assert.equal(normalize(await page.locator('#lab .lab-equation').textContent()),'1,024 = 1.024 × 10³');
+  assert.deepEqual(await page.locator('#lab .x-readouts dd').allTextContents(),['100','30','5']);
+  assert.deepEqual(await page.locator('#lab svg text[text-anchor="middle"]:not([font-weight])').allTextContents(),['30','17','13','10','7','7','6','5','5'],'step 6 can use the nine counts');assert(await page.locator('#lab [data-lab="pow-one"]').isDisabled());
+  assert.equal(await run(1,Array(10).fill('ruler-double')),'The first digit of the number is 1.');assert.equal(normalize(await page.locator('#lab .lab-equation').textContent()),'1,024 = 1.024 × 10³');
   assert.match(await run(2,['shares-compare']),/Red marks show the shares among 2¹ to 2¹⁰⁰⁰\./);assert.equal(await page.locator('#lab svg circle').count(),9);
   assert.equal(await run(3,['wheel-ten','wheel-ten','wheel-ten','wheel-ten','wheel-ten','wheel-one','wheel-one','wheel-one']),'The newest power lands in the arc for 9. Points so far: 53.');
-  assert.equal(await run(3,['view-ten','wheel-one','wheel-one','wheel-one']),'The newest power lands in the arc for 1. Points so far: 3.');
+  assert.equal(await run(3,['view-ten','wheel-one','wheel-one','wheel-one']),'Every power so far lands on the same point, in the arc for 1. Points so far: 3.');
   assert.equal(await run(4,['units-two']),'Every number is multiplied by 2. Powers of 2 starting with 1: 301 of 1000. Whole numbers starting with 1: 555 of 999.');
   assert.match(await run(5,['view-heights']),/^χ² is about 116\.1, above 15\.51/);
   assert.equal(await run(5,['view-threes']),'χ² is about 1.02, below 15.51: no evidence against Benford’s law.');
