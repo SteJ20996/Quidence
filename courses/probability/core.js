@@ -1,7 +1,7 @@
 (function(root){
   'use strict';
   // Calculations behind the Probability labs. Answer checking uses NTCore from the Number Theory course.
-  // Simulations use a seeded generator, so a lab and its tests see the same sequence of outcomes.
+  // Simulations use a seeded generator, so every visit sees the same repeatable sequence of outcomes.
   function random(seed){let s=seed>>>0;return()=>{s=(s+0x6D2B79F5)>>>0;let t=s;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296;};}
   function choose(n,k){if(k<0||k>n)return 0;let r=1;for(let i=1;i<=k;i++)r=r*(n-k+i)/i;return Math.round(r);}
   const binomial=(n,k,p)=>choose(n,k)*p**k*(1-p)**(n-k);

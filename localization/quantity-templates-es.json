@@ -864,8 +864,8 @@
     "Pruebas positivas: [n] de personas enfermas y [n] de personas sanas."
   ],
   [
-    "After two positive tests: [n] sick and [n] healthy people.",
-    "Después de dos pruebas positivas: [n] personas enfermas y [n] sanas."
+    "After two positive tests, on average: [n] sick and [n] healthy people.",
+    "Después de dos pruebas positivas, en promedio: [n] personas enfermas y [n] sanas."
   ],
   [
     "Gold drawn: [n] times. The other coin was gold [n] times.",

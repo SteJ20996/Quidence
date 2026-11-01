@@ -3,7 +3,7 @@ const C=NTCore,R=PRCore,storage={getItem:k=>(window.QuidenceStorage||window.loca
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const names={'pr-p01':'De Méré’s dice','pr-p02':'The problem of points','pr-p03':'A positive test','pr-p04':'Boxes and doors','pr-p05':'Shared birthdays','pr-p06':'Cards in place','pr-p07':'Waiting for a six','pr-p08':'Collecting stickers','pr-p09':'The Galton board','pr-p10':'The law of large numbers'};
 // Each opening banner poses the project's question; none states an answer that a step asks for.
-const banners={'pr-p01':'P(at least one six in 4 rolls)  vs  P(at least one double six in 24 rolls)','pr-p02':'A needs a, B needs b: who should get the pot?','pr-p03':'P(sick | positive) = ?','pr-p04':'Gold box · silver box · mixed box','pr-p05':'23 people, 365 days: a shared birthday?','pr-p06':'E[number of cards in place] = ?','pr-p07':'P(T = k) = (5/6)ᵏ⁻¹ × 1/6','pr-p08':'Rolls until every face has appeared = ?','pr-p09':'P(X = k) = C(n, k) pᵏ (1 − p)ⁿ⁻ᵏ','pr-p10':'P(|X̄ − 1/2| ≥ ε) → 0'};
+const banners={'pr-p01':'P(at least one six in 4 rolls)  vs  P(at least one double six in 24 rolls)','pr-p02':'A needs a, B needs b: who should get the pot?','pr-p03':'P(sick | positive) = ?','pr-p04':'Gold box · silver box · mixed box','pr-p05':'23 people, 365 days: a shared birthday?','pr-p06':'E[number of cards in place] = ?','pr-p07':'Rolls until the first six: T = ?','pr-p08':'Rolls until every face has appeared = ?','pr-p09':'n rows, right with probability p: which bin?','pr-p10':'P(|X̄ − 1/2| ≥ ε) → 0'};
 let projects=[],state={version:1,project:'pr-p01',steps:{},answers:{},checks:{},attempts:[]},saveTimer,toastTimer,storeAvailable=true,blockedOriginal=null,lastStored=null,saveBlocked=false,blockedReason='unreadable',unsavedWork=false,labState={};
 function current(){return projects.find(p=>p.id===state.project)||projects[0];}
 function stepIndex(){return Math.min(current().steps.length-1,Math.max(0,Number(state.steps[current().id])||0));}
@@ -75,18 +75,18 @@ function checkStep(){
 function showModal(title,html){$('modal-title').textContent=title;$('modal-body').innerHTML=html;$('modal').showModal();}
 function showToolkit(){
   const proofs=[
-    ['The rules of probability','For events in a finite space of equally likely outcomes, P(A) = (outcomes in A)/(all outcomes). Then P(not A) = 1 − P(A), and P(A or B) = P(A) + P(B) − P(A and B).',
-      'Every outcome is either in A or not, so the counts of A and of not A add up to all outcomes; dividing by that total gives P(A) + P(not A) = 1.',
-      'Counting the outcomes of A and then those of B counts the outcomes in both twice, so subtract them once: |A or B| = |A| + |B| − |A and B|. Divide by the total. When A and B cannot happen together, P(A or B) = P(A) + P(B). ∎'],
-    ['Conditional probability and independence','P(A | B) = P(A and B)/P(B) when P(B) > 0, so P(A and B) = P(A | B) P(B). Events A and B are independent when P(A and B) = P(A) P(B).',
-      'Knowing that B happened restricts attention to the outcomes in B. Among them, the outcomes of A are those in A and B, so the share of A is |A and B|/|B| = P(A and B)/P(B). Multiplying by P(B) gives the multiplication rule.',
-      'Independence means that knowing B does not change the chance of A: P(A | B) = P(A). Separate rolls of a die, separate tosses of a coin and separate bounces on a Galton board are modeled as independent, so their probabilities multiply. ∎'],
-    ['Bayes’ rule','If B₁, …, Bₖ are disjoint and one of them always happens, then P(A) = Σ P(A | Bᵢ) P(Bᵢ), and P(Bⱼ | A) = P(A | Bⱼ) P(Bⱼ) / Σ P(A | Bᵢ) P(Bᵢ).',
+    ['The rules of probability','A finite probability space gives each outcome ω a probability P(ω) ≥ 0, with total 1, and P(A) is the sum of P(ω) over the outcomes in A. When all n outcomes are equally likely, P(A) = (outcomes in A)/n. In every case P(not A) = 1 − P(A) and P(A or B) = P(A) + P(B) − P(A and B).',
+      'Each outcome is in exactly one of A and not A, so adding P(ω) over both gives the total: P(A) + P(not A) = 1.',
+      'Adding P(ω) over A and then over B counts the outcomes in both twice, so subtract them once: P(A or B) = P(A) + P(B) − P(A and B). When A and B cannot happen together, P(A or B) = P(A) + P(B). The same rules hold in infinite spaces, such as the number of rolls until a six, where P(A) is a convergent sum. ∎'],
+    ['Conditional probability and independence','P(A | B) = P(A and B)/P(B) when P(B) > 0, so P(A and B) = P(A | B) P(B). Events A and B are independent when P(A and B) = P(A) P(B). Events A₁, …, Aₙ are mutually independent when this product rule holds for every subcollection of them.',
+      'Knowing that B happened restricts attention to the outcomes in B, rescaled so that they add up to 1. The outcomes of A among them carry P(A and B), so the share of A is P(A and B)/P(B). Multiplying by P(B) gives the multiplication rule.',
+      'Independence means that knowing B does not change the chance of A: P(A | B) = P(A). Separate rolls of a die, separate tosses of a coin and separate bounces on a Galton board are modeled as mutually independent, so the probability of a sequence of results is the product of their probabilities. Independence two at a time is weaker: shared birthdays give events that are independent in pairs but not all together. ∎'],
+    ['Bayes’ rule','If B₁, …, Bₖ are disjoint events with positive probability and one of them always happens, then P(A) = Σ P(A | Bᵢ) P(Bᵢ), and when P(A) > 0, P(Bⱼ | A) = P(A | Bⱼ) P(Bⱼ) / Σ P(A | Bᵢ) P(Bᵢ).',
       'A happens together with exactly one of the Bᵢ, so P(A) is the sum of the P(A and Bᵢ) = P(A | Bᵢ) P(Bᵢ). This is the law of total probability.',
       'By the definition of conditional probability, P(Bⱼ | A) = P(A and Bⱼ)/P(A) = P(A | Bⱼ) P(Bⱼ)/P(A). Replace P(A) by the total from the first part. ∎'],
-    ['Linearity of expectation','A random variable X assigns a number to each outcome, and E[X] = Σ x P(X = x). For any random variables X and Y and numbers a and b, E[aX + bY] = a E[X] + b E[Y], whether or not X and Y are independent.',
-      'In a finite space, E[X] is also the sum of X(ω) P(ω) over the outcomes ω, because grouping the outcomes by the value of X gives the first formula. Then E[aX + bY] = Σ (a X(ω) + b Y(ω)) P(ω) = a Σ X(ω) P(ω) + b Σ Y(ω) P(ω).',
-      'No independence was used. For independent X and Y, variances also add: Var(X + Y) = Var(X) + Var(Y), because the cross term 2(E[XY] − E[X]E[Y]) is 0. ∎']
+    ['Expectation and variance','A random variable X assigns a number to each outcome, and E[X] = Σ x P(X = x). For any random variables X and Y and numbers a and b, E[aX + bY] = a E[X] + b E[Y], whether or not X and Y are independent, and if X ≤ Y for every outcome, then E[X] ≤ E[Y]. The variance is Var(X) = E[(X − E[X])²] = E[X²] − (E[X])².',
+      'In a finite space, E[X] is also the sum of X(ω) P(ω) over the outcomes ω, because grouping the outcomes by the value of X gives the first formula. Then E[aX + bY] = Σ (a X(ω) + b Y(ω)) P(ω) = a E[X] + b E[Y], and if X(ω) ≤ Y(ω) for every ω, the sums compare in the same way. Expanding (X − μ)² with μ = E[X] and using linearity gives Var(X) = E[X²] − 2μ² + μ² = E[X²] − μ².',
+      'Random variables X and Y are independent when every event about X is independent of every event about Y. Then E[XY] = Σ x y P(X = x) P(Y = y) = E[X] E[Y], so in Var(X + Y) = Var(X) + Var(Y) + 2(E[XY] − E[X] E[Y]) the last term is 0: variances of independent variables add. These results are proved here for finite spaces; they hold in the same form for the waiting times in the projects, whenever the expectations involved exist. ∎']
   ];
   showModal('Proof toolkit',`<p>These four foundation results are used throughout the projects. You can return to them whenever a step uses a rule you have not met before.</p><div>${proofs.map((a,i)=>`<details class="tool-proof" ${i===0?'open':''}><summary>${esc(a[0])}</summary><div>${a.slice(1).map(p=>`<p>${esc(p)}</p>`).join('')}</div></details>`).join('')}</div>`);
 }
@@ -140,9 +140,9 @@ function renderLab(){
       for(const [p,color]of [[1/6,GREEN],[1/36,CORAL]])body+=`<polyline fill="none" stroke="${color}" stroke-width="2.4" points="${Array.from({length:40},(_,i)=>`${X(i+1).toFixed(1)},${Y(R.atLeastOne(p,i+1)).toFixed(1)}`).join(' ')}"/>`;
       body+=`<line x1="${X(1)}" y1="${Y(1/36)}" x2="${X(36)}" y2="${Y(1)}" stroke="${CORAL}" stroke-width="1.4" stroke-dasharray="2 3"/><line x1="${X(l.n)}" y1="${Y(0)}" x2="${X(l.n)}" y2="${Y(1)}" stroke="${INK}" stroke-width="1"/>`;
       for(const v of [1,10,20,30,40])body+=txt(X(v),Y(0)+14,v,'text-anchor="middle"');
-      const above=p=>R.atLeastOne(p,l.n)>.5?'above':'below';
+      const sym=p=>R.atLeastOne(p,l.n)>.5?'>':'<';
       html=svg(body,'Probability of at least one six, and of at least one double six, against the number of rolls',222)+`<div class="lab-key"><span><i style="background:${GREEN}"></i>At least one six (one die)</span><span><i style="background:${CORAL}"></i>At least one double six (two dice)</span><span><i class="key-dots"></i>Expected double sixes, n/36</span></div>`
-        +status([`Rolls: ${l.n}.`,`The one-die bet is ${above(1/6)} one half, and the two-dice bet is ${above(1/36)} one half.`])+caption('The dotted line grows in proportion to the number of rolls; the chance of at least one double six grows more slowly.')
+        +status([`Rolls: ${l.n}.`,`P(at least one six) ${sym(1/6)} 1/2 and P(at least one double six) ${sym(1/36)} 1/2.`])+caption('The dotted line grows in proportion to the number of rolls; the chance of at least one double six grows more slowly.')
         +buttons([labButton('bets-less','One roll fewer',l.n<=1),labButton('bets-more','One roll more',l.n>=40),labButton('dice-grid','Back to the 36 outcomes')]);
     }
   }else if(id==='pr-p02'){
@@ -155,14 +155,14 @@ function renderLab(){
       +buttons([labButton('points-0','A needs 1, B needs 2',false,l.which===0),labButton('points-1','A needs 2, B needs 3',false,l.which===1),labButton('points-2','A needs 3, B needs 4',false,l.which===2),labButton('points-count',l.counted?'Hide the count':'Outline A’s wins')]);
   }else if(id==='pr-p03'){
     title='Test ten thousand people';l.prev??=1;l.stage??=0;l.acted??=false;
-    const c=R.screening(10000,l.prev/100,.9,.09),second={tp:Math.round(c.truePositive*.9),fp:Math.round(c.falsePositive*.09)};
+    const c=R.screening(10000,l.prev/100,.9,.09),exact={tp:c.truePositive*.9,fp:c.falsePositive*.09},second={tp:Math.round(exact.tp),fp:Math.round(exact.fp)},avg=x=>String(Math.round(x*100)/100);
     const groups=l.stage===0&&!l.acted?[[10000,'#dfe8e4']]:l.stage===0?[[c.sick,'#8a3b2c'],[c.healthy,'#dfe8e4']]:l.stage===1?[[c.truePositive,CORAL],[c.sick-c.truePositive,'#8a3b2c'],[c.falsePositive,GOLD],[c.healthy-c.falsePositive,'#dfe8e4']]:[[second.tp,CORAL],[c.truePositive-second.tp,'#8a3b2c'],[second.fp,GOLD],[c.falsePositive-second.fp,'#dfe8e4']];
     const total=groups.reduce((s,g)=>s+g[0],0),per=l.stage===2?40:100,size=l.stage===2?7.5:2.95;let body='',i=0;
     for(const [count,color]of groups)for(let k=0;k<count;k++,i++)body+=`<rect x="${(12+(i%per)*size*(l.stage===2?1:1.02)).toFixed(1)}" y="${(10+Math.floor(i/per)*size*(l.stage===2?1:1.02)).toFixed(1)}" width="${(size*.88).toFixed(2)}" height="${(size*.88).toFixed(2)}" fill="${color}"/>`;
-    const lines=l.stage===0&&!l.acted?['Ten thousand people, before anyone is tested.']:l.stage===0?[`${c.sick} of 10000 people are sick.`]:l.stage===1?[`Positive tests: ${c.truePositive} from sick people and ${c.falsePositive} from healthy people.`]:[`After two positive tests: ${second.tp} sick and ${second.fp} healthy people.`];
+    const lines=l.stage===0&&!l.acted?['Ten thousand people, before anyone is tested.']:l.stage===0?[`${c.sick} of 10000 people are sick.`]:l.stage===1?[`Positive tests: ${c.truePositive} from sick people and ${c.falsePositive} from healthy people.`]:[`After two positive tests, on average: ${avg(exact.tp)} sick and ${avg(exact.fp)} healthy people.`];
     html=svg(body,l.stage===2?'The people who tested positive, after a second test':'Ten thousand people, colored by health and test result',l.stage===2?Math.ceil(total/per)*7.5+20:318)
       +`<div class="lab-key"><span><i style="background:${CORAL}"></i>Sick, positive</span><span><i style="background:#8a3b2c"></i>Sick, negative</span><span><i style="background:${GOLD}"></i>Healthy, positive</span><span><i style="background:#dfe8e4"></i>Healthy, negative</span></div>`
-      +status(lines)+caption(l.stage===2?'Only the people who tested positive take the second test.':'One square for each person. The test finds 90% of the sick and wrongly flags 9% of the healthy.')
+      +status(lines)+caption(l.stage===2?'Only the people who tested positive take the second test. For people in the same health, its result is independent of the first test.':'One square for each person. The test finds 90% of the sick and wrongly flags 9% of the healthy.')
       +buttons([labButton('screen-test','Test everyone',l.stage!==0),labButton('screen-again','Test the positives again',l.stage!==1),labButton('screen-1','Population: 1% sick',false,l.prev===1),labButton('screen-10','Clinic: 10% sick',false,l.prev===10)]);
   }else if(id==='pr-p04'){
     l.view??='coins';l.seed??=7;
@@ -181,14 +181,14 @@ function renderLab(){
     }
   }else if(id==='pr-p05'){
     title='How many people?';l.n??=10;const X=n=>30+n*4.9,Y=p=>196-170*p;let body=`<line x1="${X(0)}" y1="${Y(0)}" x2="${X(60)}" y2="${Y(0)}" stroke="${LINE}"/><line x1="${X(0)}" y1="${Y(.5)}" x2="${X(60)}" y2="${Y(.5)}" stroke="${MUTED}" stroke-dasharray="4 3"/>`+txt(X(60),Y(.5)-5,'1/2','text-anchor="end"');
-    body+=`<polyline fill="none" stroke="${GREEN}" stroke-width="2.4" points="${Array.from({length:60},(_,i)=>`${X(i+1).toFixed(1)},${Y(R.sharedBirthday(i+1)).toFixed(1)}`).join(' ')}"/><circle cx="${X(l.n).toFixed(1)}" cy="${Y(R.sharedBirthday(l.n)).toFixed(1)}" r="5.5" fill="${CORAL}"/>`;
+    body+=`<polyline fill="none" stroke="${GREEN}" stroke-width="2.4" points="${Array.from({length:l.n},(_,i)=>`${X(i+1).toFixed(1)},${Y(R.sharedBirthday(i+1)).toFixed(1)}`).join(' ')}"/><circle cx="${X(l.n).toFixed(1)}" cy="${Y(R.sharedBirthday(l.n)).toFixed(1)}" r="5.5" fill="${CORAL}"/>`;
     for(const v of [1,10,20,30,40,50,60])body+=txt(X(v),Y(0)+14,v,'text-anchor="middle"');
-    html=svg(body,'Probability of a shared birthday against the number of people',220)+status([`People: ${l.n}. Pairs: ${R.choose(l.n,2)}.`,R.sharedBirthday(l.n)>.5?'A shared birthday is more likely than not.':'A shared birthday is less likely than not.'])+caption('Every pair of people is a chance for a match, and the number of pairs grows much faster than the number of people.')
+    html=svg(body,'Probability of a shared birthday against the number of people',220)+status([`People: ${l.n}. Pairs: ${R.choose(l.n,2)}.`,R.sharedBirthday(l.n)>.5?'The probability of a shared birthday is above 1/2.':'The probability of a shared birthday is below 1/2.'])+caption('Every pair of people is a chance for a match, and the number of pairs grows much faster than the number of people.')
       +buttons([labButton('bday-less','One person fewer',l.n<=2),labButton('bday-more','One person more',l.n>=60),labButton('bday-less10','Ten fewer',l.n<=11),labButton('bday-more10','Ten more',l.n>=51)]);
   }else if(id==='pr-p06'){
     title='Shuffle eight cards';l.counts??=Array(9).fill(0);l.shuffles??=0;l.total??=0;l.last??=null;l.seed??=11;let body='';
     (l.last||[1,2,3,4,5,6,7,8]).forEach((c,i)=>{const fixed=l.last&&c===i+1;body+=`<rect x="${14+i*38.5}" y="18" width="32" height="44" rx="5" fill="${fixed?GREEN:'#ffffff'}" stroke="${fixed?GREEN:LINE}"/><text x="${30+i*38.5}" y="46" text-anchor="middle" font-family="Georgia" font-size="16" fill="${fixed?'#ffffff':INK}">${c}</text>`+txt(30+i*38.5,76,i+1,'text-anchor="middle"');});
-    const shown=l.counts.slice(0,6),expected=shown.map((_,k)=>l.shuffles*Math.exp(-1)/[1,1,2,6,24,120][k]);
+    const D=[1,0,1,2,9,44,265,1854,14833],shown=l.counts.slice(0,6),expected=shown.map((_,k)=>l.shuffles*R.choose(8,k)*D[8-k]/40320);
     body+=bars(shown,{base:214,top:96,max:Math.max(1,...shown,...expected),labels:['0','1','2','3','4','5'],expected});
     html=svg(body,'The last shuffle, with fixed points in green, and how many fixed points each shuffle had',234)+expectedKey('Shuffles with this many fixed points')
       +status([`Shuffles: ${l.shuffles}.`,l.shuffles?`Average number of fixed points: ${(l.total/l.shuffles).toFixed(2)}.`:''])+caption('The numbers under the cards are the positions. A card is a fixed point when its number matches its position.')
@@ -228,6 +228,8 @@ function renderLab(){
       +caption('The horizontal scale is stretched at the start, where the fraction moves most. The shaded band is within 0.05 of 1/2.')
       +buttons([labButton('toss-10','Toss 10 times',l.n>=N),labButton('toss-100','Toss 100 times',l.n>=N),labButton('toss-1000','Toss 1000 times',l.n>=N),labButton('toss-reset','Start again',!l.n)]);
   }
+  // The random labs replay the same pseudo-random sequence on every visit; say so, and keep proofs as the authority.
+  if(['pr-p04','pr-p06','pr-p07','pr-p08','pr-p09','pr-p10'].includes(id))html+=caption('Simulated with a repeatable pseudo-random generator. Frequencies suggest; the proofs decide.');
   $('lab-title').textContent=title;$('lab').innerHTML=html;
 }
 function labAction(action){

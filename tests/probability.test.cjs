@@ -157,3 +157,15 @@ test('lab helpers: reproducible simulations and the counts the labs show',()=>{
  const rand=R.random(41),counts=Array(9).fill(0);for(let i=0;i<20000;i++)counts[R.galton(8,.5,rand).reduce((s,x)=>s+x,0)]++;
  counts.forEach((c,k)=>assert.ok(Math.abs(c/20000-R.binomial(8,k,.5))<0.015,'bin '+k));
 });
+test('a stated number of decimal places matches the places the grader requires, in both languages',()=>{
+ const source=require('../content/probability/projects.cjs');let checked=0;
+ for(const p of source)for(const s of p.steps)for(const f of s.fields){
+  if(f.type!=='number')continue;
+  const en=(f.label.en||'').match(/at least (\d+) (?:decimal )?places/),es=(f.label.es||'').match(/al menos (\d+) decimales/);
+  if(f.minDecimalPlaces>1||en||es){
+   assert(en&&es,p.id+' '+f.id+' must state its places in English and Spanish');
+   assert.equal(Number(en[1]),f.minDecimalPlaces,p.id+' '+f.id+' English places');assert.equal(Number(es[1]),f.minDecimalPlaces,p.id+' '+f.id+' Spanish places');checked++;
+  }
+ }
+ assert(checked>=30,String(checked));
+});

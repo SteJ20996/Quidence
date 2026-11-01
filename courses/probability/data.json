@@ -6,12 +6,12 @@
   "level": "High-school foundation",
   "difficulty": "medium",
   "topic": "Equally likely outcomes, the complement rule and independent repetitions",
-  "prompt": "In 1654 Blaise Pascal wrote to Pierre de Fermat about questions from the Chevalier de Méré, a French gambler. Two bets are attached to his name. Bet A: roll one die 4 times and win if at least one six appears. Bet B: roll two dice 24 times and win if at least one double six appears. A tempting argument says that a six has chance 1/6 per roll, so 4 rolls give 4/6, while a double six has chance 1/36, so 24 rolls give 24/36 = 4/6 as well. Find the real chances of the two bets and see where the argument breaks.",
+  "prompt": "In 1654 Blaise Pascal wrote to Pierre de Fermat about questions from the Chevalier de Méré, a French writer and gambler. Two bets are attached to his name. Bet A: roll one fair die 4 times and win if at least one six appears. Bet B: roll two fair dice 24 times and win if at least one double six appears. All rolls are independent. A tempting argument says that a six has chance 1/6 per roll, so 4 rolls give 4/6, while a double six has chance 1/36, so 24 rolls give 24/36 = 4/6 as well. Find the real chances of the two bets and see where the argument breaks.",
   "approach": "Instead of adding chances, which can add up to more than 1, count the ways to lose. Separate rolls are independent, so the chance of losing every time is a product. One minus that product is the chance of winning at least once.",
   "uses": "Equally likely outcomes; the complement rule P(not A) = 1 − P(A); the product rule for independent events (both in the proof toolkit).",
   "steps": [
    {
-    "title": "Two dice, 36 outcomes",
+    "title": "Two dice, ordered pairs",
     "prompt": "Roll a red die and a blue die, and record the outcome as an ordered pair (red, blue). How many outcomes are there? How many give a sum of 7? What is the probability of a double six?",
     "proof": "Each die has 6 faces, so there are 6 × 6 = 36 ordered pairs. For fair dice rolled independently, all 36 are equally likely, so an event made of k of them has probability k/36.\n\nA sum of 7 comes from (1, 6), (2, 5), (3, 4), (4, 3), (5, 2) and (6, 1): 6 outcomes, so its probability is 6/36 = 1/6. A double six is only (6, 6), with probability 1/36.\n\nThe pairs must be ordered. The 21 unordered results, such as “a 1 and a 6”, are not equally likely: “a 1 and a 6” happens in two ways, while “two sixes” happens in one.",
     "fields": [
@@ -78,15 +78,15 @@
       "options": [
        {
         "value": "overlap",
-        "label": "the events “a six on roll k” overlap, so games with several sixes are counted more than once"
+        "label": "games with two or more sixes are counted more than once"
        },
        {
         "value": "order",
-        "label": "it ignores the order in which the rolls are made"
+        "label": "it ignores the order in which the four rolls are made"
        },
        {
         "value": "fair",
-        "label": "real dice are never perfectly fair"
+        "label": "real dice are never perfectly fair, so 1/6 is only approximate"
        }
       ]
      }
@@ -94,7 +94,7 @@
    },
    {
     "title": "The double-six bet",
-    "prompt": "For bet B, find the probability of at least one double six in 24 rolls of two dice, to three decimal places. Is bet B better or worse than an even bet?",
+    "prompt": "For bet B, find the probability of at least one double six in 24 rolls of two dice, to three decimal places. Is bet B better or worse than an even bet (probability 1/2)?",
     "proof": "One roll of two dice misses a double six with probability 35/36. The 24 rolls are independent, so P(no double six) = (35/36)²⁴ ≈ 0.5086.\n\nSo P(at least one double six) = 1 − (35/36)²⁴ ≈ 0.491, a little worse than even, while bet A wins with probability about 0.518.\n\nThe difference is less than 3 percentage points. Telling two such bets apart reliably from experience takes thousands of games of each, so the old story that de Méré noticed it at the gaming table is doubtful; the calculation, not the experience, settles it.",
     "fields": [
      {
@@ -130,9 +130,9 @@
     ]
    },
    {
-    "title": "How many rolls make it fair?",
+    "title": "How many rolls make it favorable?",
     "prompt": "Find the smallest number of rolls of two dice for which at least one double six is more likely than not. Then explain what the tempting argument 4/6 = 24/36 really compares.",
-    "proof": "We need 1 − (35/36)ⁿ > 1/2, that is, (35/36)ⁿ < 1/2. Since (35/36)²⁴ ≈ 0.5086 and (35/36)²⁵ ≈ 0.4945, the smallest such n is 25.\n\nThe numbers 4/6 and 24/36 are expected counts: in 4 rolls the average number of sixes is 4 × 1/6 = 2/3, and in 24 rolls of two dice the average number of double sixes is 24 × 1/36 = 2/3. Equal averages do not give equal chances of at least one success.\n\nIn general 1 − (1 − p)ⁿ is less than np, because a game with several successes counts once in the probability but several times in the average. For small p the gap is larger, which is why bet B, with the rarer success, loses out.",
+    "proof": "We need 1 − (35/36)ⁿ > 1/2, that is, (35/36)ⁿ < 1/2. Since (35/36)²⁴ ≈ 0.5086 and (35/36)²⁵ ≈ 0.4945, the smallest such n is 25.\n\nThe numbers 4/6 and 24/36 are expected counts: in 4 rolls the average number of sixes is 4 × 1/6 = 2/3, and in 24 rolls of two dice the average number of double sixes is 24 × 1/36 = 2/3. Equal averages do not give equal chances of at least one success.\n\nIn general 1 − (1 − p)ⁿ is at most np, with equality only when n = 1 or p = 0, because a game with several successes counts once in the probability but several times in the average. When the average np is the same, the gap is larger for smaller p, since 1 − (1 − λ/n)ⁿ decreases as n grows; that is why bet B, with the rarer success and more rolls, loses out.",
     "fields": [
      {
       "id": "fairRolls",
@@ -149,7 +149,7 @@
       "type": "reason",
       "criteria": [
        "4/6 and 24/36 are the expected numbers of successes, n × p, in the two bets, and they are both 2/3.",
-       "The chance of at least one success is 1 − (1 − p)ⁿ, which counts a game with several successes once; it is not proportional to n and is smaller for the bet with the rarer success."
+       "The chance of at least one success is 1 − (1 − p)ⁿ, which counts a game with several successes once; it is not proportional to n and, for the same np, is smaller for the bet with the rarer success."
       ],
       "followup": "Show that 1 − (1 − p)ⁿ ≤ np for every n ≥ 1 and 0 ≤ p ≤ 1."
      }
@@ -165,7 +165,7 @@
   "level": "High-school foundation",
   "difficulty": "medium",
   "topic": "Counting equally likely futures, and the beginning of expected value",
-  "prompt": "Two players, A and B, each put 32 coins into a pot of 64. They play rounds that each player wins with probability 1/2, independently, and the first to win a set number of rounds takes the pot. The game is stopped early. How should the pot be divided fairly? In their letters of 1654, Pascal and Fermat agreed that each player should receive the pot times their chance of winning had the game continued.",
+  "prompt": "Two players, A and B, each put 32 coins into a pot of 64. They play rounds that each player wins with probability 1/2, independently, and the first to win a set number of rounds takes the pot. The game is stopped early. How should the pot be divided fairly? In their letters of 1654, Pascal and Fermat agreed on how to divide it; in modern terms, each player receives the pot times their probability of winning had the game continued.",
   "approach": "Imagine the game continuing for the largest number of rounds it could still need, even if it would have ended sooner. All sequences of those rounds are equally likely, and each one decides the winner. Count the sequences in which A wins.",
   "uses": "Equally likely outcomes; binomial coefficients C(n, k) (Discrete Mathematics toolkit); a fair share as an expected value.",
   "steps": [
@@ -294,7 +294,7 @@
     ]
    }
   ],
-  "nextCheck": "Pascal solved the same problem with a recursion instead of counting: if A needs a and B needs b, then P(a, b) = ½P(a − 1, b) + ½P(a, b − 1). Check that this gives 21/32 for a = 3 and b = 4, and prove that it always agrees with the counting formula."
+  "nextCheck": "Pascal solved the same problem with a recursion instead of counting: if A needs a and B needs b, then P(a, b) = ½P(a − 1, b) + ½P(a, b − 1), with P(0, b) = 1 and P(a, 0) = 0. Check that this gives 21/32 for a = 3 and b = 4, and prove that it always agrees with the counting formula."
  },
  {
   "id": "pr-p03",
@@ -364,15 +364,15 @@
       "options": [
        {
         "value": "baseRate",
-        "label": "healthy people far outnumber sick ones, so false positives outnumber true positives"
+        "label": "with so many healthy people, false positives outnumber true positives"
        },
        {
         "value": "misses",
-        "label": "the test misses 10% of the sick people"
+        "label": "the test misses 10% of the sick people, which lowers the result"
        },
        {
         "value": "random",
-        "label": "test results are random"
+        "label": "test results are random, so a single result proves little"
        }
       ]
      }
@@ -408,7 +408,7 @@
    {
     "title": "Where the base rate changes",
     "prompt": "In a clinic where 10% of the patients have the disease, the same test is positive. Find the probability of disease. Explain why the same test result means different things in the two settings.",
-    "proof": "Of 10,000 patients, 1,000 are sick and 900 of them test positive; 9,000 are healthy and 810 of them test positive. So P(sick | positive) = 900/1,710 = 10/19 ≈ 0.526.\n\nThe test’s two rates describe the test, but the probability of disease after a positive result also depends on the probability before it. Where the disease is ten times as common, a positive result is about six times as convincing.",
+    "proof": "Of 10,000 patients, 1,000 are sick and 900 of them test positive; 9,000 are healthy and 810 of them test positive. So P(sick | positive) = 900/1,710 = 10/19 ≈ 0.526.\n\nThe test’s two rates describe the test, but the probability of disease after a positive result also depends on the probability before it. The evidence is the same in both places: a positive result is 10 times as likely for a sick person as for a healthy one (0.9/0.09). Because the disease is ten times as common in the clinic, the same result leaves it about six times as probable (0.526 against 0.092).",
     "fields": [
      {
       "id": "clinic",
@@ -442,7 +442,7 @@
   "level": "Bridge (high school to undergraduate)",
   "difficulty": "challenging",
   "topic": "Conditional probability when the condition comes from a process",
-  "prompt": "In 1889 Joseph Bertrand described three boxes: one holds two gold coins, one holds two silver coins, and one holds a gold coin and a silver coin. You choose a box at random and draw one of its coins at random; it is gold. What is the probability that the other coin in that box is gold? Then study a game-show puzzle with the same structure, made famous by Steve Selvin’s letters of 1975 and Marilyn vos Savant’s column of 1990.",
+  "prompt": "In 1889 Joseph Bertrand described three boxes: one holds two gold coins, one holds two silver coins, and one holds a gold coin and a silver coin. You choose a box at random and draw one of its coins at random; it is gold. What is the probability that the other coin in that box is gold? Then study a game-show puzzle with the same structure, posed by Steve Selvin in two 1975 letters to The American Statistician and made famous by Marilyn vos Savant’s Parade column of 1990.",
   "approach": "Count equally likely draws, not boxes: each of the six coins is equally likely to be the one you see. For the game show, write down exactly what the host does in every case. The host’s rule, not just what you see, decides the answer.",
   "uses": "Conditional probability and Bayes’ rule (proof toolkit); equally likely outcomes.",
   "steps": [
@@ -495,15 +495,15 @@
       "options": [
        {
         "value": "twice",
-        "label": "the gold box shows gold twice as often as the mixed box, so seeing gold makes it twice as likely"
+        "label": "the gold box shows gold twice as often as the mixed box"
        },
        {
         "value": "silver",
-        "label": "the silver box could still have been chosen"
+        "label": "the silver box could still have been the one you chose"
        },
        {
         "value": "order",
-        "label": "the coins in a box are drawn in a fixed order"
+        "label": "the two coins in a box are drawn in a fixed order"
        }
       ]
      }
@@ -559,15 +559,15 @@
       "options": [
        {
         "value": "process",
-        "label": "a host who opens doors at random could have revealed the prize, so an empty door also supports your first choice"
+        "label": "a random host could have revealed the prize, so an empty door tells you something else"
        },
        {
         "value": "same",
-        "label": "it does not change; switching still wins with probability 2/3"
+        "label": "it does not change: switching still wins with probability 2/3, as before"
        },
        {
         "value": "doors",
-        "label": "there are now fewer closed doors than before"
+        "label": "there are now fewer closed doors than at the start of the game"
        }
       ]
      }
@@ -633,7 +633,7 @@
    {
     "title": "Count the pairs",
     "prompt": "How many pairs of people are there among 23? For one pair, what is the probability that the two share a birthday? Estimate the probability of no shared birthday by treating the pairs as if they were independent.",
-    "proof": "There are C(23, 2) = 23 × 22/2 = 253 pairs. For one pair, the second birthday matches the first with probability 1/365.\n\nIf the 253 pairs were independent, P(no match) would be (364/365)²⁵³ ≈ 0.4995, very close to the exact 0.4927. The pairs are not quite independent: if Ana matches Ben and Ben matches Carla, then Ana matches Carla.\n\nThe expected number of matching pairs is 253/365 ≈ 0.69, by linearity: with so many pairs, a match stops being surprising.",
+    "proof": "There are C(23, 2) = 23 × 22/2 = 253 pairs. For one pair, the second birthday matches the first with probability 1/365.\n\nIf the 253 pairs were all independent, P(no match) would be (364/365)²⁵³, close to the exact 0.4927. Any two pairs are independent, but not all of them together: if Ana matches Ben and Ben matches Carla, then Ana matches Carla, so P(all three of their pairs match) = 1/365², not (1/365)³.\n\nThe expected number of matching pairs is 253/365 ≈ 0.69, by linearity: with so many pairs, a match stops being surprising.",
     "fields": [
      {
       "id": "pairs23",
@@ -646,7 +646,7 @@
      },
      {
       "id": "pairMatch",
-      "label": "P(one pair shares a birthday) (fraction, or decimal to at least 3 places)",
+      "label": "P(one pair shares a birthday) (fraction, or decimal to at least 4 places)",
       "type": "number",
       "answer": "1/365",
       "accepted": [
@@ -672,13 +672,13 @@
      },
      {
       "id": "pairsChances",
-      "label": "Explain why 253 is so much larger than 23",
+      "label": "Explain why your answer is so much larger than 23",
       "type": "reason",
       "criteria": [
        "For your own birthday, each other person is one chance with probability 1/365, so (364/365)ⁿ < 1/2 first holds at n = 253.",
        "In a group, every pair is a chance, and 23 people form C(23, 2) = 253 pairs, so the group reaches about the same number of chances with far fewer people."
       ],
-      "followup": "The pairs in a group are not independent. Give three people whose pairwise matches depend on one another."
+      "followup": "Any two pair-matches are independent, but the pairs are not independent all together. Show this with three people."
      }
     ]
    }
@@ -692,7 +692,7 @@
   "level": "Bridge (high school to undergraduate)",
   "difficulty": "challenging",
   "topic": "Random variables, indicator variables and linearity of expectation",
-  "prompt": "Shuffle n cards numbered 1 to n so that all n! orders are equally likely. A card is a fixed point if it lands in its own position, card k in position k. How many fixed points do you expect on average, and how much does the number vary? Surprisingly, the answers do not depend on n.",
+  "prompt": "Shuffle n cards numbered 1 to n so that all n! orders are equally likely. A card is a fixed point if it lands in its own position, card k in position k. How many fixed points do you expect on average, and how much does the number vary? Surprisingly, for n ≥ 2 the answers do not depend on n.",
   "approach": "Write the number of fixed points as a sum of indicator variables, one per card: Iₖ is 1 if card k lands in place and 0 otherwise. The expected value of a sum is the sum of the expected values, even when the terms depend on one another.",
   "uses": "Random variables, expected value and variance; linearity of expectation (proof toolkit); derangements from Mixed-up hats (Discrete Mathematics).",
   "steps": [
@@ -807,15 +807,15 @@
       "options": [
        {
         "value": "poisson",
-        "label": "P(no fixed point) approaches 1/e, and the number of fixed points behaves like a Poisson count with mean 1"
+        "label": "P(no fixed point) approaches 1/e ≈ 0.368"
        },
        {
         "value": "zero",
-        "label": "P(no fixed point) approaches 0, because there are more cards that could land in place"
+        "label": "P(no fixed point) approaches 0, since more cards could land in place"
        },
        {
         "value": "half",
-        "label": "P(no fixed point) approaches 1/2"
+        "label": "P(no fixed point) approaches 1/2, as for a fair coin"
        }
       ]
      }
@@ -962,7 +962,7 @@
   "level": "Bridge (high school to undergraduate)",
   "difficulty": "challenging",
   "topic": "Waiting times in stages, and the harmonic numbers",
-  "prompt": "Each cereal box holds one of n different stickers, each equally likely and independent of the other boxes. How many boxes do you expect to open to collect all n? Start with a die: how many rolls do you expect to need before every face has appeared?",
+  "prompt": "Each cereal box holds one of n different stickers, each equally likely and independent of the other boxes. How many boxes do you expect to open to collect all n? Start with a fair die: how many rolls do you expect to need before every face has appeared?",
   "approach": "Split the wait into stages. When you already have k different stickers, each new box brings a new one with probability (n − k)/n, so the stage is a geometric wait with mean n/(n − k). Add the stage means by linearity.",
   "uses": "The mean 1/p of a geometric wait (Waiting for a six); linearity of expectation (proof toolkit).",
   "steps": [
@@ -1159,7 +1159,7 @@
    {
     "title": "A tilted board",
     "prompt": "Tilt the board so that p = 0.3, with n = 10 rows. Find the probability that a ball lands in bin 3, to three decimal places.",
-    "proof": "P(X = 3) = C(10, 3) × 0.3³ × 0.7⁷ = 120 × 0.027 × 0.0823543 ≈ 0.267.\n\nThe mean is np = 3, and bin 3 is also the bin with the highest probability, as step 4 shows.",
+    "proof": "P(X = 3) = C(10, 3) × 0.3³ × 0.7⁷ = 120 × 0.027 × 0.0823543 ≈ 0.267.\n\nThe mean is np = 3; step 4 asks which bin is the most likely.",
     "fields": [
      {
       "id": "tilted3",
@@ -1209,7 +1209,7 @@
   "level": "Intro undergraduate",
   "difficulty": "challenging",
   "topic": "Markov’s and Chebyshev’s inequalities, and why averages settle down",
-  "prompt": "Toss a fair coin n times. The fraction of heads wanders at first but settles near 1/2. Jacob Bernoulli proved a first version of this law, published in 1713 in Ars Conjectandi. Prove it with Chebyshev’s inequality, find how many tosses guarantee a given accuracy, and compare the guarantee with the exact probabilities.",
+  "prompt": "Toss a fair coin n times. The fraction of heads wanders at first but settles near 1/2. Jacob Bernoulli proved a first version of this law, published after his death, in 1713, in Ars Conjectandi. Prove it with Chebyshev’s inequality, find how many tosses guarantee a given accuracy, and compare the guarantee with the exact probabilities.",
   "approach": "A nonnegative variable cannot often be much larger than its mean; that is Markov’s inequality. Apply it to the squared distance from the mean to get Chebyshev’s inequality. The fraction of heads has variance 1/(4n), which shrinks as n grows.",
   "uses": "Expected value and variance; variances of independent variables add (proof toolkit); the binomial distribution (The Galton board).",
   "steps": [
@@ -1259,12 +1259,12 @@
    },
    {
     "title": "The fraction of heads",
-    "prompt": "Let X̄ = X/n be the fraction of heads in n fair tosses. Show that P(|X̄ − 1/2| ≥ ε) ≤ 1/(4nε²). How many tosses guarantee that P(|X̄ − 1/2| ≥ 0.05) ≤ 0.05?",
+    "prompt": "Let X̄ = X/n be the fraction of heads in n fair tosses. Show that P(|X̄ − 1/2| ≥ ε) ≤ 1/(4nε²). What is the smallest n for which Chebyshev’s bound 1/(4nε²) guarantees P(|X̄ − 1/2| ≥ 0.05) ≤ 0.05?",
     "proof": "E[X̄] = 1/2 and Var(X̄) = Var(X)/n² = (n/4)/n² = 1/(4n). Chebyshev’s inequality gives P(|X̄ − 1/2| ≥ ε) ≤ 1/(4nε²).\n\nFor ε = 0.05 the bound is 1/(4n × 0.0025) = 100/n, which is at most 0.05 when n ≥ 2,000.\n\nFor any fixed ε > 0 the bound tends to 0 as n grows. This is the weak law of large numbers for coin tosses: the fraction of heads converges to 1/2 in probability.",
     "fields": [
      {
       "id": "tossesNeeded",
-      "label": "Tosses that guarantee the bound 0.05",
+      "label": "Smallest n for which Chebyshev’s bound is at most 0.05",
       "type": "number",
       "answer": "2000",
       "accepted": [
@@ -1306,11 +1306,11 @@
       "options": [
        {
         "value": "loose",
-        "label": "correct but loose, because it uses only the mean and the variance"
+        "label": "correct but loose: it uses only the mean and the variance"
        },
        {
         "value": "exact",
-        "label": "the exact probability"
+        "label": "the exact probability, since the variance is known exactly"
        },
        {
         "value": "wrong",
@@ -1321,6 +1321,6 @@
     ]
    }
   ],
-  "nextCheck": "Chebyshev’s bound shrinks like 1/n. For coin tosses the true probability shrinks much faster. Use the exact binomial probabilities to estimate how many tosses make P(|fraction − 1/2| ≥ 0.05) at most 0.05, and compare with the 2,000 tosses that Chebyshev guarantees."
+  "nextCheck": "Chebyshev’s bound shrinks like 1/n. For coin tosses the true probability shrinks much faster. Use the exact binomial probabilities to find the n beyond which P(|fraction − 1/2| ≥ 0.05) stays at most 0.05, and compare with the 2,000 tosses that Chebyshev guarantees."
  }
 ]

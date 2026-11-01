@@ -23072,16 +23072,16 @@
       "title": "De Méré’s dice: when adding chances fails",
       "bankVersion": "probability-v1",
       "availability": "active",
-      "fingerprint": "27ff4e4eadfeff5218213013096eb1d5fb5865a99640b9c2c26599cb87625d95",
+      "fingerprint": "8eea843420829a22692648388ce9ff6b3035d0799b815f9dfa092a35716e0078",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/probability/projects.cjs",
-          "sha256": "6f57f84ce671f8ee78c3499af3433606737e7a95f361ee824fd0629132951785"
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
         },
         {
           "path": "courses/probability/data.json",
-          "sha256": "fbdefe10a13201f2912beec407d8b1715c295c5b09f3725b259c9dc775eb672d"
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
         }
       ],
       "sourceReview": {
@@ -23104,16 +23104,16 @@
       "title": "Dividing the stakes: the problem of points",
       "bankVersion": "probability-v1",
       "availability": "active",
-      "fingerprint": "e79ce75044d6e5932b218f9448c1745d61c208da44a6a2ab28e686eeb9f5372d",
+      "fingerprint": "9ef78ee01efafcb6c413344f2fc5dfdc9db439cee8a535b0490f0286bd452037",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/probability/projects.cjs",
-          "sha256": "6f57f84ce671f8ee78c3499af3433606737e7a95f361ee824fd0629132951785"
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
         },
         {
           "path": "courses/probability/data.json",
-          "sha256": "fbdefe10a13201f2912beec407d8b1715c295c5b09f3725b259c9dc775eb672d"
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
         }
       ],
       "sourceReview": {
@@ -23136,16 +23136,16 @@
       "title": "A positive test, and what it really means",
       "bankVersion": "probability-v1",
       "availability": "active",
-      "fingerprint": "3e8fb577902aa59aff610998529393347d3deca505e3d918c4b6e506602cbfe7",
+      "fingerprint": "0c3a101107b38669c0c3e573e3135d9208459c5a74d2f2229f780f6051eb37f3",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/probability/projects.cjs",
-          "sha256": "6f57f84ce671f8ee78c3499af3433606737e7a95f361ee824fd0629132951785"
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
         },
         {
           "path": "courses/probability/data.json",
-          "sha256": "fbdefe10a13201f2912beec407d8b1715c295c5b09f3725b259c9dc775eb672d"
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
         }
       ],
       "sourceReview": {
@@ -23168,16 +23168,16 @@
       "title": "Boxes, doors and what you are told",
       "bankVersion": "probability-v1",
       "availability": "active",
-      "fingerprint": "ff502dd2470654bb9f4bf6b76e198b44089d2646b98474c259f064113342a7bc",
+      "fingerprint": "47346c01b56878d9380c5c79ddac7c67d641ac37b249643ef335fa492d6c6714",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/probability/projects.cjs",
-          "sha256": "6f57f84ce671f8ee78c3499af3433606737e7a95f361ee824fd0629132951785"
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
         },
         {
           "path": "courses/probability/data.json",
-          "sha256": "fbdefe10a13201f2912beec407d8b1715c295c5b09f3725b259c9dc775eb672d"
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
         }
       ],
       "sourceReview": {
@@ -23200,16 +23200,16 @@
       "title": "Shared birthdays",
       "bankVersion": "probability-v1",
       "availability": "active",
-      "fingerprint": "044babb6ecf4cc7cbfcedac573e67e0f5225357a8f85d7a24d810ee49ba02ceb",
+      "fingerprint": "829f29e386676c7e5a939fbd88f19ee5c6e5bde7770ed82e41a66c7a029f43f1",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/probability/projects.cjs",
-          "sha256": "6f57f84ce671f8ee78c3499af3433606737e7a95f361ee824fd0629132951785"
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
         },
         {
           "path": "courses/probability/data.json",
-          "sha256": "fbdefe10a13201f2912beec407d8b1715c295c5b09f3725b259c9dc775eb672d"
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
         }
       ],
       "sourceReview": {
@@ -23232,16 +23232,16 @@
       "title": "How many cards stay in place?",
       "bankVersion": "probability-v1",
       "availability": "active",
-      "fingerprint": "0df70206285647dac4079f15c32327a9493ac9bec8826c586ce4f8119c2ea2ff",
+      "fingerprint": "836467249d32468abe20d8d309d61b0752955cb02fc34b5112acf0f747881d6b",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/probability/projects.cjs",
-          "sha256": "6f57f84ce671f8ee78c3499af3433606737e7a95f361ee824fd0629132951785"
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
         },
         {
           "path": "courses/probability/data.json",
-          "sha256": "fbdefe10a13201f2912beec407d8b1715c295c5b09f3725b259c9dc775eb672d"
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
         }
       ],
       "sourceReview": {
@@ -23269,11 +23269,11 @@
       "sourceFiles": [
         {
           "path": "content/probability/projects.cjs",
-          "sha256": "6f57f84ce671f8ee78c3499af3433606737e7a95f361ee824fd0629132951785"
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
         },
         {
           "path": "courses/probability/data.json",
-          "sha256": "fbdefe10a13201f2912beec407d8b1715c295c5b09f3725b259c9dc775eb672d"
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
         }
       ],
       "sourceReview": {
@@ -23296,16 +23296,16 @@
       "title": "Collecting all the stickers",
       "bankVersion": "probability-v1",
       "availability": "active",
-      "fingerprint": "665d91422b78ef745101f4e16ea96e3b2784aafeda1e5564c2e9393140bf45dc",
+      "fingerprint": "c23b896510130e8135c99fdf9dc4170e870ecc6da8ba7a83341c4689649c1a53",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/probability/projects.cjs",
-          "sha256": "6f57f84ce671f8ee78c3499af3433606737e7a95f361ee824fd0629132951785"
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
         },
         {
           "path": "courses/probability/data.json",
-          "sha256": "fbdefe10a13201f2912beec407d8b1715c295c5b09f3725b259c9dc775eb672d"
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
         }
       ],
       "sourceReview": {
@@ -23328,16 +23328,16 @@
       "title": "The Galton board",
       "bankVersion": "probability-v1",
       "availability": "active",
-      "fingerprint": "dc87081b0c71c328c8d91d947b235f2a3eeb98cd021a98c68c94a9b165febdb5",
+      "fingerprint": "088d827d7ec5fe8241e1f7d301decee1293d99009799fef1212845a0f457a038",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/probability/projects.cjs",
-          "sha256": "6f57f84ce671f8ee78c3499af3433606737e7a95f361ee824fd0629132951785"
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
         },
         {
           "path": "courses/probability/data.json",
-          "sha256": "fbdefe10a13201f2912beec407d8b1715c295c5b09f3725b259c9dc775eb672d"
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
         }
       ],
       "sourceReview": {
@@ -23360,16 +23360,16 @@
       "title": "The law of large numbers",
       "bankVersion": "probability-v1",
       "availability": "active",
-      "fingerprint": "3555c90eef16d9e3765ae68603c0d77d75aecfc8240974d361c25980d8763f74",
+      "fingerprint": "9a1d02c997542dbc527bfd38f8d30626a4122201a86c7e5b911e3395b4e9e8dd",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/probability/projects.cjs",
-          "sha256": "6f57f84ce671f8ee78c3499af3433606737e7a95f361ee824fd0629132951785"
+          "sha256": "3cbb7341b4dd8829347266ecba52907ac9dd48cbee03e6e0cb76323bd9f7becb"
         },
         {
           "path": "courses/probability/data.json",
-          "sha256": "fbdefe10a13201f2912beec407d8b1715c295c5b09f3725b259c9dc775eb672d"
+          "sha256": "cf28e4c407ab27b775157218bfe935b7b6a3ca4b4d43014d7528088f41a7202a"
         }
       ],
       "sourceReview": {

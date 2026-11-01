@@ -29,7 +29,7 @@ async function main(){
   }
   // Native node buttons select a real course and expose working, language-aware links.
   await page.locator('button[data-category="all"]').click();
-  const courseNodes=await page.locator('#cartoon-knowledge-map .node-card.course').evaluateAll(es=>es.map(e=>e.dataset.mapNode));assert.equal(courseNodes.length,15);
+  const courseNodes=await page.locator('#cartoon-knowledge-map .node-card.course').evaluateAll(es=>es.map(e=>e.dataset.mapNode));assert.equal(courseNodes.length,16);
   for(const id of courseNodes){await page.locator('[data-map-node="'+id+'"]').click();const links=page.locator('[data-map-node="'+id+'"]').locator('xpath=ancestor::section').locator('.qkm-actions a');for(const href of await links.evaluateAll(es=>es.map(e=>e.href))){assert.equal(new URL(href).searchParams.get('lang'),'es');assert.equal((await page.request.get(href)).status(),200);}}
   // Every routed edge avoids unrelated cards (including the manually approved lanes).
   const geometry=await page.evaluate(()=>{const bad=[];for(const m of QuidenceCartoonMap.maps)for(const r of QuidenceCartoonMap.routes[m.id])for(let i=1;i<r.points.length;i++){const [a,b]=[r.points[i-1],r.points[i]];for(const n of m.nodes.filter(n=>n.id!==r.from&&n.id!==r.to)){if(a[0]===b[0]?a[0]>n.x&&a[0]<n.x+200&&Math.max(a[1],b[1])>n.y&&Math.min(a[1],b[1])<n.y+124:a[1]>n.y&&a[1]<n.y+124&&Math.max(a[0],b[0])>n.x&&Math.min(a[0],b[0])<n.x+200)bad.push(m.id+':'+r.from+'→'+r.to+' crosses '+n.id);}}return bad;});assert.deepEqual(geometry,[]);

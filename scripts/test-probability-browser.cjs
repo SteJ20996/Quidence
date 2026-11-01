@@ -63,7 +63,11 @@ async function main(){
   await page.locator('[data-lab="dice-double"]').click();assert.equal(await status(),'One of the 36 outcomes is in this event.');
   await chooseProject('pr-p02');await page.locator('[data-lab="points-1"]').click();await page.locator('[data-lab="points-count"]').click();assert.match(await status(),/A wins in 11 of 16 sequences\./);
   await chooseProject('pr-p03');await page.locator('[data-lab="screen-test"]').click();assert.equal(await status(),'Positive tests: 90 from sick people and 891 from healthy people.');
-  await chooseProject('pr-p05');for(let i=0;i<13;i++)await page.locator('[data-lab="bday-more"]').click();assert.match(await status(),/People: 23\. Pairs: 253\./);
+  // The second test reports expected counts, not rounded ones that would give a wrong posterior.
+  await page.locator('[data-lab="screen-again"]').click();assert.equal(await status(),'After two positive tests, on average: 81 sick and 80.19 healthy people.');
+  await chooseProject('pr-p01');await page.locator('[data-lab="dice-bets"]').click();assert.deepEqual(await page.locator('#lab .lab-line').allTextContents(),['Rolls: 4.','P(at least one six) > 1/2 and P(at least one double six) < 1/2.']);await page.locator('[data-lab="dice-grid"]').click();
+  // The birthday curve is drawn only up to the current group, so its crossing of 1/2 is found, not shown.
+  await chooseProject('pr-p05');assert.equal(await page.locator('#lab polyline').evaluate(e=>e.getAttribute('points').trim().split(/\s+/).length),10);for(let i=0;i<13;i++)await page.locator('[data-lab="bday-more"]').click();assert.match(await status(),/People: 23\. Pairs: 253\./);
   // Every lab control runs in Spanish, so its live text is checked for translations too.
   await page.locator('#quidence-language').selectOption('es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');
   for(const [project,actions]of [
