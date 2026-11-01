@@ -1,17 +1,17 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {chromium}=require('playwright'),{createServer}=require('../backend/server.cjs'),{files}=require('./build-static-release.cjs');
-const {chooseTheme}=require('./theme-choice.cjs'),{linkLikeControls}=require('./link-button-audit.cjs'),{lowContrastHeaderText}=require('./header-contrast-audit.cjs');
+const {chooseTheme}=require('./theme-choice.cjs'),{linkLikeControls}=require('./link-button-audit.cjs'),{lowContrastHeaderText}=require('./header-contrast-audit.cjs'),{recordLogo,logoReport}=require('./load-stability-probe.cjs');
 const {KEY,THEMES}=require('../assets/themes.js');
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
- const result={layouts:0,buttonChecks:0,headerContrastChecks:0,pages:files().filter(f=>f.endsWith('.html')).length,themes:4,alignedHomeLayouts:0,classicCardLayouts:0,logoContrastChecks:0,errors:[],failures:[]};
+ const result={layouts:0,buttonChecks:0,headerContrastChecks:0,logoLoadChecks:0,pages:files().filter(f=>f.endsWith('.html')).length,themes:4,alignedHomeLayouts:0,classicCardLayouts:0,logoContrastChecks:0,errors:[],failures:[]};
  const homeEdges=new Map();
  const shots=path.join(__dirname,'../review/theme-screenshots');fs.mkdirSync(shots,{recursive:true});
  try{
   browser=await chromium.launch({executablePath:process.env.QUIDENCE_BROWSER_EXECUTABLE,args:['--no-sandbox']});
   const origin='http://127.0.0.1:'+server.address().port;
-  const context=await browser.newContext(),page=await context.newPage();
+  const context=await browser.newContext();await context.addInitScript(recordLogo);const page=await context.newPage();
   const listen=p=>{p.on('pageerror',e=>result.errors.push(e.message));p.on('response',r=>{if(r.status()>=400)result.failures.push(r.status()+' '+r.url());});};listen(page);
   // Switching styles must not move the controls under the user's pointer.
   for(const lang of ['en','es'])for(const width of [960,1024,1440,1920,2560]){
@@ -92,6 +92,11 @@ async function main(){
     if(file==='index.html'||(width===1440&&['courses/algebra-1/index.html','foundations/index.html','reports/index.html'].includes(file)))await page.screenshot({path:path.join(shots,theme+'-'+file.replaceAll('/','-')+'-'+width+'.png'),fullPage:false});
     if(fixed)assert.equal(await page.locator('#quidence-language,#language').count(),0,file+' has no language switch');
     else assert.match(await page.locator('#quidence-language').evaluate(e=>getComputedStyle(e).backgroundImage),/%2320383e/,file+' visible language chevron');
+    // The logo is painted once: never swapped for the other color after the page is painted, and, in English, never
+    // pushed down by the appearance bar, the records banner or the language menu arriving late. (Spanish moves the
+    // page once while i18n.js translates it, which is a separate matter.)
+    const logo=await page.evaluate(logoReport,8);
+    if(logo){assert.deepEqual(logo.swapsAfterPaint,[],`${theme} ${file} ${width}: logo swapped after the page was painted`);if(lang==='en')assert.deepEqual(logo.movesAfterPaint,[],`${theme} ${file} ${width}: logo moved after the page was painted`);result.logoLoadChecks++;}
     // Header and toolbar text stays readable when an appearance repaints the header.
     assert.deepEqual(await page.evaluate(lowContrastHeaderText),[],`${theme} ${file} ${width}: header text must have a 4.5:1 contrast`);
     result.headerContrastChecks++;

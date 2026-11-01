@@ -1,3 +1,7 @@
+## 2026-11-01 · A steady logo while pages load
+
+The records banner, the appearance bar and the language row now go in before a page is painted. Before, they were added after it was painted and pushed it down. The logo's color is chosen before its first paint, so Classic no longer shows the dark logo on its dark headers first. The themes browser test fails if the logo is swapped after paint or, in English, moves after paint. Spanish pages still move once while they are translated. See [logo-load-20261101.md](review/logo-load-20261101.md).
+
 ## 2026-10-31 · Readable header text in every appearance
 
 Header text is now readable in every appearance. In Classic, the Math Voice Lab header had white text on a white background. In the illustrated appearances, the header subtitle on Discrete Mathematics, Number Theory and Cross-disciplinary Projects was light gray on a light background. The themes browser test now fails when header or toolbar text has less than 4.5:1 contrast. See [header-contrast-20261031.md](review/header-contrast-20261031.md).
