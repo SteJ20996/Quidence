@@ -92,11 +92,11 @@ async function main(){
     if(file==='index.html'||(width===1440&&['courses/algebra-1/index.html','foundations/index.html','reports/index.html'].includes(file)))await page.screenshot({path:path.join(shots,theme+'-'+file.replaceAll('/','-')+'-'+width+'.png'),fullPage:false});
     if(fixed)assert.equal(await page.locator('#quidence-language,#language').count(),0,file+' has no language switch');
     else assert.match(await page.locator('#quidence-language').evaluate(e=>getComputedStyle(e).backgroundImage),/%2320383e/,file+' visible language chevron');
-    // The logo is painted once: never swapped for the other color after the page is painted, and, in English, never
+    // The logo is painted once: never shown in the other color after the page is painted, and, in English, never
     // pushed down by the appearance bar, the records banner or the language menu arriving late. (Spanish moves the
     // page once while i18n.js translates it, which is a separate matter.)
     const logo=await page.evaluate(logoReport,8);
-    if(logo){assert.deepEqual(logo.swapsAfterPaint,[],`${theme} ${file} ${width}: logo swapped after the page was painted`);if(lang==='en')assert.deepEqual(logo.movesAfterPaint,[],`${theme} ${file} ${width}: logo moved after the page was painted`);result.logoLoadChecks++;}
+    if(logo){assert.deepEqual(logo.wrongAfterPaint,[],`${theme} ${file} ${width}: logo shown in the wrong color after the page was painted`);if(lang==='en')assert.deepEqual(logo.movesAfterPaint,[],`${theme} ${file} ${width}: logo moved after the page was painted`);result.logoLoadChecks++;}
     // Header and toolbar text stays readable when an appearance repaints the header.
     assert.deepEqual(await page.evaluate(lowContrastHeaderText),[],`${theme} ${file} ${width}: header text must have a 4.5:1 contrast`);
     result.headerContrastChecks++;

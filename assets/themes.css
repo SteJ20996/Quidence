@@ -136,3 +136,8 @@ html body[data-q-theme] select#quidence-language {
 
 :root[data-ui-theme="classic"]{--q-page:#f8f5ec;--q-paper:#fff;--q-ink:#20383e;--q-muted:#53666b;--q-line:#ddd7e6;--q-control:#6e8588;--q-teal:#153f44;--q-primary:#15565b;--q-mint:#ddf1e8;--q-mist:#eee9f5;--q-focus:#15565b}
 .q-theme-choices{flex-wrap:wrap}
+
+/* themes.js shows each logo in the version that contrasts with the header behind it, then marks it ready. Until then
+   the logo is hidden, so it never appears in the wrong color; if the script does not run, it appears after 1.5 s. */
+img.q-brand-logo[data-logo-light-src][data-logo-dark-src]:not([data-logo-ready]) {visibility:hidden;animation:q-logo-reveal 0s 1.5s forwards}
+@keyframes q-logo-reveal {to {visibility:visible}}
