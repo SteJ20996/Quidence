@@ -92,6 +92,9 @@
     logo.removeAttribute('data-logo-ready');
     const ready = () => { if (logo.getAttribute('src') === source) logo.setAttribute('data-logo-ready',''); };
     logo.addEventListener('load', ready, {once:true}); logo.addEventListener('error', ready, {once:true});
+    // Changing src cancels a request that is still loading. A detached image keeps that request alive, so it finishes
+    // instead of showing up as a failed request.
+    if (!logo.complete && root.Image) { const keep = new root.Image(); keep.src = logo.src; }
     logo.setAttribute('src', source);
   }
   function updateLogos() {

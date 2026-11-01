@@ -2,9 +2,7 @@
   "Number Theory": "Teoría de números",
   "English course content": "Contenido del curso en inglés",
   "The projects, reference proofs and interactive models use the approved English draft. You can write your reasoning in either language.": "Los proyectos, las demostraciones de referencia y los modelos interactivos utilizan el borrador aprobado en inglés. Puedes escribir tu razonamiento en cualquiera de los dos idiomas.",
-  "Explore divisibility, primes and congruences through ten proof-based projects.": "Explora la divisibilidad, los números primos y las congruencias mediante diez proyectos con demostraciones.",
   "High-school foundations to university ideas. English project content; complete proofs and separate project notes.": "Desde fundamentos de secundaria hasta ideas universitarias. Proyectos en inglés, demostraciones completas y un cuaderno de proyectos independiente.",
-  "Explore 10 proof projects →": "Explora diez proyectos con demostraciones →",
   "Start Number Theory": "Empieza Teoría de números",
   "NUMBER THEORY": "TEORÍA DE NÚMEROS",
   "MATHEMATICS": "MATEMÁTICAS",
@@ -12,7 +10,6 @@
   "Small numbers. Big ideas.": "Números pequeños. Grandes ideas.",
   "Discover the patterns. Explain why they work.": "Descubre los patrones. Explica por qué funcionan.",
   "From high school to university": "De la secundaria a la universidad",
-  "10 projects · 43 steps · Go at your own pace": "10 proyectos · 43 pasos · Avanza a tu ritmo",
   "Explore → Reason → Prove": "Explora → Razona → Demuestra",
   "Open the proof toolkit": "Abre las herramientas de demostración",
   "Your session": "Tu sesión",
@@ -81,5 +78,9 @@
   "Number Theory illustration": "Ilustración de teoría de números",
   "Saved work changed in another tab. Reload before saving; your current responses are still visible.": "El trabajo guardado cambió en otra pestaña. Recarga antes de guardar; tus respuestas actuales siguen visibles.",
   "Mathematics and Science": "Matemáticas y ciencias",
-  "Online learning foundations, charts and reports": "Fundamentos de aprendizaje en línea, gráficos e informes"
+  "Online learning foundations, charts and reports": "Fundamentos de aprendizaje en línea, gráficos e informes",
+  "Explore divisibility, primes and congruences through eleven proof-based projects.": "Explora la divisibilidad, los números primos y las congruencias mediante once proyectos con demostraciones.",
+  "Explore 10 proof projects →": "Explora diez proyectos con demostraciones →",
+  "Explore 11 proof projects →": "Explora once proyectos con demostraciones →",
+  "11 projects · 48 steps · Go at your own pace": "11 proyectos · 48 pasos · Avanza a tu ritmo"
 }

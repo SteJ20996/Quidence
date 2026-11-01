@@ -1,3 +1,13 @@
+## 2026-11-01 · Logo requests are no longer cancelled by the swap
+
+When `themes.js` switched a logo to its other version while the first image was still loading, Chrome cancelled that request. Visitors saw nothing wrong, but on a busy machine the activity and brand browser tests counted it as a failed request. A request still loading is now handed to a detached image, so it finishes. The themes browser test delays the first version and checks that no request fails. See [logo-load-20261101.md](review/logo-load-20261101.md).
+
+## 2026-11-01 · Number Theory project 11: fractions that force whole numbers
+
+Number Theory has an eleventh project, "Fractions that force whole numbers" (`nt-p11`), in English and Spanish, fourth on the route after Tickets & thresholds. It starts from a word problem: 88 books shared between two classes, with 2/9 of one class's books math books and 13/16 of the other's literature books. The fractions become divisibility conditions, and 9x + 16y = 88 is solved modulo 8. Later steps cover inverses modulo 12, the hundred fowls problem from Zhang Qiujian's Mathematical Manual, the general solution of ax + by = c, and the gcd condition. Each step has an animated lab. See [number-theory-fractions-20261101.md](review/number-theory-fractions-20261101.md).
+
+Current inventory: Number Theory has 11 proof projects, 48 steps and 137 answer fields.
+
 ## 2026-11-01 · Logo follow-up for slow devices
 
 On a busy machine, Chrome can paint a page before it runs the first animation frame, so Classic could still show the dark logo briefly. Logos are now hidden by CSS until themes.js settles their version, and they are settled as soon as they are parsed. With the CPU slowed six times, no wrong-color logo shows after paint, in any appearance. See [logo-load-20261101.md](review/logo-load-20261101.md).

@@ -122,7 +122,7 @@
       {
         "title": "From gcd to lcm",
         "prompt": "A border pattern repeats every 924 cm and another every 588 cm. Prove that the shortest length where both patterns end together is 924 × 588 / 84. Use 924 = 84 × 11, 588 = 84 × 7, and the identity 1 = 2 × 11 − 3 × 7.",
-        "proof": "A length L works exactly when L is a common multiple of 924 and 588. Write 924 = 84·11 and 588 = 84·7.\n\nSince 924 | L, write L = 84·11·t for a positive integer t. Since 588 | L, we have 84·7 | 84·11·t, so 7 | 11t.\n\nClaim: 7 | t. Using 1 = 2·11 − 3·7, multiply by t: t = 2·(11t) − 3·7·t. Both terms on the right are multiples of 7 (the first because 7 | 11t), so 7 | t.\n\nSo t ≥ 7, and t = 7 works, since then L = 84·11·7 = 924·7 = 588·11. The least common multiple is 84·77 = 6468.\n\nCheck: gcd × lcm = 84 × 6468 = 543,312 = 924 × 588. The same argument works for any a = g·a′ and b = g·b′ as soon as we can write 1 = x·a′ + y·b′ with integers x and y. Bézout’s identity (a later project; assumed in general from nt-p04 on) gives such x and y when g = gcd(a, b), and then gcd(a, b)·lcm(a, b) = ab in general.",
+        "proof": "A length L works exactly when L is a common multiple of 924 and 588. Write 924 = 84·11 and 588 = 84·7.\n\nSince 924 | L, write L = 84·11·t for a positive integer t. Since 588 | L, we have 84·7 | 84·11·t, so 7 | 11t.\n\nClaim: 7 | t. Using 1 = 2·11 − 3·7, multiply by t: t = 2·(11t) − 3·7·t. Both terms on the right are multiples of 7 (the first because 7 | 11t), so 7 | t.\n\nSo t ≥ 7, and t = 7 works, since then L = 84·11·7 = 924·7 = 588·11. The least common multiple is 84·77 = 6468.\n\nCheck: gcd × lcm = 84 × 6468 = 543,312 = 924 × 588. The same argument works for any a = g·a′ and b = g·b′ as soon as we can write 1 = x·a′ + y·b′ with integers x and y. Bézout’s identity (a later project; assumed in general from nt-p11 on) gives such x and y when g = gcd(a, b), and then gcd(a, b)·lcm(a, b) = ab in general.",
         "fields": [
           {
             "id": "lcm",
@@ -518,8 +518,226 @@
     "nextCheck": "Prove that for coprime a and b, a size n with 0 ≤ n ≤ ab − a − b can be bought if and only if ab − a − b − n cannot."
   },
   {
-    "id": "nt-p10",
+    "id": "nt-p11",
     "order": 4,
+    "title": "Fractions that force whole numbers",
+    "level": "High-school foundation",
+    "difficulty": "medium",
+    "topic": "Linear equations in whole numbers",
+    "prompt": "Some word problems give one equation for two unknowns, which ordinary algebra cannot settle. They become solvable because the unknowns count whole objects, and a fraction of a whole number of objects must itself be whole. Solve them with divisibility and remainders, not by trying values one by one.",
+    "approach": "First turn each fraction of a group into a divisibility condition: if exactly 2/9 of a pile are math books, the pile is a multiple of 9. That leaves one equation ax + by = c in whole numbers. Reduce it modulo a number that divides most of its terms, and the remaining unknown is forced into one remainder class. The size of the numbers then leaves only a few possibilities, and the general solution describes them all without a list.",
+    "uses": "Division with remainder; Euclid’s algorithm (nt-p01); if a | bc and gcd(a, b) = 1, then a | c (assumed); Bézout’s identity (from the extended Euclidean algorithm, nt-p02; assumed in general).",
+    "steps": [
+      {
+        "title": "Books for two classes",
+        "prompt": "A school has 88 books: some are literature books and the rest are math books. All of them are shared between Class A and Class B, and each class receives at least one book. Exactly 2/9 of Class A’s books are math books, and exactly 13/16 of Class B’s books are literature books. Explain why Class A receives 9x books and Class B receives 16y books for positive whole numbers x and y. Then use divisibility by 8, not trial, to find how many books each class receives and how many math books there are.",
+        "proof": "Class A’s math books number (2/9) · A, a whole number, so 9 | 2A. Since gcd(9, 2) = 1, 9 | A; write A = 9x with x ≥ 1. In the same way, (13/16) · B is a whole number, so 16 | 13B, and gcd(16, 13) = 1 gives 16 | B; write B = 16y with y ≥ 1. All 88 books are shared, so 9x + 16y = 88.\n\nBoth 16y and 88 = 8 · 11 are multiples of 8, so 9x = 88 − 16y is a multiple of 8. Since gcd(9, 8) = 1, 8 | x. Because y ≥ 1, 9x ≤ 88 − 16 = 72, so x ≤ 8. The only positive multiple of 8 that is at most 8 is 8 itself, so x = 8, and 16y = 88 − 72 = 16 gives y = 1.\n\nClass A receives 72 books, of which (2/9) · 72 = 16 are math books. Class B receives 16 books, of which 13 are literature books and 16 − 13 = 3 are math books. There are 16 + 3 = 19 math books.",
+        "fields": [
+          {
+            "id": "booksA",
+            "label": "Books for Class A",
+            "type": "number",
+            "answer": "72",
+            "accepted": [
+              "72"
+            ]
+          },
+          {
+            "id": "booksB",
+            "label": "Books for Class B",
+            "type": "number",
+            "answer": "16",
+            "accepted": [
+              "16"
+            ]
+          },
+          {
+            "id": "mathBooks",
+            "label": "Math books in all",
+            "type": "number",
+            "answer": "19",
+            "accepted": [
+              "19"
+            ]
+          },
+          {
+            "id": "eightProof",
+            "label": "Explain why x must be 8",
+            "type": "reason",
+            "criteria": [
+              "Turn each fraction into divisibility: 9 | A and 16 | B, because gcd(2, 9) = gcd(13, 16) = 1.",
+              "Reduce 9x + 16y = 88 modulo 8 to get 8 | x, then use y ≥ 1 to show x ≤ 8, so x = 8."
+            ],
+            "followup": "If 3/9 of Class A’s books were math books, what could you conclude about the number of Class A’s books?"
+          }
+        ]
+      },
+      {
+        "title": "A remainder that is not zero",
+        "prompt": "A club has 100 marbles in two bags, with at least one marble in each bag. Exactly 3/7 of the marbles in Bag A are red, and exactly 5/12 of the marbles in Bag B are red. As in Step 1, Bag A holds 7x marbles and Bag B holds 12y. Reducing 7x + 12y = 100 modulo 12 gives 7x ≡ 4 (mod 12). Use Euclid’s algorithm to find the inverse of 7 modulo 12. Then find how many marbles each bag holds and how many marbles are red.",
+        "proof": "Bag A’s red marbles number (3/7) · A, so 7 | 3A and, since gcd(7, 3) = 1, 7 | A. Likewise 12 | 5B gives 12 | B. So A = 7x and B = 12y with x, y ≥ 1, and 7x + 12y = 100. Since 12y ≡ 0 and 100 = 8 · 12 + 4, reducing modulo 12 gives 7x ≡ 4 (mod 12).\n\nEuclid’s algorithm: 12 = 1 · 7 + 5, 7 = 1 · 5 + 2, 5 = 2 · 2 + 1. Working back, 1 = 5 − 2 · 2 = 5 − 2(7 − 5) = 3 · 5 − 2 · 7 = 3(12 − 7) − 2 · 7 = 3 · 12 − 5 · 7. So (−5) · 7 ≡ 1 (mod 12), and the inverse of 7 modulo 12 is −5 ≡ 7. Check: 7 · 7 = 49 = 4 · 12 + 1.\n\nMultiplying 7x ≡ 4 by 7 gives 49x ≡ 28, that is, x ≡ 4 (mod 12). Because y ≥ 1, 7x ≤ 100 − 12 = 88, so x ≤ 12. The only positive x ≤ 12 with x ≡ 4 (mod 12) is x = 4. Then 12y = 100 − 28 = 72, so y = 6.\n\nBag A holds 28 marbles, of which (3/7) · 28 = 12 are red. Bag B holds 72, of which (5/12) · 72 = 30 are red. There are 12 + 30 = 42 red marbles.",
+        "fields": [
+          {
+            "id": "inverse7",
+            "label": "Inverse of 7 modulo 12 (from 1 to 11)",
+            "type": "number",
+            "answer": "7",
+            "accepted": [
+              "7"
+            ]
+          },
+          {
+            "id": "bagA",
+            "label": "Marbles in Bag A",
+            "type": "number",
+            "answer": "28",
+            "accepted": [
+              "28"
+            ]
+          },
+          {
+            "id": "redMarbles",
+            "label": "Red marbles in all",
+            "type": "number",
+            "answer": "42",
+            "accepted": [
+              "42"
+            ]
+          },
+          {
+            "id": "inverseProof",
+            "label": "Explain how the inverse settles x",
+            "type": "reason",
+            "criteria": [
+              "Run Euclid’s algorithm on 12 and 7 and work back to 3 · 12 − 5 · 7 = 1, so 7 · 7 ≡ 1 (mod 12).",
+              "Multiply 7x ≡ 4 by the inverse to get x ≡ 4 (mod 12), then use 7x ≤ 88 to rule out x = 16 and every larger value."
+            ],
+            "followup": "Why does 7 have an inverse modulo 12, while 8 does not?"
+          }
+        ]
+      },
+      {
+        "title": "The hundred fowls",
+        "prompt": "A puzzle from Zhang Qiujian’s Mathematical Manual, written in the fifth century: a rooster costs 5 coins, a hen costs 3 coins, and 3 chicks together cost 1 coin. Someone spends exactly 100 coins on exactly 100 birds, with at least one bird of each kind. Let x, y and z be the numbers of roosters, hens and chicks. Show that the two conditions lead to 7x + 4y = 100. Then use divisibility by 4 to write every solution in terms of one whole number t. Count the solutions and find the largest possible number of roosters.",
+        "proof": "The conditions are x + y + z = 100 and 5x + 3y + z/3 = 100. Multiplying the second by 3 gives 15x + 9y + z = 300. Subtracting the first equation removes z: 14x + 8y = 200, that is, 7x + 4y = 100.\n\nHere 4y and 100 are multiples of 4, so 7x = 100 − 4y is a multiple of 4. Since gcd(7, 4) = 1, 4 | x; write x = 4t. Then 4y = 100 − 28t, so y = 25 − 7t, and z = 100 − x − y = 75 + 3t. Every such triple satisfies both conditions, and z is a multiple of 3, so the chicks cost a whole number of coins.\n\nAt least one rooster means t ≥ 1. At least one hen means 25 − 7t ≥ 1, that is, t ≤ 24/7, so t ≤ 3. The number of chicks is then positive as well. So t = 1, 2, 3 give exactly three solutions: (x, y, z) = (4, 18, 78), (8, 11, 81) and (12, 4, 84). The largest number of roosters is 12.",
+        "fields": [
+          {
+            "id": "fowlCount",
+            "label": "Number of solutions with every kind of bird",
+            "type": "number",
+            "answer": "3",
+            "accepted": [
+              "3"
+            ]
+          },
+          {
+            "id": "maxRoosters",
+            "label": "Largest possible number of roosters",
+            "type": "number",
+            "answer": "12",
+            "accepted": [
+              "12"
+            ]
+          },
+          {
+            "id": "fowlProof",
+            "label": "Derive and count the solutions",
+            "type": "reason",
+            "criteria": [
+              "Eliminate z: 3 × (cost equation) − (count equation) gives 14x + 8y = 200, so 7x + 4y = 100.",
+              "Use 4 | 7x and gcd(7, 4) = 1 to write x = 4t, y = 25 − 7t, z = 75 + 3t, and turn at least one of each kind into 1 ≤ t ≤ 3."
+            ],
+            "followup": "How many solutions are there if the buyer may skip roosters?"
+          }
+        ]
+      },
+      {
+        "title": "Every solution at once",
+        "prompt": "Let a and b be positive integers, let d = gcd(a, b), and suppose (x₀, y₀) is one integer solution of ax + by = c. Prove that the integer solutions are exactly x = x₀ + (b/d)t, y = y₀ − (a/d)t, where t is any integer. Then, starting from 3 · 31 + 7 · 1 = 100, count the solutions of 3x + 7y = 100 in positive whole numbers and give the smallest possible x.",
+        "proof": "Each pair of that form is a solution: a(x₀ + (b/d)t) + b(y₀ − (a/d)t) = ax₀ + by₀ + (ab/d)t − (ab/d)t = c.\n\nConversely, let (x, y) be any integer solution. Subtracting ax₀ + by₀ = c gives a(x − x₀) = b(y₀ − y). Divide by d: (a/d)(x − x₀) = (b/d)(y₀ − y). The numbers a/d and b/d have greatest common divisor 1: if a positive integer e divides both, then de divides a and b, so de ≤ d and e = 1. Since b/d divides (a/d)(x − x₀) and gcd(a/d, b/d) = 1, b/d divides x − x₀. Write x − x₀ = (b/d)t. Then (a/d)(b/d)t = (b/d)(y₀ − y), and dividing by b/d gives y = y₀ − (a/d)t.\n\nFor 3x + 7y = 100, d = 1, so x = 31 + 7t and y = 1 − 3t. A positive y needs 1 − 3t ≥ 1, so t ≤ 0. A positive x needs 31 + 7t ≥ 1, so t ≥ −30/7, that is, t ≥ −4. The five values t = −4, −3, −2, −1, 0 give (x, y) = (3, 13), (10, 10), (17, 7), (24, 4) and (31, 1). There are 5 solutions, and the smallest x is 3.",
+        "fields": [
+          {
+            "id": "count37",
+            "label": "Solutions of 3x + 7y = 100 in positive whole numbers",
+            "type": "number",
+            "answer": "5",
+            "accepted": [
+              "5"
+            ]
+          },
+          {
+            "id": "smallestX",
+            "label": "Smallest possible x",
+            "type": "number",
+            "answer": "3",
+            "accepted": [
+              "3"
+            ]
+          },
+          {
+            "id": "generalProof",
+            "label": "Prove the form of every solution",
+            "type": "reason",
+            "criteria": [
+              "Check that every pair x₀ + (b/d)t, y₀ − (a/d)t solves ax + by = c.",
+              "From a(x − x₀) = b(y₀ − y), divide by d and use gcd(a/d, b/d) = 1 to show that b/d divides x − x₀."
+            ],
+            "followup": "Why must you divide by d before using the divisibility step?"
+          }
+        ]
+      },
+      {
+        "title": "When the fractions make it impossible",
+        "prompt": "Change Step 1: now exactly 13/15 of Class B’s books are literature books, and everything else stays the same. Show that the 88 books cannot be shared this way. Then prove the general rule: ax + by = c has an integer solution exactly when gcd(a, b) divides c.",
+        "proof": "As in Step 1, gcd(13, 15) = 1 forces 15 | B, so the books would satisfy 9x + 15y = 88 with whole numbers x, y ≥ 1. But 9x + 15y = 3(3x + 5y) is a multiple of 3, while 88 = 3 · 29 + 1 is not. So the books cannot be shared this way.\n\nGeneral rule. Let d = gcd(a, b). (⇒) If ax + by = c for integers x and y, then d divides a and b, so d divides ax + by = c. (⇐) If c = dk, Bézout’s identity (nt-p02, assumed in general) gives integers u and v with au + bv = d. Then a(uk) + b(vk) = dk = c.\n\nThe rule is about integer solutions. Positive solutions need more: 9x + 16y = 7 has integer solutions, such as x = −1, y = 1, because gcd(9, 16) = 1 divides 7, but it has no positive solution, since 9x + 16y ≥ 25 whenever x, y ≥ 1.",
+        "fields": [
+          {
+            "id": "gcd915",
+            "label": "gcd(9, 15)",
+            "type": "number",
+            "answer": "3",
+            "accepted": [
+              "3"
+            ]
+          },
+          {
+            "id": "canShare",
+            "label": "Can the 88 books be shared this way?",
+            "type": "choice",
+            "answer": "no",
+            "options": [
+              {
+                "value": "no",
+                "label": "No; 9x + 15y is always a multiple of 3, and 88 is not"
+              },
+              {
+                "value": "other-1",
+                "label": "Yes; Class A receives 72 books and Class B receives 16, as before"
+              },
+              {
+                "value": "other-2",
+                "label": "Yes, but only if some books are left over"
+              }
+            ]
+          },
+          {
+            "id": "gcdRule",
+            "label": "Prove the general rule",
+            "type": "reason",
+            "criteria": [
+              "If d divides a and b, it divides ax + by, so d | c is necessary.",
+              "If c = dk, scale Bézout’s au + bv = d by k to obtain a solution."
+            ],
+            "followup": "Give an equation ax + by = c with gcd(a, b) | c that has no solution in positive whole numbers, and explain why."
+          }
+        ]
+      }
+    ],
+    "nextCheck": "Prove that 144 is the largest total c for which 9x + 16y = c has no solution in positive whole numbers. Use Tickets & thresholds (nt-p09): with x, y ≥ 1, c − 25 must equal 9x′ + 16y′ with x′, y′ ≥ 0."
+  },
+  {
+    "id": "nt-p10",
+    "order": 5,
     "title": "Euclid’s argument for endless primes",
     "level": "High-school foundation",
     "difficulty": "medium",
@@ -655,7 +873,7 @@
   },
   {
     "id": "nt-p03",
-    "order": 5,
+    "order": 6,
     "title": "Why digit tests work",
     "level": "High-school foundation",
     "difficulty": "medium",
@@ -817,7 +1035,7 @@
   },
   {
     "id": "nt-p04",
-    "order": 6,
+    "order": 7,
     "title": "An ancient remainder puzzle",
     "level": "Bridge (high school to undergraduate)",
     "difficulty": "challenging",
@@ -980,7 +1198,7 @@
   },
   {
     "id": "nt-p07",
-    "order": 7,
+    "order": 8,
     "title": "Right triangles with whole-number sides",
     "level": "Bridge (high school to undergraduate)",
     "difficulty": "challenging",
@@ -1202,7 +1420,7 @@
   },
   {
     "id": "nt-p05",
-    "order": 8,
+    "order": 9,
     "title": "Last digits and a theorem that can be fooled",
     "level": "Intro undergraduate",
     "difficulty": "challenging",
@@ -1408,7 +1626,7 @@
   },
   {
     "id": "nt-p06",
-    "order": 9,
+    "order": 10,
     "title": "A toy public-key lock",
     "level": "Intro undergraduate",
     "difficulty": "challenging",
@@ -1584,7 +1802,7 @@
   },
   {
     "id": "nt-p08",
-    "order": 10,
+    "order": 11,
     "title": "Perfect numbers and a prime that isn’t",
     "level": "Intro undergraduate",
     "difficulty": "challenging",

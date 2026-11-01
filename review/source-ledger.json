@@ -22688,7 +22688,7 @@
       "title": "Square tiles and Euclid’s shortcut",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "40c0e2ab13524560506982c6e15781c2d2db6434f940c9cc4650f827ed8f2de8",
+      "fingerprint": "0b7019068bc6580d91239d0be02774b85b5da38898007d5d35320a8f4373b0f7",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -22697,7 +22697,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
+          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
         }
       ],
       "sourceReview": {
@@ -22729,7 +22729,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
+          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
         }
       ],
       "sourceReview": {
@@ -22752,7 +22752,7 @@
       "title": "Why digit tests work",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "fcdd7c4ef88257b5ff44600869dfa632501e63aa55272e345787b721ed865c6b",
+      "fingerprint": "7281209197276ac6edbb828fa0f80d7e8923c02443bb2bffe2959d90038a88ca",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -22761,7 +22761,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
+          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
         }
       ],
       "sourceReview": {
@@ -22784,7 +22784,7 @@
       "title": "An ancient remainder puzzle",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "ece303400f9f23c0a3be4da2d03dfe59e2800e6de652d14ff85132fbe1cc2237",
+      "fingerprint": "934264c7c1041b286021008eae6f8308ec7be3f178d64c2e643e6e238e64124d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -22793,7 +22793,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
+          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
         }
       ],
       "sourceReview": {
@@ -22816,7 +22816,7 @@
       "title": "Last digits and a theorem that can be fooled",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "41fc46b1ee680532e0fb647f8fbe5d6f50b45a81da6bc78ae028e84069932095",
+      "fingerprint": "c8422796086a3857ff2ff6d1dd1b85f05188057965b49d49960b0acf46631344",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -22825,7 +22825,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
+          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
         }
       ],
       "sourceReview": {
@@ -22848,7 +22848,7 @@
       "title": "A toy public-key lock",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "b827cd038c207131a59a8941f6ac5f5cc4ff77ab2c32d9e6e48248b9d8ffff0e",
+      "fingerprint": "622c448b6bc26e1a95868157a4eb6c747f99defb21e1f28e3b61547bae6786e2",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -22857,7 +22857,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
+          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
         }
       ],
       "sourceReview": {
@@ -22880,7 +22880,7 @@
       "title": "Right triangles with whole-number sides",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "dc34c08e893a1dfc7e88002f5b2775c367401533e77501f8f394545e1719989f",
+      "fingerprint": "c37885843e30a60e1d25217aafa5905ac4b3c52899b447b4dfa34e13eb9e783c",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -22889,7 +22889,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
+          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
         }
       ],
       "sourceReview": {
@@ -22912,7 +22912,7 @@
       "title": "Perfect numbers and a prime that isn’t",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "903f448ff8ab7c8dbc1abf3a11b70a12bff69250e11b804162df6f3627b99bc1",
+      "fingerprint": "7206fc9af9925a4054aeda1f84bbb8d54787c5ffd6ad08689a7fbe56ae9d82b7",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -22921,7 +22921,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
+          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
         }
       ],
       "sourceReview": {
@@ -22953,7 +22953,7 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
+          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
         }
       ],
       "sourceReview": {
@@ -22976,7 +22976,7 @@
       "title": "Euclid’s argument for endless primes",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "b956299fc922624a09ca4653399e116ef25224762cd9fe36bc04acfe39b3b556",
+      "fingerprint": "4a26c6ca9cdc3bff0955f34630ffae8d031dc1ca8aef19e0832c9a8ae6a58a30",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
@@ -22985,7 +22985,39 @@
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "f56a0c29d4d680311696455cb01590ef3e7ccfb8a1eec4e2c7b959b7a68d9e49"
+          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "review/number-theory-validation-20261010.json"
+      },
+      "automatedReference": "review/number-theory-validation-20261010.json"
+    },
+    {
+      "id": "number-theory-project:number-theory:nt-p11",
+      "family": "number-theory-project",
+      "module": "number-theory",
+      "taskId": "nt-p11",
+      "title": "Fractions that force whole numbers",
+      "bankVersion": "number-theory-v2",
+      "availability": "active",
+      "fingerprint": "9d4f0ae66fec73c234a09283b527a3c3c7138c45731ce8f50821980d51bf28ea",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/number-theory/source-v2.md",
+          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
+        },
+        {
+          "path": "courses/number-theory/data.json",
+          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
         }
       ],
       "sourceReview": {

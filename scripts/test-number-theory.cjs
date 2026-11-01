@@ -1,7 +1,7 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),vm=require('node:vm');
 const root=path.resolve(__dirname,'..'),data=JSON.parse(fs.readFileSync(path.join(root,'courses/number-theory/data.json'),'utf8'));
 const C=require('../courses/number-theory/core.js');let cases=0;function test(fn){fn();cases++;}
-test(()=>{assert.equal(data.length,10);assert.equal(data.flatMap(p=>p.steps).length,43);assert.equal(data.flatMap(p=>p.steps.flatMap(s=>s.fields)).length,120);});
+test(()=>{assert.equal(data.length,11);assert.equal(data.flatMap(p=>p.steps).length,48);assert.equal(data.flatMap(p=>p.steps.flatMap(s=>s.fields)).length,137);});
 for(const p of data)for(const s of p.steps){
   test(()=>{assert.ok(s.proof.length>50);assert.ok(s.prompt.length>20);assert.equal(new Set(s.fields.map(f=>f.id)).size,s.fields.length);});
   for(const f of s.fields){
@@ -24,7 +24,19 @@ for(const p of data)for(const s of p.steps){
 }
 // Check the supplied wrong-number examples against the implemented grader.
 const source=fs.readFileSync(path.join(root,'content/number-theory/source-v2.md'),'utf8');
-for(const p of data){const chunk=source.split(new RegExp(`### 项目 \\d+ · ${p.id} ·`))[1].split(/### 项目 \d+ ·|## 五、/)[0];for(const line of chunk.split('\n').filter(l=>l.startsWith('| `'))){const cells=line.trim().replace(/^\||\|$/g,'').split('|');const fid=cells[0].replace(/`/g,'').trim(),f=p.steps.flatMap(s=>s.fields).find(f=>f.id===fid);if(f?.type!=='number')continue;const wrong=line.split('应判错：')[1];if(!wrong)continue;for(const m of wrong.matchAll(/`([^`]+)`/g))test(()=>assert.notEqual(C.grade(f,m[1]).status,'correct',`${p.id}:${fid} rejected example ${m[1]}`));}}
+for(const p of data.filter(p=>source.includes(' · '+p.id+' · '))){const chunk=source.split(new RegExp(`### 项目 \\d+ · ${p.id} ·`))[1].split(/### 项目 \d+ ·|## 五、/)[0];for(const line of chunk.split('\n').filter(l=>l.startsWith('| `'))){const cells=line.trim().replace(/^\||\|$/g,'').split('|');const fid=cells[0].replace(/`/g,'').trim(),f=p.steps.flatMap(s=>s.fields).find(f=>f.id===fid);if(f?.type!=='number')continue;const wrong=line.split('应判错：')[1];if(!wrong)continue;for(const m of wrong.matchAll(/`([^`]+)`/g))test(()=>assert.notEqual(C.grade(f,m[1]).status,'correct',`${p.id}:${fid} rejected example ${m[1]}`));}}
+// Fractions & whole numbers (nt-p11) is written in content/number-theory/nt-p11.json. Recompute every key by checking
+// all splits directly, unlike the proofs, and reject the slips a learner is likely to make.
+{const p=data.find(p=>p.id==='nt-p11'),field=id=>p.steps.flatMap(s=>s.fields).find(f=>f.id===id);
+ const positive=(a,b,c)=>{const r=[];for(let x=1;a*x<c;x++)if((c-a*x)%b===0)r.push([x,(c-a*x)/b]);return r;};
+ test(()=>{const s=[];for(let A=1;A<88;A++)if(2*A%9===0&&13*(88-A)%16===0)s.push(A);assert.deepEqual(s,[72]);assert.equal(field('booksA').answer,'72');assert.equal(field('booksB').answer,'16');assert.equal(field('mathBooks').answer,String(2*72/9+(16-13)));});
+ test(()=>{const s=[];for(let A=1;A<100;A++)if(3*A%7===0&&5*(100-A)%12===0)s.push(A);assert.deepEqual(s,[28]);assert.equal(field('bagA').answer,'28');assert.equal(field('redMarbles').answer,String(3*28/7+5*72/12));assert.equal(7*Number(field('inverse7').answer)%12,1);});
+ test(()=>{const all=[];for(let x=0;x<=20;x++)for(let y=0;y<=33;y++){const z=100-x-y;if(z>=0&&3*(5*x+3*y)+z===300)all.push([x,y,z]);}const each=all.filter(t=>t.every(v=>v>0));assert.equal(String(each.length),field('fowlCount').answer);assert.equal(String(Math.max(...each.map(t=>t[0]))),field('maxRoosters').answer);assert.equal(all.length,4);});
+ test(()=>{const s=positive(3,7,100);assert.equal(String(s.length),field('count37').answer);assert.equal(String(Math.min(...s.map(v=>v[0]))),field('smallestX').answer);});
+ test(()=>{const s=[];for(let A=1;A<88;A++)if(2*A%9===0&&13*(88-A)%15===0)s.push(A);assert.deepEqual(s,[]);assert.equal(field('gcd915').answer,String(C.gcd(9,15)));assert.equal(positive(9,16,7).length,0);assert.equal(9*-1+16*1,7);});
+ test(()=>{let largest=0;for(let c=1;c<=400;c++)if(!positive(9,16,c).length)largest=c;assert.equal(largest,144);assert.match(p.nextCheck,/144/);});
+ for(const [id,wrong]of [['booksA',['8','9','16','88']],['booksB',['1','72']],['mathBooks',['16','3','13']],['inverse7',['5','-5','4']],['bagA',['4','72']],['redMarbles',['12','30','40']],['fowlCount',['4','1']],['maxRoosters',['4','14']],['count37',['4','6']],['smallestX',['31','1']],['gcd915',['1','9','15']]])for(const w of wrong)test(()=>assert.notEqual(C.grade(field(id),w).status,'correct',`nt-p11:${id} rejected example ${w}`));
+}
 for(const [a,b] of [['−3','-3'],['84.000','84'],['10/26','5/13'],['8.4e1','84']])test(()=>assert.ok(C.equalNumber(a,b)));
 for(const bad of ['1/0','1+1','NaN','Infinity','1,2','', '0x54','6,468'])test(()=>assert.equal(C.rational(bad),null));
 test(()=>assert.ok(!C.equalNumber('0.38','5/13')));
@@ -75,5 +87,5 @@ const storage=new Map(),context={NTCore:C,document:{getElementById:id=>nodes.get
   test(()=>{vm.runInContext("showToolkit()",context);assert.ok(nodes.get('modal-body').innerHTML.includes('Euclid’s lemma'));assert.ok(nodes.get('modal-body').innerHTML.includes('Unique prime factorization'));});
   test(()=>{vm.runInContext("selectProject('nt-p06');labAction('rsa-message',11);labAction('rsa-lock');labAction('rsa-unlock');",context);assert.ok(nodes.get('lab').innerHTML.includes('original message returns'));});
   test(()=>{context.localStorage.setItem=()=>{throw Error('quota')};vm.runInContext('persist()',context);assert.ok(nodes.get('save-status').textContent.includes('Could not save'));});
-  console.log(JSON.stringify({checks:cases,projects:10,steps:43,fields:120,result:'passed',browser_visual_qa:'See review/number-theory-browser-20261010.json',note:'Document adapters test render and state functions; they are not a real browser and do not verify visual layout.'},null,2));
+  console.log(JSON.stringify({checks:cases,projects:11,steps:48,fields:137,result:'passed',browser_visual_qa:'See review/number-theory-browser-20261010.json',note:'Document adapters test render and state functions; they are not a real browser and do not verify visual layout.'},null,2));
 })().catch(e=>{console.error(e);process.exitCode=1});
