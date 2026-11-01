@@ -87,12 +87,28 @@ for p in projects:
         st["proof"] = "The secret exponent is d. The primes p and q, and φ(n), also reveal d. From p and q we obtain φ(n) = (p − 1)(q − 1), and the extended Euclidean algorithm computes d as the inverse of e modulo φ(n), as in Step 1.\n\nKnowing φ(n) also reveals the factors: p + q = n − φ(n) + 1 and pq = n. Thus p and q are the roots of t² − (n − φ(n) + 1)t + n = 0. For n = 143 and φ(n) = 120 this is t² − 24t + 143 = 0, whose roots are 11 and 13. Once these values are known, Step 1 recovers d = 103.\n\nThese small parameters demonstrate the mathematics of RSA. This toy lock is not suitable for protecting messages."
         st["fields"][-1]["label"] = "Explain how the factors reveal the secret exponent"
         st["fields"][-1]["criteria"] = ["From p and q, obtain φ(n) = (p − 1)(q − 1).", "Use the extended Euclidean algorithm to find d, the inverse of e modulo φ(n)."]
+    if p["id"] == "nt-p01":
+        # Fractions & whole numbers (nt-p11) now comes fourth and is the first project to assume Bézout in general.
+        st = next(st for st in p["steps"] if "from nt-p04 on" in st["proof"])
+        st["proof"] = st["proof"].replace("assumed in general from nt-p04 on", "assumed in general from nt-p11 on")
     if p["id"] == "nt-p05":
         p["approach"] = p["approach"].replace("passing the base-2 test proves nothing", "passing the base-2 test does not establish primality")
 
 assert len(projects) == 10
 assert sum(len(p["steps"]) for p in projects) == 43
 assert sum(len(st["fields"]) for p in projects for st in p["steps"]) == 120
+
+# Later projects are written directly in the published shape, with their design notes beside them. Each one is
+# inserted after the project it builds on, and the route order is renumbered to match.
+for later, after in [("nt-p11.json", "nt-p09")]:
+    extra = json.loads((ROOT / "content" / "number-theory" / later).read_text())
+    projects.insert([p["id"] for p in projects].index(after) + 1, extra)
+projects = [dict(id=p["id"], order=i + 1, **{k: v for k, v in p.items() if k not in ("id", "order")})
+            for i, p in enumerate(projects)]
+
+assert len(projects) == 11
+assert sum(len(p["steps"]) for p in projects) == 48
+assert sum(len(st["fields"]) for p in projects for st in p["steps"]) == 137
 out = ROOT / "courses" / "number-theory" / "data.json"
 out.write_text(json.dumps(projects, ensure_ascii=False, indent=2))
 print(json.dumps({"projects":len(projects),"steps":sum(len(p["steps"]) for p in projects),

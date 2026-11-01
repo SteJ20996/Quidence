@@ -15,3 +15,8 @@ dialog{border:1px solid var(--line);border-radius:18px;width:min(800px,calc(100%
 @media(max-width:720px){.header-inner{justify-content:space-between}.header-copy,.preview-tag{display:none}.header-button{margin-left:0}.brand img{width:180px}.header-inner [data-language-host]{margin-left:auto}.header-inner [data-language-host] .language-toolbar{font-size:12px}.header-inner [data-language-host] select{width:144px;min-width:144px;max-width:none;font-size:16px}.content-language-note{font-size:12px}}
 
 .header-inner>.preview-tag{display:none}
+/* Fractions & whole numbers: one status sentence per line, and a short pop-in for what each press adds. */
+.lab-line{display:block}.lab-line+.lab-line{margin-top:4px}
+@keyframes nt11-pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.nt11-new{animation:nt11-pop .45s ease-out;transform-box:fill-box;transform-origin:center}
+@media (prefers-reduced-motion:reduce){.nt11-new{animation:none}}

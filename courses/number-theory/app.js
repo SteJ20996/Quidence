@@ -1,8 +1,8 @@
 'use strict';
 const C=NTCore,storage={getItem:k=>(window.QuidenceStorage||window.localStorage).getItem(k),setItem:(k,v)=>(window.QuidenceStorage||window.localStorage).setItem(k,v),removeItem:k=>(window.QuidenceStorage||window.localStorage).removeItem(k)},KEY='quidence:number-theory-preview:v1';
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const names={'nt-p01':'Square tiles & gcd','nt-p02':'Two jugs, one idea','nt-p09':'Tickets & thresholds','nt-p10':'Endless primes','nt-p03':'Digits & error checks','nt-p04':'An ancient remainder puzzle','nt-p07':'Triangles & whole numbers','nt-p05':'Powers & prime tests','nt-p06':'A toy public-key lock','nt-p08':'Perfect numbers'};
-const banners={'nt-p01':'924 = 1 × 588 + 336','nt-p02':'7x + 11y = 1','nt-p09':'n = 5x + 7y,   x, y ≥ 0','nt-p10':'Q = p₁p₂⋯pₖ + 1','nt-p03':'10 ≡ 1 (mod 9)     ·     10 ≡ −1 (mod 11)','nt-p04':'x ≡ 2 (mod 3),  x ≡ 3 (mod 5),  x ≡ 2 (mod 7)','nt-p07':'(m² − n²)² + (2mn)² = (m² + n²)²','nt-p05':'Prime ⇒ passes.   Does passes ⇒ prime?','nt-p06':'m → mᵉ mod n → cᵈ mod n','nt-p08':'σ(n) = sum of the positive divisors of n'};
+const names={'nt-p01':'Square tiles & gcd','nt-p02':'Two jugs, one idea','nt-p09':'Tickets & thresholds','nt-p11':'Fractions & whole numbers','nt-p10':'Endless primes','nt-p03':'Digits & error checks','nt-p04':'An ancient remainder puzzle','nt-p07':'Triangles & whole numbers','nt-p05':'Powers & prime tests','nt-p06':'A toy public-key lock','nt-p08':'Perfect numbers'};
+const banners={'nt-p01':'924 = 1 × 588 + 336','nt-p02':'7x + 11y = 1','nt-p09':'n = 5x + 7y,   x, y ≥ 0','nt-p11':'9x + 16y = 88,   x, y ≥ 1','nt-p10':'Q = p₁p₂⋯pₖ + 1','nt-p03':'10 ≡ 1 (mod 9)     ·     10 ≡ −1 (mod 11)','nt-p04':'x ≡ 2 (mod 3),  x ≡ 3 (mod 5),  x ≡ 2 (mod 7)','nt-p07':'(m² − n²)² + (2mn)² = (m² + n²)²','nt-p05':'Prime ⇒ passes.   Does passes ⇒ prime?','nt-p06':'m → mᵉ mod n → cᵈ mod n','nt-p08':'σ(n) = sum of the positive divisors of n'};
 let projects=[],state={version:1,project:'nt-p01',steps:{},answers:{},checks:{},attempts:[]},saveTimer,toastTimer,storeAvailable=true,blockedOriginal=null,lastStored=null,saveBlocked=false,blockedReason='unreadable',unsavedWork=false,labState={};
 function current(){return projects.find(p=>p.id===state.project)||projects[0];}
 function stepIndex(){return Math.min(current().steps.length-1,Math.max(0,Number(state.steps[current().id])||0));}
@@ -126,6 +126,54 @@ function renderLab(){
   }else if(id==='nt-p09'){
     title='One threshold per remainder';l.group??=24;const t=C.ticket(l.group);
     html=`<p class="lab-caption">Five classes cover every possible group size. Each class begins at 7b, then grows by 5.</p>${[0,1,2,3,4].map(b=>`<div class="threshold-row"><span>mod 5: ${7*b%5}</span><span class="threshold-bar" style="width:${Math.max(2,100*7*b/28)}%"></span><span>${7*b}</span></div>`).join('')}<p class="lab-note">Bar length = threshold, not a list of group sizes.</p><label class="lab-label" for="ticket-group">Explore a group size</label><input class="lab-input" id="ticket-group" data-lab="ticket-group" type="number" min="0" max="1000000" step="1" value="${l.group}"><div class="lab-status">${l.group} mod 5 = ${l.group%5}<br>Threshold: 7 × ${t.b} = ${t.threshold}<br>${t.possible?`${l.group} = 5 × ${t.a} + 7 × ${t.b}`:`${l.group} is below its threshold. It is impossible.`}</div>`;
+  }else if(id==='nt-p11'){
+    // One picture per step: book stacks, a remainder clock, two solution lines and the reach of 9x + 15y.
+    const step=stepIndex(),pop=fresh=>fresh?' class="nt11-new"':'';
+    if(step===0){
+      title='Books in stacks of 9 and 16';l.x??=1;const a=9*l.x,b=88-a,full=Math.floor(b/16),loose=b%16,prev=l.prevX??l.x;l.prevX=l.x;
+      const book=(x,y,fill,dashed=false)=>`<rect x="${x}" y="${y}" width="12.5" height="6" rx="1.2" fill="${fill}" stroke="${dashed?'#8a969c':'#ffffff'}" stroke-width="${dashed?.8:.5}"${dashed?' stroke-dasharray="2 1.5"':''}/>`;
+      let body='<text x="16" y="18" font-family="system-ui" font-size="12" font-weight="600" fill="#24493f">Class A</text><text x="176" y="18" font-family="system-ui" font-size="12" font-weight="600" fill="#24493f">Class B</text><line x1="166" y1="10" x2="166" y2="196" stroke="#d6e2dc"/>';
+      for(let s=0;s<l.x;s++){let g='';for(let k=0;k<9;k++)g+=book(16+s*15.5,176-k*7.1,k<2?'#3d7fb6':'#d9b86c');body+=`<g${pop(s===l.x-1&&l.x>prev)}>${g}</g>`;}
+      for(let s=0;s<full;s++){let g='';for(let k=0;k<16;k++)g+=book(176+s*15.5,176-k*7.1,k<3?'#3d7fb6':'#7fae8c');body+=`<g>${g}</g>`;}
+      if(loose){let g='';for(let k=0;k<loose;k++)g+=book(176+full*15.5,176-k*7.1,'#eef1f2',true);body+=`<g>${g}</g>`;}
+      body+=`<text x="16" y="198" font-family="Georgia" font-size="13" fill="#24493f">9 × ${l.x} = ${a}</text><text x="176" y="198" font-family="Georgia" font-size="13" fill="#24493f">88 − ${a} = ${b}</text>`;
+      body+='<rect x="16" y="212" width="9" height="6" fill="#3d7fb6"/><text x="29" y="218" font-family="system-ui" font-size="9.5" fill="#52666a">math</text><rect x="98" y="212" width="9" height="6" fill="#d9b86c"/><rect x="110" y="212" width="9" height="6" fill="#7fae8c"/><text x="123" y="218" font-family="system-ui" font-size="9.5" fill="#52666a">literature</text><rect x="196" y="212" width="9" height="6" fill="#eef1f2" stroke="#8a969c" stroke-dasharray="2 1.5"/><text x="209" y="218" font-family="system-ui" font-size="9.5" fill="#52666a">no full stack</text>';
+      const status=[l.x===1?'Class A gets 9 books in one stack of 9.':`Class A gets ${a} books in ${l.x} stacks of 9.`,!loose?(full===1?'Class B gets the other 16 books, which make one stack of 16.':`Class B gets the other ${b} books, which make ${full} stacks of 16.`):!full?`Class B gets the other ${b} books, too few for a stack of 16.`:loose===1?`Class B gets the other ${b} books, and one of them does not fill a stack of 16.`:`Class B gets the other ${b} books, and ${loose} of them do not fill a stack of 16.`];if(loose)status.push('So 13/16 of Class B’s books is not a whole number.');
+      if(l.mod8)status.push('Modulo 8, 9x leaves the same remainder as x, while 16y and 88 leave 0.',`x = ${l.x} leaves remainder ${l.x%8} modulo 8.`);
+      html=svg(body,'Class A’s books in stacks of 9 and Class B’s books in stacks of 16',228)+`<div class="lab-status">${status.map(t=>`<span class="lab-line">${t}</span>`).join('')}</div><p class="lab-caption">Each stack of 9 holds 2 math books, and each stack of 16 holds 3. Trying shares shows what happens. The remainders modulo 8 explain why.</p><div class="lab-buttons">${labButton('books-less','One stack fewer for Class A',l.x<=1)}${labButton('books-more','One stack more for Class A',l.x>=9)}${labButton('books-mod',l.mod8?'Hide remainders mod 8':'Show remainders mod 8')}</div>`;
+    }else if(step===1){
+      title='Multiples of 7 on a 12-hour clock';l.k??=0;const prev=l.prevK??l.k;l.prevK=l.k;const cx=165,cy=112,r=78,at=n=>[cx+r*Math.sin(n*Math.PI/6),cy-r*Math.cos(n*Math.PI/6)];
+      const seen=new Set();for(let j=1;j<=l.k;j++)seen.add(7*j%12);const here=7*l.k%12;
+      let body=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#d6e2dc" stroke-width="2"/>`;
+      for(let j=1;j<=l.k;j++){const [x1,y1]=at(7*(j-1)%12),[x2,y2]=at(7*j%12);body+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${j===l.k?'#c2553d':'#9fbfb1'}" stroke-width="${j===l.k?2.2:1.2}"${j===l.k&&l.k>prev?' class="nt11-new"':''}/>`;}
+      for(let n=0;n<12;n++){const [x,y]=at(n),on=seen.has(n),cur=l.k>0&&n===here;body+=`${n===4?`<circle cx="${x}" cy="${y}" r="17" fill="none" stroke="#c2553d" stroke-width="1.6" stroke-dasharray="3 2"/>`:''}<circle cx="${x}" cy="${y}" r="12.5" fill="${cur?'#c2553d':on?'#d4eadf':'#ffffff'}" stroke="${on||cur?'#2f6b55':'#b7c7c1'}" stroke-width="1.4"/><text x="${x}" y="${y+4.5}" text-anchor="middle" font-family="Georgia" font-size="13" fill="${cur?'#ffffff':'#24493f'}">${n}</text>`;}
+      body+=`<text x="${cx}" y="${cy+5}" text-anchor="middle" font-family="Georgia" font-size="15" fill="#24493f" paint-order="stroke" stroke="#f8fbfa" stroke-width="6" stroke-linejoin="round">${l.k?`7 × ${l.k} = ${7*l.k}`:'mod 12'}</text>`;
+      const status=[l.k?`7 × ${l.k} = ${7*l.k} leaves remainder ${here} when divided by 12.`:'Start at 0 and add 7 each time.'];
+      if(l.k===12)status.push('All 12 remainders appeared once, because gcd(7, 12) = 1.');
+      html=svg(body,'Multiples of 7 marked on a clock with 12 remainders',228)+`<div class="lab-status">${status.map(t=>`<span class="lab-line">${t}</span>`).join('')}</div><p class="lab-caption">The dashed ring marks remainder 4, the one Step 2 needs. Each press adds 7 and moves to the new remainder.</p><div class="lab-buttons">${labButton('clock-next','Add 7 once more',l.k>=12)}${labButton('clock-reset','Start again',!l.k)}</div>`;
+    }else if(step===2){
+      title='Walking along 7x + 4y = 100';l.t??=0;const prev=l.prevT??l.t;l.prevT=l.t;const X=x=>34+x*17,Y=y=>178-y*6;
+      let body=`<line x1="${X(0)}" y1="${Y(0)}" x2="${X(17)}" y2="${Y(0)}" stroke="#9aaeb1"/><line x1="${X(0)}" y1="${Y(-4)}" x2="${X(0)}" y2="${Y(27)}" stroke="#9aaeb1"/><text x="${X(17)}" y="${Y(0)+14}" text-anchor="end" font-family="Georgia" font-size="11" font-style="italic" fill="#52666a">x</text><text x="${X(0)-13}" y="${Y(27)+3}" font-family="Georgia" font-size="11" font-style="italic" fill="#52666a">y</text>`;
+      for(const v of [4,8,12])body+=`<text x="${X(v)}" y="${Y(0)+13}" text-anchor="middle" font-family="system-ui" font-size="9" fill="#52666a">${v}</text>`;
+      for(const v of [5,10,15,20])body+=`<text x="${X(0)-5}" y="${Y(v)+3}" text-anchor="end" font-family="system-ui" font-size="9" fill="#52666a">${v}</text>`;
+      body+=`<line x1="${X(0)}" y1="${Y(25)}" x2="${X(16)}" y2="${Y(-3)}" stroke="#c9d6d1" stroke-width="2"/>`;
+      for(let t=1;t<=l.t;t++)body+=`<path d="M${X(4*t-4)} ${Y(32-7*t)} L${X(4*t)} ${Y(32-7*t)} L${X(4*t)} ${Y(25-7*t)}" fill="none" stroke="#c2553d" stroke-width="1.4" stroke-dasharray="3 2"${t===l.t&&l.t>prev?' class="nt11-new"':''}/>`;
+      for(let t=0;t<=l.t;t++){const x=4*t,y=25-7*t,good=t>=1&&y>=1;body+=`<g${pop(t===l.t&&l.t>prev)}><circle cx="${X(x)}" cy="${Y(y)}" r="5.5" fill="${good?'#2f8a62':'#ffffff'}" stroke="#2f6b55" stroke-width="1.6"/><text x="${y<0?X(x)-9:X(x)+8}" y="${y<0?Y(y)+4:Y(y)-7}"${y<0?' text-anchor="end"':''} font-family="Georgia" font-size="11" fill="#24493f">(${x}, ${y<0?'−'+(-y):y})</text></g>`;}
+      const hens=25-7*l.t,status=[`With t = ${l.t}, the buyer gets ${4*l.t} roosters, ${hens<0?'−'+(-hens):hens} hens and ${75+3*l.t} chicks.`];
+      if(l.t===0)status.push('No roosters, so this point does not count.');if(l.t===4)status.push('Negative hens, so this point does not count.');
+      html=svg(body,'Whole-number points on the line 7x + 4y = 100',214)+`<div class="lab-status">${status.map(t=>`<span class="lab-line">${t}</span>`).join('')}</div><p class="lab-caption">Filled points meet every condition, and hollow points do not. Every point keeps 100 birds and 100 coins.</p><div class="lab-buttons">${labButton('fowl-next','Next point on the line',l.t>=4)}${labButton('fowl-reset','Start again',!l.t)}</div>`;
+    }else if(step===3){
+      title='Every solution, one step apart';l.u??=0;l.seen??=[0];if(!l.seen.includes(l.u))l.seen.push(l.u);const X=x=>48+x*6.3,Y=y=>176-y*7.4,x=31+7*l.u,y=1-3*l.u,inside=x>=1&&y>=1,m=n=>n<0?'−'+(-n):String(n);
+      let body=`<rect x="${X(1)}" y="${Y(21)}" width="${X(40)-X(1)}" height="${Y(1)-Y(21)}" fill="#eaf4ee"/><text x="${X(39)}" y="${Y(20)+12}" text-anchor="end" font-family="system-ui" font-size="9.5" fill="#2f6b55">x ≥ 1, y ≥ 1</text>`;
+      body+=`<line x1="${X(-7)}" y1="${Y(0)}" x2="${X(41)}" y2="${Y(0)}" stroke="#9aaeb1"/><line x1="${X(0)}" y1="${Y(-3)}" x2="${X(0)}" y2="${Y(22)}" stroke="#9aaeb1"/><text x="${X(41)}" y="${Y(0)+13}" text-anchor="end" font-family="Georgia" font-size="11" font-style="italic" fill="#52666a">x</text><text x="${X(0)+5}" y="${Y(22)+4}" font-family="Georgia" font-size="11" font-style="italic" fill="#52666a">y</text><line x1="${X(-6)}" y1="${Y((100+18)/7)}" x2="${X(40)}" y2="${Y((100-120)/7)}" stroke="#c9d6d1" stroke-width="2"/>`;
+      for(const t of l.seen){const px=31+7*t,py=1-3*t,good=px>=1&&py>=1,cur=t===l.u;body+=`<circle cx="${X(px)}" cy="${Y(py)}" r="${cur?6.5:4.2}" fill="${cur?'#c2553d':good?'#2f8a62':'#ffffff'}" stroke="${cur?'#8c3a28':'#2f6b55'}" stroke-width="1.4"${cur?' class="nt11-new"':''}/>`;}
+      body+=`<text x="${x>32?X(x)-10:X(x)+9}" y="${x>32?Y(y)+4:Y(y)-8}"${x>32?' text-anchor="end"':''} font-family="Georgia" font-size="11.5" fill="#24493f">(${m(x)}, ${m(y)})</text>`;
+      html=svg(body,'Integer points on the line 3x + 7y = 100, one step apart',206)+`<div class="lab-status"><span class="lab-line">t = ${m(l.u)} → (x, y) = (31 + 7t, 1 − 3t) = (${m(x)}, ${m(y)})</span><span class="lab-line">${inside?'This pair is a solution in positive whole numbers.':'Here x or y is not positive.'}</span></div><p class="lab-caption">Changing t by 1 moves the point by (7, −3) along the line. Only the points inside the shaded corner count.</p><div class="lab-buttons">${labButton('line-left','t − 1',l.u<=-5)}${labButton('line-right','t + 1',l.u>=1)}</div>`;
+    }else{
+      title='What 9x + 15y can reach';l.show??=false;const reach=new Set();for(let x=1;9*x<100;x++)for(let y=1;9*x+15*y<100;y++)reach.add(9*x+15*y);
+      let body='';for(let n=0;n<100;n++){const cx=20+(n%10)*29,cy=12+Math.floor(n/10)*20.5,three=n%3===0;body+=`<rect x="${cx}" y="${cy}" width="27" height="18.5" rx="3" fill="${three?'#eaf4ee':'#ffffff'}" stroke="${n===88?'#c2553d':'#d6e2dc'}" stroke-width="${n===88?2.2:1}"/><text x="${cx+13.5}" y="${cy+13}" text-anchor="middle" font-family="system-ui" font-size="9.5" fill="${n===88?'#c2553d':'#52666a'}">${n}</text>${l.show&&reach.has(n)?`<circle cx="${cx+23}" cy="${cy+4.5}" r="2.6" fill="#2f8a62" class="nt11-new"/>`:''}`;}
+      html=svg(body,'The numbers 0 to 99, with multiples of 3 shaded and 88 outlined',222)+`<div class="lab-status"><span class="lab-line">Shaded squares are multiples of 3.</span><span class="lab-line">88 is outlined.</span>${l.show?'<span class="lab-line">Each dot marks a total 9x + 15y with x, y ≥ 1.</span>':''}</div><p class="lab-caption">Look at where the dots land, and explain whether 88 can be one of them.</p><div class="lab-buttons">${labButton('reach-show',l.show?'Hide the totals 9x + 15y':'Mark the totals 9x + 15y')}</div>`;
+    }
   }else if(id==='nt-p10'){
     title='A new factor, not always a prime';l.prime??=2;
     html='<div class="lab-equation">2 × 3 × 5 × 7 × 11 × 13 + 1</div><p class="lab-caption">Choose a prime from the list. The product is divisible by that prime, so adding 1 leaves remainder 1.</p><div class="lab-buttons">'+[2,3,5,7,11,13].map(p=>labButton('prime-'+p,String(p))).join('')+`</div><div class="lab-status">Q mod ${l.prime} = 1</div><p class="lab-caption">Every prime factor of Q must be outside this list. That is enough for Euclid’s argument.</p>`;
@@ -170,6 +218,11 @@ function labAction(action,value){
   else if(action==='rsa-unlock'&&l.cipher!==undefined)l.unlocked=C.powMod(l.cipher,103,143);
   else if(action==='factor-expand')l.expanded=!l.expanded;
   else if(action.startsWith('factor-'))l.factor=Number(action.split('-')[1]);
+  else if(action==='books-less')l.x=Math.max(1,l.x-1);else if(action==='books-more')l.x=Math.min(9,l.x+1);else if(action==='books-mod')l.mod8=!l.mod8;
+  else if(action==='clock-next')l.k=Math.min(12,l.k+1);else if(action==='clock-reset')l.k=0;
+  else if(action==='fowl-next')l.t=Math.min(4,l.t+1);else if(action==='fowl-reset')l.t=0;
+  else if(action==='line-left')l.u=Math.max(-5,l.u-1);else if(action==='line-right')l.u=Math.min(1,l.u+1);
+  else if(action==='reach-show')l.show=!l.show;
   renderLab();
 }
 document.addEventListener('input',e=>{if(e.target.dataset?.field&&(e.target.tagName==='TEXTAREA'||e.target.type==='text'))recordInput(e.target);});
@@ -192,7 +245,7 @@ window.addEventListener('pagehide',()=>{if(projects.length)persist();});
 window.addEventListener('beforeunload',event=>{if(unsavedWork&&(saveBlocked||!storeAvailable)){event.preventDefault();event.returnValue='';}});
 $('modal').addEventListener('click',e=>{if(e.target===$('modal')){const r=$('modal').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$('modal').close();}});
 async function boot(){
-  try{const r=await fetch('data.json?v=number-theory-20261010');if(!r.ok)throw Error('Content request failed');projects=await r.json();if(projects.length!==10)throw Error('Content missing');restore();renderRoute();renderProject();$('loading').hidden=true;$('app').hidden=false;}
+  try{const r=await fetch('data.json?v=number-theory-20261010');if(!r.ok)throw Error('Content request failed');projects=await r.json();if(projects.length!==11)throw Error('Content missing');restore();renderRoute();renderProject();$('loading').hidden=true;$('app').hidden=false;}
   catch{$('loading').innerHTML='The project content could not be loaded. <button id="reload">Try loading again</button>';document.getElementById('reload').addEventListener('click',()=>location.reload());}
 }
 boot();

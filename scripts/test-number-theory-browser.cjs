@@ -6,7 +6,7 @@ const KEY='quidence:number-theory-preview:v1',RAW='Mi razonamiento original / �
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
  const origin='http://127.0.0.1:'+server.address().port,errors=[],failed=[];
- const result={projects:10,steps:0,layouts:0,languages:['en','es'],errors,failedRequests:failed};
+ const result={projects:data.length,steps:0,layouts:0,languages:['en','es'],errors,failedRequests:failed};
  try{
   browser=await chromium.launch({executablePath:process.env.QUIDENCE_BROWSER_EXECUTABLE,args:['--no-sandbox']});
   const context=await browser.newContext({viewport:{width:1440,height:900},reducedMotion:'reduce'}),page=await context.newPage();
@@ -46,8 +46,32 @@ async function main(){
    ['nt-p10',0,['prime-3','prime-13']],['nt-p03',0,['digits-swap']],
    ['nt-p04',0,['crt-next','crt-next','crt-next','crt-reset']],
    ['nt-p05',0,['square-next','square-next','square-next','square-next','square-next','square-reset']],
-   ['nt-p06',0,['rsa-lock','rsa-unlock']],['nt-p08',0,['factor-expand','factor-14','factor-expand']]
+   ['nt-p06',0,['rsa-lock','rsa-unlock']],['nt-p08',0,['factor-expand','factor-14','factor-expand']],
+   ['nt-p11',0,['books-more','books-mod','books-more','books-less']],['nt-p11',1,['clock-next','clock-next','clock-reset']],
+   ['nt-p11',2,['fowl-next','fowl-next','fowl-reset']],['nt-p11',3,['line-left','line-right']],['nt-p11',4,['reach-show','reach-show']]
   ]){await chooseProject(project);await page.locator(`[data-step="${step}"]`).click();for(const action of actions){await page.locator(`[data-lab="${action}"]`).click();await collect();}}
+  // Fractions & whole numbers: each picture reaches the case its step is about, and only that case.
+  await page.locator('#quidence-language').selectOption('en');await page.waitForFunction(()=>QuidenceI18n.locale==='en');
+  await chooseProject('nt-p11');await page.locator('[data-step="0"]').click();
+  while(!await page.locator('[data-lab="books-less"]').isDisabled())await page.locator('[data-lab="books-less"]').click();
+  for(let x=1;x<8;x++){assert.match(await page.locator('#lab .lab-status').textContent(),/not a whole number/);await page.locator('[data-lab="books-more"]').click();}
+  assert.match(await page.locator('#lab .lab-status').textContent(),/^Class A gets 72 books in 8 stacks of 9\.Class B gets the other 16 books, which make one stack of 16\.(Modulo 8|$)/);
+  await page.locator('[data-lab="books-more"]').click();assert.match(await page.locator('#lab .lab-status').textContent(),/the other 7 books, too few for a stack of 16/);
+  await page.locator('[data-step="1"]').click();for(let k=0;k<4;k++)await page.locator('[data-lab="clock-next"]').click();
+  assert.equal(await page.locator('#lab .lab-status').textContent(),'7 × 4 = 28 leaves remainder 4 when divided by 12.');
+  for(let k=4;k<12;k++)await page.locator('[data-lab="clock-next"]').click();assert(await page.locator('[data-lab="clock-next"]').isDisabled());assert.match(await page.locator('#lab .lab-status').textContent(),/All 12 remainders appeared once/);
+  await page.locator('[data-step="2"]').click();for(let t=0;t<3;t++)await page.locator('[data-lab="fowl-next"]').click();assert.equal(await page.locator('#lab .lab-status').textContent(),'With t = 3, the buyer gets 12 roosters, 4 hens and 84 chicks.');await page.locator('[data-lab="fowl-next"]').click();
+  assert.match(await page.locator('#lab .lab-status').textContent(),/16 roosters, −3 hens and 87 chicks\.Negative hens/);assert(await page.locator('[data-lab="fowl-next"]').isDisabled());
+  await page.locator('[data-step="3"]').click();assert((await page.locator('#lab svg circle').count())<=2,'only visited points are drawn');for(let t=0;t<4;t++)await page.locator('[data-lab="line-left"]').click();
+  assert.match(await page.locator('#lab .lab-status').textContent(),/\(3, 13\).*solution in positive whole numbers/);await page.locator('[data-lab="line-left"]').click();assert.match(await page.locator('#lab .lab-status').textContent(),/t = −5 → .* = \(−4, 16\)Here x or y is not positive/);assert(await page.locator('[data-lab="line-left"]').isDisabled());assert.equal(await page.locator('#lab svg circle').count(),6);for(const c of await page.locator('#lab svg circle, #lab svg text').all()){const b=await c.boundingBox(),v=await page.locator('#lab svg').boundingBox();assert(b.x>=v.x-1&&b.x+b.width<=v.x+v.width+1,'line lab mark inside the picture');}
+  await page.locator('[data-step="4"]').click();assert.doesNotMatch(await page.locator('#lab').textContent(),/3\(3x \+ 5y\)|is not one of them/);await page.locator('[data-lab="reach-show"]').click();
+  assert.deepEqual(await page.locator('#lab svg circle').count(),await page.evaluate(()=>{const r=new Set();for(let x=1;9*x<100;x++)for(let y=1;9*x+15*y<100;y++)r.add(9*x+15*y);return r.size;}));
+  await page.locator('#quidence-language').selectOption('es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');await collect();
+  assert.match(await page.locator('#lab .lab-status').textContent(),/múltiplos de 3/);
+  for(const step of [0,1,2,3]){await page.locator(`[data-step="${step}"]`).click();await collect();}
+  assert.match(await page.locator('#lab .lab-status').textContent(),/números enteros positivos|no es positivo/);
+  await page.locator('[data-step="0"]').click();await collect();assert.match(await page.locator('#lab .lab-status').textContent(),/El grupo A recibe 81 libros en 9 pilas de 9/);
+  await page.locator('#quidence-language').selectOption('en');await page.waitForFunction(()=>QuidenceI18n.locale==='en');
   await page.locator('[data-project="nt-p09"]').click();await page.locator('[data-step="0"]').click();await page.locator('#ticket-group').fill('23');await page.locator('#ticket-group').dispatchEvent('change');await collect();
   await page.locator('[data-project="nt-p07"]').click();await page.locator('#triple-m').evaluate(e=>{e.value='4';e.dispatchEvent(new Event('input',{bubbles:true}));});await collect();
   await page.locator('[data-project="nt-p06"]').click();await page.locator('#rsa-message').fill('11');await page.locator('#rsa-message').dispatchEvent('change');await page.locator('[data-lab="rsa-lock"]').click();await page.locator('[data-lab="rsa-unlock"]').click();await collect();
@@ -95,7 +119,7 @@ async function main(){
    }
    if([1440,375].includes(width))await page.screenshot({path:path.join(__dirname,'../review/screenshots/number-theory-'+width+'-20261010.webp'),type:'webp',fullPage:true});
   }
-  const missing=await page.evaluate(()=>QuidenceI18n.missing);fs.writeFileSync(path.join(__dirname,'../localization/number-theory-browser-missing.json'),JSON.stringify(missing,null,2)+'\n');assert.deepEqual(missing,[],'untranslated Number Theory content');result.spanishProofSteps=86;result.interactiveModels=10;
+  const missing=await page.evaluate(()=>QuidenceI18n.missing);fs.writeFileSync(path.join(__dirname,'../localization/number-theory-browser-missing.json'),JSON.stringify(missing,null,2)+'\n');assert.deepEqual(missing,[],'untranslated Number Theory content');result.spanishProofSteps=2*data.reduce((n,p)=>n+p.steps.length,0);result.interactiveModels=data.length;
   // Failed saves remain visible; no successful-save claim is shown.
   await page.evaluate(()=>{QuidenceStorage.setItem=()=>{throw Error('quota')};});await page.locator('#f-why').fill(RAW+' more');await page.waitForTimeout(250);assert.match(await page.locator('#save-status').textContent(),/Could not save|No se pudo guardar/);
   await context.close();

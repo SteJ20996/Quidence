@@ -170,6 +170,16 @@ async function main(){
   await b.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw Error('Storage denied');}}));
   await b.goto(origin+'/');await chooseTheme(b,'studio');
   assert.equal(await b.locator('html').getAttribute('data-ui-theme'),'studio');assert.match(await b.locator('.q-theme-note').textContent(),/For this visit only/);await blocked.close();
+  // Changing a logo's src cancels a request that is still loading, which a visitor never sees but a test counts as a
+  // failed request. Delay the version the page starts with, so it is still loading when Classic swaps it, then leave.
+  {const slow=await browser.newContext();await slow.addInitScript(k=>{try{localStorage.setItem(k,'classic');}catch{}},KEY);
+   await slow.route(/quidence-logo-light\.svg/,async r=>{await new Promise(s=>setTimeout(s,1500));await r.continue().catch(()=>{});});
+   const s=await slow.newPage(),cancelled=[];listen(s);s.on('requestfailed',r=>cancelled.push(r.url()+' '+r.failure()?.errorText));
+   await s.goto(origin+'/courses/number-theory/',{waitUntil:'commit'});
+   await s.waitForFunction(()=>[...document.querySelectorAll('img.q-brand-logo')].every(e=>e.complete&&e.naturalWidth&&e.hasAttribute('data-logo-ready')));
+   assert.match(await s.locator('img.q-brand-logo').getAttribute('src'),/quidence-logo-dark\.svg/,'Classic shows the white logo on the dark Number Theory header');
+   await s.goto(origin+'/data-use/',{waitUntil:'commit'});await s.waitForTimeout(300);
+   assert.deepEqual(cancelled,[],'a logo request is not cancelled when the logo changes version');result.logoLoadChecks++;await slow.close();}
   assert.deepEqual(result.errors,[]);assert.deepEqual(result.failures,[]);console.log(JSON.stringify(result));
  }finally{await browser?.close();await new Promise(r=>server.close(r));}
 }

@@ -1,6 +1,6 @@
 {
-  "projects": 10,
-  "steps": 43,
+  "projects": 11,
+  "steps": 48,
   "layouts": 12,
   "languages": [
     "en",
@@ -8,7 +8,7 @@
   ],
   "errors": [],
   "failedRequests": [],
-  "spanishProofSteps": 86,
-  "interactiveModels": 10,
+  "spanishProofSteps": 96,
+  "interactiveModels": 11,
   "result": "passed"
 }

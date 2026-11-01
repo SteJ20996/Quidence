@@ -766,5 +766,37 @@
   [
     "Points: [n]. Row [n] has [n] numbers and the sum uses all of them, so R([n]) = [n], a power of 2.",
     "Puntos: [n]. La fila [n] tiene [n] números y la suma los usa todos, así que R([n]) = [n], una potencia de 2."
+  ],
+  [
+    "Class A gets [n] books in [n] stacks of [n].",
+    "El grupo A recibe [n] libros en [n] pilas de [n]."
+  ],
+  [
+    "Class B gets the other [n] books, and [n] of them do not fill a stack of [n].",
+    "El grupo B recibe los otros [n] libros, y [n] de ellos no completan una pila de [n]."
+  ],
+  [
+    "Class B gets the other [n] books, and one of them does not fill a stack of [n].",
+    "El grupo B recibe los otros [n] libros, y uno de ellos no completa una pila de [n]."
+  ],
+  [
+    "Class B gets the other [n] books, too few for a stack of [n].",
+    "El grupo B recibe los otros [n] libros, que no alcanzan para una pila de [n]."
+  ],
+  [
+    "Class B gets the other [n] books, which make [n] stacks of [n].",
+    "El grupo B recibe los otros [n] libros, que forman [n] pilas de [n]."
+  ],
+  [
+    "x = [n] leaves remainder [n] modulo [n].",
+    "x = [n] deja residuo [n] módulo [n]."
+  ],
+  [
+    "7 × [n] = [n] leaves remainder [n] when divided by [n].",
+    "7 × [n] = [n] deja residuo [n] al dividir entre [n]."
+  ],
+  [
+    "With t = [n], the buyer gets [n] roosters, [n] hens and [n] chicks.",
+    "Con t = [n], quien compra recibe [n] gallos, [n] gallinas y [n] pollitos."
   ]
 ]
