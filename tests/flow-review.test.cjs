@@ -277,3 +277,14 @@ test('the on-page foundation report shows each question’s given table, matrix 
   assert(tasks.some(t=>t.table||t.matrix||t.visual));
  }
 });
+test('the saved-report viewer draws each question’s given table and graph from the saved snapshot',()=>{
+ const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+ const open=snapshot=>{const h=harness();S.save('aa01',snapshot,'view-'+Math.random().toString(36).slice(2),h.storage);const viewer=new Element('main');h.window.QuidenceReportViewer.mount(viewer,{storage:h.storage});viewer.events.click({target:viewer.querySelector('[data-r-action="open"]')});return viewer.innerHTML;};
+ const h=harness('foundation');h.controller.select('aa01');h.finish();const s=h.controller.current(),tasks=h.engine.tasks(s),snapshot=h.engine.portable(s);
+ const html=open(snapshot);
+ for(const t of tasks.filter(t=>t.table))for(const header of t.table.headers)assert(html.includes('>'+esc(header)+'<'),t.id+' '+header);
+ for(const t of tasks.filter(t=>t.visual))assert(html.includes(esc(t.visual.description)),t.id);
+ // A snapshot whose given material contains markup is left as text in the Markdown, not drawn.
+ const tampered=JSON.parse(JSON.stringify(snapshot)),withTable=tampered.taskDefinitions.find(t=>t.table);withTable.table.headers[0]='<img src=x onerror=alert(1)>';
+ const unsafe=open(tampered);assert(!unsafe.includes('<img src=x'));assert(!unsafe.includes('&lt;img src=x onerror=alert(1)&gt;</th>'));
+});

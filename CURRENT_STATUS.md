@@ -1,3 +1,22 @@
+## 2026-11-01 · Fixes from an outside deep audit
+
+A deep audit recomputed the published questions independently. It found no wrong answer key, proof or translation of meaning. It did confirm grading, input and wording problems. All of these are now fixed, each with a test that fails on the previous code:
+
+- **Units:** a matching unit from the field label is accepted in all 244 unit-labelled number fields, including Spanish unit words and $ written in front. Before, 47 fields refused units such as cm², L, km and kW.
+- **Linear Algebra:** the learning engine, the lesson checkpoint and the Matrix Explorer prediction now require exact answers.
+- **Matrix Explorer:** entries follow the declared steps of 0.5, so rank is exact and a tiny invertible matrix is no longer called singular.
+- **Coordinate Geometry:** the project checks distances to two decimal places, and checks "equal distances" and "on the road" exactly.
+- **MathVoice:** a number matches only when it rounds correctly to two places.
+- **Saved reports:** they draw each question's given table, matrix and graph from the snapshot.
+- **Wording and translation:**
+  - Benford's step 1 and step 6 no longer speak of chance about a fixed list;
+  - the Intuition Lab chord condition says "inside the circle";
+  - two Number Theory sentences are now exact;
+  - the Linear Algebra follow-up count reads 4;
+  - one Algebra II option is now translated.
+
+Foundation question bl-f10 needs a versioned foundation bank before its wording can change, so it is left for a later change. See [the review note](review/deep-audit-fixes-20261101.md).
+
 ## 2026-11-01 · Probability part 2: foundation and understanding checks
 
 Probability now has a 15-question foundation check (30 parts) and a four-problem understanding check (16 parts), in English and Spanish. The course page, homepage card and check menus link to both.

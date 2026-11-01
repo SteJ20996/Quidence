@@ -29,3 +29,9 @@ const evidence=E.summarize({'pre-3':{status:'submitted',answer:{values:[1,0]},su
 assert.equal(evidence.first['Column coordinates'],false);assert.equal(evidence.last['Column coordinates'],true);assert.equal(evidence.support.systemHint,true);
 assert.equal(E.summarize({'pre-3':{status:'not-studied',submissions:[]}},'pre')[2].last,null);
 console.log('PASS: independent matrix calculations, distinct calculation/meaning evidence, numeric constraints, phase history, pinned task version and one-day eligibility.');
+// Every numeric learning answer is an exact integer, so a component off by 0.004 does not match.
+let exact=0;for(const t of Object.values(E.TASKS).flat().filter(t=>t.kind!=='choice')){
+ const a={values:expected[t.id],choice:t.id==='pre-2'?0:t.choiceAnswer};assert(Object.values(E.score(t,a)).every(Boolean),t.id);
+ assert(Object.values(E.score(t,{...a,values:a.values.map(v=>v+.004)})).some(v=>!v),t.id+' accepted an answer off by 0.004');exact++;
+}
+assert.equal(exact,9);

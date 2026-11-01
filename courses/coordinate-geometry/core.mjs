@@ -25,9 +25,12 @@ export function equivalentLine(a,b,c,expected){const norm=Math.hypot(a,b),enorm=
 export function validate(project,step,p,answers={},candidates=[]){
  const s=scenario(project,step),m=metrics(project,step,p),out=[];
  const add=(id,ok,expected)=>out.push({id,ok:!!ok,expected});
- const num=(id,n,tolerance=.06)=>add(id,Number.isFinite(numberValue(answers[id]))&&Math.abs(numberValue(answers[id])-n)<=tolerance,n);
- const fair=q=>Math.abs(distance(s.a,q)-distance(s.b,q))<.025;
- const road=q=>Math.abs(q.y-(q.x-1))<.025&&q.x>=3&&q.x<=9;
+ // Distances are asked for to two decimal places, so a distance must be within half a hundredth of the exact value.
+ const num=(id,n,tolerance=.005+1e-9)=>add(id,Number.isFinite(numberValue(answers[id]))&&Math.abs(numberValue(answers[id])-n)<=tolerance,n);
+ // Points come from a half-unit grid or typed coordinates, so equal distances and the road are checked exactly.
+ const square=(u,v)=>(u.x-v.x)**2+(u.y-v.y)**2;
+ const fair=q=>Math.abs(square(s.a,q)-square(s.b,q))<=1e-9;
+ const road=q=>Math.abs(q.y-(q.x-1))<=1e-9&&q.x>=3&&q.x<=9;
  const bounds=p.x>=0&&p.x<=s.bounds[0]&&p.y>=0&&p.y<=s.bounds[1]&&[p.x,p.y].every(Number.isFinite);
  if(!bounds)return [{id:'bounds',ok:false}];
  if(project==='plan'){
@@ -37,10 +40,10 @@ export function validate(project,step,p,answers={},candidates=[]){
   if(step===3){num('squared',m.squared,.001);num('mapDistance',m.mapDistance);num('realDistance',m.a);}
   if(step===4||step===5){add('zone',inZone(p,s.zone));num('distanceA',m.a);num('distanceB',m.b);add('reach',m.a<=s.maxA+1e-8);add('separation',m.b>=s.minB-1e-8);}
  }else{
-  if(step===0){num('distanceA',m.a,.1);num('distanceB',m.b,.1);const nearest=Math.abs(m.a-m.b)<.01?'same':m.a<m.b?'a':'b';add('nearest',answers.nearest===nearest);}
+  if(step===0){num('distanceA',m.a);num('distanceB',m.b);const nearest=Math.abs(m.a-m.b)<.01?'same':m.a<m.b?'a':'b';add('nearest',answers.nearest===nearest);}
   if(step===1){const pts=candidates.filter(q=>q.x>=0&&q.x<=12&&q.y>=0&&q.y<=10);add('candidates',pts.length>=2&&pts.every(fair)&&pts.some(q=>distance(q,pts[0])>=.5));}
   if(step===2){num('midX',6,.001);num('midY',2,.001);num('lineX',6,.001);}
-  if(step===3||step===5){add('fair',fair(p));add('road',road(p));num('distanceA',m.a,.1);num('distanceB',m.b,.1);if(step===5)add('reach',Math.max(m.a,m.b)<=50+1e-8);}
+  if(step===3||step===5){add('fair',fair(p));add('road',road(p));num('distanceA',m.a);num('distanceB',m.b);if(step===5)add('reach',Math.max(m.a,m.b)<=50+1e-8);}
   if(step===4){const l=equalDistanceLine(s.a,s.b);add('line',equivalentLine(numberValue(answers.lineA),numberValue(answers.lineB),numberValue(answers.lineC),l));}
  }
  return out;

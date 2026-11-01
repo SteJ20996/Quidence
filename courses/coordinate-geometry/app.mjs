@@ -1,4 +1,4 @@
-import {PROJECTS,STORAGE_KEY,newState,validState,scenario,metrics,numberValue,keyFor,makeAttempt,currentAttempt,learningNotes,distance} from './core.mjs?v=06e23d8d269e';
+import {PROJECTS,STORAGE_KEY,newState,validState,scenario,metrics,numberValue,keyFor,makeAttempt,currentAttempt,learningNotes,distance} from './core.mjs?v=8b3258355fc6';
 import {UI,CONTENT,text} from './content.mjs?v=0ffc32a1f255';
 import {LESSONS,LESSON_UI,lessonModel,startPoints,mountPlane,checkLesson} from './lessons.mjs?v=5b68c638aac7';
 const root=document.querySelector('#app');

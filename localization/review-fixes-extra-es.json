@@ -82,5 +82,8 @@
   "Given table: {\"headers\":[\"x\",\"Observed y\"],\"rows\":[[0,1],[1,2],[2,2]]}": "Tabla proporcionada: {\"headers\":[\"x\",\"y observado\"],\"rows\":[[0,1],[1,2],[2,2]]}",
   "Intermediate & advanced diagnostic": "Diagnóstico intermedio y avanzado",
   "This answer was submitted after the reference answer was shown, so it is not independent evidence.": "Esta respuesta se envió después de mostrar la respuesta de referencia, así que no es evidencia independiente.",
-  "after the reference answer was shown": "después de mostrar la respuesta de referencia"
+  "after the reference answer was shown": "después de mostrar la respuesta de referencia",
+  "· 8 starting tasks, with up to 4 optional follow-ups.": "· 8 tareas iniciales, con hasta 4 seguimientos opcionales.",
+  "Use a matrix entry from −3 to 3 in steps of 0.5. Complete invalid fields before continuing.": "Usa una entrada de la matriz de −3 a 3 en pasos de 0.5. Completa los campos no válidos antes de continuar.",
+  "x < −1 or x > 3": "x < −1 o x > 3"
 }
