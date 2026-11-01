@@ -1,3 +1,14 @@
+## 2026-11-01 · Probability part 4: Statistics lesson on sampling distributions
+
+Statistics has a fifth lesson, "How much does a sample mean vary?", in English and Spanish. It finishes the Probability course plan.
+
+- **The lesson.** A right-skewed spinner (μ = 2.2, σ = 1.4) shows that E(x̄) = μ, that the standard error is σ/√n, and that the distribution of x̄ approaches a normal curve while the data keep their skew. The chart shows the exact distribution of the mean for n = 1 to 16, with an optional normal curve.
+- **Saved sessions.** A session saved with the four earlier lessons opens unchanged, with an empty place for lesson 5 and a `lessons_added` event. A finished session resumes at lesson 5, and the page says that a lesson was added.
+- **Pointers to Probability.** The Benford "uses" line, the Discrete Mathematics hats project and the Game Theory shared-printer step 08 now point to the Probability course.
+- **Checks.** The test computes the exact distribution with BigInt for every n, and builds a finished record with the earlier version's engine to check the upgrade.
+
+See [the review note](review/statistics-sampling-20261101.md).
+
 ## 2026-11-01 · Probability part 3: Intuition Lab activity
 
 Intuition Lab has a sixteenth activity, "More tosses. More often exactly half?", in English and Spanish. The Probability card now has every activity, and its "not available yet" note is gone.

@@ -926,5 +926,13 @@
   [
     "Chebyshev’s bound for a miss of 0.05 or more: [n].",
     "Cota de Chebyshev para un error de 0.05 o más: [n]."
+  ],
+  [
+    "Center of x̄ = [n]",
+    "Centro de x̄ = [n]"
+  ],
+  [
+    "Standard error = [n]/√[n] = [n]",
+    "Error estándar = [n]/√[n] = [n]"
   ]
 ]

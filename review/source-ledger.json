@@ -576,11 +576,11 @@
       "sourceFiles": [
         {
           "path": "content/cross-disciplinary/projects.cjs",
-          "sha256": "d14e5bd2cc7ee7c74e289d1fe458700bcbd1fd954dc6a93115113b4e5d16b349"
+          "sha256": "30c12f547ae83984a5f1961f0587b798ac6cf05e18aa8ae4b39c74c44b42d867"
         },
         {
           "path": "cross-disciplinary/data.json",
-          "sha256": "df9b28580735abeda49ee033b8e88666f14481b021c4c84347980b530786b139"
+          "sha256": "e50c0f5492578927fb682d4a9656a1b4a9f9ff614ce6b7d9d79173319c6256cc"
         }
       ],
       "sourceReview": {
@@ -608,11 +608,11 @@
       "sourceFiles": [
         {
           "path": "content/cross-disciplinary/projects.cjs",
-          "sha256": "d14e5bd2cc7ee7c74e289d1fe458700bcbd1fd954dc6a93115113b4e5d16b349"
+          "sha256": "30c12f547ae83984a5f1961f0587b798ac6cf05e18aa8ae4b39c74c44b42d867"
         },
         {
           "path": "cross-disciplinary/data.json",
-          "sha256": "df9b28580735abeda49ee033b8e88666f14481b021c4c84347980b530786b139"
+          "sha256": "e50c0f5492578927fb682d4a9656a1b4a9f9ff614ce6b7d9d79173319c6256cc"
         }
       ],
       "sourceReview": {
@@ -635,16 +635,16 @@
       "title": "Why do so many numbers start with 1?",
       "bankVersion": "cross-disciplinary-v1",
       "availability": "active",
-      "fingerprint": "c3421dc45be081c6b6b163ec24daef5c18c83459b69c73c52f00d7bbf04e7d3f",
+      "fingerprint": "0ef2ea5a752f1b1cc11d3d6c5fad8911a11a8afc42cef57292da7bd7835f327e",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/cross-disciplinary/projects.cjs",
-          "sha256": "d14e5bd2cc7ee7c74e289d1fe458700bcbd1fd954dc6a93115113b4e5d16b349"
+          "sha256": "30c12f547ae83984a5f1961f0587b798ac6cf05e18aa8ae4b39c74c44b42d867"
         },
         {
           "path": "cross-disciplinary/data.json",
-          "sha256": "df9b28580735abeda49ee033b8e88666f14481b021c4c84347980b530786b139"
+          "sha256": "e50c0f5492578927fb682d4a9656a1b4a9f9ff614ce6b7d9d79173319c6256cc"
         }
       ],
       "sourceReview": {
@@ -8472,11 +8472,11 @@
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+          "sha256": "ca1736df526a3d11360df517038792585f3a2bf6f36b77a51f1cb8b3ff19be8a"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+          "sha256": "131a25fe5a400c69aa6ceb4430e82813dcf98e383c916114b3426cad7e18152d"
         }
       ],
       "sourceReview": {
@@ -8504,11 +8504,11 @@
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+          "sha256": "ca1736df526a3d11360df517038792585f3a2bf6f36b77a51f1cb8b3ff19be8a"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+          "sha256": "131a25fe5a400c69aa6ceb4430e82813dcf98e383c916114b3426cad7e18152d"
         }
       ],
       "sourceReview": {
@@ -8536,11 +8536,11 @@
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+          "sha256": "ca1736df526a3d11360df517038792585f3a2bf6f36b77a51f1cb8b3ff19be8a"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+          "sha256": "131a25fe5a400c69aa6ceb4430e82813dcf98e383c916114b3426cad7e18152d"
         }
       ],
       "sourceReview": {
@@ -8568,11 +8568,11 @@
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+          "sha256": "ca1736df526a3d11360df517038792585f3a2bf6f36b77a51f1cb8b3ff19be8a"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+          "sha256": "131a25fe5a400c69aa6ceb4430e82813dcf98e383c916114b3426cad7e18152d"
         }
       ],
       "sourceReview": {
@@ -8600,11 +8600,11 @@
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+          "sha256": "ca1736df526a3d11360df517038792585f3a2bf6f36b77a51f1cb8b3ff19be8a"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+          "sha256": "131a25fe5a400c69aa6ceb4430e82813dcf98e383c916114b3426cad7e18152d"
         }
       ],
       "sourceReview": {
@@ -8632,11 +8632,11 @@
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+          "sha256": "ca1736df526a3d11360df517038792585f3a2bf6f36b77a51f1cb8b3ff19be8a"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+          "sha256": "131a25fe5a400c69aa6ceb4430e82813dcf98e383c916114b3426cad7e18152d"
         }
       ],
       "sourceReview": {
@@ -8664,11 +8664,11 @@
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+          "sha256": "ca1736df526a3d11360df517038792585f3a2bf6f36b77a51f1cb8b3ff19be8a"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+          "sha256": "131a25fe5a400c69aa6ceb4430e82813dcf98e383c916114b3426cad7e18152d"
         }
       ],
       "sourceReview": {
@@ -8696,11 +8696,11 @@
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+          "sha256": "ca1736df526a3d11360df517038792585f3a2bf6f36b77a51f1cb8b3ff19be8a"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+          "sha256": "131a25fe5a400c69aa6ceb4430e82813dcf98e383c916114b3426cad7e18152d"
         }
       ],
       "sourceReview": {
@@ -8723,16 +8723,16 @@
       "title": "Inclusion–exclusion and the mixed-up hats",
       "bankVersion": "discrete-math-v1",
       "availability": "active",
-      "fingerprint": "3ee575a4997307b8b3a73f4a8a71063b42ca3040713e87462590f6ddb46e485c",
+      "fingerprint": "318fd5e2ca02eca7297b1038b947a27fa26efdf9be91698d440998e1c069c5ff",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+          "sha256": "ca1736df526a3d11360df517038792585f3a2bf6f36b77a51f1cb8b3ff19be8a"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+          "sha256": "131a25fe5a400c69aa6ceb4430e82813dcf98e383c916114b3426cad7e18152d"
         }
       ],
       "sourceReview": {
@@ -8760,11 +8760,11 @@
       "sourceFiles": [
         {
           "path": "content/discrete-math/projects.cjs",
-          "sha256": "a3cbaa52bb9c1421f04f215dbecb6e9eb48f302481ce89fadf7e67825e438f18"
+          "sha256": "ca1736df526a3d11360df517038792585f3a2bf6f36b77a51f1cb8b3ff19be8a"
         },
         {
           "path": "courses/discrete-math/data.json",
-          "sha256": "10446f6c721180e536942ef050b48ebd6792c6c2c6081af00b34b8f3174d2ce4"
+          "sha256": "131a25fe5a400c69aa6ceb4430e82813dcf98e383c916114b3426cad7e18152d"
         }
       ],
       "sourceReview": {
@@ -17735,7 +17735,7 @@
       "sourceFiles": [
         {
           "path": "modules/ac01/dist/projects/content.js",
-          "sha256": "5d22b73a2451cd4ae606f4ba0b8f625652d53539de94f73987b58e6d6a1b1220"
+          "sha256": "faa0d63a3cb3cb829a36d60893407e09ce4652e3daf1a7e0bb4147437f4a6cdf"
         },
         {
           "path": "modules/ac01/dist/projects/core.js",
@@ -17770,7 +17770,7 @@
       "sourceFiles": [
         {
           "path": "modules/ac01/dist/projects/content.js",
-          "sha256": "5d22b73a2451cd4ae606f4ba0b8f625652d53539de94f73987b58e6d6a1b1220"
+          "sha256": "faa0d63a3cb3cb829a36d60893407e09ce4652e3daf1a7e0bb4147437f4a6cdf"
         },
         {
           "path": "modules/ac01/dist/projects/core.js",
@@ -17800,12 +17800,12 @@
       },
       "bankVersion": "ac01-projects-1",
       "availability": "active",
-      "fingerprint": "64c8a2a353c2a3ff0f34ab7935a45dee897c2e4ab0ec01080aa02075f0af9e61",
+      "fingerprint": "2b3c875648e233f55e5402aab5249ca8b6fa4d1b231494b8e2af44510a9a75b1",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ac01/dist/projects/content.js",
-          "sha256": "5d22b73a2451cd4ae606f4ba0b8f625652d53539de94f73987b58e6d6a1b1220"
+          "sha256": "faa0d63a3cb3cb829a36d60893407e09ce4652e3daf1a7e0bb4147437f4a6cdf"
         },
         {
           "path": "modules/ac01/dist/projects/core.js",
@@ -18777,7 +18777,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -18812,7 +18812,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -18847,7 +18847,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -18882,7 +18882,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -18917,7 +18917,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -18952,7 +18952,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -18987,7 +18987,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19022,7 +19022,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19057,7 +19057,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19092,7 +19092,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19127,7 +19127,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19162,7 +19162,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19182,14 +19182,14 @@
       "module": "ae01",
       "taskId": "ae-c1",
       "title": "How many observations are at most 2 minutes?",
-      "bankVersion": "ae01-beta-0.1",
+      "bankVersion": "ae01-beta-0.2",
       "availability": "active",
       "fingerprint": "b1c42f940dcb10d7755e4cced9b088915de4831d4c56dff51055191f32b83d1c",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ae01/dist/content.js",
-          "sha256": "a74556d8722d4a086b78eaedfa911ef4c5af0fe2847546b4717f0b491d0e8d09"
+          "sha256": "0302cb428cf34dd9c8c672a470b88326e92e8ea290a3adcb21bde0b9b1d6a602"
         },
         {
           "path": "assets/course-models.js",
@@ -19197,7 +19197,42 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ae01:ae-c10",
+      "family": "lesson",
+      "module": "ae01",
+      "taskId": "ae-c10",
+      "title": "Waiting times at a clinic are strongly right-skewed. A researcher records a random sample of 200 waiting times. Which statement is justified?",
+      "bankVersion": "ae01-beta-0.2",
+      "availability": "active",
+      "fingerprint": "38271bd125e512111104853c725b364c0adb440dfbd0027490560a8470990662",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ae01/dist/content.js",
+          "sha256": "0302cb428cf34dd9c8c672a470b88326e92e8ea290a3adcb21bde0b9b1d6a602"
+        },
+        {
+          "path": "assets/course-models.js",
+          "sha256": "99e4f5d22ed2fcaed9c26efc5f7bfb0d49c2ad2cbfc303af7c294d960f9dffd2"
+        },
+        {
+          "path": "assets/course-graphs.js",
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19217,14 +19252,14 @@
       "module": "ae01",
       "taskId": "ae-c2",
       "title": "Which description fits these observations?",
-      "bankVersion": "ae01-beta-0.1",
+      "bankVersion": "ae01-beta-0.2",
       "availability": "active",
       "fingerprint": "8471f74a982ab5ffc6d19abac5b0deebb5ee076e5f7804cf47685395adab113b",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ae01/dist/content.js",
-          "sha256": "a74556d8722d4a086b78eaedfa911ef4c5af0fe2847546b4717f0b491d0e8d09"
+          "sha256": "0302cb428cf34dd9c8c672a470b88326e92e8ea290a3adcb21bde0b9b1d6a602"
         },
         {
           "path": "assets/course-models.js",
@@ -19232,7 +19267,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19252,14 +19287,14 @@
       "module": "ae01",
       "taskId": "ae-c3",
       "title": "For 2, 4, 4, 6, what is the median?",
-      "bankVersion": "ae01-beta-0.1",
+      "bankVersion": "ae01-beta-0.2",
       "availability": "active",
       "fingerprint": "870e1a24aaf956e89bf0821906003e88a8da8a2c6d65a71f177603a9c9da3a45",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ae01/dist/content.js",
-          "sha256": "a74556d8722d4a086b78eaedfa911ef4c5af0fe2847546b4717f0b491d0e8d09"
+          "sha256": "0302cb428cf34dd9c8c672a470b88326e92e8ea290a3adcb21bde0b9b1d6a602"
         },
         {
           "path": "assets/course-models.js",
@@ -19267,7 +19302,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19287,14 +19322,14 @@
       "module": "ae01",
       "taskId": "ae-c4",
       "title": "Replace 9 with 29 in this data set. What happens?",
-      "bankVersion": "ae01-beta-0.1",
+      "bankVersion": "ae01-beta-0.2",
       "availability": "active",
       "fingerprint": "2f7c9d50923dc269679de9f43f992afc11435c44de5c2be585b294299f9cd369",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ae01/dist/content.js",
-          "sha256": "a74556d8722d4a086b78eaedfa911ef4c5af0fe2847546b4717f0b491d0e8d09"
+          "sha256": "0302cb428cf34dd9c8c672a470b88326e92e8ea290a3adcb21bde0b9b1d6a602"
         },
         {
           "path": "assets/course-models.js",
@@ -19302,7 +19337,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19322,14 +19357,14 @@
       "module": "ae01",
       "taskId": "ae-c5",
       "title": "A school randomly samples students, then observes their existing sleep hours and scores. What is justified?",
-      "bankVersion": "ae01-beta-0.1",
+      "bankVersion": "ae01-beta-0.2",
       "availability": "active",
       "fingerprint": "23be8b9cb2f92f127c04cc124e26cb38d7e608e4cb12f46a1237626af5365f88",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ae01/dist/content.js",
-          "sha256": "a74556d8722d4a086b78eaedfa911ef4c5af0fe2847546b4717f0b491d0e8d09"
+          "sha256": "0302cb428cf34dd9c8c672a470b88326e92e8ea290a3adcb21bde0b9b1d6a602"
         },
         {
           "path": "assets/course-models.js",
@@ -19337,7 +19372,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19357,14 +19392,14 @@
       "module": "ae01",
       "taskId": "ae-c6",
       "title": "Volunteers are randomly assigned to two teaching methods. Which claim is most careful?",
-      "bankVersion": "ae01-beta-0.1",
+      "bankVersion": "ae01-beta-0.2",
       "availability": "active",
       "fingerprint": "684b925d0ba43c111dfd1252319c2227dc920a145734a5c362d6b4644a3519f4",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ae01/dist/content.js",
-          "sha256": "a74556d8722d4a086b78eaedfa911ef4c5af0fe2847546b4717f0b491d0e8d09"
+          "sha256": "0302cb428cf34dd9c8c672a470b88326e92e8ea290a3adcb21bde0b9b1d6a602"
         },
         {
           "path": "assets/course-models.js",
@@ -19372,7 +19407,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19392,14 +19427,14 @@
       "module": "ae01",
       "taskId": "ae-c7",
       "title": "One of these 50 students is selected uniformly at random. What is P(club and pass)?",
-      "bankVersion": "ae01-beta-0.1",
+      "bankVersion": "ae01-beta-0.2",
       "availability": "active",
       "fingerprint": "2e34b18480db1779e2a59c14bfcae73e4f1060fe914c6cab193be7de20a0cbb3",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ae01/dist/content.js",
-          "sha256": "a74556d8722d4a086b78eaedfa911ef4c5af0fe2847546b4717f0b491d0e8d09"
+          "sha256": "0302cb428cf34dd9c8c672a470b88326e92e8ea290a3adcb21bde0b9b1d6a602"
         },
         {
           "path": "assets/course-models.js",
@@ -19407,7 +19442,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19427,14 +19462,14 @@
       "module": "ae01",
       "taskId": "ae-c8",
       "title": "In this table, are passing and club membership independent?",
-      "bankVersion": "ae01-beta-0.1",
+      "bankVersion": "ae01-beta-0.2",
       "availability": "active",
       "fingerprint": "5a06a28d20b053e6478ee988ce041dda431795eb4b33a3f994f33fce42ea9802",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ae01/dist/content.js",
-          "sha256": "a74556d8722d4a086b78eaedfa911ef4c5af0fe2847546b4717f0b491d0e8d09"
+          "sha256": "0302cb428cf34dd9c8c672a470b88326e92e8ea290a3adcb21bde0b9b1d6a602"
         },
         {
           "path": "assets/course-models.js",
@@ -19442,7 +19477,42 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ae01:ae-c9",
+      "family": "lesson",
+      "module": "ae01",
+      "taskId": "ae-c9",
+      "title": "Exam scores in a large district have mean 70 and standard deviation 12. Random samples of 36 scores are drawn. Which describes the distribution of the sample mean?",
+      "bankVersion": "ae01-beta-0.2",
+      "availability": "active",
+      "fingerprint": "214ffa423ed76a7b1a2c4f6c39f6987d11f6390bb1a9eed887847b5a12f3d094",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ae01/dist/content.js",
+          "sha256": "0302cb428cf34dd9c8c672a470b88326e92e8ea290a3adcb21bde0b9b1d6a602"
+        },
+        {
+          "path": "assets/course-models.js",
+          "sha256": "99e4f5d22ed2fcaed9c26efc5f7bfb0d49c2ad2cbfc303af7c294d960f9dffd2"
+        },
+        {
+          "path": "assets/course-graphs.js",
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19462,14 +19532,14 @@
       "module": "ae01",
       "taskId": "ae-p1",
       "title": "These are waiting times in minutes. What do the three dots above 3 mean?",
-      "bankVersion": "ae01-beta-0.1",
+      "bankVersion": "ae01-beta-0.2",
       "availability": "active",
       "fingerprint": "39046418dbfb4cebceadc3c19613a0624ac22c01b4930426e8f59cf224f8b0f9",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ae01/dist/content.js",
-          "sha256": "a74556d8722d4a086b78eaedfa911ef4c5af0fe2847546b4717f0b491d0e8d09"
+          "sha256": "0302cb428cf34dd9c8c672a470b88326e92e8ea290a3adcb21bde0b9b1d6a602"
         },
         {
           "path": "assets/course-models.js",
@@ -19477,7 +19547,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19497,14 +19567,14 @@
       "module": "ae01",
       "taskId": "ae-p2",
       "title": "For these five values, which pair is correct?",
-      "bankVersion": "ae01-beta-0.1",
+      "bankVersion": "ae01-beta-0.2",
       "availability": "active",
       "fingerprint": "879e43fda1db842d1cd95f2c4912d05f43b389acec3c981e86ef18edb7aaadb5",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ae01/dist/content.js",
-          "sha256": "a74556d8722d4a086b78eaedfa911ef4c5af0fe2847546b4717f0b491d0e8d09"
+          "sha256": "0302cb428cf34dd9c8c672a470b88326e92e8ea290a3adcb21bde0b9b1d6a602"
         },
         {
           "path": "assets/course-models.js",
@@ -19512,7 +19582,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19532,14 +19602,14 @@
       "module": "ae01",
       "taskId": "ae-p3",
       "title": "A college asks only volunteers in one dorm about travel to campus. Can this reliably describe all students?",
-      "bankVersion": "ae01-beta-0.1",
+      "bankVersion": "ae01-beta-0.2",
       "availability": "active",
       "fingerprint": "87b2ba65d38b227400abf10045b34c84ce7715ce65377f7d4bb32933aa275a2d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ae01/dist/content.js",
-          "sha256": "a74556d8722d4a086b78eaedfa911ef4c5af0fe2847546b4717f0b491d0e8d09"
+          "sha256": "0302cb428cf34dd9c8c672a470b88326e92e8ea290a3adcb21bde0b9b1d6a602"
         },
         {
           "path": "assets/course-models.js",
@@ -19547,7 +19617,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19567,14 +19637,14 @@
       "module": "ae01",
       "taskId": "ae-p4",
       "title": "One of these 40 students is selected uniformly at random. What is P(pass given club)?",
-      "bankVersion": "ae01-beta-0.1",
+      "bankVersion": "ae01-beta-0.2",
       "availability": "active",
       "fingerprint": "ee74c3cb27ee9301a25beeeff535d62cabc5f19357b68ebe1aaf3e9200b760a7",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ae01/dist/content.js",
-          "sha256": "a74556d8722d4a086b78eaedfa911ef4c5af0fe2847546b4717f0b491d0e8d09"
+          "sha256": "0302cb428cf34dd9c8c672a470b88326e92e8ea290a3adcb21bde0b9b1d6a602"
         },
         {
           "path": "assets/course-models.js",
@@ -19582,7 +19652,42 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ae01:ae-p5",
+      "family": "lesson",
+      "module": "ae01",
+      "taskId": "ae-p5",
+      "title": "Many samples of size 4 and many of size 16 are drawn at random from the same population. How do the spreads of their sample means compare?",
+      "bankVersion": "ae01-beta-0.2",
+      "availability": "active",
+      "fingerprint": "4eae1da13d37c55b7c552c859c8a13671fa1595be53194256ceade9b47b44c3d",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ae01/dist/content.js",
+          "sha256": "0302cb428cf34dd9c8c672a470b88326e92e8ea290a3adcb21bde0b9b1d6a602"
+        },
+        {
+          "path": "assets/course-models.js",
+          "sha256": "99e4f5d22ed2fcaed9c26efc5f7bfb0d49c2ad2cbfc303af7c294d960f9dffd2"
+        },
+        {
+          "path": "assets/course-graphs.js",
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19617,7 +19722,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19652,7 +19757,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19687,7 +19792,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19722,7 +19827,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19757,7 +19862,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19792,7 +19897,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19827,7 +19932,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19862,7 +19967,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19897,7 +20002,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19932,7 +20037,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -19967,7 +20072,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20002,7 +20107,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20037,7 +20142,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20072,7 +20177,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20107,7 +20212,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20142,7 +20247,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20177,7 +20282,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20212,7 +20317,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20247,7 +20352,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20282,7 +20387,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20317,7 +20422,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20352,7 +20457,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20387,7 +20492,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20422,7 +20527,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20457,7 +20562,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20492,7 +20597,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20527,7 +20632,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20562,7 +20667,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20597,7 +20702,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20632,7 +20737,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20667,7 +20772,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20702,7 +20807,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20737,7 +20842,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20772,7 +20877,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20807,7 +20912,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20842,7 +20947,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20877,7 +20982,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20912,7 +21017,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20947,7 +21052,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -20982,7 +21087,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21017,7 +21122,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21052,7 +21157,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21087,7 +21192,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21122,7 +21227,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21157,7 +21262,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21192,7 +21297,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21227,7 +21332,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21262,7 +21367,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21297,7 +21402,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21332,7 +21437,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21367,7 +21472,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21402,7 +21507,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21437,7 +21542,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21472,7 +21577,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21507,7 +21612,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21542,7 +21647,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21577,7 +21682,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21612,7 +21717,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21647,7 +21752,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -21682,7 +21787,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -23610,7 +23715,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -23645,7 +23750,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -23680,7 +23785,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -23715,7 +23820,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -23750,7 +23855,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -23785,7 +23890,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -23820,7 +23925,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -23855,7 +23960,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -23890,7 +23995,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -23925,7 +24030,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -23960,7 +24065,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
@@ -23995,7 +24100,7 @@
         },
         {
           "path": "assets/course-graphs.js",
-          "sha256": "0b818dc22a8df022422a73e1c563d472f137767ae11cfe43ad03b0199be481e2"
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
         }
       ],
       "sourceReview": {
