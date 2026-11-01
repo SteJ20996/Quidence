@@ -13,7 +13,9 @@ function validVector(v){return Array.isArray(v)&&v.length===2&&v.every(n=>Number
 function apply(a,v){if(!validMatrix(a)||!validVector(v))throw new Error('Matrix and input vector must contain finite values from −3 to 3.');return[a[0]*v[0]+a[1]*v[1],a[2]*v[0]+a[3]*v[1]];}
 function determinant(a){if(!validMatrix(a))throw new Error('Invalid matrix.');return a[0]*a[3]-a[1]*a[2];}
 function blend(a,t){if(!validMatrix(a)||!Number.isFinite(t)||t<0||t>1)throw new Error('Transition must be between 0 and 1.');return[1+t*(a[0]-1),t*a[1],t*a[2],1+t*(a[3]-1)].map(n=>n===0?0:n);}
-function rank(a){if(a.every(n=>Math.abs(n)<1e-10))return 0;return Math.abs(determinant(a))<1e-10?1:2;}
+// Entries are multiples of 0.5 from −3 to 3, so the determinant is computed exactly and rank needs no tolerance.
+// A tolerance would call tiny invertible matrices singular.
+function rank(a){if(a.every(n=>n===0))return 0;return determinant(a)===0?1:2;}
 function extent(a,v){const corners=[[-3,-3],[-3,3],[3,-3],[3,3]],points=[...corners,...corners.map(p=>apply(a,p)),v,apply(a,v)];return Math.max(4,Math.ceil(Math.max(...points.flat().map(Math.abs))+1));}
 const api={PRESETS,validMatrix,validVector,apply,determinant,blend,rank,extent};root.MatrixMath=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);

@@ -83,3 +83,8 @@ test('checkpoint wording and targets stay aligned after changing model settings'
   ['game-theory',{a:1,b:1},-1,'currently choose Compete','payoff change']
  ]){const m=modelFor(id,{model}),c=checkpointCopy(id,m);assert.equal(targetFor(id,m),expected);assert(c.prompt.includes(prompt));assert(c.label.includes(label));}
 });
+test('a number matches only when it rounds correctly to two decimal places',()=>{
+ assert.equal(numericMatch('27',27),true);assert.equal(numericMatch('27.00',27),true);assert.equal(numericMatch('27.004',27),true);
+ assert.equal(numericMatch('27.01',27),false);assert.equal(numericMatch('26.99',27),false);
+ assert.equal(numericMatch('1.58',Math.sqrt(2.5)),true);assert.equal(numericMatch('1.59',Math.sqrt(2.5)),false);
+});

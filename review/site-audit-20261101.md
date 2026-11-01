@@ -28,7 +28,7 @@ An outside audit of quidence.com listed seven problems. Each was checked against
 
 **Fix.** The report draws the same given material under each prompt, using the same renderer as the question.
 
-**Not changed.** The saved-report viewer (`reports/`) still shows the given material only inside its Markdown text, as a JSON line. Saved snapshots store observations, not task definitions, so drawing it there needs the snapshot format to change. That is left for a separate change.
+**Not changed here.** The saved-report viewer (`reports/`) still showed the given material only inside its Markdown text. **Correction:** this note first said the snapshot format would have to change, because snapshots store only observations. That was wrong: portable snapshots already include `taskDefinitions`. The viewer now draws the given material from them; see `review/deep-audit-fixes-20261101.md`.
 
 ## 5. The cross-disciplinary page header said 2 projects and 12 steps
 

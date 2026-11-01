@@ -1,4 +1,4 @@
-import {fmt} from './core.js?v=afb22cdce04d';
+import {fmt} from './core.js?v=c69296a05f04';
 const tx=(x,y,t,size=12,extra='')=>`<text x="${x}" y="${y}" font-size="${size}" ${extra}>${t}</text>`;
 const line=(x1,y1,x2,y2,color='#dce5dd',extra='')=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" ${extra}/>`;
 const svg=(body,label)=>`<svg viewBox="0 0 600 380" role="img" aria-label="${label}">${body}</svg>`;

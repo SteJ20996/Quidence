@@ -106,6 +106,9 @@ function answerPhase(h,phase){for(const t of h.E.TASKS[phase]){h.stage(canonical
  h=harness();completePre(h);completeLesson(h);answerPhase(h,'practice');answerPhase(h,'post');assert.equal(h.state().stage,'report');
  h=harness('{unreadable');assert(h.read().blockedLoad);assert.equal(h.store.get(KEY),'{unreadable');assert.throws(()=>h.stage({values:[2,-1]}));h.click('download-raw');assert.equal(await h.blobs.at(-1).text(),'{unreadable');
  h=harness(undefined,{saving:false});assert(h.document.getElementById('learning-storage').textContent.includes('unavailable'));h.stage({values:[2,-1]});assert.equal(h.submit().ok,true,'Session remains usable when browser saving fails.');
+ // The checkpoint asks for the exact point (2, 2); (2.004, 1.996) is not it.
+ h=harness();completePre(h);for(let i=0;i<4;i++)h.show(i);h.input('checkpoint-x',2.004);h.input('checkpoint-y',1.996);h.click('checkpoint-submit');assert.equal(h.state().lesson.checkpoint.attempts.at(-1).correct,false,'2.004 is not 2');
+ h.input('checkpoint-x',2);h.input('checkpoint-y',2);h.click('checkpoint-submit');assert.equal(h.state().lesson.checkpoint.attempts.at(-1).correct,true);
  console.log('PASS: complete and mixed learning flows, no-feedback gating, lesson prediction gate/resume, answer revisions, support history, separated report/export, delayed check, old-record preservation, reset, corrupt records and saving failure. DOM fixtures; real browser visual QA remains unavailable.');
 })().catch(e=>{console.error(e);process.exit(1);});
 

@@ -134,7 +134,7 @@
         "title": "Encuentra el mayor tamaño imposible",
         "prompt": "Utiliza el Paso 1 para encontrar el mayor tamaño que no puede comprarse y el menor N tal que todos los tamaños a partir de N pueden comprarse. Demuestra ambos resultados.",
         "proof": [
-          "En la clase con bₙ = b, los tamaños imposibles son exactamente los números positivos de esa clase menores que 7b y el mayor es 7b − 5. El mayor umbral es 7·4 = 28, así que el mayor tamaño imposible es 28 − 5 = 23.",
+          "En la clase con bₙ = b, los tamaños imposibles son exactamente los números positivos de esa clase menores que 7b y, para b = 1, 2, 3 o 4, el mayor es 7b − 5 (la clase con b = 0 no tiene ninguno). El mayor umbral es 7·4 = 28, así que el mayor tamaño imposible es 28 − 5 = 23.",
           "Todo n ≥ 24 puede comprarse: si bₙ ≤ 3, entonces 7bₙ ≤ 21 < n; si bₙ = 4, entonces n ≡ 3 (mod 5) y n ≥ 24 obliga a que n ≥ 28 = 7bₙ. En ambos casos se aplica el Paso 1. Como 23 es imposible, 24 es el menor N a partir del cual todos los tamaños son posibles."
         ],
         "fields": {"largest": {"label": "Mayor tamaño imposible (5 y 7)"}, "runStart": {"label": "Menor N a partir del cual todos los tamaños son posibles"}}

@@ -1,4 +1,4 @@
-import {KEY,copy,fmt,parseNumber,blank,defaults,subject,modelFor,followup,targetFor,numericMatch,validDB,exampleAttempt,ids,checkpointCopy} from './core.js?v=afb22cdce04d';
+import {KEY,copy,fmt,parseNumber,blank,defaults,subject,modelFor,followup,targetFor,numericMatch,validDB,exampleAttempt,ids,checkpointCopy} from './core.js?v=c69296a05f04';
 import {extraView,sampleLabel} from './views.js?v=c384ce2676e4';
 import {VoiceRecorder,appendTranscript} from './recorder.js';
 const $=id=>document.getElementById(id),E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

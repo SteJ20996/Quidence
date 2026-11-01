@@ -576,11 +576,11 @@
       "sourceFiles": [
         {
           "path": "content/cross-disciplinary/projects.cjs",
-          "sha256": "95f48b9d36ccba12f67c5119d608a6c39f637484a7384a38470c01f25217cd5e"
+          "sha256": "d14e5bd2cc7ee7c74e289d1fe458700bcbd1fd954dc6a93115113b4e5d16b349"
         },
         {
           "path": "cross-disciplinary/data.json",
-          "sha256": "20b0aeec224795edbcab826bfe63d99ba1be0ec1c92431d2c7d23844d2119a2d"
+          "sha256": "df9b28580735abeda49ee033b8e88666f14481b021c4c84347980b530786b139"
         }
       ],
       "sourceReview": {
@@ -608,11 +608,11 @@
       "sourceFiles": [
         {
           "path": "content/cross-disciplinary/projects.cjs",
-          "sha256": "95f48b9d36ccba12f67c5119d608a6c39f637484a7384a38470c01f25217cd5e"
+          "sha256": "d14e5bd2cc7ee7c74e289d1fe458700bcbd1fd954dc6a93115113b4e5d16b349"
         },
         {
           "path": "cross-disciplinary/data.json",
-          "sha256": "20b0aeec224795edbcab826bfe63d99ba1be0ec1c92431d2c7d23844d2119a2d"
+          "sha256": "df9b28580735abeda49ee033b8e88666f14481b021c4c84347980b530786b139"
         }
       ],
       "sourceReview": {
@@ -635,16 +635,16 @@
       "title": "Why do so many numbers start with 1?",
       "bankVersion": "cross-disciplinary-v1",
       "availability": "active",
-      "fingerprint": "d14d2cd25584996e3fc87b2403da6ddee28f677924d957df029a15839a05da21",
+      "fingerprint": "c3421dc45be081c6b6b163ec24daef5c18c83459b69c73c52f00d7bbf04e7d3f",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/cross-disciplinary/projects.cjs",
-          "sha256": "95f48b9d36ccba12f67c5119d608a6c39f637484a7384a38470c01f25217cd5e"
+          "sha256": "d14e5bd2cc7ee7c74e289d1fe458700bcbd1fd954dc6a93115113b4e5d16b349"
         },
         {
           "path": "cross-disciplinary/data.json",
-          "sha256": "20b0aeec224795edbcab826bfe63d99ba1be0ec1c92431d2c7d23844d2119a2d"
+          "sha256": "df9b28580735abeda49ee033b8e88666f14481b021c4c84347980b530786b139"
         }
       ],
       "sourceReview": {
@@ -17840,7 +17840,7 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+          "sha256": "5a9a88d6d53718e4f6b483a2dfceedbffb74e6ffe7bef5db697d0fe205e6c91e"
         },
         {
           "path": "intuition/math.js",
@@ -17875,7 +17875,7 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+          "sha256": "5a9a88d6d53718e4f6b483a2dfceedbffb74e6ffe7bef5db697d0fe205e6c91e"
         },
         {
           "path": "intuition/math.js",
@@ -17910,7 +17910,7 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+          "sha256": "5a9a88d6d53718e4f6b483a2dfceedbffb74e6ffe7bef5db697d0fe205e6c91e"
         },
         {
           "path": "intuition/math.js",
@@ -17945,7 +17945,7 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+          "sha256": "5a9a88d6d53718e4f6b483a2dfceedbffb74e6ffe7bef5db697d0fe205e6c91e"
         },
         {
           "path": "intuition/math.js",
@@ -17980,7 +17980,7 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+          "sha256": "5a9a88d6d53718e4f6b483a2dfceedbffb74e6ffe7bef5db697d0fe205e6c91e"
         },
         {
           "path": "intuition/math.js",
@@ -18015,7 +18015,7 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+          "sha256": "5a9a88d6d53718e4f6b483a2dfceedbffb74e6ffe7bef5db697d0fe205e6c91e"
         },
         {
           "path": "intuition/math.js",
@@ -18050,7 +18050,7 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+          "sha256": "5a9a88d6d53718e4f6b483a2dfceedbffb74e6ffe7bef5db697d0fe205e6c91e"
         },
         {
           "path": "intuition/math.js",
@@ -18085,7 +18085,7 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+          "sha256": "5a9a88d6d53718e4f6b483a2dfceedbffb74e6ffe7bef5db697d0fe205e6c91e"
         },
         {
           "path": "intuition/math.js",
@@ -18120,7 +18120,7 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+          "sha256": "5a9a88d6d53718e4f6b483a2dfceedbffb74e6ffe7bef5db697d0fe205e6c91e"
         },
         {
           "path": "intuition/math.js",
@@ -18150,12 +18150,12 @@
       },
       "bankVersion": "intuition-v1",
       "availability": "active",
-      "fingerprint": "2c0b0a13cb9009bf75bcf6f164aff345b502c09142ff6f49d3f4196ace9d27c9",
+      "fingerprint": "82f4746e2d9095c21febba966116ed2c492f4566e5ac904ba68a196eea08f152",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+          "sha256": "5a9a88d6d53718e4f6b483a2dfceedbffb74e6ffe7bef5db697d0fe205e6c91e"
         },
         {
           "path": "intuition/math.js",
@@ -18190,7 +18190,7 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+          "sha256": "5a9a88d6d53718e4f6b483a2dfceedbffb74e6ffe7bef5db697d0fe205e6c91e"
         },
         {
           "path": "intuition/math.js",
@@ -18225,7 +18225,7 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+          "sha256": "5a9a88d6d53718e4f6b483a2dfceedbffb74e6ffe7bef5db697d0fe205e6c91e"
         },
         {
           "path": "intuition/math.js",
@@ -18260,7 +18260,7 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+          "sha256": "5a9a88d6d53718e4f6b483a2dfceedbffb74e6ffe7bef5db697d0fe205e6c91e"
         },
         {
           "path": "intuition/math.js",
@@ -18295,7 +18295,7 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+          "sha256": "5a9a88d6d53718e4f6b483a2dfceedbffb74e6ffe7bef5db697d0fe205e6c91e"
         },
         {
           "path": "intuition/math.js",
@@ -18330,7 +18330,7 @@
       "sourceFiles": [
         {
           "path": "intuition/data.js",
-          "sha256": "eeba98ff7fac6ac2f9d6c5d25a0ebd03c67c8b36b476fad68ac38e6cfe1aecf7"
+          "sha256": "5a9a88d6d53718e4f6b483a2dfceedbffb74e6ffe7bef5db697d0fe205e6c91e"
         },
         {
           "path": "intuition/math.js",
@@ -23987,7 +23987,7 @@
       "sourceFiles": [
         {
           "path": "modules/ab01/dist/learning-engine.js",
-          "sha256": "fc6bb5640a52aa8aecc57c11296492a7a33056e6ed6f4672e760149f7297ae72"
+          "sha256": "2f52c3faa383c5cead8f3901c28332a5b2b80b5f3185ae5eeeea1331cdcaa6bd"
         }
       ],
       "sourceReview": {
@@ -24014,7 +24014,7 @@
       "sourceFiles": [
         {
           "path": "modules/ab01/dist/learning-engine.js",
-          "sha256": "fc6bb5640a52aa8aecc57c11296492a7a33056e6ed6f4672e760149f7297ae72"
+          "sha256": "2f52c3faa383c5cead8f3901c28332a5b2b80b5f3185ae5eeeea1331cdcaa6bd"
         }
       ],
       "sourceReview": {
@@ -24041,7 +24041,7 @@
       "sourceFiles": [
         {
           "path": "modules/ab01/dist/learning-engine.js",
-          "sha256": "fc6bb5640a52aa8aecc57c11296492a7a33056e6ed6f4672e760149f7297ae72"
+          "sha256": "2f52c3faa383c5cead8f3901c28332a5b2b80b5f3185ae5eeeea1331cdcaa6bd"
         }
       ],
       "sourceReview": {
@@ -24068,7 +24068,7 @@
       "sourceFiles": [
         {
           "path": "modules/ab01/dist/learning-engine.js",
-          "sha256": "fc6bb5640a52aa8aecc57c11296492a7a33056e6ed6f4672e760149f7297ae72"
+          "sha256": "2f52c3faa383c5cead8f3901c28332a5b2b80b5f3185ae5eeeea1331cdcaa6bd"
         }
       ],
       "sourceReview": {
@@ -24095,7 +24095,7 @@
       "sourceFiles": [
         {
           "path": "modules/ab01/dist/learning-engine.js",
-          "sha256": "fc6bb5640a52aa8aecc57c11296492a7a33056e6ed6f4672e760149f7297ae72"
+          "sha256": "2f52c3faa383c5cead8f3901c28332a5b2b80b5f3185ae5eeeea1331cdcaa6bd"
         }
       ],
       "sourceReview": {
@@ -24122,7 +24122,7 @@
       "sourceFiles": [
         {
           "path": "modules/ab01/dist/learning-engine.js",
-          "sha256": "fc6bb5640a52aa8aecc57c11296492a7a33056e6ed6f4672e760149f7297ae72"
+          "sha256": "2f52c3faa383c5cead8f3901c28332a5b2b80b5f3185ae5eeeea1331cdcaa6bd"
         }
       ],
       "sourceReview": {
@@ -24149,7 +24149,7 @@
       "sourceFiles": [
         {
           "path": "modules/ab01/dist/learning-engine.js",
-          "sha256": "fc6bb5640a52aa8aecc57c11296492a7a33056e6ed6f4672e760149f7297ae72"
+          "sha256": "2f52c3faa383c5cead8f3901c28332a5b2b80b5f3185ae5eeeea1331cdcaa6bd"
         }
       ],
       "sourceReview": {
@@ -24176,7 +24176,7 @@
       "sourceFiles": [
         {
           "path": "modules/ab01/dist/learning-engine.js",
-          "sha256": "fc6bb5640a52aa8aecc57c11296492a7a33056e6ed6f4672e760149f7297ae72"
+          "sha256": "2f52c3faa383c5cead8f3901c28332a5b2b80b5f3185ae5eeeea1331cdcaa6bd"
         }
       ],
       "sourceReview": {
@@ -24203,7 +24203,7 @@
       "sourceFiles": [
         {
           "path": "modules/ab01/dist/learning-engine.js",
-          "sha256": "fc6bb5640a52aa8aecc57c11296492a7a33056e6ed6f4672e760149f7297ae72"
+          "sha256": "2f52c3faa383c5cead8f3901c28332a5b2b80b5f3185ae5eeeea1331cdcaa6bd"
         }
       ],
       "sourceReview": {
@@ -24230,7 +24230,7 @@
       "sourceFiles": [
         {
           "path": "modules/ab01/dist/learning-engine.js",
-          "sha256": "fc6bb5640a52aa8aecc57c11296492a7a33056e6ed6f4672e760149f7297ae72"
+          "sha256": "2f52c3faa383c5cead8f3901c28332a5b2b80b5f3185ae5eeeea1331cdcaa6bd"
         }
       ],
       "sourceReview": {
@@ -24257,11 +24257,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
+          "sha256": "49120268cb32a0d608a197218aea00406993be286224817f823133e09649eb43"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
+          "sha256": "03558fa9b05717d37f4d22acb866c48d124c9334481fde86b484a7e20ebfae75"
         }
       ],
       "sourceReview": {
@@ -24289,11 +24289,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
+          "sha256": "49120268cb32a0d608a197218aea00406993be286224817f823133e09649eb43"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
+          "sha256": "03558fa9b05717d37f4d22acb866c48d124c9334481fde86b484a7e20ebfae75"
         }
       ],
       "sourceReview": {
@@ -24316,16 +24316,16 @@
       "title": "Why digit tests work",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "7281209197276ac6edbb828fa0f80d7e8923c02443bb2bffe2959d90038a88ca",
+      "fingerprint": "4fc50e56893aab0dbeb6b10a32ec59fdffd19e4b45070f82b614ba777076d56c",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
+          "sha256": "49120268cb32a0d608a197218aea00406993be286224817f823133e09649eb43"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
+          "sha256": "03558fa9b05717d37f4d22acb866c48d124c9334481fde86b484a7e20ebfae75"
         }
       ],
       "sourceReview": {
@@ -24353,11 +24353,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
+          "sha256": "49120268cb32a0d608a197218aea00406993be286224817f823133e09649eb43"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
+          "sha256": "03558fa9b05717d37f4d22acb866c48d124c9334481fde86b484a7e20ebfae75"
         }
       ],
       "sourceReview": {
@@ -24385,11 +24385,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
+          "sha256": "49120268cb32a0d608a197218aea00406993be286224817f823133e09649eb43"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
+          "sha256": "03558fa9b05717d37f4d22acb866c48d124c9334481fde86b484a7e20ebfae75"
         }
       ],
       "sourceReview": {
@@ -24417,11 +24417,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
+          "sha256": "49120268cb32a0d608a197218aea00406993be286224817f823133e09649eb43"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
+          "sha256": "03558fa9b05717d37f4d22acb866c48d124c9334481fde86b484a7e20ebfae75"
         }
       ],
       "sourceReview": {
@@ -24449,11 +24449,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
+          "sha256": "49120268cb32a0d608a197218aea00406993be286224817f823133e09649eb43"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
+          "sha256": "03558fa9b05717d37f4d22acb866c48d124c9334481fde86b484a7e20ebfae75"
         }
       ],
       "sourceReview": {
@@ -24481,11 +24481,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
+          "sha256": "49120268cb32a0d608a197218aea00406993be286224817f823133e09649eb43"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
+          "sha256": "03558fa9b05717d37f4d22acb866c48d124c9334481fde86b484a7e20ebfae75"
         }
       ],
       "sourceReview": {
@@ -24508,16 +24508,16 @@
       "title": "Ticket packs and the largest impossible order",
       "bankVersion": "number-theory-v2",
       "availability": "active",
-      "fingerprint": "135ad68cef224b4bec801cb2ff925ecc5301b6075633625f9de2491bb6782661",
+      "fingerprint": "75f11ec43549f7ee54466fa6dded97091a8866848511e7cce0d4238bf5428b18",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
+          "sha256": "49120268cb32a0d608a197218aea00406993be286224817f823133e09649eb43"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
+          "sha256": "03558fa9b05717d37f4d22acb866c48d124c9334481fde86b484a7e20ebfae75"
         }
       ],
       "sourceReview": {
@@ -24545,11 +24545,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
+          "sha256": "49120268cb32a0d608a197218aea00406993be286224817f823133e09649eb43"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
+          "sha256": "03558fa9b05717d37f4d22acb866c48d124c9334481fde86b484a7e20ebfae75"
         }
       ],
       "sourceReview": {
@@ -24577,11 +24577,11 @@
       "sourceFiles": [
         {
           "path": "content/number-theory/source-v2.md",
-          "sha256": "53f8001302e423be22b56b6207a5ae68708a7fdc61a81e996136851bf865a45e"
+          "sha256": "49120268cb32a0d608a197218aea00406993be286224817f823133e09649eb43"
         },
         {
           "path": "courses/number-theory/data.json",
-          "sha256": "9332fb1af0a2e43d1439f8bdd029a6fd2922f5a45513e1ee7494a805d9d9183e"
+          "sha256": "03558fa9b05717d37f4d22acb866c48d124c9334481fde86b484a7e20ebfae75"
         }
       ],
       "sourceReview": {

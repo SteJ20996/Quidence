@@ -52,15 +52,22 @@ function legacyNumeric(value){
 // Read bounded numeric notation, never JavaScript or arbitrary expressions.
 // A unit suffix is accepted only when it matches the unit requested by the field.
 const normalizeUnit=s=>s.replace(/\s/g,'').replace(/²/g,'^2').replace(/³/g,'^3').replace(/·/g,'*');
-function fieldUnit(f){return f.unit||f.label?.match(/\((m|m\/s|m\/s²|s|N|kg·m\/s|J|Wh|h|W|kg|Hz|cm|m²|°)\)\s*$/)?.[1]||null;}
+// Units a field label may request in its final parentheses, with the forms the Spanish page shows.
+// Other final parentheses, such as f(3), W(4) or (mod 10), are notation, not units.
+const LABEL_UNITS={'m':[],'m/s':[],'m/s²':[],'s':[],'N':[],'kg·m/s':[],'J':[],'Wh':[],'h':[],'W':[],'kg':[],'Hz':[],'cm':[],'m²':[],'°':[],
+ '$':[],'%':[],'L':[],'km':[],'km/h':[],'min':[],'min²':[],'kW':[],'kWh':[],'cm²':[],'litres':['litros'],'hours':['horas'],'degrees':['grados'],
+ 'units²':['unidades²'],'grid units²':['unidades de cuadrícula²'],'items/100 m':['objetos/100 m'],'cm per minute':['cm por minuto']};
+function fieldUnit(f){const u=f.label?.match(/\(([^()]+)\)\s*$/)?.[1];return f.unit||(u&&Object.hasOwn(LABEL_UNITS,u)?u:null);}
 function numericReading(value,unit=null,allowX=true){
  if(!['string','number'].includes(typeof value))return null;
  let s=String(value).trim().replace(/−/g,'-');if(s.length>80)return null;
+ // A dollar amount may be written $54 as well as 54 $.
+ if(unit==='$'&&/^[+-]?\s*\$/.test(s))s=s.replace(/^([+-]?)\s*\$\s*/,'$1')+' $';
  if(allowX)s=s.replace(/([+-]?(?:\d+(?:\.\d*)?|\.\d+))\s*[xX]\s*(?=10\s*\^)/g,'$1×');
  s=s.replace(/([+-]?(?:\d+(?:\.\d*)?|\.\d+))\s*[×*]\s*10\s*\^\s*(?:\(([+-]?\d{1,3})\)|([+-]?\d{1,3}))/g,(_,a,b,c)=>a+'e'+(b||c));
  const atom='[+-]?(?:\\d{1,3}(?:,\\d{3})+(?:\\.\\d*)?|\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d{1,3})?';
  const match=s.match(new RegExp('^('+atom+'(?:\\s*/\\s*'+atom+')?)(.*?)$'));if(!match)return null;
- const suffix=match[2].trim();if(suffix&&(!unit||normalizeUnit(suffix)!==normalizeUnit(unit)))return null;
+ const suffix=match[2].trim(),accepted=unit?[unit,...(LABEL_UNITS[unit]||[])]:[];if(suffix&&!accepted.some(u=>normalizeUnit(u)===normalizeUnit(suffix)))return null;
  const tokens=match[1].split('/').map(x=>x.trim().replace(/,/g,''));
  const values=tokens.map(x=>{const [mantissa,exponent='0']=x.toLowerCase().split('e');if(Math.abs(Number(exponent))>308)return NaN;const n=Number(x);return n===0&&/[1-9]/.test(mantissa)?NaN:n;});
  const n=values.length===1?values[0]:values[0]/values[1];if(!Number.isFinite(n)||n===0&&values[0]!==0)return null;

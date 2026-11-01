@@ -42,7 +42,8 @@ export function followup(id,focus){
  if(focus==='custom')return {observation:'Your wording is preserved without an automatic judgment.',question:'Are you describing individual students, the population mean, or repeated intervals? Choose the quantity you mean and connect it to the picture.',label:null,target:null,probe:{n:40,level:95},reason:''};
  return {observation:'Let’s compare individual variation with uncertainty about a mean.',question:'Compare n = 40 with n = 160. What is the ratio of the new confidence-interval half-width to the old one? Does the assumed individual standard deviation change?',label:'Half-width at n = 160 ÷ half-width at n = 40',target:.5,probe:{n:160,level:95},reason:'The ratio is √40 ÷ √160 = 0.5. The assumed individual standard deviation stays at 8 points.'};
 }
-export const numericMatch=(raw,target)=>{const n=parseNumber(raw);return n===null?null:Math.abs(n-target)<=.02;};
+// The page asks for two decimal places, so a number matches when it rounds correctly to two places: 27.01 does not match 27.
+export const numericMatch=(raw,target)=>{const n=parseNumber(raw);return n===null?null:Math.abs(n-target)<=.005+1e-9;};
 export const targetFor=(id,m,transfer=false)=>({linear:m.factor,stats:transfer?m.hi:m.lo,precalculus:m.period,geometry:m.area,algebra2:m.delta,'game-theory':transfer?m.switchOwn:m.gainOwn})[id];
 export function exampleAttempt(id){
  const s=blank(id),at=new Date().toISOString(),sample=subject[id].sample[0];s.isExample=true;s.phase=s.reached=2;s.claim='0';

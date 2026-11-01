@@ -347,7 +347,7 @@
 
 **Reference proof（`referenceSolution`）**
 
-> In the class with bₙ = b, the impossible sizes are exactly the positive numbers below 7b in that class, and the largest is 7b − 5. The largest threshold is 7·4 = 28, so the largest impossible size is 28 − 5 = 23.
+> In the class with bₙ = b, the impossible sizes are exactly the positive numbers below 7b in that class, and for b = 1, 2, 3 or 4 the largest is 7b − 5 (the class with b = 0 has none). The largest threshold is 7·4 = 28, so the largest impossible size is 28 − 5 = 23.
 >
 > Every n ≥ 24 can be bought: if bₙ ≤ 3, then 7bₙ ≤ 21 < n; if bₙ = 4, then n ≡ 3 (mod 5) and n ≥ 24 forces n ≥ 28 = 7bₙ. In both cases Step 1 applies. Since 23 is impossible, 24 is the smallest N with every size from N on possible.
 
@@ -597,7 +597,7 @@
 
 **Reference solution（总结）：** 10 ≡ 1 (mod 9) and 10 ≡ −1 (mod 11) prove the digit-sum and alternating tests. Swapping neighboring digits u ≠ v changes N by 9·10ʲ(u − v): always a multiple of 9, never a multiple of 11. The check value for 4 7 1 2 0 9 3 6 5 is X (10), and because 11 is prime the scheme catches every single error and every neighboring swap.
 
-**Next check：** Prove that the mod 11 check-digit scheme also catches the swap of any two symbols, not only neighboring ones.
+**Next check：** Prove that the mod 11 check-digit scheme also catches the swap of any two different symbols, not only neighboring ones.
 
 
 ### 项目 6 · nt-p04 · An ancient remainder puzzle
