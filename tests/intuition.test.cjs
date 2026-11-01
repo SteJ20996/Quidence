@@ -3,7 +3,7 @@ const test=require('node:test'),assert=require('node:assert/strict'),D=require('
 const d=id=>D.find(x=>x.id===id);
 const store=()=>{const values=new Map();return {values,getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k),keys:()=>[...values.keys()]};};
 function attempt(){return {id:'a',locale:'en',createdAt:'2026-10-24',value:3,draftPrediction:0,draftReason:'A larger circumference.',confidence:1,original:{choice:0,choiceText:'The middle band',question:d('sphere').claim.en,reason:'A larger circumference.',confidence:1,locale:'en'},observations:'Both areas match.',settings:[],transfer:'20',checks:[],reflection:'The ds factor matters.',final:2,completedAt:null,step:3};}
-test('all fifteen subjects have complete authored language variants and finite slider states',()=>{assert.equal(D.length,15);assert.equal(new Set(D.map(x=>x.id)).size,15);for(const row of D){for(const lang of ['en','es']){for(const k of ['title','claim','options','control','explain','transfer','transferWhy']){assert.ok(row[k][lang]?.length,`${row.id} ${k} ${lang}`);assert.deepEqual(Object.keys(row[k]).sort(),['en','es'],`${row.id} ${k} has only English and Spanish`);}assert.equal(row.options[lang].length,4);if(typeof row.formula==='object')assert.ok(row.formula[lang]);}assert.ok(row.answer>=0&&row.answer<4);for(let v=row.range[0];v<=row.range[1]+1e-9;v+=row.range[2])assert.ok(calc(row,+v.toFixed(6)).every(Number.isFinite),`${row.id}: ${v}`);}});
+test('all sixteen subjects have complete authored language variants and finite slider states',()=>{assert.equal(D.length,16);assert.equal(new Set(D.map(x=>x.id)).size,16);for(const row of D){for(const lang of ['en','es']){for(const k of ['title','claim','options','control','explain','transfer','transferWhy']){assert.ok(row[k][lang]?.length,`${row.id} ${k} ${lang}`);assert.deepEqual(Object.keys(row[k]).sort(),['en','es'],`${row.id} ${k} has only English and Spanish`);}assert.equal(row.options[lang].length,4);if(typeof row.formula==='object')assert.ok(row.formula[lang]);}assert.ok(row.answer>=0&&row.answer<4);for(let v=row.range[0];v<=row.range[1]+1e-9;v+=row.range[2])assert.ok(calc(row,+v.toFixed(6)).every(Number.isFinite),`${row.id}: ${v}`);}});
 test('models agree with independently calculated counterexamples, boundaries and transfer values',()=>{assert.equal(calc(d('multiply'),.5)[2],4);assert.deepEqual(calc(d('plans'),6),[24,24,0]);assert.equal(calc(d('perimeter'),6)[2],36);assert.equal(calc(d('perimeter'),5)[2],35);assert.equal(calc(d('square'),.5)[2],-.25);assert.equal(calc(d('square'),-.5)[2],.75);assert.equal(calc(d('waves'),.5)[1],4);assert.deepEqual(calc(d('groups'),10),[36,74,10]);assert.deepEqual(calc(d('groups'),50),[60,50,50]);assert.deepEqual(calc(d('transforms'),2),[-1,2,-2,1]);assert.deepEqual(calc(d('transforms'),1),[-1,1,-1,1]);assert.deepEqual(calc(d('primes'),40),[40,1681,41]);for(let n=0;n<40;n++)assert.equal(calc(d('primes'),n)[2],0);assert.deepEqual(calc(d('choices'),3),[1,1]);assert.deepEqual(calc(d('apex'),1),[5,0,-10]);assert.equal(calc(d('apex'),1.2)[1],-2);assert.deepEqual(calc(d('circuit'),3),[4,3,1]);});
 test('the card model turns over exactly the cards whose hidden side could break the rule, checked against every letter and digit',()=>{
  const c=d('cards');assert.equal(c.answer,1);assert.equal(c.target,3);
@@ -45,4 +45,32 @@ test('the circle model counts regions correctly: the drawn points give distinct 
   assert.deepEqual(calc(r,n),[n,regions,2**(n-1)],'n = '+n);
  }
  assert.deepEqual(calc(r,6).slice(1),[31,32]);assert.equal(calc(r,7)[1],r.target);
+});
+
+test('the coin model matches exact counts: exactly half gets rarer, the proportion settles, and the transfer counts 20 sequences',()=>{
+ const t=d('tosses');assert.equal(t.answer,1);assert.equal(t.options.en[t.answer],'Less likely with 100');assert.equal(t.target,20);
+ // Exact binomial coefficients with BigInt, computed apart from the model's running product of probabilities.
+ const C=(n,k)=>{let r=1n;for(let i=0;i<k;i++)r=r*BigInt(n-i)/BigInt(i+1);return r;},near=(a,b,m)=>assert.ok(Math.abs(a-b)<1e-12,m+': '+a+' vs '+b);
+ let prev=null;
+ for(let n=t.range[0];n<=t.range[1];n+=t.range[2]){
+  const total=Number(2n**BigInt(n)),half=C(n,n/2);let within=0n,gap2=0n;
+  // Within 0.1 of one half: |k/n − 1/2| ≤ 1/10, that is 10|2k − n| ≤ 2n. gap2 is the sum of C(n, k)·|2k − n|, twice the total gap.
+  for(let k=0;k<=n;k++){if(10*Math.abs(2*k-n)<=2*n)within+=C(n,k);gap2+=C(n,k)*BigInt(Math.abs(2*k-n));}
+  const [m,pHalf,pWithin,gap]=calc(t,n);assert.equal(m,n);
+  near(pHalf,Number(half)/total,'P(exactly half), n = '+n);near(pWithin,Number(within)/total,'P(40% to 60%), n = '+n);near(gap,Number(gap2)/total/2,'average gap, n = '+n);
+  // The average gap equals (n/2)·P(exactly half), checked in whole numbers.
+  assert.equal(gap2,BigInt(n)*half);
+  if(prev){assert.ok(pHalf<prev[0],'exactly half is rarer at n = '+n);assert.ok(pWithin>prev[1],'40% to 60% is likelier at n = '+n);assert.ok(gap>prev[2],'the gap grows at n = '+n);}
+  prev=[pHalf,pWithin,gap];
+ }
+ // Two more tosses multiply P(exactly half) by (n + 1)/(n + 2): C(n + 2, n/2 + 1)·(n + 2) = 4·C(n, n/2)·(n + 1).
+ for(let n=2;n<=200;n+=2)assert.equal(C(n+2,n/2+1)*BigInt(n+2),4n*C(n,n/2)*BigInt(n+1),'n = '+n);
+ // The values the explanation states, rounded as it rounds them.
+ const at=(n,i,k)=>Number(calc(t,n)[i].toFixed(k));
+ assert.equal(at(10,1,3),0.246);assert.equal(at(100,1,3),0.08);assert.equal(at(10,2,3),0.656);assert.equal(at(100,2,3),0.965);assert.equal(at(10,3,2),1.23);assert.equal(at(100,3,2),3.98);
+ // The slider's step of 10 matters: P(0.4 ≤ heads/n ≤ 0.6) is not monotone over every n (it falls from 10 to 11), and the loop above checks the values the slider can reach.
+ for(const lang of ['en','es'])for(const s of ['0.246','0.08 ','0.656','0.965','1.23','3.98','√n','(n + 1)/(n + 2)','4(n + 1)/(n + 2)'])assert.ok(t.explain[lang].includes(s),lang+' explanation states '+s);
+ // Transfer: list all 64 sequences of 6 tosses, and the 16 of 4 tosses that the feedback compares with.
+ const exactly=(n,h)=>[...Array(2**n).keys()].filter(s=>[...s.toString(2)].filter(b=>b==='1').length===h).length;
+ assert.equal(exactly(6,3),t.target);assert.equal(exactly(4,2),6);assert.equal(t.target/64,0.3125);assert.equal(6/16*5/6,0.3125);
 });
