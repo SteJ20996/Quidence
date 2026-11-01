@@ -816,12 +816,12 @@
     "Unidades originales. Potencias de 2 que empiezan con 1: [n] de 1000. Números enteros que empiezan con 1: [n] de 999."
   ],
   [
-    "χ² is about [n], below 15.51: no evidence against Benford’s law.",
-    "χ² es aproximadamente [n], menor que 15.51: no hay evidencia en contra de la ley de Benford."
+    "χ² is about [n], below 15.51: at the 5% level, no evidence against Benford’s law. Passing the test does not prove that the data follow it.",
+    "χ² es aproximadamente [n], menor que 15.51: al nivel del 5%, no hay evidencia en contra de la ley de Benford. Pasar la prueba no demuestra que los datos la sigan."
   ],
   [
-    "χ² is about [n], above 15.51: these first digits do not follow Benford’s law.",
-    "χ² es aproximadamente [n], mayor que 15.51: estos primeros dígitos no siguen la ley de Benford."
+    "χ² is about [n], above 15.51: if these numbers were a random sample from Benford’s law, a value this large would happen less than 5% of the time, so the test rejects the law at the 5% level.",
+    "χ² es aproximadamente [n], mayor que 15.51: si estos números fueran una muestra aleatoria de la ley de Benford, un valor tan grande ocurriría menos del 5% de las veces, así que la prueba rechaza la ley al nivel del 5%."
   ],
   [
     "The first digit of the number is [n].",
