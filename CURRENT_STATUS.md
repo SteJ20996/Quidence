@@ -1,3 +1,16 @@
+## 2026-11-01 · Probability part 2: foundation and understanding checks
+
+Probability now has a 15-question foundation check (30 parts) and a four-problem understanding check (16 parts), in English and Spanish. The course page, homepage card and check menus link to both.
+
+- **Foundation check.** It covers fractions, decimals and percents, counting outcomes, powers of fractions, averages, inequalities, and reading "at least one", "and" and "or".
+- **Understanding check.** It tests complements, Bayes' rule, linearity of expectation, waiting times, and the binomial distribution against Chebyshev's bound, each in a new setting.
+- **Independent recomputation.** A separate test recomputes every foundation answer by listing outcomes, and `scripts/audit-challenges.py` recomputes every understanding answer the same way.
+- **Saved records.** Records saved with the fourteen earlier foundation subjects still open. The understanding-check bank becomes `quidence-challenges-11`.
+
+See [the review note](review/probability-checks-20261101.md).
+
+Current inventory: 72 diagnostic problems, and foundation checks in fifteen tracks.
+
 ## 2026-11-01 · New course: Probability (part 1, ten proof projects)
 
 Probability is now its own Further Mathematics course (`courses/probability/`), instead of the last lesson of Statistics. Ten projects of four steps each run from de Méré's dice, the problem of points and a positive screening test, through Bertrand's boxes and Monty Hall, shared birthdays, fixed points of a shuffle, waiting for a six and collecting stickers, to the Galton board and the law of large numbers. They are in English and Spanish.

@@ -226,6 +226,31 @@ must=lambda claim:all(claim(used) for used in fits)
 # The physics–art overlap can be nonempty only if some fitting school puts students there; none does.
 physics,art=80,50;overlap_possible=any(has(x,'P') and has(x,'A') for used in fits for x in used)
 R['bl-c04']={'noArt':yn(must(lambda used:not any(has(x,'R') and has(x,'A') for x in used))),'music':yn(must(lambda used:any(has(x,'R') and has(x,'M') for x in used))),'notPhysics':yn(must(lambda used:any(has(x,'M') and not has(x,'P') for x in used))),'either':physics+art if not overlap_possible else None}
-assert len(R)==74
-output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel–Hakimi degree tests, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
+# Probability: spins and coins by listing every equally likely sequence, the factory by building all 10,000 parts, letters by permutations and derangement counts.
+from itertools import product as cartesian
+from math import comb, factorial
+def spins(n):return list(cartesian(range(5),repeat=n))  # sector 0 is red: each spin red with probability 1/5
+three=spins(3);reds=lambda seq:sum(x==0 for x in seq)
+no_red=F(sum(reds(q)==0 for q in three),len(three));at_least=F(sum(reds(q)>0 for q in three),len(three))
+smallest=next(n for n in range(1,8) if F(sum(reds(q)>0 for q in spins(n)),5**n)>F(1,2))
+mean_reds=F(sum(reds(q) for q in three),len(three));assert mean_reds==F(3,5) and at_least<mean_reds and any(reds(q)>=2 for q in three)
+R['pr-c01']={'noRed':no_red,'atLeastOne':at_least,'spins':smallest,'estimate':'overlap'}
+parts=[('A',i<120) for i in range(6000)]+[('B',i<200) for i in range(4000)]
+faulty=[p for p in parts if p[1]];p_f=F(len(faulty),len(parts));p_b=F(sum(m=='B' for m,_ in parts),len(parts));p_fb=F(sum(m=='B' and f for m,f in parts),len(parts))
+R['pr-c02']={'faultyA':sum(m=='A' and f for m,f in parts),'faulty':p_f,'fromB':p_fb/p_f,'independent':yn(p_fb==p_f*p_b)}
+from itertools import permutations
+def fixed_mean(n):
+    perms=list(permutations(range(n)));return F(sum(sum(p[i]==i for i in range(n)) for p in perms),len(perms))
+assert all(fixed_mean(n)==1 for n in range(1,8))
+D=[1,0]+[0]*9
+for m in range(2,11):D[m]=(m-1)*(D[m-1]+D[m-2])
+expected10=sum(F(k*comb(10,k)*D[10-k],factorial(10)) for k in range(11))
+both_right=F(factorial(8),factorial(10));assert both_right!=F(1,10)**2  # the events are dependent, yet expectations still add
+partial=sum(k*(2/3)**(k-1)*(1/3) for k in range(1,400));assert abs(partial-3)<1e-12
+R['pr-c03']={'winnings':F(sum(k for k in range(1,7) if k%2==0),6),'envelopes':expected10,'independence':'no','rolls':3}
+tosses=list(cartesian((0,1),repeat=6));X=[sum(t) for t in tosses]
+EX=F(sum(X),64);var=F(sum(x*x for x in X),64)-EX**2
+R['pr-c04']={'three':F(sum(x==3 for x in X),64),'variance':var,'bound':var/9,'exact':F(sum(abs(x-3)>=3 for x in X),64)}
+assert len(R)==78
+output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel–Hakimi degree tests, every equally likely spin, coin and letter arrangement, a 10,000-part factory, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
 path=Path(__file__).resolve().parents[1]/'review'/'challenge-math-audit.json';path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(output,indent=2)+'\n');print(json.dumps({'questions':len(R),'components':sum(len(x)for x in R.values()),'output':str(path)}))
