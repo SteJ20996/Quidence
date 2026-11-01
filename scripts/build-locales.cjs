@@ -46,6 +46,8 @@ for(const item of inventory){
 for(const key of Object.keys(require('./number-theory-locales.cjs').numberTheoryCatalog())){
  if(key.length>80&&!inventory.some(item=>normalize(item.text)===key&&item.files.some(file=>!file.startsWith('courses/number-theory/'))))owner.set(key,'number-theory');
 }
+// The Statistics sampling-distributions lesson keeps its long passages in the Statistics bundle.
+for(const key of Object.keys(JSON.parse(fs.readFileSync(path.join(root,'localization/statistics-sampling-extra-es.json'),'utf8'))).map(normalize))if(key.length>80&&!owner.has(key))owner.set(key,'ae01');
 // Long Discrete Mathematics passages load only on that course page.
 for(const key of Object.keys(require('./build-discrete-math.cjs').discreteMathCatalog()))if(key.length>80&&!owner.has(key))owner.set(key,'discrete-math');
 // Long Probability passages load only on that course page.

@@ -52,8 +52,29 @@ function submit(state,id,phase){
 function lessonDone(state,index){return state.lessons[index].reviewed&&state.lessons[index].seenSteps.length===4&&[C.LESSONS[index].predict,...C.LESSONS[index].checks].every(t=>state.records[t.id]?.status==='submitted');}
 function allDone(state){return C.LESSONS.every((_,i)=>lessonDone(state,i));}
 function last(state,id){return state.records[id]?.submissions.at(-1)||null;}
-function hydrate(raw){
+// A course may append lessons. A record saved under an earlier version whose
+// lessons are still the first ones gains empty places for the new lessons;
+// its answers, drafts and history are kept exactly, and an event records the change.
+function upgrade(raw){
+ const prior=raw&&(C.PREVIOUS||[]).find(p=>p.version===raw.contentVersion);
+ if(!prior||prior.lessons>=C.LESSONS.length||raw.schema!==SCHEMA||!Array.isArray(raw.lessons)||raw.lessons.length!==prior.lessons||!Array.isArray(raw.labs)||raw.labs.length!==prior.lessons||!Array.isArray(raw.events))return raw;
+ const added=C.LESSONS.slice(prior.lessons),newIds=new Set(added.flatMap(l=>[l.predict.id,...l.checks.map(t=>t.id)]));
+ // The earlier version could not hold answers to the new lessons, so such a record is not upgraded and fails validation.
+ if(raw.records&&typeof raw.records==='object'&&Object.keys(raw.records).some(id=>newIds.has(id)))return raw;
+ // Only a finished record may be on its summary, so an unfinished one stays as it is and fails validation.
+ if(raw.view==='summary'&&!C.LESSONS.slice(0,prior.lessons).every((_,i)=>lessonDone(raw,i)))return raw;
+ const next=clone(raw);
+ next.contentVersion=C.VERSION;
+ next.labs=next.labs.concat(added.map(l=>clone(l.defaults)));
+ next.lessons=next.lessons.concat(added.map(()=>({seenSteps:[],reviewed:false})));
+ // The summary needs every lesson, so a finished record reopens at the course start, and resuming opens the first new lesson.
+ if(next.view==='summary')Object.assign(next,{view:'orientation',lessonIndex:prior.lessons,stage:'predict',questionIndex:0});
+ next.events.push({at:new Date().toISOString(),type:'lessons_added',from:prior.version,to:C.VERSION,lessons:added.map(l=>l.id)});
+ return next;
+}
+function hydrate(input){
  try{
+  const raw=upgrade(input);
   if(!raw||raw.schema!==SCHEMA||raw.contentVersion!==C.VERSION||!validLabs(raw.labs)||!['orientation','lesson','summary'].includes(raw.view)||!['predict','learn','check','review'].includes(raw.stage))return null;
   if(!Number.isInteger(raw.lessonIndex)||raw.lessonIndex<0||raw.lessonIndex>=C.LESSONS.length||!Number.isInteger(raw.questionIndex)||raw.questionIndex<0||raw.questionIndex>1)return null;
   if(!Array.isArray(raw.lessons)||raw.lessons.length!==C.LESSONS.length||!Number.isFinite(Date.parse(raw.createdAt))||!Array.isArray(raw.events)||raw.events.some(e=>!e||typeof e.type!=='string'||!Number.isFinite(Date.parse(e.at)))||!raw.records||typeof raw.records!=='object'||Array.isArray(raw.records))return null;
@@ -75,7 +96,7 @@ function exportRecord(state){
  if(!allDone(state))throw new Error('Finish all '+C.LESSONS.length+' lessons before exporting the complete report.');
  return{...clone(state),taskDefinitions:clone(C.LESSONS),note:'Initial predictions and checks after instruction are separate observations. Revisions and help remain in history. Required explanations need human review; fixed choices alone do not establish understanding. No validated mastery, behavior, effort, or AI-use inference.'};
 }
-const api={SCHEMA,TASKS,choiceOptions,defaultLabs,validLabs,valid,score,fresh,record,update,submit,log,lessonDone,allDone,last,hydrate,exportRecord};
+const api={SCHEMA,TASKS,choiceOptions,defaultLabs,validLabs,valid,score,fresh,record,update,submit,log,lessonDone,allDone,last,upgrade,hydrate,exportRecord};
 return api;
 }
 if(typeof module==='object'&&module.exports)module.exports={create};else root.QuidenceCourseEngine=create(root.QuidenceCourseContent);

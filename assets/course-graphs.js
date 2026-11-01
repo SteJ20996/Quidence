@@ -6,6 +6,22 @@ const fmt=n=>Math.abs(n)<1e-9?'0':Number(n.toFixed(3)).toString();
 const mean=a=>a.reduce((s,x)=>s+x,0)/a.length;
 const median=a=>{const v=[...a].sort((a,b)=>a-b),i=Math.floor(v.length/2);return v.length%2?v[i]:(v[i-1]+v[i])/2;};
 const probability=a=>({joint:a/100,conditional:a/20,overall:.3,reverse:a/30});
+// Statistics lesson 5: one spin lands on 1 to 6 with these probabilities (8, 6, 3, 1, 1, 1 out of 20), so μ = 2.2 and σ = 1.4.
+const SPINNER=[.4,.3,.15,.05,.05,.05];
+// Exact distribution of the mean of n independent spins, built one spin at a time.
+function sampleMeans(n){let sums=[1];for(let i=0;i<n;i++){const next=Array(sums.length+5).fill(0);sums.forEach((p,j)=>SPINNER.forEach((q,v)=>{next[j+v]+=p*q;}));sums=next;}return sums.map((p,j)=>({mean:(j+n)/n,p}));}
+function meansChart(s){
+ const n=s.n,se=1.4/Math.sqrt(n),X=x=>60+(x-1)*80,base=236,H=d=>d*150,w=Math.max(2,80/n*.82);
+ let b=`<path d="M24 ${base}H500" stroke="#8595ac"/><text x="270" y="282" text-anchor="middle" class="axis-label">Sample mean x̄</text>`;
+ for(let x=1;x<=6;x++)b+=`<path d="M${X(x)} ${base}v5" stroke="#8595ac"/><text x="${X(x)}" y="258" text-anchor="middle" class="tick">${x}</text>`;
+ // Each bar's height is probability × n, so its area is its probability and the normal density can be drawn on the same scale.
+ for(const{mean,p}of sampleMeans(n))b+=`<rect x="${(X(mean)-w/2).toFixed(2)}" y="${(base-H(p*n)).toFixed(2)}" width="${w.toFixed(2)}" height="${H(p*n).toFixed(2)}" fill="#276a9c" opacity=".82"/>`;
+ if(s.curve==='normal'){const pts=[];for(let i=0;i<=200;i++){const x=.55+5.95*i/200,z=(x-2.2)/se;pts.push(`${X(x).toFixed(1)},${(base-H(Math.exp(-z*z/2)/(se*Math.sqrt(2*Math.PI)))).toFixed(1)}`);}b+=`<polyline points="${pts.join(' ')}" fill="none" stroke="#c4553d" stroke-width="2.5"/>`;}
+ const lo=2.2-se,hi=2.2+se;
+ b+=`<path d="M${X(2.2)} 44V${base}" stroke="#1d3c58" stroke-width="1.6" stroke-dasharray="5 4"/><text x="${X(2.2)+6}" y="40" class="tick">μ = 2.2</text>`
+  +`<path d="M${X(lo)} 58H${X(hi)}M${X(lo)} 52v12M${X(hi)} 52v12" stroke="#1d3c58" stroke-width="1.6"/><text x="${X(hi)+8}" y="62" class="tick">μ ± SE</text>`;
+ return figure(svg('Sampling distribution of the sample mean','Bars show the exact probability of each possible mean of n spins. A dashed line marks the population mean 2.2, and a bracket spans one standard error on each side. When chosen, a normal curve with the same center and standard error is drawn over the bars.',b),'Bar area is proportional to probability. The dashed line is the population mean; the bracket is μ ± one standard error.');
+}
 const value=(s,x)=>s.fn==='sqrt'?(x>=s.k?Math.sqrt(x-s.k):null):s.fn==='reciprocal'?(Math.abs(x-s.k)<1e-9?null:1/(x-s.k)):s.fn==='exp'?s.initial*Math.pow(s.factor,x):(s.a??1)*Math.pow(x-(s.h??0),2)+(s.k??0);
 let serial=0;
 function svg(title,description,body,w=520,h=290){const id='course-plot-'+(++serial);return`<svg class="calculus-graph" viewBox="0 0 ${w} ${h}" role="img" aria-labelledby="${id}-title ${id}-desc"><title id="${id}-title">${esc(title)}</title><desc id="${id}-desc">${esc(description)}</desc>${body}</svg>`;}
@@ -51,6 +67,7 @@ function lab(module,index,s){
   if(index===0){const data={symmetric:[1,2,2,3,3,3,4,4,5],skew:[1,2,2,3,3,4,5,9,13],split:[1,1,2,2,3,8,9,9,10]}[s.shape].map(x=>x+s.shift);return{graph:dots(data),readout:`n = ${data.length} · Minimum = ${Math.min(...data)} · Maximum = ${Math.max(...data)} · Shift = ${s.shift}`,formula:'Horizontal position = measured value; stacked dots = frequency.',note:'These are illustrative data sets. A shape does not establish its cause.'};}
   if(index===1){const data=[2,3,3,4,4,5,5,6,s.tail];return{graph:dots(data),readout:`n = 9 · Total = ${32+s.tail} · Mean = ${fmt(mean(data))} · Median = ${median(data)} · Range = ${s.tail-2}`,formula:'Mean = total / n; median = middle sorted value; range = max − min.',note:'Only the largest observation changes. The middle sorted observation stays at 4.'};}
   if(index===2)return{graph:sampling(s),readout:`Selection: ${s.sampling==='random'?'random selection from all students':'dorm volunteers'} · Design: ${s.design==='assigned'?'randomly assigned method':'observed existing habits'}`,formula:'Random selection concerns the target population. Random assignment concerns the treatment comparison.',note:s.design==='assigned'?'A well-run randomized trial can support a causal comparison for participants. Recruitment still limits generalization.':'Existing habits can be confounded. Random sampling alone does not isolate a causal effect.'};
+  if(index===4)return{graph:meansChart(s),readout:`n = ${s.n} · Center of x̄ = 2.2 · Standard error = 1.4/√${s.n} = ${fmt(1.4/Math.sqrt(s.n))}`,formula:'E(x̄) = μ = 2.2; SD(x̄) = σ/√n = 1.4/√n for independent spins.',note:s.n===1?'With n = 1 the sampling distribution is the population itself.':s.curve==='normal'?'The curve is the normal distribution with the same center and standard error. The bars come closer to it as n grows, but the tails still differ because the population is skewed: on the left the bars stop short of the curve, and on the right they stay above it.':'The bars are exact, not simulated: they list every possible mean of n spins.'};
   const p=probability(s.overlap);return{graph:table(['','Passed','Did not pass','Total'],[['Club',s.overlap,20-s.overlap,20],['No club',30-s.overlap,50+s.overlap,80],['Total',30,70,100]],'Select one student uniformly from the indicated reference group.'),readout:`Reference group: ${s.condition==='club'?'20 club members':'all 100 students'} · Relevant fraction = ${s.overlap}/${s.condition==='club'?20:100} = ${fmt(s.condition==='club'?p.conditional:p.joint)} · Overall P(pass) = 0.3`,formula:s.condition==='club'?'P(pass | club) = overlap / club total':'P(pass and club) = overlap / all students',note:'Compare P(pass | club) with P(pass) to check independence. Neither probability establishes causation.'};
  }
  if(index===0){const output=value({fn:s.kind,k:s.k},s.x);return{graph:plot({fn:s.kind,k:s.k,x:s.x}),readout:`x = ${fmt(s.x)} · f(x) = ${output===null?'undefined':fmt(output)} · Real domain: ${s.kind==='sqrt'?`x ≥ ${s.k}`:`x ≠ ${s.k}`}`,formula:s.kind==='sqrt'?`f(x) = √(x − (${s.k})); x − (${s.k}) ≥ 0`:`f(x) = 1/(x − (${s.k})); x − (${s.k}) ≠ 0`,note:'Undefined inputs have no plotted output. The reciprocal branches do not connect across the excluded input.'};}
@@ -58,6 +75,6 @@ function lab(module,index,s){
  if(index===2)return{graph:circle(s.angle)+sine(s.angle),readout:`θ = ${s.angle}° = ${fmt(s.angle/180)}π radians · cos θ = ${fmt(Math.cos(s.angle*Math.PI/180))} · sin θ = ${fmt(Math.sin(s.angle*Math.PI/180))}`,formula:'Unit-circle point = (cos θ, sin θ); cos²θ + sin²θ = 1.',note:'Displayed decimals are rounded. A full turn adds 2π to the radian input and repeats both coordinates.'};
  const y=s.initial*s.factor**s.t,linear=s.initial*(1+s.t*(s.factor-1));return{graph:plot({fn:'exp',...s,compare:true}),readout:`t = ${fmt(s.t)} · Exponential amount = ${fmt(y)} · Matched line = ${fmt(linear)} · First-unit change = ${fmt(s.initial*(s.factor-1))}`,formula:`y = ${s.initial} × ${s.factor}ᵗ; t = log base ${s.factor} of (y/${s.initial})`,note:'The line shares the initial value and first time step. Its later values need not match the multiplicative model.'};
 }
-const api={fmt,mean,median,probability,value,task,lab};
+const api={fmt,mean,median,probability,SPINNER,sampleMeans,value,task,lab};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceCourseGraphs=api;
 })(typeof window==='undefined'?globalThis:window);

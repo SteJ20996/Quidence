@@ -1221,7 +1221,7 @@
   "topic": "Inclusion–exclusion and derangements",
   "prompt": "At an invented party, n guests leave their hats at the door, and the hats are handed back in a random order. What is the probability that nobody gets their own hat? First practice inclusion–exclusion on a smaller question, then count the orders in which no guest gets their own hat.",
   "approach": "To count what avoids several properties, count everything, subtract each property, add back what you subtracted twice, and continue with alternating signs. For the hats, the property Fᵢ is “guest i gets their own hat”, and Dₙ is the number of orders of n hats in which nobody gets their own hat.",
-  "uses": "The principle of inclusion–exclusion; counting permutations; the series for e⁻¹.",
+  "uses": "The principle of inclusion–exclusion; counting permutations; the series for e⁻¹; probability as a count over all n! equally likely orders. The Probability course continues with the expected number of fixed points (How many cards stay in place?).",
   "steps": [
    {
     "title": "A warm-up count",
