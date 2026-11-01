@@ -29,9 +29,15 @@
   const valid = value => Object.hasOwn(THEMES, value);
   let current = DEFAULT, persistent = true, bar;
   function read() { try { const value = root.localStorage.getItem(KEY); persistent = true; return valid(value) ? value : DEFAULT; } catch { persistent = false; return DEFAULT; } }
+  // The bar goes in before i18n.js has loaded, so it starts in the language i18n.js is about to choose.
+  function locale() {
+    if (root.QuidenceI18n?.locale) return root.QuidenceI18n.locale;
+    if (root.document?.documentElement.getAttribute('data-fixed-language') === 'en') return 'en';
+    try { const requested = new URL(root.location.href).searchParams.get('lang'); if (requested === 'es' || requested === 'en') return requested; return root.localStorage.getItem('quidence_ui_locale_v1') === 'es' ? 'es' : 'en'; } catch { return 'en'; }
+  }
   function render() {
     if (!bar) return;
-    const text = COPY[root.QuidenceI18n?.locale === 'es' ? 'es' : 'en'];
+    const text = COPY[locale() === 'es' ? 'es' : 'en'];
     bar.querySelector('.q-theme-label').textContent = text.label;
     bar.querySelector('[role="group"]').setAttribute('aria-label', text.label);
     bar.querySelector('.q-theme-note').textContent = persistent ? text.saved : text.unavailable;
@@ -60,7 +66,7 @@
     root.document?.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEMES[value].page);
     if (save) { try { root.localStorage.setItem(KEY, value); persistent = true; } catch { persistent = false; } }
     render();
-    updateLogos();
+    if (root.document?.readyState === 'loading') queueLogos(); else updateLogos();
     if(root.document?.dispatchEvent&&root.CustomEvent)root.document.dispatchEvent(new root.CustomEvent('quidence:theme',{detail:{theme:value,illustrated:value!=='classic'}}));
     return true;
   }
@@ -76,7 +82,13 @@
       }
       const bg = luminance(background), white = luminance([246,247,249]), ink = luminance([20,34,54]);
       const source = contrast(bg,white) > contrast(bg,ink) ? logo.dataset.logoDarkSrc : logo.dataset.logoLightSrc;
-      if (logo.getAttribute('src') !== source) logo.setAttribute('src',source);
+      // While the other logo loads, the browser keeps showing the old one, which would sit on the wrong background.
+      // Hide the logo until the right one is ready.
+      if (logo.getAttribute('src') !== source) {
+        const show = () => { logo.style.visibility = ''; };
+        logo.style.visibility = 'hidden'; logo.addEventListener('load', show, {once:true}); logo.addEventListener('error', show, {once:true});
+        logo.setAttribute('src',source);
+      }
     }
   }
   // Only trusted theme values enter the standalone report. No assets or storage needed offline.
@@ -106,6 +118,70 @@
     root.addEventListener('storage', event => { if (event.key === KEY || event.key === null) apply(read()); });
     root.addEventListener('pageshow', event => { if (event.persisted) apply(read()); });
   }
-  if (root.document) { apply(read()); if (root.document.readyState === 'loading') root.document.addEventListener('DOMContentLoaded',mount,{once:true}); else mount(); }
+  // The records banner sits above the appearance bar on pages that keep learning records. It is inserted together
+  // with the bar; local-records.js only corrects its text later if browser saving turns out to be unavailable.
+  function recordsBanner() {
+    const document = root.document, script = document.querySelector?.('script[src*="local-records.js"]');
+    if (!script || document.querySelector('aside[data-records-banner]')) return;
+    let available = true; try { root.localStorage.getItem(KEY); } catch { available = false; }
+    const banner = document.createElement('aside'); banner.dataset.recordsBanner = ''; banner.setAttribute('aria-label','Local record storage');
+    banner.style.cssText = 'padding:12px 20px;background:#edf4f2;color:#173c34;font:14px system-ui;display:block';
+    banner.append(available ? 'New learning records stay in this browser. ' : 'Browser saving is unavailable; download a report before closing an activity. ');
+    const link = document.createElement('a'); link.href = new URL('records/', new URL('../', script.src)).href; link.textContent = 'Save or delete records';
+    banner.append(link); document.body.prepend(banner);
+  }
+  // Both sit above the page, so they go in as soon as <body> exists, before anything is painted. Added later, they
+  // pushed the whole page down once or twice while it loaded.
+  function whenBody(run) {
+    const document = root.document;
+    if (document.body) return run();
+    if (!root.MutationObserver) { document.addEventListener('DOMContentLoaded', run, {once:true}); return; }
+    const watch = new root.MutationObserver(() => { if (document.body) { watch.disconnect(); run(); } });
+    watch.observe(document.documentElement, {childList:true});
+  }
+  // A logo's color depends on the header behind it, which the page's styles decide. It is chosen in the frame before
+  // the logo is first painted, once those styles have loaded, so a logo never shows on the wrong background and
+  // then swaps. Pages that insert a logo later get the same treatment.
+  let logoFrame = 0, logoWaits = 0;
+  function queueLogos() {
+    if (logoFrame || !root.requestAnimationFrame) return;
+    logoFrame = root.requestAnimationFrame(() => {
+      logoFrame = 0;
+      const pending = [...root.document.querySelectorAll('link[rel="stylesheet"]')].some(link => !link.sheet && !link.disabled);
+      if (pending && logoWaits++ < 120) { queueLogos(); return; }
+      logoWaits = 0; updateLogos();
+    });
+  }
+  function watchLogos() {
+    if (!root.MutationObserver) return;
+    const isLogo = node => node.nodeType === 1 && (node.matches('img.q-brand-logo') || node.querySelector('img.q-brand-logo'));
+    // Classic's headers are mostly dark, so its white logo starts loading as soon as a logo is parsed. By the time the
+    // color is chosen, it is usually ready, and the logo appears with the page.
+    const fetched = new Set();
+    const preload = () => { if (current !== 'classic' || !root.Image) return; for (const logo of root.document.querySelectorAll('img.q-brand-logo[data-logo-dark-src]')) { const src = logo.dataset.logoDarkSrc; if (!fetched.has(src)) { fetched.add(src); const image = new root.Image(); image.fetchPriority = 'high'; image.src = src; } } };
+    new root.MutationObserver(records => { dropLanguageRow(records); if (records.some(record => [...record.addedNodes].some(isLogo))) { preload(); queueLogos(); } })
+      .observe(root.document.documentElement, {childList:true, subtree:true});
+    root.addEventListener('load', queueLogos, {once:true});
+  }
+  // Pages whose header has no place for the language menu show it in a row under the appearance bar. That row goes
+  // in with the bar, and i18n.js takes it over when it loads. If the page's own header turns out to hold the menu,
+  // the row is removed as soon as the header is parsed, before it is painted.
+  const LANGUAGE_HOSTS = '.site-header,[data-language-host]';
+  function languageRow() {
+    const document = root.document;
+    if (!bar || document.documentElement.getAttribute('data-fixed-language') === 'en' || document.getElementById('quidence-language') || document.querySelector(LANGUAGE_HOSTS)) return;
+    const row = document.createElement('nav'); row.className = 'language-toolbar'; row.dataset.languageEarly = ''; row.setAttribute('aria-label','Language');
+    const label = document.createElement('label'); label.className = 'language-label'; label.setAttribute('for','quidence-language'); label.append('Language');
+    const select = document.createElement('select'); select.id = 'quidence-language'; select.setAttribute('aria-label','Language');
+    for (const [value,caption] of [['en','English'],['es','Español']]) { const option = document.createElement('option'); option.value = value; option.textContent = caption; option.lang = value; option.setAttribute('data-no-translate',''); select.append(option); }
+    label.append(select); row.append(label); bar.after(row);
+  }
+  // A page can also bring its own language menu, as the Intuition Lab does in its header.
+  const OWN_MENU = LANGUAGE_HOSTS + ',#quidence-language';
+  function dropLanguageRow(records) {
+    const row = root.document.querySelector('nav.language-toolbar[data-language-early]');
+    if (row && records.some(record => [...record.addedNodes].some(node => node.nodeType === 1 && !row.contains(node) && !node.contains(row) && (node.matches(OWN_MENU) || node.querySelector(OWN_MENU))))) row.remove();
+  }
+  if (root.document) { apply(read()); watchLogos(); whenBody(() => { mount(); languageRow(); recordsBanner(); }); }
   return Object.freeze({KEY,DEFAULT,THEMES,valid,apply,reportAppearance,get current(){return current;}});
 });

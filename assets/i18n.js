@@ -268,16 +268,22 @@ function start(){
  const requested=new URL(root.location.href).searchParams.get('lang');let stored='';try{stored=root.localStorage.getItem(KEY)||'';}catch{}
  const desired=requested==='es'||requested==='en'?requested:stored==='es'?'es':'en';
  if(!fixedEnglish){
+ const header=root.document.querySelector('.site-header'),languageHost=root.document.querySelector('[data-language-host]');
+ // themes.js already put the language row under the appearance bar, before the page was painted; take it over.
+ const early=root.document.querySelector('nav.language-toolbar[data-language-early]');
+ if(early&&!header&&!languageHost){delete early.dataset.languageEarly;control=early.querySelector('select');control.value=locale;control.addEventListener('change',()=>setLocale(control.value));}
+ else{
+ early?.remove();
  const toolbar=root.document.createElement('nav');toolbar.className='language-toolbar';toolbar.setAttribute('aria-label','Language');
  const label=root.document.createElement('label');label.className='language-label';label.appendChild(root.document.createTextNode('Language'));
  control=root.document.createElement('select');control.setAttribute('aria-label','Language');control.id='quidence-language';
  label.setAttribute('for','quidence-language');
  for(const [value,caption]of [['en','English'],['es','Español']]){const option=root.document.createElement('option');option.value=value;option.textContent=caption;option.lang=value;option.setAttribute('data-no-translate','');control.appendChild(option);}
  control.value=locale;control.addEventListener('change',()=>setLocale(control.value));label.appendChild(control);toolbar.appendChild(label);
- const header=root.document.querySelector('.site-header'),languageHost=root.document.querySelector('[data-language-host]');
  if(languageHost){control.classList.add('qa-language');languageHost.appendChild(toolbar);}
  else if(header){const group=root.document.createElement('div');group.className='header-tools';const preview=header.querySelector('.preview-label');if(preview)group.appendChild(preview);group.appendChild(toolbar);header.appendChild(group);}
- else root.document.body.prepend(toolbar);
+ else{const bar=root.document.querySelector('body > .q-theme-bar');if(bar)bar.after(toolbar);else root.document.body.prepend(toolbar);}
+ }
  }
  apply();observer=new root.MutationObserver(schedule);observe();setLocale(desired);
  root.addEventListener('storage',event=>{if(event.key===KEY){if(fixedEnglish)apply();else setLocale(event.newValue);}});
