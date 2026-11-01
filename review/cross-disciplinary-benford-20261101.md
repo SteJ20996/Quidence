@@ -87,3 +87,9 @@ A separate content review recomputed every answer and every quoted number with e
 - **Homepage:** the Cross-disciplinary Projects section has a third card, with its own art in each appearance: nine bars of Benford's shares, with the bar for 1 marked. The Classic card shows the formula P(d) = log₁₀(1 + 1/d) above the bars. The scope line counts three cross-disciplinary projects.
 - **Project page:** the picker lists all three projects. The card's related Intuition Lab activity is the Statistics one.
 - **Saved work:** answers are saved in the same notebook as the first two projects'.
+
+## Follow-up: what Statistics actually covers
+
+An inventory of probability across the site found that the Statistics course teaches events, conditional probability and independence in its last lesson, but not expected counts or the chi-square test. The project's `uses` line had credited Statistics with both. It now says that step 6 introduces them.
+
+The knowledge map's Probability node still suggests Statistics as the place to start, but it no longer promises distributions or mixed strategies. It now says what the last Statistics lesson covers, and that the Statistics course does not yet teach random variables, expected value or probability distributions. A separate Probability course is planned.
