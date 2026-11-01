@@ -70,26 +70,39 @@
     if(root.document?.dispatchEvent&&root.CustomEvent)root.document.dispatchEvent(new root.CustomEvent('quidence:theme',{detail:{theme:value,illustrated:value!=='classic'}}));
     return true;
   }
-  function updateLogos() {
+  // Each logo has a light and a dark version; the one that contrasts with the header behind it is shown. Until a
+  // logo's version is settled it is hidden by themes.css, so it never appears in the wrong color, and it is marked
+  // data-logo-ready once the right image has loaded.
+  const LOGOS = 'img.q-brand-logo[data-logo-light-src][data-logo-dark-src]';
+  function logoSource(logo) {
     const luminance = rgb => rgb.map(v => v / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4).reduce((sum,v,i) => sum + v * [.2126,.7152,.0722][i],0);
     const contrast = (a,b) => (Math.max(a,b) + .05) / (Math.min(a,b) + .05);
-    for (const logo of root.document?.querySelectorAll?.('.q-brand-logo[data-logo-light-src][data-logo-dark-src]') || []) {
-      let surface = logo.parentElement, background = [255,255,255];
-      while (surface) {
-        const rgba = root.getComputedStyle(surface).backgroundColor.match(/[\d.]+/g)?.map(Number);
-        if (rgba?.length >= 3 && (rgba.length === 3 || rgba[3] === 1)) { background = rgba.slice(0,3); break; }
-        surface = surface.parentElement;
-      }
-      const bg = luminance(background), white = luminance([246,247,249]), ink = luminance([20,34,54]);
-      const source = contrast(bg,white) > contrast(bg,ink) ? logo.dataset.logoDarkSrc : logo.dataset.logoLightSrc;
-      // While the other logo loads, the browser keeps showing the old one, which would sit on the wrong background.
-      // Hide the logo until the right one is ready.
-      if (logo.getAttribute('src') !== source) {
-        const show = () => { logo.style.visibility = ''; };
-        logo.style.visibility = 'hidden'; logo.addEventListener('load', show, {once:true}); logo.addEventListener('error', show, {once:true});
-        logo.setAttribute('src',source);
-      }
+    let surface = logo.parentElement, background = [255,255,255];
+    while (surface) {
+      const rgba = root.getComputedStyle(surface).backgroundColor.match(/[\d.]+/g)?.map(Number);
+      if (rgba?.length >= 3 && (rgba.length === 3 || rgba[3] === 1)) { background = rgba.slice(0,3); break; }
+      surface = surface.parentElement;
     }
+    const bg = luminance(background), white = luminance([246,247,249]), ink = luminance([20,34,54]);
+    return contrast(bg,white) > contrast(bg,ink) ? logo.dataset.logoDarkSrc : logo.dataset.logoLightSrc;
+  }
+  function showLogo(logo, source) {
+    if (logo.getAttribute('src') === source) { logo.setAttribute('data-logo-ready',''); return; }
+    // While another image loads, a browser keeps showing the old one, so the logo stays hidden until the new one is in.
+    logo.removeAttribute('data-logo-ready');
+    const ready = () => { if (logo.getAttribute('src') === source) logo.setAttribute('data-logo-ready',''); };
+    logo.addEventListener('load', ready, {once:true}); logo.addEventListener('error', ready, {once:true});
+    logo.setAttribute('src', source);
+  }
+  function updateLogos() {
+    for (const logo of root.document?.querySelectorAll?.(LOGOS) || []) showLogo(logo, logoSource(logo));
+  }
+  // A logo can be settled as soon as it is parsed, before anything is painted: every header is light in the illustrated
+  // appearances, and Classic's header colors are known once the page's styles have loaded. Otherwise it waits, hidden.
+  const stylesPending = () => [...root.document.querySelectorAll('link[rel="stylesheet"]')].some(link => !link.sheet && !link.disabled);
+  function settleLogo(logo) {
+    if (current !== 'classic') showLogo(logo, logo.dataset.logoLightSrc);
+    else if (!stylesPending()) showLogo(logo, logoSource(logo));
   }
   // Only trusted theme values enter the standalone report. No assets or storage needed offline.
   function reportAppearance() {
@@ -139,27 +152,29 @@
     const watch = new root.MutationObserver(() => { if (document.body) { watch.disconnect(); run(); } });
     watch.observe(document.documentElement, {childList:true});
   }
-  // A logo's color depends on the header behind it, which the page's styles decide. It is chosen in the frame before
-  // the logo is first painted, once those styles have loaded, so a logo never shows on the wrong background and
-  // then swaps. Pages that insert a logo later get the same treatment.
+  // Logos that could not be settled when parsed, and every logo after a change of appearance, are checked in the next
+  // frame once the page's styles have loaded.
   let logoFrame = 0, logoWaits = 0;
   function queueLogos() {
     if (logoFrame || !root.requestAnimationFrame) return;
     logoFrame = root.requestAnimationFrame(() => {
       logoFrame = 0;
-      const pending = [...root.document.querySelectorAll('link[rel="stylesheet"]')].some(link => !link.sheet && !link.disabled);
-      if (pending && logoWaits++ < 120) { queueLogos(); return; }
+      if (stylesPending() && logoWaits++ < 120) { queueLogos(); return; }
       logoWaits = 0; updateLogos();
     });
   }
   function watchLogos() {
     if (!root.MutationObserver) return;
-    const isLogo = node => node.nodeType === 1 && (node.matches('img.q-brand-logo') || node.querySelector('img.q-brand-logo'));
+    const logosIn = node => node.nodeType !== 1 ? [] : node.matches(LOGOS) ? [node] : [...node.querySelectorAll(LOGOS)];
     // Classic's headers are mostly dark, so its white logo starts loading as soon as a logo is parsed. By the time the
     // color is chosen, it is usually ready, and the logo appears with the page.
     const fetched = new Set();
     const preload = () => { if (current !== 'classic' || !root.Image) return; for (const logo of root.document.querySelectorAll('img.q-brand-logo[data-logo-dark-src]')) { const src = logo.dataset.logoDarkSrc; if (!fetched.has(src)) { fetched.add(src); const image = new root.Image(); image.fetchPriority = 'high'; image.src = src; } } };
-    new root.MutationObserver(records => { dropLanguageRow(records); if (records.some(record => [...record.addedNodes].some(isLogo))) { preload(); queueLogos(); } })
+    new root.MutationObserver(records => {
+      dropLanguageRow(records);
+      const added = records.flatMap(record => [...record.addedNodes].flatMap(logosIn));
+      if (added.length) { preload(); added.forEach(settleLogo); queueLogos(); }
+    })
       .observe(root.document.documentElement, {childList:true, subtree:true});
     root.addEventListener('load', queueLogos, {once:true});
   }
@@ -169,7 +184,8 @@
   const LANGUAGE_HOSTS = '.site-header,[data-language-host]';
   function languageRow() {
     const document = root.document;
-    if (!bar || document.documentElement.getAttribute('data-fixed-language') === 'en' || document.getElementById('quidence-language') || document.querySelector(LANGUAGE_HOSTS)) return;
+    // Only pages that load i18n.js get the row: pages without it, such as the Intuition Lab, bring their own menu.
+    if (!bar || !document.querySelector('script[src*="i18n.js"]') || document.documentElement.getAttribute('data-fixed-language') === 'en' || document.getElementById('quidence-language') || document.querySelector(LANGUAGE_HOSTS)) return;
     const row = document.createElement('nav'); row.className = 'language-toolbar'; row.dataset.languageEarly = ''; row.setAttribute('aria-label','Language');
     const label = document.createElement('label'); label.className = 'language-label'; label.setAttribute('for','quidence-language'); label.append('Language');
     const select = document.createElement('select'); select.id = 'quidence-language'; select.setAttribute('aria-label','Language');

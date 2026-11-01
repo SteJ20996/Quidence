@@ -1,3 +1,7 @@
+## 2026-11-01 · Logo follow-up for slow devices
+
+On a busy machine, Chrome can paint a page before it runs the first animation frame, so Classic could still show the dark logo briefly. Logos are now hidden by CSS until themes.js settles their version, and they are settled as soon as they are parsed. With the CPU slowed six times, no wrong-color logo shows after paint, in any appearance. See [logo-load-20261101.md](review/logo-load-20261101.md).
+
 ## 2026-11-01 · A steady logo while pages load
 
 The records banner, the appearance bar and the language row now go in before a page is painted. Before, they were added after it was painted and pushed it down. The logo's color is chosen before its first paint, so Classic no longer shows the dark logo on its dark headers first. The themes browser test fails if the logo is swapped after paint or, in English, moves after paint. Spanish pages still move once while they are translated. See [logo-load-20261101.md](review/logo-load-20261101.md).
