@@ -23,7 +23,7 @@ for(const id of ['pre-algebra','algebra-1']){COURSES[id].foundation='foundations
 for(const[id,c]of Object.entries(COURSES)){if(['number-theory','discrete-math','probability','ac01','coordinate-geometry'].includes(id))continue;c.project='projects/?module='+id;c.projectCount=2;c.challenge='diagnostics/?module='+id;c.challengeCount=id==='ab01'?12:id.startsWith('physics-')?6:4;}
 for(const id of ['ab01','ae01','af01','ac01','geometry','algebra-2']){COURSES[id].originalChallenge=COURSES[id].challenge;COURSES[id].challenge='checks/?module='+id;}
 COURSES.ad01.challenge='modules/ad01/dist/checks/';
-const intuition={'pre-algebra':'multiply','algebra-1':'plans',geometry:'perimeter','coordinate-geometry':'fair','algebra-2':'square','basic-logic':'cards',af01:'waves',ad01:'sphere',ae01:'groups',ab01:'transforms','number-theory':'primes','discrete-math':'regions',ac01:'choices','physics-1':'apex','physics-2':'circuit'};
+const intuition={'pre-algebra':'multiply','algebra-1':'plans',geometry:'perimeter','coordinate-geometry':'fair','algebra-2':'square','basic-logic':'cards',af01:'waves',ad01:'sphere',ae01:'groups',probability:'tosses',ab01:'transforms','number-theory':'primes','discrete-math':'regions',ac01:'choices','physics-1':'apex','physics-2':'circuit'};
 for(const[id,activity]of Object.entries(intuition))COURSES[id].intuition='intuition/#'+activity;
 for(const id of ['geometry','ab01'])COURSES[id].relatedProject='courses/coordinate-geometry/';
 // Cross-disciplinary projects are not courses: each draws on several courses and has its own homepage section.

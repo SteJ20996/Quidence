@@ -1,3 +1,13 @@
+## 2026-11-01 · Probability part 3: Intuition Lab activity
+
+Intuition Lab has a sixteenth activity, "More tosses. More often exactly half?", in English and Spanish. The Probability card now has every activity, and its "not available yet" note is gone.
+
+- **The question.** Is exactly half heads more likely with 100 tosses than with 10? No: two more tosses multiply that probability by (n + 1)/(n + 2), so it falls from 0.246 to about 0.08.
+- **What does settle.** The proportion of heads: P(0.4 ≤ heads/n ≤ 0.6) rises from about 0.656 to about 0.965, while the expected gap |heads − n/2| grows from about 1.23 to about 3.98.
+- **Checks.** The test computes every readout exactly with BigInt and checks the ratio identity. It lists all 64 sequences of 6 tosses for the transfer answer (20) and checks each number the explanation states.
+
+Current inventory: 16 subject cards, each with a foundation check, an understanding check and an Intuition Lab activity. See [the review note](review/probability-intuition-20261101.md).
+
 ## 2026-11-01 · Fixes from an outside deep audit
 
 A deep audit recomputed the published questions independently. It found no wrong answer key, proof or translation of meaning. It did confirm grading, input and wording problems. All of these are now fixed, each with a test that fails on the previous code:
