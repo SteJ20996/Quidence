@@ -244,3 +244,36 @@ test('activity navigation follows all ten subjects and preserves unfinished work
 test('published activity documents and their incoming links use current resource fingerprints',()=>{
  assert.doesNotThrow(()=>require('../scripts/version-activity-assets.cjs').versionActivities(true));
 });
+test('an exact fraction written with decimals matches an integer answer; earlier saved outcomes keep their own rule',()=>{
+ // 0.3/0.1 is exactly 3, though 0.3/0.1 in binary floating point is 2.9999999999999996.
+ for(const value of ['0.3/0.1','0.6/0.2','3e-1/1e-1','-0.3/-0.1','6/2','3'])assert(F.numberMatches({answer:3},value,F.NUMERIC_POLICY),value);
+ for(const value of ['2.9999999','2999999999/1000000000','0.30000001/0.1','1/0.3','0.3/0'])assert(!F.numberMatches({answer:3},value,F.NUMERIC_POLICY),value);
+ assert(F.numberMatches({answer:-2},'0.4/-0.2',F.NUMERIC_POLICY));assert(F.numberMatches({answer:0.75},'0.3/0.4',F.NUMERIC_POLICY));
+ assert(!F.numberMatches({answer:3},'0.3/0.1',F.RATIO_FLOAT_POLICY),'written-precision-3 keeps its published rule');
+ const p=E.fresh(),s=E.createSession(p,'ab01'),t=E.tasks(s).find(t=>t.id==='la-c01'),a=canonical(E,t);a.values.k='0.3/0.1';E.edit(s,t,a);E.submit(s,t);
+ assert.equal(E.last(s,t).numericPolicy,'written-precision-4');assert.equal(E.last(s,t).objective.parts.k,true);
+ const old=E.last(s,t);old.numericPolicy=F.RATIO_FLOAT_POLICY;old.objective=E.evaluate(t,a,F.RATIO_FLOAT_POLICY);assert.equal(old.objective.parts.k,false);const before=JSON.stringify(old);
+ assert(E.hydrate(p));assert.equal(JSON.stringify(E.last(s,t)),before);
+ assert.equal(E.observations(s).find(o=>o.id===t.id).components.find(c=>c.id==='k').state,'rounding-review');
+});
+test('the saved-report viewer flags an earlier precision rule only where it could change an outcome',()=>{
+ for(const[value,policy,flagged]of [['0.3/0.1',F.RATIO_FLOAT_POLICY,true],['3',F.RATIO_FLOAT_POLICY,false],['0.3/0.1',F.NUMERIC_POLICY,false],['3',F.PREVIOUS_NUMERIC_POLICY,true]]){
+  const h=harness(),p=h.engine.fresh(),s=h.engine.createSession(p,'ab01'),t=h.engine.task(s),a=canonical(h.engine,t);a.values.k=value;h.engine.edit(s,t,a);h.engine.submit(s,t);
+  const last=h.engine.last(s,t);last.numericPolicy=policy;last.objective=h.engine.evaluate(t,a,policy);
+  S.save('ab01',h.engine.portable(s),s.id,h.storage);const viewer=new Element('main');h.window.QuidenceReportViewer.mount(viewer,{storage:h.storage});
+  viewer.events.click({target:viewer.querySelector('[data-r-action="open"]')});assert.equal(/earlier numeric precision rule/.test(viewer.innerHTML),flagged,value+' '+policy);
+ }
+});
+test('the on-page foundation report shows each question’s given table, matrix and graph, as the question did',()=>{
+ for(const module of ['aa01','ab01','ac01']){
+  const h=harness('foundation');h.controller.select(module);h.finish();const html=h.host.innerHTML,tasks=h.engine.tasks(h.controller.current());
+  assert.match(html,/YOUR FOUNDATION REPORT/);
+  const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  for(const t of tasks){
+   if(t.table)for(const header of t.table.headers)assert(html.includes('>'+esc(header)+'<'),module+' '+t.id+' table header '+header);
+   if(t.matrix)assert(html.includes('aria-label="Matrix rows: '+esc(t.matrix.map(r=>r.join(', ')).join('; '))+'"'),module+' '+t.id+' matrix');
+   if(t.visual)assert(html.includes(esc(t.visual.description)),module+' '+t.id+' visual');
+  }
+  assert(tasks.some(t=>t.table||t.matrix||t.visual));
+ }
+});

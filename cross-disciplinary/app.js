@@ -239,7 +239,8 @@ function testLab(l,action){
   const picture=()=>{const o=counts(),n=total(),e=o.map((_,i)=>n*X.benford(i+1)),max=Math.max(...o,...e),parts=o.map((v,i)=>((v-e[i])**2/e[i]).toFixed(1));
     return svg(digitBars({values:o,ghosts:e,max,ticks:niceTicks(max),under:parts,h:262}),'Observed and expected first digits, with each digit’s share of chi-square',262);};
   const chiText=()=>{const chi=X.chiSquare(counts());return chi<15.51?chi.toFixed(2):chi.toFixed(1);};
-  const status=()=>X.chiSquare(counts())<15.51?`χ² is about ${chiText()}, below 15.51: no evidence against Benford’s law.`:`χ² is about ${chiText()}, above 15.51: these first digits do not follow Benford’s law.`;
+  // The 5% cutoff assumes a random sample, and passing the test is not proof that the law holds.
+  const status=()=>X.chiSquare(counts())<15.51?`χ² is about ${chiText()}, below 15.51: at the 5% level, no evidence against Benford’s law. Passing the test does not prove that the data follow it.`:`χ² is about ${chiText()}, above 15.51: if these numbers were a random sample from Benford’s law, a value this large would happen less than 5% of the time, so the test rejects the law at the 5% level.`;
   const draw=()=>labShell({title:'Test a data set',views:views([['threes','Powers of 3'],['fib','Fibonacci numbers'],['heights','Heights in cm']],l.set),picture:picture(),
     legend:`<p class="x-legend"><span class="x-legend-item"><span class="x-key x-key-bar"></span>Observed count O</span><span class="x-legend-item"><span class="x-key x-key-ghost"></span>Expected count E = n × P(d)</span></p>`,
     rows:[['Numbers',String(total())],['χ²',chiText()],['Critical value at the 5% level','15.51']],

@@ -1,3 +1,17 @@
+## 2026-11-01 · Fixes from an outside site audit
+
+An outside audit listed seven problems, and all seven were confirmed in the source.
+
+- A fraction written with decimals, such as 0.3/0.1, now matches an integer answer in the foundation checks, understanding checks and field projects. The new numeric policy is `written-precision-4`.
+- A Linear Algebra vector component must match exactly; before, (3.009, −2.009) counted as (3, −2).
+- In the Algebra module, an answer entered after the report showed the reference answer is recorded as `after_reference_answer`. It is no longer counted as independent first-try evidence.
+- The on-page foundation report now shows each question's given table, matrix and graph.
+- The cross-disciplinary page header now says 3 projects and 18 steps.
+- The Basic Logic tool rule now says "exactly when". The project bank becomes `quidence-projects-8`, and records saved under bank 7 keep the original wording.
+- The Benford test lab now states its 5% conclusion together with its random-sample premise.
+
+Saved answers are not rewritten. Earlier results stay readable under the rule they were saved with. See [the review note](review/site-audit-20261101.md).
+
 ## 2026-11-01 · Two course descriptions corrected (probability)
 
 The basics of probability, events, conditional probability and independence, are taught systematically only in the last Statistics lesson. No course teaches random variables, expected value or probability distributions; the Benford project introduces expected counts and the chi-square test for its own step 6, and the Game Theory and Discrete Mathematics projects use probability directly. The Benford project's `uses` line no longer credits Statistics with expected counts and the chi-square test. The knowledge map's Probability node now says what the Statistics lesson covers and that the Statistics course does not yet teach random variables, expected value or probability distributions. In Spanish, the map's related-course links now show the course name in Spanish, such as «Estadística», instead of the English title. A separate Probability course is planned. See [cross-disciplinary-benford-20261101.md](review/cross-disciplinary-benford-20261101.md).

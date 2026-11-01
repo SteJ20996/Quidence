@@ -95,8 +95,8 @@ async function main(){
   assert.equal(await run(3,['wheel-ten','wheel-ten','wheel-ten','wheel-ten','wheel-ten','wheel-one','wheel-one','wheel-one']),'The newest power lands in the arc for 9. Points so far: 53.');
   assert.equal(await run(3,['view-ten','wheel-one','wheel-one','wheel-one']),'Every power so far lands on the same point, in the arc for 1. Points so far: 3.');
   assert.equal(await run(4,['units-two']),'Every number is multiplied by 2. Powers of 2 starting with 1: 301 of 1000. Whole numbers starting with 1: 555 of 999.');
-  assert.match(await run(5,['view-heights']),/^χ² is about 116\.1, above 15\.51/);
-  assert.equal(await run(5,['view-threes']),'χ² is about 1.02, below 15.51: no evidence against Benford’s law.');
+  assert.match(await run(5,['view-heights']),/^χ² is about 116\.1, above 15\.51: if these numbers were a random sample from Benford’s law, .* rejects the law at the 5% level\.$/);
+  assert.equal(await run(5,['view-threes']),'χ² is about 1.02, below 15.51: at the 5% level, no evidence against Benford’s law. Passing the test does not prove that the data follow it.');
   // Decimal answers are accepted when rounded correctly to the stated places.
   await step(1);await page.locator('#f-width1').fill('0.301');await page.locator('#f-width9').fill('0.05');await page.locator('#check').click();
   assert.match(await page.locator('#feedback-width1').textContent(),/Accepted|Correct/);assert.match(await page.locator('#feedback-width9').textContent(),/Try again/);
