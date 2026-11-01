@@ -61,7 +61,7 @@ async function run(){
  const raw='Save my answer\nYour explanation\nNo puedo calcular −3/4; x < 0 y y > 0. <script>alert(1)</script>';
  const storage=()=>page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([k])=>k!=='quidence_ui_locale_v1')));
  let tasks=0,reports=0;
- for(const mode of ['diagnostics','projects'])for(const module of ['pre-algebra','algebra-1','geometry','algebra-2','af01','ad01','ae01','ab01','physics-1','physics-2',...(mode==='diagnostics'?['number-theory','coordinate-geometry','discrete-math']:[])]){
+ for(const mode of ['diagnostics','projects'])for(const module of ['pre-algebra','algebra-1','geometry','algebra-2','af01','ad01','ae01','ab01','physics-1','physics-2',...(mode==='diagnostics'?['number-theory','coordinate-geometry','discrete-math','probability']:[])]){
   await page.goto(origin+'/'+mode+'/?module='+module+'&lang=es');await page.locator('[data-f-action="resume"]').click();
   const count=await page.locator('.f-question-list li').count();
   for(let i=0;i<count;i++){
@@ -97,7 +97,8 @@ async function run(){
  await page.locator('#quidence-language').selectOption('en');assert.equal(await page.locator('#implicit-value option').textContent(),'Save my answer');
  fs.writeFileSync(path.join(__dirname,'../localization/missing-review.json'),JSON.stringify([...missing].sort(),null,2)+'\n');
  assert.deepEqual([...new Set(untranslated)],[],'untranslated text on question screens');
- const authoredMissing=[...missing].filter(k=>!/^(?:det\([AT]\):|hello@quidence\.com)$/.test(k));
+ // Notation labels such as det(A): and Var(X): read the same in both languages.
+ const authoredMissing=[...missing].filter(k=>!/^(?:det\([AT]\):|Var\(X\):|hello@quidence\.com)$/.test(k));
  assert.deepEqual(authoredMissing,[],'unreviewed authored text in introductions, reports, controls or exports');
  assert.equal(errors.length,0,errors.join('\n'));
  fs.writeFileSync(path.join(__dirname,'../localization/browser-english-residue.json'),JSON.stringify([...new Set(untranslated)],null,2)+'\n');

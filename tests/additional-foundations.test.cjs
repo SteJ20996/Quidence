@@ -35,6 +35,23 @@ const references={
   const outcomes=['H','T'].flatMap(a=>['H','T'].map(b=>a+b)),settings=['on','off'].flatMap(a=>['on','off'].flatMap(b=>['on','off'].map(c=>a+b+c)));
   return [[yn(prime(51)),range(2,51).find(d=>prime(d)&&51%d===0),yn(prime(1))],[yn(0%2===0),yn(Math.abs(-7%2)===1),range(-4,4).filter(x=>x%2===0).length],[['12','18','20','32'].find(x=>Number(x)%2===0&&Number(x)%4!==0),range(1,100).find(x=>x%2===0&&x%4!==0)],[range(-20,20).filter(x=>3<x&&x<=7).length,range(-20,20).filter(x=>-3<=x&&x<2).length],[[[-5,'m5'],[-2,'m2']].reduce((p,q)=>q[0]>p[0]?q:p)[1],yn(3>3),yn(-1<0)],[yn(5>3&&5<=5),yn(6>3&&6<=5),range(-20,20).filter(x=>x>3&&x<=5).length],split,[outcomes.length,settings.length],[list.filter(x=>x%2).length,list.filter(square).length,list.filter(x=>x%2&&square(x)).length],[yn(12<12),yn(11<12),range(0,20).filter(x=>x<12).length],[yn(rule(3,2)),yn(rule(5,3))],[yn(shapes.filter(squareShape).every(rectangle)),yn(shapes.filter(rectangle).every(squareShape)),[[4,4],[3,5],[6,6]].filter(([a,b])=>squareShape({sides:[a,b,a,b],right:true})).length],[yn(-2+1===5),grid.find(x=>x+1===5),grid.find(x=>2*x===x)],[(-4)**2,-(4**2),range(-20,20).find(n=>n<0&&n*n===49)],[40*3/8,40-40*3/8,40-22]];
  })(),
+ // Probability: outcomes by listing, fractions by common denominators, powers by repeated multiplication, and every inequality by searching n upward.
+ 'probability':(()=>{
+  const range=(a,b)=>[...Array(Math.max(0,b-a+1))].map((_,i)=>a+i),mean=xs=>xs.reduce((s,x)=>s+x,0)/xs.length,product=xs=>xs.reduce((p,x)=>p*x,1),first=test=>range(1,10000).find(test);
+  const coins=k=>k===0?['']:coins(k-1).flatMap(s=>['H','T'].map(c=>s+c)),three=coins(3),heads=s=>[...s].filter(c=>c==='H').length;
+  const orders=xs=>xs.length<=1?[xs]:xs.flatMap((x,i)=>orders(xs.filter((_,j)=>j!==i)).map(rest=>[x,...rest]));
+  const marbles=[...Array(3).fill('red'),...Array(5).fill('blue'),...Array(2).fill('green')];
+  const events={none:s=>heads(s)===0,oneTail:s=>heads(s)<3,atMostOne:s=>heads(s)<=1},complement=Object.keys(events).filter(k=>three.every(s=>events[k](s)===(heads(s)===0)));
+  // Every split of the 30 students into soccer only, basketball only, both and neither that matches the given counts.
+  const splits=[];for(const soccer of range(0,30))for(const basket of range(0,30)){const both=5,neither=30-soccer-basket-both;if(neither>=0&&soccer+both===18&&basket+both===12)splits.push([soccer+basket+both,neither]);}
+  const scores=[...Array(10).fill(80),...Array(30).fill(60)],dev=[2,4,6].map(x=>(x-mean([2,4,6]))**2);
+  return [[5*12>7*8?'five':5*12<7*8?'seven':'equal',(5*12-7*8)/(8*12)],[product([3/4,2/5]),product([2,3,5])/product([3,5,7])],[3/8,15*10000/1000],
+   [['H','T'].flatMap(c=>range(1,6).map(d=>c+d)).length,three.filter(s=>heads(s)===2).length],[orders([1,2,3,4]).length,range(1,6).flatMap(a=>range(a+1,6)).length],
+   [marbles.filter(m=>m==='blue').length/marbles.length,marbles.filter(m=>m!=='green').length/marbles.length],
+   [product(Array(5).fill(1/2)),product(Array(3).fill(2/3))],[1-product(Array(4).fill(1/2)),product(Array(10).fill(0.9))<0.5?'smaller':'larger'],
+   [product(Array(10).fill(2)),first(n=>2**n>100)],[mean([2,4,4,5,10]),mean(range(1,6))],[mean(scores),mean([3,3,8,8,8])],[mean([2,4,6]),mean(dev)],
+   [first(n=>50<=n/10),first(n=>3*n-7>20)],[complement.length===1?complement[0]:'none of them',three.filter(s=>heads(s)>=1).length],(assert.equal(splits.length,1),splits[0])];
+ })(),
  'physics-2':[[.25*4000*6],[150-60],[20+273.15],[-.02*200],[.003*(-20)],[1/2**2],[4+8,12/(4+8)],[1/(1/6+1/3),9*(1/6+1/3)],[6*.5],[2e-6*500*.4],[.02*.3/.1],[1/(1/10-1/30),-(1/(1/10-1/30))/30],[12/3],[1*.6/1.5],[4.14e-15*1e15,4.14e-15*1e15-2.14,'no']]
 };
 test('every new foundation answer agrees with independently recomputed arithmetic and counterexamples',()=>{
@@ -56,24 +73,24 @@ test('six-subject portfolios upgrade without rewriting drafts, submissions or pr
  const corrupt=structuredClone(old);delete corrupt.modules.ab01;assert.equal(E.hydrate(corrupt),null);assert.equal(E.hydrate({...old,modules:{...old.modules,unknown:{active:null,sessions:[]}}}),null);
 });
 test('nine-subject portfolios saved before Coordinate Geometry upgrade without rewriting earlier work',()=>{
- const old=E.fresh();for(const id of ['coordinate-geometry','geometry','algebra-2','discrete-math','basic-logic'])delete old.modules[id];assert.equal(Object.keys(old.modules).length,9);
+ const old=E.fresh();for(const id of ['coordinate-geometry','geometry','algebra-2','discrete-math','basic-logic','probability'])delete old.modules[id];assert.equal(Object.keys(old.modules).length,9);
  const s=E.createSession(old,'number-theory'),t=E.task(s),a=E.blank(t);a.values.q='7';a.explanation='Original reasoning kept exactly';E.edit(s,t,a);E.submit(s,t);
  const before=JSON.stringify(old),restored=E.hydrate(old);assert(restored,'a nine-subject record was rejected');assert.equal(JSON.stringify(old),before);
  for(const id of Object.keys(old.modules))assert.deepEqual(restored.modules[id],old.modules[id]);
- for(const id of ['coordinate-geometry','geometry','algebra-2','discrete-math','basic-logic'])assert.deepEqual(restored.modules[id],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
+ for(const id of ['coordinate-geometry','geometry','algebra-2','discrete-math','basic-logic','probability'])assert.deepEqual(restored.modules[id],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
  const seven=structuredClone(old);delete seven.modules['physics-2'];delete seven.modules['physics-1'];assert.equal(E.hydrate(seven),null);
 });
 test('ten-subject portfolios saved before Geometry and Algebra II upgrade without rewriting earlier work',()=>{
- const old=E.fresh();for(const id of ['geometry','algebra-2','discrete-math','basic-logic'])delete old.modules[id];assert.equal(Object.keys(old.modules).length,10);
+ const old=E.fresh();for(const id of ['geometry','algebra-2','discrete-math','basic-logic','probability'])delete old.modules[id];assert.equal(Object.keys(old.modules).length,10);
  const s=E.createSession(old,'coordinate-geometry'),t=E.task(s),a=E.blank(t);a.values.first='8';a.explanation='Original reasoning kept exactly';E.edit(s,t,a);E.submit(s,t);
  const before=JSON.stringify(old),restored=E.hydrate(old);assert(restored,'a ten-subject record was rejected');assert.equal(JSON.stringify(old),before);
  for(const id of Object.keys(old.modules))assert.deepEqual(restored.modules[id],old.modules[id]);
- for(const id of ['geometry','algebra-2','discrete-math','basic-logic'])assert.deepEqual(restored.modules[id],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
+ for(const id of ['geometry','algebra-2','discrete-math','basic-logic','probability'])assert.deepEqual(restored.modules[id],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
  // A set that was never published stays rejected.
- const unpublished=structuredClone(restored);delete unpublished.modules['algebra-2'];delete unpublished.modules['discrete-math'];delete unpublished.modules['basic-logic'];assert.equal(Object.keys(unpublished.modules).length,11);assert.equal(E.hydrate(unpublished),null);
+ const unpublished=structuredClone(restored);delete unpublished.modules['algebra-2'];delete unpublished.modules['discrete-math'];delete unpublished.modules['basic-logic'];delete unpublished.modules.probability;assert.equal(Object.keys(unpublished.modules).length,11);assert.equal(E.hydrate(unpublished),null);
 });
 test('twelve-subject portfolios saved before Discrete Mathematics upgrade without rewriting earlier work',()=>{
- const old=E.fresh();delete old.modules['discrete-math'];delete old.modules['basic-logic'];assert.equal(Object.keys(old.modules).length,12);
+ const old=E.fresh();delete old.modules['discrete-math'];delete old.modules['basic-logic'];delete old.modules.probability;assert.equal(Object.keys(old.modules).length,12);
  const s=E.createSession(old,'coordinate-geometry'),t=E.task(s),a=E.blank(t);a.values.first='8';a.explanation='Original reasoning kept exactly';E.edit(s,t,a);E.submit(s,t);
  const before=JSON.stringify(old),restored=E.hydrate(old);assert(restored,'a twelve-subject record was rejected');assert.equal(JSON.stringify(old),before);
  for(const id of Object.keys(old.modules))assert.deepEqual(restored.modules[id],old.modules[id]);
@@ -81,12 +98,22 @@ test('twelve-subject portfolios saved before Discrete Mathematics upgrade withou
  const unpublished=structuredClone(restored);delete unpublished.modules.geometry;assert.equal(E.hydrate(unpublished),null);
 });
 test('thirteen-subject portfolios saved before Basic Logic upgrade without rewriting earlier work',()=>{
- const old=E.fresh();delete old.modules['basic-logic'];assert.equal(Object.keys(old.modules).length,13);
+ const old=E.fresh();delete old.modules['basic-logic'];delete old.modules.probability;assert.equal(Object.keys(old.modules).length,13);
  const s=E.createSession(old,'discrete-math'),t=E.task(s),a=E.blank(t);a.values.all='28';a.explanation='Original reasoning kept exactly';E.edit(s,t,a);E.submit(s,t);
  const before=JSON.stringify(old),restored=E.hydrate(old);assert(restored,'a thirteen-subject record was rejected');assert.equal(JSON.stringify(old),before);
  for(const id of Object.keys(old.modules))assert.deepEqual(restored.modules[id],old.modules[id]);
  assert.deepEqual(restored.modules['basic-logic'],{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
  const n=E.createSession(restored,'basic-logic');assert.deepEqual(E.tasks(n).map(t=>t.id),[...Array(15)].map((_,i)=>'bl-f'+String(i+1).padStart(2,'0')));
+});
+test('fourteen-subject portfolios saved before Probability upgrade without rewriting earlier work',()=>{
+ const old=E.fresh();delete old.modules.probability;assert.equal(Object.keys(old.modules).length,14);
+ const s=E.createSession(old,'basic-logic'),t=E.task(s),a=E.blank(t);a.values[t.fields[0].id]=t.fields[0].kind==='number'?'1':t.fields[0].options[0].value;a.explanation='Original reasoning kept exactly';E.edit(s,t,a);E.submit(s,t);
+ const before=JSON.stringify(old),restored=E.hydrate(old);assert(restored,'a fourteen-subject record was rejected');assert.equal(JSON.stringify(old),before);
+ for(const id of Object.keys(old.modules))assert.deepEqual(restored.modules[id],old.modules[id]);
+ assert.deepEqual(restored.modules.probability,{active:null,sessions:[]});assert.deepEqual(E.hydrate(JSON.parse(JSON.stringify(restored))),restored);
+ const n=E.createSession(restored,'probability');assert.deepEqual(E.tasks(n).map(t=>t.id),[...Array(15)].map((_,i)=>'pr-f'+String(i+1).padStart(2,'0')));
+ // A set that was never published stays rejected.
+ const unpublished=structuredClone(restored);delete unpublished.modules['basic-logic'];assert.equal(E.hydrate(unpublished),null);
 });
 test('unfamiliar and uncertain new topics stay separate from wrong answers, with immutable exports and reports',()=>{
  for(const id of Object.keys(references)){
