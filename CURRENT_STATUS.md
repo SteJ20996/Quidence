@@ -1,3 +1,11 @@
+## 2026-11-01 · Stacked fractions on screen
+
+Fractions written with a slash are drawn stacked on every published page, in English and Spanish:
+- numbers such as 2/3;
+- expressions such as n/2, σ/√n, (n + 1)/(n + 2) and C(n, n/2) / 2ⁿ.
+
+It is display-only. Content, translations, answer checking, learner answers, records and exports keep the slash. The page text keeps it too, so copying, search and screen readers get the slash form. Units (m/s, km/h, J/(kg·K)), words, labels, dates, counters, form fields, charts and learner text are not drawn. Translation passes restore the original text before translating and draw again afterwards. The parser was checked against all 25,495 catalog strings. See [the review note](review/stacked-fractions-20261101.md).
+
 ## 2026-11-01 · Probability part 4: Statistics lesson on sampling distributions
 
 Statistics has a fifth lesson, "How much does a sample mean vary?", in English and Spanish. It finishes the Probability course plan.

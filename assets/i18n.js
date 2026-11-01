@@ -211,7 +211,11 @@ function apply(scope=root.document){
  document.documentElement.lang=locale;
  if(control)control.value=locale;
 }
-function schedule(){if(pending)return;pending=true;root.queueMicrotask(()=>{pending=false;observer?.disconnect();apply();observe();});}
+// Stacked fractions (assets/fractions.js) are drawn after translation: the original text nodes are put back,
+// translated as usual, and drawn again, so translation always sees exactly the text it wrote.
+root.QuidenceI18nFractions=true;
+function pass(){const F=root.QuidenceFractions;F?.revert();apply();if(root.document?.body)F?.render(root.document.body);}
+function schedule(){if(pending)return;pending=true;root.queueMicrotask(()=>{pending=false;observer?.disconnect();pass();observe();});}
 function observe(){observer?.observe(root.document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['aria-label','placeholder','title','alt']});}
 function loadCatalog(){
  if(catalogPromise)return catalogPromise;
@@ -243,7 +247,7 @@ async function setLocale(next){
  control?.removeAttribute('aria-busy');root.document?.querySelectorAll('.language-error').forEach(e=>e.remove());
  locale=next==='es'?'es':'en';if(!fixedEnglish)try{root.localStorage.setItem(KEY,locale);}catch{}
  if(root.location&&root.history){const url=new URL(root.location.href);url.searchParams.set('lang',locale);root.history.replaceState(root.history.state,'',url);}
- observer?.disconnect();apply();observe();root.document?.dispatchEvent(new root.CustomEvent('quidence:language',{detail:{locale}}));return locale;
+ observer?.disconnect();pass();observe();root.document?.dispatchEvent(new root.CustomEvent('quidence:language',{detail:{locale}}));return locale;
 }
 const dateFormatters=new Map();
 function date(source){const d=new Date(source);if(Number.isNaN(d.getTime()))return String(source);if(!dateFormatters.has(locale))dateFormatters.set(locale,new Intl.DateTimeFormat(locale==='es'?'es-MX':'en-US',{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}));return dateFormatters.get(locale).format(d);}
@@ -285,8 +289,8 @@ function start(){
  else{const bar=root.document.querySelector('body > .q-theme-bar');if(bar)bar.after(toolbar);else root.document.body.prepend(toolbar);}
  }
  }
- apply();observer=new root.MutationObserver(schedule);observe();setLocale(desired);
- root.addEventListener('storage',event=>{if(event.key===KEY){if(fixedEnglish)apply();else setLocale(event.newValue);}});
+ pass();observer=new root.MutationObserver(schedule);observe();setLocale(desired);
+ root.addEventListener('storage',event=>{if(event.key===KEY){if(fixedEnglish){observer?.disconnect();pass();observe();}else setLocale(event.newValue);}});
 }
 if(root.document){if(root.document.readyState==='loading')root.document.addEventListener('DOMContentLoaded',start,{once:true});else start();}
 return {text,markdown,markdownArea,html,apply,setLocale,date,get missing(){return [...missing];},clearMissing(){missing.clear();},get locale(){return locale;},normalize,KEY,protectedSelector};
