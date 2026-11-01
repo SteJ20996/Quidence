@@ -32,4 +32,5 @@ const speech=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/
 
 const coordinate=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/coordinate-core.test.mjs'),path.join(__dirname,'../tests/coordinate-content.test.mjs'),path.join(__dirname,'../tests/coordinate-lessons.test.mjs'),path.join(__dirname,'../tests/coordinate-integration.test.cjs')],{stdio:'inherit'});if(coordinate.status!==0)process.exit(coordinate.status??1);
 const discrete=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/discrete-math.test.cjs')],{stdio:'inherit'});if(discrete.status!==0)process.exit(discrete.status??1);
+const probability=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/probability.test.cjs')],{stdio:'inherit'});if(probability.status!==0)process.exit(probability.status??1);
 const cross=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/cross-disciplinary.test.cjs')],{stdio:'inherit'});if(cross.status!==0)process.exit(cross.status??1);

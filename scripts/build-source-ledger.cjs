@@ -14,6 +14,7 @@ function build(){
  }
  for(const task of JSON.parse(fs.readFileSync(path.join(root,'courses/number-theory/data.json'),'utf8')))add('number-theory-project','number-theory',task,['content/number-theory/source-v2.md','courses/number-theory/data.json'],{bankVersion:'number-theory-v2',automatedReference:'review/number-theory-validation-20261010.json'});
  for(const task of JSON.parse(fs.readFileSync(path.join(root,'courses/discrete-math/data.json'),'utf8')))add('discrete-math-project','discrete-math',task,['content/discrete-math/projects.cjs','courses/discrete-math/data.json'],{bankVersion:'discrete-math-v1',automatedReference:'tests/discrete-math.test.cjs'});
+ for(const task of JSON.parse(fs.readFileSync(path.join(root,'courses/probability/data.json'),'utf8')))add('probability-project','probability',task,['content/probability/projects.cjs','courses/probability/data.json'],{bankVersion:'probability-v1',automatedReference:'tests/probability.test.cjs'});
  for(const task of JSON.parse(fs.readFileSync(path.join(root,'cross-disciplinary/data.json'),'utf8')))add('cross-disciplinary-project','cross-disciplinary',task,['content/cross-disciplinary/projects.cjs','cross-disciplinary/data.json'],{bankVersion:'cross-disciplinary-v1',automatedReference:'tests/cross-disciplinary.test.cjs'});
  const school=require('../assets/school-course-content.js');
  for(const module of [...school.IDS,'ad01','ae01','af01']){

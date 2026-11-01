@@ -838,5 +838,93 @@
   [
     "[n] × (1 to 999)",
     "[n] × (1 a 999)"
+  ],
+  [
+    "[n] of 36 outcomes are in this event.",
+    "[n] de los 36 resultados están en este evento."
+  ],
+  [
+    "Rolls: [n].",
+    "Tiros: [n]."
+  ],
+  [
+    "A needs [n], B needs [n]: [n] imagined rounds give [n] equally likely sequences.",
+    "A necesita [n], B necesita [n]: [n] rondas imaginadas dan [n] sucesiones igualmente probables."
+  ],
+  [
+    "A wins in [n] of [n] sequences.",
+    "A gana en [n] de [n] sucesiones."
+  ],
+  [
+    "[n] of 10000 people are sick.",
+    "[n] de 10000 personas están enfermas."
+  ],
+  [
+    "Positive tests: [n] from sick people and [n] from healthy people.",
+    "Pruebas positivas: [n] de personas enfermas y [n] de personas sanas."
+  ],
+  [
+    "After two positive tests: [n] sick and [n] healthy people.",
+    "Después de dos pruebas positivas: [n] personas enfermas y [n] sanas."
+  ],
+  [
+    "Gold drawn: [n] times. The other coin was gold [n] times.",
+    "Se sacó oro [n] veces. La otra moneda era de oro [n] veces."
+  ],
+  [
+    "Games counted: [n]. Switching won [n] of them.",
+    "Juegos contados: [n]. Cambiar ganó [n] de ellos."
+  ],
+  [
+    "Games where the host revealed the prize, not counted: [n].",
+    "Juegos en que el presentador reveló el premio, sin contar: [n]."
+  ],
+  [
+    "People: [n]. Pairs: [n].",
+    "Personas: [n]. Parejas: [n]."
+  ],
+  [
+    "Shuffles: [n].",
+    "Barajadas: [n]."
+  ],
+  [
+    "Average number of fixed points: [n].",
+    "Número promedio de puntos fijos: [n]."
+  ],
+  [
+    "Waits recorded: [n].",
+    "Esperas registradas: [n]."
+  ],
+  [
+    "Average wait: [n] rolls.",
+    "Espera promedio: [n] tiros."
+  ],
+  [
+    "Collections: [n].",
+    "Colecciones: [n]."
+  ],
+  [
+    "Average number of rolls: [n].",
+    "Número promedio de tiros: [n]."
+  ],
+  [
+    "Balls: [n].",
+    "Bolas: [n]."
+  ],
+  [
+    "Most common bin so far: [n].",
+    "Compartimento más común hasta ahora: [n]."
+  ],
+  [
+    "Tosses: [n].",
+    "Lanzamientos: [n]."
+  ],
+  [
+    "Fraction of heads: [n].",
+    "Fracción de águilas: [n]."
+  ],
+  [
+    "Chebyshev’s bound for a miss of 0.05 or more: [n].",
+    "Cota de Chebyshev para un error de 0.05 o más: [n]."
   ]
 ]

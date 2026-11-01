@@ -108,7 +108,7 @@ async function main(){
     result.layouts++;
    }
    await page.goto(origin+'/?lang=en&view=courses');await page.waitForFunction(()=>window.QuidenceI18n?.locale==='en');
-   assert.equal(await page.locator('.subject-card:visible').count(),18);
+   assert.equal(await page.locator('.subject-card:visible').count(),19);
    await page.screenshot({path:path.join(shots,theme+'-courses.png')});
    await page.evaluate(()=>document.querySelectorAll('details').forEach(d=>{d.open=true;}));
    assert.deepEqual(await page.evaluate(linkLikeControls),[],theme+' homepage course cards: standalone links must look like buttons');result.buttonChecks++;

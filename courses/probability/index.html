@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head><script src="../../assets/seo-config.js?v=552abae3b9e4" defer></script><script src="../../assets/seo.js?v=d7ba09716dee" defer></script><script src="../../assets/themes.js?v=36c6301782b1"></script><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#153f44">
+  <meta name="description" data-no-translate content="Explore chance, conditional probability, expected value and the law of large numbers through ten projects with step-by-step reference proofs.">
+  <title data-no-translate>Probability · Quidence</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png?v=1702287fff8a"><link rel="icon" href="../../assets/favicon.svg?v=165d01ace11e" type="image/svg+xml" sizes="any">
+  <link rel="stylesheet" href="style.css?v=da202828887e">
+  <script src="../../assets/brand.js?v=5e1e8e8106d6" defer></script>
+  <link rel="stylesheet" href="../../assets/i18n.css?v=5a75fbf72e2f">
+  <script src="../../assets/i18n.js?v=fcda77e0efc1" data-es-catalog="?v=75705bc1086c" defer></script>
+  <script src="../../assets/sync-policy.js?v=443831f7c1bd" defer></script>
+  <script src="../../assets/local-records.js?v=7b0b5265dda6" defer></script>
+  <script src="../number-theory/core.js?v=ed7c001591a0" defer></script>
+  <script src="core.js?v=faf1683329ce" defer></script>
+  <script src="app.js?v=9c0d4a0df951" defer></script>
+<link rel="stylesheet" href="../../assets/color-review.css?v=0782b71ffa19">
+<link rel="stylesheet" href="../../assets/themes.css?v=725fe76f08a5">
+<link rel="stylesheet" href="../../assets/paper-explorer.css?v=23327e329b1a">
+<link rel="stylesheet" href="../../assets/learning-atlas.css?v=5397028b1b5b">
+<link rel="stylesheet" href="../../assets/geometric-studio.css?v=5615387ea17e">
+<link rel="stylesheet" href="../../assets/appearance-layout.css?v=a5fe73c2b1b0">
+<link rel="stylesheet" href="../../assets/intuition-links.css?v=12e2a0f8f5da"><script src="../../intuition/data.js?v=eeba98ff7fac" defer></script><script src="../../assets/intuition-links.js?v=38139d7885b6" defer></script><link rel="stylesheet" href="../../assets/speech-review.css?v=e88573b5d495"><script src="../../assets/speech-review.js?v=9796d659d8c0" defer></script></head>
+<body data-q-theme="mist-teal" data-q-ui="pr">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand q-brand" href="../../" aria-label="Quidence home"><img class="q-brand-logo" src="../../assets/quidence-logo-light.svg?v=f221ab3e9b1a" alt="Quidence" width="216" height="55" data-logo-light-src="../../assets/quidence-logo-light.svg?v=f221ab3e9b1a" data-logo-dark-src="../../assets/quidence-logo-dark.svg?v=e9b1122a7d0e"></a>
+      <div class="header-copy"><span>Mathematics and Science</span><small>Online learning foundations, charts and reports</small></div>
+      <button class="header-button" id="session">Your session <span aria-hidden="true">↗</span></button>
+      <div data-language-host></div><span class="preview-tag"><span>Probability</span> · <span>English and Spanish</span></span>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="intro">
+      <div><p class="eyebrow">MATHEMATICS <span aria-hidden="true">/</span> PROBABILITY</p><h1>Chance has rules. Find them, then prove them.</h1><p class="intro-copy">Start from equally likely outcomes. Finish with laws that hold in the long run.</p></div>
+      <div class="intro-note"><span class="spark" aria-hidden="true">P(A | B)</span><div><span>From high school to university</span><small>10 projects · 40 steps · Go at your own pace</small></div></div>
+    </section>
+    <div class="topbar"><span>Explore → Reason → Prove</span><button id="toolkit" class="text-button">Open the proof toolkit <span aria-hidden="true">↗</span></button></div>
+    <p class="content-language-note">Explore the projects in English or Spanish. Your own responses stay exactly as you write them.</p>
+    <div id="loading" role="status">Loading the probability projects…</div>
+    <div class="layout" id="app" hidden>
+      <aside class="route-card" aria-label="Probability projects">
+        <div class="route-heading"><span class="eyebrow">YOUR LEARNING ROUTE</span><h2>Pick a project</h2><p>You can start anywhere.</p></div>
+        <nav id="route" aria-label="Probability projects"></nav>
+        <div class="route-foot"><span class="route-foot-icon" aria-hidden="true">∴</span><p>A simulation suggests.<br>A proof tells us why.</p></div>
+      </aside>
+      <div class="mobile-picker"><label for="project-select">Pick a project</label><select id="project-select"></select></div>
+      <section class="work-column" aria-label="Project workspace">
+        <article id="project-head" class="project-head"></article>
+        <nav class="step-nav" id="step-nav" aria-label="Project steps"></nav>
+        <article class="step-card" id="work"></article>
+        <div class="workspace-footer"><span id="save-status" role="status">Responses stay on this device.</span><button class="text-button" id="review-session">Review my work <span aria-hidden="true">↗</span></button></div>
+      </section>
+      <aside class="side-column">
+        <section class="lab-card"><div class="lab-heading"><span class="eyebrow">MAKE IT VISIBLE</span><h2 id="lab-title">Explore the idea</h2></div><div id="lab"></div></section>
+        <section class="hint-card"><span class="eyebrow">A LITTLE HELP, WHEN YOU NEED IT</span><details id="approach"><summary>How to think about it</summary><div id="approach-copy"></div></details><details><summary>Tools behind this project</summary><p id="uses"></p><button class="text-button" id="open-tools-side">See the foundation proofs ↗</button></details></section>
+        <div class="learning-note"><span aria-hidden="true">✧</span><p>You don’t have to get it right on the first try. Keep the reasoning that helped you move forward.</p></div>
+      </aside>
+    </div>
+  </main>
+  <footer class="site-footer"><span>Quidence · A little more understanding, one step at a time.</span><span>Project notes stay in this browser. Export them to keep a copy.</span></footer>
+  <dialog id="modal" aria-labelledby="modal-title"><div class="modal-top"><h2 id="modal-title"></h2><button id="close-modal" aria-label="Close dialog">×</button></div><div id="modal-body"></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <noscript><p class="shell">This interactive preview needs JavaScript. Enable it and reload to open the ten projects and their proofs.</p></noscript>
+</body>
+</html>
