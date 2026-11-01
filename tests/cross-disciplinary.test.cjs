@@ -43,10 +43,10 @@ function generalCuts(count,dim,seed){
 }
 function counts(dim,max,seed){const cuts=generalCuts(max,dim,seed);return Array.from({length:max+1},(_,k)=>k<dim?2**k:piecesAroundCorners(cuts.slice(0,k),dim,10).size);}
 
-test('two bilingual projects in six steps each, with up-to-date page data and homepage entries',()=>{
+test('three bilingual projects in six steps each, with up-to-date page data and homepage entries',()=>{
  assert.equal(fs.readFileSync(build.OUT,'utf8'),build.serialized(),'run node scripts/build-cross-disciplinary.cjs');
- assert.deepEqual(data.map(p=>p.id),['cross-p01','cross-p02']);assert.deepEqual(data.map(p=>p.steps.length),[6,6]);
- assert.deepEqual(data.map(p=>p.steps.reduce((n,s)=>n+s.fields.length,0)),[25,22]);
+ assert.deepEqual(data.map(p=>p.id),['cross-p01','cross-p02','cross-p03']);assert.deepEqual(data.map(p=>p.steps.length),[6,6,6]);
+ assert.deepEqual(data.map(p=>p.steps.reduce((n,s)=>n+s.fields.length,0)),[25,22,24]);
  assert.deepEqual(Object.keys(CROSS.projects),data.map(p=>p.id));
  const ids=data.flatMap(p=>p.steps.flatMap(s=>s.fields.map(f=>f.id)));assert.equal(new Set(ids).size,ids.length,'field ids are unique across projects');
  const catalog=build.crossCatalog();
@@ -55,7 +55,7 @@ test('two bilingual projects in six steps each, with up-to-date page data and ho
   assert.deepEqual(p.subjects,CROSS.projects[p.id].subjects,'the homepage card lists the same courses');
   for(const s of p.steps){
    assert.ok(s.connects.length&&s.connects.every(id=>COURSES[id]&&p.subjects.includes(id)),s.title+' links courses of the project');
-   assert.ok(s.banner&&!/[A-Za-z]{3}/.test(s.banner.replace(/\b[LPB]\(|C\(/g,'')),'the banner is symbols only');
+   assert.ok(s.banner&&!/[A-Za-z]{3}/.test(s.banner.replace(/\b[LPB]\(|C\(|log₁₀/g,'')),'the banner is symbols only');
    for(const para of s.proof.split(/\n\s*\n/))assert.ok(catalog[para.replace(/\s+/g,' ').trim()],'Spanish proof paragraph: '+para.slice(0,40));
    for(const f of s.fields){
     if(/[A-Za-z]{3}/.test(f.label.replace(/\b[LPBC]\(/g,'')))assert.ok(catalog[f.label],'Spanish label '+f.label);
@@ -190,3 +190,52 @@ test('the chord lab arrangement is in general position and gives the counts the 
  for(const x of crossings){const near=subsets(7,2).filter(([i,j])=>{const p=pts[i],q=pts[j],dx=q[0]-p[0],dy=q[1]-p[1];return Math.abs((x[0]-p[0])*dy-(x[1]-p[1])*dx)/Math.hypot(dx,dy)<.05;}).length;assert.equal(near,2,'no third chord passes near a crossing');}
  assert.equal(X.pieces(X.chords(X.HEXAGON).map(c=>c.line)).length,30);
 });
+
+// First digits. Every count is read from the decimal digits of exact whole numbers (BigInt), and every share and
+// statistic is computed here from those counts, not with the lab's helpers.
+const lead=n=>Number(String(n)[0]);
+const powersOf=(b,count)=>{const out=[];let x=1n;for(let i=0;i<count;i++){x*=BigInt(b);out.push(x);}return out;};
+const firstDigits=values=>{const c=Array(9).fill(0);for(const v of values)c[lead(v)-1]++;return c;};
+const P=d=>Math.log10(1+1/d),chi=c=>{const n=c.reduce((a,b)=>a+b,0);return c.reduce((s,o,i)=>s+(o-n*P(i+1))**2/(n*P(i+1)),0);};
+const close=(id,value,places)=>{const f=field(id);assert.equal(f.minDecimalPlaces,places,id+' places');assert.ok(Math.abs(Number(f.answer)-value)<1e-12,id+': stored '+f.answer+', recomputed '+value);
+ const rounded=value.toFixed(places);assert.equal(C.grade(f,rounded).status,'correct',id+' accepts '+rounded);
+ const off=(Number(rounded)+10**-places).toFixed(places);assert.equal(C.grade(f,off).status,'retry',id+' rejects '+off);
+ if(places>1)assert.equal(C.grade(f,value.toFixed(places-1)).status,'retry',id+' needs '+places+' places');};
+
+test('first digits: powers of 2, log stretches, Benford’s shares and the first powers to start with 7 and 9',()=>{
+ const two=powersOf(2,1000),c10=firstDigits(two.slice(0,10)),c100=firstDigits(two.slice(0,100));
+ expect('ones10',c10[0]);expect('ones100',c100[0]);expect('nines100',c100[8]);
+ assert.deepEqual(c100,[30,17,13,10,7,7,6,5,5],'the counts the proofs quote');
+ expect('firstSeven',two.findIndex(v=>lead(v)===7)+1);expect('firstNine',two.findIndex(v=>lead(v)===9)+1);
+ assert.equal(String(2n**46n),'70368744177664');assert.equal(String(2n**53n),'9007199254740992');
+ expect('equalShares','no');
+ close('width1',Math.log10(2),3);
+ // A calculator's display, ten significant digits, and a full double for log₁₀ 2 and log₁₀ 4 are correct roundings too.
+ for(const [id,v]of [['width1',(Math.log10(2)).toPrecision(10)],['width9',(Math.log10(10/9)).toPrecision(10)],['share123',(Math.log10(4)).toPrecision(10)],['width1',String(Math.log10(2))],['share123',String(Math.log10(4))]])assert.equal(C.grade(field(id),v).status,'correct',id+' accepts '+v);close('width9',Math.log10(10/9),3);close('mantissa1024',Math.log10(1024)-3,3);
+ close('share123',P(1)+P(2)+P(3),3);close('oneToNine',P(1)/P(9),1);
+ assert.ok(Math.abs([1,2,3,4,5,6,7,8,9].reduce((s,d)=>s+P(d),0)-1)<1e-12,'the nine shares add up to 1');
+ expect('expected1000',Math.round(1000*P(1)));assert.equal(firstDigits(two)[0],301,'301 of 2¹ to 2¹⁰⁰⁰ start with 1');
+ expect('tensCircle','zero');assert.ok(powersOf(10,30).every(v=>lead(v)===1));
+ // log₁₀ 2 = p/q would give 2^q = 10^p; no power of 2 is a power of 10 with p ≥ 1.
+ assert.ok(two.every(v=>!/^10*$/.test(String(v))));
+});
+
+test('first digits: changing units, the chi-square test and data that should not follow the law',()=>{
+ // 2x starts with 1 exactly when x starts with 5 to 9: check every first digit of the whole numbers up to 99999.
+ for(let x=1;x<100000;x++)assert.equal(lead(2*x)===1,lead(x)>=5,'x = '+x);
+ expect('doublingDigits','five');close('shareFiveUp',Math.log10(10/5),3);
+ const whole=Array.from({length:999},(_,i)=>BigInt(i+1));
+ assert.deepEqual(firstDigits(whole),Array(9).fill(111));expect('doubled999',firstDigits(whole.map(x=>2n*x))[0]);
+ // Turning evenly spread mantissas keeps the shares: the powers of 2 in new units stay within 5 of Benford's counts.
+ for(const c of [2n,3n,6n,1024n,729n]){const shifted=firstDigits(powersOf(2,1000).map(v=>v*c));shifted.forEach((n,i)=>assert.ok(Math.abs(n-1000*P(i+1))<5,'c = '+c+', digit '+(i+1)));}
+ close('chiPowers',chi(firstDigits(powersOf(2,100))),2);expect('chiWhole',Math.round(chi(firstDigits(whole))));
+ assert.ok(chi(firstDigits(whole))>15.51&&chi(firstDigits(powersOf(2,100)))<15.51);
+ expect('notBenford','heights');
+ const heights=Array.from({length:61},(_,i)=>140+i);assert.ok(firstDigits(heights)[0]>=60,'heights from 140 to 200 cm almost all start with 1');
+ assert.ok(chi(firstDigits(powersOf(3,1000)))<15.51,'the powers of 3 pass the test');
+ // The lab's data sets and helpers agree with the counts above.
+ assert.deepEqual(X.tally(X.powers(2,100)),[30,17,13,10,7,7,6,5,5]);assert.ok(Math.abs(X.chiSquare(X.tally(X.powers(2,100)))-chi([30,17,13,10,7,7,6,5,5]))<1e-12);
+ assert.deepEqual(X.tally(X.fibonacci(100)),firstDigits((()=>{const f=[1n,1n];while(f.length<100)f.push(f.at(-1)+f.at(-2));return f;})()));
+ assert.ok(Math.abs(X.mantissa(1024n)-(Math.log10(1024)-3))<1e-12&&Math.abs(X.mantissa(2n**53n)-(53*Math.log10(2)-15))<1e-9);
+});
+

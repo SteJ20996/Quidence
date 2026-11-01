@@ -576,11 +576,11 @@
       "sourceFiles": [
         {
           "path": "content/cross-disciplinary/projects.cjs",
-          "sha256": "195fc721003dcc8a64855543e556fef31d1c5a948153b3eb15ee240aff0d1242"
+          "sha256": "26f857c580099cfcdcdbb3f1cab21bed02120c5b42926cadc5fb39a7f69c3d63"
         },
         {
           "path": "cross-disciplinary/data.json",
-          "sha256": "0f3be5b5c73952e90d6c828e558c7919e52d0dabcaec5eb1eee34420a65f7843"
+          "sha256": "743b09b0ee15833349e91188bad85c63541927a16a2e1f39f9f969391059f932"
         }
       ],
       "sourceReview": {
@@ -608,11 +608,43 @@
       "sourceFiles": [
         {
           "path": "content/cross-disciplinary/projects.cjs",
-          "sha256": "195fc721003dcc8a64855543e556fef31d1c5a948153b3eb15ee240aff0d1242"
+          "sha256": "26f857c580099cfcdcdbb3f1cab21bed02120c5b42926cadc5fb39a7f69c3d63"
         },
         {
           "path": "cross-disciplinary/data.json",
-          "sha256": "0f3be5b5c73952e90d6c828e558c7919e52d0dabcaec5eb1eee34420a65f7843"
+          "sha256": "743b09b0ee15833349e91188bad85c63541927a16a2e1f39f9f969391059f932"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/cross-disciplinary.test.cjs"
+      },
+      "automatedReference": "tests/cross-disciplinary.test.cjs"
+    },
+    {
+      "id": "cross-disciplinary-project:cross-disciplinary:cross-p03",
+      "family": "cross-disciplinary-project",
+      "module": "cross-disciplinary",
+      "taskId": "cross-p03",
+      "title": "Why do so many numbers start with 1?",
+      "bankVersion": "cross-disciplinary-v1",
+      "availability": "active",
+      "fingerprint": "93202f363b31f2dfb77e2909be91666452bb940d6a45f1b11363795dfb660237",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/cross-disciplinary/projects.cjs",
+          "sha256": "26f857c580099cfcdcdbb3f1cab21bed02120c5b42926cadc5fb39a7f69c3d63"
+        },
+        {
+          "path": "cross-disciplinary/data.json",
+          "sha256": "743b09b0ee15833349e91188bad85c63541927a16a2e1f39f9f969391059f932"
         }
       ],
       "sourceReview": {

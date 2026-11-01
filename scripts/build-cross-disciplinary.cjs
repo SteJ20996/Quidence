@@ -11,7 +11,7 @@ const en=t=>{if(!t||typeof t.en!=='string'||typeof t.es!=='string'||!t.en.trim()
 const courses=ids=>ids.map(id=>{if(!COURSES[id])throw Error('Unknown course '+id);return id;});
 function field(f){
  const out={id:f.id,label:en(f.label),type:f.type};
- if(f.type==='number'){out.answer=f.answer;out.accepted=f.accepted;}
+ if(f.type==='number'){out.answer=f.answer;out.accepted=f.accepted;if(f.minDecimalPlaces)out.minDecimalPlaces=f.minDecimalPlaces;}
  else if(f.type==='reason'){out.criteria=f.criteria.map(en);if(f.followup)out.followup=en(f.followup);}
  else{out.answer=f.answer;out.options=f.options.map(o=>({value:o.value,label:en(o.label)}));}
  return out;
