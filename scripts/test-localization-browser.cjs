@@ -100,6 +100,15 @@ async function run(){
  // Notation labels such as det(A): and Var(X): read the same in both languages.
  const authoredMissing=[...missing].filter(k=>!/^(?:det\([AT]\):|Var\(X\):|hello@quidence\.com)$/.test(k));
  assert.deepEqual(authoredMissing,[],'unreviewed authored text in introductions, reports, controls or exports');
+ // Stacked fractions are drawn after translation, so switching languages translates the text underneath them and back.
+ {const page=await browser.newPage();page.on('pageerror',e=>errors.push('fractions: '+e.message));await page.goto(origin+'/modules/ae01/dist/?lang=en');
+  await page.locator('[data-action="open"][data-index="3"]').first().click();await page.locator('#answer-form input[value="unsure"]').check();await page.locator('#answer-form textarea[name="explanation"]').fill('Not sure.');await page.locator('#answer-form button[type="submit"]').click();await page.locator('[data-action="next"]').click();await page.locator('#lab-condition').selectOption('club');
+  const readout=()=>page.locator('#live-readout').textContent(),english=await readout();assert.match(english,/Relevant fraction = 12\/20 = 0\.6/);
+  assert.deepEqual(await page.locator('#live-readout .q-frac').evaluateAll(es=>es.map(e=>[e.dataset.n,e.dataset.d,e.textContent])),[['12','20','12/20']]);
+  await page.locator('#quidence-language').selectOption('es');await page.waitForFunction(()=>document.querySelector('#live-readout')?.textContent.includes('Fracción pertinente'));
+  assert.match(await readout(),/Fracción pertinente = 12\/20 = 0\.6/);assert.equal(await page.locator('#live-readout .q-frac').count(),1);
+  await page.locator('#quidence-language').selectOption('en');await page.waitForFunction(()=>document.querySelector('#live-readout')?.textContent.includes('Relevant fraction'));
+  assert.equal(await readout(),english);assert.equal(await page.locator('#live-readout .q-frac').count(),1);await page.close();}
  assert.equal(errors.length,0,errors.join('\n'));
  fs.writeFileSync(path.join(__dirname,'../localization/browser-english-residue.json'),JSON.stringify([...new Set(untranslated)],null,2)+'\n');
  console.log(JSON.stringify({layouts,tasks,reports,errors,englishResidue:[...new Set(untranslated)].length}));
