@@ -23,24 +23,22 @@ const U={
  list:L('List','Lista'),target:L('Number to find (target)','Número buscado (target)'),
  use:L('Use this input','Usar estos datos'),random:L('Random input','Datos al azar'),
  helpList:L('2 to 12 whole numbers between −999 and 999, separated by commas.','De 2 a 12 números enteros entre −999 y 999, separados por comas.'),
- helpSearch:L('2 to 12 different whole numbers between −999 and 999, separated by commas.','De 2 a 12 números enteros distintos entre −999 y 999, separados por comas.'),
  helpPair:L('Two whole numbers from 1 to 999,999.','Dos números enteros de 1 a 999,999.'),
  errList:L('Enter 2 to 12 whole numbers between −999 and 999, separated by commas.','Escribe de 2 a 12 números enteros entre −999 y 999, separados por comas.'),
  errTarget:L('The target must be a whole number between −999 and 999.','El número buscado debe ser un entero entre −999 y 999.'),
- errDistinct:L('Use different numbers, so that each position is clear.','Usa números distintos, para que cada posición quede clara.'),
  errPair:L('Enter two whole numbers from 1 to 999,999.','Escribe dos números enteros de 1 a 999,999.'),
  chain:L('Logic chain','Cadena lógica'),chainNote:L('The flowchart and the steps move together.','El diagrama y los pasos avanzan juntos.'),
  flowLabel:L('Flowchart of {name}','Diagrama de flujo de {name}'),steps:L('Steps','Pasos'),
  pickNote:L('Choose a box in the flowchart: the one you think runs the most times on this list.','Elige una caja del diagrama: la que crees que se ejecuta más veces con esta lista.'),
- data:L('Data','Datos'),begin:L('Press <strong>Next step</strong> to begin.','Pulsa <strong>Siguiente paso</strong> para empezar.'),
- back:L('← Back','← Atrás'),next:L('Next step →','Siguiente paso →'),play:L('Play','Reproducir'),pause:L('Pause','Pausa'),restart:L('Restart','Reiniciar'),
+ data:L('Data','Datos'),begin:L('Press <strong>Next step</strong> to begin.','Presiona <strong>Siguiente paso</strong> para empezar.'),
+ back:L('← Back','← Atrás'),next:L('Next step →','Siguiente paso →'),play:L('Play','Reproducir'),pause:L('Pause','Pausa'),restart:L('Restart','Empezar de nuevo'),
  force:L('Predict this step','Predecir este paso'),skip:L('Skip predictions in this section','Omitir las predicciones en esta sección'),
  tally:L('Predictions in #{n}: {m} of {a} matched','Predicciones en el #{n}: {m} de {a} acertadas'),
  predict:L('Predict:','Predice:'),skipOne:L('Skip this one','Omitir esta'),
  matched:L('Your prediction matched.','Tu predicción acertó.'),missed:L('Not this time.','Esta vez no.'),
  trace:L('Trace table','Tabla de seguimiento'),traceEmpty:L('Rows appear as the algorithm runs.','Las filas aparecen mientras se ejecuta el algoritmo.'),
  code:L('The same logic in code','La misma lógica en código'),langGroup:L('Programming language','Lenguaje de programación'),
- matlabNote:L('MATLAB counts positions from 1, so its positions are one higher than the ones shown above.','MATLAB cuenta las posiciones desde 1, así que sus posiciones son una más que las que se muestran arriba.'),
+ matlabNote:L('MATLAB counts positions from 1, so its positions are one higher than the ones shown above.','MATLAB cuenta las posiciones desde 1, así que cada posición en MATLAB es la de arriba más 1.'),
  teachOpen:L('Teach me to write it','Enséñame a escribirlo'),teachClose:L('Close the guide','Cerrar la guía'),
  guide:L('Guide · line {i} of {n}','Guía · línea {i} de {n}'),logic:L('Logic:','Lógica:'),
  newCode:L('The new code is highlighted above.','El código nuevo está resaltado arriba.'),
@@ -57,7 +55,7 @@ const U={
  recTitle:L('Suggested next','Siguiente paso sugerido'),recBasis:L('Based on what you did, not on a score','Según lo que hiciste, no según una calificación'),
  evidence:L('Evidence from this section','Evidencia de esta sección'),nothing:L('Nothing yet: make predictions or try a challenge.','Nada todavía: haz predicciones o intenta un reto.'),
  others:L('Other good choices','Otras buenas opciones'),open:L('Open','Abrir'),openN:L('Open #{n}','Abrir el #{n}'),
- plannedHigh:L('planned for the high-school part','prevista para la parte de preparatoria'),plannedUni:L('planned for the university part','prevista para la parte de universidad'),
+ plannedHigh:L('planned for the high-school part','previsto para la parte de preparatoria'),plannedUni:L('planned for the university part','previsto para la parte de universidad'),
  anyNote:L('You can open any open algorithm on the route map. This suggestion only explains a good next step.','Puedes abrir cualquier algoritmo disponible en el mapa de la ruta. Esta sugerencia solo explica un buen siguiente paso.'),
  review:L('Review my work','Revisar mi trabajo'),
  statusIdle:L('Your work stays on this device.','Tu trabajo se queda en este dispositivo.'),statusSaved:L('Saved on this device.','Guardado en este dispositivo.'),
@@ -72,7 +70,7 @@ const U={
  yourIdea:L('Your idea','Tu idea'),history:L('Check history','Historial de revisiones'),
  historyNote:L('Each entry keeps the input you gave at that time.','Cada entrada conserva los datos que diste en ese momento.'),
  export:L('Export session notes','Exportar notas de la sesión'),exportCurrent:L('Export current notes','Exportar las notas actuales'),exportOriginal:L('Export saved original separately','Exportar el original guardado por separado'),
- reset:L('Reset Algorithms','Reiniciar Algoritmos'),resetTitle:L('Reset Algorithms?','¿Reiniciar Algoritmos?'),
+ reset:L('Reset Algorithms','Borrar el trabajo de Algoritmos'),resetTitle:L('Reset Algorithms?','¿Borrar el trabajo de Algoritmos?'),
  resetLead:L('This clears only your Algorithms work: predictions, challenge results, ideas and history. You can export your current notes and the saved original first.','Esto borra solo tu trabajo de Algoritmos: predicciones, resultados de los retos, ideas e historial. Antes puedes exportar tus notas actuales y el original guardado.'),
  resetConfirm:L('Clear Algorithms work','Borrar el trabajo de Algoritmos'),keep:L('Keep my work','Conservar mi trabajo'),
  cleared:L('Your Algorithms work has been cleared.','Tu trabajo de Algoritmos se borró.'),
@@ -100,7 +98,7 @@ const validRows=r=>Array.isArray(r)&&r.every(x=>Array.isArray(x)&&x.length===4&&
 function validEvidence(e){if(!isObj(e))return false;
  for(const [k,v] of Object.entries(e)){if(!isObj(v))return false;
   if(k==='counter'){if(!['counter','holds','bad'].includes(v.status)||!isObj(v.input)||!Object.values(v.input).every(isStr)||!(v.why===null||isInt(v.why))||!isObj(v.data)||!Object.values(v.data).every(x=>isNum(x)||isBool(x)||isStr(x)))return false;}
-  else if(k==='built'){if(!['passed','total','worst','linWorst','avg','linAvg'].every(f=>isNum(v[f]))||!isBool(v.halving)||!(v.fail===null||isObj(v.fail)&&Array.isArray(v.fail.list)&&v.fail.list.every(isInt)&&isInt(v.fail.target)&&isInt(v.fail.want)&&(v.fail.got===null||isInt(v.fail.got))&&(v.fail.error===null||isStr(v.fail.error))))return false;}
+  else if(k==='built'){if(!['passed','total','worst','linWorst','avg','linAvg'].every(f=>isNum(v[f]))||!isBool(v.halving)||!(v.hints===undefined||isInt(v.hints))||!(v.fail===null||isObj(v.fail)&&Array.isArray(v.fail.list)&&v.fail.list.every(isInt)&&isInt(v.fail.target)&&isInt(v.fail.want)&&(v.fail.got===null||isInt(v.fail.got))&&(v.fail.error===null||isStr(v.fail.error))))return false;}
   else if(k==='bottle'){if(!isStr(v.node)||!isBool(v.ok)||!isStr(v.verdict)||!isObj(v.counts)||!Object.values(v.counts).every(isInt)||!Array.isArray(v.list)||!v.list.every(isInt))return false;}
   else if(k==='improve'){if(v.kind==='bubble'){if(!isObj(v.o)||!['early','skip2','back'].every(f=>isBool(v.o[f]))||!validRows(v.rows)||!isBool(v.correct)||!isBool(v.early))return false;}
    else if(v.kind==='minmax'){if(![0,1,2].includes(v.v)||!validRows(v.rows)||!isBool(v.correct)||!isInt(v.worst))return false;}
@@ -112,13 +110,13 @@ function validEvidence(e){if(!isObj(e))return false;
 const known=(o,check)=>isObj(o)&&Object.entries(o).every(([k,v])=>A.ORDER.includes(k)&&check(v));
 function validRecord(d){return isObj(d)&&d.version===1&&A.ORDER.includes(d.alg)&&LANGS.includes(d.lang)&&known(d.skip,isBool)&&known(d.pred,v=>isObj(v)&&isInt(v.asked)&&isInt(v.matched)&&v.matched>=0&&v.matched<=v.asked)&&known(d.evidence,validEvidence)&&known(d.ideas,isStr)
  &&isObj(d.builder)&&[0,1,2].includes(d.builder.cond)&&Array.isArray(d.builder.slots)&&d.builder.slots.length===3&&d.builder.slots.every(s=>isInt(s)&&s>=0&&s<6)&&isInt(d.builder.hint)&&d.builder.hint>=0&&d.builder.hint<=4
- &&isObj(d.improveOpts)&&['early','skip2','back'].every(k=>isBool(d.improveOpts[k]))&&Array.isArray(d.log)&&d.log.every(x=>isObj(x)&&isStr(x.time)&&A.ORDER.includes(x.alg)&&isStr(x.kind)&&isStr(x.input)&&isLText(x.summary));}
+ &&isObj(d.improveOpts)&&['early','skip2','back'].every(k=>isBool(d.improveOpts[k]))&&Array.isArray(d.log)&&d.log.every(x=>isObj(x)&&isStr(x.time)&&A.ORDER.includes(x.alg)&&isStr(x.kind)&&(isStr(x.input)||isLText(x.input))&&isLText(x.summary));}
 function status(k){statusKey=k;const el=$('save-status');if(el)el.textContent=u(k);}
 function blockedKey(){return blockedReason==='conflict'?'statusConflict':'statusUnreadable';}
-function persist(){clearTimeout(saveTimer);if(saveBlocked){status(blockedKey());return;}
- try{const live=storage.getItem(KEY);if(live!==lastStored){blockedOriginal=live;lastStored=live;saveBlocked=true;blockedReason='conflict';status(blockedKey());return;}
+function persist(){clearTimeout(saveTimer);if(saveBlocked){unsavedWork=true;status(blockedKey());return;}
+ try{const live=storage.getItem(KEY);if(live!==lastStored){blockedOriginal=live;lastStored=live;saveBlocked=true;blockedReason='conflict';unsavedWork=true;status(blockedKey());return;}
   const s=JSON.stringify(state);storage.setItem(KEY,s);lastStored=s;storeAvailable=true;unsavedWork=false;status('statusSaved');}
- catch{storeAvailable=false;status('statusNoSave');}}
+ catch{storeAvailable=false;unsavedWork=true;status('statusNoSave');}}
 function queueSave(){unsavedWork=true;clearTimeout(saveTimer);saveTimer=setTimeout(persist,250);}
 function restore(){let raw;try{raw=storage.getItem(KEY);}catch{storeAvailable=false;statusKey='statusNoSave';return;}lastStored=raw;if(raw===null)return;
  try{const d=JSON.parse(raw);if(!validRecord(d))throw Error('Unreadable record');state=d;}catch{blockedOriginal=raw;saveBlocked=true;blockedReason='unreadable';statusKey=blockedKey();}}
@@ -133,8 +131,8 @@ const tally=()=>state.pred[cur.key]||{asked:0,matched:0};
 function defaults(){const d=alg().defaults;return d.list?{list:[...d.list],target:d.target}:{a:d.a,b:d.b};}
 function build(){cur.events=alg().gen(cur.input.list,cur.input.target,Math.random,[cur.input.a,cur.input.b]);cur.idx=-1;cur.pending=false;cur.feedback=null;cur.forcePredict=false;}
 const step=()=>cur.idx>=0?cur.events[cur.idx]:null;
-function openAlg(key,scroll){if(!A.ALGS[key])return;stop();state.alg=key;cur.key=key;cur.teach=-1;cur.pick=false;cur.msg=null;cur.input=defaults();build();renderAll();persist();
- if(scroll)$('alg').scrollIntoView({block:'start',behavior:reduced()?'instant':'smooth'});}
+function openAlg(key,scroll){if(!A.ORDER.includes(key))return;const fromTabs=$('tabs').contains(document.activeElement);stop();state.alg=key;cur.key=key;cur.teach=-1;cur.pick=false;cur.msg=null;cur.input=defaults();build();renderAll();persist();
+ if(fromTabs)$('tab-'+key).focus();else if(scroll){$('alg').scrollIntoView({block:'start',behavior:reduced()?'instant':'smooth'});$('alg-title').focus({preventScroll:true});}}
 
 /* ---------------- Route map ---------------- */
 function renderMap(recNum){const pos=Object.fromEntries(A.MAP.nodes.map(([n,name,x,y])=>[n,{x,y}]));
@@ -148,7 +146,7 @@ function renderMap(recNum){const pos=Object.fromEntries(A.MAP.nodes.map(([n,name
   const text=parts.length>1?`<text x="${x-40}" y="${y-3}">${esc(parts[0])}</text><text x="${x-40}" y="${y+12}">${esc(parts[1])}</text>`:`<text x="${x-40}" y="${y+5}">${esc(label)}</text>`;
   s+=`<g class="${cls}"${key?` tabindex="0" role="button" data-open="${key}" aria-label="${esc(u('openAlg',{n,name:label}))}"${key===cur.key?' aria-current="true"':''}`:''}><title>#${n} ${esc(label)}${key?'':' ('+esc(u('planned'))+')'}</title><rect x="${x-70}" y="${y-22}" width="140" height="44" rx="8"/><text class="num" x="${x-60}" y="${y+5}">${n}</text>${text}</g>`;}
  $('map').innerHTML=s+'</svg>';}
-function renderTabs(){$('tabs').setAttribute('aria-label',u('tabs'));$('tabs').innerHTML=A.ORDER.map(k=>`<button type="button" aria-pressed="${k===cur.key}" data-alg="${k}"><span class="n">#${A.ALGS[k].num}</span>${esc(tx(A.ALGS[k].name))}</button>`).join('');}
+function renderTabs(){$('tabs').setAttribute('aria-label',u('tabs'));$('tabs').innerHTML=A.ORDER.map(k=>`<button type="button" id="tab-${k}" aria-pressed="${k===cur.key}" data-alg="${k}"><span class="n">#${A.ALGS[k].num}</span>${esc(tx(A.ALGS[k].name))}</button>`).join('');}
 
 /* ---------------- Logic chain ---------------- */
 function flowSvg(){const a=alg(),f=a.flow,e=step(),now=e?e.node:null,prev=cur.idx>0?cur.events[cur.idx-1].node:null;
@@ -188,10 +186,10 @@ function teachBlock(){const a=alg(),i=cur.teach,s=a.teach[i];
 function inputsHtml(){const a=alg(),i=cur.input;
  const fields=a.kind==='pair'?`<label for="in-a">a <input type="text" inputmode="numeric" class="small" id="in-a" value="${esc(i.a)}"></label><label for="in-b">b <input type="text" inputmode="numeric" class="small" id="in-b" value="${esc(i.b)}"></label>`
   :`<label for="in-list">${esc(u('list'))} <input type="text" id="in-list" value="${esc(i.list.join(', '))}" aria-describedby="in-help"></label>${a.kind==='search'?`<label for="in-target">${esc(u('target'))} <input type="text" inputmode="numeric" class="small" id="in-target" value="${esc(i.target)}"></label>`:''}`;
- return `<div class="inputs">${fields}<button type="button" id="in-apply">${esc(u('use'))}</button><button type="button" id="in-random">${esc(u('random'))}</button><span id="in-help" class="muted small-print">${esc(u(a.kind==='pair'?'helpPair':a.kind==='search'?'helpSearch':'helpList'))}</span></div>${cur.msg?`<p class="fb no" role="alert">${esc(u(cur.msg))}</p>`:''}`;}
+ return `<div class="inputs">${fields}<button type="button" id="in-apply">${esc(u('use'))}</button><button type="button" id="in-random">${esc(u('random'))}</button><span id="in-help" class="muted small-print">${esc(u(a.kind==='pair'?'helpPair':'helpList'))}</span></div>${cur.msg?`<p class="fb no" role="alert">${esc(u(cur.msg))}</p>`:''}`;}
 function renderBench(){const a=alg(),e=step(),nx=cur.events[cur.idx+1],asking=cur.pending&&nx&&nx.ask,t=tally(),active=document.activeElement&&$('alg').contains(document.activeElement)?document.activeElement.id:null;
  $('alg').innerHTML=`
- <div class="alg-head"><p class="eyebrow">#${a.num} · ${esc(tx(a.level))}</p><h2>${esc(tx(a.name))}</h2><p>${esc(tx(a.problem))}</p></div>
+ <div class="alg-head"><p class="eyebrow">#${a.num} · ${esc(tx(a.level))}</p><h2 id="alg-title" tabindex="-1">${esc(tx(a.name))}</h2><p>${esc(tx(a.problem))}</p></div>
  ${inputsHtml()}
  <div class="bench">
   <div class="panel chain">
@@ -222,7 +220,7 @@ function renderBench(){const a=alg(),e=step(),nx=cur.events[cur.idx+1],asking=cu
   </div>
  </div>
  <div class="panel code-panel">
-  <div class="panel-head"><span class="eyebrow">${esc(u('code'))}</span><div class="codetabs" role="group" aria-label="${esc(u('langGroup'))}">${LANGS.map(l=>`<button type="button" data-lang="${l}" aria-pressed="${state.lang===l}">${LANG_NAMES[l]}</button>`).join('')}</div></div>
+  <div class="panel-head"><span class="eyebrow">${esc(u('code'))}</span><div class="codetabs" role="group" aria-label="${esc(u('langGroup'))}">${LANGS.map(l=>`<button type="button" id="lang-${l}" data-lang="${l}" aria-pressed="${state.lang===l}">${LANG_NAMES[l]}</button>`).join('')}</div></div>
   ${codeBlock()}
   <p class="muted small-print">${esc(u('codeNote'))}${state.lang==='matlab'&&a.kind!=='pair'?' '+esc(u('matlabNote')):''}</p>
   <div class="row"><button type="button" id="b-teach" aria-expanded="${cur.teach>=0}">${esc(u(cur.teach>=0?'teachClose':'teachOpen'))}</button></div>
@@ -231,21 +229,24 @@ function renderBench(){const a=alg(),e=step(),nx=cur.events[cur.idx+1],asking=cu
  const tw=document.querySelector('#alg .tracewrap');if(tw)tw.scrollTop=tw.scrollHeight;
  if(asking){const o=document.querySelector('[data-opt]');if(o)o.focus();}
  else if(active){const el=$(active);if(el&&!el.disabled)el.focus();else if(active==='b-next'||active==='b-back'||active==='b-play'){const f=$('b-next')&&!$('b-next').disabled?$('b-next'):$('b-reset');f.focus();}}}
-function announce(){const e=step();$('announce').textContent=e?plain(tx(e.note)):'';}
+function say(text){const el=$('announce');el.textContent='';setTimeout(()=>{el.textContent=text;},40);}
+function announce(){const e=step();say(e?plain(tx(e.note)):'');}
+function focusNext(){const n=$('b-next');(n&&!n.disabled?n:$('b-reset')).focus();}
 function next(){const nx=cur.events[cur.idx+1];if(!nx)return;cur.feedback=null;if(nx.ask&&(!skipOn()||cur.forcePredict)&&!nx.answered){cur.pending=true;renderBench();return;}advance();}
 function advance(){cur.idx++;cur.pending=false;cur.forcePredict=false;renderBench();announce();renderRec();}
 function back(){stop();if(cur.idx<0)return;cur.idx--;cur.pending=false;cur.feedback=null;renderBench();announce();}
 function answer(i){const nx=cur.events[cur.idx+1];if(!nx||!nx.ask)return;const ok=i===nx.ask.answer,t=tally();
  state.pred[cur.key]={asked:t.asked+1,matched:t.matched+(ok?1:0)};nx.answered=true;persist();
- cur.idx++;cur.pending=false;cur.forcePredict=false;cur.feedback={ok,why:nx.ask.why};renderBench();announce();renderRec();if(cur.playing)schedule();}
+ cur.idx++;cur.pending=false;cur.forcePredict=false;cur.feedback={ok,why:nx.ask.why};renderBench();focusNext();say(`${u(ok?'matched':'missed')} ${tx(nx.ask.why)} ${plain(tx(cur.events[cur.idx].note))}`);renderRec();if(cur.playing)schedule();}
 function play(){cur.playing=true;renderBench();schedule();}
 function schedule(){clearTimeout(cur.timer);cur.timer=setTimeout(()=>{if(!cur.playing)return;if(cur.idx>=cur.events.length-1){stop();renderBench();return;}next();if(!cur.pending)schedule();},reduced()?1500:950);}
 function stop(){cur.playing=false;clearTimeout(cur.timer);}
+function parseOne(s,min,max){const t=String(s).trim().replace(/(\d)[,\s](?=\d{3}\b)/g,'$1');const x=parseInts(t,min,max);return x&&x.length===1?x[0]:null;}
 function parseInts(s,min,max){const parts=String(s).split(/[\s,;]+/).filter(Boolean);if(!parts.length||parts.some(p=>!/^[−-]?\d+$/.test(p)))return null;const xs=parts.map(p=>Number(p.replace('−','-')));return xs.every(x=>Number.isSafeInteger(x)&&x>=min&&x<=max)?xs:null;}
 function applyInput(){const a=alg();stop();cur.msg=null;
- if(a.kind==='pair'){const x=parseInts($('in-a').value,1,999999),y=parseInts($('in-b').value,1,999999);if(!x||!y||x.length!==1||y.length!==1){cur.msg='errPair';renderBench();return;}cur.input={a:x[0],b:y[0]};}
+ if(a.kind==='pair'){const x=parseOne($('in-a').value,1,999999),y=parseOne($('in-b').value,1,999999);if(x===null||y===null){cur.msg='errPair';renderBench();return;}cur.input={a:x,b:y};}
  else{const xs=parseInts($('in-list').value,-999,999);if(!xs||xs.length<2||xs.length>12){cur.msg='errList';renderBench();return;}
-  let t=cur.input.target;if(a.kind==='search'){const tt=parseInts($('in-target').value,-999,999);if(!tt||tt.length!==1){cur.msg='errTarget';renderBench();return;}t=tt[0];if(new Set(xs).size!==xs.length){cur.msg='errDistinct';renderBench();return;}}
+  let t=cur.input.target;if(a.kind==='search'){const tt=parseInts($('in-target').value,-999,999);if(!tt||tt.length!==1){cur.msg='errTarget';renderBench();return;}t=tt[0];}
   cur.input={list:xs,target:t};}
  build();cur.pick=false;renderBench();renderChallenges();renderRec();$('announce').textContent='';}
 function randomInput(){const a=alg(),r=n=>Math.floor(Math.random()*n);stop();cur.msg=null;
@@ -263,17 +264,17 @@ const LEADS={
  euclid:L('Euclid’s algorithm is famous for being fast. Test that, and rebuild its key idea.','El algoritmo de Euclides es famoso por ser rápido. Ponlo a prueba y reconstruye su idea clave.')};
 const CARDS={'find-max':['idea','counter','minmax','cplx'],'linear-search':['idea','counter','builder','cplx'],'bubble-sort':['idea','bottle','bubble','cplx'],'insertion-sort':['idea','counter','bottle','cplx'],euclid:['idea','counter','euclid','cplx']};
 function card(kind,done,title,body){return `<div class="ch${done?' done':''}"><span class="kind">${esc(u(kind))}${done?` <span class="got">✓ ${esc(u('saved'))}</span>`:''}</span>${title?`<h3>${esc(tx(title))}</h3>`:''}${body}</div>`;}
-function ideaCard(){const k=cur.key,v=state.ideas[k]||'';return card('kindIdea',false,null,`<label for="idea">${esc(tx(A.IDEAS[k]))}</label><textarea id="idea" rows="4" class="student-work" placeholder="${esc(u('ideaPlaceholder'))}">${esc(v)}</textarea><span class="muted small-print" id="idea-s">${esc(u(v?'ideaSaved':'ideaNote'))}</span>`);}
+function ideaCard(){const k=cur.key,v=state.ideas[k]||'';return card('kindIdea',false,null,`<label for="idea">${esc(tx(A.IDEAS[k]))}</label><textarea id="idea" rows="4" class="student-work" placeholder="${esc(U.ideaPlaceholder.en)}">${esc(v)}</textarea><span class="muted small-print" id="idea-s">${esc(u(v?'ideaSaved':'ideaNote'))}</span>`);}
 
 // Counterexamples: each claim, its inputs, how it is checked and the follow-up question.
 const COUNTER={
- 'find-max':{title:L('Does it always work?','¿Siempre funciona?'),claim:L('Starting with best ← 0 instead of best ← a[0] gives the same answer.','Empezar con best ← 0 en lugar de best ← a[0] da la misma respuesta.'),
+ 'find-max':{title:L('Does it always work?','¿Siempre funciona?'),claim:L('Starting with best ← 0 instead of best ← a[0], and comparing every item including a[0], gives the same answer.','Empezar con best ← 0 en lugar de best ← a[0], y comparar todos los elementos, incluido a[0], da la misma respuesta.'),
   fields:[['list',L('List','Lista'),'3, -2, 8']],
   check(v){const xs=parseInts(v.list,-999,999);if(!xs||xs.length<2||xs.length>12)return{status:'bad',data:{msg:'errList'}};const r=A.checkMaxZero(xs);return{status:r.counter?'counter':'holds',data:{right:r.right,zero:r.zero}};},
   text:(s,d)=>s==='counter'?L(`Counterexample: the largest number is ${d.right}, but starting with best ← 0 returns ${d.zero}.`,`Contraejemplo: el número más grande es ${d.right}, pero empezar con best ← 0 devuelve ${d.zero}.`):L(`Both give ${d.right}. The claim holds for this list. Try a list where 0 would beat every number.`,`Ambos dan ${d.right}. La afirmación se cumple con esta lista. Prueba una lista donde 0 le gane a todos los números.`),
-  why:{q:L('What do the numbers in your list have in common?','¿Qué tienen en común los números de tu lista?'),options:L(['They are all negative','The largest one comes first','One of them is repeated'],['Todos son negativos','El más grande va primero','Uno de ellos se repite']),
+  why:{q:L('Why does best end up as 0?','¿Por qué best termina valiendo 0?'),options:L(['0 is bigger than every number in the list','The largest number comes first','A number is repeated'],['0 es mayor que todos los números de la lista','El número más grande va primero','Un número se repite']),
    good:L('Yes. 0 is bigger than every negative number, so best never changes and stays 0, which is not even in the list. Starting with a[0] always uses a value from the list.','Sí. 0 es mayor que cualquier número negativo, así que best nunca cambia y se queda en 0, que ni siquiera está en la lista. Empezar con a[0] siempre usa un valor de la lista.'),
-   bad:L('Look at the signs of your numbers. Which value is bigger than all of them?','Mira los signos de tus números. ¿Qué valor es mayor que todos ellos?')}},
+   bad:L('Compare 0 with each number in your list. Which is bigger?','Compara 0 con cada número de tu lista. ¿Cuál es mayor?')}},
  'linear-search':{title:L('Is it the only place?','¿Es el único lugar?'),claim:L('The position that linear search returns is the only place where the target appears.','La posición que devuelve la búsqueda lineal es el único lugar donde aparece el número buscado.'),
   fields:[['list',L('List','Lista'),'4, 7, 1, 9'],['target',L('Target','Buscado'),'7',true]],
   check(v){const xs=parseInts(v.list,-999,999),t=parseInts(v.target,-999,999);if(!xs||xs.length<2||xs.length>12)return{status:'bad',data:{msg:'errList'}};if(!t||t.length!==1)return{status:'bad',data:{msg:'errTarget'}};
@@ -282,7 +283,7 @@ const COUNTER={
   missing:d=>L(`${d.target} is not in your list, so linear search returns −1. The claim is about a target that is in the list.`,`${d.target} no está en tu lista, así que la búsqueda lineal devuelve −1. La afirmación trata de un número que sí está en la lista.`),
   why:{q:L('Which position does linear search return?','¿Qué posición devuelve la búsqueda lineal?'),options:L(['The first position where the target appears','The last position where it appears','Any position where it appears'],['La primera posición donde aparece el número','La última posición donde aparece','Cualquier posición donde aparezca']),
    good:L('Yes. It stops at the first match. To find every position, it would have to keep going to the end and collect each match.','Sí. Se detiene en la primera coincidencia. Para encontrar todas las posiciones tendría que seguir hasta el final y juntar cada coincidencia.'),
-   bad:L('Run the trace on your list: where does the loop stop?','Recorre tu lista en el seguimiento: ¿dónde se detiene el ciclo?')}},
+   bad:L('Put your list and target into the workbench above and step through it: where does the loop stop?','Pon tu lista y el número buscado en el banco de trabajo de arriba y avanza paso a paso: ¿dónde se detiene el ciclo?')}},
  'insertion-sort':{title:L('Is it always faster?','¿Siempre es más rápido?'),claim:L('Insertion sort always makes fewer comparisons than bubble sort.','El ordenamiento por inserción siempre hace menos comparaciones que el ordenamiento burbuja.'),
   fields:[['list',L('List','Lista'),'1, 2, 3, 4, 5']],
   check(v){const xs=parseInts(v.list,-999,999);if(!xs||xs.length<2||xs.length>12)return{status:'bad',data:{msg:'errList'}};const r=A.checkInsertion(xs);return{status:r.counter?'counter':'holds',data:{ins:r.ins,bub:r.bub}};},
@@ -292,36 +293,37 @@ const COUNTER={
    bad:L('Try each order on a short list and count the comparisons. Which one makes every item travel furthest?','Prueba cada orden en una lista corta y cuenta las comparaciones. ¿Cuál hace que cada elemento viaje más lejos?')}},
  euclid:{title:L('Do bigger numbers need more steps?','¿Los números más grandes necesitan más pasos?'),claim:L('A pair of bigger numbers never needs fewer remainder steps than a pair of smaller numbers.','Un par de números más grandes nunca necesita menos pasos con residuo que un par de números más pequeños.'),
   fields:[['a1',L('Pair 1: a','Par 1: a'),'21',true],['b1',L('Pair 1: b','Par 1: b'),'14',true],['a2',L('Pair 2: a','Par 2: a'),'40',true],['b2',L('Pair 2: b','Par 2: b'),'30',true]],
-  check(v){const n=k=>{const x=parseInts(v[k],1,999999);return x&&x.length===1?x[0]:null;},p=[n('a1'),n('b1')],q=[n('a2'),n('b2')];if([...p,...q].includes(null))return{status:'bad',data:{msg:'errPair'}};
+  check(v){const n=k=>parseOne(v[k],1,999999),p=[n('a1'),n('b1')],q=[n('a2'),n('b2')];if([...p,...q].includes(null))return{status:'bad',data:{msg:'errPair'}};
    const ge=(x,y)=>x[0]>=y[0]&&x[1]>=y[1]&&(x[0]>y[0]||x[1]>y[1]);let small,big;if(ge(q,p)){small=p;big=q;}else if(ge(p,q)){small=q;big=p;}else return{status:'bad',data:{msg:'pairOrder'}};
    const r=A.checkEuclidPairs(small,big);return{status:r.counter?'counter':'holds',data:{small:small.join(', '),big:big.join(', '),s1:r.s1,s2:r.s2}};},
   text:(s,d)=>s==='counter'?L(`Counterexample: the bigger pair (${d.big}) needs ${d.s2} step${d.s2===1?'':'s'}, but the smaller pair (${d.small}) needs ${d.s1}.`,`Contraejemplo: el par más grande (${d.big}) necesita ${d.s2} paso${d.s2===1?'':'s'}, pero el par más pequeño (${d.small}) necesita ${d.s1}.`):L(`The bigger pair (${d.big}) needs ${d.s2} step${d.s2===1?'':'s'} and the smaller pair (${d.small}) needs ${d.s1}. The claim holds for these pairs. Try a small pair where each remainder is only a little smaller than the number before it.`,`El par más grande (${d.big}) necesita ${d.s2} paso${d.s2===1?'':'s'} y el más pequeño (${d.small}) necesita ${d.s1}. La afirmación se cumple con estos pares. Prueba un par pequeño donde cada residuo sea solo un poco menor que el número anterior.`),
   why:{q:L('Which pairs need the most steps for their size?','¿Qué pares necesitan más pasos para su tamaño?'),options:L(['Neighbouring Fibonacci numbers, such as 34 and 21','Two equal numbers','A number and its double'],['Números de Fibonacci consecutivos, como 34 y 21','Dos números iguales','Un número y su doble']),
-   good:L('Yes. With neighbouring Fibonacci numbers every quotient is 1, so each step shrinks the pair as little as possible. Even so, the number of steps grows only with the number of digits.','Sí. Con números de Fibonacci consecutivos cada cociente es 1, así que cada paso achica el par lo menos posible. Aun así, el número de pasos crece solo con la cantidad de cifras.'),
+   good:L('Yes. With neighbouring Fibonacci numbers every quotient except the last is 1, so each step shrinks the pair as little as possible. Even so, the number of steps grows only with the number of digits.','Sí. Con números de Fibonacci consecutivos todos los cocientes, menos el último, son 1, así que cada paso achica el par lo menos posible. Aun así, el número de pasos crece solo con la cantidad de cifras.'),
    bad:L('Count the steps for your smaller pair: how big was each quotient?','Cuenta los pasos de tu par más pequeño: ¿qué tan grande fue cada cociente?')}}};
 const ERR={errList:U.errList,errTarget:U.errTarget,errPair:U.errPair,pairOrder:L('Make both numbers of one pair at least as big as the other pair’s numbers, with at least one of them bigger.','Haz que los dos números de un par sean al menos tan grandes como los del otro par, con al menos uno mayor.')};
 function counterCard(){const c=COUNTER[cur.key],x=ev().counter,val=f=>x&&x.input[f[0]]!=null?x.input[f[0]]:f[2];
  const fields=c.fields.map(f=>`<label for="cx-${f[0]}">${esc(tx(f[1]))} <input type="text" id="cx-${f[0]}"${f[3]?' class="small" inputmode="numeric"':''} value="${esc(val(f))}"></label>`).join('');
- return card('kindCounter',x&&x.status==='counter'&&x.why===0,c.title,`<p><em>${esc(u('claim'))}</em> ${esc(tx(c.claim))}</p><div class="inputs">${fields}<button type="button" class="primary" id="cx-go">${esc(u('checkEx'))}</button></div><div class="result" aria-live="polite">${x?counterText(c,x):''}</div>`);}
+ return card('kindCounter',x&&x.status==='counter'&&x.why===0,c.title,`<p><em>${esc(u('claim'))}</em> ${esc(tx(c.claim))}</p><div class="inputs">${fields}<button type="button" class="primary" id="cx-go">${esc(u('checkEx'))}</button></div><div class="result" id="cx-result" tabindex="-1">${x?counterText(c,x):''}</div>`);}
 function counterText(c,x){if(x.status==='bad')return `<div class="fb no">${esc(tx(x.data.missing?c.missing(x.data):ERR[x.data.msg]))}</div>`;
  const head=`<div class="fb ${x.status==='counter'?'ok':'no'}">${esc(tx(c.text(x.status,x.data)))}</div>`;if(x.status!=='counter')return head;
  return head+`<p>${esc(tx(c.why.q))}</p><div class="opts row">${tx(c.why.options).map((o,i)=>`<button type="button" data-why="${i}"${x.why!=null?' disabled':''}${x.why===i?' aria-pressed="true"':''}>${esc(o)}</button>`).join('')}</div>${x.why!=null?`<div class="fb ${x.why===0?'ok':'no'}">${esc(tx(x.why===0?c.why.good:c.why.bad))}</div>${x.why!==0?`<button type="button" class="quiet" id="why-again">${esc(u('again'))}</button>`:''}`:''}`;}
 function checkCounter(){const c=COUNTER[cur.key],input=Object.fromEntries(c.fields.map(f=>[f[0],$('cx-'+f[0]).value])),r=c.check(input);
  const x={status:r.status,input,why:null,data:r.data};ev().counter=x;
- if(r.status!=='bad')record('counter',c.fields.map(f=>tx(f[1])+': '+input[f[0]]).join(' · '),c.text(r.status,r.data));persist();renderChallenges();renderRec();}
-function answerWhy(i){const c=COUNTER[cur.key],x=ev().counter;if(!x||x.status!=='counter')return;x.why=i;record('why',tx(c.why.options)[i],L(c.why.options.en[i]+(i===0?' ✓':''),c.why.options.es[i]+(i===0?' ✓':'')));persist();renderChallenges();renderRec();}
+ if(r.status!=='bad')record('counter',L(c.fields.map(f=>f[1].en+': '+input[f[0]]).join(' · '),c.fields.map(f=>f[1].es+': '+input[f[0]]).join(' · ')),c.text(r.status,r.data));persist();renderChallenges('cx-result');renderRec();say($('cx-result').textContent);}
+function answerWhy(i){const c=COUNTER[cur.key],x=ev().counter;if(!x||x.status!=='counter')return;x.why=i;record('why',L(c.why.options.en[i],c.why.options.es[i]),L(c.why.options.en[i]+(i===0?' ✓':''),c.why.options.es[i]+(i===0?' ✓':'')));persist();renderChallenges('cx-result');renderRec();say([...$('cx-result').querySelectorAll('.fb')].at(-1)?.textContent||'');}
 
 // Bottleneck: the learner picks a box in the flowchart; every box's run count is then shown.
 const BOX={
  'bubble-sort':{pinit:L('set p ← 1','poner p ← 1'),pcheck:L('check the outer loop','revisar el ciclo exterior'),iinit:L('reset i ← 0','reiniciar i ← 0'),icheck:L('check the inner loop','revisar el ciclo interior'),cmp:L('compare neighbours','comparar vecinos'),swap:L('swap','intercambiar'),inc:L('move to the next pair','pasar al siguiente par'),pinc:L('end a pass','terminar una pasada'),done:L('finish','terminar')},
  'insertion-sort':{init:L('set i ← 1','poner i ← 1'),icheck:L('check the outer loop','revisar el ciclo exterior'),take:L('take the next key','tomar la siguiente key'),wcheck:L('check the while loop','revisar el ciclo while'),shift:L('shift an item right','desplazar un elemento a la derecha'),place:L('put key in the gap','poner key en el hueco'),inc:L('move to the next item','pasar al siguiente elemento'),done:L('finish','terminar')}};
-function bottleCard(){const b=ev().bottle;return card('kindBottle',b&&b.ok,L('Where does the time go?','¿A dónde se va el tiempo?'),`<p>${esc(tx(L('On the current list, which box in the flowchart runs the most times? Choose it in the flowchart above.','Con la lista actual, ¿qué caja del diagrama se ejecuta más veces? Elígela en el diagrama de arriba.')))}</p><div class="row"><button type="button" class="primary" id="bn-go" aria-pressed="${cur.pick}">${esc(tx(cur.pick?L('Cancel','Cancelar'):L('Choose in the flowchart','Elegir en el diagrama')))}</button></div><div class="result" aria-live="polite">${b?bottleText(b):''}</div>`);}
+function bottleCard(){const b=ev().bottle;return card('kindBottle',b&&b.ok,L('Where does the time go?','¿A dónde se va el tiempo?'),`<p>${esc(tx(L('On the current list, which box in the flowchart runs the most times? Choose it in the flowchart above.','Con la lista actual, ¿qué caja del diagrama se ejecuta más veces? Elígela en el diagrama de arriba.')))}</p><div class="row"><button type="button" class="primary" id="bn-go" aria-pressed="${cur.pick}">${esc(tx(cur.pick?L('Cancel','Cancelar'):L('Choose in the flowchart','Elegir en el diagrama')))}</button></div><div class="result" id="bn-result" tabindex="-1">${b?bottleText(b):''}</div>`);}
 function bottleMessage(b){const c=b.counts,names=BOX[cur.key],name=k=>tx(names[k]),max=Math.max(...Object.values(c)),top=Object.keys(c).find(k=>c[k]===max&&names[k]),n=c[b.node]??1;
  if(cur.key==='bubble-sort')return({
   icheck:L(`Yes. The inner loop check runs ${c.icheck} times: once before every comparison, plus once per pass to stop the loop. The comparison it guards runs ${c.cmp} times, even when nothing needs to move. The inner loop is where the time goes.`,`Sí. La revisión del ciclo interior se ejecuta ${c.icheck} veces: una antes de cada comparación y una más por pasada para terminar el ciclo. La comparación que protege se ejecuta ${c.cmp} veces, aunque nada tenga que moverse. El tiempo se va en el ciclo interior.`),
   inner:L(`Yes, this box is inside the inner loop: it runs ${c.cmp} times, once for every pair in every pass, even when nothing needs to move. Only the loop check beside it runs more (${c.icheck} times).`,`Sí, esta caja está dentro del ciclo interior: se ejecuta ${c.cmp} veces, una por cada par en cada pasada, aunque nada tenga que moverse. Solo la revisión del ciclo, a su lado, se ejecuta más (${c.icheck} veces).`),
-  'swap-tie':L(`On this list every comparison led to a swap (${c.swap} each), but the inner loop check still runs more: ${c.icheck} times. On most lists, comparisons also happen when no swap is needed.`,`Con esta lista cada comparación llevó a un intercambio (${c.swap} de cada uno), pero la revisión del ciclo interior se ejecuta todavía más: ${c.icheck} veces. En la mayoría de las listas también hay comparaciones sin intercambio.`),
+  'swap-tie':L(`On this list every comparison led to a swap (${c.swap} of each), but the inner loop check still runs more: ${c.icheck} times. On most lists, comparisons also happen when no swap is needed.`,`Con esta lista cada comparación llevó a un intercambio (${c.swap} intercambios y ${c.cmp} comparaciones), pero la revisión del ciclo interior se ejecuta todavía más: ${c.icheck} veces. En la mayoría de las listas también hay comparaciones sin intercambio.`),
   swap:L(`Swaps run ${c.swap} times, but comparisons run ${c.cmp} times: every swap needs a comparison first. Look at what runs before every swap.`,`Los intercambios se ejecutan ${c.swap} veces, pero las comparaciones ${c.cmp} veces: cada intercambio necesita antes una comparación. Mira qué se ejecuta antes de cada intercambio.`),
+  max:L(`Yes. This box runs ${n} times, as often as any box on this list.`,`Sí. Esta caja se ejecuta ${n} veces, tanto como cualquier otra con esta lista.`),
   outer:L(`That box runs only ${n} time${n===1?'':'s'}. Look inside the inner loop.`,`Esa caja se ejecuta solo ${n} ${n===1?'vez':'veces'}. Mira dentro del ciclo interior.`)})[b.verdict];
  if(b.verdict==='max'){if(b.node==='wcheck')return L(`Yes. The while check runs ${c.wcheck} times: once before every shift (${c.shift}), plus once for each item when it stops. On a list that is far from sorted, this is where the time goes.`,`Sí. La revisión del while se ejecuta ${c.wcheck} veces: una antes de cada desplazamiento (${c.shift}) y una más por cada elemento cuando se detiene. En una lista lejos de estar ordenada, el tiempo se va aquí.`);
   if(b.node==='icheck'&&c.shift===0)return L(`Yes, on this list. It is already sorted, so no item moves: the while check runs only ${c.wcheck} times, once per item, and the outer loop check runs ${c.icheck} times. Try a list in decreasing order and count again.`,`Sí, con esta lista. Ya está ordenada, así que ningún elemento se mueve: la revisión del while se ejecuta solo ${c.wcheck} veces, una por elemento, y la del ciclo exterior ${c.icheck} veces. Prueba una lista en orden decreciente y vuelve a contar.`);
@@ -331,9 +333,9 @@ function bottleMessage(b){const c=b.counts,names=BOX[cur.key],name=k=>tx(names[k
 function bottleText(b){const names=BOX[cur.key],rows=Object.entries(b.counts).filter(([k])=>names[k]).sort((x,y)=>y[1]-x[1]);
  return `<p class="small-print muted">${esc(tx(L('List','Lista')))}: ${esc(b.list.join(', '))}</p><table><thead><tr><th scope="col">${esc(tx(L('Box','Caja')))}</th><th scope="col">${esc(tx(L('Runs on this list','Veces con esta lista')))}</th></tr></thead><tbody>${rows.map(([k,v])=>`<tr${k===b.node?' class="last"':''}><td>${esc(tx(names[k]))}</td><td>${v}</td></tr>`).join('')}</tbody></table><div class="fb ${b.ok?'ok':'no'}">${esc(tx(bottleMessage(b)))}</div>`;}
 function chooseBox(node){const list=[...cur.input.list],counts=A.boxCounts(cur.key,list);let verdict,ok;
- if(cur.key==='bubble-sort'){verdict=A.judgeBottleneck(node,counts);ok=verdict==='icheck'||verdict==='inner';}else{verdict=A.judgeInsertionBox(node,counts);ok=verdict==='max';}
- cur.pick=false;const b={node,ok,verdict,counts,list};ev().bottle=b;record('bottle',list.join(', '),L(BOX[cur.key][node].en+(ok?' ✓':''),BOX[cur.key][node].es+(ok?' ✓':'')));persist();renderBench();renderChallenges();renderRec();
- const r=document.querySelector('#challenges .result');if(r)r.scrollIntoView({block:'nearest',behavior:reduced()?'instant':'smooth'});}
+ if(cur.key==='bubble-sort'){verdict=A.judgeBottleneck(node,counts);ok=['icheck','inner','max'].includes(verdict);}else{verdict=A.judgeInsertionBox(node,counts);ok=verdict==='max';}
+ cur.pick=false;const b={node,ok,verdict,counts,list};ev().bottle=b;record('bottle',list.join(', '),L(BOX[cur.key][node].en+(ok?' ✓':''),BOX[cur.key][node].es+(ok?' ✓':'')));persist();renderBench();renderChallenges('bn-result');renderRec();
+ $('bn-result').scrollIntoView({block:'nearest',behavior:reduced()?'instant':'smooth'});say(tx(bottleMessage(b)));}
 
 // Improvements, each tested on many inputs.
 const BUILD_HINTS=[L('Look at the middle item first.','Mira primero el elemento del medio.'),L('If the middle item is smaller than the target, every item to its left is smaller too, so they can all be skipped.','Si el elemento del medio es menor que el número buscado, todos los de su izquierda también lo son, así que puedes descartarlos.'),L('After checking mid, do not check it again: move low to mid + 1 or high to mid − 1.','Después de revisar mid, no lo revises otra vez: mueve low a mid + 1 o high a mid − 1.'),L('One working order: mid ← …, then the equality test, then the rule that moves low or high, with the loop running while low ≤ high.','Un orden que funciona: mid ← …, luego la prueba de igualdad y luego la regla que mueve low o high, con el ciclo mientras low ≤ high.')];
@@ -341,14 +343,14 @@ function builderCard(){const b=ev().built,s=state.builder,sel=(id,opts,v,label)=
  return card('kindImprove',b&&b.passed===b.total,L('Faster on a sorted list','Más rápido en una lista ordenada'),`<p>${esc(tx(L('The list is sorted. Build a search from these blocks that checks fewer items than linear search.','La lista está ordenada. Arma con estos bloques una búsqueda que revise menos elementos que la búsqueda lineal.')))}</p>
  <div class="builder" data-no-frac><div class="row">low ← 0,  high ← n − 1</div><div class="row">${tx(L('while','mientras'))} ${sel('b-cond',A.BUILD.cond[lc()],s.cond,L('Loop condition','Condición del ciclo'))}:</div>${[0,1,2].map(i=>`<div class="row"><span class="ind"></span>${sel('b-slot'+i,steps,s.slots[i],L(`Step ${i+1} inside the loop`,`Paso ${i+1} dentro del ciclo`))}</div>`).join('')}<div class="row">${tx(L('return −1','devolver −1'))}</div></div>
  <div class="row"><button type="button" class="primary" id="b-test">${esc(tx(L('Test it on 300 lists','Probarla con 300 listas')))}</button><button type="button" id="b-hint"${s.hint>=BUILD_HINTS.length?' disabled':''}>${esc(tx(s.hint<BUILD_HINTS.length?L('Teach me: give a hint','Enséñame: dame una pista'):L('No more hints','No hay más pistas')))}</button></div>
- ${s.hint?`<ol class="hints">${BUILD_HINTS.slice(0,s.hint).map(h=>`<li>${esc(tx(h))}</li>`).join('')}</ol>`:''}<div class="result" aria-live="polite">${b?builtText(b):''}</div>`);}
+ ${s.hint?`<ol class="hints">${BUILD_HINTS.slice(0,s.hint).map(h=>`<li>${esc(tx(h))}</li>`).join('')}</ol>`:''}<div class="result" id="b-result" tabindex="-1">${b?builtText(b):''}</div>`);}
 function builtSummary(r){if(r.passed===r.total)return L(`Passed ${r.passed} of ${r.total} lists. Worst case: ${r.worst} checks for 100 items, against ${r.linWorst} for linear search; on average ${r.avg} against ${r.linAvg}.`,`Pasó ${r.passed} de ${r.total} listas. Peor caso: ${r.worst} revisiones para 100 elementos, contra ${r.linWorst} de la búsqueda lineal; en promedio ${r.avg} contra ${r.linAvg}.`);
  const f=r.fail,shown=f.list.length>10?`[${f.list.slice(0,5).join(', ')}, …, ${f.list.slice(-2).join(', ')}] (${f.list.length})`:`[${f.list.join(', ')}]`;
- const why=f.error==='unset'?L('mid is used before it has a value','mid se usa antes de tener un valor'):f.error==='outside'?L('mid points outside the list','mid apunta fuera de la lista'):f.error==='stuck'?L('it never stops: low and high stop changing','nunca termina: low y high dejan de cambiar'):L(`got ${f.got}`,`obtuvo ${f.got}`);
- return L(`Passed ${r.passed} of ${r.total} lists. First failure: list ${shown}, target ${f.target}. Expected ${f.want}; ${why.en}.`,`Pasó ${r.passed} de ${r.total} listas. Primera falla: lista ${shown}, buscado ${f.target}. Se esperaba ${f.want}; ${why.es}.`);}
+ const why=f.error==='unset'?L('mid is used before it has a value','mid se usa antes de tener un valor'):f.error==='outside'?L('mid points outside the list','mid apunta fuera de la lista'):f.error==='stuck'?L('it never stops: low and high stop changing','nunca termina: low y high dejan de cambiar'):L(`it returned ${f.got}`,`la búsqueda devolvió ${f.got}`);
+ return L(`Passed ${r.passed} of ${r.total} lists. First failure: list ${shown}, target ${f.target}. Expected ${f.want}, but ${why.en}.`,`Pasó ${r.passed} de ${r.total} listas. Primera falla: lista ${shown}, buscado ${f.target}. Se esperaba ${f.want}, pero ${why.es}.`);}
 function builtText(r){return `<div class="fb ${r.passed===r.total?'ok':'no'}">${esc(tx(builtSummary(r)))}</div>`;}
 function testBuilder(){const cond=+$('b-cond').value,slots=[0,1,2].map(i=>+$('b-slot'+i).value);state.builder.cond=cond;state.builder.slots=slots;
- const r=A.testBuilder(cond,slots);ev().built=r;const steps=A.BUILD.steps.en;record('built',`while ${A.BUILD.cond.en[cond]}: ${slots.map(s=>steps[s]).join(' | ')}`,builtSummary(r));persist();renderChallenges();renderRec();}
+ const r={...A.testBuilder(cond,slots),hints:state.builder.hint};ev().built=r;const B=A.BUILD;record('built',L(`while ${B.cond.en[cond]}: ${slots.map(s=>B.steps.en[s]).join(' | ')}`,`mientras ${B.cond.es[cond]}: ${slots.map(s=>B.steps.es[s]).join(' | ')}`),builtSummary(r));persist();renderChallenges('b-result');renderRec();say(tx(builtSummary(r)));}
 
 const IMPROVE={
  'find-max':{kind:'minmax',title:L('Largest and smallest together','El mayor y el menor a la vez'),lead:L('You need both the largest and the smallest number. Choose a method, then test it on random, increasing and decreasing lists of 100 items.','Necesitas el número más grande y el más pequeño. Elige un método y pruébalo con listas al azar, crecientes y decrecientes de 100 elementos.'),
@@ -357,10 +359,10 @@ const IMPROVE={
   run:v=>({kind:'minmax',...A.testMinMax(v)}),ok:r=>r.v===1&&r.correct,
   message:r=>[L('This is the starting point: 198 comparisons on every list, two for each item after the first. Can you save some?','Este es el punto de partida: 198 comparaciones en cada lista, dos por cada elemento después del primero. ¿Puedes ahorrar algunas?'),L('Correct on every list, with 148 comparisons instead of 198 on each kind: about 3n/2 instead of 2n. Each pair costs 3 comparisons instead of 4.','Correcto en todas las listas, con 148 comparaciones en lugar de 198 en cada tipo: unas 3n/2 en lugar de 2n. Cada par cuesta 3 comparaciones en lugar de 4.'),L('Correct on every list. It saves a lot on increasing lists (99) but nothing on decreasing ones (198): the worst case is unchanged.','Correcto en todas las listas. Ahorra mucho en listas crecientes (99), pero nada en las decrecientes (198): el peor caso no cambia.')][r.v]},
  euclid:{kind:'euclid',title:L('From subtraction to remainders','De la resta al residuo'),lead:L('Euclid’s own method subtracts the smaller number from the larger until the two are equal. Choose a change, then test it on 200 random pairs below 1,000.','El método original de Euclides resta el número menor al mayor hasta que los dos son iguales. Elige un cambio y pruébalo con 200 pares al azar menores que 1,000.'),
-  options:[L('Keep subtracting the smaller number (the original method)','Seguir restando el número menor (el método original)'),L('Replace all the subtractions by one remainder: a mod b','Reemplazar todas las restas por un residuo: a mod b'),L('Subtract 1 from the larger number instead','Restar 1 al número mayor en su lugar'),L('Halve the larger number whenever it is even','Dividir a la mitad el número mayor cuando sea par')],
+  options:[L('Keep subtracting the smaller number (the original method)','Seguir restando el número menor (el método original)'),L('Replace all the subtractions by one remainder: a mod b','Reemplazar todas las restas por un residuo: a mod b'),L('Subtract 1 from the larger number instead','Restar 1 al número mayor, en vez de restarle el menor'),L('Halve the larger number whenever it is even','Dividir a la mitad el número mayor cuando sea par')],
   run:v=>({kind:'euclid',...A.testEuclidVariant(v)}),ok:r=>r.v===1&&r.ok===r.total,
   message:r=>{if(r.ok===r.total)return r.v===1?L(`Correct on all ${r.total} pairs, with ${r.mine} steps on average instead of ${r.base}. One remainder does the work of many subtractions in a row.`,`Correcto en los ${r.total} pares, con ${r.mine} pasos en promedio en lugar de ${r.base}. Un residuo hace el trabajo de muchas restas seguidas.`):L(`Correct on all ${r.total} pairs, with ${r.mine} steps on average. This is the starting point: when one number is much bigger, it subtracts the same number again and again.`,`Correcto en los ${r.total} pares, con ${r.mine} pasos en promedio. Este es el punto de partida: cuando un número es mucho mayor, resta el mismo número una y otra vez.`);
-   const f=r.fail,why=r.v===2?L('Subtracting 1 does not keep the common divisors.','Restar 1 no conserva los divisores comunes.'):L('Halving can remove a factor of 2 that only one number has, or one that both share.','Dividir a la mitad puede quitar un factor 2 que solo tiene un número, o uno que comparten los dos.');
+   const f=r.fail,why=r.v===2?L('Subtracting 1 does not keep the common divisors.','Restar 1 no conserva los divisores comunes.'):L('Halving one number is safe only when the other is odd. When both are even, it removes a factor of 2 that they share.','Dividir a la mitad un número solo es seguro cuando el otro es impar. Cuando los dos son pares, quita un factor 2 que comparten.');
    return L(`Only ${r.ok} of ${r.total} pairs gave the greatest common divisor. First failure: for (${f.a}, ${f.b}) the answer is ${f.want}, but this method gave ${f.got??'no answer'}. ${why.en}`,`Solo ${r.ok} de ${r.total} pares dieron el máximo común divisor. Primera falla: para (${f.a}, ${f.b}) la respuesta es ${f.want}, pero este método dio ${f.got??'ninguna respuesta'}. ${why.es}`);}},
  'bubble-sort':{kind:'bubble',title:L('Less comparing','Comparar menos'),lead:L('Choose changes to bubble sort, then test them on random, nearly sorted and reversed lists of 50 items.','Elige cambios para el ordenamiento burbuja y pruébalos con listas al azar, casi ordenadas e invertidas de 50 elementos.'),
   checks:[['early',L('Stop as soon as a pass makes no swaps','Parar en cuanto una pasada no haga intercambios')],['skip2',L('Compare a[i] with a[i + 2] to move faster','Comparar a[i] con a[i + 2] para avanzar más rápido')],['back',L('Run each pass from right to left','Hacer cada pasada de derecha a izquierda')]],
@@ -370,20 +372,24 @@ const IMPROVE={
 function improveCard(){const c=IMPROVE[cur.key],r=ev().improve;let controls;
  if(c.kind==='bubble'){const o=state.improveOpts;controls=c.checks.map(([k,label])=>`<label class="toggle"><input type="checkbox" id="im-${k}"${o[k]?' checked':''}> ${esc(tx(label))}</label>`).join('');}
  else{const chosen=r?r.v:0;controls=`<fieldset class="choices"><legend class="sr">${esc(tx(c.title))}</legend>${c.options.map((o,i)=>`<label class="toggle"><input type="radio" name="im-v" value="${i}"${i===chosen?' checked':''}> ${esc(tx(o))}</label>`).join('')}</fieldset>`;}
- return card('kindImprove',r&&c.ok(r),c.title,`<p>${esc(tx(c.lead))}</p>${controls}<div class="row"><button type="button" class="primary" id="im-go">${esc(tx(L('Test my version','Probar mi versión')))}</button></div><div class="result" aria-live="polite">${r?improveText(c,r):''}</div>`);}
+ return card('kindImprove',r&&c.ok(r),c.title,`<p>${esc(tx(c.lead))}</p>${controls}<div class="row"><button type="button" class="primary" id="im-go">${esc(tx(L('Test my version','Probar mi versión')))}</button></div><div class="result" id="im-result" tabindex="-1">${r?improveText(c,r):''}</div>`);}
 function improveText(c,r){const msg=`<div class="fb ${c.ok(r)?'ok':'no'}">${esc(tx(c.message(r)))}</div>`;if(!r.rows)return msg;
  return `<table><thead><tr>${c.cols.map(h=>`<th scope="col">${esc(tx(h))}</th>`).join('')}</tr></thead><tbody>${r.rows.map(([k,ok,b,m])=>`<tr><td>${esc(tx(c.names[k]||k))}</td><td>${ok}/100</td><td>${b}</td><td>${m}</td></tr>`).join('')}</tbody></table>`+msg;}
 function testImprove(){const c=IMPROVE[cur.key];let arg,input;
- if(c.kind==='bubble'){arg=Object.fromEntries(c.checks.map(([k])=>[k,$('im-'+k).checked]));state.improveOpts=arg;input=c.checks.filter(([k])=>arg[k]).map(([,l])=>l.en).join(' + ')||'(no change)';}
- else{const v=document.querySelector('input[name="im-v"]:checked');arg=v?+v.value:0;input=c.options[arg].en;}
- const r=c.run(arg);ev().improve=r;record('improve',input,c.message(r));persist();renderChallenges();renderRec();}
+ if(c.kind==='bubble'){arg=Object.fromEntries(c.checks.map(([k])=>[k,$('im-'+k).checked]));state.improveOpts=arg;const on=c.checks.filter(([k])=>arg[k]).map(([,l])=>l);input=L(on.map(l=>l.en).join(' + ')||'(no change)',on.map(l=>l.es).join(' + ')||'(sin cambios)');}
+ else{const v=document.querySelector('input[name="im-v"]:checked');arg=v?+v.value:0;input=c.options[arg];}
+ const r=c.run(arg);ev().improve=r;record('improve',input,c.message(r));persist();renderChallenges('im-result');renderRec();say(tx(c.message(r)));}
 
-function cplxCard(){const c=A.CPLX[cur.key],r=ev().cplx;return card('kindCost',r&&r.ok,U.cplxTitle,`<p>${esc(tx(c.q))}</p><div class="opts row">${tx(c.options).map((o,i)=>`<button type="button" data-cx="${i}"${r?' disabled':''}${r&&r.choice===i?' aria-pressed="true"':''}>${esc(o)}</button>`).join('')}</div><div class="result" aria-live="polite">${r?`<div class="fb ${r.ok?'ok':'no'}">${esc(u(r.ok?'yes':'notQuite'))} ${esc(tx(c.why))}</div><button type="button" class="quiet" id="cx-again">${esc(u('again'))}</button>`:''}</div>`);}
-function answerCplx(i){const c=A.CPLX[cur.key],ok=i===c.answer;ev().cplx={ok,choice:i};record('cplx',tx(c.options)[i],L(c.options.en[i]+(ok?' ✓':''),c.options.es[i]+(ok?' ✓':'')));persist();renderChallenges();renderRec();}
+function cplxCard(){const c=A.CPLX[cur.key],r=ev().cplx;return card('kindCost',r&&r.ok,U.cplxTitle,`<p>${esc(tx(c.q))}</p><div class="opts row">${tx(c.options).map((o,i)=>`<button type="button" data-cx="${i}"${r?' disabled':''}${r&&r.choice===i?' aria-pressed="true"':''}>${esc(o)}</button>`).join('')}</div><div class="result" id="cplx-result" tabindex="-1">${r?`<div class="fb ${r.ok?'ok':'no'}">${esc(u(r.ok?'yes':'notQuite'))} ${esc(tx(c.why))}</div><button type="button" class="quiet" id="cx-again">${esc(u('again'))}</button>`:''}</div>`);}
+function answerCplx(i){const c=A.CPLX[cur.key],ok=i===c.answer;ev().cplx={ok,choice:i};record('cplx',L(c.options.en[i],c.options.es[i]),L(c.options.en[i]+(ok?' ✓':''),c.options.es[i]+(ok?' ✓':'')));persist();renderChallenges('cplx-result');renderRec();say($('cplx-result').textContent);}
 
-function renderChallenges(){$('think-title').textContent=u('think');$('think-lead').textContent=tx(LEADS[cur.key]);
+function renderChallenges(focusId){$('think-title').textContent=u('think');$('think-lead').textContent=tx(LEADS[cur.key]);
+ const box=$('challenges'),active=box.contains(document.activeElement)?document.activeElement.id:null;
+ const drafts=box.dataset.drafts===cur.key?[...box.querySelectorAll('input,select')].map(el=>({id:el.id,name:el.name,value:el.value,checked:el.checked,type:el.type})):[];
  const make={idea:ideaCard,counter:counterCard,bottle:bottleCard,builder:builderCard,minmax:improveCard,bubble:improveCard,euclid:improveCard,cplx:cplxCard};
- $('challenges').innerHTML=CARDS[cur.key].map(k=>make[k]()).join('');}
+ box.innerHTML=CARDS[cur.key].map(k=>make[k]()).join('');box.dataset.drafts=cur.key;
+ for(const d of drafts){const el=d.type==='radio'?box.querySelector(`input[name="${d.name}"][value="${d.value}"]`):d.id?$(d.id):null;if(!el||!box.contains(el))continue;if(d.type==='radio'||d.type==='checkbox')el.checked=d.checked;else el.value=d.value;}
+ const target=focusId&&$(focusId)||active&&$(active);if(target&&!target.disabled)target.focus();}
 
 /* ---------------- Recommendation ---------------- */
 function currentRec(){const e={...state.evidence[cur.key],idea:!!(state.ideas[cur.key]||'').trim()};return A.recommend(cur.key,e,state.pred[cur.key]);}
@@ -405,7 +411,7 @@ function showSession(){const t=totals();let body='';
  for(const k of A.ORDER){if(!touched(k))continue;const a=A.ALGS[k],r=recFor(k),idea=state.ideas[k]||'',log=state.log.filter(x=>x.alg===k);
   body+=`<section class="session-alg"><h3>#${a.num} ${esc(tx(a.name))}</h3><div class="evid">${r.items.map(i=>`<span class="${i.good?'good':''}">${esc(tx(i.text))}</span>`).join('')}</div><p class="small-print">${esc(u('suggested',{t:tx(r.title)}))}</p>
   ${idea.trim()?`<h4>${esc(u('yourIdea'))}</h4><p class="student-work" data-no-translate>${esc(idea)}</p>`:''}
-  ${log.length?`<details><summary>${esc(u('history'))} (${log.length})</summary><p class="small-print muted">${esc(u('historyNote'))}</p><ul class="history">${log.map(x=>`<li><span class="muted">${esc(when(x.time))} · ${esc(tx(U.kinds[x.kind]||x.kind))}</span><br><span class="student-work" data-no-translate>${esc(x.input)}</span><br>${esc(tx(x.summary))}</li>`).join('')}</ul></details>`:''}</section>`;}
+  ${log.length?`<details><summary>${esc(u('history'))} (${log.length})</summary><p class="small-print muted">${esc(u('historyNote'))}</p><ul class="history">${log.map(x=>`<li><span class="muted">${esc(when(x.time))} · ${esc(tx(U.kinds[x.kind]||x.kind))}</span><br><span class="student-work" data-no-translate>${esc(tx(x.input))}</span><br>${esc(tx(x.summary))}</li>`).join('')}</ul></details>`:''}</section>`;}
  showModal(u('sessionTitle'),`<p>${esc(u('sessionLead'))}</p><div class="summary-stats"><div><span>${esc(u('ofN',{m:t.matched,a:t.asked}))}</span>${esc(u('statPred'))}</div><div><span>${t.evid}</span>${esc(u('statEvidence'))}</div><div><span>${t.ideas}</span>${esc(u('statIdeas'))}</div></div>${body||`<p>${esc(u('noWork'))}</p>`}
  <div class="modal-actions"><button type="button" class="primary" id="export">${esc(u('export'))}</button>${blockedOriginal!==null?`<button type="button" id="export-original">${esc(u('exportOriginal'))}</button>`:''}<button type="button" id="reset-open">${esc(u('reset'))}</button></div>`);}
 function showReset(){showModal(u('resetTitle'),`<p>${esc(u('resetLead'))}</p><div class="modal-actions"><button type="button" id="export">${esc(u('exportCurrent'))}</button>${blockedOriginal!==null?`<button type="button" id="export-original">${esc(u('exportOriginal'))}</button>`:''}<button type="button" class="primary" id="reset-confirm">${esc(u('resetConfirm'))}</button><button type="button" id="reset-cancel">${esc(u('keep'))}</button></div>`);}
@@ -414,7 +420,7 @@ function sessionMarkdown(){let text=`# Quidence · ${u('mdTitle')}\n\n${u('mdLea
   text+=`\n## #${a.num} ${tx(a.name)}\n\n`;if(p)text+=`${u('mdPred',{m:p.matched,a:p.asked})}\n\n`;
   for(const i of r.items)if(!p||i!==r.items[0])text+=`- ${tx(i.text)}\n`;text+=`\n${u('suggested',{t:tx(r.title)})}\n`;
   if(idea.trim())text+=`\n### ${u('yourIdea')}\n\n${idea}\n`;
-  if(log.length){text+=`\n### ${u('history')}\n\n${u('historyNote')}\n`;for(const x of log)text+=`\n- ${x.time} · ${tx(U.kinds[x.kind]||x.kind)}\n  ${u('mdInput')}: ${x.input}\n  ${tx(x.summary)}\n`;}}
+  if(log.length){text+=`\n### ${u('history')}\n\n${u('historyNote')}\n`;for(const x of log)text+=`\n- ${when(x.time)} · ${tx(U.kinds[x.kind]||x.kind)}\n  ${u('mdInput')}: ${tx(x.input)}\n  ${tx(x.summary)}\n`;}}
  return text;}
 function downloadNotes(text,name,type){try{const a=document.createElement('a'),url=URL.createObjectURL(new Blob([text],{type}));a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);return true;}catch{toast(u('downloadFailed'));return false;}}
 function exportSession(){persist();if(downloadNotes(sessionMarkdown(),'Quidence-algorithms-session.md','text/markdown;charset=utf-8'))toast(u('exported'));}
@@ -430,21 +436,21 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||
  else if(b.id==='b-next')next();else if(b.id==='b-back')back();else if(b.id==='b-reset'){stop();build();renderBench();renderRec();$('announce').textContent='';}
  else if(b.id==='b-play'){if(cur.playing){stop();renderBench();}else play();}
  else if(b.id==='b-force'){cur.forcePredict=true;cur.pending=true;renderBench();}
- else if(b.id==='b-skipone'){cur.pending=false;cur.forcePredict=false;advance();if(cur.playing)schedule();}
+ else if(b.id==='b-skipone'){cur.pending=false;cur.forcePredict=false;advance();focusNext();if(cur.playing)schedule();}
  else if(b.dataset.opt!==undefined)answer(+b.dataset.opt);
  else if(b.dataset.lang){state.lang=b.dataset.lang;persist();renderBench();}
  else if(b.id==='b-teach'){cur.teach=cur.teach>=0?-1:0;renderBench();}else if(b.id==='t-prev'){cur.teach--;renderBench();}else if(b.id==='t-next'){cur.teach++;renderBench();}
  else if(b.id==='in-apply')applyInput();else if(b.id==='in-random')randomInput();
  else if(b.id==='cx-go')checkCounter();else if(b.dataset.why!==undefined)answerWhy(+b.dataset.why);else if(b.id==='why-again'){ev().counter.why=null;persist();renderChallenges();renderRec();}
- else if(b.id==='bn-go'){cur.pick=!cur.pick;stop();renderBench();renderChallenges();if(cur.pick)$('flow').scrollIntoView({block:'center',behavior:reduced()?'instant':'smooth'});}
+ else if(b.id==='bn-go'){cur.pick=!cur.pick;stop();renderBench();renderChallenges();if(cur.pick){$('flow').scrollIntoView({block:'center',behavior:reduced()?'instant':'smooth'});document.querySelector('#flow .fn.pick')?.focus();say(u('pickNote'));}}
  else if(b.id==='b-test')testBuilder();else if(b.id==='b-hint'){state.builder.hint=Math.min(BUILD_HINTS.length,state.builder.hint+1);persist();renderChallenges();}
  else if(b.id==='im-go')testImprove();else if(b.dataset.cx!==undefined)answerCplx(+b.dataset.cx);else if(b.id==='cx-again'){delete ev().cplx;persist();renderChallenges();renderRec();}
  else if(b.id==='session'||b.id==='review-session')showSession();else if(b.id==='close-modal')$('modal').close();
  else if(b.id==='export')exportSession();else if(b.id==='export-original')exportOriginal();else if(b.id==='reset-open')showReset();else if(b.id==='reset-cancel')showSession();else if(b.id==='reset-confirm')resetAll();});
 document.addEventListener('click',e=>{const g=e.target.closest&&e.target.closest('#map [data-open]');if(g)openAlg(g.dataset.open,true);const n=e.target.closest&&e.target.closest('#flow .fn.pick');if(n)chooseBox(n.dataset.node);});
 document.addEventListener('keydown',e=>{if(e.key!=='Enter'&&e.key!==' ')return;const g=e.target.closest&&e.target.closest('#map [data-open]');if(g){e.preventDefault();openAlg(g.dataset.open,true);return;}const n=e.target.closest&&e.target.closest('#flow .fn.pick');if(n){e.preventDefault();chooseBox(n.dataset.node);}});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&cur.pick){cur.pick=false;renderBench();renderChallenges();}});
-document.addEventListener('change',e=>{if(e.target.id==='skip'){state.skip[cur.key]=e.target.checked;cur.pending=false;cur.forcePredict=false;persist();renderBench();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&cur.pick){cur.pick=false;renderBench();renderChallenges();$('bn-go')?.focus();}});
+document.addEventListener('change',e=>{if(e.target.id==='skip'){state.skip[cur.key]=e.target.checked;cur.pending=false;cur.forcePredict=false;persist();renderBench();if(cur.playing)schedule();}});
 document.addEventListener('input',e=>{if(e.target.id==='idea'){const v=e.target.value;state.ideas[cur.key]=v;const s=$('idea-s');if(s)s.textContent=u(v?'ideaSaved':'ideaNote');queueSave();renderRec();}
 });
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.matches&&e.target.matches('#alg .inputs input')){e.preventDefault();applyInput();}});
@@ -454,7 +460,7 @@ window.addEventListener('pagehide',()=>{if(unsavedWork)persist();});
 window.addEventListener('beforeunload',e=>{if(unsavedWork&&(saveBlocked||!storeAvailable)){e.preventDefault();e.returnValue='';}});
 $('modal').addEventListener('click',e=>{if(e.target===$('modal')){const r=$('modal').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$('modal').close();}});
 function boot(){if(!A||A.ORDER.length!==5){$('loading').textContent='The algorithms could not be loaded. Reload the page to try again.';return;}
- restore();const want=new URLSearchParams(location.search).get('algorithm');cur.key=A.ALGS[want]?want:state.alg;state.alg=cur.key;cur.input=defaults();build();
+ restore();const want=new URLSearchParams(location.search).get('algorithm');cur.key=A.ORDER.includes(want)?want:state.alg;state.alg=cur.key;cur.input=defaults();build();
  $('loading').hidden=true;$('app').hidden=false;renderAll();}
 boot();
 })();

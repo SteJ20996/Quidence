@@ -14,7 +14,7 @@ The page is in English and Spanish. It is not a voice or AI activity, so the lan
 ## What a learner does
 
 Each algorithm is shown three ways at once, and all three follow the same event:
-- **Flowchart:** blocks and arrows. The current block is highlighted, and so is the arrow just taken.
+- **Flowchart:** blocks and arrows. The current block is highlighted, and so is the arrow just taken. Every loop check and loop counter is a step of its own, so each move goes along an arrow of the chart; a test checks this for all five algorithms.
 - **Steps:** numbered pseudocode. At a loop the line shows which pass it is on, and at an `if` it shows the comparison with the actual numbers.
 - **Data:** the list or the number pair, with pointers (i, j), the value set aside (`key`) and the gap it leaves, plus a trace table that grows one row per comparison.
 
@@ -101,7 +101,47 @@ Work is saved in this browser under `quidence:algorithms:v1`, in the same way as
 6. **What the suggestion rules do not know.**
    - The rules were written for this course and have not been checked against learning outcomes.
    - A learner can reach the right reason for a counterexample by elimination among three options, and the rules cannot tell.
-   - The 60% threshold for predictions is a judgment call, not a calibrated value.
+   - The 60% threshold for predictions, used only on #1 and #2, is a judgment call, not a calibrated value. The advice states the count it is based on, and the count is shown without a good or bad mark.
+
+## Pre-release review
+
+A separate review read the module and the page, recomputed the numbers, and checked the behaviour in a browser. These changes followed.
+
+- **Wrong statements.**
+  - Euclid improvement: halving was said to fail by removing "a factor of 2 that only one number has". It fails only when both numbers are even.
+  - Fibonacci pairs: "every quotient is 1" is now "every quotient except the last".
+  - Bubble sort, Python guide: in pass p, only p − 1 items are already in place.
+  - "Kept for the teacher": the idea is kept in this browser.
+- **Small inputs.** Plurals now read correctly for 1 item, 1 comparison, 0 or 1 out-of-order pairs and 1 remainder step. Bubble sort explains the sum for 2 and 3 items separately.
+- **Euclid with a < b.** The first step only swaps the numbers, and the note now says so.
+- **Two defensible answers.** For an all-negative list, "the largest number comes first" could also be true. The follow-up now asks why best ends at 0. The claim now also says that every item, including a[0], is compared, so the checker and the claim agree.
+- **Flowchart and steps.** Bubble sort and insertion sort skipped their loop boxes, so the box that runs most often in bubble sort was never highlighted. Every loop check and counter is now a step.
+- **A crash.** `?algorithm=constructor` or `toString` stopped the page from loading. Only the five algorithm names are accepted now.
+- **Lost choices.** Redrawing the challenges reset dropdowns, radio buttons and typed counterexamples that had not been tested yet. Untested choices now survive redraws and language changes.
+- **Playback.** Turning predictions off while Play waited on a prediction stopped playback for good. Playback now continues.
+- **Leaving the page.** When saving is blocked, leaving the page now warns for any unsaved work, not only for a typed idea.
+- **Linear search counterexample.** The workbench now accepts repeated numbers, so a counterexample can be traced there.
+- **Suggestions.**
+  - After a counterexample with the wrong reason, the suggestion asks for the reason instead of a new counterexample.
+  - A wrong bottleneck choice no longer moves on to the improvement.
+  - A halving search assembled with every hint is described as assembled, not as built alone.
+  - Prediction counts are shown neutrally, and the advice that uses them states the count.
+- **Keyboard and screen readers.**
+  - Focus stays on, or moves to, the next sensible control after a prediction, a tab, a language or a challenge.
+  - In pick mode, focus moves to the flowchart.
+  - Prediction outcomes and challenge results are announced through one stable live region.
+- **Records.**
+  - History entries keep the builder and improvement choices in both languages, so Spanish notes are Spanish.
+  - Exported dates use the reader's format.
+  - Pair inputs accept thousands separators such as 100,000.
+- **MATLAB.** A failed linear search now highlights `idx = -1` and the end of the function, not the start alone.
+- **Spanish.**
+  - Merge sort, bubble sort and insertion sort are named in full.
+  - The suggestion box speaks to the learner as tú throughout.
+  - The Number Theory project carries its real title, "Losetas cuadradas y el atajo de Euclides".
+  - Decision boxes open with ¿.
+  - "Pulsa" is now "Presiona", "Reiniciar" no longer names two different actions, and several machine-like phrasings were rewritten.
+- **Left as is.** Restarting a trace asks its predictions again, and the new answers are counted. Repeating a run is practice the learner chose, and the count says how many predictions were made.
 
 ## Not in this part
 

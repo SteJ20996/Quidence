@@ -64,7 +64,11 @@ test('flowcharts, steps, code and the guide line up for every algorithm',()=>{
   for(const [i,p] of g.flow.nodes.entries())for(const q of g.flow.nodes.slice(i+1))assert.ok(Math.abs(p.x-q.x)*2>=p.w+q.w||Math.abs(p.y-q.y)*2>=p.h+q.h,k+' '+p.id+' overlaps '+q.id);
   for(const lang of ['python','java','matlab']){const c=g.code[lang];assert.equal(c.map.length,lines,k+' '+lang);for(const m of c.map)for(const l of m)assert.ok(l>=1&&l<=c.lines.length);
    for(const t of g.teach)for(const L of ['en','es'])assert.ok(t[lang][L].trim()&&t.step[L].trim());}
-  assert.equal(g.trace.en.length,g.trace.es.length);}
+  assert.equal(g.trace.en.length,g.trace.es.length);
+  // The trace walks the flowchart: every move between two boxes is one of its arrows, so loops are shown step by step.
+  const edges=new Set(g.flow.edges.map(e=>e[0]+'>'+e[1]));
+  for(let r=0;r<30;r++){const n=int(2,9),a=k==='linear-search'?distinct(n):list(n),E=k==='euclid'?run(k,null,null,[int(1,3000),int(1,3000)]):run(k,a,R()<.5?a[int(0,n-1)]:500);
+   for(let i=1;i<E.length;i++)assert.ok(edges.has(E[i-1].node+'>'+E[i].node),k+' moves '+E[i-1].node+' → '+E[i].node);}}
 });
 
 // The printed programs are run, not only shown: Python and Java must agree with the references.
