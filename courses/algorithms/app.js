@@ -121,7 +121,7 @@ function queueSave(){unsavedWork=true;clearTimeout(saveTimer);saveTimer=setTimeo
 function restore(){let raw;try{raw=storage.getItem(KEY);}catch{storeAvailable=false;statusKey='statusNoSave';return;}lastStored=raw;if(raw===null)return;
  try{const d=JSON.parse(raw);if(!validRecord(d))throw Error('Unreadable record');state=d;}catch{blockedOriginal=raw;saveBlocked=true;blockedReason='unreadable';statusKey=blockedKey();}}
 const ev=()=>state.evidence[cur.key]||(state.evidence[cur.key]={});
-function record(kind,input,summary){state.log.push({time:new Date().toISOString(),alg:cur.key,kind,input:String(input),summary});}
+function record(kind,input,summary){state.log.push({time:new Date().toISOString(),alg:cur.key,kind,input:typeof input==='string'?input:{en:String(input.en),es:String(input.es)},summary});}
 
 /* ---------------- Workbench state ---------------- */
 const cur={key:'find-max',input:null,events:[],idx:-1,pending:false,feedback:null,forcePredict:false,playing:false,timer:0,teach:-1,pick:false,msg:null};
@@ -331,7 +331,7 @@ function bottleMessage(b){const c=b.counts,names=BOX[cur.key],name=k=>tx(names[k
  if(b.verdict==='shift')return L(`Shifts run ${c.shift} times, but the while check runs ${c.wcheck} times: it runs before every shift, and once more for each item when it stops.`,`Los desplazamientos se ejecutan ${c.shift} veces, pero la revisión del while ${c.wcheck} veces: se ejecuta antes de cada desplazamiento y una vez más por cada elemento cuando se detiene.`);
  return L(`That box runs ${n} time${n===1?'':'s'}. The box that runs most on this list is “${names[top].en}”, with ${max} runs.`,`Esa caja se ejecuta ${n} ${n===1?'vez':'veces'}. La que más se ejecuta con esta lista es “${names[top].es}”, con ${max}.`);}
 function bottleText(b){const names=BOX[cur.key],rows=Object.entries(b.counts).filter(([k])=>names[k]).sort((x,y)=>y[1]-x[1]);
- return `<p class="small-print muted">${esc(tx(L('List','Lista')))}: ${esc(b.list.join(', '))}</p><table><thead><tr><th scope="col">${esc(tx(L('Box','Caja')))}</th><th scope="col">${esc(tx(L('Runs on this list','Veces con esta lista')))}</th></tr></thead><tbody>${rows.map(([k,v])=>`<tr${k===b.node?' class="last"':''}><td>${esc(tx(names[k]))}</td><td>${v}</td></tr>`).join('')}</tbody></table><div class="fb ${b.ok?'ok':'no'}">${esc(tx(bottleMessage(b)))}</div>`;}
+ return `<p class="small-print muted">${esc(tx(L('List','Lista')))}: ${esc(b.list.join(', '))}</p><div class="tablewrap" tabindex="0"><table><thead><tr><th scope="col">${esc(tx(L('Box','Caja')))}</th><th scope="col">${esc(tx(L('Runs on this list','Veces con esta lista')))}</th></tr></thead><tbody>${rows.map(([k,v])=>`<tr${k===b.node?' class="last"':''}><td>${esc(tx(names[k]))}</td><td>${v}</td></tr>`).join('')}</tbody></table></div><div class="fb ${b.ok?'ok':'no'}">${esc(tx(bottleMessage(b)))}</div>`;}
 function chooseBox(node){const list=[...cur.input.list],counts=A.boxCounts(cur.key,list);let verdict,ok;
  if(cur.key==='bubble-sort'){verdict=A.judgeBottleneck(node,counts);ok=['icheck','inner','max'].includes(verdict);}else{verdict=A.judgeInsertionBox(node,counts);ok=verdict==='max';}
  cur.pick=false;const b={node,ok,verdict,counts,list};ev().bottle=b;record('bottle',list.join(', '),L(BOX[cur.key][node].en+(ok?' ✓':''),BOX[cur.key][node].es+(ok?' ✓':'')));persist();renderBench();renderChallenges('bn-result');renderRec();
@@ -374,7 +374,7 @@ function improveCard(){const c=IMPROVE[cur.key],r=ev().improve;let controls;
  else{const chosen=r?r.v:0;controls=`<fieldset class="choices"><legend class="sr">${esc(tx(c.title))}</legend>${c.options.map((o,i)=>`<label class="toggle"><input type="radio" name="im-v" value="${i}"${i===chosen?' checked':''}> ${esc(tx(o))}</label>`).join('')}</fieldset>`;}
  return card('kindImprove',r&&c.ok(r),c.title,`<p>${esc(tx(c.lead))}</p>${controls}<div class="row"><button type="button" class="primary" id="im-go">${esc(tx(L('Test my version','Probar mi versión')))}</button></div><div class="result" id="im-result" tabindex="-1">${r?improveText(c,r):''}</div>`);}
 function improveText(c,r){const msg=`<div class="fb ${c.ok(r)?'ok':'no'}">${esc(tx(c.message(r)))}</div>`;if(!r.rows)return msg;
- return `<table><thead><tr>${c.cols.map(h=>`<th scope="col">${esc(tx(h))}</th>`).join('')}</tr></thead><tbody>${r.rows.map(([k,ok,b,m])=>`<tr><td>${esc(tx(c.names[k]||k))}</td><td>${ok}/100</td><td>${b}</td><td>${m}</td></tr>`).join('')}</tbody></table>`+msg;}
+ return `<div class="tablewrap" tabindex="0"><table><thead><tr>${c.cols.map(h=>`<th scope="col">${esc(tx(h))}</th>`).join('')}</tr></thead><tbody>${r.rows.map(([k,ok,b,m])=>`<tr><td>${esc(tx(c.names[k]||k))}</td><td>${ok}/100</td><td>${b}</td><td>${m}</td></tr>`).join('')}</tbody></table></div>`+msg;}
 function testImprove(){const c=IMPROVE[cur.key];let arg,input;
  if(c.kind==='bubble'){arg=Object.fromEntries(c.checks.map(([k])=>[k,$('im-'+k).checked]));state.improveOpts=arg;const on=c.checks.filter(([k])=>arg[k]).map(([,l])=>l);input=L(on.map(l=>l.en).join(' + ')||'(no change)',on.map(l=>l.es).join(' + ')||'(sin cambios)');}
  else{const v=document.querySelector('input[name="im-v"]:checked');arg=v?+v.value:0;input=c.options[arg];}

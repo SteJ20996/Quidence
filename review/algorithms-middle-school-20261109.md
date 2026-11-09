@@ -158,7 +158,33 @@ A separate review read the module and the page, recomputed the numbers, and chec
   - The Number Theory project carries its real title, "Losetas cuadradas y el atajo de Euclides".
   - Decision boxes open with ¿.
   - "Pulsa" is now "Presiona", "Reiniciar" no longer names two different actions, and several machine-like phrasings were rewritten.
+- **Found by the full test run.**
+  - The page shrank the logo below the site's minimum at 320 px.
+  - History entries saved their bilingual input as text, so exports showed "[object Object]".
+  - At 320 px in Spanish, a result table widened the challenges card and the page. Result tables now scroll inside their card.
 - **Left as is.** Restarting a trace asks its predictions again, and the new answers are counted. Repeating a run is practice the learner chose, and the count says how many predictions were made.
+
+## Validation
+
+Local runs used Node 22; CI uses the pinned 24.19. Browser suites ran with the CI font configuration (DejaVu Sans).
+
+- **`npm test`:** 411 of 411 Node tests pass. They include the ten tests in `tests/algorithms.test.cjs`:
+  - 300 random inputs per algorithm against reference results, with each prediction key checked against the next step;
+  - every move along a flowchart arrow;
+  - the Python listings run with python3, and the Java listings compiled with javac and run;
+  - the challenge checks, the cost numbers (including 20,000 random Euclid pairs) and every suggestion in both languages.
+- **Browser suites:** all 18 suites in `checks.yml` pass, including the new `test:algorithms:browser`. It covers:
+  - five algorithms stepped to the end: 178 steps, 50 predictions, with flowchart, step and code lines compared at every step;
+  - eleven challenge results and the suggestions they lead to;
+  - Spanish, with no untranslated text;
+  - export, reload, a change from a second tab and an unreadable record;
+  - ten layouts (five widths from 320 to 1440 px, in both languages) with no sideways scroll and every flowchart label inside its box.
+- **Other checks:** the Coordinate Geometry and Math Voice checks pass.
+- **By eye:**
+  - the course in English and Spanish at 1280 and 390 px;
+  - the homepage Computer Science section in all four appearances at 1280 and 375 px;
+  - both knowledge maps.
+- **Not checked:** Safari, real devices, and running the MATLAB listings.
 
 ## Not in this part
 
