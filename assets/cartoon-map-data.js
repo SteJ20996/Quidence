@@ -59,10 +59,10 @@ const maps=[
 ,
 {id:'cs',number:'04',name:tr('Computer Science','Ciencias de la computación'),count:1,
  intro:tr('Follow the logic. Then question it and improve it.','Sigue la lógica. Luego cuestiónala y mejórala.'),
- note:tr('Algorithms draw on logic, number theory and discrete mathematics. The university part comes later.','Los algoritmos se apoyan en la lógica, la teoría de números y las matemáticas discretas. La parte de universidad llegará después.'),
+ note:tr('Algorithms draw on logic, number theory and discrete mathematics, and lead on to graphs and the P versus NP question.','Los algoritmos se apoyan en la lógica, la teoría de números y las matemáticas discretas, y llevan a los grafos y a la pregunta P contra NP.'),
  selected:'algorithms',nodes:[
  node('csbridge',20,283,tr('Logic & patterns','Lógica y patrones'),'bridge','venn',tr('Clear statements, careful counting and patterns are a good start for algorithms.','Las proposiciones claras, el conteo cuidadoso y los patrones son un buen comienzo para los algoritmos.')),
- node('algorithms',260,283,tr('Algorithms','Algoritmos'),'course','flow',tr('An available course: algorithms 1 to 11 as flowcharts, steps and code, with challenges that question and improve them.','Curso disponible: algoritmos 1 a 11 con diagramas de flujo, pasos y código, y retos para cuestionarlos y mejorarlos.')),
+ node('algorithms',260,283,tr('Algorithms','Algoritmos'),'course','flow',tr('An available course: algorithms 1 to 16 as flowcharts, steps and code, with challenges that question and improve them.','Curso disponible: algoritmos 1 a 16 con diagramas de flujo, pasos y código, y retos para cuestionarlos y mejorarlos.')),
  node('searching',500,60,tr('Searching','Búsqueda'),'concept','numberline',tr('Linear search checks items one by one; binary search halves a sorted list again and again.','La búsqueda lineal revisa los elementos uno por uno; la búsqueda binaria parte una lista ordenada a la mitad una y otra vez.')),
  node('sorting',500,283,tr('Sorting','Ordenamiento'),'concept','bars',tr('Bubble sort and insertion sort first; merge sort and quicksort later.','Primero el ordenamiento burbuja y por inserción; después, por mezcla y rápido.')),
  node('numberalgo',500,506,tr('Number algorithms','Algoritmos numéricos'),'concept','dots',tr('Euclid’s algorithm finds a greatest common divisor in a few remainder steps.','El algoritmo de Euclides encuentra un máximo común divisor en pocos pasos con residuo.')),
