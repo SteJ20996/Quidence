@@ -6,7 +6,8 @@ const data={
       "chapters": [
         "Foundations",
         "University Maths",
-        "Physics and Applications"
+        "Physics and Applications",
+        "Computer Science"
       ],
       "layers": [
         [
@@ -28,6 +29,11 @@ const data={
           "Modern Physics",
           "Deeper Directions",
           "Applications"
+        ],
+        [
+          "Entry Points",
+          "Methods",
+          "Further Directions"
         ]
       ],
       "next": "Next step ↑",
@@ -69,7 +75,8 @@ const data={
       "chapters": [
         "Fundamentos",
         "Matemáticas universitarias",
-        "Física y aplicaciones"
+        "Física y aplicaciones",
+        "Ciencias de la computación"
       ],
       "layers": [
         [
@@ -91,6 +98,11 @@ const data={
           "Física moderna",
           "Áreas avanzadas",
           "Aplicaciones"
+        ],
+        [
+          "Puntos de partida",
+          "Métodos",
+          "Direcciones avanzadas"
         ]
       ],
       "next": "Siguiente ↑",
@@ -320,6 +332,18 @@ const data={
         "es": "Cuatro lecciones en inglés · Evaluación de fundamentos con 15 preguntas"
       },
       "module": "ac01"
+    },
+    {
+      "id": "algorithms",
+      "chapter": 3,
+      "node": "algorithms",
+      "en": "Algorithms",
+      "es": "Algoritmos",
+      "scope": {
+        "en": "Algorithms 1 to 5 open · Flowcharts, steps and code in Python, Java and MATLAB",
+        "es": "Algoritmos 1 a 5 abiertos · Diagramas de flujo, pasos y código en Python, Java y MATLAB"
+      },
+      "module": "algorithms"
     }
   ],
   "bindings": {
@@ -405,6 +429,19 @@ const data={
     ],
     "gametheory": [
       "gametheory"
+    ],
+    "algorithms": [
+      "algorithms"
+    ],
+    "searching": [
+      "algorithms"
+    ],
+    "sorting": [
+      "algorithms"
+    ],
+    "numberalgo": [
+      "algorithms",
+      "number-theory"
     ]
   },
   "chapters": [
@@ -1406,6 +1443,187 @@ const data={
           "r"
         ]
       ]
+    },
+    {
+      "initial": [
+        "algorithms"
+      ],
+      "groups": [
+        "entry",
+        "methods",
+        "frontier"
+      ],
+      "height": 860,
+      "regions": [
+        [
+          "searching",
+          "sorting",
+          "numberalgo"
+        ],
+        [
+          "dynamic",
+          "complexity"
+        ]
+      ],
+      "nodes": [
+        {
+          "id": "logic",
+          "x": 0.2,
+          "y": 0.94,
+          "layer": "entry",
+          "en": "Logic",
+          "es": "Lógica"
+        },
+        {
+          "id": "algorithms",
+          "x": 0.5,
+          "y": 0.9,
+          "layer": "entry",
+          "en": "Algorithms",
+          "es": "Algoritmos"
+        },
+        {
+          "id": "proof",
+          "x": 0.82,
+          "y": 0.94,
+          "layer": "entry",
+          "en": "Proof & discrete math",
+          "es": "Demostración y matemáticas discretas"
+        },
+        {
+          "id": "searching",
+          "x": 0.17,
+          "y": 0.66,
+          "layer": "methods",
+          "en": "Searching",
+          "es": "Búsqueda"
+        },
+        {
+          "id": "sorting",
+          "x": 0.43,
+          "y": 0.63,
+          "layer": "methods",
+          "en": "Sorting",
+          "es": "Ordenamiento"
+        },
+        {
+          "id": "numberalgo",
+          "x": 0.69,
+          "y": 0.67,
+          "layer": "methods",
+          "en": "Number algorithms",
+          "es": "Algoritmos numéricos"
+        },
+        {
+          "id": "datastructures",
+          "x": 0.24,
+          "y": 0.4,
+          "layer": "methods",
+          "en": "Data structures",
+          "es": "Estructuras de datos"
+        },
+        {
+          "id": "recursion",
+          "x": 0.56,
+          "y": 0.41,
+          "layer": "methods",
+          "en": "Recursion",
+          "es": "Recursión"
+        },
+        {
+          "id": "graphalgo",
+          "x": 0.84,
+          "y": 0.43,
+          "layer": "methods",
+          "en": "Graph algorithms",
+          "es": "Algoritmos en grafos"
+        },
+        {
+          "id": "dynamic",
+          "x": 0.42,
+          "y": 0.17,
+          "layer": "frontier",
+          "en": "Dynamic programming",
+          "es": "Programación dinámica"
+        },
+        {
+          "id": "complexity",
+          "x": 0.75,
+          "y": 0.12,
+          "layer": "frontier",
+          "en": "Complexity and P vs NP",
+          "es": "Complejidad y P contra NP"
+        }
+      ],
+      "links": [
+        [
+          "logic",
+          "algorithms"
+        ],
+        [
+          "algorithms",
+          "searching"
+        ],
+        [
+          "algorithms",
+          "sorting"
+        ],
+        [
+          "algorithms",
+          "numberalgo"
+        ],
+        [
+          "proof",
+          "recursion",
+          "r"
+        ],
+        [
+          "proof",
+          "graphalgo",
+          "r"
+        ],
+        [
+          "searching",
+          "datastructures"
+        ],
+        [
+          "sorting",
+          "datastructures",
+          "r"
+        ],
+        [
+          "sorting",
+          "recursion"
+        ],
+        [
+          "numberalgo",
+          "recursion",
+          "r"
+        ],
+        [
+          "datastructures",
+          "graphalgo"
+        ],
+        [
+          "recursion",
+          "dynamic"
+        ],
+        [
+          "graphalgo",
+          "dynamic",
+          "r"
+        ],
+        [
+          "graphalgo",
+          "complexity",
+          "r"
+        ],
+        [
+          "dynamic",
+          "complexity"
+        ]
+      ],
+      "separate": true
     }
   ],
   "bridges": [
@@ -1715,6 +1933,51 @@ const data={
       "en": "Study elementary particles and their interactions, using experiments and mathematical models.",
       "es": "Estudia partículas elementales y sus interacciones mediante experimentos y modelos matemáticos.",
       "relatedModule": "physics-2"
+    },
+    "algorithms": {
+      "en": "Follow a method step by step as a flowchart, numbered steps and code, then question it and improve it.",
+      "es": "Sigue un método paso a paso con un diagrama de flujo, pasos numerados y código, y luego cuestiónalo y mejóralo.",
+      "relatedModule": "algorithms"
+    },
+    "searching": {
+      "en": "Find an item in a list: check the items one by one, or halve a sorted list again and again.",
+      "es": "Encuentra un elemento en una lista: revisa los elementos uno por uno o parte una lista ordenada a la mitad una y otra vez.",
+      "relatedModule": "algorithms"
+    },
+    "sorting": {
+      "en": "Put a list in order and compare how many comparisons different methods need.",
+      "es": "Ordena una lista y compara cuántas comparaciones necesitan distintos métodos.",
+      "relatedModule": "algorithms"
+    },
+    "numberalgo": {
+      "en": "Compute with whole numbers efficiently, such as Euclid’s algorithm for the greatest common divisor.",
+      "es": "Calcula con números enteros de forma eficiente, como con el algoritmo de Euclides para el máximo común divisor.",
+      "relatedModule": "algorithms"
+    },
+    "datastructures": {
+      "en": "Organize data so that the steps an algorithm needs, such as finding or adding an item, are fast.",
+      "es": "Organiza los datos para que los pasos que necesita un algoritmo, como encontrar o agregar un elemento, sean rápidos.",
+      "relatedModule": "algorithms"
+    },
+    "recursion": {
+      "en": "Solve a problem by first solving a smaller case of the same problem, as in the Tower of Hanoi.",
+      "es": "Resuelve un problema resolviendo primero un caso más pequeño del mismo problema, como en la torre de Hanói.",
+      "relatedModule": "discrete-math"
+    },
+    "graphalgo": {
+      "en": "Explore networks with breadth-first and depth-first search, shortest paths and spanning trees.",
+      "es": "Explora redes con búsqueda en anchura y en profundidad, caminos mínimos y árboles generadores.",
+      "relatedModule": "discrete-math"
+    },
+    "dynamic": {
+      "en": "Reuse the answers to smaller problems instead of solving them again, and see when greedy choices fail.",
+      "es": "Reutiliza las respuestas de problemas más pequeños en lugar de resolverlos otra vez, y observa cuándo fallan las decisiones voraces.",
+      "relatedModule": "algorithms"
+    },
+    "complexity": {
+      "en": "Compare how fast the cost of a method grows with its input, up to the open question P versus NP.",
+      "es": "Compara qué tan rápido crece el costo de un método con el tamaño de sus datos, hasta la pregunta abierta P contra NP.",
+      "relatedModule": "algorithms"
     }
   }
 };

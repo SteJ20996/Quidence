@@ -23,6 +23,7 @@ const COURSES={
   ac01:['/modules/ac01/dist/','Game Theory Foundations','Fundamentos de teoría de juegos','Explore payoff tables, best responses, dominant strategies, and pure Nash equilibria in four English lessons.','Explora tablas de pagos, mejores respuestas, estrategias dominantes y equilibrios de Nash puros en cuatro lecciones en inglés.'],
   'physics-1':['/courses/physics-1/','Physics 1 Foundations','Fundamentos de Física 1','Explore motion, forces, energy, momentum, rotation, oscillations, and fluids in introductory lessons.','Explora movimiento, fuerzas, energía, cantidad de movimiento, rotación, oscilaciones y fluidos en lecciones introductorias.'],
   'physics-2':['/courses/physics-2/','Physics 2 Foundations','Fundamentos de Física 2','Explore heat, electric fields, circuits, magnetism, optics, waves, and photons after basic mechanics.','Explora calor, campos eléctricos, circuitos, magnetismo, óptica, ondas y fotones después de estudiar mecánica básica.'],
+  algorithms:['/courses/algorithms/','Algorithms','Algoritmos','Follow classic algorithms step by step as flowcharts, numbered steps and code in Python, Java and MATLAB, then find counterexamples, bottlenecks and improvements.','Sigue algoritmos clásicos paso a paso con diagramas de flujo, pasos numerados y código en Python, Java y MATLAB, y luego busca contraejemplos, cuellos de botella y mejoras.'],
 };
 const PAGES={
   '/checks/':{en:['Test your understanding','Choose an interactive model and explanation activity or continue with the original subject check.'],es:['Comprueba tu comprensión','Elige una actividad con modelos interactivos y explicaciones o continúa con la evaluación original de la materia.']},
@@ -61,7 +62,7 @@ function resolve(input,actualLocale){
   const locale=PAGES[pathname]?.fixedLocale||(supported.includes(actualLocale)?actualLocale:supported.includes(url.searchParams.get('lang'))?url.searchParams.get('lang'):'en');
   let page=PAGES[pathname],moduleId=null;
   if(ACTIVITIES[pathname]){
-    const id=url.searchParams.get('module'),valid=pathname==='/checks/'?['ab01','ae01','af01','ac01','geometry','algebra-2'].includes(id):pathname==='/foundations/'?FOUNDATION_IDS.has(id):Object.hasOwn(COURSES,id)&&id!=='ac01'&&(!['number-theory','discrete-math','probability','coordinate-geometry'].includes(id)||pathname==='/diagnostics/')||id==='physics';
+    const id=url.searchParams.get('module'),valid=pathname==='/checks/'?['ab01','ae01','af01','ac01','geometry','algebra-2'].includes(id):pathname==='/foundations/'?FOUNDATION_IDS.has(id):Object.hasOwn(COURSES,id)&&id!=='ac01'&&id!=='algorithms'&&(!['number-theory','discrete-math','probability','coordinate-geometry'].includes(id)||pathname==='/diagnostics/')||id==='physics';
     const title=id==='aa01'?(locale==='es'?'Preálgebra y Álgebra I':'Pre-Algebra and Algebra I'):id==='physics'?(locale==='es'?'Física':'Physics'):COURSES[id]?.[locale==='es'?2:1];
     moduleId=valid?id:null;
     const label=ACTIVITIES[pathname][locale];

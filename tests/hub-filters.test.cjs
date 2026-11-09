@@ -18,9 +18,9 @@ test('homepage temporarily removes filters and keeps separate course starts with
  assert.doesNotMatch(source,/id="subject-filters"|id="filter-stage"|id="filter-direction"|src="assets\/hub-filters.js"/);
  assert.match(source,/Tell us what you're looking for/);assert.match(source,/>Optional</);assert.match(source,/No learning request is needed/);
  assert.match(source,/data-home-view="map"/);assert.match(source,/data-home-view="courses"/);assert.match(source,/id="knowledge-map"/);
- assert.match(source,/>Middle School</);assert.match(source,/>High School</);assert.match(source,/>College Level</);assert.match(source,/>Cross-disciplinary Projects</);
- // Sixteen course starts and three cross-disciplinary projects; a learning request names a course, not a project.
- assert.equal([...source.matchAll(/class="subject-link"/g)].length,19);assert.equal([...source.matchAll(/data-learning-subject="/g)].length,16);
+ assert.match(source,/>Middle School</);assert.match(source,/>High School</);assert.match(source,/>College Level</);assert.match(source,/>Computer Science</);assert.match(source,/>Cross-disciplinary Projects</);
+ // Seventeen course starts and three cross-disciplinary projects; a learning request names a course, not a project.
+ assert.equal([...source.matchAll(/class="subject-link"/g)].length,20);assert.equal([...source.matchAll(/data-learning-subject="/g)].length,17);
  assert.deepEqual([...source.matchAll(/data-subject="([^\"]+)"/g)].map(m=>m[1]).sort(),[...order,...Object.keys(require('../assets/course-catalog.js').CROSS.projects)].sort());
  assert.doesNotMatch(source,/<article[^>]*\bhidden\b/);
 });

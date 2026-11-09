@@ -14,6 +14,7 @@ const pictures={
  wave:'<path d="M3 25h52" opacity=".5"/><path d="M3 25C12-2 18-2 27 25S44 52 54 25" stroke="var(--coral)" stroke-width="3"/>',
  vectors:'<path d="M5 39h48M11 44V5" opacity=".5"/><path d="m11 39 31-28m-7 0h7v7" stroke="var(--coral)" stroke-width="3"/><path d="m11 39 36-10m-6-3 6 3-4 5" stroke="var(--path)" stroke-width="3"/>',
  proof:'<rect x="13" y="4" width="33" height="40" rx="4" fill="var(--lilac)"/><path d="M20 12h19M20 19h12m-11 13 5 5 13-12"/>',
+ flow:'<rect x="19" y="2" width="22" height="8" rx="4"/><path d="M30 10v4"/><path d="M30 14 41 22 30 30 19 22Z" fill="var(--yellow)"/><path d="M30 30v5"/><rect x="21" y="35" width="18" height="10" rx="2" fill="var(--mint)"/><path d="M21 40H11V22h8"/><path d="M41 22h9"/><g stroke="none" fill="var(--coral)"><path d="m50 18 5 4-5 4Z"/></g>',
  dice:'<rect x="11" y="5" width="37" height="37" rx="8" fill="var(--yellow)"/><g fill="var(--ink)" stroke="none"><circle cx="21" cy="15" r="2.5"/><circle cx="38" cy="15" r="2.5"/><circle cx="29.5" cy="23.5" r="2.5"/><circle cx="21" cy="32" r="2.5"/><circle cx="38" cy="32" r="2.5"/></g>',
  integral:'<path d="M12 39V32Q25 9 48 7V39Z" fill="var(--mint)" stroke="none"/><path d="M6 40h47M12 45V5"/><path d="M12 32Q25 9 48 7" stroke="var(--coral)" stroke-width="3"/>',
  game:'<rect x="9" y="4" width="42" height="40" rx="3"/><path d="M30 4v40M9 24h42"/><circle cx="20" cy="14" r="5" fill="var(--coral)"/><path d="m36 38 5-10 5 10Z" fill="var(--mint)"/>',

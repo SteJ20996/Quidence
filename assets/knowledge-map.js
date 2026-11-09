@@ -67,7 +67,7 @@
       const course=chosenCourse?courses.get(chosenCourse):null;
       root.dataset.selectedCourse=course?.module||'';
       title.textContent=course?w.course+course[language]:frontier.length===1?w.future:w.pick;
-      meta.textContent=course?(['number-theory','discrete-math','probability','ac01','coordinate-geometry'].includes(course.module)?course.scope[language]:w.report):frontier.length===1?w.futureMeta:'';
+      meta.textContent=course?(['number-theory','discrete-math','probability','ac01','coordinate-geometry','algorithms'].includes(course.module)?course.scope[language]:w.report):frontier.length===1?w.futureMeta:'';
       actions.hidden=!course;choices.replaceChildren();choices.hidden=candidates.length<2;
       for(const id of candidates){
         if(candidates.length<2)break;
@@ -130,7 +130,7 @@
     }
     function scheduleLayout(){if(layoutFrame!==null)return;layoutFrame=window.requestAnimationFrame(()=>{layoutFrame=null;layout();});}
     for(let index=0;index<data.chapters.length;index++){
-      if(index){const join=document.createElement('span');join.className='qa-join';join.textContent='↗';join.setAttribute('aria-hidden','true');chapterBar.append(join);}
+      if(index){const join=document.createElement('span');join.className='qa-join';join.textContent=data.chapters[index].separate?'·':'↗';join.setAttribute('aria-hidden','true');chapterBar.append(join);}
       const button=document.createElement('button');button.type='button';button.dataset.chapter=index;button.className='qa-chapter';button.addEventListener('click',()=>chooseChapter(index));chapterBar.append(button);
     }
     next.addEventListener('click',()=>{const following=children(frontier),targets=bridgeTargets();if(following.length)focusNodes(following);else if(targets.length)chooseChapter(chapter+1,targets);});

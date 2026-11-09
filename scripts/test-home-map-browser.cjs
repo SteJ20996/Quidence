@@ -31,7 +31,7 @@ async function main(){
 
    for(const language of ['en','es']){
     await page.locator('#quidence-language').selectOption(language);await page.waitForFunction(language=>QuidenceI18n.locale===language,language);
-    for(let chapter=0;chapter<3;chapter++){await page.locator('button[data-chapter="'+chapter+'"]').click();await geometry(page);}
+    for(let chapter=0;chapter<4;chapter++){await page.locator('button[data-chapter="'+chapter+'"]').click();await geometry(page);}
     await page.locator('button[data-chapter="0"]').click();
     // The subject rail stays pinned only when all of it fits; otherwise it scrolls with the page and nothing in it is cut off.
     if(width>=960){const rail=await page.evaluate(()=>{const r=document.querySelector('.qf-left-rail'),p=r.querySelector('.qs-subject-panel');return{hidden:p.scrollHeight-p.clientHeight,position:getComputedStyle(r).position};});
@@ -47,9 +47,9 @@ async function main(){
    assert.equal(await page.locator('#goal-include-report').isChecked(),false,'New subject needs its own report opt-in');
    await page.locator('#goal-include-report').check();
    await page.locator('button[data-home-view="courses"]').click();
-   assert.equal(await page.locator('.subject-card:visible').count(),19);
-   assert.deepEqual(await page.locator('.group-heading h2').allTextContents(),['Secundaria','Preparatoria','Nivel universitario','Proyectos interdisciplinarios']);
-   const levels=await page.locator('.catalogue-group').evaluateAll(groups=>groups.map(g=>g.querySelectorAll('.subject-card').length));assert.deepEqual(levels,[1,8,7,3]);
+   assert.equal(await page.locator('.subject-card:visible').count(),20);
+   assert.deepEqual(await page.locator('.group-heading h2').allTextContents(),['Secundaria','Preparatoria','Nivel universitario','Ciencias de la computación','Proyectos interdisciplinarios']);
+   const levels=await page.locator('.catalogue-group').evaluateAll(groups=>groups.map(g=>g.querySelectorAll('.subject-card').length));assert.deepEqual(levels,[1,8,7,1,3]);
    assert.equal(await page.locator('.home-map-view').isVisible(),false);
    assert.equal(await page.locator('#learning-goal').inputValue(),RAW);assert(await page.locator('#goal-include-report').isChecked());
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
@@ -96,7 +96,7 @@ async function main(){
   }
   const unavailable=await browser.newContext(),blocked=await unavailable.newPage();listen(blocked);
   await blocked.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw Error('Storage denied');}}));
-  await blocked.goto(origin+'/');await chooseTheme(blocked,'classic');await ready(blocked);await blocked.locator('button[data-home-view="courses"]').click();assert.equal(await blocked.locator('.subject-card:visible').count(),19);await unavailable.close();
+  await blocked.goto(origin+'/');await chooseTheme(blocked,'classic');await ready(blocked);await blocked.locator('button[data-home-view="courses"]').click();assert.equal(await blocked.locator('.subject-card:visible').count(),20);await unavailable.close();
   const routes=['/','/assets/home.js','/assets/knowledge-map.js','/assets/knowledge-map-data.js'];let failed=0;
   for(let batch=0;batch<3;batch++)await Promise.all(Array.from({length:40},async(_,i)=>{const response=await fetch(origin+routes[i%routes.length]);if(response.status!==200||!(await response.text()).length)failed++;}));
   output.stress.localRequests={concurrency:40,total:120,failed};assert.equal(failed,0);
