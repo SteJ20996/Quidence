@@ -103,6 +103,21 @@ A separate review checked the six algorithms, their listings, the Spanish and th
   - "Estaca de repuesto" is now "estaca auxiliar".
   - Ten other phrasings were corrected, including a decision box that still read "c marked".
 
+## Validation
+
+Local runs used Node 22; CI uses the pinned 24.19. Browser suites ran with the CI font configuration (DejaVu Sans).
+
+- **`npm test`:** 412 of 412 Node tests pass. `tests/algorithms.test.cjs` now covers all eleven algorithms:
+  - traces against reference results, with each prediction key checked against what the trace does next;
+  - every move along a flowchart arrow, except recursive calls and returns;
+  - the Python listings run with python3, including mazes, moves and coins;
+  - the Java listings compiled with javac and run;
+  - the challenge checks and every cost number.
+- **Browser suites:** all 18 suites in `checks.yml` pass. The Algorithms suite steps through all eleven algorithms (632 steps, 130 predictions) and checks 23 challenge results, with the mazes and coin cards filled in by clicks. It also checks Spanish, export, reload, a second-tab change, an unreadable record, and ten layouts, with every flowchart label inside its box.
+- **Other checks:** the Coordinate Geometry and Math Voice checks pass.
+- **By eye:** each new algorithm at 1280 px, in English or Spanish.
+- **Not checked:** Safari, real devices, and running the MATLAB listings.
+
 ## Not in this part
 
 - The university algorithms 12 to 16.
