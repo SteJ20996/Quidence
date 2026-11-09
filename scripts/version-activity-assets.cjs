@@ -13,6 +13,7 @@ for(const file of ['cartoon-art.js','cartoon-map-data.js','cartoon-map.js','cart
 for(const file of ['app.js','core.js','style.css'])reportAssets.add('courses/number-theory/'+file);
 for(const file of ['app.js','core.js','style.css'])reportAssets.add('courses/discrete-math/'+file);
 for(const file of ['app.js','core.js','style.css'])reportAssets.add('courses/probability/'+file);
+for(const file of ['app.js','core.js','style.css'])reportAssets.add('courses/algorithms/'+file);
 for(const file of ['app.js','core.js','style.css'])reportAssets.add('cross-disciplinary/'+file);
 for(const file of ['app.js','content.js','engine.js','style.css'])reportAssets.add('modules/ac01/dist/'+file);
 for(const file of ['app.js','matrix-guide.js','style.css'])reportAssets.add('modules/ab01/dist/'+file);

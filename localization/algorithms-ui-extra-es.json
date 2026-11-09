@@ -1,0 +1,17 @@
+{
+  "Algorithms": "Algoritmos",
+  "ALGORITHMS": "ALGORITMOS",
+  "Computer Science": "Ciencias de la computación",
+  "COMPUTER SCIENCE": "CIENCIAS DE LA COMPUTACIÓN",
+  "Follow the logic, one step at a time.": "Sigue la lógica, un paso a la vez.",
+  "Each algorithm is shown three ways at once: a flowchart, numbered steps and the data it works on. Predict each step, then try to break the algorithm, find its bottleneck and improve it.": "Cada algoritmo se muestra de tres maneras a la vez: un diagrama de flujo, pasos numerados y los datos con los que trabaja. Predice cada paso y luego intenta romper el algoritmo, encontrar su cuello de botella y mejorarlo.",
+  "From middle school to university": "De la secundaria a la universidad",
+  "Algorithms 1 to 5 · Python, Java and MATLAB": "Algoritmos 1 a 5 · Python, Java y MATLAB",
+  "Middle school: algorithms 1 to 5 are open": "Secundaria: los algoritmos 1 a 5 están abiertos",
+  "Predict → Trace → Question → Improve": "Predecir → Seguir → Cuestionar → Mejorar",
+  "Explore the algorithms in English or Spanish. Code keeps its English keywords, and your own words stay exactly as you write them.": "Explora los algoritmos en inglés o en español. El código conserva sus palabras clave en inglés, y tus propias palabras se quedan tal como las escribes.",
+  "Loading the algorithms…": "Cargando los algoritmos…",
+  "Your work stays in this browser. Export it to keep a copy.": "Tu trabajo se queda en este navegador. Expórtalo para conservar una copia.",
+  "This interactive course needs JavaScript. Enable it and reload to open the algorithms.": "Este curso interactivo necesita JavaScript. Actívalo y recarga la página para abrir los algoritmos.",
+  "The algorithms could not be loaded. Reload the page to try again.": "No se pudieron cargar los algoritmos. Recarga la página para intentarlo de nuevo."
+}
