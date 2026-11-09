@@ -14,11 +14,24 @@ const run=(k,a,t,pair)=>A.ALGS[k].gen(a,t,R,pair);
 const after=(E,i)=>E[i+1];
 // A random input of the right shape for any algorithm, and a run of it.
 const coinSets=[[25,10,5,1],[1,3,4],[1,5,12],[1,7,10],[50,20,10,5,1],[3,5],[2,7]];
+const dpCoins=()=>{const s=new Set();const k=int(1,4);while(s.size<k)s.add(int(1,20));return[...s];};
+const pickSum=a=>a.filter(()=>R()<.5).reduce((x,y)=>x+y,0)||a[0];
+// Independent references for #13 to #16: shortest distances by Floyd–Warshall, the cheapest network by trying every
+// set of five roads, the fewest coins by plain recursion, and subset sums by the set of reachable sums.
+function floyd(n,roads){const d=Array.from({length:n},(_,i)=>Array.from({length:n},(_,j)=>i===j?0:Infinity));for(const [u,v,w] of roads){d[u][v]=Math.min(d[u][v],w);d[v][u]=Math.min(d[v][u],w);}
+ for(let k=0;k<n;k++)for(let i=0;i<n;i++)for(let j=0;j<n;j++)if(d[i][k]+d[k][j]<d[i][j])d[i][j]=d[i][k]+d[k][j];return d;}
+function cheapestNetwork(len){const roads=A.mapRoads(len);let best=Infinity;for(let m=0;m<512;m++){const pick=roads.filter((_,i)=>m>>i&1);if(pick.length!==5)continue;
+ const g=[0,1,2,3,4,5],f=x=>g[x]===x?x:(g[x]=f(g[x]));let ok=true;for(const [u,v] of pick){const a=f(u),b=f(v);if(a===b){ok=false;break;}g[a]=b;}if(ok)best=Math.min(best,pick.reduce((s,r)=>s+r[2],0));}return best;}
+function fewestRec(coins,v,memo=new Map()){if(v===0)return 0;if(memo.has(v))return memo.get(v);let b=Infinity;for(const c of coins)if(c<=v)b=Math.min(b,1+fewestRec(coins,v-c,memo));memo.set(v,b);return b;}
+const reachable=(a,t)=>{let sums=new Set([0]);for(const x of a)sums=new Set([...sums,...[...sums].map(s=>s+x)]);return sums.has(t);};
 function inputFor(k){const n=int(2,12);switch(A.ALGS[k].kind){
  case 'pair':return{a:int(1,5000),b:int(1,5000)};
  case 'hanoi':return{disks:int(1,5)};
  case 'grid':return{maze:A.randomMaze(R,.3)};
  case 'coins':return{coins:coinSets[int(0,coinSets.length-1)],amount:int(1,99)};
+ case 'dp':return{coins:dpCoins(),amount:int(1,20)};
+ case 'graph':return{roads:A.randomLengths(R)};
+ case 'subset':{const a=list(int(2,6),1,99);return{list:a,target:R()<.6?pickSum(a):int(1,600)};}
  default:{const a=k==='linear-search'?distinct(n):k==='binary-search'?distinct(n).sort((x,y)=>x-y):list(n);return{list:a,target:R()<.7?a[int(0,a.length-1)]:500};}}}
 const runIn=(k,input)=>A.ALGS[k].gen(input.list,input.target,R,[input.a,input.b],input);
 const cellIds=s=>s.split(' ').filter(Boolean);
@@ -76,6 +89,29 @@ test('every trace reaches the reference result, and each prediction matches what
   {const coins=coinSets[int(0,coinSets.length-1)],amount=int(1,99),E=runIn('greedy-change',{coins,amount}),ref=A.greedyRun(coins,amount);
    assert.deepEqual(E.at(-1).taken,ref.taken);assert.equal(E.at(-1).amount,ref.left);
    E.forEach((e,i)=>{if(e.node==='wcheck')assert.equal(e.ask.answer===0,after(E,i).node==='take');});}
+  // Quicksort: sorted, one comparison per item of each range but its pivot, and each pivot ends in its final place.
+  {const a=list(n,-9,9),E=runIn('quicksort',{list:a}),cmps=E.filter(e=>e.node==='cmp');
+   assert.deepEqual(E.at(-1).arr,[...a].sort((x,y)=>x-y));assert.equal(cmps.length,A.quickRun(a).comps);assert.equal(E[0].ask.options.en[E[0].ask.answer],String(cmps.length));
+   E.forEach((e,i)=>{if(e.node==='cmp')assert.equal(e.ask.answer===0,after(E,i).node==='swap');if(e.node==='place'){const k=e.hit[0],s=[...a].sort((x,y)=>x-y);assert.equal(e.arr[k],s[k]);}});}
+  // The fewest coins: the same count as plain recursion, and coins that pay the amount.
+  {const coins=dpCoins(),amount=int(1,20),E=runIn('fewest-coins',{coins,amount}),want=fewestRec(coins,amount),last=E.at(-1);
+   assert.equal(last.best[amount],want===Infinity?'∞':String(want));if(want<Infinity){assert.equal(last.taken.length,want);assert.equal(last.taken.reduce((x,y)=>x+y,0),amount);assert.ok(last.taken.every(c=>coins.includes(c)));}
+   assert.equal(E.filter(e=>e.node==='cmp').length,A.dpRun(coins,amount).comps);assert.equal(E[0].ask.options.en[E[0].ask.answer],want===Infinity?'It cannot be paid':String(want));
+   E.forEach((e,i)=>{if(e.node==='cmp'&&e.ask)assert.equal(e.ask.answer===0,after(E,i).node==='upd');});}
+  // Dijkstra's method: every distance as Floyd–Warshall finds it, a route of that length, and each town finished at its final distance.
+  {const len=A.randomLengths(R),E=runIn('dijkstra',{roads:len}),d=floyd(6,A.mapRoads(len)),last=E.at(-1);
+   assert.deepEqual(last.dist,d[0].map(String));assert.equal(last.path[0],0);assert.equal(last.path.at(-1),5);
+   assert.equal(last.pathRoads.reduce((x,r)=>x+len[r],0),d[0][5]);assert.equal(E[0].ask.options.en[E[0].ask.answer],String(d[0][5]));
+   E.forEach((e,i)=>{if(e.node==='take'){assert.equal(e.dist[e.current],String(d[0][e.current]));if(e.ask)assert.equal(e.ask.options.en[e.ask.answer],A.TOWNS[e.current]);}if(e.node==='cmp'&&e.ask)assert.equal(e.ask.answer===0,after(E,i).node==='upd');});}
+  // Kruskal's method: five roads that join every town, as cheap as the best of all 126 sets of five roads.
+  {const len=A.randomLengths(R),E=runIn('kruskal',{roads:len}),last=E.at(-1);
+   assert.equal(last.kept.length,5);assert.equal(last.kept.reduce((x,r)=>x+len[r],0),cheapestNetwork(len));assert.equal(E[0].ask.options.en[E[0].ask.answer],String(cheapestNetwork(len)));assert.deepEqual(last.kept,A.kruskalRun(6,A.mapRoads(len)).kept);
+   E.forEach((e,i)=>{if(e.node==='diff')assert.equal(e.ask.answer===0,after(E,i).node==='keep');});}
+  // Subset sum: an answer exactly when some subset reaches the target, and each mask picks the numbers of its bits.
+  {const a=list(int(2,6),1,30),t=R()<.6?pickSum(a):int(1,200),E=runIn('subset-sum',{list:a,target:t}),last=E.at(-1);
+   assert.equal(last.node,reachable(a,t)?'found':'none');if(last.node==='found')assert.equal(last.on.reduce((x,i)=>x+a[i],0),t);
+   assert.equal(E[0].ask.options.en[E[0].ask.answer],String(2**a.length));
+   E.forEach(e=>{if(e.node==='pick'){const s=a.filter((_,i)=>e.mask>>i&1);assert.deepEqual(e.on.map(i=>a[i]),s);if(e.ask)assert.equal(e.ask.options.en[e.ask.answer],s.length?`{${s.join(', ')}}`:'{ }');}});}
  }
 });
 
@@ -108,16 +144,19 @@ test('flowcharts, steps, code and the guide line up for every algorithm',()=>{
 const CASES={'find-max':Array.from({length:60},()=>[list(int(1,12))]),'linear-search':Array.from({length:60},()=>{const a=distinct(int(1,12));return[a,R()<.6?a[int(0,a.length-1)]:500];}),
  'bubble-sort':Array.from({length:60},()=>[list(int(1,12))]),'insertion-sort':Array.from({length:60},()=>[list(int(1,12))]),euclid:Array.from({length:60},()=>[int(1,99999),int(1,99999)]),
  'binary-search':Array.from({length:60},()=>{const a=distinct(int(1,12)).sort((x,y)=>x-y);return[a,R()<.6?a[int(0,a.length-1)]:500];}),'merge-sort':Array.from({length:60},()=>[list(int(1,12))]),hanoi:[1,2,3,4,5].map(n=>[n]),
- bfs:Array.from({length:40},()=>[A.randomMaze(R,.3)]),dfs:Array.from({length:40},()=>[A.randomMaze(R,.3)]),'greedy-change':Array.from({length:60},()=>[coinSets[int(0,coinSets.length-1)],int(1,99)])};
+ bfs:Array.from({length:40},()=>[A.randomMaze(R,.3)]),dfs:Array.from({length:40},()=>[A.randomMaze(R,.3)]),'greedy-change':Array.from({length:60},()=>[coinSets[int(0,coinSets.length-1)],int(1,99)]),
+ quicksort:Array.from({length:60},()=>[list(int(1,12))]),'fewest-coins':Array.from({length:60},()=>[dpCoins(),int(1,20)]),dijkstra:Array.from({length:40},()=>[A.mapRoads(A.randomLengths(R))]),kruskal:Array.from({length:40},()=>[A.mapRoads(A.randomLengths(R))]),'subset-sum':Array.from({length:60},()=>{const a=list(int(1,8),1,40);return[a,R()<.6?pickSum(a):int(1,300)];})};
 const rows=m=>m.match(/.{7}/g),pathText=p=>p?p.map(i=>`${Math.floor(i/A.GC)},${i%A.GC}`).join(' '):'none';
-const want={'find-max':([a])=>Math.max(...a),'linear-search':([a,t])=>a.indexOf(t),'bubble-sort':([a])=>[...a].sort((x,y)=>x-y).join(' '),'insertion-sort':([a])=>[...a].sort((x,y)=>x-y).join(' '),euclid:([a,b])=>gcd(a,b),'binary-search':([a,t])=>a.indexOf(t),'merge-sort':([a])=>[...a].sort((x,y)=>x-y).join(' '),hanoi:([n])=>A.hanoiMoves(n).map(m=>m.join(' ')).join(','),bfs:([m])=>pathText(A.bfsRun(m).path),dfs:([m])=>pathText(A.dfsRun(m).path),'greedy-change':([c,a])=>A.greedyRun(c,a).taken.join(' ')};
+const want={'find-max':([a])=>Math.max(...a),'linear-search':([a,t])=>a.indexOf(t),'bubble-sort':([a])=>[...a].sort((x,y)=>x-y).join(' '),'insertion-sort':([a])=>[...a].sort((x,y)=>x-y).join(' '),euclid:([a,b])=>gcd(a,b),'binary-search':([a,t])=>a.indexOf(t),'merge-sort':([a])=>[...a].sort((x,y)=>x-y).join(' '),hanoi:([n])=>A.hanoiMoves(n).map(m=>m.join(' ')).join(','),bfs:([m])=>pathText(A.bfsRun(m).path),dfs:([m])=>pathText(A.dfsRun(m).path),'greedy-change':([c,a])=>A.greedyRun(c,a).taken.join(' '),quicksort:([a])=>[...a].sort((x,y)=>x-y).join(' '),'fewest-coins':([c,a])=>A.dpRun(c,a).taken.join(' ')||'none',
+ dijkstra:([roads])=>{const r=A.dijkstraRun(6,roads,0,5);assert.equal(r.dist,floyd(6,roads)[0][5]);return r.dist+' '+r.route.join(' ');},kruskal:([roads])=>A.kruskalRun(6,roads).kept.map(i=>''+roads[i][0]+roads[i][1]).join(' '),'subset-sum':([a,t])=>{const r=A.subsetRun(a,t);assert.equal(!!r.set,reachable(a,t));return r.set?r.set.join(' '):'none';}};
 const has=cmd=>spawnSync(cmd,['--version'],{encoding:'utf8'}).status===0;
 test('the Python programs print the reference answers',{skip:!has('python3')&&'python3 is not installed'},()=>{
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'quidence-algorithms-py-'));
  try{const calls={'find-max':c=>`find_max(${JSON.stringify(c[0])})`,'linear-search':c=>`linear_search(${JSON.stringify(c[0])}, ${c[1]})`,'bubble-sort':c=>`' '.join(map(str, bubble_sort(${JSON.stringify(c[0])})))`,'insertion-sort':c=>`' '.join(map(str, insertion_sort(${JSON.stringify(c[0])})))`,euclid:c=>`gcd(${c[0]}, ${c[1]})`,'binary-search':c=>`binary_search(${JSON.stringify(c[0])}, ${c[1]})`,'merge-sort':c=>`' '.join(map(str, merge_sort(${JSON.stringify(c[0])})))`,
    hanoi:c=>`(lambda m: ','.join(f"{d} {f} {t}" for d, f, t in m))((lambda m: (hanoi(${c[0]}, "A", "C", "B", m), m)[1])([]))`,
    bfs:c=>`(lambda p: ' '.join(f"{r},{k}" for r, k in p) if p else 'none')(bfs(${JSON.stringify(rows(c[0]))}, (0, 0), (4, 6)))`,dfs:c=>`(lambda p: ' '.join(f"{r},{k}" for r, k in p) if p else 'none')(dfs(${JSON.stringify(rows(c[0]))}, (0, 0), (4, 6)))`,
-   'greedy-change':c=>`' '.join(map(str, greedy_change(${JSON.stringify(c[0])}, ${c[1]})))`};
+   'greedy-change':c=>`' '.join(map(str, greedy_change(${JSON.stringify(c[0])}, ${c[1]})))`,quicksort:c=>`' '.join(map(str, quicksort(${JSON.stringify(c[0])})))`,'fewest-coins':c=>`' '.join(map(str, fewest_coins(${JSON.stringify(c[0])}, ${c[1]}))) or 'none'`,
+   dijkstra:c=>`(lambda r: str(r[0]) + ' ' + ' '.join(map(str, r[1])))(dijkstra(${JSON.stringify(c[0])}, 6, 0, 5))`,kruskal:c=>`' '.join(f"{u}{v}" for u, v, length in kruskal(${JSON.stringify(c[0])}, 6))`,'subset-sum':c=>`(lambda s: ' '.join(map(str, s)) if s is not None else 'none')(subset_sum(${JSON.stringify(c[0])}, ${c[1]}))`};
   // DFS uses the helpers printed with BFS.
   const helpers=A.ALGS.bfs.code.python.lines.slice(A.ALGS.bfs.code.python.lines.findIndex(l=>l.startsWith('# Helpers'))).join('\n');
   for(const k of A.ORDER){const file=path.join(dir,k.replace('-','_')+'.py');fs.writeFileSync(file,(k==='dfs'?helpers+'\n\n':'')+A.ALGS[k].code.python.lines.join('\n')+'\n\n'+CASES[k].map(c=>`print(${calls[k](c)})`).join('\n')+'\n');
@@ -126,11 +165,15 @@ test('the Python programs print the reference answers',{skip:!has('python3')&&'p
 });
 test('the Java methods compile and print the reference answers',{skip:!(has('javac')&&has('java'))&&'a Java compiler is not installed'},()=>{
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'quidence-algorithms-java-'));
- try{const arr=a=>`new int[]{${a.join(', ')}}`,show='static String show(int[] a){StringBuilder s=new StringBuilder();for(int i=0;i<a.length;i++){if(i>0)s.append(\' \');s.append(a[i]);}return s.toString();}';
+ try{const arr=a=>`new int[]{${a.join(', ')}}`,grid=rs=>`new int[][]{${rs.map(r=>`{${r.join(', ')}}`).join(', ')}}`,show='static String show(int[] a){StringBuilder s=new StringBuilder();for(int i=0;i<a.length;i++){if(i>0)s.append(\' \');s.append(a[i]);}return s.toString();}';
   const calls={'find-max':c=>`System.out.println(findMax(${arr(c[0])}));`,'linear-search':c=>`System.out.println(linearSearch(${arr(c[0])}, ${c[1]}));`,'bubble-sort':c=>`{int[] a=${arr(c[0])};bubbleSort(a);System.out.println(show(a));}`,'insertion-sort':c=>`{int[] a=${arr(c[0])};insertionSort(a);System.out.println(show(a));}`,euclid:c=>`System.out.println(gcd(${c[0]}, ${c[1]}));`,'binary-search':c=>`System.out.println(binarySearch(${arr(c[0])}, ${c[1]}));`,'merge-sort':c=>`{int[] a=${arr(c[0])};mergeSort(a);System.out.println(show(a));}`,
    hanoi:c=>`{List<String> m=new ArrayList<>();hanoi(${c[0]}, 'A', 'C', 'B', m);System.out.println(String.join(",", m));}`,
    bfs:c=>`System.out.println(cells(bfs(new String[]{${rows(c[0]).map(r=>JSON.stringify(r)).join(', ')}}, 0, 34)));`,dfs:c=>`System.out.println(cells(dfs(new String[]{${rows(c[0]).map(r=>JSON.stringify(r)).join(', ')}}, 0, 34)));`,
-   'greedy-change':c=>`{StringBuilder b=new StringBuilder();for(int x:greedyChange(${arr(c[0])}, ${c[1]})){if(b.length()>0)b.append(' ');b.append(x);}System.out.println(b);}`};
+   'greedy-change':c=>`{StringBuilder b=new StringBuilder();for(int x:greedyChange(${arr(c[0])}, ${c[1]})){if(b.length()>0)b.append(' ');b.append(x);}System.out.println(b);}`,
+   quicksort:c=>`{int[] a=${arr(c[0])};quicksort(a);System.out.println(show(a));}`,'fewest-coins':c=>`{StringBuilder b=new StringBuilder();for(int x:fewestCoins(${arr(c[0])}, ${c[1]})){if(b.length()>0)b.append(' ');b.append(x);}System.out.println(b.length()>0?b.toString():"none");}`,
+   dijkstra:c=>`{List<Integer> r=new ArrayList<>();int d=dijkstra(${grid(c[0])}, 6, 0, 5, r);StringBuilder b=new StringBuilder(String.valueOf(d));for(int x:r)b.append(' ').append(x);System.out.println(b);}`,
+   kruskal:c=>`{StringBuilder b=new StringBuilder();for(int[] r:kruskal(${grid(c[0])}, 6)){if(b.length()>0)b.append(' ');b.append(r[0]).append(r[1]);}System.out.println(b);}`,
+   'subset-sum':c=>`{List<Integer> s=subsetSum(${arr(c[0])}, ${c[1]});StringBuilder b=new StringBuilder();if(s==null)b.append("none");else for(int x:s){if(b.length()>0)b.append(' ');b.append(x);}System.out.println(b);}`};
   const cells='static String cells(List<Integer> p){if(p==null)return "none";StringBuilder b=new StringBuilder();for(int c:p){if(b.length()>0)b.append(\' \');b.append(c/7).append(\',\').append(c%7);}return b.toString();}';
   const body=A.ORDER.map(k=>A.ALGS[k].code.java.lines.join('\n')).join('\n\n'),main=A.ORDER.flatMap(k=>CASES[k].map(calls[k])).join('\n');
   fs.writeFileSync(path.join(dir,'Algorithms.java'),`import java.util.*;\npublic class Algorithms {\n${body}\n${show}\n${cells}\npublic static void main(String[] args){\n${main}\n}\n}\n`);
@@ -143,7 +186,9 @@ test('the Java methods compile and print the reference answers',{skip:!(has('jav
 test('the MATLAB listings use 1-based positions and MATLAB syntax',()=>{
  const m=k=>A.ALGS[k].code.matlab.lines.join('\n');
  assert.match(m('find-max'),/best = a\(1\);[\s\S]*for i = 2:numel\(a\)/);assert.match(m('linear-search'),/idx = -1;[\s\S]*for i = 1:numel\(a\)/);
- assert.match(m('bubble-sort'),/for i = 1:n-p[\s\S]*a\(\[i i\+1\]\) = a\(\[i\+1 i\]\);/);assert.match(m('insertion-sort'),/while j >= 1 && a\(j\) > key/);assert.match(m('euclid'),/while b ~= 0[\s\S]*mod\(a, b\)/);
+ assert.match(m('bubble-sort'),/for i = 1:n-p[\s\S]*a\(\[i i\+1\]\) = a\(\[i\+1 i\]\);/);
+ assert.match(m('quicksort'),/stack = \[1, numel\(a\)\];[\s\S]*for j = lo:hi-1/);assert.match(m('fewest-coins'),/best\(v - c \+ 1\) \+ 1 < best\(v \+ 1\)/);assert.match(m('dijkstra'),/\[~, k\] = min\(dist\(todo\)\);/);
+ assert.match(m('kruskal'),/group\(group == group\(v\)\) = group\(u\);/);assert.match(m('subset-sum'),/for mask = 0:2\^n - 1[\s\S]*bitget\(mask, 1:n\)/);assert.match(m('insertion-sort'),/while j >= 1 && a\(j\) > key/);assert.match(m('euclid'),/while b ~= 0[\s\S]*mod\(a, b\)/);
  for(const k of A.ORDER){const src=m(k);assert.equal((src.match(/\b(?:for|while|if|function)\b/g)||[]).length,(src.match(/^\s*end\b/gm)||[]).length,k+': every block has its end');assert.doesNotMatch(src,/[{}]|\+\+|!=|==\s*-?\d+\s*\)\s*\{/);}
 });
 
@@ -192,6 +237,36 @@ test('the challenge checks of #6 to #11 decide correctly',()=>{
  const ch=[0,1,2].map(v=>A.testChange(v,R));assert.deepEqual(ch.map(c=>c.correct),[true,true,false]);assert.ok(ch[1].rows.every(r=>r[3]===4));
 });
 
+test('the challenge checks of #12 to #16 decide correctly',()=>{
+ // #12: a sorted (or reversed) list is quicksort's slow case; better pivots fix sorted lists, the first item does not.
+ assert.equal(A.checkQuick([5,4,3,2,1]).counter,false);assert.ok(A.checkQuick([3,1,2,5,4]).counter);
+ for(let r=0;r<300;r++){const a=list(int(2,12));assert.equal(A.checkQuick([...a].sort((x,y)=>x-y)).counter,false);assert.ok(A.quickRun(a).comps<=a.length*(a.length-1)/2);}
+ const pv=[0,1,2,3].map(v=>A.testPivot(v,R)),srt=p=>p.rows.find(x=>x[0]==='sorted')[3];assert.ok(pv.every(p=>p.correct));assert.deepEqual([srt(pv[0]),srt(pv[3])],[2016,2016]);assert.ok(srt(pv[1])<400&&srt(pv[2])<500);
+ // The middle item can still be slow: build an order where every middle pivot is the largest item left.
+ {const n=64,a=new Array(n),pos=[...Array(n).keys()];let big=n;const stack=[[0,n-1]];
+  while(stack.length){const [lo,hi]=stack.pop();if(lo>=hi){if(lo===hi)a[pos[lo]]=big--;continue;}const m=Math.floor((lo+hi)/2);[pos[m],pos[hi]]=[pos[hi],pos[m]];a[pos[hi]]=big--;stack.push([lo,hi-1]);}
+  assert.equal(A.quickRun(a,'middle').comps,n*(n-1)/2);}
+ // #13: each broken table fails in its own way, and the table agrees with plain recursion.
+ assert.deepEqual(A.DP_BREAKS.map(c=>A.dpBreak(c)),['cannot','zero','worse']);
+ for(let r=0;r<300;r++){const c=dpCoins(),v=int(1,40);assert.equal(A.dpRun(c,v).best[v],fewestRec(c,v));assert.equal(A.dpRun(c,v).best[v],A.fewestCoins(c,v));}
+ {const k=A.traceCounts('fewest-coins',{coins:[1,3,4],amount:10});assert.equal(k.ccheck,Math.max(...Object.values(k)));assert.equal(k.ccheck,k.cmp+10);assert.equal(k.cmp,25);}
+ // #14: the walk to the nearest town; Dijkstra's method against Floyd–Warshall on larger maps; only stopping at the finished goal is safe.
+ assert.equal(A.checkWalk([1,5,5,1,5,5,5,1,5]).counter,false);const w=A.checkWalk([1,5,5,1,5,5,5,9,5]);assert.deepEqual([w.counter,w.walk,w.best],[true,17,11]);
+ const stuck=A.checkWalk([1,9,9,1,9,1,1,9,9]);assert.deepEqual([stuck.stuck,stuck.at,stuck.walkRoute],[true,2,[0,1,3,4,2]],'A → B → D → E → C, where every road leads back');
+ for(let r=0;r<100;r++){const roads=A.randomRoads(20,20,R),d=floyd(20,roads);for(const t of [5,19])assert.equal(A.dijkstraRun(20,roads,0,t).dist,d[0][t]);}
+ assert.deepEqual([0,1,2,3].map(v=>A.testDijkstraStop(v,R).correct),[true,true,false,false]);
+ // #15: the cheapest network can lengthen a trip; stopping after n − 1 roads is safe, the two shortcuts are not.
+ assert.equal(A.checkTreeRoutes([2,1,1,1,2,3,1,2,1]).counter,false);for(const len of [[2,2,3,9,9,9,9,9,9],A.randomLengths(R),A.randomLengths(R)]){const c=A.checkTreeRoutes(len),roads=A.mapRoads(len),full=floyd(6,roads),tree=floyd(6,c.kept.map(i=>roads[i]));let gap=0;for(let x=0;x<6;x++)for(let y=0;y<6;y++)gap=Math.max(gap,tree[x][y]-full[x][y]);
+  assert.equal(c.counter,gap>0);if(c.counter)assert.deepEqual([c.tree-c.best,c.tree,c.best],[gap,tree[c.a][c.b],full[c.a][c.b]]);}
+ assert.ok(A.checkTreeRoutes([2,2,3,9,9,9,9,9,9]).counter,'the triangle 2, 2, 3 already lengthens the trip from B to C');
+ for(let r=0;r<100;r++){const len=A.randomLengths(R);assert.equal(A.kruskalRun(6,A.mapRoads(len)).total,cheapestNetwork(len));}
+ assert.deepEqual([0,1,2,3].map(v=>A.testKruskalStop(v,R).correct),[true,true,false,false]);
+ // #16: largest first misses {5, 5}; pruning stays right, the two shortcuts do not.
+ assert.ok(A.checkGreedySubset([6,5,5],10).counter);assert.equal(A.checkGreedySubset([8,6,5,3],11).counter,false);
+ for(let r=0;r<300;r++){const a=list(int(1,10),1,30),t=R()<.5?pickSum(a):int(1,150),v=A.subsetVariant(a,t,1);assert.equal(!!v.set,reachable(a,t));if(v.set)assert.equal(v.set.reduce((x,y)=>x+y,0),t);}
+ assert.deepEqual([0,1,2,3].map(v=>A.testSubset(v,R).correct),[true,true,false,false]);
+});
+
 test('the cost questions state true numbers',()=>{
  const key=k=>A.CPLX[k].options.en[A.CPLX[k].answer];
  assert.equal(key('find-max'),'999');assert.equal(A.ALGS['find-max'].gen([...Array(1000).keys()],null,R).filter(e=>e.node==='cmp').length,999);
@@ -217,6 +292,19 @@ test('the cost questions state true numbers',()=>{
  assert.equal(key('bfs'),'1,000,000');assert.equal(key('dfs'),'4');
  // #11: 1,000,000 cents in coins of 25 is 40,000 subtractions; dividing takes 4 steps.
  assert.equal(A.changeSteps([25,10,5,1],1e6,0).steps,40000);assert.equal(A.changeSteps([25,10,5,1],1e6,1).steps,4);assert.equal(key('greedy-change'),'40,000');
+ // #12: n(n − 1)/2 on a sorted list; on shuffled lists the expected count is 2(n + 1)H(n) − 4n, about 11,000 for 1,000 items.
+ assert.equal(A.quickRun([...Array(1000).keys()]).comps,499500);assert.equal(key('quicksort'),'499,500');
+ let H=0;for(let i=1;i<=1000;i++)H+=1/i;assert.ok(Math.abs(2*1001*H-4000-11000)<100);
+ let sum=0;for(let r=0;r<30;r++){const a=[...Array(1000).keys()];for(let i=a.length-1;i>0;i--){const j=int(0,i);[a[i],a[j]]=[a[j],a[i]];}sum+=A.quickRun(a).comps;}assert.ok(Math.abs(sum/30-11000)<600);
+ // #13: 3,963 comparisons, and 142,511 ways to pay 1,000 with 1, 5, 10 and 25.
+ assert.equal(A.dpRun([1,5,10,25],1000).comps,3963);assert.equal(key('fewest-coins'),'3,963');
+ const ways=new Array(1001).fill(0);ways[0]=1;for(const c of [1,5,10,25])for(let v=c;v<=1000;v++)ways[v]+=ways[v-c];assert.equal(ways[1000],142511);
+ // #14: scanning the unfinished towns in every round.
+ assert.equal(1e6*(1e6+1)/2,500000500000);assert.equal(key('dijkstra'),'about 500,000,000,000');
+ // #15: every pair joined; a tree on n towns keeps n − 1 roads.
+ assert.equal(1000*999/2,499500);const k200=A.kruskalRun(200,A.completeRoads(200,R));assert.equal(k200.kept.length,199);assert.ok(k200.tree);assert.equal(key('kruskal'),'499,500 sorted, 999 kept');
+ // #16: 2⁶⁰ subsets at 10⁹ per second.
+ assert.ok(Math.abs(2**60/1e9/(365.25*86400)-36.5)<.1);assert.equal(key('subset-sum'),'about 36 years');
 });
 
 test('recommendations follow the evidence and name only real routes',()=>{
@@ -228,7 +316,12 @@ test('recommendations follow the evidence and name only real routes',()=>{
  const e=T('euclid',{counter:{status:'counter',why:0}});assert.equal(e.num,8);assert.equal(e.key,'hanoi');
  assert.equal(T('binary-search',{counter:{status:'counter',why:0}}).num,7);assert.equal(T('merge-sort',{counter:{status:'counter',why:0}}).num,8);
  assert.equal(T('hanoi',{breaks:{nobase:{pred:'forever',actual:'forever'}},bottle:{ok:true}}).num,9);assert.equal(T('hanoi',{breaks:{nobase:{pred:'works',actual:'forever'}}}).num,8);
- const toPlanned=[T('bfs',{counter:{status:'counter',why:0}}),T('greedy-change',{counter:{status:'counter',why:0}})];assert.deepEqual(toPlanned.map(r=>[r.num,r.key]),[[14,null],[13,null]]);
+ const toUni=[T('bfs',{counter:{status:'counter',why:0}}),T('greedy-change',{counter:{status:'counter',why:0}})];assert.deepEqual(toUni.map(r=>[r.num,r.key]),[[14,'dijkstra'],[13,'fewest-coins']]);
+ assert.equal(T('quicksort',{counter:{status:'counter',why:0}}).num,13);assert.equal(T('quicksort',{improve:{v:2,correct:true}}).num,13);assert.equal(T('quicksort',{improve:{v:3,correct:true}}).num,12);
+ assert.equal(T('fewest-coins',{breaks:{down:{pred:'cannot',actual:'cannot'}},bottle:{ok:true}}).num,14);assert.equal(T('fewest-coins',{breaks:{down:{pred:'works',actual:'cannot'}}}).num,13);
+ assert.equal(T('dijkstra',{counter:{status:'counter',why:0}}).num,15);assert.equal(T('kruskal',{improve:{v:1,correct:true}}).num,16);assert.equal(T('subset-sum',{counter:{status:'counter',why:0}}).num,13);
+ // Every algorithm now points at open algorithms only.
+ for(const k of A.ORDER)assert.ok(A.NUM[T(k,{}).num],k);
  assert.equal(T('dfs',{counter:{status:'counter',why:0}}).num,9);assert.equal(T('dfs',{counter:{status:'counter',why:2}}).title.en,'Find the reason');
  // Every outcome, in every combination of evidence, is written in both languages and points at a numbered algorithm.
  const ev=[{breaks:{nobase:{pred:'forever',actual:'forever'},nomove:{pred:'works',actual:'wrongplace'}}},{improve:{v:1,correct:true}},{improve:{v:2,correct:false}},{},{counter:{status:'counter',why:0}},{counter:{status:'counter',why:1}},{built:{passed:300,total:300}},{built:{passed:12,total:300}},{bottle:{ok:true},improve:{correct:true,early:true}},{bottle:{ok:false}},{improve:{v:1,ok:200,total:200}},{cplx:{ok:true}},{cplx:{ok:false},idea:true}];

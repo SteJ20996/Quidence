@@ -340,8 +340,8 @@ const data={
       "en": "Algorithms",
       "es": "Algoritmos",
       "scope": {
-        "en": "Algorithms 1 to 11 open · Flowcharts, steps and code in Python, Java and MATLAB",
-        "es": "Algoritmos 1 a 11 abiertos · Diagramas de flujo, pasos y código en Python, Java y MATLAB"
+        "en": "Algorithms 1 to 16 open · Flowcharts, steps and code in Python, Java and MATLAB",
+        "es": "Algoritmos 1 a 16 abiertos · Diagramas de flujo, pasos y código en Python, Java y MATLAB"
       },
       "module": "algorithms"
     }
@@ -450,6 +450,12 @@ const data={
     "graphalgo": [
       "algorithms",
       "discrete-math"
+    ],
+    "dynamic": [
+      "algorithms"
+    ],
+    "complexity": [
+      "algorithms"
     ]
   },
   "chapters": [

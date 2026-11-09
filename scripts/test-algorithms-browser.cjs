@@ -105,6 +105,34 @@ async function main(){
   assert.match(await page.locator('#cx-result').textContent(),/uses 3 coins \(4 \+ 1 \+ 1\), but 2 are enough: 3 \+ 3/);await page.locator('[data-why="0"]').click();
   await page.locator('input[name="im-v"][value="1"]').check();await page.locator('#im-go').click();assert.match(await page.locator('#im-result').textContent(),/in 4 steps whatever the amount/);
   assert.match(await page.locator('#recbox .big').textContent(),/#13 Dynamic programming/);result.challenges+=12;
+  // #12: a shuffled list beats the same numbers sorted, and a random pivot removes the slow case.
+  await open('quicksort');await page.locator('#cx-list').fill('3, 1, 2, 5, 4');await page.locator('#cx-go').click();
+  assert.match(await page.locator('#cx-result').textContent(),/your list takes 6 comparisons, but the same numbers already sorted take 10/);await page.locator('[data-why="0"]').click();
+  await page.locator('input[name="im-v"][value="2"]').check();await page.locator('#im-go').click();assert.match(await page.locator('#im-result').textContent(),/A random pivot makes the slow case unlikely/);
+  assert.match(await page.locator('#recbox .big').textContent(),/#13 Dynamic programming/);
+  // #13: the table filled from the top, predicted before it runs; then the busiest box.
+  await open('fewest-coins');await page.locator('input[name="bk-change"][value="down"]').check();await page.locator('input[name="bk-pred"][value="cannot"]').check();await page.locator('#bk-go').click();
+  assert.match(await page.locator('#bk-result').textContent(),/Your prediction matched: it says 6 cannot be paid/);assert.equal(await page.locator('input[name="bk-pred"]:checked').count(),0);
+  await page.locator('#bn-go').click();await page.locator('#flow .fn.pick[data-node="ccheck"]').click();assert.match(await page.locator('#bn-result').textContent(),/Trying the next coin runs 35 times/);
+  assert.match(await page.locator('#recbox .big').textContent(),/#14 Dijkstra/);
+  await page.locator('#in-coins').fill('1, 3, 30');await page.locator('#in-apply').click();assert.match(await page.locator('[role="alert"]').textContent(),/from 1 to 20 for the coins/);
+  // #14: a long last road after two short ones; stopping once the goal is finished.
+  await open('dijkstra');await page.locator('#cx-r7').fill('9');await page.locator('#cx-go').click();
+  assert.match(await page.locator('#cx-result').textContent(),/the walk A → B → D → C → E → F has length 17, but A → B → D → F has length 11/);await page.locator('[data-why="0"]').click();
+  await page.locator('input[name="im-v"][value="1"]').check();await page.locator('#im-go').click();assert.match(await page.locator('#im-result').textContent(),/Right on every map, with fewer towns finished/);
+  assert.match(await page.locator('#recbox .big').textContent(),/#15 Spanning trees/);
+  await page.locator('#in-r0').fill('30');await page.locator('#in-apply').click();assert.match(await page.locator('[role="alert"]').textContent(),/whole number from 1 to 20/);
+  await page.locator('#in-r0').fill('1');await page.locator('#in-apply').click();assert.equal(await page.locator('[role="alert"]').count(),0);
+  // #15: a triangle of 2, 2 and 3 lengthens trips; stopping after n − 1 roads stays right.
+  await open('kruskal');for(const [i,v] of [[0,'2'],[1,'2'],[2,'3']])await page.locator('#cx-r'+i).fill(v);await page.locator('#cx-go').click();
+  assert.match(await page.locator('#cx-result').textContent(),/keeps BD, DE, EF, AB, AC \(total 7\)\. In it, the trip from C to D is C → A → B → D, length 5, but on the full map C → D has length 2/);await page.locator('[data-why="0"]').click();
+  await page.locator('input[name="im-v"][value="1"]').check();await page.locator('#im-go').click();assert.match(await page.locator('#im-result').textContent(),/Right on every map\. A tree on n towns/);
+  assert.match(await page.locator('#recbox .big').textContent(),/#16 P versus NP/);
+  // #16: {6, 5, 5} defeats largest first; the pruned search stays right.
+  await open('subset-sum');await page.locator('#cx-list').fill('6, 5, 5');await page.locator('#cx-target').fill('10');await page.locator('#cx-go').click();
+  assert.match(await page.locator('#cx-result').textContent(),/largest first takes \{6\}, which adds up to 6, but \{5, 5\} adds up to 10/);await page.locator('[data-why="0"]').click();
+  await page.locator('input[name="im-v"][value="1"]').check();await page.locator('#im-go').click();assert.match(await page.locator('#im-result').textContent(),/Right every time, with fewer subsets tried/);
+  assert.match(await page.locator('#recbox .big').textContent(),/#13 Dynamic programming/);result.challenges+=10;
   // The route map opens an algorithm from the keyboard.
   await page.locator('#map [data-open="find-max"]').focus();await page.keyboard.press('Enter');assert.equal(await page.locator('[data-alg="find-max"]').getAttribute('aria-pressed'),'true');
   assert.equal(await page.locator('#idea').inputValue(),RAW);

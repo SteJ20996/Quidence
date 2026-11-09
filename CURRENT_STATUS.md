@@ -1,3 +1,30 @@
+## 2026-11-09 · Algorithms part 3: algorithms 12 to 16
+
+The Algorithms course opens its university row, in English and Spanish, and the route is complete:
+- 12 Quicksort, with the waiting ranges on an explicit stack
+- 13 Dynamic programming: the fewest coins
+- 14 Dijkstra’s shortest paths and 15 Kruskal’s spanning trees, on one six-town map whose road lengths learners choose
+- 16 P versus NP, through subset sum and masks counted in binary
+
+Each has the same three synchronized views, code listings, predictions, an idea card and three challenges as parts 1 and 2.
+
+- **Why #14 does not use the mud maze.** In the maze a step costs what the entered cell costs, so the first distance a cell receives is already final and the update step never lowers one. On the road map the default lengths lower four distances.
+- **Challenges.** For example:
+  - a shuffled list that quicksort sorts with fewer comparisons than the same numbers sorted;
+  - breaking the coin table on purpose, predicting the outcome first;
+  - road lengths where always taking the nearest town is not the shortest route;
+  - a triangle of roads 2, 2 and 3 where the cheapest network lengthens a trip;
+  - {6, 5, 5} and target 10, where largest first misses the answer.
+- **Improvements.** Each one is tested on 300 generated inputs: pivot choice, stopping Dijkstra’s method at the goal, stopping Kruskal’s method after n − 1 roads, and pruning the subset search.
+- **Homepage.** The card, the page header and both knowledge maps say algorithms 1 to 16 are open. On the Classic map, Dynamic programming and Complexity lead to the course.
+- **Checks.**
+  - Traces are compared with independent references: Floyd–Warshall distances, every set of five roads, and reachable subset sums.
+  - The Python listings are run, and the Java listings compiled and run.
+  - Cost numbers are tested, such as 499,500 comparisons, 3,963 table comparisons and 142,511 ways to pay 1,000.
+  - The browser test steps through all sixteen algorithms.
+
+See [the review note](review/algorithms-university-20261109.md).
+
 ## 2026-11-09 · Algorithms part 2: algorithms 6 to 11
 
 The Algorithms course opens its high-school row, in English and Spanish:

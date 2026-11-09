@@ -122,6 +122,37 @@ button.mc:hover{border-color:var(--flow)}
 .coin.cur{background:var(--mark);border-color:var(--on-mark);color:var(--on-mark)}
 .coin.small{min-width:30px;height:30px;font-size:12px}
 .coin.fresh{box-shadow:0 0 0 3px var(--ok)}
+/* The table of #13. */
+.dpwrap{max-height:none}
+.dptable th,.dptable td{min-width:2.3em;padding:5px 4px;text-align:center;font-family:var(--mono);font-size:13px;border:1px solid var(--line)}
+.dptable th[scope=row]{background:#f6f9fa;color:var(--muted);font-weight:600}
+.dptable thead th{color:var(--muted);font-weight:600;background:#f6f9fa}
+.dptable .look{box-shadow:inset 0 0 0 2px var(--flow)}
+.dptable .cur{background:var(--mark);color:var(--on-mark);font-weight:700}
+.dptable .path{background:var(--ok-soft);color:var(--ok);font-weight:700}
+.dptable td.fresh{box-shadow:inset 0 0 0 3px var(--ok)}
+/* The six towns of #14 and #15. */
+.graph{max-width:520px}.graph.small{max-width:380px}
+.gsvg{display:block;width:100%;height:auto}
+.road{stroke:#9aaab3;stroke-width:2.2}
+.road.tree{stroke:var(--flow);stroke-width:3.4}
+.road.kept{stroke:var(--ok);stroke-width:4.4}
+.road.skip{stroke:#c3cdd2;stroke-dasharray:6 5}
+.road.path{stroke:var(--ok);stroke-width:5.4}
+.road.look{stroke:#c58b35;stroke-width:5.4}
+.rl{font:700 12.5px var(--mono);fill:var(--ink);text-anchor:middle;dominant-baseline:middle;paint-order:stroke;stroke:var(--q-paper,#fff);stroke-width:4px}
+.rl.look{fill:#8a5a12}
+.town circle{fill:var(--q-paper,#fff);stroke:var(--flow);stroke-width:2}
+.town text{font:700 14px var(--mono);fill:var(--ink);text-anchor:middle;dominant-baseline:middle}
+.town.fin circle{fill:var(--flow-soft)}
+.town.fresh circle{stroke:var(--ok);stroke-width:4}
+.town.cur circle{fill:var(--mark);stroke:var(--on-mark)}
+.town .dl{font-size:13px;fill:var(--flow)}
+.roadorder .var.kept{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.roadorder .var.skip{background:transparent;border-style:dashed;color:var(--muted)}
+.roadorder .var.cur{background:var(--mark);border-color:var(--on-mark);color:var(--on-mark)}
+.inputs input.tiny{width:3.4em;padding-inline:6px;text-align:center}
+.inputs.roads label{flex:0 1 auto;font-family:var(--mono);font-weight:600}
 .vars{display:flex;flex-wrap:wrap;gap:8px}
 .var{font-family:var(--mono);font-size:13px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;background:var(--flow-soft)}
 .var.key{background:var(--mark-soft);border-color:#d8b748}
@@ -191,7 +222,7 @@ dialog{border:1px solid var(--line);border-radius:18px;width:min(800px,calc(100%
 @media(max-width:900px){.intro-note{display:none}.bench{grid-template-columns:minmax(0,1fr)}.bench>.chain{position:static;order:3}.side{display:contents}.steps-panel{order:1}.data-panel{order:2}.trace-panel{order:4}.flow svg{max-height:520px}}
 @media(max-width:720px){.header-inner{padding:16px 18px;justify-content:space-between}.brand img{width:180px}.header-copy{display:none}.header-button{margin-left:0;font-size:11px;padding:8px 11px}.header-button span{margin-left:4px}.header-inner [data-language-host]{margin-left:auto}.header-inner [data-language-host] .language-toolbar{font-size:12px}.header-inner [data-language-host] select{font-size:16px}
  .shell{padding:23px 16px 28px}.intro{padding-bottom:19px}.eyebrow{font-size:9px}.intro-copy{font-size:13px}h1{font-size:28px;letter-spacing:-.8px}.topbar{font-size:11px}.content-language-note{font-size:12px}
- .step-card{padding:16px 14px;border-radius:14px}.panel{padding:12px}.flow{overflow-x:auto}.flow svg{width:max(100%,calc(var(--fw) * .85));max-height:none}.inputs input[type=text]{font-size:16px;width:100%}.inputs label{flex:1 1 100%}.inputs label:has(input.small){flex:0 1 auto}.inputs input.small{width:7em}
+ .step-card{padding:16px 14px;border-radius:14px}.panel{padding:12px}.flow{overflow-x:auto}.flow svg{width:max(100%,calc(var(--fw) * .85));max-height:none}.inputs input[type=text]{font-size:16px;width:100%}.inputs label{flex:1 1 100%}.inputs label:has(input.small){flex:0 1 auto}.inputs input.small{width:7em}.inputs.roads label{flex:0 1 auto}.inputs.roads input.tiny{width:3.4em}.rl,.town text,.town .dl{font-size:17px}.road{stroke-width:2.6}
  .cell{min-width:40px;height:42px}.arr{gap:5px}.ch textarea{font-size:16px}.rec{padding:16px 14px}.site-footer{padding:18px 16px;font-size:10px}.modal-top{padding:16px}.modal-top h2{font-size:17px}#modal-body{padding:18px}.summary-stats{gap:7px}.summary-stats>div{padding:12px 9px;font-size:10px}.summary-stats span{font-size:20px}}
 @media(max-width:360px){.header-inner{padding:14px;gap:8px}.header-button{font-size:10px}.shell{padding-left:12px;padding-right:12px}.cell{min-width:36px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}.cell.swap{transform:none}}
