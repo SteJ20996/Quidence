@@ -96,7 +96,18 @@ A separate review checked the five algorithms, their listings, the Spanish and t
 
 ## Validation
 
-To be completed after the full runs.
+Local runs used Node 22; CI uses the pinned 24.19. Browser suites ran with the CI font configuration (DejaVu Sans).
+
+- **`npm test`:** 413 of 413 Node tests pass. `tests/algorithms.test.cjs` now covers all sixteen algorithms:
+  - traces against independent references: Floyd–Warshall distances for #14, every set of five roads for #15, plain recursion for #13 and the set of reachable sums for #16, with each prediction key checked against what the trace does next;
+  - in #14, every wrong option for the next town is farther than the answer, never tied;
+  - every move along a flowchart arrow, except recursive calls and returns;
+  - the Python listings run with python3, and the Java listings compiled with javac and run;
+  - the challenge checks, including an order of 64 items that makes the middle pivot slow, and every cost number.
+- **Browser suites:** all 18 suites in `checks.yml` pass. The Algorithms suite steps through all sixteen algorithms (993 steps, 197 predictions) and checks 33 challenge results, with the road lengths, coins and lists typed in. It also checks Spanish, export, reload, a second-tab change, an unreadable record, a record whose evidence does not fit its card, and ten layouts, with every flowchart label inside its box.
+- **Other checks:** the Coordinate Geometry and Math Voice checks pass.
+- **By eye:** each new algorithm at 1280 px in English, and #13 to #15 at 320 px in Spanish.
+- **Not checked:** Safari, real devices, and running the MATLAB listings.
 
 ## Not in this part
 
