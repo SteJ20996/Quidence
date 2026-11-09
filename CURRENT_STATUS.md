@@ -1,3 +1,32 @@
+## 2026-11-09 · Algorithms part 2: algorithms 6 to 11
+
+The Algorithms course opens its high-school row, in English and Spanish:
+- 6 Binary search
+- 7 Merge sort, taught bottom-up
+- 8 Recursion: the Tower of Hanoi, with a call stack
+- 9 Breadth-first search and 10 Depth-first search, on a 5 × 7 maze that learners can edit
+- 11 Greedy change
+
+Each has the same three synchronized views, code listings, predictions, an idea card and three challenges as part 1.
+
+- **Challenges.** For example:
+  - an unsorted list that defeats binary search;
+  - a sorted list on which insertion sort beats merge sort;
+  - breaking the Tower of Hanoi on purpose, predicting the outcome first;
+  - mud cells that make the BFS path not the cheapest;
+  - a maze where DFS takes a long way round;
+  - coins 1, 3 and 4 for 6, where greedy change is not the fewest.
+- **Improvements.** Each one is tested on 300 generated inputs.
+- **Suggestions** after the BFS and greedy counterexamples point to #14 and #13 in the university part. The map marks those as planned and also offers an open algorithm.
+- **Homepage.** The card, the page header and both knowledge maps say algorithms 1 to 11 are open. On the Classic map, Recursion and Graph algorithms lead to the course.
+- **Checks.**
+  - Traces are compared with reference results.
+  - The Python listings are run, and the Java listings compiled and run.
+  - Cost numbers are tested, such as 9,217 comparisons for 1,024 items and 2ⁿ − 1 moves.
+  - The browser test steps through all eleven algorithms.
+
+See [the review note](review/algorithms-high-school-20261109.md).
+
 ## 2026-11-09 · New course: Algorithms (part 1, algorithms 1 to 5)
 
 The homepage has a new group, Computer Science, and its first course, Algorithms (`courses/algorithms/`), in English and Spanish. The course is one numbered route of 16 algorithms from middle school to university. This part opens the middle-school algorithms: 1 Find the maximum, 2 Linear search, 3 Bubble sort, 4 Insertion sort and 5 Euclid's algorithm.
