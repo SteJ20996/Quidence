@@ -9,6 +9,10 @@ The homepage has a new group, Computer Science, and its first course, Algorithms
 - **Records.** Saved under `quidence:algorithms:v1` with the same conflict, unreadable-record and export handling as the other project courses.
 - **Checks.** Traces are compared with independent reference results, and each prediction's key with what the trace does next. The Python listings run under python3, and the Java listings are compiled and run. MATLAB is checked by pattern only.
 
+- **Homepage.** Computer Science is a section in Classic and a category in the other three appearances. Each appearance draws the Algorithms card in its own style. Both knowledge maps gain a Computer Science chapter, and both are now titled "Knowledge Map". The card lists the foundation check, understanding check and Intuition Lab activity as not available yet.
+
+Current inventory: 17 subject cards (6 School Mathematics, 8 Further Mathematics, 2 Science, 1 Computer Science) and 3 cross-disciplinary projects.
+
 See [the review note](review/algorithms-middle-school-20261109.md).
 
 ## 2026-11-01 · Stacked fractions on screen

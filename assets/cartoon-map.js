@@ -8,7 +8,7 @@ const t=v=>v[lang];const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<
 const strings={
  nav:tr('Knowledge map','Mapa de conocimientos'),puzzle:tr('A little puzzle break','Una pausa con juegos'),
  eyebrow:tr('Four connected worlds · design preview','Cuatro mundos conectados · vista previa'),
- title:tr('Mathematics & Physics Knowledge Map','Mapa de conocimientos de matemáticas y física'),
+ title:tr('Knowledge Map','Mapa de conocimientos'),
  subtitle:tr('Find a starting point. Follow a connection. Build your own route.','Encuentra un punto de partida. Sigue una conexión. Construye tu propia ruta.'),
  all:tr('All','Todas'),style:tr('Preview style','Estilo de vista previa'),course:tr('COURSE','CURSO'),concept:tr('CONCEPT','CONCEPTO'),branch:tr('EXPLORE','EXPLORAR'),bridge:tr('CONNECTION','CONEXIÓN'),
  courseCount:tr('course entrances','entradas a cursos'),courseCountOne:tr('course entrance','entrada a curso'),keyCourse:tr('Available course','Curso disponible'),keyConcept:tr('Concept / later direction','Concepto / área posterior'),keySolid:tr('Common foundation','Base habitual'),keyRelated:tr('Useful connection','Conexión útil'),

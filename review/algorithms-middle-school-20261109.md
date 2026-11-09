@@ -69,6 +69,23 @@ The rules are fixed and readable in `core.js`. For example:
 
 On #1 and #2, if fewer than 60% of at least five predictions matched and no challenge result decides, the suggestion is to stay with a new list; from #2 it also offers #1. Every algorithm on the route map can still be opened; the suggestion only explains a good next step. Algorithms 6 to 16 are drawn on the map as planned.
 
+## On the homepage
+
+- **Catalog:** a fourth group, Computer Science (`cs`), with one course card: Algorithms, "Middle school → university". The site now has 17 subject cards: 6 School Mathematics, 8 Further Mathematics, 2 Science, 1 Computer Science.
+  - Algorithms has no foundation check, understanding check, field projects or Intuition Lab activity yet. Its card lists all three planned checks under "Not available yet" and links nowhere else.
+  - The generic rule that gives other courses project and diagnostic links skips it.
+- **Appearances:**
+  - Classic: its own section between College Level and Cross-disciplinary Projects.
+  - Paper Explorer, Learning Atlas and Geometric Studio: a Computer Science category button.
+  - Card art in each appearance: a small flowchart with a loop beside a row of bars, with a compared pair and a pointer. The art contains no words.
+  - The Paper category bar now wraps into two rows of three between 601 and 920 px, because six categories overflowed there.
+- **Knowledge maps:**
+  - The Classic map has a fourth chapter, Computer Science, with 11 nodes. Number algorithms offers both Algorithms and Number Theory, which links Euclid's algorithm to the Number Theory projects.
+  - The cartoon map has a fourth world with 9 nodes.
+  - Both maps are now titled "Knowledge Map" ("Mapa de conocimientos"), since they are no longer only mathematics and physics.
+- **Learning request:** when Algorithms is the chosen subject, the box no longer offers to include the request in reports, because the course saves no reports.
+- **Also registered:** SEO titles and descriptions in both languages, the sitemap, the sync policy label "Algorithms work", the static release and the source ledger.
+
 ## Saved work
 
 Work is saved in this browser under `quidence:algorithms:v1`, in the same way as the other project courses:
