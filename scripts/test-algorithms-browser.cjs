@@ -171,6 +171,9 @@ async function main(){
   const changed=await page.evaluate(k=>localStorage.getItem(k),KEY);await page.locator('#idea').fill(RAW+' more');await page.waitForTimeout(400);
   assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),changed);assert.match(await page.locator('#save-status').textContent(),/changed in another tab/);
   await page.locator('#review-session').click();assert.equal(await page.locator('#export-original').count(),1);await page.locator('#close-modal').click();await other.close();
+  // A record whose evidence does not fit its card is treated as unreadable, not shown.
+  await page.evaluate(k=>{const d=JSON.parse(localStorage.getItem(k));d.evidence.dijkstra={improve:{kind:'pivot',v:1,rows:[['random',1,1,1]],correct:true}};localStorage.setItem(k,JSON.stringify(d));},KEY);
+  await page.goto(origin+'/courses/algorithms/?lang=en&algorithm=dijkstra');await page.locator('#app').waitFor({state:'visible'});assert.match(await page.locator('#save-status').textContent(),/could not be read/);assert.match(await page.locator('#alg h2').textContent(),/Dijkstra/);
   // An unreadable record is kept until the learner exports it and resets.
   await page.evaluate(k=>localStorage.setItem(k,'unreadable original'),KEY);await page.reload();await page.locator('#app').waitFor({state:'visible'});
   assert.match(await page.locator('#save-status').textContent(),/could not be read/);await page.locator('[data-cx="2"]').click();await page.waitForTimeout(300);

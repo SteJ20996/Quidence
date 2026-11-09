@@ -102,7 +102,7 @@ test('every trace reaches the reference result, and each prediction matches what
   {const len=A.randomLengths(R),E=runIn('dijkstra',{roads:len}),d=floyd(6,A.mapRoads(len)),last=E.at(-1);
    assert.deepEqual(last.dist,d[0].map(String));assert.equal(last.path[0],0);assert.equal(last.path.at(-1),5);
    assert.equal(last.pathRoads.reduce((x,r)=>x+len[r],0),d[0][5]);assert.equal(E[0].ask.options.en[E[0].ask.answer],String(d[0][5]));
-   E.forEach((e,i)=>{if(e.node==='take'){assert.equal(e.dist[e.current],String(d[0][e.current]));if(e.ask)assert.equal(e.ask.options.en[e.ask.answer],A.TOWNS[e.current]);}if(e.node==='cmp'&&e.ask)assert.equal(e.ask.answer===0,after(E,i).node==='upd');});}
+   E.forEach((e,i)=>{if(e.node==='take'){assert.equal(e.dist[e.current],String(d[0][e.current]));if(e.ask){assert.equal(e.ask.options.en[e.ask.answer],A.TOWNS[e.current]);e.ask.options.en.forEach((t,j)=>{if(j!==e.ask.answer)assert.ok(d[0][A.TOWNS.indexOf(t)]>d[0][e.current],'a wrong option is farther, never tied');});}}if(e.node==='cmp'&&e.ask)assert.equal(e.ask.answer===0,after(E,i).node==='upd');});}
   // Kruskal's method: five roads that join every town, as cheap as the best of all 126 sets of five roads.
   {const len=A.randomLengths(R),E=runIn('kruskal',{roads:len}),last=E.at(-1);
    assert.equal(last.kept.length,5);assert.equal(last.kept.reduce((x,r)=>x+len[r],0),cheapestNetwork(len));assert.equal(E[0].ask.options.en[E[0].ask.answer],String(cheapestNetwork(len)));assert.deepEqual(last.kept,A.kruskalRun(6,A.mapRoads(len)).kept);
@@ -299,8 +299,11 @@ test('the cost questions state true numbers',()=>{
  // #13: 3,963 comparisons, and 142,511 ways to pay 1,000 with 1, 5, 10 and 25.
  assert.equal(A.dpRun([1,5,10,25],1000).comps,3963);assert.equal(key('fewest-coins'),'3,963');
  const ways=new Array(1001).fill(0);ways[0]=1;for(const c of [1,5,10,25])for(let v=c;v<=1000;v++)ways[v]+=ways[v-c];assert.equal(ways[1000],142511);
- // #14: scanning the unfinished towns in every round.
- assert.equal(1e6*(1e6+1)/2,500000500000);assert.equal(key('dijkstra'),'about 500,000,000,000');
+ // #14: the listings check all n towns in each of n rounds.
+ assert.equal(1e6*1e6,1e12);assert.equal(key('dijkstra'),'about 1,000,000,000,000');
+ {const n=12,roads=A.randomRoads(n,10,R);let checks=0;const near=Array.from({length:n},()=>[]);for(const [u,v,w] of roads){near[u].push([v,w]);near[v].push([u,w]);}const dist=new Array(n).fill(Infinity),fin=new Array(n).fill(false);dist[0]=0;
+  for(;;){let c=-1;for(let t=0;t<n;t++){checks++;if(!fin[t]&&dist[t]<Infinity&&(c<0||dist[t]<dist[c]))c=t;}if(c<0)break;fin[c]=true;for(const [d,w] of near[c])if(!fin[d]&&dist[c]+w<dist[d])dist[d]=dist[c]+w;}
+  assert.equal(checks,n*(n+1),'n rounds that finish a town, and one last round that finds none');}
  // #15: every pair joined; a tree on n towns keeps n − 1 roads.
  assert.equal(1000*999/2,499500);const k200=A.kruskalRun(200,A.completeRoads(200,R));assert.equal(k200.kept.length,199);assert.ok(k200.tree);assert.equal(key('kruskal'),'499,500 sorted, 999 kept');
  // #16: 2⁶⁰ subsets at 10⁹ per second.
