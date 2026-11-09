@@ -1,3 +1,20 @@
+## 2026-11-09 · New course: Algorithms (part 1, algorithms 1 to 5)
+
+The homepage has a new group, Computer Science, and its first course, Algorithms (`courses/algorithms/`), in English and Spanish. The course is one numbered route of 16 algorithms from middle school to university. This part opens the middle-school algorithms: 1 Find the maximum, 2 Linear search, 3 Bubble sort, 4 Insertion sort and 5 Euclid's algorithm.
+
+- **Three synchronized views.** A flowchart, numbered steps and the data (pointers, the key set aside, a growing trace table) follow the same event. Python, Java and MATLAB listings highlight the matching lines, and a guide teaches the code line by line. Code is shown, not run.
+- **Predictions.** On by default before each comparison. A section can skip them, and a single step can still be predicted on request. Predictions are counted, not scored.
+- **Four observable behaviours, no ability score.** Each algorithm has an idea card, kept exactly as written and not scored, and three cards drawn from: find a counterexample (with a follow-up on why), find the bottleneck in the flowchart, propose an improvement and test it on hundreds of inputs, and predict the cost.
+- **Suggested next algorithm.** Fixed, readable rules in `core.js` name the next number and list the evidence used. Every open algorithm stays reachable from the route map.
+- **Records.** Saved under `quidence:algorithms:v1` with the same conflict, unreadable-record and export handling as the other project courses.
+- **Checks.** Traces are compared with independent reference results, and each prediction's key with what the trace does next. The Python listings run under python3, and the Java listings are compiled and run. MATLAB is checked by pattern only.
+
+- **Homepage.** Computer Science is a section in Classic and a category in the other three appearances. Each appearance draws the Algorithms card in its own style. Both knowledge maps gain a Computer Science chapter, and both are now titled "Knowledge Map". The card lists the foundation check, understanding check and Intuition Lab activity as not available yet.
+
+Current inventory: 17 subject cards (6 School Mathematics, 8 Further Mathematics, 2 Science, 1 Computer Science) and 3 cross-disciplinary projects.
+
+See [the review note](review/algorithms-middle-school-20261109.md).
+
 ## 2026-11-01 · Stacked fractions on screen
 
 Fractions written with a slash are drawn stacked on every published page, in English and Spanish:

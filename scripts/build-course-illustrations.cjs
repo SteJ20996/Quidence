@@ -25,6 +25,13 @@ out['cross-chords']=wrap('Two puzzles, one sequence','Chords among six points on
 // Cross-disciplinary project 3: Benford's shares of the first digits 1 to 9.
 b='<text x="160" y="24" text-anchor="middle">P(d) = log₁₀(1 + 1/d)</text><path d="M34 128H290" class="axis"/>';for(let d=1;d<=9;d++){const h=88*Math.log10(1+1/d)/Math.log10(2),x=40+28*(d-1);b+=`<rect x="${x}" y="${(128-h).toFixed(1)}" width="20" height="${h.toFixed(1)}" rx="2" fill="${d===1?'#fbe9e3':'#f1edf9'}" stroke="${d===1?'#a84324':'#6542c0'}" stroke-width="${d===1?2.4:1.6}"/><text x="${x+10}" y="146" text-anchor="middle">${d}</text>`;}
 out['cross-benford']=wrap('Why do so many numbers start with 1?','Nine bars show Benford’s law: the share of numbers whose first digit is d is log base 10 of 1 + 1/d. The bar for the digit 1 is the tallest, and the bars get shorter up to the digit 9.',b);
+// Algorithms: a flowchart whose decision loops back, beside a list being compared pair by pair. No words, so it needs no translation.
+b='<rect x="58" y="12" width="60" height="20" rx="10" fill="#f1edf9" stroke="#6542c0" stroke-width="2"/><path d="M88 32V46" class="axis" stroke-width="1.6"/><path d="m83 42 5 6 5-6" fill="#8595ac"/>';
+b+='<path d="M88 50 124 72 88 94 52 72Z" fill="#fbe9e3" stroke="#a84324" stroke-width="2.5"/><path d="M88 94V108" class="axis" stroke-width="1.6"/><path d="m83 104 5 6 5-6" fill="#8595ac"/>';
+b+='<rect x="60" y="110" width="56" height="22" rx="3" fill="#e2f3ef" stroke="#087f76" stroke-width="2"/><path d="M60 121H32V72H46" class="axis" stroke-width="1.6"/><path d="m44 67 6 5-6 5" fill="#8595ac"/><path d="M124 72H142" class="axis" stroke-width="1.6"/><path d="m140 67 6 5-6 5" fill="#8595ac"/>';
+{const h=[14,30,22,8,34,18];h.forEach((v,i)=>{const x=154+24*i,on=i===1||i===2;b+=`<rect x="${x}" y="48" width="22" height="48" rx="3" fill="${on?'#fbe9e3':'#ffffff'}" stroke="${on?'#a84324':'#8595ac'}" stroke-width="${on?2:1.4}"/><rect x="${x+6}" y="${92-v}" width="10" height="${v}" rx="1.5" fill="${on?'#a84324':'#6542c0'}"/>`;});}
+b+='<path d="M189 42Q201 28 213 42" fill="none" stroke="#a84324" stroke-width="2"/><path d="m183 116 6-10 6 10Z" fill="#087f76"/><path d="M154 132H296" class="axis"/>';
+out.algorithms=wrap('Algorithms','A small flowchart with a start box, a decision diamond and a step that loops back to the decision, beside a list of six bars in cells. Two neighbouring cells are highlighted as they are compared, and a pointer marks the current position.',b);
 return out;}
 function build(){for(const[id,svg]of Object.entries(covers()))fs.writeFileSync(path.join(folder,id+'.svg'),svg);}
 if(require.main===module)build();module.exports={covers,build};

@@ -95,7 +95,7 @@
   body.quidence-home .qf-page-choice[aria-current="page"]{background:var(--qa-green-soft);color:var(--qa-green)}
   body.quidence-home .qs-subject-panel{padding:17px 12px 16px;border:0;border-radius:0}
   body.quidence-home .qs-subject-panel h2{font-size:18px;margin:0 0 16px;font-weight:500;letter-spacing:-.01em}
-  body.quidence-home .choice-group-label{font-size:11px;line-height:1.4;margin:15px 2px 8px}
+  body.quidence-home .choice-group-label{font-size:11px;line-height:1.4;margin:13px 2px 7px}
   body.quidence-home .learning-subject-buttons{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:0 0 11px}
   body.quidence-home .learning-subject-buttons button{min-height:44px;padding:9px 4px;font-size:12px;line-height:1.4;border-color:var(--qa-border);border-radius:7px}
   body.quidence-home .learning-subject-buttons button[aria-pressed="true"]{background:var(--qa-green-soft);border-color:var(--qa-green);box-shadow:none;color:var(--qa-green)}
@@ -301,10 +301,11 @@ html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card .av
 /* Compact enough that even two lines stay within the row height the neighbouring cards already use. */
 html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card .availability-note{display:flex;align-items:center;justify-content:center;margin:12px 0 0;padding:6px 10px;border:1px dashed var(--q-line);border-radius:9px;font-size:12px;line-height:1.4;text-align:center}
 @supports (grid-template-rows:subgrid) and selector(details::details-content){@media(min-width:960px){html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card .availability-note{grid-row:6;margin:0}html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card .availability-note[data-unavailable="check"]{grid-row:7}html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card .availability-note[data-unavailable="course"]{grid-row:7/10}html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card .availability-note[data-unavailable="checks"]{grid-row:6/8}/* Coordinate Geometry fills all five activity rows, so the aligned rows have no free slot for its bridge label; it stays in the narrower layout, the other appearances and the course page. */html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card .course-bridge-label{display:none}html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card .availability-note[data-unavailable="later"]{grid-row:8}html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card .availability-note[data-unavailable="intuition"]{grid-row:8}}}
+/* The Computer Science section holds one course with fewer activities, so it uses the same unaligned layout. */
 /* Cross-disciplinary project cards have no activity rows and sit in their own section, so Classic does not align them with the course cards' rows, and it shows the courses each project draws on. */
-@supports (grid-template-rows:subgrid) and selector(details::details-content){@media(min-width:960px){html[data-ui-theme="classic"] body[data-q-theme].quidence-home .cross-group .subject-grid{grid-auto-rows:auto}html[data-ui-theme="classic"] body[data-q-theme].quidence-home .cross-group .subject-card{display:flex;flex-direction:column;grid-row:auto}}}
-html[data-ui-theme="classic"] body[data-q-theme].quidence-home .cross-group .subject-card .course-bridge-label{display:block}
-.cross-group .group-heading p{margin:4px 0 0;color:var(--q-muted);font-size:14px}
+@supports (grid-template-rows:subgrid) and selector(details::details-content){@media(min-width:960px){html[data-ui-theme="classic"] body[data-q-theme].quidence-home :is(.cross-group,.cs-group) .subject-grid{grid-auto-rows:auto}html[data-ui-theme="classic"] body[data-q-theme].quidence-home :is(.cross-group,.cs-group) .subject-card{display:flex;flex-direction:column;grid-row:auto}}}
+html[data-ui-theme="classic"] body[data-q-theme].quidence-home :is(.cross-group,.cs-group) .subject-card .course-bridge-label{display:block}
+:is(.cross-group,.cs-group) .group-heading p{margin:4px 0 0;color:var(--q-muted);font-size:14px}
 /* Paper Explorer and Geometric Studio list the project card among the course cards, so its "Cross-disciplinary" label stays visible above the title. */
 html:is([data-ui-theme="paper"],[data-ui-theme="studio"]) body[data-q-theme].quidence-home .subject-card.cross .card-top{display:flex;grid-column:1/-1;grid-row:1;margin:0}
 html:is([data-ui-theme="paper"],[data-ui-theme="studio"]) body[data-q-theme].quidence-home .subject-card.cross .card-top .version{display:none}
@@ -321,4 +322,4 @@ html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card.cros
 html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card.cross .course-bridge-label{grid-column:2;grid-row:4;align-self:center;margin:0;font-size:11px}
 html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card.cross .card-more{grid-row:5}
 /* In Learning Atlas the single project card fills its row on narrow screens instead of sitting beside an empty column. */
-@media(max-width:900px){html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-atlas-group[data-atlas-group="cross"] .subject-card:only-child{grid-column:1/-1}}
+@media(max-width:900px){html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-atlas-group:is([data-atlas-group="cross"],[data-atlas-group="cs"]) .subject-card:only-child{grid-column:1/-1}}

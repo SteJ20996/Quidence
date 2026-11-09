@@ -20,10 +20,10 @@ test('pre-calculus cover point lies exactly on a circle, and all six assets are 
  near(Number(p.cx)-246,74-Number(p.cy));
  for(const[id,svg]of Object.entries(svgs)){assert.equal(fs.readFileSync(path.join(__dirname,'../assets/illustrations',id+'.svg'),'utf8'),svg);assert.match(svg,/<title/);assert.match(svg,/<desc/);assert.doesNotMatch(svg,/NaN|Infinity|fill=""/);}
 });
-test('homepage offers fourteen mathematics courses plus introductory physics, and three cross-disciplinary projects',()=>{
+test('homepage offers fourteen mathematics courses, introductory physics, Algorithms and three cross-disciplinary projects',()=>{
  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
- assert.equal([...html.matchAll(/data-subject="/g)].length,19);assert.equal([...html.matchAll(/data-course-state="available"/g)].length,19);assert.equal([...html.matchAll(/data-course-state="planned"/g)].length,0);assert.equal([...html.matchAll(/class="subject-link"/g)].length,19);
- assert.equal([...html.matchAll(/class="subject-card cross"/g)].length,3);
+ assert.equal([...html.matchAll(/data-subject="/g)].length,20);assert.equal([...html.matchAll(/data-course-state="available"/g)].length,20);assert.equal([...html.matchAll(/data-course-state="planned"/g)].length,0);assert.equal([...html.matchAll(/class="subject-link"/g)].length,20);
+ assert.equal([...html.matchAll(/class="subject-card cross"/g)].length,3);assert.equal([...html.matchAll(/class="subject-card algorithms"/g)].length,1);
  assert.doesNotMatch(html,/Microeconomics|Macroeconomics/);assert.match(html,/Limits, derivatives, and accumulation activities are open/);assert.doesNotMatch(html,/AP Calculus|AP Statistics/);assert.match(html,/72 diagnostic problems, 22 field projects, two Coordinate Geometry projects, 11 Number Theory, 10 Discrete Mathematics and 10 Probability proof projects/);
 });
 test('active figure families render finite states; calculus labels stay inside the frame',()=>{

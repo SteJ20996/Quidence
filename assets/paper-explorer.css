@@ -110,3 +110,5 @@ html[data-ui-theme="paper"] body[data-q-theme].quidence-home #home-record-notice
 @media(max-width:600px){html[data-ui-theme="paper"] body[data-q-theme].quidence-home .q-categories button{gap:7px}.q-paper-category-icon{width:19px;height:21px}}
 
 @media(max-width:800px){html[data-ui-theme="paper"] body[data-q-theme].quidence-home .subject-card>.q-paper-entry{min-height:44px}html[data-ui-theme="paper"] body[data-q-theme].quidence-home .q-request-subject select{min-height:44px}}
+/* Six subject categories do not fit in one row between phone and desktop widths, so they form two rows of three there. */
+@media(min-width:601px) and (max-width:920px){html[data-ui-theme="paper"] body[data-q-theme].quidence-home .q-categories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:5px 0 8px}html[data-ui-theme="paper"] body[data-q-theme].quidence-home .q-categories button{font-size:14px;min-height:44px;border-radius:9px 12px 8px 10px;padding:8px 7px}html[data-ui-theme="paper"] body[data-q-theme].quidence-home .q-categories button[aria-pressed="true"]{border-color:#87a07b}}

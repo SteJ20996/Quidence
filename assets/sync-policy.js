@@ -12,6 +12,7 @@ const KEYS={
  'quidence:number-theory-preview:v1':{label:'Number Theory projects'},
  'quidence:discrete-math:v1':{label:'Discrete Mathematics projects'},
  'quidence:probability:v1':{label:'Probability projects'},
+ 'quidence:algorithms:v1':{label:'Algorithms work'},
  'quidence:cross-disciplinary:v1':{label:'Cross-disciplinary projects'},
  cluevera_project_portfolio_v1:{label:"Field projects",schema:"cluevera_project_portfolio_v1"},
  cluevera_challenge_portfolio_v1:{label:'Diagnostic challenges',schema:'cluevera_challenge_portfolio_v1'},
