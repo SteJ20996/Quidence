@@ -340,8 +340,8 @@ const data={
       "en": "Algorithms",
       "es": "Algoritmos",
       "scope": {
-        "en": "Algorithms 1 to 5 open · Flowcharts, steps and code in Python, Java and MATLAB",
-        "es": "Algoritmos 1 a 5 abiertos · Diagramas de flujo, pasos y código en Python, Java y MATLAB"
+        "en": "Algorithms 1 to 11 open · Flowcharts, steps and code in Python, Java and MATLAB",
+        "es": "Algoritmos 1 a 11 abiertos · Diagramas de flujo, pasos y código en Python, Java y MATLAB"
       },
       "module": "algorithms"
     }
@@ -442,6 +442,14 @@ const data={
     "numberalgo": [
       "algorithms",
       "number-theory"
+    ],
+    "recursion": [
+      "algorithms",
+      "discrete-math"
+    ],
+    "graphalgo": [
+      "algorithms",
+      "discrete-math"
     ]
   },
   "chapters": [
@@ -1962,12 +1970,12 @@ const data={
     "recursion": {
       "en": "Solve a problem by first solving a smaller case of the same problem, as in the Tower of Hanoi.",
       "es": "Resuelve un problema resolviendo primero un caso más pequeño del mismo problema, como en la torre de Hanói.",
-      "relatedModule": "discrete-math"
+      "relatedModule": "algorithms"
     },
     "graphalgo": {
       "en": "Explore networks with breadth-first and depth-first search, shortest paths and spanning trees.",
       "es": "Explora redes con búsqueda en anchura y en profundidad, caminos mínimos y árboles generadores.",
-      "relatedModule": "discrete-math"
+      "relatedModule": "algorithms"
     },
     "dynamic": {
       "en": "Reuse the answers to smaller problems instead of solving them again, and see when greedy choices fail.",

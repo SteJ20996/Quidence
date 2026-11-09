@@ -17,7 +17,7 @@ async function main(){
   const open=async k=>{await page.locator(`[data-alg="${k}"]`).click();assert.equal(await page.locator(`[data-alg="${k}"]`).getAttribute('aria-pressed'),'true');};
 
   // Step every algorithm to its end. The flowchart box, the highlighted step and the code line follow the same event.
-  for(const k of A.ORDER){await open(k);const g=A.ALGS[k],E=await page.evaluate(k=>{const g=QuidenceAlgorithms.ALGS[k],d=g.defaults;return g.gen(d.list,d.target,()=>0.5,[d.a,d.b]).map(e=>({node:e.node,line:e.line,ask:!!e.ask,row:!!e.row}));},k);
+  for(const k of A.ORDER){await open(k);const g=A.ALGS[k],E=await page.evaluate(k=>{const g=QuidenceAlgorithms.ALGS[k],d=g.defaults;return g.gen(d.list,d.target,()=>0.5,[d.a,d.b],d).map(e=>({node:e.node,line:e.line,ask:!!e.ask,row:!!e.row}));},k);
    let asked=0,rows=0;
    for(let i=0;i<E.length;i++){
     await page.locator('#b-next').click();if(await page.locator('[data-opt]').count()){await page.locator('[data-opt]').first().click();asked++;}
@@ -73,7 +73,38 @@ async function main(){
   await open('euclid');for(const [f,v] of [['a1','13'],['b1','8'],['a2','1000'],['b2','500']])await page.locator('#cx-'+f).fill(v);await page.locator('#cx-go').click();
   assert.match(await page.locator('#challenges').textContent(),/bigger pair \(1000, 500\) needs 1 step, but the smaller pair \(13, 8\) needs 5/);await page.locator('[data-why="0"]').click();
   await page.locator('input[name="im-v"][value="1"]').check();await page.locator('#im-go').click();assert.match(await page.locator('#challenges').textContent(),/Correct on all 200 pairs/);result.challenges+=2;
-  assert.match(await page.locator('#recbox .big').textContent(),/#8 Recursion/);assert.equal(await page.locator('#recbox [data-go]').count(),1,'only open algorithms get an Open button');
+  assert.match(await page.locator('#recbox .big').textContent(),/#8 Recursion/);assert.equal(await page.locator('#recbox [data-go]').count(),2,'#8 and #1 are open');
+  // #6: an unsorted list hides a target, and a change returns the first of repeated items.
+  await open('binary-search');await page.locator('#cx-list').fill('3, 9, 1, 7, 5');await page.locator('#cx-target').fill('9');await page.locator('#cx-go').click();
+  assert.match(await page.locator('#cx-result').textContent(),/9 is in your list, but binary search returns −1/);await page.locator('[data-why="0"]').click();
+  await page.locator('input[name="im-v"][value="1"]').check();await page.locator('#im-go').click();assert.match(await page.locator('#im-result').textContent(),/Always the first position/);
+  assert.match(await page.locator('#recbox .big').textContent(),/#7 Merge sort/);
+  await page.locator('#in-list').fill('9, 2, 7');await page.locator('#in-target').fill('2');await page.locator('#in-apply').click();assert.match(await page.locator('[role="alert"]').textContent(),/not sorted/);
+  // #7: a sorted list favours insertion sort, and skipping ordered merges helps nearly sorted lists.
+  await open('merge-sort');await page.locator('#cx-list').fill('1, 2, 3, 4, 5, 6, 7, 8');await page.locator('#cx-go').click();assert.match(await page.locator('#cx-result').textContent(),/merge sort made 12 comparisons and insertion sort made 7/);await page.locator('[data-why="0"]').click();
+  await page.locator('input[name="im-v"][value="1"]').check();await page.locator('#im-go').click();assert.match(await page.locator('#im-result').textContent(),/Nearly sorted lists drop from/);
+  // #8: broken on purpose, then the busiest box.
+  await open('hanoi');await page.locator('input[name="bk-change"][value="nobase"]').check();await page.locator('input[name="bk-pred"][value="forever"]').check();await page.locator('#bk-go').click();
+  assert.match(await page.locator('#bk-result').textContent(),/Your prediction matched: its calls never finish/);
+  await page.locator('input[name="bk-change"][value="nomove"]').check();await page.locator('input[name="bk-pred"][value="works"]').check();await page.locator('#bk-go').click();assert.match(await page.locator('#bk-result').textContent(),/but it stops with disks in the wrong place/);
+  await page.locator('#bn-go').click();await page.locator('#flow .fn.pick[data-node="base"]').click();assert.match(await page.locator('#bn-result').textContent(),/The n = 0 check runs 15 times/);
+  assert.match(await page.locator('#recbox .big').textContent(),/#9 Breadth-first search/);
+  // #9: mud on the short route, built cell by cell; then the busiest box, and a wall edited in the workbench.
+  await open('bfs');const mud='.~~~~~.'+'.#####.'+'...#...'+'.#.#.#.'+'.#...#.';
+  for(let i=0;i<35;i++){const clicks={'.':0,'~':1,'#':2}[mud[i]];for(let c=0;c<clicks;c++)await page.locator('#cx-cell-'+i).click();}
+  await page.locator('#cx-go').click();assert.match(await page.locator('#cx-result').textContent(),/a path of 10 steps that costs 20, but the cheapest route costs 14/);await page.locator('[data-why="0"]').click();
+  await page.locator('#bn-go').click();await page.locator('#flow .fn.pick[data-node="nb"]').click();assert.match(await page.locator('#bn-result').textContent(),/Looking for a free neighbour runs/);
+  assert.match(await page.locator('#recbox .big').textContent(),/#14 Dijkstra/);
+  await page.locator('#in-edit').click();await page.locator('#cell-1').click();assert.equal(await page.locator('#cell-1').getAttribute('aria-pressed'),'true');await page.locator('#in-default').click();assert.equal(await page.locator('#in-edit').getAttribute('aria-pressed'),'true');await page.locator('#in-edit').click();
+  // #10: the starting maze's walls make DFS take a long way round; steering toward G stays right.
+  await open('dfs');for(let i=0;i<35;i++)if(A.DEFAULT_MAZE[i]==='#')await page.locator('#cx-cell-'+i).click();
+  await page.locator('#cx-go').click();assert.match(await page.locator('#cx-result').textContent(),/DFS finds a path of 14 steps, but a path of 10 steps exists/);await page.locator('[data-why="0"]').click();
+  await page.locator('input[name="im-v"][value="1"]').check();await page.locator('#im-go').click();assert.match(await page.locator('#im-result').textContent(),/Right on every maze/);
+  // #11: coins 1, 3 and 4 for 6, and dividing instead of subtracting.
+  await open('greedy-change');await page.locator('#cx-coins').fill('1, 3, 4');await page.locator('#cx-amount').fill('6');await page.locator('#cx-go').click();
+  assert.match(await page.locator('#cx-result').textContent(),/uses 3 coins \(4 \+ 1 \+ 1\), but 2 are enough: 3 \+ 3/);await page.locator('[data-why="0"]').click();
+  await page.locator('input[name="im-v"][value="1"]').check();await page.locator('#im-go').click();assert.match(await page.locator('#im-result').textContent(),/in 4 steps whatever the amount/);
+  assert.match(await page.locator('#recbox .big').textContent(),/#13 Dynamic programming/);result.challenges+=12;
   // The route map opens an algorithm from the keyboard.
   await page.locator('#map [data-open="find-max"]').focus();await page.keyboard.press('Enter');assert.equal(await page.locator('[data-alg="find-max"]').getAttribute('aria-pressed'),'true');
   assert.equal(await page.locator('#idea').inputValue(),RAW);
