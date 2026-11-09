@@ -64,6 +64,45 @@ Some suggestions point to the university part, which is not open yet. The map th
    - **Gap:** learners who meet the recursive version elsewhere may find different counts for the same list.
 6. **The Tower of Hanoi.** That 2ⁿ − 1 moves are necessary, not only enough, follows from an induction: the largest disk must move at least once, and only when the other n − 1 disks are all on the third peg. The course states the count and its doubling but does not prove the lower bound.
 
+## Pre-release review
+
+A separate review checked the six algorithms, their listings, the Spanish and the new parts of the page. These changes followed.
+
+- **Wrong or ambiguous statements.**
+  - Binary search counted rounds but asked about comparisons, while the trace shows two tests per round. The question, the cost question and the final note now count rounds, each of which chooses a new mid.
+  - The Euclid suggestion said #8 rewrites Euclid's algorithm. #8 is the Tower of Hanoi, so the text now says that Euclid's algorithm can call itself on a smaller pair and that #8 shows how recursion works.
+  - Several smaller statements were false or too strong, and now say what is true:
+    - greedy change is no longer said to use the fewest coins;
+    - an extra disk "doubles the moves and adds one";
+    - the left neighbour is taken first only when it is free;
+    - merge sort's work does depend on the kind of list.
+  - The mud explanation also covers a cheaper route that is just as long but drier.
+- **Results that could mislead.**
+  - Looking only right and down could pass 300 random mazes by chance and get the success message. One test maze now needs left moves, so this change always fails, and the message checks the choice too.
+  - Deleting the second call of the Tower of Hanoi could be read as either an illegal move or a wrong final place. The card now says that every move is checked and the run stops at the first problem.
+  - The missing base case now also explains that a real program ends with a recursion error.
+- **The "break it" card.**
+  - After a run, the old prediction stayed selected.
+  - With no prediction chosen, only a screen reader heard the message; it is now shown on the page.
+  - The card is labelled "Break it and predict".
+- **Bottleneck wording.** The bottleneck card for #8 and #9 talked about a "list". It now names the disks or the maze, and the BFS result shows the maze its counts come from.
+- **Listings.**
+  - The Python Hanoi `return` no longer lights the second call.
+  - The Python BFS start no longer lights the `import` line.
+  - The Java listings that use collections say they need `import java.util.*`.
+  - The MATLAB merge sort and greedy change say their input is a row vector.
+  - The MATLAB helpers are saved as their own files, so DFS can use them.
+  - For mazes, a MATLAB note explains that its cells are numbered down each column.
+- **Mazes.**
+  - Rows and columns are numbered, and the legend says cells are named (row, column) from 0.
+  - Arrow keys move between cells in both maze editors, with one tab stop per maze.
+  - The maze's spoken description names the current cell and the path.
+- **Recursion.** When a call starts a new frame, its dashed arrow lights up.
+- **Spanish.**
+  - "Un camino más corto" means "a shorter path". It is now "un camino mínimo" wherever a shortest path is meant.
+  - "Estaca de repuesto" is now "estaca auxiliar".
+  - Ten other phrasings were corrected, including a decision box that still read "c marked".
+
 ## Not in this part
 
 - The university algorithms 12 to 16.

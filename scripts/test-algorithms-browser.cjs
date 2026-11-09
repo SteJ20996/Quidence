@@ -85,7 +85,7 @@ async function main(){
   await page.locator('input[name="im-v"][value="1"]').check();await page.locator('#im-go').click();assert.match(await page.locator('#im-result').textContent(),/Nearly sorted lists drop from/);
   // #8: broken on purpose, then the busiest box.
   await open('hanoi');await page.locator('input[name="bk-change"][value="nobase"]').check();await page.locator('input[name="bk-pred"][value="forever"]').check();await page.locator('#bk-go').click();
-  assert.match(await page.locator('#bk-result').textContent(),/Your prediction matched: it never stops/);
+  assert.match(await page.locator('#bk-result').textContent(),/Your prediction matched: its calls never finish/);
   await page.locator('input[name="bk-change"][value="nomove"]').check();await page.locator('input[name="bk-pred"][value="works"]').check();await page.locator('#bk-go').click();assert.match(await page.locator('#bk-result').textContent(),/but it stops with disks in the wrong place/);
   await page.locator('#bn-go').click();await page.locator('#flow .fn.pick[data-node="base"]').click();assert.match(await page.locator('#bn-result').textContent(),/The n = 0 check runs 15 times/);
   assert.match(await page.locator('#recbox .big').textContent(),/#9 Breadth-first search/);
