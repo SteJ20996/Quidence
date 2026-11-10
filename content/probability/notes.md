@@ -1,6 +1,6 @@
 # 機率論課程（Probability）· 十個證明專題 · 設計筆記
 
-> 本文件給老師和設計者參考，不會發布到網站（`scripts/build-static-release.cjs` 不收 `content/`）。網站上的題目、證明與互動模型只有英文和西班牙文，內容見 `projects.cjs`。
+> 本文件給老師和設計者參考，不會發布到網站（`scripts/build-static-release.cjs` 不收 `content/`）。網站上的題目、證明與互動模型只有英文，內容見 `projects.cjs`。
 
 - **定位：** 進階數學（Further Mathematics）的獨立課程，排在 Calculus、Statistics 之後。統計課只在最後一課系統地教事件、條件機率與獨立性，隨機變數、期望值與機率分布沒有任何課程系統地教；本課程補上這一段，Statistics 接下來會改用它作為抽樣分布的前置。
 - **規模：** 10 個專題 × 4 步 = 40 步，83 個答題欄位。

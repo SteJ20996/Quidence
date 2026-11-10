@@ -3,6 +3,12 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const {chromium}=require('playwright'),{createServer}=require('../backend/server.cjs'),{files}=require('./build-static-release.cjs');
 const {chooseTheme}=require('./theme-choice.cjs'),{linkLikeControls}=require('./link-button-audit.cjs'),{lowContrastHeaderText}=require('./header-contrast-audit.cjs'),{recordLogo,logoReport}=require('./load-stability-probe.cjs');
 const {KEY,THEMES}=require('../assets/themes.js');
+// Quidence is published in English only. A language preference saved by an earlier version stays in storage untouched.
+const LOCALE='quidence_ui_locale_v1',LANGUAGE_CONTROLS='#quidence-language,#language,.language-toolbar,[data-language-host]';
+async function english(page,where){
+ assert.equal(await page.locator('html').getAttribute('lang'),'en',where+' is in English');
+ assert.equal(await page.locator(LANGUAGE_CONTROLS).count(),0,where+' has no language control');
+}
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
  const result={layouts:0,buttonChecks:0,headerContrastChecks:0,logoLoadChecks:0,pages:files().filter(f=>f.endsWith('.html')).length,themes:4,alignedHomeLayouts:0,classicCardLayouts:0,logoContrastChecks:0,errors:[],failures:[]};
@@ -14,16 +20,16 @@ async function main(){
   const context=await browser.newContext();await context.addInitScript(recordLogo);const page=await context.newPage();
   const listen=p=>{p.on('pageerror',e=>result.errors.push(e.message));p.on('response',r=>{if(r.status()>=400)result.failures.push(r.status()+' '+r.url());});};listen(page);
   // Switching styles must not move the controls under the user's pointer.
-  for(const lang of ['en','es'])for(const width of [960,1024,1440,1920,2560]){
-   await page.setViewportSize({width,height:1000});await page.goto(origin+'/?lang='+lang+'&view=courses');await page.waitForFunction(l=>window.QuidenceI18n?.locale===l,lang);let baseline;
+  for(const width of [960,1024,1440,1920,2560]){
+   await page.setViewportSize({width,height:1000});await page.goto(origin+'/?view=courses');await page.waitForFunction(()=>window.QuidenceI18n?.locale==='en');let baseline;
    for(const theme of Object.keys(THEMES)){
     await chooseTheme(page,theme);await page.evaluate(()=>document.fonts.ready);await page.evaluate(()=>scrollTo(0,0));
     const boxes=await page.evaluate(()=>{const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return[r.x,r.y,r.width,r.height]};return{bar:rect('.q-theme-bar'),label:rect('.q-theme-label'),buttons:[...document.querySelectorAll('[data-theme-choice]')].map(e=>{const r=e.getBoundingClientRect();return[r.x,r.y,r.width,r.height]}),header:rect('.qh-site-header'),layout:rect('.qf-layout')}});
-    homeEdges.set([lang,width,theme].join(':'),{x:boxes.layout[0],width:boxes.layout[2]});
+    homeEdges.set([width,theme].join(':'),{x:boxes.layout[0],width:boxes.layout[2]});
     if(!baseline)baseline=boxes;
-    assert.deepEqual(boxes.bar,baseline.bar,`${lang} ${width} ${theme}: Appearance moved`);assert.deepEqual(boxes.label,baseline.label,`${lang} ${width} ${theme}: Appearance label moved`);assert.deepEqual(boxes.buttons,baseline.buttons,`${lang} ${width} ${theme}: theme buttons moved`);
+    assert.deepEqual(boxes.bar,baseline.bar,`${width} ${theme}: Appearance moved`);assert.deepEqual(boxes.label,baseline.label,`${width} ${theme}: Appearance label moved`);assert.deepEqual(boxes.buttons,baseline.buttons,`${width} ${theme}: theme buttons moved`);
     for(const section of ['header','layout']){assert.equal(boxes[section][0],baseline[section][0],theme+' '+section+' left edge');assert.equal(boxes[section][2],baseline[section][2],theme+' '+section+' width');}
-    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${lang} ${width} ${theme}: overflow`);result.alignedHomeLayouts++;
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${width} ${theme}: overflow`);result.alignedHomeLayouts++;
     if(theme==='classic'){
      // Course cards share aligned rows; Algorithms and the cross-disciplinary projects sit in their own sections without row alignment.
      const cards=await page.locator('.subject-card:not(.cross,.algorithms)').evaluateAll(es=>es.map(e=>{
@@ -33,53 +39,56 @@ async function main(){
      assert.equal(cards.length,16);
      for(const card of cards){
       assert(card.slots[1].top>=card.slots[0].bottom+8,card.id+' activity label has its own line');
-      assert(card.slots.filter(Boolean).every(slot=>slot.inside),`${lang} ${width} ${card.id}: clipped card content`);
+      assert(card.slots.filter(Boolean).every(slot=>slot.inside),`${width} ${card.id}: clipped card content`);
       const present=card.slots.filter(Boolean);for(let i=1;i<present.length;i++)assert(present[i].top>=present[i-1].bottom-1,card.id+' card reading order overlaps');
      }
      // Every neighbouring card uses the same rows, including available action
-     // slots. Longer translations may expand a whole row, never clip its text.
+     // slots. Longer text may expand a whole row, never clip it.
      for(const card of cards)for(const peer of cards.filter(p=>p.top===card.top)){
       assert.equal(card.height,peer.height,card.id+' card height');
       card.slots.forEach((slot,i)=>{if(slot&&peer.slots[i])assert.equal(slot.top,peer.slots[i].top,card.id+' slot '+i+' alignment');});
      }
      const own=await page.locator('.cs-group .subject-card').evaluateAll(es=>es.map(e=>{const card=e.getBoundingClientRect();return{id:e.dataset.subject,parts:[...e.querySelectorAll('.topic-label,.version,.subject-picture,h3,.course-bridge-label,:scope>p,:scope>.subject-link,.availability-note,.scope-note')].map(el=>{const r=el.getBoundingClientRect();return{top:r.top,bottom:r.bottom,inside:r.left>=card.left&&r.right<=card.right+1&&r.bottom<=card.bottom+1&&el.scrollWidth<=el.clientWidth+1};})};}));
      assert.deepEqual(own.map(c=>c.id),['algorithms']);
-     for(const card of own){assert(card.parts.every(p=>p.inside),`${lang} ${width} ${card.id}: clipped card content`);for(let i=1;i<card.parts.length;i++)assert(card.parts[i].top>=card.parts[i-1].bottom-1,card.id+' card reading order overlaps');}
-     if(lang==='en'){const physics=cards.find(c=>c.id==='physics-1');for(const card of cards){assert.equal(card.height,physics.height,card.id+' matches Physics 1 height');card.slots.forEach((slot,i)=>{if(slot&&physics.slots[i])assert.equal(slot.top,physics.slots[i].top,card.id+' matches Physics 1 slot '+i);});}}
+     for(const card of own){assert(card.parts.every(p=>p.inside),`${width} ${card.id}: clipped card content`);for(let i=1;i<card.parts.length;i++)assert(card.parts[i].top>=card.parts[i-1].bottom-1,card.id+' card reading order overlaps');}
+     const physics=cards.find(c=>c.id==='physics-1');for(const card of cards){assert.equal(card.height,physics.height,card.id+' matches Physics 1 height');card.slots.forEach((slot,i)=>{if(slot&&physics.slots[i])assert.equal(slot.top,physics.slots[i].top,card.id+' matches Physics 1 slot '+i);});}
      result.classicCardLayouts++;
     }
    }
   }
   // Both Calculus routes use the same desktop content edges as the subject hub.
   result.explorationLayouts=0;
-  for(const lang of ['en','es'])for(const width of [960,1440,1920,2560])for(const theme of Object.keys(THEMES)){
+  for(const width of [960,1440,1920,2560])for(const theme of Object.keys(THEMES)){
    await page.setViewportSize({width,height:1000});
-   const expected=homeEdges.get([lang,width,theme].join(':'));
+   const expected=homeEdges.get([width,theme].join(':'));
    for(const route of ['checks','think']){
-    await page.goto(origin+'/modules/ad01/dist/'+route+'/?lang='+lang);
-    await page.waitForFunction(l=>window.QuidenceI18n?.locale===l,route==='think'?'en':lang);
+    await page.goto(origin+'/modules/ad01/dist/'+route+'/');
+    await page.waitForFunction(()=>window.QuidenceI18n?.locale==='en');
     await chooseTheme(page,theme);await page.evaluate(()=>document.fonts.ready);
     const bounds=await page.evaluate(()=>{const rect=selector=>{const r=document.querySelector(selector).getBoundingClientRect();return{x:r.x,width:r.width};};return{main:rect('main'),bar:rect('.q-theme-bar'),header:document.querySelector('.top')?rect('.top'):null,overflow:document.documentElement.scrollWidth-innerWidth};});
     for(const box of [bounds.main,bounds.bar,bounds.header].filter(Boolean)){
-     assert(Math.abs(box.x-expected.x)<=1,`${route} ${theme} ${lang} ${width}: content left edge`);
-     assert(Math.abs(box.width-expected.width)<=1,`${route} ${theme} ${lang} ${width}: content width`);
+     assert(Math.abs(box.x-expected.x)<=1,`${route} ${theme} ${width}: content left edge`);
+     assert(Math.abs(box.width-expected.width)<=1,`${route} ${theme} ${width}: content width`);
     }
     assert(bounds.overflow<=1,`${route} ${theme} ${width}: horizontal overflow`);
+    await english(page,route);
     if(route==='think'){
      assert.match(await page.locator('h1').innerText(),/thinking room/);
      assert(await page.locator('.intro-note').isVisible());
-     assert.equal(await page.locator('#quidence-language,#language').count(),0);
     }
     result.explorationLayouts++;
    }
   }
+  // Every page stays in English with a language preference saved by an earlier version, and on phones the address
+  // also asks for Spanish; the saved preference is left as it was.
+  await page.evaluate(key=>localStorage.setItem(key,'es'),LOCALE);
   for(const theme of Object.keys(THEMES)){
-   await page.goto(origin+'/?lang=en');await chooseTheme(page,theme);
+   await page.goto(origin+'/');await chooseTheme(page,theme);
    for(const width of [320,1440])for(const file of files().filter(f=>f.endsWith('.html'))){
-    const lang=width===320?'es':'en';await page.setViewportSize({width,height:1000});
-    await page.goto(origin+'/'+file+'?lang='+lang);
-    const fixed=/<html\b[^>]*\bdata-fixed-language="en"/.test(fs.readFileSync(path.join(__dirname,'..',file),'utf8'));
-    await page.waitForFunction(lang=>window.QuidenceI18n?.locale===lang,fixed?'en':lang);
+    await page.setViewportSize({width,height:1000});
+    await page.goto(origin+'/'+file+(width===320?'?lang=es':''));
+    await page.waitForFunction(()=>window.QuidenceI18n?.locale==='en');
+    await english(page,file);assert.equal(await page.locator('.q-theme-label').textContent(),'Appearance',file+' appearance label');
     assert.equal(await page.locator('html').getAttribute('data-ui-theme'),theme,file);
     assert.equal(await page.locator('.q-theme-bar').count(),1,file);
     assert.equal(await page.locator('[data-theme-choice="'+theme+'"]').getAttribute('aria-pressed'),'true',file);
@@ -93,13 +102,10 @@ async function main(){
     assert(logoContrast>=4.5,`${theme} ${file}: low logo contrast ${logoContrast}`);result.logoContrastChecks++;
     const expected=THEMES[theme].page.match(/\w\w/g).map(v=>parseInt(v,16));assert.equal(bounds.bg,`rgb(${expected.join(', ')})`,file+' theme background');
     if(file==='index.html'||(width===1440&&['courses/algebra-1/index.html','foundations/index.html','reports/index.html'].includes(file)))await page.screenshot({path:path.join(shots,theme+'-'+file.replaceAll('/','-')+'-'+width+'.png'),fullPage:false});
-    if(fixed)assert.equal(await page.locator('#quidence-language,#language').count(),0,file+' has no language switch');
-    else assert.match(await page.locator('#quidence-language').evaluate(e=>getComputedStyle(e).backgroundImage),/%2320383e/,file+' visible language chevron');
-    // The logo is painted once: never shown in the other color after the page is painted, and, in English, never
-    // pushed down by the appearance bar, the records banner or the language menu arriving late. (Spanish moves the
-    // page once while i18n.js translates it, which is a separate matter.)
+    // The logo is painted once: never shown in the other color after the page is painted, and never pushed down by
+    // the appearance bar or the records banner arriving late.
     const logo=await page.evaluate(logoReport,8);
-    if(logo){assert.deepEqual(logo.wrongAfterPaint,[],`${theme} ${file} ${width}: logo shown in the wrong color after the page was painted`);if(lang==='en')assert.deepEqual(logo.movesAfterPaint,[],`${theme} ${file} ${width}: logo moved after the page was painted`);result.logoLoadChecks++;}
+    if(logo){assert.deepEqual(logo.wrongAfterPaint,[],`${theme} ${file} ${width}: logo shown in the wrong color after the page was painted`);assert.deepEqual(logo.movesAfterPaint,[],`${theme} ${file} ${width}: logo moved after the page was painted`);result.logoLoadChecks++;}
     // Header and toolbar text stays readable when an appearance repaints the header.
     assert.deepEqual(await page.evaluate(lowContrastHeaderText),[],`${theme} ${file} ${width}: header text must have a 4.5:1 contrast`);
     result.headerContrastChecks++;
@@ -108,9 +114,10 @@ async function main(){
     await page.evaluate(()=>document.querySelectorAll('details').forEach(d=>{d.open=true;}));
     assert.deepEqual(await page.evaluate(linkLikeControls),[],`${theme} ${file} ${width}: standalone links and actions must look like buttons`);
     result.buttonChecks++;
+    assert.equal(await page.evaluate(key=>localStorage.getItem(key),LOCALE),'es',file+' left the saved language preference in place');
     result.layouts++;
    }
-   await page.goto(origin+'/?lang=en&view=courses');await page.waitForFunction(()=>window.QuidenceI18n?.locale==='en');
+   await page.goto(origin+'/?view=courses');await page.waitForFunction(()=>window.QuidenceI18n?.locale==='en');
    assert.equal(await page.locator('.subject-card:visible').count(),20);
    await page.screenshot({path:path.join(shots,theme+'-courses.png')});
    await page.evaluate(()=>document.querySelectorAll('details').forEach(d=>{d.open=true;}));
@@ -122,7 +129,7 @@ async function main(){
    await offline.emulateMedia({media:'print'});assert.equal(await offline.locator('body').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(255, 255, 255)');await offline.close();
   }
   // Phones show one button with the current appearance; it opens the four previews as an even two-column grid.
-  {const phone=await browser.newContext({viewport:{width:390,height:800}}),p=await phone.newPage();listen(p);await p.goto(origin+'/?lang=en');
+  {const phone=await browser.newContext({viewport:{width:390,height:800}}),p=await phone.newPage();listen(p);await p.goto(origin+'/');
    const toggle=p.locator('.q-theme-toggle'),bar=p.locator('.q-theme-bar');
    assert(await toggle.isVisible(),'phone menu button');assert.equal(await p.locator('[data-theme-choice]:visible').count(),0);assert.equal(await toggle.getAttribute('aria-expanded'),'false');
    assert((await bar.boundingBox()).height<=80,'collapsed appearance bar height');
@@ -133,25 +140,28 @@ async function main(){
    await chooseTheme(p,'paper');assert.equal(await p.locator('html').getAttribute('data-ui-theme'),'paper');assert.equal(await toggle.getAttribute('aria-expanded'),'false','menu closes after a choice');
    assert.match(await toggle.getAttribute('aria-label'),/^Appearance: Paper Explorer\./);await phone.close();}
   // Each desktop choice previews its appearance; only the selected one shows the check badge.
-  await page.setViewportSize({width:1440,height:900});await page.goto(origin+'/?lang=en');await chooseTheme(page,'atlas');
+  await page.setViewportSize({width:1440,height:900});await page.goto(origin+'/');await chooseTheme(page,'atlas');
   assert.equal(await page.locator('[data-theme-choice] .q-theme-thumb svg').count(),4);
   assert.deepEqual(await page.locator('[data-theme-choice] .q-theme-check').evaluateAll(es=>es.map(e=>getComputedStyle(e).visibility)),['hidden','hidden','visible','hidden']);
-  // Switch live without losing exact in-progress input, locale or report history.
-  await page.goto(origin+'/?lang=es');await page.waitForFunction(()=>window.QuidenceI18n?.locale==='es');
+  // Switch live without losing exact in-progress input, the saved language preference or report history, also when
+  // the address asks for Spanish: the page stays in English.
+  await page.goto(origin+'/?lang=es');await page.waitForFunction(()=>window.QuidenceI18n?.locale==='en');await english(page,'home ?lang=es');
   const raw='My exact question\n  −1/3 <test> 我的原文';await page.locator('#learning-goal').fill(raw);
   const before=await page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([key])=>key!=='quidence_ui_theme_v1')));
+  assert.equal(before[LOCALE],'es','saved language preference before the theme changes');
   for(const theme of ['classic','paper','atlas','studio'])await chooseTheme(page,theme);
   assert.equal(await page.locator('#learning-goal').inputValue(),raw);
   assert.deepEqual(await page.evaluate(()=>Object.fromEntries(Object.entries(localStorage).filter(([key])=>key!=='quidence_ui_theme_v1'))),before);
-  await page.reload();assert.equal(await page.locator('html').getAttribute('data-ui-theme'),'studio');assert.equal(await page.locator('#learning-goal').inputValue(),raw);
+  await page.reload();assert.equal(await page.locator('html').getAttribute('data-ui-theme'),'studio');assert.equal(await page.locator('#learning-goal').inputValue(),raw);await english(page,'home ?lang=es after reload');
   const other=await context.newPage();listen(other);await other.goto(origin+'/records/?lang=es');
   assert.equal(await other.locator('html').getAttribute('data-ui-theme'),'studio');
   await other.locator('[data-theme-choice="atlas"]').focus();await other.keyboard.press('Enter');
   await page.waitForFunction(()=>document.documentElement.dataset.uiTheme==='atlas');
-  await other.locator('#quidence-language').selectOption('en');await other.waitForFunction(()=>QuidenceI18n.locale==='en');
+  await english(other,'records ?lang=es');
   assert.equal(await other.locator('html').getAttribute('data-ui-theme'),'atlas');assert.equal(await other.locator('.q-theme-label').textContent(),'Appearance');
+  assert.equal(await other.evaluate(key=>localStorage.getItem(key),LOCALE),'es','saved language preference after a theme change in another tab');
   // A mathematics draft and exact record bytes survive live theme changes too.
-  await other.goto(origin+'/diagnostics/?module=algebra-1&lang=en');
+  await other.goto(origin+'/diagnostics/?module=algebra-1');
   await other.locator('[data-f-action="resume"]').click();
   const answer=other.locator('input[data-f-field][type="text"]').first();await answer.fill('123/7');
   await other.locator('[data-f-explanation]').fill(raw);await other.locator('[data-f-explanation]').blur();

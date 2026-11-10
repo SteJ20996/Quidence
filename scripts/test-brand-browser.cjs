@@ -17,12 +17,11 @@ async function run() {
     page.on('requestfailed', r => failures.push(r.url()));
     page.on('response', r => {if (r.status() >= 400) failures.push(r.url() + ': ' + r.status());});
     let layouts = 0;
-    for (const width of [320, 375, 768, 1440]) for (const lang of ['en', 'es']) {
+    for (const width of [320, 375, 768, 1440]) {
       await page.setViewportSize({width, height: 1000});
       for (const file of files().filter(f => f.endsWith('.html'))) {
-        await page.goto(origin + '/' + file + '?lang=' + lang);
-        const fixed=/<html\b[^>]*\bdata-fixed-language="en"/.test(fs.readFileSync(path.join(__dirname,'..',file),'utf8'));
-        await page.waitForFunction(locale => window.QuidenceI18n?.locale === locale, fixed?'en':lang);
+        await page.goto(origin + '/' + file);
+        await page.waitForFunction(() => window.QuidenceI18n?.locale === 'en');
         assert.equal(await page.locator('.q-brand-logo').count(), 1, file);
         await page.waitForFunction(() => [...document.querySelectorAll('.q-brand-logo')].every(e => e.complete && e.naturalWidth));
         const result = await page.locator('.q-brand-logo').evaluate(e => {
@@ -50,36 +49,23 @@ async function run() {
         layouts++;
       }
     }
-    for (const lang of ['en', 'es']) {
-      await page.goto(origin + '/?lang=' + lang);
-      const report = await page.evaluate(() => QuidenceReportTools.documentHtml('Saved reports', '<h1>Saved reports</h1><p class="student-work">My original answer: x &lt; 0</p>'));
-      assert(/<div class="report-brand" data-no-translate(?:="")?><svg/.test(report));
-      assert(!report.includes('quidence-logo-light.svg'), 'offline report must not fetch the logo');
-      await page.setContent(report);
-      assert.equal(await page.locator('.report-brand svg').count(), 1);
-      assert.equal(await page.locator('.student-work').textContent(), 'My original answer: x < 0');
-      await page.emulateMedia({media: 'print'});
-      assert.equal(await page.locator('.report-brand svg').isVisible(), true);
-      await page.emulateMedia({media: 'screen'});
-    }
+    await page.goto(origin + '/');
+    const report = await page.evaluate(() => QuidenceReportTools.documentHtml('Saved reports', '<h1>Saved reports</h1><p class="student-work">My original answer: x &lt; 0</p>'));
+    assert(/<div class="report-brand" data-no-translate(?:="")?><svg/.test(report));
+    assert(!report.includes('quidence-logo-light.svg'), 'offline report must not fetch the logo');
+    await page.setContent(report);
+    assert.equal(await page.locator('.report-brand svg').count(), 1);
+    assert.equal(await page.locator('.student-work').textContent(), 'My original answer: x < 0');
+    await page.emulateMedia({media: 'print'});
+    assert.equal(await page.locator('.report-brand svg').isVisible(), true);
+    await page.emulateMedia({media: 'screen'});
     await page.setViewportSize({width: 1440, height: 1000});
     const screenshots = path.join(__dirname, '../review/screenshots');
     fs.mkdirSync(screenshots, {recursive: true});
-    for (const lang of ['en', 'es']) {
-      await page.goto(origin + '/?lang=' + lang);
-      await page.screenshot({path: path.join(screenshots, 'new-logo-home-' + lang + '-1440.webp')});
-    }
-    await page.setViewportSize({width: 375, height: 950});
-    await page.goto(origin + '/?lang=es');
-    await page.screenshot({path: path.join(screenshots, 'new-logo-home-es-375.webp')});
-    await page.goto(origin + '/projects/?module=algebra-1&lang=es');
-    await page.waitForFunction(() => !document.querySelector('.f-lead')?.textContent.includes('Show an answer'));
-    await page.screenshot({path: path.join(screenshots, 'new-logo-projects-es-375.webp')});
-    const report = await page.evaluate(() => QuidenceReportTools.documentHtml('Saved reports', '<h1>Saved reports</h1><p class="student-work">My original answer: x &lt; 0</p>'));
-    await page.setContent(report);
-    await page.screenshot({path: path.join(screenshots, 'new-logo-report-es-375.webp')});
+    await page.goto(origin + '/');
+    await page.screenshot({path: path.join(screenshots, 'new-logo-home-en-1440.webp')});
     assert.deepEqual(errors, []); assert.deepEqual(failures, []);
-    console.log(JSON.stringify({pages: files().filter(f=>f.endsWith('.html')).length, languages: 2, layouts, offlineReports: 2, errors, failures}));
+    console.log(JSON.stringify({pages: files().filter(f=>f.endsWith('.html')).length, layouts, offlineReports: 1, errors, failures}));
   } finally {
     await browser?.close(); await new Promise(resolve => server.close(resolve));
   }

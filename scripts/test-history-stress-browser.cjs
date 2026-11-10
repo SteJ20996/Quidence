@@ -4,6 +4,8 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const {performance}=require('node:perf_hooks'),{chromium}=require('playwright');
 const {createServer}=require('../backend/server.cjs'),E=require('../assets/foundation-engine.js'),S=require('../assets/report-store.js');
 const ORIGINAL='I am still checking how this relationship works. Compare an equation with a diagram.\nMi explicación original: no cambiar mis palabras. 我的原始解释。';
+// Quidence is published in English only. A language preference saved by an earlier version stays in storage untouched.
+const LOCALE='quidence_ui_locale_v1',LANGUAGE_CONTROLS='#quidence-language,#language,.language-toolbar,[data-language-host]';
 const portfolio=E.fresh(),session=E.createSession(portfolio,'aa01');
 for(const task of E.tasks(session)){E.edit(session,task,{...E.blank(task),unsure:true,explanation:ORIGINAL});assert(E.submit(session,task).ok);}
 session.view='report';const payload=E.portable(session);
@@ -22,9 +24,10 @@ async function main(){
   for(const cpu of [1,4]){
    await cdp.send('Emulation.setCPUThrottlingRate',{rate:cpu});
    for(const count of [10,50,100]){
-    await page.goto(origin+'/reports/?lang=en');
+    // The reports open from an address and a saved preference that ask for Spanish; the page stays in English.
+    await page.goto(origin+'/reports/?lang=es');
     const data=archive(count),raw=JSON.stringify(data);
-    const seeded=await page.evaluate(raw=>{try{QuidenceStorage.setItem(QuidenceReportStore.KEY,raw);return true;}catch{return false;}},raw);
+    const seeded=await page.evaluate(({raw,key})=>{try{localStorage.setItem(key,'es');QuidenceStorage.setItem(QuidenceReportStore.KEY,raw);return true;}catch{return false;}},{raw,key:LOCALE});
     if(!seeded){output.archives.push({cpu,count,characters:raw.length,seeded:false});continue;}
     const start=performance.now();await page.reload();await page.locator('[data-r-action="open"]').first().waitFor();
     const loadMs=round(performance.now()-start);
@@ -40,15 +43,16 @@ async function main(){
     },{...payload,session:{...payload.session,id:'stress-report-'+(count-1)}});
     const click=performance.now();await page.locator('[data-r-action="open"]').first().click();await page.locator('#r-copy').waitFor();metrics.openMs=round(performance.now()-click);
     const stored=await page.evaluate(()=>QuidenceStorage.getItem(QuidenceReportStore.KEY));
-    const language=performance.now();for(let i=0;i<3;i++){await page.locator('#quidence-language').selectOption('es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');await page.locator('#quidence-language').selectOption('en');await page.waitForFunction(()=>QuidenceI18n.locale==='en');}metrics.sixLanguageChangesMs=round(performance.now()-language);
-    assert.equal(await page.evaluate(()=>QuidenceStorage.getItem(QuidenceReportStore.KEY)),stored,'Language switch changed originals');
+    assert.equal(await page.locator('html').getAttribute('lang'),'en','Reports left English');assert.equal(await page.locator(LANGUAGE_CONTROLS).count(),0,'Reports show a language control');
+    assert.equal(await page.evaluate(key=>localStorage.getItem(key),LOCALE),'es','Saved language preference changed');
     assert((await page.locator('.f-quote').allTextContents()).every(x=>x===ORIGINAL));assert(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=1);
     const seen=new Set();for(;;){for(const id of await page.locator('[data-r-action="open"]').evaluateAll(es=>es.map(e=>e.dataset.report)))seen.add(id);const older=page.locator('[data-r-action="older"]');if(!await older.count()||await older.isDisabled())break;await older.click();}assert.equal(seen.size,count,'Pagination hid historical reports');
+    assert.equal(await page.evaluate(()=>QuidenceStorage.getItem(QuidenceReportStore.KEY)),stored,'Reading the reports changed originals');
     metrics.allReportsReachable=true;metrics.maxLongTaskMs=round(await page.evaluate(()=>Math.max(0,...stressLongTasks)));output.archives.push({cpu,count,characters:raw.length,seeded:true,loadMs,...metrics});console.log(JSON.stringify(output.archives.at(-1)));
     await page.evaluate(()=>QuidenceStorage.removeItem(QuidenceReportStore.KEY));
    }
    for(const count of [10,100,250]){
-    await page.goto(origin+'/foundations/?module=aa01&lang=en');const raw=JSON.stringify(history(count));
+    await page.goto(origin+'/foundations/?module=aa01');const raw=JSON.stringify(history(count));
     const seeded=await page.evaluate(({key,raw})=>{try{QuidenceStorage.setItem(key,raw);return true;}catch{return false;}},{key:E.SCHEMA,raw});
     if(!seeded){output.histories.push({cpu,count,characters:raw.length,seeded:false});continue;}
     const start=performance.now();await page.reload();await page.locator('[data-f-action="resume"]').waitFor();const loadMs=round(performance.now()-start);
@@ -62,13 +66,13 @@ async function main(){
   }
   await cdp.send('Emulation.setCPUThrottlingRate',{rate:1});
   // Exhaust space in an isolated browser. Existing evidence must survive failure.
-  await page.goto(origin+'/reports/?lang=en');
+  await page.goto(origin+'/reports/');
   output.quota=await page.evaluate(p=>{const S=QuidenceReportStore,storage=QuidenceStorage;const first=S.save('aa01',p,'quota-original',storage);if(!first.ok)throw Error('Quota fixture failed');const before=storage.getItem(S.KEY);let filled=0;try{for(let i=0;i<100;i++){localStorage.setItem('stress-fill-'+i,'x'.repeat(100000));filled++;}}catch{}const huge=structuredClone(p);huge.reportText='x'.repeat(500000);const result=S.save('aa01',huge,'quota-new',storage);if(result.ok)throw Error('Expected quota failure');if(storage.getItem(S.KEY)!==before)throw Error('Quota failure altered prior records');return{filledBlocks:filled,rejectedNewSave:!result.ok,originalArchiveUnchanged:true,error:result.error};},payload);
   await context.close();
   // Two tabs for the same activity must never silently overwrite each other.
   const tabsContext=await browser.newContext(),one=await tabsContext.newPage(),two=await tabsContext.newPage();
-  await one.goto(origin+'/foundations/?module=aa01&lang=en');await one.locator('[data-f-action="resume"]').click();
-  await two.goto(origin+'/foundations/?module=aa01&lang=en');
+  await one.goto(origin+'/foundations/?module=aa01');await one.locator('[data-f-action="resume"]').click();
+  await two.goto(origin+'/foundations/?module=aa01');
   await one.locator('[data-f-explanation]').fill('First tab updated this draft.');await one.locator('[data-f-explanation]').press('Tab');
   const tabBefore=await one.evaluate(key=>QuidenceStorage.getItem(key),E.SCHEMA);
   await two.locator('[data-f-explanation]').fill('Second tab has its own unsaved draft.');await two.locator('[data-f-explanation]').press('Tab');
@@ -76,7 +80,7 @@ async function main(){
   assert.equal(await two.evaluate(key=>QuidenceStorage.getItem(key),E.SCHEMA),tabBefore,'Stale tab replaced the first draft');
   const downloaded=two.waitForEvent('download');await two.locator('[data-f-action="export-work"]').click();const download=await downloaded,stream=await download.createReadStream(),chunks=[];for await(const chunk of stream)chunks.push(chunk);const tabCopy=JSON.parse(Buffer.concat(chunks).toString());assert(JSON.stringify(tabCopy).includes('Second tab has its own unsaved draft.'));
   output.sameActivityTabs={staleWriteBlocked:true,firstDraftPreserved:true,secondDraftDownloadable:true};await tabsContext.close();
-  const durations=[],routes=['/','/diagnostics/?module=algebra-1','/projects/?module=ad01','/assets/foundation-app.js','/assets/i18n-es.js','/assets/quidence-logo-dark.svg'];let failed=0;
+  const durations=[],routes=['/','/diagnostics/?module=algebra-1','/projects/?module=ad01','/assets/foundation-app.js','/assets/i18n.js','/assets/quidence-logo-dark.svg'];let failed=0;
   const start=performance.now();for(let batch=0;batch<5;batch++)await Promise.all(Array.from({length:100},async(_,i)=>{const t=performance.now(),response=await fetch(origin+routes[i%routes.length]);const body=await response.text();if(response.status!==200||!body.length)failed++;durations.push(performance.now()-t);}));
   durations.sort((a,b)=>a-b);output.localRequests={concurrency:100,total:500,failed,totalMs:round(performance.now()-start),p50Ms:round(durations[249]),p95Ms:round(durations[474])};assert.equal(failed,0);
   const users=await Promise.all(Array.from({length:8},async(_,i)=>{const c=await browser.newContext({viewport:{width:375,height:850}}),p=await c.newPage();p.on('pageerror',e=>output.errors.push(e.message));for(const route of ['/','/diagnostics/?module=algebra-1','/reports/'])await p.goto(origin+route);await p.evaluate(({payload,i})=>{const r=QuidenceReportStore.save('aa01',payload,'isolated-user-'+i,QuidenceStorage);if(!r.ok)throw Error(r.error);},{payload,i});await p.reload();const ids=await p.evaluate(()=>QuidenceReportStore.read(QuidenceStorage).data.items.map(x=>x.sessionId));assert.deepEqual(ids,['isolated-user-'+i]);await c.close();return true;}));output.isolatedBrowsers={concurrentUsers:users.length,reloadAndIsolationPassed:users.every(Boolean)};

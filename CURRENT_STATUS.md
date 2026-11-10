@@ -1,3 +1,26 @@
+## 2026-11-10 · Quidence is English only
+
+The repository owner limited Quidence to English, including future subjects. [AGENTS.md](AGENTS.md) records the policy.
+
+- **Removed.**
+  - The Spanish catalogues (`assets/i18n-es.js`, `assets/i18n-es/`), the whole `localization/` folder and the 22 Spanish illustrations (`*-es.svg`).
+  - Every language menu, the language row in the appearance menu and the "English and Spanish" labels on course pages.
+  - The second-language copy in the course, project, Intuition Lab, map, Game Theory project and Calculus check sources.
+  - `?lang=` on links, hreflang alternates and the Spanish sitemap entries. The sitemap lists each of the 22 pages once.
+  - The scripts that produced Spanish (`build-locales`, `extract-localization`, `number-theory-locales`) and `test:spanish:review`.
+- **Kept on purpose.**
+  - A `?lang=es` address or a Spanish site language saved by an earlier version opens the page in English. The saved preference stays in the browser, unchanged.
+  - Answers, drafts and records saved while Spanish was offered are not rewritten. The course validators still accept their earlier language fields, so they open and export as before. Course pages ask for responses in English.
+  - The foundation grader still reads the Spanish unit spellings (for example litros, horas) that earlier answers may contain, so earlier work is graded the same way. They are never shown.
+  - Dates and numbers use an English format, whatever the browser's language.
+- **Checks.**
+  - `tests/english-only.test.cjs` scans every published file for language menus, Spanish catalogues, `?lang=es` and Spanish punctuation.
+  - `npm run test:english:browser` replaces `test:localization:browser`. The browser is set to Mexican Spanish, every address carries `?lang=es` and a Spanish preference is saved. It opens every released page at four widths, follows every same-site link from the homepage (119 routes), checks each page is English with no language control, no Spanish and no failed load, and checks that original answers reach reports exactly as written.
+  - AUDIT_LINE
+  - The other browser suites and unit tests lost their Spanish steps; their English checks are unchanged.
+
+See [the review note](review/english-only-20261110.md).
+
 ## 2026-11-09 · Algorithms part 3: algorithms 12 to 16
 
 The Algorithms course opens its university row, in English and Spanish, and the route is complete:

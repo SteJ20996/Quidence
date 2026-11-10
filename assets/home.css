@@ -167,7 +167,7 @@
   @media(pointer:coarse){body.quidence-home .goal-course-links a,body.quidence-home .goal-actions a{min-height:44px}}
 
 
-  body.quidence-home .qh-site-header{display:grid;grid-template-columns:250px auto minmax(240px,1fr) 112px;grid-template-areas:"brand navigation description language";align-items:center;gap:20px;max-width:1900px;margin:0 auto 22px;padding:16px 20px;background:var(--qa-header);color:var(--qa-header-ink);border-radius:15px;box-sizing:border-box}
+  body.quidence-home .qh-site-header{display:grid;grid-template-columns:250px auto minmax(240px,1fr);grid-template-areas:"brand navigation description";align-items:center;gap:20px;max-width:1900px;margin:0 auto 22px;padding:16px 20px;background:var(--qa-header);color:var(--qa-header-ink);border-radius:15px;box-sizing:border-box}
   body.quidence-home .qh-brand{grid-area:brand;min-width:0}
   body.quidence-home .qh-brand a.q-brand{display:flex;min-height:0;width:250px;max-width:100%;margin:0}
   body.quidence-home .qh-brand .q-brand img.q-brand-logo{width:250px;max-width:100%;height:auto;transform:none}
@@ -183,16 +183,16 @@
   body.quidence-home .qf-left-rail>.qf-page-nav .qf-page-choice{padding:10px 11px;font-size:12px;min-height:44px;color:var(--qa-muted);white-space:normal}
   body.quidence-home .qf-left-rail>.qf-page-nav .qf-page-choice[aria-current="page"]{background:var(--qa-green-soft);color:var(--qa-green)}
   body.quidence-home .learning-subject-buttons button{overflow-wrap:anywhere;hyphens:auto}
-  body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-columns:250px minmax(240px,1fr) 112px;grid-template-areas:"brand description language"}
+  body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-columns:250px minmax(240px,1fr);grid-template-areas:"brand description"}
   @media(min-width:960px) and (max-width:1199px){
-    body.quidence-home .qh-site-header{grid-template-columns:220px auto minmax(185px,1fr) 104px;gap:12px;padding:16px}
+    body.quidence-home .qh-site-header{grid-template-columns:220px auto minmax(185px,1fr);gap:12px;padding:16px}
     body.quidence-home .qh-brand a.q-brand,body.quidence-home .qh-brand .q-brand img.q-brand-logo{width:220px}
     body.quidence-home .qh-site-header .qf-page-choice{padding:10px 8px;font-size:11px}
-    body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-columns:220px minmax(200px,1fr) 104px}
+    body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-columns:220px minmax(200px,1fr)}
   }
   @media(max-width:959px){
-    body.quidence-home .qh-site-header,body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-columns:minmax(0,1fr) 104px;grid-template-areas:"brand language" "navigation navigation" "description description";gap:14px 12px;padding:16px;margin-bottom:20px}
-    body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-areas:"brand language" "description description"}
+    body.quidence-home .qh-site-header,body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-columns:minmax(0,1fr);grid-template-areas:"brand" "navigation" "description";gap:14px 12px;padding:16px;margin-bottom:20px}
+    body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-areas:"brand" "description"}
     body.quidence-home .qh-brand a.q-brand,body.quidence-home .qh-brand .q-brand img.q-brand-logo{width:250px}
     body.quidence-home .qh-site-header .qf-page-nav{justify-content:center;flex-wrap:wrap}
     body.quidence-home .qh-site-header .qf-page-choice{flex:1;white-space:normal}
@@ -218,10 +218,10 @@ body.quidence-home .qa-node,body.quidence-home .qa-step,body.quidence-home .qa-l
 body.quidence-home .qa-step:disabled{cursor:default}
 @media(max-width:959px){body.quidence-home .feedback-section{padding:24px}}
 
-/* Preserve a readable wordmark on narrow phones without crowding the language control. */
+/* On narrow phones the description sits between the wordmark and the page navigation. */
 @media(max-width:480px){
- body.quidence-home .qh-site-header{grid-template-areas:"brand brand" "description language" "navigation navigation"}
- body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-areas:"brand brand" "description language"}
+ body.quidence-home .qh-site-header{grid-template-areas:"brand" "description" "navigation"}
+ body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-areas:"brand" "description"}
 }
 
 body.quidence-home .eyebrow{color:#07786f}
@@ -231,13 +231,13 @@ body.quidence-home .learning-subject-buttons button[data-compact-physics]{grid-c
 .goal-sharing-note{font-size:13px;line-height:1.6;margin:12px 0;color:var(--muted,#526467)}
 /* Classic subject cards follow the Physics 1 reading order. Shared grid rows
    align neighbouring cards without pushing Start down with an auto margin. */
-html[data-ui-theme="classic"] body[data-q-theme].quidence-home .card-top{
+html[data-ui-theme="classic"] body[data-q-theme].quidence-home .card-top {
   flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:10px;
 }
-html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card>.subject-link{margin-top:0}
-@supports (grid-template-rows:subgrid) and selector(details::details-content){
-@media(min-width:960px){
-  html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-grid{
+html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card>.subject-link {margin-top:0}
+@supports (grid-template-rows:subgrid) and selector(details::details-content) {
+@media(min-width:960px) {
+  html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-grid {
     row-gap:12px;
     /* Repeat the same nine slots even when a course has fewer activity types.
        The first and last tracks include the card's border and padding. */
@@ -318,4 +318,4 @@ html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card.cros
 html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card.cross .course-bridge-label{grid-column:2;grid-row:4;align-self:center;margin:0;font-size:11px}
 html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card.cross .card-more{grid-row:5}
 /* In Learning Atlas the single project card fills its row on narrow screens instead of sitting beside an empty column. */
-@media(max-width:900px){html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-atlas-group:is([data-atlas-group="cross"],[data-atlas-group="cs"]) .subject-card:only-child{grid-column:1/-1}}}
+@media(max-width:900px){html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-atlas-group:is([data-atlas-group="cross"],[data-atlas-group="cs"]) .subject-card:only-child{grid-column:1/-1}}

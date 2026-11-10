@@ -58,7 +58,7 @@ jobs:
       - name: Check Geometric Studio layouts, original form nodes and responsive navigation
         run: npm run test:studio:browser
 
-  browser-languages-and-records:
+  browser-english-and-records:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -73,13 +73,11 @@ jobs:
         run: |
           npm ci
           npx playwright install --with-deps chromium
-      - name: Check bilingual layouts, complete reports and original answer preservation
-        run: npm run test:localization:browser
-      - name: Check the supplied logo across both languages and offline reports
+      - name: Check every page stays in English, with complete reports and original answer preservation
+        run: npm run test:english:browser
+      - name: Check the supplied logo and offline reports
         run: npm run test:brand:browser
-      - name: Check Spanish course evidence, number formats and lazy loading
-        run: npm run test:spanish:review
-      - name: Check knowledge map, bilingual course navigation and saved evidence
+      - name: Check knowledge map, course navigation and saved evidence
         run: npm run test:home:browser
       - name: Check Number Theory steps, proofs, exports and phone layouts
         run: npm run test:number-theory:browser
@@ -111,5 +109,5 @@ jobs:
         run: |
           npm ci
           npx playwright install --with-deps chromium
-      - name: Check Intuition Lab modes, translations, numerical checks and record preservation
+      - name: Check Intuition Lab modes, numerical checks and record preservation
         run: npm run test:intuition:browser
