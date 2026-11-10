@@ -32,7 +32,7 @@
 
 5. 部署 API token 使用控制台為此 Worker 建立或選擇的 token，不要寫入 GitHub 檔案。若已有 `NODE_VERSION` 建置變數，改為 `24.19.0`，避免覆蓋儲存庫版本檔案。
 6. 儲存連接並啟動首次建置。檢查日誌中 `npm test` 通過、靜態包建置成功，最後部署到 `shy-thunder-f1c9`。
-7. 開啟 `https://www.quidence.com/`，確認霧紫底色、Qidolab logo 與水壺圖案、左側跳轉入口，以及英語/西班牙語課程頁面。確認 `https://quidence.com/` 仍按原規則重新導向到主網域。
+7. 開啟 `https://www.quidence.com/`，確認霧紫底色、Qidolab logo 與水壺圖案、左側跳轉入口，以及英文課程頁面（網站只提供英文）。確認 `https://quidence.com/` 仍按原規則重新導向到主網域。
 
 Worker 名稱必須與設定的 `name` 完全一致。不要把 Project name 改為 `quidence`，否則會指向另一個 Worker。
 

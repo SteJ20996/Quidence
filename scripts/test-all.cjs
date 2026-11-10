@@ -19,7 +19,7 @@ const hardening=spawnSync(process.execPath,['--test',path.join(__dirname,'../tes
 
 const inventory=spawnSync(process.execPath,[path.join(__dirname,"build-source-ledger.cjs"),"--check"],{stdio:"inherit"});if(inventory.status!==0)process.exit(inventory.status??1);
 
-const localization=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/localization.test.cjs'),path.join(__dirname,'../tests/locale-chunks.test.cjs')],{stdio:'inherit'});if(localization.status!==0)process.exit(localization.status??1);
+const englishOnly=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/english-only.test.cjs')],{stdio:'inherit'});if(englishOnly.status!==0)process.exit(englishOnly.status??1);
 
 const seo=spawnSync(process.execPath,["--test",path.join(__dirname,"../tests/seo.test.cjs")],{stdio:"inherit"});if(seo.status!==0)process.exit(seo.status??1);
 

@@ -42,14 +42,9 @@ body[data-q-ui="records"] > header,
 body[data-q-ui="course"] > header.q-brand-header:not(.site-header):not(.f-site-header) {
   background: var(--q-paper); border-color: var(--q-line);
 }
-body[data-q-theme] .language-toolbar { background: var(--q-teal); color: #ffffff; }
-body[data-q-theme] .site-header .language-toolbar,
-body[data-q-theme] .header-inner .language-toolbar { background: transparent; }
-body[data-q-theme] .language-label select,
 body[data-q-theme] .header-button {
   background: #245e62; color: #ffffff; border-color: #9ebfbd;
 }
-body[data-q-theme] .language-label option { background: #ffffff; color: var(--q-ink); }
 /* Quiet near-white surfaces; chart canvases are intentionally excluded. */
 body[data-q-theme] :is(.card,.subject-filters,.orientation-card,
   .f-intro,.f-question,.f-evidence article,.route-card,.step-card,.lab-card,.hint-card,
@@ -99,7 +94,6 @@ body[data-q-theme] :is(input:not([type]),input[type="text"],input[type="number"]
 }
 body[data-q-theme] :is(input,textarea)::placeholder { color: #586a70; opacity: 1; }
 body[data-q-theme] :is(input,textarea)[readonly] { background: #f7f5fa; }
-body[data-q-theme] .language-label select { background: #245e62; color: #ffffff; border-color: #9ebfbd; }
 body[data-q-theme] :is(button,a,input,textarea,select,summary,[tabindex]):focus-visible {
   outline: 3px solid var(--q-focus); outline-offset: 3px;
 }
@@ -194,7 +188,6 @@ body[data-q-theme].quidence-home #goal-copy:disabled { background: #ece9f0; colo
 body[data-q-theme].quidence-home #goal-original,
 body[data-q-theme].quidence-home #goal-reset { background: var(--q-mint); color: var(--q-teal); border-color: var(--q-control); }
 body[data-q-theme].quidence-home .learning-request textarea { border-color: var(--q-control); }
-body[data-q-theme].quidence-home .qh-language-label select,
 body[data-q-theme].quidence-home .qa-language { background: #245e62; color: #ffffff; border-color: #9ebfbd; }
 body[data-q-theme].quidence-home .feedback-section { background: #edf8f2; border-color: var(--q-line); }
 body[data-q-theme].quidence-home .feedback-email { background: var(--q-primary); color: #ffffff; border-color: var(--q-primary); }
@@ -284,7 +277,6 @@ body[data-q-theme] select:not([multiple])[size="1"] {
   background-position: right 12px center;
   background-size: 12px 8px;
 }
-body[data-q-theme] .language-label select,
 body[data-q-theme].quidence-home .qa-language {
   --q-select-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m1 1.5 5 5 5-5' fill='none' stroke='%23ffffff' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }

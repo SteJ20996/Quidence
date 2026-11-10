@@ -1,3 +1,27 @@
+## 2026-11-10 · Quidence is English only
+
+The repository owner limited Quidence to English, including future subjects. [AGENTS.md](AGENTS.md) records the policy.
+
+- **Removed.**
+  - The Spanish catalogues (`assets/i18n-es.js`, `assets/i18n-es/`), the whole `localization/` folder and the 22 Spanish illustrations (`*-es.svg`).
+  - Every language menu, the language row in the appearance menu and the "English and Spanish" labels on course pages.
+  - The second-language copy in the course, project, Intuition Lab, map, Game Theory project and Calculus check sources.
+  - `?lang=` on links, hreflang alternates and the Spanish sitemap entries. The sitemap lists each of the 22 pages once.
+  - The scripts that produced Spanish (`build-locales`, `extract-localization`, `number-theory-locales`) and `test:spanish:review`.
+- **Kept on purpose.**
+  - A `?lang=es` address or a Spanish site language saved by an earlier version opens the page in English. The saved preference stays in the browser, unchanged.
+  - Answers, drafts and records saved while Spanish was offered are not rewritten. The course validators still accept their earlier language fields, so they open and export as before. Course pages ask for responses in English.
+  - The foundation grader still reads the Spanish unit spellings (for example litros, horas) that earlier answers may contain, so earlier work is graded the same way. They are never shown.
+  - Dates and numbers use an English format, whatever the browser's language.
+- **Checks.**
+  - `tests/english-only.test.cjs` scans every published file for language menus, Spanish catalogues, `?lang=es` and Spanish punctuation.
+  - `npm run test:english:browser` replaces `test:localization:browser`. The browser is set to Mexican Spanish, every address carries `?lang=es` and a Spanish preference is saved. It opens every released page at four widths, follows every same-site link from the homepage (119 routes), checks each page is English with no language control, no Spanish and no failed load, and checks that original answers reach reports exactly as written.
+  - A one-off audit, also with the browser set to Mexican Spanish, followed every same-site link from the homepage in all four appearances (119 routes each, 476 page loads). On every route in Classic, and on the homepage in the other three, it then clicked each control that does not delete, download, record or send data (1,435 clicks) and read the page again. It found no Spanish, no page error and no failed load.
+  - A static scan of every released text file found Spanish only in the grader's unit spellings described above.
+  - Before-and-after screenshots of all 36 pages, at two widths in two appearances, show no layout change apart from the removed menus. Two places needed a fix: an empty column in the Classic homepage header and a lost margin on the Calculus check page.
+  - The other browser suites and unit tests lost their Spanish steps; their English checks are unchanged.
+
+See [the review note](review/english-only-20261110.md).
 ## 2026-11-10 · A second tab no longer blocks saving
 
 On the Number Theory, Probability, Discrete Mathematics and cross-disciplinary course pages, opening the same course in a second tab and then closing or leaving it without any edits made the first tab report "Saved work changed in another tab" and stop saving. The bug predates the English-only change.

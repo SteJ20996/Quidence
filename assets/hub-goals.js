@@ -35,17 +35,17 @@ function mount(document,window){
    blocked=false;saving=true;original.hidden=true;reset.hidden=true;status.textContent='Your new request is saved.';
   }catch{blockedNotice();}
  });
- function entryLinks(){const es=window.QuidenceI18n?.locale==='es';
-  for(const [a,title,detail,symbol]of [[course,SUBJECTS[goal.subject].projectOnly&&!SUBJECTS[goal.subject].lessonCount?(es?'Explora proyectos':'Explore projects'):(es?'Empieza a explorar':'Start exploring'),SUBJECTS[goal.subject].projectOnly?(SUBJECTS[goal.subject].lessonCount?(es?'Cuatro lecciones · dos proyectos de seis pasos cada uno':'Four lessons · two projects with six steps each'):(es?'Dos proyectos · seis pasos conectados cada uno':'Two projects · six connected steps each')):(es?'Lecciones y ejemplos visuales':'Lessons & visual examples'),'↗'],[foundation,es?'Comprueba tus bases':'Check my foundations',es?'15 preguntas · conserva tus respuestas':'15 questions · keep your answers','✓']]){
+ function entryLinks(){
+  for(const [a,title,detail,symbol]of [[course,SUBJECTS[goal.subject].projectOnly&&!SUBJECTS[goal.subject].lessonCount?'Explore projects':'Start exploring',SUBJECTS[goal.subject].projectOnly?(SUBJECTS[goal.subject].lessonCount?'Four lessons · two projects with six steps each':'Two projects · six connected steps each'):'Lessons & visual examples','↗'],[foundation,'Check my foundations','15 questions · keep your answers','✓']]){
    a.setAttribute('data-no-translate','');a.classList.add('q-entry-link');a.replaceChildren();const icon=document.createElement('span');icon.className='q-entry-icon';icon.setAttribute('aria-hidden','true');icon.textContent=symbol;const words=document.createElement('span'),heading=document.createElement('strong'),note=document.createElement('small');heading.textContent=title;note.textContent=detail;words.append(heading,note);a.append(icon,words);
   }
  }
- document.addEventListener('quidence:language',entryLinks);
+ 
  function render(){
   for(const button of host.querySelectorAll('[data-learning-subject]'))button.setAttribute('aria-pressed',String(button.dataset.learningSubject===goal.subject));
   document.getElementById('goal-subject-label').textContent=SUBJECTS[goal.subject].title;
   course.href=SUBJECTS[goal.subject].course;foundation.hidden=!SUBJECTS[goal.subject].foundation;foundation.textContent=SUBJECTS[goal.subject].foundationLabel||'Complete a foundation check →';if(SUBJECTS[goal.subject].foundation)foundation.href=SUBJECTS[goal.subject].foundation;else foundation.removeAttribute('href');
-  report.innerHTML='<option value="">Start with my question only</option>'+reports.filter(r=>r.module===goal.subject||(['pre-algebra','algebra-1'].includes(goal.subject)&&r.module==='aa01')).map(r=>'<option data-no-translate data-i18n-date="'+window.QuidenceReportTools.escape(r.versions.at(-1).savedAt)+'" data-date-caption="'+window.QuidenceReportTools.escape(r.versions.at(-1).payload.check||'learning report')+'" value="'+window.QuidenceReportTools.escape(r.id)+'">'+window.QuidenceReportTools.escape(new Date(r.versions.at(-1).savedAt).toLocaleString())+' · '+window.QuidenceReportTools.escape(r.versions.at(-1).payload.check||'learning report')+'</option>').join('');
+  report.innerHTML='<option value="">Start with my question only</option>'+reports.filter(r=>r.module===goal.subject||(['pre-algebra','algebra-1'].includes(goal.subject)&&r.module==='aa01')).map(r=>'<option data-no-translate data-i18n-date="'+window.QuidenceReportTools.escape(r.versions.at(-1).savedAt)+'" data-date-caption="'+window.QuidenceReportTools.escape(r.versions.at(-1).payload.check||'learning report')+'" value="'+window.QuidenceReportTools.escape(r.id)+'">'+window.QuidenceReportTools.escape(new Date(r.versions.at(-1).savedAt).toLocaleString('en-US'))+' · '+window.QuidenceReportTools.escape(r.versions.at(-1).payload.check||'learning report')+'</option>').join('');
   entryLinks();
   text.value=goal.text;if(include){const reportable=!SUBJECTS[goal.subject].noReports;include.closest('label').hidden=!reportable;if(!reportable)goal.includeInReport=false;include.checked=goal.includeInReport;}area.hidden=true;persist();
   if(document.dispatchEvent&&window.CustomEvent)document.dispatchEvent(new window.CustomEvent('quidence:subject',{detail:{subject:goal.subject}}));

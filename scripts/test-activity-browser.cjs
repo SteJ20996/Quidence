@@ -99,7 +99,7 @@ async function run() {
         await page.goto(href);
         assert.equal(await page.locator('#f-subject').inputValue(), subject);
         assert.equal(await page.locator('.f-mode-link[aria-current="page"]').getAttribute('data-f-mode'), projects ? 'projects' : 'check');
-        assert.equal(await page.locator('[data-f-mode="learn"]').getAttribute('href'), '../' + COURSES[subject].course + '?lang=en');
+        assert.equal(await page.locator('[data-f-mode="learn"]').getAttribute('href'), '../' + COURSES[subject].course);
         await checkLayout(page, width, url.pathname + subject + ' overview');
         if (capture && (width === 1440 || width === 375) && ((!projects && subject === 'algebra-1') || (projects && subject === 'af01'))) {
           await page.screenshot({path: path.join(capture, (projects ? 'projects' : 'diagnostic') + '-' + width + '.png'), fullPage: true});
@@ -168,12 +168,22 @@ async function checkRestoredGameTheory(page, origin, width) {
   await page.reload();
   assert.equal(await page.locator('[data-f-unsure]').isChecked(), true);
   assert.equal(await page.locator('[data-f-explanation]').inputValue(), explanation);
-  await page.locator('#quidence-language').selectOption('es');
-  await page.waitForFunction(() => QuidenceI18n.locale === 'es');
+  // The site is English only. Reopening with a language saved by an earlier version, and ?lang=es,
+  // keeps the English page, the exact draft and every saved record, and leaves the saved language in storage.
+  const records = () => page.evaluate(() => JSON.stringify(Object.entries(localStorage).filter(([key]) => key !== 'quidence_ui_locale_v1').sort()));
+  const kept = await records();
+  await page.evaluate(() => localStorage.setItem('quidence_ui_locale_v1', 'es'));
+  const reopen = new URL(page.url()); reopen.searchParams.set('lang', 'es');
+  await page.goto(reopen.href);
+  await page.waitForFunction(() => window.QuidenceI18n?.locale === 'en');
+  assert.equal(await page.locator('html').getAttribute('lang'), 'en');
+  assert.equal(await page.locator('#quidence-language, #language, .language-toolbar, [data-language-host]').count(), 0, 'no language control');
+  assert.match(await page.locator('[data-f-action="report"]').textContent(), /My report/);
+  assert.equal(await page.locator('[data-f-unsure]').isChecked(), true);
   assert.equal(await page.locator('[data-f-explanation]').inputValue(), explanation);
-  await checkLayout(page, width, 'Game Theory Spanish foundation draft');
-  await page.locator('#quidence-language').selectOption('en');
-  await page.waitForFunction(() => QuidenceI18n.locale === 'en');
+  assert.equal(await records(), kept, 'reopening changed saved records');
+  assert.equal(await page.evaluate(() => localStorage.getItem('quidence_ui_locale_v1')), 'es');
+  await checkLayout(page, width, 'Game Theory foundation draft reopened with ?lang=es');
 
   await page.goto(origin + '/?view=courses');
   await page.locator('[data-subject="ac01"] .subject-link').click();

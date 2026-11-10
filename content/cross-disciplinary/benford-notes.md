@@ -1,6 +1,6 @@
 # 跨學科專題 3 · cross-p03 · 「為什麼這麼多數字以 1 開頭？」設計筆記
 
-> 本文件給老師和設計者參考，不會發布到網站（`scripts/build-static-release.cjs` 不收 `content/`）。網站上的題目、證明與互動模型只有英文和西班牙文，內容見 `projects.cjs` 的 `cross-p03`。
+> 本文件給老師和設計者參考，不會發布到網站（`scripts/build-static-release.cjs` 不收 `content/`）。網站上的題目、證明與互動模型只有英文，內容見 `projects.cjs` 的 `cross-p03`。
 
 - **層級：** Bridge（高中到大學入門）· 挑戰
 - **連結課程：** Statistics（`ae01`）、Algebra II、Pre-calculus（`af01`）、Number Theory

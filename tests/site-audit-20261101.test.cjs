@@ -41,7 +41,6 @@ test('project-course pages state the project and step counts their data actually
   const d=JSON.parse(read(data)),projects=Array.isArray(d)?d:d.projects,steps=projects.reduce((n,p)=>n+p.steps.length,0);
   assert(read(page).includes(`<small>${projects.length} projects · ${steps} steps · Go at your own pace</small>`),page);
  }
- assert(read('localization/cross-disciplinary-ui-extra-es.json').includes('"3 projects · 18 steps · Go at your own pace": "3 proyectos · 18 pasos · Avanza a tu ritmo"'));
 });
 
 test('the Basic Logic tool rule names exactly who may use the tools; earlier records keep their wording',()=>{
@@ -53,16 +52,11 @@ test('the Basic Logic tool rule names exactly who may use the tools; earlier rec
  const now=B.MODULES['basic-logic'].tasks,then=L.PUBLISHED['basic-logic-projects-1']['basic-logic'].tasks;
  assert.deepEqual(now.map(t=>t.fields),then.map(t=>t.fields));assert.deepEqual(now[1],then[1]);
  for(const id of Object.keys(B.HISTORY['quidence-projects-7']).filter(id=>id!=='basic-logic'))assert.deepEqual(B.HISTORY['quidence-projects-7'][id],B.MODULES[id],id);
- const es=JSON.parse(read('localization/basic-logic-projects-extra-es.json'));
- assert.match(es[stage(B.MODULES).prompt],/^Una nueva regla dice que un miembro puede usar las herramientas eléctricas exactamente cuando/);
- assert(es[stage(B.HISTORY['quidence-projects-7']).prompt],'the published wording keeps its translation');
 });
 
 test('the Benford test lab states the 5% conclusion with its random-sample premise',()=>{
- const app=read('cross-disciplinary/app.js'),es=read('localization/quantity-templates-es.json');
+ const app=read('cross-disciplinary/app.js');
  assert(!app.includes('these first digits do not follow Benford’s law'));
  assert(app.includes('if these numbers were a random sample from Benford’s law, a value this large would happen less than 5% of the time, so the test rejects the law at the 5% level.'));
  assert(app.includes('Passing the test does not prove that the data follow it.'));
- assert(es.includes('"χ² is about [n], above 15.51: if these numbers were a random sample from Benford’s law, a value this large would happen less than 5% of the time, so the test rejects the law at the 5% level."'));
- assert(es.includes('"χ² is about [n], below 15.51: at the 5% level, no evidence against Benford’s law. Passing the test does not prove that the data follow it."'));
 });

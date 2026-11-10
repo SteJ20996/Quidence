@@ -1,6 +1,6 @@
 # 專題 11 · nt-p11 · Fractions that force whole numbers（分數逼出整數）設計筆記
 
-> 本文件是給老師和設計者的資料，不會發布到網站（`scripts/build-static-release.cjs` 不收 `content/`）。網站上的題目、證明與互動模型只有英文和西班牙文，內容見 `nt-p11.json` 與 `localization/number-theory-es-mx-5.json`。
+> 本文件是給老師和設計者的資料，不會發布到網站（`scripts/build-static-release.cjs` 不收 `content/`）。網站上的題目、證明與互動模型只有英文，內容見 `nt-p11.json`。
 
 - **層級：** High-school foundation · 中等 · 整數一次不定方程
 - **路線位置：** 排在 Tickets & thresholds（nt-p09）之後、nt-p10 之前，成為第 4 個專題。它用到 Two jugs, one idea（nt-p02）的 Bézout 等式，Next check 則接回 nt-p09 的「門檻」結果。

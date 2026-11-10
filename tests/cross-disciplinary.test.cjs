@@ -1,5 +1,5 @@
 'use strict';
-// Cross-disciplinary projects: structure, Spanish coverage, and every checked answer recomputed independently.
+// Cross-disciplinary projects: structure, English-only text, and every checked answer recomputed independently.
 // Region counts come from the sign patterns realized next to the corners of each arrangement, not from the
 // formulas the proofs use or from the polygon splitting the labs draw with.
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
@@ -43,30 +43,31 @@ function generalCuts(count,dim,seed){
 }
 function counts(dim,max,seed){const cuts=generalCuts(max,dim,seed);return Array.from({length:max+1},(_,k)=>k<dim?2**k:piecesAroundCorners(cuts.slice(0,k),dim,10).size);}
 
-test('three bilingual projects in six steps each, with up-to-date page data and homepage entries',()=>{
+test('three English projects in six steps each, with up-to-date page data and homepage entries',()=>{
  assert.equal(fs.readFileSync(build.OUT,'utf8'),build.serialized(),'run node scripts/build-cross-disciplinary.cjs');
  assert.deepEqual(data.map(p=>p.id),['cross-p01','cross-p02','cross-p03']);assert.deepEqual(data.map(p=>p.steps.length),[6,6,6]);
  assert.deepEqual(data.map(p=>p.steps.reduce((n,s)=>n+s.fields.length,0)),[25,22,24]);
  assert.deepEqual(Object.keys(CROSS.projects),data.map(p=>p.id));
  const ids=data.flatMap(p=>p.steps.flatMap(s=>s.fields.map(f=>f.id)));assert.equal(new Set(ids).size,ids.length,'field ids are unique across projects');
- const catalog=build.crossCatalog();
+ // The page data is English only: no Spanish punctuation or letters, and no second-language copy in the source.
+ assert.doesNotMatch(build.serialized(),/[¿¡ñ]/);assert.equal(build.crossCatalog,undefined);
+ const text=x=>typeof x==='string'&&x.trim().length>0;
  for(const p of data){
-  for(const key of ['name','title','topic','prompt','approach','uses','nextCheck'])assert.ok(catalog[p[key]],p.id+'.'+key+' has Spanish');
+  for(const key of ['name','title','topic','prompt','approach','uses','nextCheck'])assert.ok(text(p[key]),p.id+'.'+key);
   assert.deepEqual(p.subjects,CROSS.projects[p.id].subjects,'the homepage card lists the same courses');
   for(const s of p.steps){
    assert.ok(s.connects.length&&s.connects.every(id=>COURSES[id]&&p.subjects.includes(id)),s.title+' links courses of the project');
    assert.ok(s.banner&&!/[A-Za-z]{3}/.test(s.banner.replace(/\b[LPB]\(|C\(|log₁₀/g,'')),'the banner is symbols only');
-   for(const para of s.proof.split(/\n\s*\n/))assert.ok(catalog[para.replace(/\s+/g,' ').trim()],'Spanish proof paragraph: '+para.slice(0,40));
+   assert.ok(s.proof.split(/\n\s*\n/).every(text),s.title+' proof');
    for(const f of s.fields){
-    if(/[A-Za-z]{3}/.test(f.label.replace(/\b[LPBC]\(/g,'')))assert.ok(catalog[f.label],'Spanish label '+f.label);
+    assert.ok(text(f.label),f.id+' label');
     if(f.type==='number'){assert.equal(C.grade(f,f.answer).status,'correct',f.id);assert.equal(C.grade(f,String(Number(f.answer)+1)).status,'retry',f.id+' off by one');}
     if(f.type==='choice'){assert.ok(f.options.some(o=>o.value===f.answer));assert.equal(new Set(f.options.map(o=>o.value)).size,f.options.length);
-     for(const o of f.options)if(/[A-Za-z]{3}/.test(o.label.replace(/\bP\(n\)/g,'')))assert.ok(catalog[o.label],'Spanish option '+o.label);}
-    if(f.type==='reason')assert.ok(f.criteria.length>=2&&f.criteria.every(c=>catalog[c]),f.id+' criteria');
+     assert.ok(f.options.every(o=>text(o.label)),f.id+' options');}
+    if(f.type==='reason')assert.ok(f.criteria.length>=2&&f.criteria.every(text),f.id+' criteria');
    }
   }
  }
- for(const [en,es]of Object.entries(catalog))if(/[A-Za-z]{4}/.test(en.replace(/\bPascal\b/g,'')))assert.notEqual(es,en,'untranslated: '+en.slice(0,60));
 });
 
 test('the stick: each cut at a new point adds one piece, and a repeated cut adds none',()=>{

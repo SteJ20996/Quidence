@@ -4,7 +4,7 @@ const Data=require('../assets/knowledge-map-data.js'),Map=require('../assets/kno
 test('every map route and region refers to a unique topic in the same chapter',()=>{
  for(const chapter of Data.chapters){
   const ids=new Set(chapter.nodes.map(n=>n.id));assert.equal(ids.size,chapter.nodes.length);
-  for(const node of chapter.nodes){assert(Number.isFinite(node.x)&&Number.isFinite(node.y));assert(node.en&&node.es);}
+  for(const node of chapter.nodes){assert(Number.isFinite(node.x)&&Number.isFinite(node.y));assert(node.en&&node.es===undefined);}
   for(const [a,b]of chapter.links){assert(ids.has(a),a);assert(ids.has(b),b);assert.notEqual(a,b);}
   for(const region of chapter.regions)for(const id of region)assert(ids.has(id),id);
   for(const id of chapter.initial)assert(ids.has(id),id);
@@ -29,11 +29,11 @@ test('continuing upward only crosses to the matching concepts on the next chapte
  assert.equal(Data.bridges[0].geometry,undefined);assert.equal(Data.bridges[1].real,undefined);
 });
 
-test('every topic has a bilingual introduction and a real related starting course',()=>{
- for(const [i,c] of Data.chapters.entries())for(const n of c.nodes){const p=Map.topicPreview(i,n.id);assert(p?.en.length>30,n.id);assert(p.es.length>30,n.id+' Spanish');assert(Catalog.COURSES[p.relatedModule],n.id+' course');}
+test('every topic has an English introduction and a real related starting course',()=>{
+ for(const [i,c] of Data.chapters.entries())for(const n of c.nodes){const p=Map.topicPreview(i,n.id);assert(p?.en.length>30,n.id);assert.equal(p.es,undefined,n.id+' has English only');assert(Catalog.COURSES[p.relatedModule],n.id+' course');}
  for(const [chapter,id]of [[0,'__proto__'],[999,'calculus'],[0,'not-a-topic']])assert.equal(Map.topicPreview(chapter,id),null);
  const cartoons=require('../assets/cartoon-map-data.js');
- for(const map of cartoons.maps)for(const n of map.nodes){assert(n.desc.en&&n.desc.es);assert(Catalog.COURSES[n.module||n.relatedModule],map.id+':'+n.id);}
+ for(const map of cartoons.maps)for(const n of map.nodes){assert(n.desc.en&&n.desc.es===undefined);assert(Catalog.COURSES[n.module||n.relatedModule],map.id+':'+n.id);}
  // A related foundation is not silently advertised as an advanced course.
  assert.deepEqual(Map.courseCandidates(1,['real']),[]);assert.equal(Map.topicPreview(1,'real').relatedModule,'ad01');
 });

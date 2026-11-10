@@ -17,7 +17,7 @@
     const map=root.querySelector('.qa-map'),cities=root.querySelector('.qa-cities'),roads=root.querySelector('.qa-roads'),terrain=root.querySelector('.qa-terrain');
     const layerBar=root.querySelector('.qa-layers'),chapterBar=root.querySelector('.qa-chapters'),next=root.querySelector('.qa-next'),back=root.querySelector('.qa-back'),info=root.querySelector('.qa-focus-text');
     const courses=new Map(data.courses.filter(c=>catalog.COURSES[c.module]&&!catalog.COURSES[c.module].planned).map(c=>[c.id,c]));
-    let language=window.QuidenceI18n?.locale==='es'?'es':'en',chapter=0,frontier=['prealgebra'],trail=[],activeLayer=null,chosenCourse=null,syncing=false,layoutFrame=null;
+    const language='en';let chapter=0,frontier=['prealgebra'],trail=[],activeLayer=null,chosenCourse=null,syncing=false,layoutFrame=null;
     let selectedModule=document.querySelector('[data-learning-subject][aria-pressed="true"]')?.dataset.learningSubject||'pre-algebra';
     const current=()=>data.chapters[chapter],name=id=>current().nodes.find(n=>n.id===id)?.[language]||id;
     const children=ids=>[...new Set(current().links.filter(([a])=>ids.includes(a)).map(([,b])=>b))].filter(id=>!ids.includes(id));
@@ -55,7 +55,7 @@
       const card=document.querySelector('.subject-card[data-subject="'+module+'"]');
       const anchor=card?.querySelector(kind==='course'?'.subject-link':'.challenge-link');
       const url=new URL(anchor?.getAttribute('href')||catalog.COURSES[module][kind],window.location.href);
-      url.searchParams.set('lang',language);return url.pathname+url.search+url.hash;
+      return url.pathname+url.search+url.hash;
     }
     function renderSelection(w,select=false){
       const body=root.querySelector('.qa-course-body'),title=body.querySelector('.qa-course-title'),meta=body.querySelector('.qa-course-meta'),actions=body.querySelector('.qa-actions'),choices=body.querySelector('.qa-course-choices');
@@ -76,8 +76,8 @@
       }
       const learn=root.querySelector('.qa-learn'),diagnose=root.querySelector('.qa-diagnose');
       if(course){learn.textContent=w.learn;learn.onclick=diagnose.onclick=()=>selectSubject(course.module);learn.href=courseLink(course.module,'course');diagnose.hidden=!catalog.COURSES[course.module].challenge;if(!diagnose.hidden)diagnose.href=courseLink(course.module,'challenge');else diagnose.removeAttribute('href');if(select)selectSubject(course.module);}
-      else{if(preview){const module=preview.relatedModule,c=catalog.COURSES[module],links=document.createElement('div');links.className='qa-topic-links';const note=document.createElement('small');note.textContent=language==='es'?'Orientación conceptual. Este curso relacionado no cubre toda la rama avanzada.':'Concept introduction. This related starting course does not cover the full advanced branch.';intro.append(note);
-        const related=document.createElement('a');related.href=courseLink(module,'course');related.textContent=(language==='es'?'Base relacionada: ':'Related start: ')+c.title;const subjects=document.createElement('a');subjects.href='?view=courses&lang='+language+'#subject-'+module;subjects.dataset.mapSubjects=module;subjects.textContent=language==='es'?'Ver la materia →':'View subject →';links.append(related,subjects);intro.append(links);}
+      else{if(preview){const module=preview.relatedModule,c=catalog.COURSES[module],links=document.createElement('div');links.className='qa-topic-links';const note=document.createElement('small');note.textContent='Concept introduction. This related starting course does not cover the full advanced branch.';intro.append(note);
+        const related=document.createElement('a');related.href=courseLink(module,'course');related.textContent='Related start: '+c.title;const subjects=document.createElement('a');subjects.href='?view=courses#subject-'+module;subjects.dataset.mapSubjects=module;subjects.textContent='View subject →';links.append(related,subjects);intro.append(links);}
         learn.onclick=diagnose.onclick=null;learn.removeAttribute('href');diagnose.removeAttribute('href');}
     }
     function update(select=false){
@@ -95,11 +95,11 @@
       for(const button of chapterBar.querySelectorAll('button')){button.textContent=w.chapters[Number(button.dataset.chapter)];button.setAttribute('aria-pressed',String(Number(button.dataset.chapter)===chapter));}
       for(const [index,button]of [...layerBar.querySelectorAll('button')].entries()){button.textContent=w.layers[chapter][index];button.setAttribute('aria-pressed',String(button.dataset.layer===activeLayer));}
       root.lang=language;root.dataset.chapter=String(chapter);
-      root.setAttribute('aria-label',language==='es'?'Mapa de conocimientos':'Knowledge Map');
-      map.setAttribute('aria-label',language==='es'?'Los conocimientos crecen de abajo hacia arriba':'Knowledge grows from bottom to top');
-      chapterBar.setAttribute('aria-label',language==='es'?'Mapas de conocimientos relacionados':'Connected knowledge maps');
-      layerBar.setAttribute('aria-label',language==='es'?'Ramas del conocimiento':'Knowledge branches');
-      roads.setAttribute('aria-label',language==='es'?'Líneas continuas: bases habituales. Líneas discontinuas: conexiones y aplicaciones.':'Solid routes: common foundations. Dashed routes: connections and applications.');
+      root.setAttribute('aria-label','Knowledge Map');
+      map.setAttribute('aria-label','Knowledge grows from bottom to top');
+      chapterBar.setAttribute('aria-label','Connected knowledge maps');
+      layerBar.setAttribute('aria-label','Knowledge branches');
+      roads.setAttribute('aria-label','Solid routes: common foundations. Dashed routes: connections and applications.');
       renderSelection(w,select);scheduleLayout();
     }
     function svgPath(d,stroke,width,dashed=false){
@@ -136,8 +136,7 @@
     next.addEventListener('click',()=>{const following=children(frontier),targets=bridgeTargets();if(following.length)focusNodes(following);else if(targets.length)chooseChapter(chapter+1,targets);});
     back.addEventListener('click',()=>{const previous=trail.pop();if(previous){chapter=previous.chapter;frontier=previous.frontier;activeLayer=previous.activeLayer;chosenCourse=null;buildCities();update();}});
     document.addEventListener('quidence:subject',event=>{selectedModule=event.detail.subject;if(!syncing)focusSubject(selectedModule);});
-    document.addEventListener('quidence:language',event=>{language=event.detail.locale==='es'?'es':'en';update();});
-    document.addEventListener('quidence:home-view',scheduleLayout);
+        document.addEventListener('quidence:home-view',scheduleLayout);
     root.hidden=false;focusSubject(selectedModule,false);
     new window.ResizeObserver(scheduleLayout).observe(map);document.fonts?.ready.then(scheduleLayout);
     return{layout:scheduleLayout};

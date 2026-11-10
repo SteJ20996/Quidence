@@ -1,12 +1,17 @@
 'use strict';
+// Number Theory in a browser: steps, proofs, answer checks, every lab, saved work, exports and layouts.
+// The site is English only: an old language preference or address parameter changes nothing, and the
+// learner's own words (here partly in other languages) are kept and exported exactly as written.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {chromium}=require('playwright'),{createServer}=require('../backend/server.cjs');
 const data=require('../courses/number-theory/data.json'),C=require('../courses/number-theory/core.js');
 const KEY='quidence:number-theory-preview:v1',RAW='Mi razonamiento original / 我的证明\n  <img src=x onerror=alert(1)> & spaces.';
+const LOCALE='quidence_ui_locale_v1',NOTE='Write your responses in English. Work you saved earlier stays exactly as you wrote it.';
+const paragraphs=text=>String(text).split(/\n\s*\n/).filter(Boolean);
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
  const origin='http://127.0.0.1:'+server.address().port,errors=[],failed=[];
- const result={projects:data.length,steps:0,layouts:0,languages:['en','es'],errors,failedRequests:failed};
+ const result={projects:data.length,steps:0,layouts:0,languages:['en'],errors,failedRequests:failed};
  try{
   browser=await chromium.launch({executablePath:process.env.QUIDENCE_BROWSER_EXECUTABLE,args:['--no-sandbox']});
   const context=await browser.newContext({viewport:{width:1440,height:900},reducedMotion:'reduce'}),page=await context.newPage();
@@ -23,22 +28,27 @@ async function main(){
   await page.locator('#f-gcd').fill('6,468');await page.locator('#check').click();assert.match(await page.locator('#feedback-gcd').textContent(),/no thousands separators/);
   await page.locator('[data-step="1"]').click();await page.locator('#f-why').fill(RAW);await page.locator('#check').click();assert.match(await page.locator('#feedback-why').textContent(),/saved for review/);
   const before=await page.evaluate(k=>localStorage.getItem(k),KEY);
-  await page.locator('#quidence-language').selectOption('es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');
+  // A language saved by an earlier version, or a lang address parameter, leaves the page in English with no
+  // language control; the learner's words and the saved record are unchanged, and so is the saved preference.
+  await page.evaluate(k=>localStorage.setItem(k,'es'),LOCALE);await page.goto(origin+'/courses/number-theory/?lang=es');await page.locator('#app').waitFor({state:'visible'});
+  assert.equal(await page.locator('html').getAttribute('lang'),'en');assert.equal(await page.evaluate(()=>QuidenceI18n.locale),'en');
+  assert.equal(await page.locator('#quidence-language,#language,[data-language-host]').count(),0);
+  assert.equal(await page.locator('.content-language-note').textContent(),NOTE);assert.match(await page.locator('#check').textContent(),/Check/);
+  assert.equal(await page.locator('#work h3').first().textContent(),data.find(p=>p.id==='nt-p01').steps[1].title);
   assert.equal(await page.locator('#f-why').inputValue(),RAW);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),before);
-  assert.match(await page.locator('.content-language-note').textContent(),/inglés o español/);assert.match(await page.locator('#check').textContent(),/Comprueba/);
-  // Every authored project, proof, criterion and option is localized; originals stay intact.
-  const expected=Object.assign({},...fs.readdirSync(path.join(__dirname,'../localization')).filter(f=>/^number-theory-es-mx(?:-\d+)?\.json$/.test(f)).map(f=>JSON.parse(fs.readFileSync(path.join(__dirname,'../localization',f),'utf8'))));
-  const collect=async()=>{await page.evaluate(()=>QuidenceI18n.apply());};
+  assert.equal(await page.evaluate(k=>localStorage.getItem(k),LOCALE),'es');
+  // Every authored title, proof paragraph and option is shown exactly as written, at desktop and phone widths.
   const chooseProject=async id=>{if(await page.locator('#project-select').isVisible())await page.locator('#project-select').selectOption(id);else await page.locator(`[data-project="${id}"]`).click();};
   for(const width of [1440,375]){await page.setViewportSize({width,height:900});for(const p of data){await chooseProject(p.id);for(let i=0;i<p.steps.length;i++){
-   await page.locator(`[data-step="${i}"]`).click();await page.locator('#proof').evaluate(e=>e.open=true);await collect();
-   assert.equal(await page.locator('#project-head h2').textContent(),expected[p.id].title);
-   assert.equal(await page.locator('#work h3').textContent(),expected[p.id].steps[i].title);
-   assert.deepEqual(await page.locator('.proof-content > p:not(.proof-label)').allTextContents(),expected[p.id].steps[i].proof);
+   await page.locator(`[data-step="${i}"]`).click();await page.locator('#proof').evaluate(e=>e.open=true);
+   assert.equal(await page.locator('#project-head h2').textContent(),p.title);
+   assert.equal(await page.locator('#work h3').textContent(),p.steps[i].title);
+   assert.deepEqual(await page.locator('.proof-content > p:not(.proof-label)').allTextContents(),paragraphs(p.steps[i].proof));
    for(const f of p.steps[i].fields)if(f.options)assert.deepEqual(await page.locator(`input[data-field="${f.id}"]`).evaluateAll(es=>es.map(e=>e.value)),C.orderedOptions(f,p.id+':'+i+':'+f.id).map(o=>o.value));
    assert(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=1,'Number Theory overflow '+p.id+' '+i+' at '+width);
   }}}
   await page.setViewportSize({width:1440,height:900});
+  // Every lab control runs without a page error.
   for(const [project,step,actions]of [
    ['nt-p01',0,['tile-next','tile-next','tile-next','tile-next','tile-reset']],
    ['nt-p02',0,['jug-fill-1','jug-pour-1','jug-empty-0','jug-pour-1','jug-fill-1','jug-pour-1','jug-empty-0','jug-pour-1','jug-undo','jug-reset']],
@@ -49,9 +59,8 @@ async function main(){
    ['nt-p06',0,['rsa-lock','rsa-unlock']],['nt-p08',0,['factor-expand','factor-14','factor-expand']],
    ['nt-p11',0,['books-more','books-mod','books-more','books-less']],['nt-p11',1,['clock-next','clock-next','clock-reset']],
    ['nt-p11',2,['fowl-next','fowl-next','fowl-reset']],['nt-p11',3,['line-left','line-right']],['nt-p11',4,['reach-show','reach-show']]
-  ]){await chooseProject(project);await page.locator(`[data-step="${step}"]`).click();for(const action of actions){await page.locator(`[data-lab="${action}"]`).click();await collect();}}
+  ]){await chooseProject(project);await page.locator(`[data-step="${step}"]`).click();for(const action of actions)await page.locator(`[data-lab="${action}"]`).click();}
   // Fractions & whole numbers: each picture reaches the case its step is about, and only that case.
-  await page.locator('#quidence-language').selectOption('en');await page.waitForFunction(()=>QuidenceI18n.locale==='en');
   await chooseProject('nt-p11');await page.locator('[data-step="0"]').click();
   while(!await page.locator('[data-lab="books-less"]').isDisabled())await page.locator('[data-lab="books-less"]').click();
   for(let x=1;x<8;x++){assert.match(await page.locator('#lab .lab-status').textContent(),/not a whole number/);await page.locator('[data-lab="books-more"]').click();}
@@ -66,35 +75,31 @@ async function main(){
   assert.match(await page.locator('#lab .lab-status').textContent(),/\(3, 13\).*solution in positive whole numbers/);await page.locator('[data-lab="line-left"]').click();assert.match(await page.locator('#lab .lab-status').textContent(),/t = −5 → .* = \(−4, 16\)Here x or y is not positive/);assert(await page.locator('[data-lab="line-left"]').isDisabled());assert.equal(await page.locator('#lab svg circle').count(),6);for(const c of await page.locator('#lab svg circle, #lab svg text').all()){const b=await c.boundingBox(),v=await page.locator('#lab svg').boundingBox();assert(b.x>=v.x-1&&b.x+b.width<=v.x+v.width+1,'line lab mark inside the picture');}
   await page.locator('[data-step="4"]').click();assert.doesNotMatch(await page.locator('#lab').textContent(),/3\(3x \+ 5y\)|is not one of them/);await page.locator('[data-lab="reach-show"]').click();
   assert.deepEqual(await page.locator('#lab svg circle').count(),await page.evaluate(()=>{const r=new Set();for(let x=1;9*x<100;x++)for(let y=1;9*x+15*y<100;y++)r.add(9*x+15*y);return r.size;}));
-  await page.locator('#quidence-language').selectOption('es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');await collect();
-  assert.match(await page.locator('#lab .lab-status').textContent(),/múltiplos de 3/);
-  for(const step of [0,1,2,3]){await page.locator(`[data-step="${step}"]`).click();await collect();}
-  assert.match(await page.locator('#lab .lab-status').textContent(),/números enteros positivos|no es positivo/);
-  await page.locator('[data-step="0"]').click();await collect();assert.match(await page.locator('#lab .lab-status').textContent(),/El grupo A recibe 81 libros en 9 pilas de 9/);
-  await page.locator('#quidence-language').selectOption('en');await page.waitForFunction(()=>QuidenceI18n.locale==='en');
-  await page.locator('[data-project="nt-p09"]').click();await page.locator('[data-step="0"]').click();await page.locator('#ticket-group').fill('23');await page.locator('#ticket-group').dispatchEvent('change');await collect();
-  await page.locator('[data-project="nt-p07"]').click();await page.locator('#triple-m').evaluate(e=>{e.value='4';e.dispatchEvent(new Event('input',{bubbles:true}));});await collect();
-  await page.locator('[data-project="nt-p06"]').click();await page.locator('#rsa-message').fill('11');await page.locator('#rsa-message').dispatchEvent('change');await page.locator('[data-lab="rsa-lock"]').click();await page.locator('[data-lab="rsa-unlock"]').click();await collect();
+  // Each picture keeps its own state when the learner moves between steps.
+  assert.match(await page.locator('#lab .lab-status').textContent(),/multiples of 3/);
+  for(const step of [0,1,2,3])await page.locator(`[data-step="${step}"]`).click();
+  assert.match(await page.locator('#lab .lab-status').textContent(),/positive whole numbers|not positive/);
+  await page.locator('[data-step="0"]').click();assert.match(await page.locator('#lab .lab-status').textContent(),/Class A gets 81 books in 9 stacks of 9/);
+  await page.locator('[data-project="nt-p09"]').click();await page.locator('[data-step="0"]').click();await page.locator('#ticket-group').fill('23');await page.locator('#ticket-group').dispatchEvent('change');
+  await page.locator('[data-project="nt-p07"]').click();await page.locator('#triple-m').evaluate(e=>{e.value='4';e.dispatchEvent(new Event('input',{bubbles:true}));});
+  await page.locator('[data-project="nt-p06"]').click();await page.locator('#rsa-message').fill('11');await page.locator('#rsa-message').dispatchEvent('change');await page.locator('[data-lab="rsa-lock"]').click();await page.locator('[data-lab="rsa-unlock"]').click();
 
   // Regressions supplied in the uploaded evidence: rounding, X, stable choices and exported statuses.
   await chooseProject('nt-p07');await page.locator('[data-step="4"]').click();
   for(const [value,correct]of [['5/13',true],['10/26',true],['0.38',true],['0.385',true],['0.3846',true],['0.39',false],['0.3845',false]]){
-   await page.locator('#f-px').fill(value);await page.locator('#check').click();await collect();
+   await page.locator('#f-px').fill(value);await page.locator('#check').click();
    assert.equal(await page.locator('#feedback-px').evaluate(e=>e.classList.contains('correct')),correct,value);
   }
   await chooseProject('nt-p03');await page.locator('[data-step="3"]').click();
-  for(const value of ['10','X','x']){await page.locator('#f-check').fill(value);await page.locator('#check').click();await collect();assert(await page.locator('#feedback-check').evaluate(e=>e.classList.contains('correct')));}
-  const chosen=page.locator('input[data-field="swaps"][value="yes"]');await chosen.check();await page.locator('#check').click();await collect();
-  const order=await page.locator('input[data-field="swaps"]').evaluateAll(es=>es.map(e=>e.value));
-  await page.locator('#quidence-language').selectOption('en');await page.waitForFunction(()=>QuidenceI18n.locale==='en');
-  assert.deepEqual(await page.locator('input[data-field="swaps"]').evaluateAll(es=>es.map(e=>e.value)),order);assert(await chosen.isChecked());
+  for(const value of ['10','X','x']){await page.locator('#f-check').fill(value);await page.locator('#check').click();assert(await page.locator('#feedback-check').evaluate(e=>e.classList.contains('correct')));}
+  const chosen=page.locator('input[data-field="swaps"][value="yes"]');await chosen.check();await page.locator('#check').click();
+  const order=await page.locator('input[data-field="swaps"]').evaluateAll(es=>es.map(e=>e.value));assert(await chosen.isChecked());
   await page.reload();await page.locator('#app').waitFor({state:'visible'});assert(await page.locator('input[data-field="swaps"][value="yes"]').isChecked());
   assert.deepEqual(await page.locator('input[data-field="swaps"]').evaluateAll(es=>es.map(e=>e.value)),order);
-  await page.locator('#quidence-language').selectOption('es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');
 
-  await page.locator('[data-project="nt-p01"]').click();await page.locator('[data-step="1"]').click();await collect();
+  await page.locator('[data-project="nt-p01"]').click();await page.locator('[data-step="1"]').click();
   await page.locator('#session').click();assert((await page.locator('.student-work').allTextContents()).includes(RAW));assert.equal(await page.locator('.student-work img').count(),0);
-  const downloadPromise=page.waitForEvent('download');await page.locator('#export').click();const download=await downloadPromise;const text=fs.readFileSync(await download.path(),'utf8');assert(text.includes(RAW));assert(text.includes('Historial de comprobaciones'));assert(text.includes('84'));assert(text.includes('6,468'));assert(text.includes('Estado de la respuesta:'));assert(!/\n(?:Status|Response status):|\nEstado de la respuesta: (?:correct|retry|format|empty|pending)\b/.test(text));
+  const downloadPromise=page.waitForEvent('download');await page.locator('#export').click();const download=await downloadPromise;const text=fs.readFileSync(await download.path(),'utf8');assert(text.includes(RAW));assert(text.includes('Check history'));assert(text.includes('84'));assert(text.includes('6,468'));assert(text.includes('Response status:'));assert(!/\nStatus:|\nResponse status: (?:correct|retry|format|empty|pending)\b/.test(text));
   await page.locator('#close-modal').click();await page.reload();await page.locator('#app').waitFor({state:'visible'});assert.equal(await page.locator('#f-why').inputValue(),RAW);
   // Opted-in learning criteria are captured with the check, rather than read retroactively.
   await page.evaluate(()=>QuidenceStorage.setItem('cluevera_learning_goal_v1',JSON.stringify({schema:'cluevera_learning_goal_v1',subject:'number-theory',text:'Explain gcd geometrically / 保留原文',includeInReport:true})));
@@ -103,25 +108,18 @@ async function main(){
   await page.locator('#check').click();assert.equal(await page.evaluate(k=>JSON.parse(QuidenceStorage.getItem(k)).attempts.at(-1).learningRequest,KEY),null);
   for(const [width,height]of [[1920,1080],[1440,900],[1024,768],[768,1024],[375,812],[320,812]]){
    await page.setViewportSize({width,height});
-   for(const language of ['en','es']){
-    await page.locator('#quidence-language').selectOption(language);await page.waitForFunction(l=>QuidenceI18n.locale===l,language);
-    await page.locator('dialog[open]').count().then(async n=>{if(n)await page.locator('#close-modal').click();});
-    await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
-
-    if(width<=375){const fits=await page.locator('#quidence-language').evaluate(e=>{
-      const s=getComputedStyle(e),canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');ctx.font=s.font;
-      const available=e.getBoundingClientRect().width-parseFloat(s.paddingLeft)-parseFloat(s.paddingRight)-20;
-      return available>=ctx.measureText(e.selectedOptions[0].textContent).width;
-    });assert(fits,'selected language must fit at '+width+' '+language);}
-
-    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow at '+width+' '+language);
-    await page.locator('#toolkit').click();assert.equal(await page.locator('.tool-proof').count(),3);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await page.locator('#close-modal').click();result.layouts++;
-   }
+   await page.locator('dialog[open]').count().then(async n=>{if(n)await page.locator('#close-modal').click();});
+   await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+   assert.equal(await page.locator('#quidence-language,#language,[data-language-host]').count(),0,'no language control at '+width);
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow at '+width);
+   await page.locator('#toolkit').click();assert.equal(await page.locator('.tool-proof').count(),3);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await page.locator('#close-modal').click();result.layouts++;
    if([1440,375].includes(width))await page.screenshot({path:path.join(__dirname,'../review/screenshots/number-theory-'+width+'-20261010.webp'),type:'webp',fullPage:true});
   }
-  const missing=await page.evaluate(()=>QuidenceI18n.missing);fs.writeFileSync(path.join(__dirname,'../localization/number-theory-browser-missing.json'),JSON.stringify(missing,null,2)+'\n');assert.deepEqual(missing,[],'untranslated Number Theory content');result.spanishProofSteps=2*data.reduce((n,p)=>n+p.steps.length,0);result.interactiveModels=data.length;
+  // The language saved by an earlier version is still in storage, untouched.
+  assert.equal(await page.evaluate(k=>localStorage.getItem(k),LOCALE),'es');
+  result.proofSteps=2*data.reduce((n,p)=>n+p.steps.length,0);result.interactiveModels=data.length;
   // Failed saves remain visible; no successful-save claim is shown.
-  await page.evaluate(()=>{QuidenceStorage.setItem=()=>{throw Error('quota')};});await page.locator('#f-why').fill(RAW+' more');await page.waitForTimeout(250);assert.match(await page.locator('#save-status').textContent(),/Could not save|No se pudo guardar/);
+  await page.evaluate(()=>{QuidenceStorage.setItem=()=>{throw Error('quota')};});await page.locator('#f-why').fill(RAW+' more');await page.waitForTimeout(250);assert.match(await page.locator('#save-status').textContent(),/Could not save/);
   await context.close();
   const corruptContext=await browser.newContext(),cp=await corruptContext.newPage();await cp.goto(origin+'/courses/number-theory/');await cp.locator('#app').waitFor({state:'visible'});
   await cp.evaluate(k=>localStorage.setItem(k,'unreadable original'),KEY);await cp.reload();await cp.locator('#app').waitFor({state:'visible'});await cp.locator('#f-gcd').fill('84');await cp.waitForTimeout(250);assert.equal(await cp.evaluate(k=>localStorage.getItem(k),KEY),'unreadable original');

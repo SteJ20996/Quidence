@@ -1,9 +1,9 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';
 import {LESSONS,LESSON_UI,checkLesson,lineEquation,circleEquation,lessonModel,startPoints,root} from '../courses/coordinate-geometry/lessons.mjs';
 import {LESSON_IDS,newState,validState,numberValue,learningNotes} from '../courses/coordinate-geometry/core.mjs';
-test('four lessons have English and Spanish text only and match the saved lesson ids',()=>{
+test('four lessons have English text only and match the saved lesson ids',()=>{
  assert.deepEqual(LESSONS.map(l=>l.id),LESSON_IDS);let n=0;
- const visit=o=>{if(!o||typeof o!=='object')return;if(Object.hasOwn(o,'en')){for(const l of ['en','es'])assert.ok(typeof o[l]==='string'&&o[l].trim(),o.en+' '+l);assert.deepEqual(Object.keys(o).sort(),['en','es'],o.en);n++;}else for(const v of Object.values(o))visit(v);};
+ const visit=o=>{if(!o||typeof o!=='object')return;assert.ok(!Object.hasOwn(o,'es'));if(Object.hasOwn(o,'en')){assert.ok(typeof o.en==='string'&&o.en.trim(),o.en);assert.deepEqual(Object.keys(o),['en'],o.en);n++;}else for(const v of Object.values(o))visit(v);};
  visit(LESSONS);visit(LESSON_UI);assert.equal(n,LESSONS.reduce((s,l)=>s+7+l.check.length,0)+Object.keys(LESSON_UI).length);
  for(const l of LESSONS){assert.equal(l.text.length,2);assert.ok(l.check.length>=2&&l.check.length<=3);assert.equal(new Set(l.check.map(([id])=>id)).size,l.check.length);}
 });

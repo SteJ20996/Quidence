@@ -52,7 +52,8 @@ function legacyNumeric(value){
 // Read bounded numeric notation, never JavaScript or arbitrary expressions.
 // A unit suffix is accepted only when it matches the unit requested by the field.
 const normalizeUnit=s=>s.replace(/\s/g,'').replace(/²/g,'^2').replace(/³/g,'^3').replace(/·/g,'*');
-// Units a field label may request in its final parentheses, with the forms the Spanish page shows.
+// Units a field label may request in its final parentheses. The second list holds unit spellings that answers
+// saved while Quidence also offered Spanish may contain, so that saved work is still read the same way.
 // Other final parentheses, such as f(3), W(4) or (mod 10), are notation, not units.
 const LABEL_UNITS={'m':[],'m/s':[],'m/s²':[],'s':[],'N':[],'kg·m/s':[],'J':[],'Wh':[],'h':[],'W':[],'kg':[],'Hz':[],'cm':[],'m²':[],'°':[],
  '$':[],'%':[],'L':[],'km':[],'km/h':[],'min':[],'min²':[],'kW':[],'kWh':[],'cm²':[],'litres':['litros'],'hours':['horas'],'degrees':['grados'],

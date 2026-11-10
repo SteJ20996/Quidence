@@ -1,20 +1,20 @@
 (function(root){'use strict';
 const host=document.getElementById('cartoon-knowledge-map');if(!host)return;
-const tr=(en,es)=>({en,es});
+const tr=en=>({en});
 const maps=root.QuidenceCartoonMapData.maps,icon=root.QuidenceCartoonArt.icon;
-let lang=root.QuidenceI18n?.locale==='es'?'es':'en',activeMap='all';
+let lang='en',activeMap='all';
 const selected={},W=200,H=124,routes={};
 const t=v=>v[lang];const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const strings={
- nav:tr('Knowledge map','Mapa de conocimientos'),puzzle:tr('A little puzzle break','Una pausa con juegos'),
- eyebrow:tr('Four connected worlds · design preview','Cuatro mundos conectados · vista previa'),
- title:tr('Knowledge Map','Mapa de conocimientos'),
- subtitle:tr('Find a starting point. Follow a connection. Build your own route.','Encuentra un punto de partida. Sigue una conexión. Construye tu propia ruta.'),
- all:tr('All','Todas'),style:tr('Preview style','Estilo de vista previa'),course:tr('COURSE','CURSO'),concept:tr('CONCEPT','CONCEPTO'),branch:tr('EXPLORE','EXPLORAR'),bridge:tr('CONNECTION','CONEXIÓN'),
- courseCount:tr('course entrances','entradas a cursos'),courseCountOne:tr('course entrance','entrada a curso'),keyCourse:tr('Available course','Curso disponible'),keyConcept:tr('Concept / later direction','Concepto / área posterior'),keySolid:tr('Common foundation','Base habitual'),keyRelated:tr('Useful connection','Conexión útil'),
- details:tr('Selected on the map','Selección en el mapa'),hint:tr('Swipe the map sideways to explore →','Desliza el mapa para explorar →'),
- footer:tr('Click a node to explore its connections. These paths are guides, not compulsory prerequisites.','Selecciona un nodo para explorar sus conexiones. Las rutas orientan; no son requisitos obligatorios.'),
- version:tr('Map preview · Website unchanged','Vista previa · Sitio sin cambios')
+ nav:tr('Knowledge map'),puzzle:tr('A little puzzle break'),
+ eyebrow:tr('Four connected worlds · design preview'),
+ title:tr('Knowledge Map'),
+ subtitle:tr('Find a starting point. Follow a connection. Build your own route.'),
+ all:tr('All'),style:tr('Preview style'),course:tr('COURSE'),concept:tr('CONCEPT'),branch:tr('EXPLORE'),bridge:tr('CONNECTION'),
+ courseCount:tr('course entrances'),courseCountOne:tr('course entrance'),keyCourse:tr('Available course'),keyConcept:tr('Concept / later direction'),keySolid:tr('Common foundation'),keyRelated:tr('Useful connection'),
+ details:tr('Selected on the map'),hint:tr('Swipe the map sideways to explore →'),
+ footer:tr('Click a node to explore its connections. These paths are guides, not compulsory prerequisites.'),
+ version:tr('Map preview · Website unchanged')
 };
 function route(m,a,b){
  if(m.id==='science'&&a.id==='thermal'&&b.id==='materials'){
@@ -49,25 +49,25 @@ maps.forEach(m=>{const lookup=Object.fromEntries(m.nodes.map(n=>[n.id,n]));route
 function renderPanel(m){const colors=['--mint','--lilac','--yellow','--coral'];return `<section class="map-panel" data-map="${m.id}" aria-labelledby="title-${m.id}"><div class="map-heading"><span class="map-num">${m.number}</span><div class="map-title"><h2 id="title-${m.id}">${esc(t(m.name))}</h2><p>${esc(t(m.intro))}</p></div><span class="course-count">${m.count} ${t(m.count===1?strings.courseCountOne:strings.courseCount)}</span></div><p class="scroll-hint">${t(strings.hint)}</p><div class="detail" id="qkm-detail-${m.id}" aria-live="polite"></div><div class="map-scroll"><svg class="graph" viewBox="-10 -16 1220 770" role="group" aria-label="${esc(t(m.name))}"><defs><marker id="arrow-${m.id}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M1 1 9 5 1 9" fill="none" stroke="var(--path)" stroke-width="1.5"/></marker></defs>${routes[m.id].map(r=>`<path class="edge ${r.related?'related':''}" data-from="${r.from}" data-to="${r.to}" d="${r.path}" marker-end="url(#arrow-${m.id})"/>`).join('')}${m.nodes.map((n,i)=>`<foreignObject x="${n.x}" y="${n.y}" width="${W}" height="${H+5}"><button xmlns="http://www.w3.org/1999/xhtml" class="node-card ${n.kind}" data-map-node="${n.id}" style="--node-color:var(${colors[i%4]})" aria-controls="qkm-detail-${m.id}" aria-pressed="false" aria-label="${esc(t(n.title))}: ${esc(t(strings[n.kind]))}">${icon(n.icon)}<span class="node-kind">${t(strings[n.kind])}</span><span class="node-title">${esc(t(n.title))}</span></button></foreignObject>`).join('')}</svg></div><div class="legend"><span><i class="key-course"></i>${t(strings.keyCourse)}</span><span><i class="key-preview"></i>${t(strings.keyConcept)}</span><span><i class="key-line"></i>${t(strings.keySolid)}</span><span><i class="key-line dashed"></i>${t(strings.keyRelated)}</span></div><p class="map-note">${esc(t(m.note))}</p></section>`}
 function selectNode(mapId,nodeId,focusLinks=true){selected[mapId]=nodeId;const m=maps.find(x=>x.id===mapId),n=m.nodes.find(x=>x.id===nodeId),panel=document.querySelector(`[data-map="${mapId}"]`);if(!panel)return;const connected=new Set([nodeId]);routes[mapId].forEach(e=>{if(e.from===nodeId)connected.add(e.to);if(e.to===nodeId)connected.add(e.from)});panel.querySelectorAll('[data-map-node]').forEach(el=>{const sel=el.dataset.mapNode===nodeId;el.classList.toggle('selected',sel);el.classList.toggle('dimmed',focusLinks&&!connected.has(el.dataset.mapNode));el.setAttribute('aria-pressed',String(sel))});panel.querySelectorAll('.edge').forEach(el=>{const sel=el.dataset.from===nodeId||el.dataset.to===nodeId;el.classList.toggle('active',focusLinks&&sel);el.classList.toggle('faded',focusLinks&&!sel)});panel.querySelector('.detail').innerHTML=`<div><span class="small">${t(strings.details)}</span><strong>${esc(t(n.title))}</strong></div><div><p>${esc(t(n.desc))}</p>${n.extra.length?`<ul>${n.extra.map(x=>`<li>${esc(t(x))}</li>`).join('')}</ul>`:''}</div>`}
 
-const lessonLabel=()=>lang==='es'?'Explorar la materia':'Explore subject';
+const lessonLabel=()=>'Explore subject';
 function details(mapId,nodeId,focusLinks=true){
  selectNode(mapId,nodeId,focusLinks);
  const m=maps.find(x=>x.id===mapId),n=m.nodes.find(x=>x.id===nodeId),panel=host.querySelector('[data-map="'+mapId+'"]');
  const course=root.QuidenceCourseCatalog.COURSES[n.module];
- if(!course){const module=n.relatedModule,c=root.QuidenceCourseCatalog.COURSES[module];if(c){const links=document.createElement('div');links.className='qkm-actions';const related=document.createElement('a'),u=new URL(c.course,location.href);u.searchParams.set('lang',lang);related.href=u.href;related.textContent=(lang==='es'?'Base relacionada: ':'Related start: ')+(root.QuidenceI18n?.text?.(c.title)||c.title);const subject=document.createElement('a');subject.href='?view=courses&lang='+lang+'#subject-'+module;subject.dataset.mapSubjects=module;subject.textContent=lang==='es'?'Ver la materia →':'View subject →';links.append(related,subject);const note=document.createElement('p');note.className='q-related-note';note.textContent=lang==='es'?'Curso inicial relacionado; no es un curso completo de esta rama.':'A related starting course, not a complete course in this branch.';panel.querySelector('.detail').append(note,links);}}
+ if(!course){const module=n.relatedModule,c=root.QuidenceCourseCatalog.COURSES[module];if(c){const links=document.createElement('div');links.className='qkm-actions';const related=document.createElement('a'),u=new URL(c.course,location.href);related.href=u.href;related.textContent='Related start: '+(root.QuidenceI18n?.text?.(c.title)||c.title);const subject=document.createElement('a');subject.href='?view=courses#subject-'+module;subject.dataset.mapSubjects=module;subject.textContent='View subject →';links.append(related,subject);const note=document.createElement('p');note.className='q-related-note';note.textContent='A related starting course, not a complete course in this branch.';panel.querySelector('.detail').append(note,links);}}
 
  if(course){
   const links=document.createElement('div');links.className='qkm-actions';
-  for(const [href,label] of [[course.course,lessonLabel()],[course.foundation||course.challenge,course.foundation?(lang==='es'?'Comprobar fundamentos':'Check foundations'):(lang==='es'?'Comprobar comprensión':'Check understanding')]]){
-   if(!href)continue;const a=document.createElement('a');const u=new URL(href,location.href);u.searchParams.set('lang',lang);a.href=u.href;a.textContent=label;links.append(a);
+  for(const [href,label] of [[course.course,lessonLabel()],[course.foundation||course.challenge,course.foundation?'Check foundations':'Check understanding']]){
+   if(!href)continue;const a=document.createElement('a');const u=new URL(href,location.href);a.href=u.href;a.textContent=label;links.append(a);
   }
   panel.querySelector('.detail').append(links);
  }
 }
-function render(){lang=root.QuidenceI18n?.locale==='es'?'es':'en';const shown=activeMap==='all'?maps:maps.filter(m=>m.id===activeMap);host.innerHTML='<h2 class="qkm-title">'+t(strings.title)+'</h2>'+shown.map(renderPanel).join('')+'<p class="qkm-note">'+t(strings.footer)+'</p>';shown.forEach(m=>details(m.id,selected[m.id]||m.selected,false));}
+function render(){lang='en';const shown=activeMap==='all'?maps:maps.filter(m=>m.id===activeMap);host.innerHTML='<h2 class="qkm-title">'+t(strings.title)+'</h2>'+shown.map(renderPanel).join('')+'<p class="qkm-note">'+t(strings.footer)+'</p>';shown.forEach(m=>details(m.id,selected[m.id]||m.selected,false));}
 host.addEventListener('click',e=>{const b=e.target.closest('[data-map-node]');if(!b)return;const mapId=b.closest('[data-map]').dataset.map,nodeId=b.dataset.mapNode;details(mapId,nodeId);const n=maps.find(x=>x.id===mapId).nodes.find(x=>x.id===nodeId);if(n.module)document.querySelector('[data-learning-subject="'+n.module+'"]')?.click();});
 document.addEventListener('quidence:category',e=>{activeMap=maps.some(m=>m.id===e.detail.group)?e.detail.group:'all';render();});
-document.addEventListener('quidence:language',render);
+
 document.addEventListener('quidence:subject',e=>{for(const m of maps){const n=m.nodes.find(n=>n.module===e.detail.subject);if(n){selected[m.id]=n.id;if(host.querySelector('[data-map="'+m.id+'"]'))details(m.id,n.id,false);}}});
 render();root.QuidenceCartoonMap={maps,routes};
 })(window);

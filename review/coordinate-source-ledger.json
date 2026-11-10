@@ -8,14 +8,13 @@
       "project": "plan",
       "step": 0,
       "title": {
-        "en": "Give the map a language",
-        "es": "Dale un lenguaje al plano"
+        "en": "Give the map a language"
       },
-      "fingerprint": "39bf2c0d6db648e3d4150303ed3f46fb684caa292820e3db399de1c296f47d10",
+      "fingerprint": "7231f5563e5d8bbe7df8a6b1af06782264b6fa7ddff7e6258a55b36bff6ca5d5",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
+          "sha256": "1e44fc5cfb1c780ffd25a783507430736fa7e74b510b882b0f91ba8588d8af81"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -23,7 +22,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
+          "sha256": "15cd63ef40e45e01408bad5148ab63dd3cbd36330f27b142890af102ecdd6a8f"
         }
       ],
       "sourceReview": {
@@ -41,14 +40,13 @@
       "project": "plan",
       "step": 1,
       "title": {
-        "en": "Give your station an address",
-        "es": "Dale una dirección al puesto"
+        "en": "Give your station an address"
       },
-      "fingerprint": "c9ab6b5b35acff3a1099809eac49d850a32fa499db9493664213db6b71841b20",
+      "fingerprint": "6ad213349e7233b4c7c9037bff7a55950ae3ab408e4168988e58e5e8477c8a09",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
+          "sha256": "1e44fc5cfb1c780ffd25a783507430736fa7e74b510b882b0f91ba8588d8af81"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -56,7 +54,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
+          "sha256": "15cd63ef40e45e01408bad5148ab63dd3cbd36330f27b142890af102ecdd6a8f"
         }
       ],
       "sourceReview": {
@@ -74,14 +72,13 @@
       "project": "plan",
       "step": 2,
       "title": {
-        "en": "Find the changes first",
-        "es": "Encuentra primero los cambios"
+        "en": "Find the changes first"
       },
-      "fingerprint": "251809ef6112673bd2b514214dfea6b558b3ba6ab9906a8c67aeda5c87ad4b7b",
+      "fingerprint": "d4b3813168fa820aa0187e754a80cd3b3c6d17a7ba5ce47b84d52265c3dd3741",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
+          "sha256": "1e44fc5cfb1c780ffd25a783507430736fa7e74b510b882b0f91ba8588d8af81"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -89,7 +86,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
+          "sha256": "15cd63ef40e45e01408bad5148ab63dd3cbd36330f27b142890af102ecdd6a8f"
         }
       ],
       "sourceReview": {
@@ -107,14 +104,13 @@
       "project": "plan",
       "step": 3,
       "title": {
-        "en": "Build the distance formula",
-        "es": "Construye la fórmula de distancia"
+        "en": "Build the distance formula"
       },
-      "fingerprint": "815f147130cc6c2ad5813df151acddfd719b01149cd1f6e631774868b865ff24",
+      "fingerprint": "b2e714a97bf698b59099afc9f8eaab689005bc3d6844a37ee20c36fe2bace8ca",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
+          "sha256": "1e44fc5cfb1c780ffd25a783507430736fa7e74b510b882b0f91ba8588d8af81"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -122,7 +118,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
+          "sha256": "15cd63ef40e45e01408bad5148ab63dd3cbd36330f27b142890af102ecdd6a8f"
         }
       ],
       "sourceReview": {
@@ -140,14 +136,13 @@
       "project": "plan",
       "step": 4,
       "title": {
-        "en": "Make the plan satisfy its purpose",
-        "es": "Haz que el plan cumpla su propósito"
+        "en": "Make the plan satisfy its purpose"
       },
-      "fingerprint": "a95d10c6653b33bda820fd9222cfbc47f590add7703a96e396a4b09c9ab059d7",
+      "fingerprint": "23f54c6a7c8b45556c9746cca8cb61980e3bea4c473c8012c322bb0cf43d7f50",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
+          "sha256": "1e44fc5cfb1c780ffd25a783507430736fa7e74b510b882b0f91ba8588d8af81"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -155,7 +150,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
+          "sha256": "15cd63ef40e45e01408bad5148ab63dd3cbd36330f27b142890af102ecdd6a8f"
         }
       ],
       "sourceReview": {
@@ -173,14 +168,13 @@
       "project": "plan",
       "step": 5,
       "title": {
-        "en": "The entrance moved. Revise your plan.",
-        "es": "La entrada cambió. Revisa el plan."
+        "en": "The entrance moved. Revise your plan."
       },
-      "fingerprint": "9d0d9a8870b7090346c5761e17d1f95f881c4e032a66088ae97a4b7a3943e148",
+      "fingerprint": "747dd6bde73018ce322dc7cedcd67887675dca3594b6e68e591f2a667be6457f",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
+          "sha256": "1e44fc5cfb1c780ffd25a783507430736fa7e74b510b882b0f91ba8588d8af81"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -188,7 +182,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
+          "sha256": "15cd63ef40e45e01408bad5148ab63dd3cbd36330f27b142890af102ecdd6a8f"
         }
       ],
       "sourceReview": {
@@ -206,14 +200,13 @@
       "project": "station",
       "step": 0,
       "title": {
-        "en": "What would “fair” mean here?",
-        "es": "¿Qué significa «justo» aquí?"
+        "en": "What would “fair” mean here?"
       },
-      "fingerprint": "7137fba4a3838d546e0b0e0191a12e4bc04d4801b21dbd585bdc48571ad2be38",
+      "fingerprint": "c849defdf36b63776aad9a0f9910db8ed6fc77883240831285607610e71ca236",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
+          "sha256": "1e44fc5cfb1c780ffd25a783507430736fa7e74b510b882b0f91ba8588d8af81"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -221,7 +214,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
+          "sha256": "15cd63ef40e45e01408bad5148ab63dd3cbd36330f27b142890af102ecdd6a8f"
         }
       ],
       "sourceReview": {
@@ -239,14 +232,13 @@
       "project": "station",
       "step": 1,
       "title": {
-        "en": "One fair point—or a whole family?",
-        "es": "¿Un punto justo o toda una familia?"
+        "en": "One fair point—or a whole family?"
       },
-      "fingerprint": "759dc0b1e800b621a8eb79019bf38643301d848cb0c9b631a24890fda271910e",
+      "fingerprint": "930a6a8d19b92813979d6992a0e110b1310ea82a6708afd4253809311163e3eb",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
+          "sha256": "1e44fc5cfb1c780ffd25a783507430736fa7e74b510b882b0f91ba8588d8af81"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -254,7 +246,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
+          "sha256": "15cd63ef40e45e01408bad5148ab63dd3cbd36330f27b142890af102ecdd6a8f"
         }
       ],
       "sourceReview": {
@@ -272,14 +264,13 @@
       "project": "station",
       "step": 2,
       "title": {
-        "en": "Give the pattern an equation",
-        "es": "Dale una ecuación al patrón"
+        "en": "Give the pattern an equation"
       },
-      "fingerprint": "ba2443c03ba4f7eaa086929c6b7225a27cda3397305ee6e1691e91d29bef7efb",
+      "fingerprint": "bf0adae384748ef7fb5ea29708571d375365716f251a672931411e07b969005d",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
+          "sha256": "1e44fc5cfb1c780ffd25a783507430736fa7e74b510b882b0f91ba8588d8af81"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -287,7 +278,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
+          "sha256": "15cd63ef40e45e01408bad5148ab63dd3cbd36330f27b142890af102ecdd6a8f"
         }
       ],
       "sourceReview": {
@@ -305,14 +296,13 @@
       "project": "station",
       "step": 3,
       "title": {
-        "en": "Meet the path, too",
-        "es": "Cumple también con el sendero"
+        "en": "Meet the path, too"
       },
-      "fingerprint": "4051cc7d777d9477882405dbedf9ad7099eee32aec219a0ffaa146a09e07a8d0",
+      "fingerprint": "d0a016758bd5b64fa098dfbb40c4b1b4da36da8056150df5e6cedfcfcf359cbc",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
+          "sha256": "1e44fc5cfb1c780ffd25a783507430736fa7e74b510b882b0f91ba8588d8af81"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -320,7 +310,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
+          "sha256": "15cd63ef40e45e01408bad5148ab63dd3cbd36330f27b142890af102ecdd6a8f"
         }
       ],
       "sourceReview": {
@@ -338,14 +328,13 @@
       "project": "station",
       "step": 4,
       "title": {
-        "en": "A gate moves. Rebuild your rule.",
-        "es": "Una entrada cambia. Reconstruye la regla."
+        "en": "A gate moves. Rebuild your rule."
       },
-      "fingerprint": "61dc5b50c33925e596e97814709e917890a6adb2bfdf9fb5ffa36668f47ee648",
+      "fingerprint": "054119e2341136a716f77dc6454968701fe3b24622c04aafc0ffeaf4e43602d1",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
+          "sha256": "1e44fc5cfb1c780ffd25a783507430736fa7e74b510b882b0f91ba8588d8af81"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -353,7 +342,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
+          "sha256": "15cd63ef40e45e01408bad5148ab63dd3cbd36330f27b142890af102ecdd6a8f"
         }
       ],
       "sourceReview": {
@@ -371,14 +360,13 @@
       "project": "station",
       "step": 5,
       "title": {
-        "en": "Deliver the revised station plan",
-        "es": "Entrega el diseño revisado"
+        "en": "Deliver the revised station plan"
       },
-      "fingerprint": "0d2948bc8776c89a27681a98cb0fd10843866994c4e74335937f4ba2fc534d60",
+      "fingerprint": "596d124f4422bdcfaaad5a783a86f544c4fa55a8bf0c1ff9fa00f5fa8d76f2c7",
       "sourceFiles": [
         {
           "path": "courses/coordinate-geometry/content.mjs",
-          "sha256": "0ffc32a1f255e97036cb20ecb3b46f2eb7afb1b83b123be0bdcabe0cb7aaec61"
+          "sha256": "1e44fc5cfb1c780ffd25a783507430736fa7e74b510b882b0f91ba8588d8af81"
         },
         {
           "path": "courses/coordinate-geometry/core.mjs",
@@ -386,7 +374,7 @@
         },
         {
           "path": "courses/coordinate-geometry/lessons.mjs",
-          "sha256": "5b68c638aac7e582da70e1c8c2d28701444741c04279edcc1fa95d61ed2dbd82"
+          "sha256": "15cd63ef40e45e01408bad5148ab63dd3cbd36330f27b142890af102ecdd6a8f"
         }
       ],
       "sourceReview": {

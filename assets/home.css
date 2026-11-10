@@ -167,7 +167,7 @@
   @media(pointer:coarse){body.quidence-home .goal-course-links a,body.quidence-home .goal-actions a{min-height:44px}}
 
 
-  body.quidence-home .qh-site-header{display:grid;grid-template-columns:250px auto minmax(240px,1fr) 112px;grid-template-areas:"brand navigation description language";align-items:center;gap:20px;max-width:1900px;margin:0 auto 22px;padding:16px 20px;background:var(--qa-header);color:var(--qa-header-ink);border-radius:15px;box-sizing:border-box}
+  body.quidence-home .qh-site-header{display:grid;grid-template-columns:250px auto minmax(240px,1fr);grid-template-areas:"brand navigation description";align-items:center;gap:20px;max-width:1900px;margin:0 auto 22px;padding:16px 20px;background:var(--qa-header);color:var(--qa-header-ink);border-radius:15px;box-sizing:border-box}
   body.quidence-home .qh-brand{grid-area:brand;min-width:0}
   body.quidence-home .qh-brand a.q-brand{display:flex;min-height:0;width:250px;max-width:100%;margin:0}
   body.quidence-home .qh-brand .q-brand img.q-brand-logo{width:250px;max-width:100%;height:auto;transform:none}
@@ -177,24 +177,22 @@
   body.quidence-home .qh-description{grid-area:description;display:flex;flex-direction:column;gap:5px;text-align:right;min-width:0}
   body.quidence-home .qh-description-title{font-size:14px;font-weight:500;line-height:1.4;color:light-dark(#f3f7ff,#f3f7ff)}
   body.quidence-home .qh-description-detail{font-size:12px;line-height:1.5;color:light-dark(#c8d5e4,#c8d5e4)}
-  body.quidence-home .qh-language-label{grid-area:language;display:flex;flex-direction:column;gap:5px;min-width:0;font-size:11px;color:light-dark(#c8d5e4,#c8d5e4)}
-  body.quidence-home .qh-language-label .qa-language{background:light-dark(#243a50,#243a50);color:light-dark(#f3f7ff,#f3f7ff);border-color:light-dark(#657788,#657788);width:100%;max-width:none;min-height:44px;font-size:12px;padding:8px 9px}
   body.quidence-home .qf-page-heading{margin-bottom:17px;min-height:44px;align-items:center}
   body.quidence-home .qf-page-heading h1{font-size:29px;line-height:1.2;margin:0}
   body.quidence-home .qf-left-rail>.qf-page-nav{display:flex;flex-direction:column;gap:4px;padding:9px;background:var(--qa-card);border:1px solid var(--qa-border);border-radius:12px;margin:0 0 14px;box-shadow:0 9px 28px light-dark(#14223609,#00000024)}
   body.quidence-home .qf-left-rail>.qf-page-nav .qf-page-choice{padding:10px 11px;font-size:12px;min-height:44px;color:var(--qa-muted);white-space:normal}
   body.quidence-home .qf-left-rail>.qf-page-nav .qf-page-choice[aria-current="page"]{background:var(--qa-green-soft);color:var(--qa-green)}
   body.quidence-home .learning-subject-buttons button{overflow-wrap:anywhere;hyphens:auto}
-  body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-columns:250px minmax(240px,1fr) 112px;grid-template-areas:"brand description language"}
+  body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-columns:250px minmax(240px,1fr);grid-template-areas:"brand description"}
   @media(min-width:960px) and (max-width:1199px){
-    body.quidence-home .qh-site-header{grid-template-columns:220px auto minmax(185px,1fr) 104px;gap:12px;padding:16px}
+    body.quidence-home .qh-site-header{grid-template-columns:220px auto minmax(185px,1fr);gap:12px;padding:16px}
     body.quidence-home .qh-brand a.q-brand,body.quidence-home .qh-brand .q-brand img.q-brand-logo{width:220px}
     body.quidence-home .qh-site-header .qf-page-choice{padding:10px 8px;font-size:11px}
-    body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-columns:220px minmax(200px,1fr) 104px}
+    body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-columns:220px minmax(200px,1fr)}
   }
   @media(max-width:959px){
-    body.quidence-home .qh-site-header,body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-columns:minmax(0,1fr) 104px;grid-template-areas:"brand language" "navigation navigation" "description description";gap:14px 12px;padding:16px;margin-bottom:20px}
-    body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-areas:"brand language" "description description"}
+    body.quidence-home .qh-site-header,body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-columns:minmax(0,1fr);grid-template-areas:"brand" "navigation" "description";gap:14px 12px;padding:16px;margin-bottom:20px}
+    body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-areas:"brand" "description"}
     body.quidence-home .qh-brand a.q-brand,body.quidence-home .qh-brand .q-brand img.q-brand-logo{width:250px}
     body.quidence-home .qh-site-header .qf-page-nav{justify-content:center;flex-wrap:wrap}
     body.quidence-home .qh-site-header .qf-page-choice{flex:1;white-space:normal}
@@ -208,8 +206,6 @@
 body.quidence-home .qf-layout{padding:0}
 body.quidence-home .qf-center{min-width:0}
 body.quidence-home .qf-left-surface.qs-subject-panel{border:1px solid var(--qa-border);border-radius:15px}
-body.quidence-home .qh-language-label .language-toolbar{display:block;padding:0;width:100%;background:transparent;color:var(--qa-header-ink);font-size:11px}
-body.quidence-home .qh-language-label .language-label{display:flex;flex-direction:column;align-items:stretch;gap:5px;width:100%;font-size:11px}
 body.quidence-home .qs-request-details label{font-size:12px}
 body.quidence-home .qs-request-details select{font-size:16px;min-height:44px}
 body.quidence-home .qs-record-copy{color:var(--qa-muted)}
@@ -220,12 +216,12 @@ body.quidence-home footer{max-width:1900px;padding:0;color:var(--qa-muted)}
 body.quidence-home .home-noscript{max-width:1900px;margin:20px auto}
 body.quidence-home .qa-node,body.quidence-home .qa-step,body.quidence-home .qa-layer,body.quidence-home .qa-chapter,body.quidence-home .qa-course-choice,body.quidence-home .qf-page-choice{cursor:pointer}
 body.quidence-home .qa-step:disabled{cursor:default}
-@media(max-width:959px){body.quidence-home .feedback-section{padding:24px}body.quidence-home .qh-language-label .language-toolbar{padding:0}}
+@media(max-width:959px){body.quidence-home .feedback-section{padding:24px}}
 
-/* Preserve a readable wordmark on narrow phones without crowding the language control. */
+/* On narrow phones the description sits between the wordmark and the page navigation. */
 @media(max-width:480px){
- body.quidence-home .qh-site-header{grid-template-areas:"brand brand" "description language" "navigation navigation"}
- body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-areas:"brand brand" "description language"}
+ body.quidence-home .qh-site-header{grid-template-areas:"brand" "description" "navigation"}
+ body.quidence-home[data-navigation="aside"] .qh-site-header{grid-template-areas:"brand" "description"}
 }
 
 body.quidence-home .eyebrow{color:#07786f}

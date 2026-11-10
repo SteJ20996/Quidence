@@ -33,12 +33,11 @@ html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.card,.subject-card,.
 html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.site-header,.qa-header,.topbar,.f-site-header,header.q-brand-header) {
   background:var(--q-paper);color:var(--q-ink);border-color:var(--q-line);
 }
-html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.language-toolbar,.subject-home-nav) {background:var(--q-page);color:var(--q-muted);border-color:var(--q-line)}
-html:not([data-ui-theme="classic"]) body[data-q-theme] .site-header .language-toolbar {background:transparent}
+html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.subject-home-nav) {background:var(--q-page);color:var(--q-muted);border-color:var(--q-line)}
 /* Header text that was colored for the dark Classic header takes the muted ink on the light headers. */
 html:not([data-ui-theme="classic"]) body[data-q-theme] .site-header .header-copy small {color:var(--q-muted)}
-html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.language-label select,.header-button,.qa-language) {background-color:var(--q-paper);color:var(--q-ink);border-color:var(--q-control)}
-html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.site-header,header.q-brand-header) :is(a:not(.q-brand),.product-name,.preview-subject,.preview-purpose,.qh-description-title,.qh-description-detail,.language-label) {color:var(--q-ink)}
+html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.header-button,.qa-language) {background-color:var(--q-paper);color:var(--q-ink);border-color:var(--q-control)}
+html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.site-header,header.q-brand-header) :is(a:not(.q-brand),.product-name,.preview-subject,.preview-purpose,.qh-description-title,.qh-description-detail) {color:var(--q-ink)}
 html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.site-header,header.q-brand-header) :is(a,button,select):focus-visible {outline-color:var(--q-focus)}
 html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.report-handoff,.f-quote,.first-thought,.written-answer,.f-view-controls,.view-tabs) {background:var(--q-mist)}
 html:not([data-ui-theme="classic"]) body[data-q-theme] :is(.report-learning-focus,.goal-report-option,.feedback-section) {background:var(--q-mint);border-color:var(--q-line)}
@@ -78,7 +77,6 @@ html:not([data-ui-theme="classic"]) body[data-q-theme].quidence-home .qh-site-he
 html:not([data-ui-theme="classic"]) body[data-q-theme].quidence-home .qh-site-header .qf-page-nav {background:var(--q-page);border-color:var(--q-line);border-radius:var(--theme-radius)}
 html:not([data-ui-theme="classic"]) body[data-q-theme].quidence-home .qh-site-header .qf-page-choice {color:var(--q-ink);white-space:normal}
 html:not([data-ui-theme="classic"]) body[data-q-theme].quidence-home .qh-site-header .qf-page-choice[aria-current="page"] {background:var(--q-mint);color:var(--q-teal)}
-html:not([data-ui-theme="classic"]) body[data-q-theme].quidence-home .qh-language-label select {background-color:var(--q-paper);color:var(--q-ink);border-color:var(--q-control)}
 html:not([data-ui-theme="classic"]) body[data-q-theme].quidence-home .learning-subject-buttons button {background:var(--q-paper);border-radius:clamp(6px,var(--theme-radius),18px)}
 html:not([data-ui-theme="classic"]) body[data-q-theme].quidence-home .learning-subject-buttons button[aria-pressed="true"] {background:var(--q-primary)}
 html:not([data-ui-theme="classic"]) body[data-q-theme].quidence-home .qf-page-heading {padding:12px 0 22px;border-bottom:1px solid var(--q-line)}
@@ -127,11 +125,6 @@ html[data-ui-theme="studio"] body[data-q-theme].quidence-home .qf-page-heading::
 @media print {
   html body[data-q-theme] .q-theme-bar {display:none!important}
   html,html body[data-q-theme],html body[data-q-theme] :is(.card,.subject-card,.f-intro,.f-question,.f-evidence article,.report-handoff) {background:white!important;background-image:none!important;box-shadow:none!important}
-}
-
-/* Light headers need a dark chevron; retain the shared inset and forced-color fallback. */
-html body[data-q-theme] select#quidence-language {
-  --q-select-chevron:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m1 1.5 5 5 5-5' fill='none' stroke='%2320383e' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
 :root[data-ui-theme="classic"]{--q-page:#f8f5ec;--q-paper:#fff;--q-ink:#20383e;--q-muted:#53666b;--q-line:#ddd7e6;--q-control:#6e8588;--q-teal:#153f44;--q-primary:#15565b;--q-mint:#ddf1e8;--q-mist:#eee9f5;--q-focus:#15565b}

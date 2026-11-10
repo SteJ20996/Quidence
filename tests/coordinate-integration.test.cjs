@@ -10,9 +10,13 @@ test('Coordinate Geometry has one course entry with its projects, both checks an
  require('../scripts/build-coordinate-ledger.cjs').build(true);
  assert.equal(require('../scripts/build-coordinate-ledger.cjs').inventory().items.length,12);
 });
-test('new course UI translations are available without replacing the shared translation banks',()=>{
- const vm=require('node:vm'),context=vm.createContext({});vm.runInContext(fs.readFileSync(path.join(__dirname,'../assets/i18n.js'),'utf8'),context);const api=context.QuidenceI18n;api.setLocale('es');
- const copy=require('../localization/coordinate-ui-es.json');for(const [source,translated]of Object.entries(copy))assert.equal(api.text(source),translated,source);
+test('the course opens in English for a Spanish address or an earlier saved Spanish record, without changing that record',()=>{
+ const app=fs.readFileSync(path.join(__dirname,'../courses/coordinate-geometry/app.mjs'),'utf8'),core=fs.readFileSync(path.join(__dirname,'../courses/coordinate-geometry/core.mjs'),'utf8');
+ // No language menu, no lang parameter on links, and nothing reads a saved site language.
+ assert.doesNotMatch(app,/quidence-language|lang-select|Español|changeLanguage|siteLocale|quidence_ui_locale_v1|searchParams\.set\('lang'/);
+ assert.doesNotMatch(app,/state\.lang\s*=/);
+ // Records saved while the course also offered Spanish (or Traditional Chinese) still pass validation unchanged.
+ assert.match(core,/\['en','zh-TW','es'\]\.includes\(raw\.lang\)/);
 });
 test('Coordinate Geometry drafts and submissions join backups and owner isolation',()=>{
  const key='quidence-coordinate-project-studio-v1',map=new Map(),storage={get length(){return map.size;},key:i=>[...map.keys()][i],getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v),removeItem:k=>map.delete(k)};

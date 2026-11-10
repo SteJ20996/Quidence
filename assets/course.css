@@ -14,5 +14,5 @@
 
 .course-legacy-note{max-width:1120px;margin:16px auto;padding:12px 20px;background:#eaf0f7;color:#263c5b}
 .truth-table td,.truth-table th{text-align:center}
-.truth-word{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.truth-es,html[lang="es"] .truth-en{display:none}html[lang="es"] .truth-es{display:inline}
+.truth-word{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .lab-controls .control-label.wide{grid-column:1/-1}

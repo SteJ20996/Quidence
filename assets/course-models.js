@@ -49,7 +49,7 @@ function model(course,index,s){
   if(index===3){graph=table('Powers and inverse questions',['Exponent x',`${s.base}ˣ`],[0,1,2,3,4].map(x=>[x,s.base**x]),'Read a power from left to right; a logarithm asks for the exponent from the positive output.');readout=`log base ${s.base} of ${s.base**3} = 3`;formula=`log_b(y) = x means bˣ = y, with b > 0, b ≠ 1, y > 0.`;}
  }
  if(course==='basic-logic'){
-  const T=v=>({html:`<span class="truth-value"><span class="truth-letter" aria-hidden="true" data-no-translate><span class="truth-en">${v?'T':'F'}</span><span class="truth-es">${v?'V':'F'}</span></span><span class="truth-word">${v?'True':'False'}</span></span>`}),rows=[[1,1],[1,0],[0,1],[0,0]];
+  const T=v=>({html:`<span class="truth-value"><span class="truth-letter" aria-hidden="true" data-no-translate>${v?'T':'F'}</span><span class="truth-word">${v?'True':'False'}</span></span>`}),rows=[[1,1],[1,0],[0,1],[0,0]];
   if(index===0){
    const ops={and:['P and Q',(p,q)=>p&&q,'“And” is true only when both parts are true.'],or:['P or Q',(p,q)=>p||q,'“Or” is true when at least one part is true, including both.'],xor:['P or Q, but not both',(p,q)=>p!==q,'The exclusive or is true when exactly one part is true.'],not:['not P',p=>!p,'“Not” gives the opposite truth value.']},[name,fn,rule]=ops[s.op]||ops.and;
    const shown=s.op==='not'?[[1],[0]]:rows,trueRows=shown.filter(r=>fn(!!r[0],!!r[1])).length;

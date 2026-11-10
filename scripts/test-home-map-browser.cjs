@@ -4,6 +4,12 @@ const {performance}=require('node:perf_hooks'),{chromium}=require('playwright');
 const {chooseTheme}=require('./theme-choice.cjs');
 const {createServer}=require('../backend/server.cjs'),Store=require('../assets/report-store.js');
 const RAW='My original question: compare an equation with a diagram.\n  Keep my spaces. Español / 我的原文 / <script>no execution</script>';
+// Quidence is published in English only. A language preference saved by an earlier version stays in storage untouched.
+const LOCALE='quidence_ui_locale_v1',LANGUAGE_CONTROLS='#quidence-language,#language,.language-toolbar,[data-language-host]';
+async function english(page,where){
+ assert.equal(await page.locator('html').getAttribute('lang'),'en',where+' is in English');
+ assert.equal(await page.locator(LANGUAGE_CONTROLS).count(),0,where+' has no language control');
+}
 async function main(){
  const server=createServer();await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));let browser;
  const output={scope:'Local browser and local server; not a production capacity guarantee.',layouts:0,mapStates:0,errors:[],failedRequests:[],stress:{}};
@@ -24,20 +30,22 @@ async function main(){
   }
   for(const [width,height]of [[1280,720],[1200,900],[1920,1080],[1024,768],[375,812],[320,812]]){
    const context=await browser.newContext({viewport:{width,height}}),page=await context.newPage();listen(page);
-   await page.addInitScript(()=>localStorage.setItem('quidence_ui_theme_v1','classic'));await page.goto(origin+'/?lang=en');await ready(page);
-   assert.deepEqual(await page.locator('#quidence-language option').evaluateAll(es=>es.map(e=>e.value)),['en','es']);
+   await page.addInitScript(()=>localStorage.setItem('quidence_ui_theme_v1','classic'));await page.goto(origin+'/');await ready(page);
+   await english(page,'home');
    assert.equal(await page.locator('.q-brand-logo').count(),1);
-   if(width===1280){await page.locator('[data-node="calculus"]').click();assert.match(await page.locator('#qa-topic-intro').textContent(),/derivatives|derivadas/);await page.locator('.q-map-subjects').click();assert(await page.locator('.home-course-view').isVisible());await page.locator('button[data-home-view="map"]').click();}
+   if(width===1280){await page.locator('[data-node="calculus"]').click();assert.match(await page.locator('#qa-topic-intro').textContent(),/derivatives/);await page.locator('.q-map-subjects').click();assert(await page.locator('.home-course-view').isVisible());await page.locator('button[data-home-view="map"]').click();}
 
-   for(const language of ['en','es']){
-    await page.locator('#quidence-language').selectOption(language);await page.waitForFunction(language=>QuidenceI18n.locale===language,language);
+   // The map lays out the same when the address asks for Spanish and a language preference saved by an earlier
+   // version is in storage: the page stays in English.
+   for(const address of ['/','/?lang=es']){
+    if(address!=='/'){await page.evaluate(key=>localStorage.setItem(key,'es'),LOCALE);await page.goto(origin+address);await ready(page);await english(page,'home '+address);}
     for(let chapter=0;chapter<4;chapter++){await page.locator('button[data-chapter="'+chapter+'"]').click();await geometry(page);}
     await page.locator('button[data-chapter="0"]').click();
     // The subject rail stays pinned only when all of it fits; otherwise it scrolls with the page and nothing in it is cut off.
     if(width>=960){const rail=await page.evaluate(()=>{const r=document.querySelector('.qf-left-rail'),p=r.querySelector('.qs-subject-panel');return{hidden:p.scrollHeight-p.clientHeight,position:getComputedStyle(r).position};});
-     assert(rail.hidden<=1,`${width}x${height} ${language}: ${rail.hidden}px of the subject rail is cut off`);assert.equal(rail.position,height>=1080?'sticky':'static',`${width}x${height} ${language} rail position`);}
-    if((width===1280&&language==='en')||(width===1200&&language==='es')||(width===375&&language==='es')){
-     await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:path.join(__dirname,'../review/screenshots/home-map-'+width+'-'+language+'.webp'),type:'webp'});
+     assert(rail.hidden<=1,`${width}x${height} ${address}: ${rail.hidden}px of the subject rail is cut off`);assert.equal(rail.position,height>=1080?'sticky':'static',`${width}x${height} ${address} rail position`);}
+    if(width===1280&&address==='/'){
+     await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:path.join(__dirname,'../review/screenshots/home-map-1280-en.webp'),type:'webp'});
     }
     output.layouts++;
    }
@@ -48,7 +56,7 @@ async function main(){
    await page.locator('#goal-include-report').check();
    await page.locator('button[data-home-view="courses"]').click();
    assert.equal(await page.locator('.subject-card:visible').count(),20);
-   assert.deepEqual(await page.locator('.group-heading h2').allTextContents(),['Secundaria','Preparatoria','Nivel universitario','Ciencias de la computación','Proyectos interdisciplinarios']);
+   assert.deepEqual(await page.locator('.group-heading h2').allTextContents(),['Middle School','High School','College Level','Computer Science','Cross-disciplinary Projects']);
    const levels=await page.locator('.catalogue-group').evaluateAll(groups=>groups.map(g=>g.querySelectorAll('.subject-card').length));assert.deepEqual(levels,[1,8,7,1,3]);
    assert.equal(await page.locator('.home-map-view').isVisible(),false);
    assert.equal(await page.locator('#learning-goal').inputValue(),RAW);assert(await page.locator('#goal-include-report').isChecked());
@@ -60,15 +68,18 @@ async function main(){
    for(const subject of Object.keys(require('../assets/course-catalog.js').COURSES)){
     await page.locator('[data-learning-subject="'+subject+'"]').click();
     assert.equal(await page.locator('#knowledge-map').getAttribute('data-selected-course'),subject);
-    for(const href of await page.locator('.qa-actions a').evaluateAll(es=>es.filter(e=>!e.hidden).map(e=>e.href))){const response=await page.request.get(href);assert.equal(response.status(),200);assert.equal(new URL(href).searchParams.get('lang'),'es');}
+    for(const href of await page.locator('.qa-actions a').evaluateAll(es=>es.filter(e=>!e.hidden).map(e=>e.href))){const response=await page.request.get(href);assert.equal(response.status(),200);assert.equal(new URL(href).searchParams.has('lang'),false,href+' carries no language');}
    }
    await page.locator('button[data-chapter="1"]').click();await page.locator('[data-node="real"]').click();assert.equal(await page.locator('.qa-actions').isVisible(),false);
    await page.locator('.q-brand').click();assert.equal(await page.locator('.home-map-view').isVisible(),true);
+   await english(page,'home after the logo link');
+   assert.equal(await page.evaluate(key=>localStorage.getItem(key),LOCALE),'es','saved language preference left in place');
    await context.close();
   }
-  // Existing reports and the exact user request survive repeated map/page/language changes.
+  // Existing reports and the exact user request survive repeated map/page changes and a later visit whose address and
+  // saved preference ask for Spanish.
   const context=await browser.newContext({viewport:{width:1200,height:900}}),page=await context.newPage();listen(page);
-  await page.addInitScript(()=>localStorage.setItem('quidence_ui_theme_v1','classic'));await page.goto(origin+'/?lang=en');await ready(page);
+  await page.addInitScript(()=>localStorage.setItem('quidence_ui_theme_v1','classic'));await page.goto(origin+'/');await ready(page);
   const archive=Store.fresh();for(let i=0;i<100;i++)archive.items.push({id:'algebra-1:map-report-'+i,module:'algebra-1',subject:'Algebra I',sessionId:'map-report-'+i,versions:[{savedAt:'2026-10-09T19:00:00Z',signature:'compact-v2:1:0',payload:{markdown:'# Algebra I\n\n> '+RAW+'\n\n'+'.'.repeat(5000)}}]});
   const originalArchive=JSON.stringify(archive);
   await page.evaluate(({key,value})=>QuidenceStorage.setItem(key,value),{key:Store.KEY,value:originalArchive});
@@ -78,12 +89,13 @@ async function main(){
   await page.evaluate(async()=>{
    for(let i=0;i<200;i++)document.querySelector('[data-learning-subject="'+(i%2?'geometry':'algebra-1')+'"]').click();
    for(let i=0;i<20;i++)document.querySelector('[data-home-view="'+(i%2?'map':'courses')+'"]').click();
-   for(let i=0;i<6;i++)await QuidenceI18n.setLocale(i%2?'en':'es');
    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
   });
-  output.stress={savedReports:100,archiveCharacters:originalArchive.length,subjectChanges:200,pageChanges:20,languageChanges:6,elapsedMs:Math.round(performance.now()-started)};
+  output.stress={savedReports:100,archiveCharacters:originalArchive.length,subjectChanges:200,pageChanges:20,elapsedMs:Math.round(performance.now()-started)};
   assert.equal(await page.locator('#learning-goal').inputValue(),RAW);assert.equal(await page.evaluate(key=>QuidenceStorage.getItem(key),Store.KEY),originalArchive);
-  await page.reload();await ready(page);assert.equal(await page.locator('#learning-goal').inputValue(),RAW);
+  await page.evaluate(key=>localStorage.setItem(key,'es'),LOCALE);await page.goto(origin+'/?lang=es');await ready(page);await english(page,'home ?lang=es with saved reports');
+  assert.equal(await page.locator('#learning-goal').inputValue(),RAW);assert.equal(await page.evaluate(key=>QuidenceStorage.getItem(key),Store.KEY),originalArchive);
+  assert.equal(await page.evaluate(key=>localStorage.getItem(key),LOCALE),'es','saved language preference left in place');
   // Verify the generated report still captures the opted-in request for the chosen subject.
   await page.locator('[data-learning-subject="geometry"]').click();await page.locator('#goal-include-report').check();
   assert.equal(await page.evaluate(()=>QuidenceReportStore.save('geometry',{markdown:'# Geometry'},'map-criterion',QuidenceStorage).payload.learningRequest.text),RAW);
