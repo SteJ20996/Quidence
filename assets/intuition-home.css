@@ -168,7 +168,7 @@ html[data-ui-theme="atlas"] #intuition-view{grid-column:1/-1;grid-row:1}
 #intuition-view[data-qi-theme="atlas"] .qi-group-heading p{font:16px/1.3 'Quidence Atlas Serif',Georgia,serif;color:#5c6a76}
 #intuition-view[data-qi-theme="atlas"] .qi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;align-items:stretch}
 #intuition-view[data-qi-theme="atlas"] [data-intuition-group="further"] .qi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-#intuition-view[data-qi-theme="atlas"] [data-intuition-group="science"] .qi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+#intuition-view[data-qi-theme="atlas"] :is([data-intuition-group="science"],[data-intuition-group="cs"]) .qi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 #intuition-view[data-qi-theme="atlas"] .qi-card{flex-direction:column;padding:8px 11px 10px;border:1px solid transparent;border-radius:5px;background:#fbf9f3 var(--atlas-grain);transition:border-color .15s,background-color .15s}
 #intuition-view[data-qi-theme="atlas"] .qi-card:hover,#intuition-view[data-qi-theme="atlas"] .qi-card:focus-visible{border-color:#91aaa8;background-color:#fffdf6}
 #intuition-view[data-qi-theme="atlas"] .qi-card-art{height:93px;margin:0 0 6px;display:flex;justify-content:center}

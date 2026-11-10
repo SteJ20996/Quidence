@@ -251,6 +251,81 @@ R['pr-c03']={'winnings':F(sum(k for k in range(1,7) if k%2==0),6),'envelopes':ex
 tosses=list(cartesian((0,1),repeat=6));X=[sum(t) for t in tosses]
 EX=F(sum(X),64);var=F(sum(x*x for x in X),64)-EX**2
 R['pr-c04']={'three':F(sum(x==3 for x in X),64),'variance':var,'bound':var/9,'exact':F(sum(abs(x-3)>=3 for x in X),64)}
-assert len(R)==78
-output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel–Hakimi degree tests, every equally likely spin, coin and letter arrangement, a 10,000-part factory, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
+# Algorithms: binary search, merging and insertion sort run step by step with counters; the recursion by calling it;
+# routes by listing every simple path; the cheapest network by trying every set of four roads; change by trying every
+# combination of coins; subsets by listing every 0/1 choice.
+from itertools import combinations
+a=[3,8,11,15,19,24,27,31,36,40,44,52,57,63,70];low,high,seen=0,len(a)-1,[]
+while low<=high:
+    mid=(low+high)//2;seen.append(a[mid])
+    if a[mid]==44:break
+    if a[mid]<44:low=mid+1
+    else:high=mid-1
+assert seen[-1]==44 and sorted(a)==a
+R['al-c01']={'first':seen[0],'second':seen[1],'rounds':len(seen),'why':'sorted'}
+def merge_count(x,y):
+    i=j=k=0
+    while i<len(x) and j<len(y):
+        k+=1
+        if x[i]<=y[j]:i+=1
+        else:j+=1
+    return k
+def insertion_count(xs):
+    xs=list(xs);k=0
+    for i in range(1,len(xs)):
+        key,j=xs[i],i-1
+        while j>=0:
+            k+=1
+            if xs[j]>key:xs[j+1]=xs[j];j-=1
+            else:break
+        xs[j+1]=key
+    assert xs==sorted(xs);return k
+log={'lines':0,'calls':0}
+def fold(n):
+    log['calls']+=1
+    if n==0:return
+    log['lines']+=1
+    for _ in range(3):fold(n-1)
+fold(4)
+R['al-c02']={'merge':merge_count([2,9,14],[5,6,20,25]),'insertion':insertion_count([4,3,2,1,5]),'lines':log['lines'],'calls':log['calls']}
+roads={('P','Q'):4,('P','R'):1,('Q','R'):2,('Q','S'):10,('R','S'):8,('R','T'):9,('S','T'):3}
+length=lambda u,v:roads.get((u,v),roads.get((v,u)))
+towns='PQRST'
+def paths(u,goal,used,edges):
+    if u==goal:yield used;return
+    for v in towns:
+        if v not in used and any(set(e)=={u,v} for e in edges):yield from paths(v,goal,used+[v],edges)
+route_len=lambda p:sum(length(p[i],p[i+1]) for i in range(len(p)-1))
+shortest=min(route_len(p) for p in paths('P','T',['P'],roads))
+at,walk,visited='P',0,{'P'}
+while at!='T':
+    nxt=min((v for v in towns if v not in visited and length(at,v) is not None),key=lambda v:length(at,v))
+    walk+=length(at,nxt);visited.add(nxt);at=nxt
+def spanning(edges):
+    group={t:t for t in towns}
+    def find(t):
+        while group[t]!=t:t=group[t]
+        return t
+    for u,v in edges:
+        ru,rv=find(u),find(v)
+        if ru==rv:return False
+        group[ru]=rv
+    return True
+trees=[e for e in combinations(roads,4) if spanning(e)];best=min(trees,key=lambda e:sum(roads[x] for x in e))
+assert sum(1 for e in trees if sum(roads[x] for x in e)==sum(roads[x] for x in best))==1
+tree_route=[route_len(p) for p in paths('P','T',['P'],best)];assert len(tree_route)==1
+R['al-c03']={'shortest':shortest,'nearest':walk,'network':sum(roads[x] for x in best),'treeRoute':yn(tree_route[0]==shortest)}
+coins=[10,6,1];left,taken=12,0
+for c in coins:
+    while left>=c:left-=c;taken+=1
+fewest=min(a+b+c for a in range(13) for b in range(3) for c in range(2) if a+6*b+10*c==12)
+subsets=sum(1 for _ in cartesian((0,1),repeat=20))
+# Largest first misses 5 + 5 = 10 in 6, 5, 5, while trying every subset finds it.
+pool,target=[6,5,5],10;total=0
+for x in sorted(pool,reverse=True):
+    if total+x<=target:total+=x
+assert total!=target and any(sum(c)==target for r in range(4) for c in combinations(pool,r))
+R['al-c04']={'greedy':taken,'fewest':fewest,'subsets':subsets,'claim':'check'}
+assert len(R)==82
+output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel–Hakimi degree tests, every equally likely spin, coin and letter arrangement, a 10,000-part factory, algorithms run step by step with counters, every simple route and every set of four roads, every coin combination and every subset of 20, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
 path=Path(__file__).resolve().parents[1]/'review'/'challenge-math-audit.json';path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(output,indent=2)+'\n');print(json.dumps({'questions':len(R),'components':sum(len(x)for x in R.values()),'output':str(path)}))

@@ -48,7 +48,7 @@ async function main(){
   await chooseTheme(page,'studio');assert.equal(await page.locator('.subject-card:visible').count(),2);assert(await page.locator('.subject-card details').first().getAttribute('open')===null);
   // All new questions, drafts, uncertainty, complete reports and exports in a real browser, opened from an address
   // that asks for Spanish: every step stays in English and the work is kept exactly.
-  for(const module of ['number-theory','physics-1','physics-2','coordinate-geometry','geometry','algebra-2','discrete-math','probability']){
+  for(const module of ['number-theory','physics-1','physics-2','coordinate-geometry','geometry','algebra-2','discrete-math','probability','algorithms']){
    await page.goto(origin+'/foundations/?module='+module+'&lang=es');await english(module);await page.locator('[data-f-action="resume"]').click();
    const tasks=B.MODULES[module].tasks;
    for(const [i,t]of tasks.entries()){
@@ -61,7 +61,7 @@ async function main(){
    const dl=page.waitForEvent('download');await page.locator('[data-f-action="export-json"]').click();const d=await dl,report=JSON.parse(fs.readFileSync(await d.path(),'utf8'));assert.equal(report.taskDefinitions.length,15);assert.equal(report.session.module,module);
    await page.reload();assert(await page.locator('[data-f-action="export-json"]').isVisible());
   }
-  const records=await page.evaluate(()=>JSON.parse(localStorage.getItem('cluevera_saved_reports_v1')));for(const id of ['number-theory','physics-1','physics-2','coordinate-geometry','geometry','algebra-2','discrete-math','probability'])assert(records.items.some(i=>i.module===id));
+  const records=await page.evaluate(()=>JSON.parse(localStorage.getItem('cluevera_saved_reports_v1')));for(const id of ['number-theory','physics-1','physics-2','coordinate-geometry','geometry','algebra-2','discrete-math','probability','algorithms'])assert(records.items.some(i=>i.module===id));
   assert.equal(await page.evaluate(key=>localStorage.getItem(key),LOCALE),'es','saved language preference left in place');
   assert.deepEqual(result.errors,[]);assert.deepEqual(result.failedRequests,[]);console.log(JSON.stringify(result));await context.close();
  }finally{await browser?.close();await new Promise(r=>server.close(r));}
