@@ -35,11 +35,13 @@ test('records saved with the four-lesson course open with lesson 5 added and eve
  // Build a finished four-lesson record exactly as ad01-beta-0.1 saved it.
  const s=E.fresh();s.contentVersion='ad01-beta-0.1';s.lessons=s.lessons.slice(0,4);s.labs=s.labs.slice(0,4);
  for(let i=0;i<4;i++){const l=C.LESSONS[i];E.update(s,l.predict.id,answer('unsure'));E.submit(s,l.predict.id,'predict');s.lessons[i].seenSteps=[0,1,2,3];for(const t of l.checks){E.update(s,t.id,{...answer(...t.correct),explanation:'Original words, kept: ∫ and 中文'});E.submit(s,t.id,'check');}s.lessons[i].reviewed=true;}
- s.view='summary';s.stage='review';s.lessonIndex=3;s.labs[3]={x:-1.25,h:.3,side:-1};
+ s.view='summary';s.stage='review';s.lessonIndex=3;s.labs[3]={x:-1.25,h:.3,side:-1};s.labs[0]={kind:'jump',exponent:-1.2,side:-1};
  const saved=JSON.stringify(s),restored=E.hydrate(JSON.parse(saved));
  assert.ok(restored,'a four-lesson record was rejected');assert.equal(JSON.stringify(s),saved,'the input was changed in place');
  assert.equal(restored.contentVersion,C.VERSION);assert.equal(restored.lessons.length,5);assert.deepEqual(restored.lessons.slice(0,4),s.lessons);assert.deepEqual(restored.lessons[4],{seenSteps:[],reviewed:false});
- assert.deepEqual(restored.records,s.records,'answers, drafts and submissions are kept exactly');assert.deepEqual(restored.labs.slice(0,4),s.labs);assert.deepEqual(restored.labs[4],E.defaultLabs()[4]);
+ assert.deepEqual(restored.records,s.records,'answers, drafts and submissions are kept exactly');assert.deepEqual(restored.labs.slice(1,4),s.labs.slice(1));assert.deepEqual(restored.labs[4],E.defaultLabs()[4]);
+ assert.deepEqual(restored.labs[0],{kind:'jump',exponent:-1.2,side:-1,showBand:false,band:-1,digits:3},'lesson 1 keeps its settings and gains the band and the nines');
+ const bad=E.fresh();bad.labs[0].digits=0;assert.equal(E.hydrate(JSON.parse(JSON.stringify(bad))),null);bad.labs[0].digits=3;bad.labs[0].showBand='yes';assert.equal(E.hydrate(JSON.parse(JSON.stringify(bad))),null);
  assert.deepEqual(restored.events.slice(0,-1),s.events);assert.equal(restored.events.at(-1).type,'content_upgraded');
  // The summary needed all lessons; the record opens at the new lesson instead, and the summary returns once it is done.
  assert.equal(restored.view,'lesson');assert.equal(restored.lessonIndex,4);assert.equal(restored.stage,'predict');assert.equal(E.allDone(restored),false);

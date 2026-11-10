@@ -26,14 +26,14 @@ function select(name,label,options,value){return`<label class="control-label" fo
 function slider(name,label,min,max,inc,value){return`<label class="control-label" for="lab-${name}">${label}<span class="range-row"><input id="lab-${name}" data-lab="${name}" type="range" min="${min}" max="${max}" step="${inc}" value="${value}"><output id="out-${name}" for="lab-${name}">${value}</output></span></label>`;}
 function controls(){
  const l=state.labs[state.lessonIndex],side=select('side','Approach direction',[[-1,'From the left (h < 0)'],[1,'From the right (h > 0)']],l.side);
- if(state.lessonIndex===0)return select('kind','Example',[['hole','A hole: near 1, f(1) = 4'],['jump','A jump at 0']],l.kind)+slider('exponent','Log₁₀ of distance |x − target|',-2.3,-.3,.05,l.exponent)+side;
+ if(state.lessonIndex===0)return select('kind','Example',[['hole','A hole: near 1, f(1) = 4'],['jump','A jump at 0'],['wiggle','A wiggle: x·sin(1/x) near 0'],['nines','The decimals 0.9, 0.99, 0.999, …']],l.kind)+(l.kind==='nines'?slider('digits','Number of nines n',1,12,1,l.digits):slider('exponent','Log₁₀ of distance |x − target|',-2.3,-.3,.05,l.exponent)+side)+`<label class="help-label"><input type="checkbox" id="lab-showBand" data-lab="showBand" ${l.showBand?'checked':''}> Show an error band</label>`+(l.showBand?slider('band','Log₁₀ of the band’s half-width',-3,0,.05,l.band):'');
  if(state.lessonIndex===1)return select('kind','Curve',[['square','f(x) = x²'],['absolute','f(x) = |x|']],l.kind)+slider('a','First point a',-2,2,.05,l.a)+slider('h','Distance |h| between the two x-values',.001,1,.001,l.h)+side+`<label class="help-label"><input type="checkbox" id="lab-showDerivative" data-lab="showDerivative" ${l.showDerivative?'checked':''}> Also show the derivative graph</label>`;
  if(state.lessonIndex===2)return select('kind','Curve and starting point',[['square','Positive curve: x², starting at 0'],['linear','Signed example: x, starting at −2']],l.kind)+slider('b','Right endpoint b',.25,2,.05,l.b)+slider('n','Number of equal-width rectangles n',2,64,2,l.n)+select('method','Sample each rectangle at',[['left','Left endpoint'],['midpoint','Midpoint'],['right','Right endpoint']],l.method);
  if(state.lessonIndex===4)return select('kind','Kind of integral',[['family','Indefinite: the family x² + C'],['tail','Improper: an endless region from 1 to ∞']],l.kind)+(l.kind==='family'?slider('c','Constant C',-2,2,.1,l.c):select('fn','Curve',[['inverse-square','f(x) = 1/x²'],['inverse','f(x) = 1/x']],l.fn)+slider('e','Log₁₀ of the right end b',0,3,.05,l.e));
  return slider('x','Accumulation endpoint x',-2,2,.05,l.x)+slider('h','Width |h| of the new interval',.02,1,.02,l.h)+side;
 }
 function formula(){return[
- state.labs[0].kind==='hole'?'limₓ→₁ f(x) = 2, while f(1) = 4':'limₓ→₀⁻ f(x) = −1 ≠ 1 = limₓ→₀⁺ f(x)',
+ {hole:'limₓ→₁ f(x) = 2, while f(1) = 4',jump:'limₓ→₀⁻ f(x) = −1 ≠ 1 = limₓ→₀⁺ f(x)',wiggle:'−|x| ≤ x·sin(1/x) ≤ |x|, so limₓ→₀ x·sin(1/x) = 0',nines:'0.999… = limₙ→∞ (1 − 10⁻ⁿ) = 1'}[state.labs[0].kind],
  'f′(a) = limₕ→₀ [f(a + h) − f(a)] / h',
  '∫ₐᵇ f(x) dx = limₙ→∞ Σᵢ₌₁ⁿ f(xᵢ) Δx',
  'A(x) = ∫₀ˣ f(t) dt   →   A′(x) = f(x)',
@@ -46,7 +46,7 @@ function kindsCard(){
  const current=state.labs[4].kind==='family'?'family':'improper';
  return`<div class="kinds-card" role="group" aria-label="Four kinds of integral">${tiles.map(([id,symbol,gives,action,arg,label])=>`<div class="kinds-tile ${id===current?'active':''}"><svg viewBox="0 0 80 52" aria-hidden="true">${art[id]}</svg><p class="kinds-symbol">${math(symbol)}</p><p class="kinds-gives">${math(gives)}</p><button type="button" class="btn quiet small" data-action="${action}" ${action==='open'?'data-index':'data-kind'}="${arg}" ${id===current?'aria-pressed="true"':''}>${esc(label)}</button></div>`).join('')}</div>`;
 }
-function explorer(){return`<article class="card explorer"><p class="eyebrow">MOVE · COMPARE · EXPLAIN</p><h2>Try it on the graph.</h2>${state.lessonIndex===4?kindsCard():''}<div class="lab-controls">${controls()}</div><div class="motion-controls"><button type="button" class="btn primary" id="play-motion" data-action="play-motion" aria-pressed="false">Play animation</button><p id="motion-note" class="tiny" role="status">Watch the change, then pause or use the controls.</p></div><div id="live-readout" class="lab-readout" role="status" aria-live="polite" aria-atomic="true"></div><div id="lab-graphs"></div><p class="graph-legend"><span class="legend-item curve">● Function</span>${state.lessonIndex===1||state.lessonIndex===3?'<span class="legend-item secant">┄ Secant</span><span class="legend-item tangent">— Tangent</span>':''}${state.lessonIndex===2||state.lessonIndex===3?'<span class="legend-item tangent">▧ Positive contribution</span><span class="legend-item secant">▧ Negative contribution</span>':state.lessonIndex===4?(state.labs[4].kind==='family'?'<span class="legend-item tangent">— Common slope at x = 1</span>':'<span class="legend-item tangent">▧ Area from 1 to b</span>'):''}</p><div id="lab-formula" class="formula-box">${math(formula())}</div><p class="tiny">${state.lessonIndex===0?'The distance slider uses a logarithmic scale. Each step changes the distance proportionally.':state.lessonIndex===2?'n equal-width rectangles; increasing n makes each width smaller.':state.lessonIndex===4?(state.labs[4].kind==='family'?'C slides the curve up or down without changing its slope at any x, so the derivative alone cannot recover C.':'The b slider uses a logarithmic scale, from b = 1 to b = 1,000. A finite b only suggests the limit; the formula decides it.'):'Sliders show finite steps. A limit requires reasoning about arbitrarily small nonzero steps.'} Controls explore the example; they do not submit an answer.</p>${button('reset-lab','Reset this graph','quiet small')}</article>`;}
+function explorer(){return`<article class="card explorer"><p class="eyebrow">MOVE · COMPARE · EXPLAIN</p><h2>Try it on the graph.</h2>${state.lessonIndex===4?kindsCard():''}<div class="lab-controls">${controls()}</div><div class="motion-controls"><button type="button" class="btn primary" id="play-motion" data-action="play-motion" aria-pressed="false">Play animation</button><p id="motion-note" class="tiny" role="status">Watch the change, then pause or use the controls.</p></div><div id="live-readout" class="lab-readout" role="status" aria-live="polite" aria-atomic="true"></div><div id="lab-graphs"></div><p class="graph-legend"><span class="legend-item curve">${state.lessonIndex===0&&state.labs[0].kind==='nines'?'● Terms 0.9, 0.99, …':'● Function'}</span>${state.lessonIndex===0&&state.labs[0].showBand?'<span class="legend-item tangent">▧ Error band</span>'+(state.labs[0].kind==='hole'||state.labs[0].kind==='wiggle'?'<span class="legend-item secant">▧ Window that works</span>':state.labs[0].kind==='nines'?'<span class="legend-item tangent">● Terms inside the band</span>':''):''}${state.lessonIndex===1||state.lessonIndex===3?'<span class="legend-item secant">┄ Secant</span><span class="legend-item tangent">— Tangent</span>':''}${state.lessonIndex===2||state.lessonIndex===3?'<span class="legend-item tangent">▧ Positive contribution</span><span class="legend-item secant">▧ Negative contribution</span>':state.lessonIndex===4?(state.labs[4].kind==='family'?'<span class="legend-item tangent">— Common slope at x = 1</span>':'<span class="legend-item tangent">▧ Area from 1 to b</span>'):''}</p><div id="lab-formula" class="formula-box">${math(formula())}</div><p class="tiny">${state.lessonIndex===0?(state.labs[0].kind==='nines'?'The slider sets how many nines are written. There is no last nine: 0.999… names the limit of the list, which is exactly 1. An infinitely small but positive gap is a natural picture, but the real numbers used in calculus contain no such number.':'The distance slider uses a logarithmic scale. Each step changes the distance proportionally.')+(state.labs[0].showBand?` The band slider is logarithmic${state.labs[0].kind==='nines'?'':' too'}, from ±1 down to ±0.001. Inside means strictly inside: the edge does not count.`:''):state.lessonIndex===2?'n equal-width rectangles; increasing n makes each width smaller.':state.lessonIndex===4?(state.labs[4].kind==='family'?'C slides the curve up or down without changing its slope at any x, so the derivative alone cannot recover C.':'The b slider uses a logarithmic scale, from b = 1 to b = 1,000. A finite b only suggests the limit; the formula decides it.'):'Sliders show finite steps. A limit requires reasoning about arbitrarily small nonzero steps.'} Controls explore the example; they do not submit an answer.</p>${button('reset-lab','Reset this graph','quiet small')}</article>`;}
 function learnHtml(){
  const l=lesson();
  if(!state.lessons[state.lessonIndex].seenSteps.includes(step)){state.lessons[state.lessonIndex].seenSteps.push(step);E.log(state,'lesson_step_viewed',{lesson:l.id,step});}
@@ -54,7 +54,7 @@ function learnHtml(){
 }
 function motionSpec(){
  const index=state.lessonIndex,l=state.labs[index];
- if(index===0)return{key:'exponent',start:l.exponent,end:-2.3,replay:-.3};
+ if(index===0)return l.kind==='nines'?{key:'digits',start:l.digits,end:12,replay:1}:{key:'exponent',start:l.exponent,end:-2.3,replay:-.3};
  if(index===1)return{key:'h',start:l.h,end:.001,replay:1};
  if(index===2)return{key:'n',start:l.n,end:64,replay:4};
  if(index===4)return l.kind==='family'?{key:'c',start:l.c,end:2,replay:-2}:{key:'e',start:l.e,end:3,replay:0};
@@ -77,6 +77,7 @@ function stopMotion(reason='paused',persist=true){
 }
 function applyMotionValue(spec,value){
  if(spec.key==='n')value=Math.max(2,Math.min(64,2*Math.round(value/2)));
+ else if(spec.key==='digits')value=Math.max(1,Math.min(12,Math.round(value)));
  else if(spec.key==='h')value=Math.max(.001,Math.min(1,value));
  state.labs[state.lessonIndex][spec.key]=value;
  const input=document.getElementById('lab-'+spec.key);if(input)input.value=String(value);
@@ -110,7 +111,9 @@ function updateExplorer(){
  if(state.view!=='lesson'||state.stage!=='learn'||blocked)return;
  const l=state.labs[state.lessonIndex],f=G.fmt;
  let graph='',readout='';
- if(state.lessonIndex===0){const d=10**l.exponent,target=l.kind==='hole'?1:0,x=target+l.side*d,y=M.limitValue(l.kind,x);graph=G.limits(l.kind,d,l.side);readout=`Distance = ${f(d)} · x = ${f(x)} · f(x) = ${f(y)} · f(${target}) = ${M.limitValue(l.kind,target)}`;}
+ if(state.lessonIndex===0){const eps=l.showBand?10**l.band:null;
+  if(l.kind==='nines'){const n=l.digits;graph=G.limits('nines',n,1,eps);readout=`${n} ${n===1?'nine':'nines'}: 0.${'9'.repeat(n)} · gap to 1 = 0.${'0'.repeat(n-1)}1`+(eps===null?'':` · inside the band 1 ± ${f(eps)} from n = ${M.ninesInside(eps)} on`);}
+  else{const d=10**l.exponent,info=M.LIMITS[l.kind],x=info.target+l.side*d,y=M.limitValue(l.kind,x);graph=G.limits(l.kind,d,l.side,eps);readout=`Distance = ${f(d)} · x = ${f(x)} · f(x) = ${f(y)} · `+(info.value===null?`f(${info.target}) is undefined`:`f(${info.target}) = ${info.value}`)+(eps===null?'':info.limit===null?` · band 0 ± ${f(eps)}, a trial centre: −1 and 1 never both fit, whatever the centre, so no window works`:` · band ${info.limit} ± ${f(eps)}: every x ≠ ${info.target} within ${f(M.bandWindow(l.kind,eps))} of ${info.target} keeps f(x) inside`);}}
  if(state.lessonIndex===1){const h=l.side*l.h,m=M.secant(l.kind,l.a,h),t=M.FUNCTIONS[l.kind].derivative(l.a);graph=G.derivative(l.kind,l.a,h,l.showDerivative);readout=`h = ${f(h)} · Δy/Δx = ${f(m)} · f′(${f(l.a)}) = ${t===null?'undefined':f(t)}`;}
  if(state.lessonIndex===2){const a=l.kind==='square'?0:-2,r=M.riemann(l.kind,a,l.b,l.n,l.method),exact=M.integral(l.kind,a,l.b);graph=G.integral(l.kind,l.b,l.n,l.method);readout=`Δx = ${f(r.width)} · Rectangle sum = ${f(r.sum)} · Signed integral = ${f(exact)} · |error| = ${f(Math.abs(r.sum-exact))} · Total area = ${f(M.totalArea(l.kind,a,l.b))}`;}
  if(state.lessonIndex===3){const h=l.side*l.h;graph=G.connection(l.x,h);readout=`A(x) = ${f(M.accumulation(l.x))} · ΔA = ${f(M.accumulation(l.x+h)-M.accumulation(l.x))} · h = ${f(h)} · ΔA/h = ${f(M.accumulationSecant(l.x,h))} · A′(x) = f(x) = ${f(M.FUNCTIONS.rate.value(l.x))}`;}
@@ -120,6 +123,7 @@ function updateExplorer(){
  const box=document.getElementById('lab-formula');if(box){const text=formula();if(text.includes('^∞'))box.innerHTML=math(text);else box.textContent=text;}
  for(const [name,value]of Object.entries(l)){const out=document.getElementById('out-'+name);if(out)out.textContent=String(value);}
  const range=document.getElementById('lab-exponent');if(range)range.setAttribute('aria-valuetext',`distance ${f(10**l.exponent)}`);
+ const bandRange=state.lessonIndex===0&&document.getElementById('lab-band');if(bandRange){bandRange.setAttribute('aria-valuetext',`band ± ${f(10**l.band)}`);const out=document.getElementById('out-band');if(out)out.textContent=`±${f(10**l.band)}`;}
  const right=state.lessonIndex===4&&document.getElementById('lab-e');if(right){const b=10**l.e;right.setAttribute('aria-valuetext',`b = ${b>=100?Math.round(b).toLocaleString('en-US'):f(b)}`);}
  updateMotionButton();
 }
@@ -153,7 +157,7 @@ app.addEventListener('input',event=>{
  if(target.dataset.lab){
   stopMotion('control',false);
   const name=target.dataset.lab;state.labs[state.lessonIndex][name]=target.type==='checkbox'?target.checked:target.tagName==='SELECT'&&name!=='side'?target.value:Number(target.value);
-  if(state.lessonIndex===4&&name==='kind'){render();document.getElementById('lab-kind')?.focus();save();return;}
+  if((state.lessonIndex===4&&name==='kind')||(state.lessonIndex===0&&(name==='kind'||name==='showBand'))){render();document.getElementById('lab-'+name)?.focus();save();return;}
   updateExplorer();save();return;
  }
  if(!target.closest('#answer-form'))return;

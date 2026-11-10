@@ -5,7 +5,7 @@ const SCHEMA='ad01_beta01_session_v1',clone=x=>JSON.parse(JSON.stringify(x));
 const tasks=C.LESSONS.flatMap(l=>[l.predict,...l.checks]);
 const TASKS=Object.fromEntries(tasks.map(t=>[t.id,t]));
 function defaultLabs(){return[
- {kind:'hole',exponent:-.6,side:1},
+ {kind:'hole',exponent:-.6,side:1,showBand:false,band:-1,digits:3},
  {kind:'square',a:1,h:.5,side:1,showDerivative:false},
  {kind:'square',b:2,n:8,method:'midpoint'},
  {x:.5,h:.5,side:1},
@@ -15,7 +15,7 @@ function validLabs(labs){
  const range=(x,a,b)=>Number.isFinite(x)&&x>=a&&x<=b;
  if(!Array.isArray(labs)||labs.length!==5||labs.some(l=>!l||typeof l!=='object'))return false;
  const [a,b,c,d,e]=labs;
- return ['hole','jump'].includes(a.kind)&&range(a.exponent,-2.3,-.3)&&[-1,1].includes(a.side)
+ return ['hole','jump','wiggle','nines'].includes(a.kind)&&range(a.exponent,-2.3,-.3)&&[-1,1].includes(a.side)&&typeof a.showBand==='boolean'&&range(a.band,-3,0)&&Number.isInteger(a.digits)&&a.digits>=1&&a.digits<=12
   &&['square','absolute'].includes(b.kind)&&range(b.a,-2,2)&&range(b.h,.001,1)&&[-1,1].includes(b.side)&&typeof b.showDerivative==='boolean'
   &&['square','linear'].includes(c.kind)&&range(c.b,.25,2)&&Number.isInteger(c.n)&&c.n>=2&&c.n<=64&&['left','midpoint','right'].includes(c.method)
   &&range(d.x,-2,2)&&range(d.h,.02,1)&&[-1,1].includes(d.side)
@@ -56,6 +56,8 @@ function last(state,id){return state.records[id]?.submissions.at(-1)||null;}
 function upgrade(raw){
  if(!raw||raw.schema!==SCHEMA||raw.contentVersion!=='ad01-beta-0.1'||!Array.isArray(raw.lessons)||raw.lessons.length!==4||!Array.isArray(raw.labs)||raw.labs.length!==4||!Array.isArray(raw.events))return raw;
  const next=clone(raw);next.contentVersion=C.VERSION;next.lessons.push({seenSteps:[],reviewed:false});next.labs.push(defaultLabs()[4]);
+ // Lesson 1's lab gained the error band and the 0.999… example; earlier settings keep their values.
+ if(next.labs[0]&&typeof next.labs[0]==='object')next.labs[0]={...defaultLabs()[0],...next.labs[0]};
  if(next.view==='summary'){next.view='lesson';next.lessonIndex=4;next.stage='predict';next.questionIndex=0;}
  next.events.push({at:new Date().toISOString(),type:'content_upgraded',from:'ad01-beta-0.1',to:C.VERSION});
  return next;

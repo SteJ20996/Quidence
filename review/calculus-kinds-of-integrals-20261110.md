@@ -1,4 +1,4 @@
-# Calculus lesson 5: kinds of integrals · 2026-11-10
+# Calculus: kinds of integrals, and limits as numbers · 2026-11-10
 
 Calculus gets a fifth lesson, "One symbol, four questions." It sets the four integral symbols side by side and gives two of them their own graphs, which the learner controls. Multivariable integrals (∬, ∭, ∮) are left for a later course: they need double sums and surfaces that this course does not build.
 
@@ -79,8 +79,54 @@ Two further limits apply to all of these points:
 - Only abstracts and secondary summaries were read. The full papers could not be fetched from this environment, so details of method and results are not checked here.
 - None of these studies used an interactive graph like this one. Whether moving b to 1,000 persuades or misleads is open: a learner may read "6.9 at b = 1,000" as levelling off. Step 4's tenfold argument and the b = eᴺ sentence are there for that reason, but no learner has tried them.
 
+## Lesson 1: a limit is a number, not a motion
+
+The research below, and the owner's question about 0.999… = 1, showed a gap that predates lesson 5. Lesson 1, step 1, said "the moving point gets closer to the target without landing on it", and lesson 3 said only that more rectangles "illustrate convergence". Both are true, but the course never said that the limit itself is one exact number. Lesson 5's b slider then repeats the moving picture. Lesson 1 now says it, in three ways, without new steps or questions:
+
+| Change | What it shows |
+| --- | --- |
+| Step 1 text | x never equals the target, but the limit is one fixed number, and outputs may equal it: for f(x) = 5 every output is 5. |
+| New example: x·sin(1/x) near 0 | The function is undefined at 0, stays between y = x and y = −x, and equals its limit 0 infinitely often near 0. A limit can be reached, and the approach need not be from one side. |
+| Error band (optional, in every example) | The learner narrows a band around the limit, from ±1 to ±0.001. For the hole and the wiggle, a window of the same width around the target keeps every output inside, since \|f(x) − 2\| = \|x − 1\| and \|x·sin(1/x)\| ≤ \|x\|. At the jump no window works: −1 and 1 cannot both fit in a band of ±1 or narrower, wherever it is centred. Step 4 states this test in words as the idea behind the ε–δ definition. |
+| New example: 0.9, 0.99, 0.999, … | One graph shows the terms below y = 1; a second plots log₁₀ of the gap, −n, against the band's line. The readout gives the first n inside the band (4 for ±0.001). Step 4 argues 0.999… = 1 with the same test: the notation names the limit, the gap after n nines is 10⁻ⁿ, and no positive gap survives every band. |
+| Lessons 3 and 5 | One sentence each: no finite n or b gives the exact value, and the integral is the limit itself, just as 0.999… is exactly 1. |
+
+Three alternatives were considered and not used:
+- **The algebraic "proofs"** (1/3 = 0.333… times 3; x = 0.999…, 10x − x = 9). They assume that infinite decimals can be multiplied and subtracted digit by digit, which already treats 0.999… as a number, the point in question.
+- **"1 − 0.999… = 0.000… with no last 1, so it is 0."** This is the step where a learner who believes in infinitesimals answers that 0.000…1 exists. The band test does not depend on writing out the difference.
+- **A shooting-game metaphor** ("I claim the target is 4; name the error and I will hit it"). It reverses the roles in the definition and does not suit the site. "Error band" and "window" carry the same idea.
+
+Saved work: lesson 1's lab gains three settings (`showBand`, `band`, `digits`). A record saved with the four-lesson version keeps its lesson-1 settings and gains the defaults; `modules/ad01/tests/session.test.cjs` checks this. The questions p1, c1 and c2 are unchanged.
+
+Checks:
+- `modules/ad01/tests/math.test.cjs` checks \|x·sin(1/x)\| ≤ \|x\| and the first 200 zeros on each side. It samples 4,000 points in each window to confirm that every output lies inside the band. For the jump, it confirms that no centre from −1.5 to 1.5 holds both −1 and 1. It also checks the band boundaries (±0.001 needs 4 nines, ±0.0011 needs 3) and each 1 − 10⁻ⁿ against the written decimal.
+- `modules/ad01/tests/flow.test.cjs` drives the new examples, the band and its accessible value, and the animation of n through the real handlers. It checks that the animation keeps a whole number of nines.
+
+### Second independent review
+
+A separate reviewer read the lesson 1 diff and re-derived the mathematics. It confirmed that a window as wide as the band works for the hole and the wiggle, that no centre works at the jump when inside means strictly inside, and that the band boundary for the nines is right at all 61 slider values. It found:
+
+| Finding | Change |
+| --- | --- |
+| The hole's readout said "every x within … of 1", but the window contains x = 1, whose filled dot at 4 lies outside the band. | The readouts and descriptions say "every x ≠ 1" (and "x ≠ 0" for the wiggle), and the hole's description notes that f(1) is not part of the test. |
+| Whether a point on the band's edge counts was never said. The jump claim at ε = 1, and "4 nines for ±0.001" (0.999 is exactly 0.001 from 1), both depend on it. | Step 4 says "strictly inside", the lab note says the edge does not count, and the try question asks how many nines make the gap smaller than 0.001. |
+| "The gap fits inside any band" confused a length with a region, and "no positive gap survives every band, so 0.999… = 1" compressed two steps and used the Archimedean property silently. | Step 4 now says the gap drops below any band's half-width, so the list passes the test for 1, and that 0.999… is not a term but the limit. The nines note adds that an infinitely small positive gap is a natural picture, but the real numbers used in calculus contain no such number. |
+| Step 1 still opened with a motion definition, which step 4 then contradicted; "the outputs may even equal it" could be read as f(target). | Step 1 opens with "the value that f(x) stays close to whenever x is close to, but not equal to, a target", says "outputs at nearby x ≠ target", and names the wiggle's zeros 1/(kπ). |
+| Step 4 had grown from 41 to 148 words. A fifth step is not possible, because saved sessions require exactly four. | Step 4 is shorter; the jump sentence moved to step 3. |
+| The checkbox said "around the limit", but the jump has none; narrow bands and windows were drawn about 1 unit wide and vanished under other lines; the band slider showed its logarithm; teal points in the nines graph were not in the legend; the nines description read oddly at n = 1. | The checkbox says "Show an error band", and the jump's band is called a trial centre. Narrow bands and windows are drawn at least 5 units wide. The slider shows ±0.316 and so on. The legend adds "Terms inside the band". The descriptions were rewritten. |
+| A record saved by the unpushed lesson 5 commit (version 0.2, without the new lesson 1 settings) would be rejected. | Only version 0.1 has been published, and both Calculus commits ship together, so no such record exists outside local testing. |
+
+### What the research says about this choice
+
+- **The belief is common, and it is about process.** Tall and Schwarzenberger (*Mathematics Teaching* 82, 1978) asked first-year university mathematics students whether 0.999… equals 1; most said it is less, often citing an "infinitely small" gap. The authors read this as students rationalising conflicts with their earlier experience of limiting processes. This is the same dynamic model that Williams (1991) found hard to change, so 0.999…, Riemann sums and improper integrals are treated here as one idea, not three.
+- **Error size is a productive metaphor.** Oehrtman (*Journal for Research in Mathematics Education* 40(4), 2009, 396–426) catalogued the metaphors introductory calculus students use for limits. Secondary accounts report that approximation, coded only when students attached a size to the error, was not the most common metaphor but was the most effective. Swinyard and Larsen (*JRME* 43(4), 2012, 465–493) found that students reinventing the formal definition had to move away from attending first to the input variable. The band begins with the output, which is why the learner sets the band and the page answers with the window.
+- **Intuitions about infinitesimals are not simply errors.** Ely (*JRME* 41(2), 2010, 117–146) describes one undergraduate whose infinitesimal conceptions were coherent and resembled Leibniz's and Robinson's nonstandard analysis. The lesson therefore says what holds "in the real numbers that calculus uses", rather than calling the intuition wrong. This rests on a single case.
+- **Teaching 0.999… = 1 takes more than a sentence.** Weller, Arnon and Dubinsky (*Canadian Journal of Science, Mathematics and Technology Education* 9, 2009; 11, 2011) gave 77 preservice teachers a designed unit on repeating decimals and compared them with 127 who had ordinary instruction, then interviewed 47 of them four months later. The unit lasted several sessions, the participants were future teachers, and the outcome figures could not be read here. A few sentences and a slider in lesson 1 are a much smaller intervention.
+
+The gap that matters most: no study found here tests whether meeting 0.999… = 1 inside a limits lesson changes how students read later limits, such as Riemann sums or improper integrals. The connection is plausible, and the lesson is built on it, but it is untested. As in lesson 5, only abstracts and secondary summaries were read.
+
 ## Not done
 
-- No students have tried the lesson, and no teacher outside the project has read it.
+- No students have tried lesson 5 or the new lesson 1 material, and no teacher outside the project has read them.
 - Saved reports and the Markdown export show the infinite upper limit as plain text, `∫₁^∞`, since neither renders superscripts.
 - Multivariable integrals are left for a later course.

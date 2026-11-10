@@ -5,7 +5,7 @@ let serial=0;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=n=>Math.abs(n)<.0000001?'0':Number(n.toFixed(4)).toString();
 const COLORS={curve:'#6542c0',positive:'#087f76',negative:'#aa4c13',secant:'#a25117',tangent:'#087f76',muted:'#52647b'};
-function plot({title,description,xmin=-2.5,xmax=2.5,ymin=-2,ymax=6,xlabel='x',ylabel='y',draw}){
+function plot({title,description,xmin=-2.5,xmax=2.5,ymin=-2,ymax=6,xstep=0,ystep=0,xlabel='x',ylabel='y',draw}){
  const W=620,H=310,L=54,R=22,T=30,B=45,pw=W-L-R,ph=H-T-B,id='ad-plot-'+(++serial);
  const X=x=>L+(x-xmin)/(xmax-xmin)*pw,Y=y=>T+(ymax-y)/(ymax-ymin)*ph;
  const line=(x1,y1,x2,y2,color,cls='')=>`<path d="M${X(x1)} ${Y(y1)}L${X(x2)} ${Y(y2)}" fill="none" stroke="${color}" ${cls.includes("stroke-width")?"":"stroke-width=\"2.4\""} ${cls}/>`;
@@ -24,19 +24,50 @@ function plot({title,description,xmin=-2.5,xmax=2.5,ymin=-2,ymax=6,xlabel='x',yl
  };
  const rect=(r)=>`<rect x="${X(r.left)}" y="${Y(Math.max(0,r.height))}" width="${pw*r.width/(xmax-xmin)}" height="${ph*Math.abs(r.height)/(ymax-ymin)}" fill="${r.height>=0?COLORS.positive:COLORS.negative}" fill-opacity=".16" stroke="${r.height>=0?COLORS.positive:COLORS.negative}" stroke-width=".9"/>`;
  let grid='';
- const step=(max,min)=>Math.max(1,Math.ceil((max-min)/7));
- for(let x=Math.ceil(xmin/step(xmax,xmin))*step(xmax,xmin);x<=xmax;x+=step(xmax,xmin))grid+=line(x,ymin,x,ymax,'#e8eaf1','stroke-width="1"')+`<text x="${X(x)}" y="${H-22}" text-anchor="middle" class="tick">${x}</text>`;
- for(let y=Math.ceil(ymin/step(ymax,ymin))*step(ymax,ymin);y<=ymax;y+=step(ymax,ymin))grid+=line(xmin,y,xmax,y,'#e8eaf1','stroke-width="1"')+`<text x="${L-10}" y="${Y(y)+4}" text-anchor="end" class="tick">${y}</text>`;
+ const step=(max,min,given)=>given||Math.max(1,Math.ceil((max-min)/7)),tick=v=>String(+v.toFixed(4));
+ const sx=step(xmax,xmin,xstep),sy=step(ymax,ymin,ystep);
+ for(let i=Math.ceil(xmin/sx-1e-9);i*sx<=xmax+1e-9;i++){const x=i*sx;grid+=line(x,ymin,x,ymax,'#e8eaf1','stroke-width="1"')+`<text x="${X(x)}" y="${H-22}" text-anchor="middle" class="tick">${tick(x)}</text>`;}
+ for(let i=Math.ceil(ymin/sy-1e-9);i*sy<=ymax+1e-9;i++){const y=i*sy;grid+=line(xmin,y,xmax,y,'#e8eaf1','stroke-width="1"')+`<text x="${L-10}" y="${Y(y)+4}" text-anchor="end" class="tick">${tick(y)}</text>`;}
  const axes=(xmin<=0&&xmax>=0?line(0,ymin,0,ymax,'#99a7bc'):'')+(ymin<=0&&ymax>=0?line(xmin,0,xmax,0,'#99a7bc'):'');
  const marks=draw({line,text,point,curve,area,rect,X,Y});
  return`<figure class="graph-figure"><svg class="calculus-graph" viewBox="0 0 ${W} ${H}" role="img" aria-labelledby="${id}-title ${id}-desc"><title id="${id}-title">${esc(title)}</title><desc id="${id}-desc">${esc(description)}</desc><defs><clipPath id="${id}"><rect x="${L}" y="${T}" width="${pw}" height="${ph}"/></clipPath></defs>${grid}${axes}<g clip-path="url(#${id})">${marks}</g><g class="plot-annotations">${labels.join('')}</g><text x="${W-R}" y="${H-7}" text-anchor="end" class="axis-label">${esc(xlabel)}</text><text x="${L}" y="17" class="axis-label">${esc(ylabel)}</text></svg><figcaption>${esc(description)}</figcaption></figure>`;
 }
-function limits(kind,distance,side){
+const SUP='⁰¹²³⁴⁵⁶⁷⁸⁹',sup=n=>(n<0?'⁻':'')+String(Math.abs(n)).split('').map(d=>SUP[d]).join('');
+// An error band (horizontal) and, when one exists, a window (vertical) that keeps every output inside it.
+function bandMarks(g,x0,x1,center,eps,target,delta,ymin,ymax){
+ // Narrow bands and windows are drawn at least 5 units wide, as solid strips: dashed edges that close would merge
+ // into a smear. The readout gives the exact width.
+ const MIN=5,lo=Math.max(ymin,center-eps),hi=Math.min(ymax,center+eps),bandH=g.Y(lo)-g.Y(hi);
+ let s=bandH>=MIN?`<rect x="${g.X(x0)}" y="${g.Y(hi)}" width="${g.X(x1)-g.X(x0)}" height="${bandH}" fill="${COLORS.positive}" fill-opacity=".14"/>`+g.line(x0,center-eps,x1,center-eps,COLORS.positive,'stroke-width="1.4" stroke-dasharray="5 4"')+g.line(x0,center+eps,x1,center+eps,COLORS.positive,'stroke-width="1.4" stroke-dasharray="5 4"')
+  :`<rect x="${g.X(x0)}" y="${g.Y(center)-MIN/2}" width="${g.X(x1)-g.X(x0)}" height="${MIN}" fill="${COLORS.positive}" fill-opacity=".5"/>`;
+ if(delta!==null){const w=g.X(target+delta)-g.X(target-delta);
+  s+=w>=MIN?`<rect x="${g.X(target-delta)}" y="${g.Y(ymax)}" width="${w}" height="${g.Y(ymin)-g.Y(ymax)}" fill="${COLORS.secant}" fill-opacity=".09"/>`+g.line(target-delta,ymin,target-delta,ymax,COLORS.secant,'stroke-width="1.4" stroke-dasharray="3 4"')+g.line(target+delta,ymin,target+delta,ymax,COLORS.secant,'stroke-width="1.4" stroke-dasharray="3 4"')
+   :`<rect x="${g.X(target)-MIN/2}" y="${g.Y(ymax)}" width="${MIN}" height="${g.Y(ymin)-g.Y(ymax)}" fill="${COLORS.secant}" fill-opacity=".3"/>`;}
+ return s;
+}
+function ninesGraphs(n,eps){
+ const terms=Array.from({length:n},(_,i)=>i+1),from=eps===null?null:M.ninesInside(eps);
+ const bandText=eps===null?'':` Error band 1 ± ${fmt(eps)}: from n = ${from} on, every term is inside it.`;
+ return plot({title:'0.9, 0.99, 0.999, … and the number 1',description:`The term${n>1?`s 1 − 10${sup(-1)} to 1 − 10${sup(-n)} lie`:` 1 − 10${sup(-1)} lies`} below the dashed line y = 1.${n>=3?' From n = 3 on the gap is too small to see at this scale.':''}${bandText} The list never ends; 0.999… names its limit, 1.`,xmin:0,xmax:12.5,ymin:.85,ymax:1.03,xstep:2,ystep:.05,xlabel:'n (number of nines)',ylabel:'value',draw:g=>(eps===null?'':bandMarks(g,0,12.5,1,eps,0,null,.85,1.03))+g.line(0,1,12.5,1,COLORS.muted,'stroke-dasharray="6 5"')+terms.map(k=>g.point(k,M.nines(k),k===n?`n = ${n}`:'',eps!==null&&k>=from?COLORS.positive:COLORS.curve)).join('')})
+  +plot({title:'The gap to 1, on a log scale',description:`log₁₀ of the gap 10${sup(-n)} is −${n}: each extra nine moves the gap down one step.${eps===null?'':` The dashed line is at log₁₀ ${fmt(eps)} = ${fmt(Math.log10(eps)).replace('-','−')}; the gap drops below it at n = ${from} and stays below.`} However low the line is set, the gaps eventually drop below it.`,xmin:0,xmax:12.5,ymin:-12.5,ymax:0,xstep:2,ystep:2,xlabel:'n (number of nines)',ylabel:'log₁₀ of the gap',draw:g=>(eps===null?'':g.line(0,Math.log10(eps),12.5,Math.log10(eps),COLORS.positive,'stroke-dasharray="6 5"'))+g.line(1,-1,n,-n,'#c6cbd8')+terms.map(k=>g.point(k,-k,k===n?`gap 10${sup(-k)}`:'',eps!==null&&k>=from?COLORS.positive:COLORS.curve)).join('')});
+}
+function wiggleGraph(distance,side,eps){
+ const x=side*distance,y=M.limitValue('wiggle',x),xmin=-.6,xmax=.6,ymin=-.65,ymax=.65;
+ const half=(a,b)=>{const n=900;return Array.from({length:n+1},(_,i)=>{const t=a+(b-a)*i/n;return t;});};
+ const bandText=eps===null?'':` Error band 0 ± ${fmt(eps)}, with the window of x within ${fmt(eps)} of 0: for every x ≠ 0 there, |f(x)| ≤ |x| < ${fmt(eps)}.`;
+ return plot({title:'A wiggle that keeps landing on its limit',description:`f(x) = x·sin(1/x) is undefined at 0 and stays between the dashed lines y = x and y = −x. It equals 0 at x = 1/(kπ) for every whole number k, so in every window around 0. Its limit at 0 is 0. Moving point: x = ${fmt(x)}, f(x) = ${fmt(y)}.${bandText}`,xmin,xmax,ymin,ymax,xstep:.2,ystep:.25,draw:g=>{
+  const path=pts=>`<path d="${pts.map((t,i)=>`${i?'L':'M'}${g.X(t).toFixed(2)} ${g.Y(t*Math.sin(1/t)).toFixed(2)}`).join(' ')}" fill="none" stroke="${COLORS.curve}" stroke-width="2.2"/>`;
+  return (eps===null?'':bandMarks(g,xmin,xmax,0,eps,0,M.bandWindow('wiggle',eps),ymin,ymax))+g.line(xmin,xmin,xmax,xmax,'#99a7bc','stroke-width="1.3" stroke-dasharray="5 5"')+g.line(xmin,-xmin,xmax,-xmax,'#99a7bc','stroke-width="1.3" stroke-dasharray="5 5"')+path(half(xmin,-.0008))+path(half(.0008,xmax))+g.point(0,0,'f(0) undefined',COLORS.curve,true,-150,78)+g.point(x,y,'moving',COLORS.positive,true,12,-19);
+ }});
+}
+function limits(kind,distance,side,eps=null){
+ if(kind==='nines')return ninesGraphs(distance,eps);
+ if(kind==='wiggle')return wiggleGraph(distance,side,eps);
  const target=kind==='hole'?1:0,x=target+side*distance,y=M.limitValue(kind,x),left=kind==='hole'?2:-1,right=kind==='hole'?2:1,value=kind==='hole'?4:1;
- const description=`Moving point: x = ${fmt(x)}, f(x) = ${fmt(y)}. At the target ${target}, f(${target}) = ${value}. Left-hand limit: ${left}; right-hand limit: ${right}.`;
+ const description=`Moving point: x = ${fmt(x)}, f(x) = ${fmt(y)}. At the target ${target}, f(${target}) = ${value}. Left-hand limit: ${left}; right-hand limit: ${right}.`+(eps===null?'':kind==='hole'?` Error band 2 ± ${fmt(eps)}, with the window of x within ${fmt(eps)} of 1: for every x ≠ 1 there, |f(x) − 2| = |x − 1| < ${fmt(eps)}. The filled dot f(1) = 4 is not part of the test.`:` Error band 0 ± ${fmt(eps)}: just left of 0 the outputs are −1 and just right they are 1. A band of ±1 or narrower cannot hold both, wherever it is centred, so no window works.`);
  return plot({title:kind==='hole'?'A hole and a separate function value':'Different limits at a jump',description,xmin:-1,xmax:3,ymin:-2,ymax:5,draw:g=>{
   const path=kind==='hole'?g.curve(x=>x+1):g.curve(()=>-1,COLORS.curve,-1,0)+g.curve(()=>1,COLORS.curve,0,3);
-  return path+g.line(target,-2,target,5,'#c1bfd3','stroke-dasharray="4 5"')+g.point(target,left,'open',COLORS.curve,true,-52,20)+(kind==='hole'?g.point(1,4,'f(1) = 4'):g.point(0,1,'f(0) = 1'))+g.point(x,y,'moving',COLORS.positive,true,12,-19);
+  return (eps===null?'':bandMarks(g,-1,3,kind==='hole'?2:0,eps,target,M.bandWindow(kind,eps),-2,5))+path+g.line(target,-2,target,5,'#c1bfd3','stroke-dasharray="4 5"')+g.point(target,left,'open',COLORS.curve,true,-52,20)+(kind==='hole'?g.point(1,4,'f(1) = 4'):g.point(0,1,'f(0) = 1'))+g.point(x,y,'moving',COLORS.positive,true,12,-19);
  }});
 }
 function derivative(id,a,h,showDerivative){

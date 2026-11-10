@@ -1,4 +1,4 @@
-## 2026-11-10 · Calculus lesson 5: Kinds of integrals
+## 2026-11-10 · Calculus: kinds of integrals (lesson 5), and limits as numbers (lesson 1)
 
 Calculus grows from four lessons to five. Lesson 5, "One symbol, four questions.", shows that the integral sign asks a different question depending on what is written at its ends.
 - **The four kinds.**
@@ -12,6 +12,13 @@ Calculus grows from four lessons to five. Lesson 5, "One symbol, four questions.
   - *Improper integrals.* Dragging b from 1 to 1,000 on a log scale shades the region and plots the area against b, with the other function's area in grey. For 1/x² the area 1 − 1/b stays below 1 and its limit is 1. For 1/x each tenfold step in b adds ln 10 ≈ 2.3 to ln b, so the area has no ceiling.
 - **Prediction first.** Before the lesson: is the area of the endless region under y = 1/x² to the right of x = 1 finite? Two new questions follow: whether x² and x² + 5 are both antiderivatives of 2x, and which of ∫₁^∞ 1/x³ dx and ∫₁^∞ 1/x dx is finite.
 - **Saved work.** A record saved with the four-lesson course opens with lesson 5 added in memory. Its answers, records and events are unchanged, and a `content_upgraded` event is added. A record that had reached the summary moves to lesson 5's prediction.
+- **Lesson 1: a limit is a number, not a motion.** Lesson 1 said only that the moving point gets closer without landing, and lesson 3 that more rectangles illustrate convergence. Nothing said that the limit itself is one exact number, and lesson 5's slider repeats the moving picture. Lesson 1 now says it, with no new steps or questions:
+  - Step 1: x never equals the target, but the limit is one fixed number, and outputs may equal it (f(x) = 5).
+  - A new example, x·sin(1/x), is undefined at 0 and equals its limit 0 infinitely often near 0.
+  - An optional error band narrows from ±1 to ±0.001 around the limit, and the page draws the window of x that keeps every output inside. At the jump no window works. Step 4 states this test in words as the idea behind ε–δ.
+  - A new example, 0.9, 0.99, 0.999, …, uses the same test for 0.999… = 1: after n nines the gap is 10⁻ⁿ, and no positive gap survives every band. The algebraic tricks (times 3, 10x − x) are not used, because they already treat 0.999… as a number.
+  - Lessons 3 and 5 each link back in one sentence: the integral is the limit itself, not the last approximation.
+  - A second independent review found that the hole's window must exclude x = 1 itself, that "inside" must mean strictly inside, and that the 0.999… sentence mixed up a gap with a band. Step 1 also still opened with a motion definition, and step 4 had grown to 148 words. All are fixed.
 - **Independent review.** A separate reviewer recomputed every number and found problems that are now fixed:
   - lesson 4's "continue" and the summary heading still assumed four lessons;
   - the feedback page printed `^∞` literally in three places;

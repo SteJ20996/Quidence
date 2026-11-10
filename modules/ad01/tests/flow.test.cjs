@@ -58,6 +58,20 @@ test('lesson 4 continues to lesson 5, whose feedback shows ∞ as a superscript'
  h.click('continue');assert.equal(h.saved().lessonIndex,4);finishLesson(h,4);
  assert.match(h.app.innerHTML,/Your answer: ∫₁<sup>∞<\/sup> 1\/x³ dx/);assert.match(h.app.innerHTML,/Decide whether ∫₁<sup>∞<\/sup> 1\/√x dx/);assert.doesNotMatch(h.app.innerHTML,/\^∞/);
 });
+test('lesson 1: the wiggle, the error band and 0.9, 0.99, … run through the real handlers',()=>{
+ const h=harness();h.click('start');h.choose('unsure');h.submit();h.click('next');const readout=()=>h.document.getElementById('live-readout').textContent;
+ h.lab('kind','wiggle');assert.match(readout(),/f\(0\) is undefined/);assert.match(h.document.getElementById('lab-formula').textContent,/limₓ→₀ x·sin\(1\/x\) = 0/);assert.ok(!h.document.getElementById('lab-band'),'the band slider waits for the checkbox');
+ h.lab('showBand',true);assert.ok(h.document.getElementById('lab-band'),'the band slider appears');h.lab('band',-3);
+ assert.match(readout(),/band 0 ± 0\.001: every x ≠ 0 within 0\.001 of 0 keeps f\(x\) inside/);assert.equal(h.document.getElementById('lab-band').attrs['aria-valuetext'],'band ± 0.001');assert.equal(h.document.getElementById('out-band').textContent,'±0.001');assert.match(h.app.innerHTML,/Window that works/);
+ h.lab('kind','jump');assert.match(readout(),/no window works/);assert.doesNotMatch(h.app.innerHTML,/Window that works/);
+ h.lab('kind','hole');assert.match(readout(),/band 2 ± 0\.001: every x ≠ 1 within 0\.001 of 1 keeps f\(x\) inside/);
+ h.lab('kind','nines');assert.ok(!h.document.getElementById('lab-exponent'));h.lab('digits',4);
+ assert.match(readout(),/4 nines: 0\.9999 · gap to 1 = 0\.0001 · inside the band 1 ± 0\.001 from n = 4 on/);assert.match(h.document.getElementById('lab-formula').textContent,/0\.999… = limₙ→∞ \(1 − 10⁻ⁿ\) = 1/);
+ assert.equal(h.document.getElementById('lab-graphs').querySelectorAll('svg').length,2);assert.doesNotMatch(h.document.getElementById('lab-graphs').innerHTML,/NaN|Infinity|undefined/);
+ assert.deepEqual(Object.keys(h.saved().records),['p1'],'graph controls never submit an answer');
+ h.click('play-motion');h.tick(0);h.tick(2000);assert.ok(Number.isInteger(h.saved().labs[0].digits),'the animation keeps a whole number of nines');for(const t of [3000,4500])h.tick(t);assert.equal(h.saved().labs[0].digits,12);
+ const r=harness(h.map);assert.equal(r.saved().labs[0].kind,'nines');assert.equal(r.saved().labs[0].showBand,true);r.click('reset-lab');assert.equal(r.saved().labs[0].kind,'hole');assert.equal(r.saved().labs[0].showBand,false);
+});
 test('storage failure allows in-memory work; corrupt storage is preserved until explicit replacement',()=>{
  const h=harness(new Map(),true);assert.match(h.note.textContent,/unavailable/);h.click('start');h.choose('unsure');h.submit();h.click('next');assert.equal(h.document.getElementById('lab-graphs').querySelectorAll('svg').length,1);
  const map=new Map([[E.SCHEMA,'{corrupt'],['ac01_beta01_session_v1','AC01 unchanged']]),r=harness(map);assert.match(r.app.innerHTML,/kept unchanged/);r.click('reset-blocked');r.click('cancel-reset');assert.equal(map.get(E.SCHEMA),'{corrupt');r.click('raw');assert.equal(r.downloads[0].name,'Quidence_Calculus_Saved_Record.json');r.click('reset-blocked');r.click('confirm-reset');assert.equal(r.saved().schema,E.SCHEMA);assert.equal(map.get('ac01_beta01_session_v1'),'AC01 unchanged');
