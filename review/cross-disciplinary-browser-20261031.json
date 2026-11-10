@@ -2,10 +2,9 @@
   "projects": 3,
   "steps": 18,
   "labs": 33,
-  "layouts": 12,
+  "layouts": 6,
   "languages": [
-    "en",
-    "es"
+    "en"
   ],
   "errors": [],
   "failedRequests": [],
