@@ -99,8 +99,7 @@ function exportSession(){persist();if(downloadNotes(sessionMarkdown(),'Quidence-
 function exportOriginal(){if(blockedOriginal===null)return;let json=true;try{JSON.parse(blockedOriginal);}catch{json=false;}if(downloadNotes(blockedOriginal,'Quidence-cross-disciplinary-saved-original.'+(json?'json':'txt'),json?'application/json':'text/plain;charset=utf-8'))toast('The previously saved original has been exported separately.');}
 
 /* ---------- First digits (cross-p03) ----------
-   Exact numbers and powers are shown in an equation line that is not translated; status lines use plain numbers,
-   so the Spanish quantity templates can match them. */
+   Exact numbers and powers are shown in an equation line; status lines use plain numbers. */
 const SUP='⁰¹²³⁴⁵⁶⁷⁸⁹',sup=n=>String(n).replace(/\d/g,d=>SUP[d]);
 const grouped=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,',');
 // A power written exactly while it is short, and as m × 10ᵏ once it is long.
