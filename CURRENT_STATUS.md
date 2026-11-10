@@ -22,6 +22,24 @@ The repository owner limited Quidence to English, including future subjects. [AG
   - The other browser suites and unit tests lost their Spanish steps; their English checks are unchanged.
 
 See [the review note](review/english-only-20261110.md).
+## 2026-11-10 · A second tab no longer blocks saving
+
+On the Number Theory, Probability, Discrete Mathematics and cross-disciplinary course pages, opening the same course in a second tab and then closing or leaving it without any edits made the first tab report "Saved work changed in another tab" and stop saving. The bug predates the English-only change.
+
+- **Cause.**
+  - Each tab rebuilds the saved record in project order, and closing or hiding a tab saved it even with no edits. The rewritten record had the same content with its keys in a different order.
+  - The first tab compared the saved text, not its content, so it treated the reorder as another tab's change.
+- **Fix, the same in all four courses.**
+  - A conflict is now a change in content: both records are compared with their keys sorted.
+  - Closing or hiding a tab saves only when it has unsaved edits, so an untouched tab never rewrites the record.
+  - A real edit made in another tab still blocks the first tab, which then does not overwrite it.
+- **Checks.** `npm run test:two-tabs:browser`, now run in CI, checks each course for four things:
+  - a second tab that is opened, hidden and closed leaves the record byte for byte unchanged;
+  - the same content written in another key order is not a conflict;
+  - a real edit from another tab is detected and kept;
+  - closing the blocked tab loses nothing.
+
+  The check fails on the previous code at the first case.
 
 ## 2026-11-09 · Algorithms part 3: algorithms 12 to 16
 
