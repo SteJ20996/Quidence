@@ -33,8 +33,8 @@ test('whole lesson flow gates blank answers, records predictions, restores draft
  h.click('next');h.click('step',3);assert.equal(h.app.querySelector('[data-action="next-step"]').disabled,true);h.click('step',1);h.click('step',2);h.click('step',3);h.click('next-step');
  h.choose('limit4');h.input('explanation','<img src=x onerror=alert(1)>');h.submit();const r=harness(h.map);assert.match(r.app.innerHTML,/&lt;img/);r.click('next');r.choose('none');r.submit();r.click('next');assert.match(r.app.innerHTML,/Your first saved prediction/);assert.deepEqual(r.saved().records.p1.submissions.map(s=>s.answer.choices),[['4'],['2']]);
  r.click('revise',0);r.choose('limit1');r.input('otherHelp',true);r.submit();assert.equal(r.saved().records.c1.submissions[1].support.feedbackSeen,true);r.click('next');r.click('next');
- for(let i=1;i<4;i++){r.click('continue');finishLesson(r,i);}r.map.set('cluevera_learning_goal_v1',JSON.stringify({schema:'cluevera_learning_goal_v1',subject:'ad01',text:'Help me relate the slope to the graph.',includeInReport:true}));r.click('continue');assert.equal(r.saved().view,'summary');assert.equal(JSON.parse(r.map.get('cluevera_saved_reports_v1')).items[0].module,'ad01');assert.ok(r.app.all().some(x=>x.attrs.role==='status'&&x.textContent.includes('report copy')));
- r.click('export-json');r.click('export-md');assert.equal(r.downloads.length,2);assert.equal(Object.keys(JSON.parse(await r.blobs[0].text()).records).length,12);assert.match(await r.blobs[1].text(),/# Calculus/);assert.equal(JSON.parse(await r.blobs[0].text()).learningRequest.text,'Help me relate the slope to the graph.');assert.match(await r.blobs[1].text(),/Your learning focus/);assert.equal(harness(r.map).saved().view,'summary');
+ for(let i=1;i<5;i++){r.click('continue');finishLesson(r,i);}r.map.set('cluevera_learning_goal_v1',JSON.stringify({schema:'cluevera_learning_goal_v1',subject:'ad01',text:'Help me relate the slope to the graph.',includeInReport:true}));r.click('continue');assert.equal(r.saved().view,'summary');assert.equal(JSON.parse(r.map.get('cluevera_saved_reports_v1')).items[0].module,'ad01');assert.ok(r.app.all().some(x=>x.attrs.role==='status'&&x.textContent.includes('report copy')));
+ r.click('export-json');r.click('export-md');assert.equal(r.downloads.length,2);assert.equal(Object.keys(JSON.parse(await r.blobs[0].text()).records).length,15);assert.match(await r.blobs[1].text(),/# Calculus/);assert.equal(JSON.parse(await r.blobs[0].text()).learningRequest.text,'Help me relate the slope to the graph.');assert.match(await r.blobs[1].text(),/Your learning focus/);assert.equal(harness(r.map).saved().view,'summary');
 });
 test('real app handlers change lab settings and calculations without submitting graph explorations',()=>{
  const h=harness();h.click('open',1);h.choose('unsure');h.submit();h.click('next');h.lab('kind','absolute');h.lab('a',0);h.lab('h',.02);h.lab('side',-1);h.lab('showDerivative',true);
@@ -42,6 +42,21 @@ test('real app handlers change lab settings and calculations without submitting 
  const r=harness(h.map);assert.equal(r.saved().labs[1].kind,'absolute');assert.equal(r.document.getElementById('lab-showDerivative').checked,true);r.click('reset-lab');assert.equal(r.saved().labs[1].kind,'square');
  r.click('open',2);r.choose('unsure');r.submit();r.click('next');r.lab('kind','linear');r.lab('n',64);assert.match(r.document.getElementById('live-readout').textContent,/Signed integral = 0/);assert.match(r.document.getElementById('live-readout').textContent,/Total area = 4/);
  r.click('open',3);r.choose('unsure');r.submit();r.click('next');r.lab('x',-1);r.lab('h',.02);assert.match(r.document.getElementById('live-readout').textContent,/A′\(x\) = f\(x\) = 0/);assert.match(r.document.getElementById('lab-graphs').innerHTML,/reverses orientation/);
+ // Lesson 5: the symbol card switches pictures, the family keeps slope 2, and the two tails behave differently.
+ r.click('open',4);r.choose('finite');r.submit();r.click('next');
+ assert.equal((r.app.innerHTML.match(/class="kinds-tile/g)||[]).length,4);
+ r.lab('c',-1.5);assert.match(r.document.getElementById('live-readout').textContent,/x² \+ C at x = 1: 1 \+ C = -0\.5 · slope at x = 1: 2/);assert.match(r.document.getElementById('lab-formula').textContent,/x² \+ C/);
+ r.app.events.click({target:r.app.all().find(x=>x.dataset.action==='kinds-view'&&x.dataset.kind==='tail')});assert.equal(r.saved().labs[4].kind,'tail');assert.ok(r.document.getElementById('lab-fn'),'the tail controls replace the constant');
+ r.lab('fn','inverse-square');r.lab('e',3);assert.match(r.document.getElementById('live-readout').textContent,/area from 1 to b = 0\.999/);assert.match(r.document.getElementById('live-readout').textContent,/distance to 1 = 1\/b = 0\.001/);
+ r.lab('fn','inverse');assert.match(r.document.getElementById('live-readout').textContent,/area from 1 to b = 6\.9078/);assert.match(r.document.getElementById('lab-formula').innerHTML,/<sup>∞<\/sup> 1\/x dx: ln b grows without bound as b → ∞, so the integral diverges/);assert.equal(r.document.getElementById('lab-e').attrs['aria-valuetext'],'b = 1,000');
+ r.lab('kind','family');assert.ok(r.document.getElementById('lab-c'));assert.deepEqual(Object.keys(r.saved().records).sort(),['p2','p3','p4','p5'],'graph controls never submit an answer');
+ r.click('open',2);assert.equal(r.saved().lessonIndex,2,'the lesson 3 card opens lesson 3');
+});
+test('lesson 4 continues to lesson 5, whose feedback shows ∞ as a superscript',()=>{
+ const h=harness();h.click('open',3);finishLesson(h,3);
+ assert.match(h.app.innerHTML,/data-action="continue" >Continue to the next lesson →/,'lesson 4 is not the last lesson');
+ h.click('continue');assert.equal(h.saved().lessonIndex,4);finishLesson(h,4);
+ assert.match(h.app.innerHTML,/Your answer: ∫₁<sup>∞<\/sup> 1\/x³ dx/);assert.match(h.app.innerHTML,/Decide whether ∫₁<sup>∞<\/sup> 1\/√x dx/);assert.doesNotMatch(h.app.innerHTML,/\^∞/);
 });
 test('storage failure allows in-memory work; corrupt storage is preserved until explicit replacement',()=>{
  const h=harness(new Map(),true);assert.match(h.note.textContent,/unavailable/);h.click('start');h.choose('unsure');h.submit();h.click('next');assert.equal(h.document.getElementById('lab-graphs').querySelectorAll('svg').length,1);
@@ -52,9 +67,9 @@ test('graph text equivalents, endpoint extremes, and static question SVGs stay f
  for(let i=0;i<4;i++){const q=harness();q.click('open',i);assert.ok(q.app.querySelector('svg'));assert.match(q.app.innerHTML,/aria-labelledby="ad-plot/);}
  const l=harness();l.click('start');l.choose('unsure');l.submit();l.click('next');l.lab('kind','jump');assert.match(l.document.getElementById('lab-formula').textContent,/−1 ≠ 1/);l.lab('kind','hole');assert.match(l.document.getElementById('lab-formula').textContent,/f\(1\) = 4/);
 });
-test('finite animations finish for all four lessons, update graphs, and preserve answers',()=>{
- const goals=[['exponent',-2.3],['h',.001],['n',64],['x',2]];
- for(let i=0;i<4;i++){
+test('finite animations finish for all five lessons, update graphs, and preserve answers',()=>{
+ const goals=[['exponent',-2.3],['h',.001],['n',64],['x',2],['c',2]];
+ for(let i=0;i<5;i++){
   const h=harness();h.click('open',i);h.choose('unsure');h.submit();h.click('next');const before=JSON.stringify(h.saved().records);h.click('play-motion');assert.equal(h.document.getElementById('play-motion').textContent,'Pause animation');
   for(const t of [0,1500,3000,4500])h.tick(t);
   assert.equal(h.frames.size,0);assert.equal(h.saved().labs[i][goals[i][0]],goals[i][1]);assert.equal(JSON.stringify(h.saved().records),before);assert.equal(h.document.getElementById('play-motion').textContent,'Replay animation');assert.ok(E.hydrate(h.saved()));assert.doesNotMatch(h.document.getElementById('lab-graphs').innerHTML,/NaN|Infinity/);

@@ -15,7 +15,7 @@ const COURSES={
   'basic-logic':['/courses/basic-logic/','Basic Logic','Explore statements, truth tables, valid arguments, fallacies, and syllogisms in four introductory lessons.'],
   'coordinate-geometry':['/courses/coordinate-geometry/','Coordinate Geometry','Connect coordinates, distance and equations through four lessons and two guided projects with six steps each.'],
   af01:['/modules/af01/dist/','Pre-calculus','Connect functions to graphs, angles, and growth through selected introductory activities.'],
-  ad01:['/modules/ad01/dist/','Calculus','Explore limits, derivatives, and accumulation through interactive graphs and introductory questions.'],
+  ad01:['/modules/ad01/dist/','Calculus','Explore limits, derivatives, accumulation, and kinds of integrals through interactive graphs and introductory questions.'],
   ae01:['/modules/ae01/dist/','Statistics','Read distributions, compare summaries, and examine study design with introductory statistics activities.'],
   ab01:['/modules/ab01/dist/','Linear Algebra','Connect two-dimensional vectors and matrices with geometric transformations and introductory checks.'],
   'number-theory':['/courses/number-theory/','Number Theory','Explore divisibility, primes, and congruences through eleven projects with step-by-step reference proofs.'],

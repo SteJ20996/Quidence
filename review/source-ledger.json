@@ -20373,14 +20373,49 @@
       "module": "ad01",
       "taskId": "c1",
       "title": "In this new graph, the open circle is at (2, 4), and f(2) = 1. Which statement is correct?",
-      "bankVersion": "ad01-beta-0.1",
+      "bankVersion": "ad01-beta-0.2",
       "availability": "active",
       "fingerprint": "ac95408772e8ea8bcef5c1d3b00e33f61a57bd4c04f59c50aa8fd637e00ddada",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ad01/dist/content.js",
-          "sha256": "5d4569cfb133065a2501993480c993dee3ddfd6476a16d850fca7eeafde8c614"
+          "sha256": "e47733b6b7bb15a9a131e159b96108a9ff94e16a9c1efbcda26dc5a5a241372b"
+        },
+        {
+          "path": "assets/course-models.js",
+          "sha256": "728b432f905a6a1d42ae52aedb0ef32c326e9012b2c901e06e1406e2b6b62536"
+        },
+        {
+          "path": "assets/course-graphs.js",
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ad01:c10",
+      "family": "lesson",
+      "module": "ad01",
+      "taskId": "c10",
+      "title": "Which of these improper integrals has a finite value?",
+      "bankVersion": "ad01-beta-0.2",
+      "availability": "active",
+      "fingerprint": "7574ec986fa8d6b83a47c6ff77ffd959ea0a3908c41222aef38928a7ce171365",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ad01/dist/content.js",
+          "sha256": "e47733b6b7bb15a9a131e159b96108a9ff94e16a9c1efbcda26dc5a5a241372b"
         },
         {
           "path": "assets/course-models.js",
@@ -20408,14 +20443,14 @@
       "module": "ad01",
       "taskId": "c2",
       "title": "At x = 0, this graph approaches 0 from the left and 3 from the right. What is the two-sided limit?",
-      "bankVersion": "ad01-beta-0.1",
+      "bankVersion": "ad01-beta-0.2",
       "availability": "active",
       "fingerprint": "1ab5a3810bed963fca6359d30d5b4eba89f85427fc44bfef890f223205fe95f3",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ad01/dist/content.js",
-          "sha256": "5d4569cfb133065a2501993480c993dee3ddfd6476a16d850fca7eeafde8c614"
+          "sha256": "e47733b6b7bb15a9a131e159b96108a9ff94e16a9c1efbcda26dc5a5a241372b"
         },
         {
           "path": "assets/course-models.js",
@@ -20443,14 +20478,14 @@
       "module": "ad01",
       "taskId": "c3",
       "title": "A tangent to f(x) = x³ at x = −1 rises 3 units for a run of 1 unit. What is f′(−1)?",
-      "bankVersion": "ad01-beta-0.1",
+      "bankVersion": "ad01-beta-0.2",
       "availability": "active",
       "fingerprint": "b4cfcb9b6e52999981b84c19206a5e1ca5f222cf533e5ff6d7ff03eb6b9057d5",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ad01/dist/content.js",
-          "sha256": "5d4569cfb133065a2501993480c993dee3ddfd6476a16d850fca7eeafde8c614"
+          "sha256": "e47733b6b7bb15a9a131e159b96108a9ff94e16a9c1efbcda26dc5a5a241372b"
         },
         {
           "path": "assets/course-models.js",
@@ -20478,14 +20513,14 @@
       "module": "ad01",
       "taskId": "c4",
       "title": "For f(x) = |x| at x = 0, slopes approach −1 from the left and 1 from the right. Does f′(0) exist?",
-      "bankVersion": "ad01-beta-0.1",
+      "bankVersion": "ad01-beta-0.2",
       "availability": "active",
       "fingerprint": "79903b0a5443fdd3ffc842d8f08220ef31ecb0dc7597388d02e65a0895d1f65f",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ad01/dist/content.js",
-          "sha256": "5d4569cfb133065a2501993480c993dee3ddfd6476a16d850fca7eeafde8c614"
+          "sha256": "e47733b6b7bb15a9a131e159b96108a9ff94e16a9c1efbcda26dc5a5a241372b"
         },
         {
           "path": "assets/course-models.js",
@@ -20513,14 +20548,14 @@
       "module": "ad01",
       "taskId": "c5",
       "title": "A constant velocity is 3 m/s from t = 0 to t = 4 s. What displacement does the area represent?",
-      "bankVersion": "ad01-beta-0.1",
+      "bankVersion": "ad01-beta-0.2",
       "availability": "active",
       "fingerprint": "6761872ff910fa468303eea280e31168b1651a25af5858d8bcfe92f441d0a62d",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ad01/dist/content.js",
-          "sha256": "5d4569cfb133065a2501993480c993dee3ddfd6476a16d850fca7eeafde8c614"
+          "sha256": "e47733b6b7bb15a9a131e159b96108a9ff94e16a9c1efbcda26dc5a5a241372b"
         },
         {
           "path": "assets/course-models.js",
@@ -20548,14 +20583,14 @@
       "module": "ad01",
       "taskId": "c6",
       "title": "The velocity v(t) = t − 2 on [0, 4] has a negative contribution of −2 m and a positive contribution of 2 m. Which pair is correct?",
-      "bankVersion": "ad01-beta-0.1",
+      "bankVersion": "ad01-beta-0.2",
       "availability": "active",
       "fingerprint": "cbb4fdbb1941a92ab259a92645975bd1fb02a30fe360818972c946134617e7c9",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ad01/dist/content.js",
-          "sha256": "5d4569cfb133065a2501993480c993dee3ddfd6476a16d850fca7eeafde8c614"
+          "sha256": "e47733b6b7bb15a9a131e159b96108a9ff94e16a9c1efbcda26dc5a5a241372b"
         },
         {
           "path": "assets/course-models.js",
@@ -20583,14 +20618,14 @@
       "module": "ad01",
       "taskId": "c7",
       "title": "B(x) = ∫₁ˣ 2t dt = x² − 1. At x = 1.5, what is the tangent slope B′(1.5)?",
-      "bankVersion": "ad01-beta-0.1",
+      "bankVersion": "ad01-beta-0.2",
       "availability": "active",
       "fingerprint": "2517c353959fab81c52486eab7c0e2578925dd581a0847f9533aa70ea644b4d6",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ad01/dist/content.js",
-          "sha256": "5d4569cfb133065a2501993480c993dee3ddfd6476a16d850fca7eeafde8c614"
+          "sha256": "e47733b6b7bb15a9a131e159b96108a9ff94e16a9c1efbcda26dc5a5a241372b"
         },
         {
           "path": "assets/course-models.js",
@@ -20618,14 +20653,49 @@
       "module": "ad01",
       "taskId": "c8",
       "title": "For A(x) = ∫₀ˣ (t² − 1) dt, on which open interval is A decreasing?",
-      "bankVersion": "ad01-beta-0.1",
+      "bankVersion": "ad01-beta-0.2",
       "availability": "active",
       "fingerprint": "e401e87b628a7291ad01bed4581605892c30f7ba87c99fb0e84a152e7fa01248",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ad01/dist/content.js",
-          "sha256": "5d4569cfb133065a2501993480c993dee3ddfd6476a16d850fca7eeafde8c614"
+          "sha256": "e47733b6b7bb15a9a131e159b96108a9ff94e16a9c1efbcda26dc5a5a241372b"
+        },
+        {
+          "path": "assets/course-models.js",
+          "sha256": "728b432f905a6a1d42ae52aedb0ef32c326e9012b2c901e06e1406e2b6b62536"
+        },
+        {
+          "path": "assets/course-graphs.js",
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ad01:c9",
+      "family": "lesson",
+      "module": "ad01",
+      "taskId": "c9",
+      "title": "F(x) = x² and G(x) = x² + 5. Which statement is correct?",
+      "bankVersion": "ad01-beta-0.2",
+      "availability": "active",
+      "fingerprint": "ebe0754a852a1c4362d54ac0bdbd15cec0eeeb2bcacd41facc7e410b89a2b5dd",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ad01/dist/content.js",
+          "sha256": "e47733b6b7bb15a9a131e159b96108a9ff94e16a9c1efbcda26dc5a5a241372b"
         },
         {
           "path": "assets/course-models.js",
@@ -20653,14 +20723,14 @@
       "module": "ad01",
       "taskId": "p1",
       "title": "The open circle is at (1, 2), and the filled dot is at (1, 4). As x approaches 1 from both sides, what does f(x) approach?",
-      "bankVersion": "ad01-beta-0.1",
+      "bankVersion": "ad01-beta-0.2",
       "availability": "active",
       "fingerprint": "0f04e943bf2bfa0577255d3111df75743ad8b1144033e9d1ffabedacfedeb6bf",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ad01/dist/content.js",
-          "sha256": "5d4569cfb133065a2501993480c993dee3ddfd6476a16d850fca7eeafde8c614"
+          "sha256": "e47733b6b7bb15a9a131e159b96108a9ff94e16a9c1efbcda26dc5a5a241372b"
         },
         {
           "path": "assets/course-models.js",
@@ -20688,14 +20758,14 @@
       "module": "ad01",
       "taskId": "p2",
       "title": "The graph f(x) = x² is decreasing as it passes through x = −1. What is the sign of its tangent slope there?",
-      "bankVersion": "ad01-beta-0.1",
+      "bankVersion": "ad01-beta-0.2",
       "availability": "active",
       "fingerprint": "654c2cb416cae089ce9d1f2df178f3964541887c369d9d08ddd543c6200eafb2",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ad01/dist/content.js",
-          "sha256": "5d4569cfb133065a2501993480c993dee3ddfd6476a16d850fca7eeafde8c614"
+          "sha256": "e47733b6b7bb15a9a131e159b96108a9ff94e16a9c1efbcda26dc5a5a241372b"
         },
         {
           "path": "assets/course-models.js",
@@ -20723,14 +20793,14 @@
       "module": "ad01",
       "taskId": "p3",
       "title": "For f(x) = x on [−2, 2], equal-sized regions lie below and above the axis. What is the signed integral?",
-      "bankVersion": "ad01-beta-0.1",
+      "bankVersion": "ad01-beta-0.2",
       "availability": "active",
       "fingerprint": "914bdf047cb0f4c85e6d31a9d09e98f559c0556067f33035b9b87d3e184aee5c",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ad01/dist/content.js",
-          "sha256": "5d4569cfb133065a2501993480c993dee3ddfd6476a16d850fca7eeafde8c614"
+          "sha256": "e47733b6b7bb15a9a131e159b96108a9ff94e16a9c1efbcda26dc5a5a241372b"
         },
         {
           "path": "assets/course-models.js",
@@ -20758,14 +20828,49 @@
       "module": "ad01",
       "taskId": "p4",
       "title": "A(x) = ∫₀ˣ f(t) dt, with continuous f. At a point where f(x) = −1, what happens to A locally?",
-      "bankVersion": "ad01-beta-0.1",
+      "bankVersion": "ad01-beta-0.2",
       "availability": "active",
       "fingerprint": "eee26e7ef624ccb10557e5e7580ab7f27d963772e18380658d30c76ff2a607ba",
       "fingerprintScope": "task definition excluding provenance label",
       "sourceFiles": [
         {
           "path": "modules/ad01/dist/content.js",
-          "sha256": "5d4569cfb133065a2501993480c993dee3ddfd6476a16d850fca7eeafde8c614"
+          "sha256": "e47733b6b7bb15a9a131e159b96108a9ff94e16a9c1efbcda26dc5a5a241372b"
+        },
+        {
+          "path": "assets/course-models.js",
+          "sha256": "728b432f905a6a1d42ae52aedb0ef32c326e9012b2c901e06e1406e2b6b62536"
+        },
+        {
+          "path": "assets/course-graphs.js",
+          "sha256": "7d98ba9d14680c359fcad9d945f4f3be5503a332be4a95bb428cb81e4325a2af"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": null
+      }
+    },
+    {
+      "id": "lesson:ad01:p5",
+      "family": "lesson",
+      "module": "ad01",
+      "taskId": "p5",
+      "title": "The region under y = 1/x² to the right of x = 1 never ends. Is its area finite?",
+      "bankVersion": "ad01-beta-0.2",
+      "availability": "active",
+      "fingerprint": "ca9699413bfccafe4a2d8aea182d9cdd6f626e4e10708bce6ba6e7a6315dcd39",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "modules/ad01/dist/content.js",
+          "sha256": "e47733b6b7bb15a9a131e159b96108a9ff94e16a9c1efbcda26dc5a5a241372b"
         },
         {
           "path": "assets/course-models.js",

@@ -50,3 +50,15 @@ test('new questions have independent mathematical support',()=>{
  for(const x of [-2,-1.1,1.1,2])assert.ok(M.FUNCTIONS.rate.value(x)>0);
  assert.deepEqual(tasks.c8.correct,['middle']);
 });
+
+test('lesson 5: the antiderivative family shares every slope, and the tail areas match numerical integration',()=>{
+ for(const c of [-2,-.5,0,1.3,2])for(const x of [-1.5,0,1,2]){const h=1e-6;assert.ok(Math.abs((M.family(x+h,c)-M.family(x-h,c))/(2*h)-2*x)<1e-6);}
+ // Midpoint sums with many thin rectangles from 1 to b, compared with the exact areas used by the lesson.
+ const numeric=(f,b,n=200000)=>{let s=0;const w=(b-1)/n;for(let i=0;i<n;i++)s+=f(1+(i+.5)*w)*w;return s;};
+ for(const b of [1.5,10,100,1000]){assert.ok(Math.abs(numeric(x=>1/(x*x),b)-M.tailArea('inverse-square',b))<1e-4,'1/x² to '+b);assert.ok(Math.abs(numeric(x=>1/x,b)-M.tailArea('inverse',b))<1e-4,'1/x to '+b);}
+ assert.ok(M.tailArea('inverse-square',1e9)<1&&Math.abs(1-M.tailArea('inverse-square',1e6)-1e-6)<1e-12);assert.ok(M.tailArea('inverse',Math.exp(20))>19.99);
+ assert.ok(Math.abs(Math.exp(5)-148.41)<.01,'area 5 under 1/x needs b ≈ 148');
+ // Check c10: 1/x³ from 1 to b is 1/2 − 1/(2b²), which approaches 1/2.
+ for(const b of [2,10,1000])assert.ok(Math.abs(numeric(x=>1/(x*x*x),b)-(.5-1/(2*b*b)))<1e-4);
+ assert.throws(()=>M.tailArea('inverse',.5));
+});

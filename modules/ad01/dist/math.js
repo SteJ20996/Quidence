@@ -19,6 +19,11 @@ function riemann(id,a,b,n,method='midpoint'){
 function limitValue(kind,x){return kind==='hole'?(x===1?4:x+1):(x<0?-1:1);}
 function accumulation(x){return integral('rate',0,x);}
 function accumulationSecant(a,h){if(!Number.isFinite(h)||h===0)throw Error('A nonzero step is required.');return(accumulation(a+h)-accumulation(a))/h;}
-const api={FUNCTIONS,secant,integral,totalArea,riemann,limitValue,accumulation,accumulationSecant};
+// Lesson 5: one antiderivative family and two tails.
+// F(x) = x² + C has F′(x) = 2x for every C. The area under the tail from 1 to b is exact: 1 − 1/b for 1/x², ln b for 1/x.
+function family(x,c){return x*x+c;}
+const TAILS={'inverse-square':{label:'f(x) = 1/x²',value:x=>1/(x*x),area:b=>1-1/b,limit:1},inverse:{label:'f(x) = 1/x',value:x=>1/x,area:b=>Math.log(b),limit:Infinity}};
+function tailArea(fn,b){if(!TAILS[fn]||!Number.isFinite(b)||b<1)throw Error('The tail starts at 1.');return TAILS[fn].area(b);}
+const api={FUNCTIONS,secant,integral,totalArea,riemann,limitValue,accumulation,accumulationSecant,family,TAILS,tailArea};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.AD01Math=api;
 })(typeof window==='undefined'?globalThis:window);
