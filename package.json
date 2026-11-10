@@ -36,7 +36,8 @@
     "test:atlas:browser": "node scripts/test-atlas-browser.cjs",
     "test:studio:browser": "node scripts/test-studio-browser.cjs",
     "test:game-projects:browser": "node scripts/test-game-projects-browser.cjs",
-    "test:intuition:browser": "node scripts/test-intuition-browser.cjs"
+    "test:intuition:browser": "node scripts/test-intuition-browser.cjs",
+    "test:two-tabs:browser": "node scripts/test-two-tabs-browser.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1"
