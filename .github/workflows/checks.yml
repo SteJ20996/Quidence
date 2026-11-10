@@ -57,6 +57,8 @@ jobs:
         run: npm run test:atlas:browser
       - name: Check Geometric Studio layouts, original form nodes and responsive navigation
         run: npm run test:studio:browser
+      - name: Check that a second tab of a course never blocks or overwrites the first
+        run: npm run test:two-tabs:browser
 
   browser-languages-and-records:
     runs-on: ubuntu-latest
