@@ -115,24 +115,24 @@ test('every trace reaches the reference result, and each prediction matches what
  }
 });
 
-test('every prediction has distinct options, a valid answer and an explanation in both languages',()=>{
+test('every prediction has distinct options, a valid answer and an explanation, in English only',()=>{
  for(const k of A.ORDER)for(let r=0;r<40;r++){const g=A.ALGS[k],E=runIn(k,inputFor(k));
   for(const e of E){assert.ok(g.flow.nodes.some(f=>f.id===e.node),k+' node '+e.node);assert.ok(e.line>=-1&&e.line<g.pseudo.en.length);
-   for(const lang of ['en','es']){assert.ok(e.note[lang].trim());if(e.chip)assert.ok(e.chip[lang]);}
-   if(!e.ask)continue;const q=e.ask;for(const lang of ['en','es']){assert.ok(q.q[lang].trim()&&q.why[lang].trim());assert.equal(new Set(q.options[lang]).size,q.options[lang].length,k+' '+q.q.en);}
-   assert.equal(q.options.en.length,q.options.es.length);assert.ok(q.answer>=0&&q.answer<q.options.en.length);}}
+   assert.ok(e.note.en.trim()&&e.note.es===undefined);if(e.chip)assert.ok(e.chip.en&&e.chip.es===undefined);
+   if(!e.ask)continue;const q=e.ask;assert.ok(q.q.en.trim()&&q.why.en.trim());assert.equal(new Set(q.options.en).size,q.options.en.length,k+' '+q.q.en);
+   assert.ok(q.q.es===undefined&&q.why.es===undefined&&q.options.es===undefined);assert.ok(q.answer>=0&&q.answer<q.options.en.length);}}
 });
 
 test('flowcharts, steps, code and the guide line up for every algorithm',()=>{
  for(const k of A.ORDER){const g=A.ALGS[k],ids=new Set(g.flow.nodes.map(n=>n.id)),lines=g.pseudo.en.length;
-  assert.equal(A.ALGS[k].num,A.ORDER.indexOf(k)+1);assert.equal(g.pseudo.es.length,lines);assert.equal(g.teach.length,lines);
+  assert.equal(A.ALGS[k].num,A.ORDER.indexOf(k)+1);assert.equal(g.pseudo.es,undefined);assert.equal(g.teach.length,lines);
   for(const [a,b,pts] of g.flow.edges){assert.ok(ids.has(a)&&ids.has(b),k+' edge '+a+'→'+b);for(const [x,y] of pts)assert.ok(x>=0&&x<=g.flow.w&&y>=0&&y<=g.flow.h,k+' edge point inside the drawing');}
   for(const n of g.flow.nodes)assert.ok(n.x-n.w/2>=0&&n.x+n.w/2<=g.flow.w&&n.y-n.h/2>=0&&n.y+n.h/2<=g.flow.h,k+' node '+n.id+' inside the drawing');
   // No two boxes overlap.
   for(const [i,p] of g.flow.nodes.entries())for(const q of g.flow.nodes.slice(i+1))assert.ok(Math.abs(p.x-q.x)*2>=p.w+q.w||Math.abs(p.y-q.y)*2>=p.h+q.h,k+' '+p.id+' overlaps '+q.id);
   for(const lang of ['python','java','matlab']){const c=g.code[lang];assert.equal(c.map.length,lines,k+' '+lang);for(const m of c.map)for(const l of m)assert.ok(l>=1&&l<=c.lines.length);
-   for(const t of g.teach)for(const L of ['en','es'])assert.ok(t[lang][L].trim()&&t.step[L].trim());}
-  assert.equal(g.trace.en.length,g.trace.es.length);
+   for(const t of g.teach)assert.ok(t[lang].en.trim()&&t.step.en.trim()&&t[lang].es===undefined&&t.step.es===undefined);}
+  assert.ok(g.trace.en.length&&g.trace.es===undefined);
   // The trace walks the flowchart: every move between two boxes is one of its arrows, so loops are shown step by step.
   const edges=new Set(g.flow.edges.map(e=>e[0]+'>'+e[1]));
   // Calls and returns of the recursion are jumps between frames, not arrows of one chart.
@@ -326,27 +326,25 @@ test('recommendations follow the evidence and name only real routes',()=>{
  // Every algorithm now points at open algorithms only.
  for(const k of A.ORDER)assert.ok(A.NUM[T(k,{}).num],k);
  assert.equal(T('dfs',{counter:{status:'counter',why:0}}).num,9);assert.equal(T('dfs',{counter:{status:'counter',why:2}}).title.en,'Find the reason');
- // Every outcome, in every combination of evidence, is written in both languages and points at a numbered algorithm.
+ // Every outcome, in every combination of evidence, is written in English and points at a numbered algorithm.
  const ev=[{breaks:{nobase:{pred:'forever',actual:'forever'},nomove:{pred:'works',actual:'wrongplace'}}},{improve:{v:1,correct:true}},{improve:{v:2,correct:false}},{},{counter:{status:'counter',why:0}},{counter:{status:'counter',why:1}},{built:{passed:300,total:300}},{built:{passed:12,total:300}},{bottle:{ok:true},improve:{correct:true,early:true}},{bottle:{ok:false}},{improve:{v:1,ok:200,total:200}},{cplx:{ok:true}},{cplx:{ok:false},idea:true}];
  for(const k of A.ORDER)for(const x of ev)for(const p of [undefined,{asked:6,matched:6},{asked:6,matched:1}]){const r=T(k,x,p);assert.ok(A.MAP.nodes.some(n=>n[0]===r.num));
-  for(const t of [r.title,r.why,...r.items.map(i=>i.text),...r.alt.flatMap(a=>[a[1],a[2]])])assert.ok(t.en.trim()&&t.es.trim()&&t.en!==t.es,k+' '+JSON.stringify(t));
+  for(const t of [r.title,r.why,...r.items.map(i=>i.text),...r.alt.flatMap(a=>[a[1],a[2]])])assert.ok(t.en.trim()&&t.es===undefined,k+' '+JSON.stringify(t));
   for(const a of r.alt)assert.ok(A.MAP.nodes.some(n=>n[0]===a[0]));}
 });
 
-test('the course text is complete in English and Spanish',()=>{
- const pairs=[];const walk=v=>{if(v&&typeof v==='object'){if('en' in v&&'es' in v&&Object.keys(v).length===2){pairs.push(v);return;}for(const x of Object.values(v))walk(x);}};
+test('the course text is complete in English, with no Spanish left',()=>{
+ const texts=[];const walk=v=>{if(v&&typeof v==='object'){if('en' in v){texts.push(v);return;}assert.ok(!('es' in v),JSON.stringify(v).slice(0,80));for(const x of Object.values(v))walk(x);}};
  walk(A.ALGS);walk(A.MAP);walk(A.CPLX);walk(A.IDEAS);walk(A.BUILD);
- assert.ok(pairs.length>150);
- for(const p of pairs){if(Array.isArray(p.en)){assert.equal(p.en.length,p.es.length);continue;}assert.equal(typeof p.en,'string');assert.ok(p.en.trim()&&p.es.trim(),JSON.stringify(p));}
+ assert.ok(texts.length>150);
+ for(const p of texts){assert.deepEqual(Object.keys(p),['en'],JSON.stringify(p).slice(0,80));if(Array.isArray(p.en)){assert.ok(p.en.length);continue;}assert.equal(typeof p.en,'string');assert.ok(p.en.trim(),JSON.stringify(p));}
  const app=fs.readFileSync(path.join(root,'courses/algorithms/app.js'),'utf8'),html=fs.readFileSync(path.join(root,'courses/algorithms/index.html'),'utf8');
- // Every interface string is written as L(English, Spanish).
- assert.equal((app.match(/\bL\('/g)||[]).length,(app.match(/\bL\('(?:[^'\\]|\\.)*','(?:[^'\\]|\\.)*'\)/g)||[]).length+(app.match(/\bL\('[^']*'\+/g)||[]).length);
- // The course renders its own language, so the shared translator must leave the workbench alone.
+ // Every interface string is written as L(English): no call carries a second, Spanish argument.
+ assert.doesNotMatch(app,/\bL\('(?:[^'\\]|\\.)*',\s*'/);
+ // The course renders its own text, so the shared display layer leaves the workbench alone.
  assert.match(html,/id="app" hidden data-no-translate/);
  // Not a speech or AI activity: no dictation module and no fixed language.
  assert.doesNotMatch(html,/speech-review|data-fixed-language/);
- const catalog=JSON.parse(fs.readFileSync(path.join(root,'localization/algorithms-ui-extra-es.json'),'utf8'));
- const shell=html.replace(/<div class="algo" id="app"[\s\S]*?<\/main>/,'</main>').replace(/<(script|style|title)[\s\S]*?<\/\1>/g,'').replace(/<[^>]+>/g,'\n').split('\n').map(s=>s.replace(/&gt;/g,'>').replace(/&amp;/g,'&').trim()).filter(s=>/[A-Za-z]{3}/.test(s));
- const known=new Set([...Object.keys(catalog),'Mathematics and Science','Online learning foundations, charts and reports','Your session','English and Spanish','Quidence · A little more understanding, one step at a time.','a[i] > best ?','Close dialog']);
- for(const s of shell)assert.ok(known.has(s),'Spanish missing for: '+s);
+ // The page offers no language choice and does not describe itself as bilingual.
+ assert.doesNotMatch(html,/data-language-host|Spanish|Español|lang-select/);
 });

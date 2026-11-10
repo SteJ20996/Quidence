@@ -2,38 +2,37 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os');
 const SEO=require('../assets/seo-config.js'),release=require('../scripts/build-static-release.cjs'),{buildSEO}=require('../scripts/build-seo.cjs');
 const root=path.resolve(__dirname,'..');
-test('canonical URLs keep subjects and languages but drop tracking, versions and fragments',()=>{
+test('canonical URLs keep subjects but drop languages, tracking, versions and fragments',()=>{
   for(const lang of ['en','es']){
     const p=SEO.resolve('http://example.test/diagnostics/index.html?module=ab01&v=old&utm_source=mail&lang='+lang+'#question');
-    assert.equal(p.canonical,'https://www.quidence.com/diagnostics/?module=ab01&lang='+lang);
-    assert.equal(p.noindex,false);assert.match(p.title,lang==='es'?/Álgebra lineal/:/Linear Algebra/);
+    assert.equal(p.canonical,'https://www.quidence.com/diagnostics/?module=ab01');assert.equal(p.locale,'en');
+    assert.equal(p.noindex,false);assert.match(p.title,/Linear Algebra/);
     assert.notEqual(p.canonical,SEO.resolve('/diagnostics/?module=ad01&lang='+lang).canonical);
-    assert.equal(SEO.resolve('/courses/number-theory?lang='+lang).canonical,SEO.resolve('/courses/number-theory/index.html?lang='+lang).canonical);
+    assert.equal(SEO.resolve('/courses/number-theory?lang='+lang).canonical,SEO.resolve('/courses/number-theory/index.html').canonical);
   }
   for(const route of ['/diagnostics/?module=ac01','/projects/?module=number-theory','/projects/?module=coordinate-geometry','/projects/?module=../../reports/'])assert(SEO.resolve(route).noindex);
   // Number Theory and Coordinate Geometry have understanding checks, but their projects live on the course page.
-  const numberTheory=SEO.resolve('/diagnostics/?module=number-theory&lang=es');assert.equal(numberTheory.noindex,false);assert.match(numberTheory.title,/^Teoría de números · /);
+  const numberTheory=SEO.resolve('/diagnostics/?module=number-theory&lang=es');assert.equal(numberTheory.noindex,false);assert.match(numberTheory.title,/^Number Theory · /);
   const coordinate=SEO.resolve('/diagnostics/?module=coordinate-geometry');assert.equal(coordinate.noindex,false);assert.match(coordinate.title,/^Coordinate Geometry · /);
   assert(!SEO.resolve('/foundations/?module=aa01').noindex);assert(!SEO.resolve('/foundations/?module=ac01').noindex);assert.equal(SEO.resolve('/unpublished/'),null);
 });
-test('all active courses have unique bilingual metadata and reciprocal alternatives',()=>{
+test('all active courses have unique English metadata and no language alternatives',()=>{
   const courses=require('../assets/course-catalog.js').COURSES;
   assert.deepEqual(Object.keys(SEO.COURSES).sort(),Object.keys(courses).sort());
   const titles=new Set();
-  for(const [id,c]of Object.entries(courses))for(const language of ['en','es']){
-    const p=SEO.resolve('/'+c.course+'?lang='+language);
-    assert.equal(p.pathname,SEO.COURSES[id][0]);assert(p.sitemap);assert(!p.noindex);
+  for(const [id,c]of Object.entries(courses)){
+    const p=SEO.resolve('/'+c.course),spanish=SEO.resolve('/'+c.course+'?lang=es');
+    assert.equal(p.pathname,SEO.COURSES[id][0]);assert(p.sitemap);assert(!p.noindex);assert.equal(p.locale,'en');
     assert(!titles.has(p.title));titles.add(p.title);assert(p.description.length>45);
-    for(const [hreflang,href]of p.alternates){const q=SEO.resolve(href);assert.deepEqual(q.alternates,p.alternates);assert.equal(q.locale,hreflang==='es-MX'?'es':hreflang);}
-    assert(p.alternates.some(([l])=>l==='es-MX'));
+    assert.deepEqual(p.alternates,[]);assert.deepEqual(spanish,p,'a lang parameter changes nothing');
   }
 });
 test('sitemap includes canonical public entries and excludes workspaces and version parameters',()=>{
   const xml=fs.readFileSync(path.join(root,'sitemap.xml'),'utf8');
   const urls=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1].replaceAll('&amp;','&'));
-  assert.equal(urls.length,Object.values(SEO.PAGES).filter(p=>p.sitemap).reduce((sum,p)=>sum+(p.locales||['en','es']).length,0));assert(urls.includes('https://www.quidence.com/modules/ac01/dist/projects/?lang=en'));assert(urls.includes('https://www.quidence.com/modules/ac01/dist/projects/?lang=es'));assert.equal(new Set(urls).size,urls.length);
-  for(const url of urls){const p=SEO.resolve(url);assert.equal(p.canonical,url);assert(p.sitemap);assert(!p.noindex);assert(!new URL(url).searchParams.has('v'));}
-  assert.doesNotMatch(xml,/\/reports\/|\/records\/|\/account\/|\/archive\/|\/qidolab\//);
+  assert.equal(urls.length,Object.values(SEO.PAGES).filter(p=>p.sitemap).length);assert(urls.includes('https://www.quidence.com/modules/ac01/dist/projects/'));assert.equal(new Set(urls).size,urls.length);
+  for(const url of urls){const p=SEO.resolve(url);assert.equal(p.canonical,url);assert(p.sitemap);assert(!p.noindex);assert(!new URL(url).searchParams.has('v'));assert(!new URL(url).searchParams.has('lang'));}
+  assert.doesNotMatch(xml,/\/reports\/|\/records\/|\/account\/|\/archive\/|\/qidolab\/|hreflang|xhtml:link/);
   const robots=fs.readFileSync(path.join(root,'robots.txt'),'utf8');assert.match(robots,/Sitemap: https:\/\/www\.quidence\.com\/sitemap\.xml/);
   assert.doesNotMatch(robots,/Disallow: \/(?:reports|records|account|assets)\//);
 });
@@ -45,7 +44,7 @@ test('private noindex survives without JavaScript and valid activities have no i
   for(const file of release.files().filter(f=>f.endsWith('.html'))){
     const html=fs.readFileSync(path.join(root,file),'utf8');
     assert.equal([...html.matchAll(/src="[^"]*\/seo\.js\?/g)].length,1,file);assert.equal([...html.matchAll(/src="[^"]*\/seo-config\.js\?/g)].length,1,file);
-    assert.doesNotMatch(html,/<link[^>]+rel="canonical"/,file+' must not hard-code English for both language URLs');
+    assert.doesNotMatch(html,/<link[^>]+rel="canonical"/,file+' must not hard-code a canonical link');
   }
   assert.equal(buildSEO(true).changed,0);
 });
@@ -65,7 +64,7 @@ test('local server serves sitemap and robots with correct types and keeps source
   }
   for(const route of ['/README.md','/review/source-ledger.json','/content/number-theory/source-v2.md'])assert.equal((await fetch(base+route)).status,404);
 });
-test('metadata follows successful language changes without changing navigation, student storage or body',()=>{
+test('metadata is written once in English without changing navigation, student storage or body',()=>{
   const vm=require('node:vm'),children=[],listeners=new Map();
   function node(tag){return{tag,attributes:{},textContent:'',parentNode:null,getAttribute(name){return this.attributes[name]??null;},setAttribute(name,value){this.attributes[name]=value;},remove(){children.splice(children.indexOf(this),1);this.parentNode=null;}};}
   const head={appendChild(n){children.push(n);n.parentNode=head;},querySelectorAll(selector){
@@ -76,17 +75,17 @@ test('metadata follows successful language changes without changing navigation, 
   for(let i=0;i<2;i++){const duplicate=node('link');duplicate.setAttribute('rel','canonical');duplicate.setAttribute('href','https://old.example/');head.appendChild(duplicate);}
   const document={head,readyState:'loading',createElement:node,addEventListener(name,fn){listeners.set(name,fn);}};
   Object.defineProperty(document,'body',{get(){throw Error('Student workspace must not be inspected');}});
-  const location=Object.freeze({href:'http://preview.test/courses/number-theory/?lang=en&v=old'});
+  const location=Object.freeze({href:'http://preview.test/courses/number-theory/?lang=es&v=old'});
   const window={document,location,QuidenceSEOConfig:SEO,QuidenceI18n:{locale:'en'},fetch(){throw Error('SEO must not send requests');}};
   Object.defineProperty(window,'localStorage',{get(){throw Error('SEO must not inspect or write student records');}});
   vm.runInNewContext(fs.readFileSync(path.join(root,'assets/seo.js'),'utf8'),{window});listeners.get('DOMContentLoaded')();
   assert.equal(head.querySelectorAll('link[rel="canonical"]').length,1);
   assert.equal(title.textContent,'Number Theory · Quidence');
-  for(const locale of ['es','en','es'])listeners.get('quidence:language')({detail:{locale}});
-  assert.equal(title.textContent,'Teoría de números · Quidence');
-  assert.equal(head.querySelectorAll('link[rel="canonical"]')[0].getAttribute('href'),'https://www.quidence.com/courses/number-theory/?lang=es');
+  // The page does not wait for language changes, and a lang parameter changes nothing.
+  assert.equal(listeners.has('quidence:language'),false);
+  assert.equal(head.querySelectorAll('link[rel="canonical"]')[0].getAttribute('href'),'https://www.quidence.com/courses/number-theory/');
   assert.equal(head.querySelectorAll('meta[name="robots"]')[0].getAttribute('content'),'index, follow');
-  assert.equal(head.querySelectorAll('link[rel="alternate"][hreflang]').length,3);
-  assert.equal(head.querySelectorAll('meta[property="og:locale"]')[0].getAttribute('content'),'es_MX');
-  assert.equal(location.href,'http://preview.test/courses/number-theory/?lang=en&v=old');
+  assert.equal(head.querySelectorAll('link[rel="alternate"][hreflang]').length,0);
+  assert.equal(head.querySelectorAll('meta[property="og:locale"]')[0].getAttribute('content'),'en_US');
+  assert.equal(location.href,'http://preview.test/courses/number-theory/?lang=es&v=old');
 });

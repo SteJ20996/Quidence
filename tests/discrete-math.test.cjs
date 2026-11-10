@@ -23,28 +23,28 @@ const DOMINO=[[[0,0],[0,1]],[[0,0],[1,0]]],TROMINO=[[[0,0],[1,0],[0,1]],[[0,0],[
 const board=(rows,cols,removed=[])=>{const s=new Set();for(let r=0;r<rows;r++)for(let c=0;c<cols;c++)if(!removed.some(([a,b])=>a===r&&b===c))s.add(r+','+c);return s;};
 const expect=(project,id,value)=>{const f=field(project,id);if(f.type==='number')assert.ok(C.equalNumber(f.answer,String(value)),project+'.'+id+': stored '+f.answer+', recomputed '+value);else assert.deepEqual(f.answer,value,project+'.'+id);};
 
-test('ten bilingual projects with well-formed fields and up-to-date page data',()=>{
+test('ten English projects with well-formed fields and up-to-date page data',()=>{
  assert.equal(fs.readFileSync(build.OUT,'utf8'),build.serialized(),'run node scripts/build-discrete-math.cjs');
  assert.deepEqual(data.map(p=>p.id),Array.from({length:10},(_,i)=>'dm-p'+String(i+1).padStart(2,'0')));
  assert.equal(data.reduce((n,p)=>n+p.steps.length,0),40);
- const catalog=build.discreteMathCatalog();
+ // The page data is English only: no Spanish punctuation or letters, and no second-language copy in the build.
+ assert.doesNotMatch(build.serialized(),/[¿¡ñ]/);assert.equal(build.discreteMathCatalog,undefined);
+ const text=x=>typeof x==='string'&&x.trim().length>0;
  for(const p of data){
-  for(const key of ['title','topic','prompt','approach','uses','nextCheck'])assert.ok(catalog[p[key]],p.id+'.'+key+' has Spanish');
+  for(const key of ['title','topic','prompt','approach','uses','nextCheck'])assert.ok(text(p[key]),p.id+'.'+key);
   for(const s of p.steps){
    assert.ok(s.fields.length&&s.proof.length>100,p.id+' '+s.title);
-   for(const para of s.proof.split(/\n\s*\n/))assert.ok(catalog[para.replace(/\s+/g,' ').trim()],'Spanish proof paragraph: '+para.slice(0,40));
+   assert.ok(s.proof.split(/\n\s*\n/).every(text),p.id+' '+s.title+' proof');
    for(const f of s.fields){
-    assert.ok(catalog[f.label],'Spanish label '+f.label);
+    assert.ok(text(f.label),p.id+'.'+f.id+' label');
     if(f.type==='number'){assert.equal(C.grade(f,f.answer).status,'correct',p.id+'.'+f.id);assert.ok(f.accepted.includes(f.answer));}
     if(f.type==='choice'){assert.ok(f.options.some(o=>o.value===f.answer));assert.equal(new Set(f.options.map(o=>o.value)).size,f.options.length);assert.equal(C.grade(f,f.answer).status,'correct');}
     if(f.type==='multi'){assert.ok(f.answer.every(v=>f.options.some(o=>o.value===v)));assert.equal(C.grade(f,f.answer.slice()).status,'correct');assert.equal(C.grade(f,f.answer.slice(0,-1)).status,'retry');}
-    if(f.type==='reason')assert.ok(f.criteria.length>=2&&f.criteria.every(c=>catalog[c]),p.id+'.'+f.id+' criteria');
-    for(const o of f.options||[])assert.ok(catalog[o.label],'Spanish option '+o.label);
+    if(f.type==='reason')assert.ok(f.criteria.length>=2&&f.criteria.every(text),p.id+'.'+f.id+' criteria');
+    assert.ok((f.options||[]).every(o=>text(o.label)),p.id+'.'+f.id+' options');
    }
   }
  }
- // Prose that should read differently in Spanish was really translated.
- for(const [en,es]of Object.entries(catalog))if(/[A-Za-z]{4}/.test(en.replace(/\b(?:Königsberg|Kruskal|Fibonacci|Binet|Brooks|Gomory|Euler|Pascal)\b/g,'')))assert.notEqual(es,en,'untranslated: '+en.slice(0,60));
 });
 
 test('exam timetables: the clash graph needs exactly three slots',()=>{

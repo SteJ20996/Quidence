@@ -14,9 +14,9 @@ test('published modules match the reviewed source and every local dependency is 
  for(const file of ['checks/index.html','checks/app.js','explain/index.html','explain/app.js','explain/core.js','explain/views.js','explain/recorder.js','explain/style.css','explain/assets/nunito-900.woff','explain/assets/Nunito-OFL.txt'])assert(files.includes(file),file);
  assert(!files.some(f=>f.startsWith('demos/')));assert(!files.includes('explain/package.json'));
 });
-test('English-only metadata stays fixed while the surrounding chooser preserves both languages',()=>{
- const SEO=require('../assets/seo-config.js');for(const lang of ['en','es','zh-Hant']){const m=SEO.resolve('/explain/?lang='+lang,'es');assert.equal(m.locale,'en');assert.deepEqual(m.alternates,[['en','https://www.quidence.com/explain/?lang=en']]);}
- for(const id of ids)for(const lang of ['en','es']){const m=SEO.resolve('/checks/?module='+id+'&lang='+lang);assert.equal(m.locale,lang);assert.equal(new URL(m.canonical).searchParams.get('module'),id);assert.equal(m.noindex,false);}
+test('English-only metadata stays fixed for the dialogue and the chooser around it',()=>{
+ const SEO=require('../assets/seo-config.js');for(const lang of ['en','es','zh-Hant']){const m=SEO.resolve('/explain/?lang='+lang);assert.equal(m.locale,'en');assert.equal(m.canonical,'https://www.quidence.com/explain/');assert.deepEqual(m.alternates,[]);}
+ for(const id of ids)for(const lang of ['en','es']){const m=SEO.resolve('/checks/?module='+id+'&lang='+lang);assert.equal(m.locale,'en');assert.equal(new URL(m.canonical).searchParams.get('module'),id);assert.equal(new URL(m.canonical).searchParams.get('lang'),null);assert.equal(m.noindex,false);}
  assert(fs.readFileSync(path.join(root,'explain/index.html'),'utf8').includes('data-fixed-language="en"'));
 });
 test('new voice notes join local backup, restore and workspace isolation without changing raw evidence',()=>{

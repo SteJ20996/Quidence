@@ -28,27 +28,28 @@ function expect(project,id,value){
   assert.equal(C.grade(f,(Number(r)+10**-f.minDecimalPlaces).toFixed(f.minDecimalPlaces)).status,'retry',project+'.'+id+' rejects one unit off');}
 }
 
-test('ten bilingual projects with well-formed fields and up-to-date page data',()=>{
+test('ten English projects with well-formed fields and up-to-date page data',()=>{
  assert.equal(fs.readFileSync(build.OUT,'utf8'),build.serialized(),'run node scripts/build-probability.cjs');
  assert.deepEqual(data.map(p=>p.id),Array.from({length:10},(_,i)=>'pr-p'+String(i+1).padStart(2,'0')));
  assert.equal(data.reduce((n,p)=>n+p.steps.length,0),40);
  assert.equal(data.reduce((n,p)=>n+p.steps.reduce((m,s)=>m+s.fields.length,0),0),83);
  const ids=data.flatMap(p=>p.steps.flatMap(s=>s.fields.map(f=>f.id)));assert.equal(new Set(ids).size,ids.length,'field ids are unique');
- const catalog=build.probabilityCatalog();
+ // The page data is English only: no Spanish punctuation or letters, and no second-language copy in the build.
+ assert.doesNotMatch(build.serialized(),/[¿¡ñ]/);assert.equal(build.probabilityCatalog,undefined);
+ const text=x=>typeof x==='string'&&x.trim().length>0;
  for(const p of data){
-  for(const key of ['title','topic','prompt','approach','uses','nextCheck'])assert.ok(catalog[p[key]],p.id+'.'+key+' has Spanish');
+  for(const key of ['title','topic','prompt','approach','uses','nextCheck'])assert.ok(text(p[key]),p.id+'.'+key);
   for(const s of p.steps){
    assert.ok(s.fields.length&&s.proof.length>100,p.id+' '+s.title);
-   for(const para of s.proof.split(/\n\s*\n/))assert.ok(catalog[para.replace(/\s+/g,' ').trim()],'Spanish proof paragraph: '+para.slice(0,40));
+   assert.ok(s.proof.split(/\n\s*\n/).every(text),p.id+' '+s.title+' proof');
    for(const f of s.fields){
-    assert.ok(catalog[f.label],'Spanish label '+f.label);
+    assert.ok(text(f.label),p.id+'.'+f.id+' label');
     if(f.type==='number'){assert.equal(C.grade(f,f.answer).status,'correct',p.id+'.'+f.id);assert.ok(f.accepted.includes(f.answer));assert.ok(f.answer.length<=80&&C.rational(f.answer),p.id+'.'+f.id+' fits the answer parser');}
-    if(f.type==='choice'){assert.ok(f.options.some(o=>o.value===f.answer));assert.equal(new Set(f.options.map(o=>o.value)).size,f.options.length);for(const o of f.options)assert.ok(catalog[o.label],'Spanish option '+o.label);}
-    if(f.type==='reason')assert.ok(f.criteria.length>=2&&f.criteria.every(c=>catalog[c])&&(!f.followup||catalog[f.followup]),p.id+'.'+f.id+' criteria');
+    if(f.type==='choice'){assert.ok(f.options.some(o=>o.value===f.answer));assert.equal(new Set(f.options.map(o=>o.value)).size,f.options.length);assert.ok(f.options.every(o=>text(o.label)));}
+    if(f.type==='reason')assert.ok(f.criteria.length>=2&&f.criteria.every(text)&&(!f.followup||text(f.followup)),p.id+'.'+f.id+' criteria');
    }
   }
  }
- for(const [en,es]of Object.entries(catalog))if(/[A-Za-z]{4}/.test(en.replace(/\b(Ars Conjectandi|Galton|Bertrand|Chebyshev|Markov|Bayes|Poisson|Selvin|Savant|Fermat|Pascal|Méré)\b/g,'')))assert.notEqual(es,en,'untranslated: '+en.slice(0,60));
 });
 
 test('dice, points and screening: outcomes counted one by one',()=>{
@@ -157,14 +158,15 @@ test('lab helpers: reproducible simulations and the counts the labs show',()=>{
  const rand=R.random(41),counts=Array(9).fill(0);for(let i=0;i<20000;i++)counts[R.galton(8,.5,rand).reduce((s,x)=>s+x,0)]++;
  counts.forEach((c,k)=>assert.ok(Math.abs(c/20000-R.binomial(8,k,.5))<0.015,'bin '+k));
 });
-test('a stated number of decimal places matches the places the grader requires, in both languages',()=>{
+test('a stated number of decimal places matches the places the grader requires',()=>{
  const source=require('../content/probability/projects.cjs');let checked=0;
  for(const p of source)for(const s of p.steps)for(const f of s.fields){
   if(f.type!=='number')continue;
-  const en=(f.label.en||'').match(/at least (\d+) (?:decimal )?places/),es=(f.label.es||'').match(/al menos (\d+) decimales/);
-  if(f.minDecimalPlaces>1||en||es){
-   assert(en&&es,p.id+' '+f.id+' must state its places in English and Spanish');
-   assert.equal(Number(en[1]),f.minDecimalPlaces,p.id+' '+f.id+' English places');assert.equal(Number(es[1]),f.minDecimalPlaces,p.id+' '+f.id+' Spanish places');checked++;
+  assert.equal(f.label.es,undefined,p.id+' '+f.id+' has English text only');
+  const en=(f.label.en||'').match(/at least (\d+) (?:decimal )?places/);
+  if(f.minDecimalPlaces>1||en){
+   assert(en,p.id+' '+f.id+' must state its places');
+   assert.equal(Number(en[1]),f.minDecimalPlaces,p.id+' '+f.id+' places');checked++;
   }
  }
  assert(checked>=30,String(checked));

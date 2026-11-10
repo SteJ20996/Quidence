@@ -5,15 +5,15 @@
   const defaultView=document.documentElement.dataset.uiTheme==='classic'?'map':'courses';
   const choices=[...root.querySelectorAll('[data-home-view]')];
   function compactSubjectLabels(){
-    const es=window.QuidenceI18n?.locale==='es';
+    
     for(const button of root.querySelectorAll('[data-compact-physics]')){
       const number=button.dataset.learningSubject==='physics-1'?'1':'2';
-      button.textContent=es?'Fundamentos de física '+number:'Physics '+number+' Foundations';
+      button.textContent=('Physics '+number+' Foundations');
       // The visible course name is also its accessible name.
       button.removeAttribute('aria-label');
     }
   }
-  document.addEventListener('quidence:language',compactSubjectLabels);compactSubjectLabels();
+  compactSubjectLabels();
   function show(view,updateURL=true){
     const selected=['map','courses','intuition'].includes(view)?view:defaultView;
     mapView.hidden=selected!=='map';courseView.hidden=selected!=='courses';if(intuitionView)intuitionView.hidden=selected!=='intuition';root.dataset.homeView=selected;
@@ -26,8 +26,8 @@
   for(const anchor of root.querySelectorAll('a[href="#practice-heading"]'))anchor.addEventListener('click',()=>show('courses'));
   window.addEventListener('popstate',()=>show(new URL(location.href).searchParams.get('view')||(document.documentElement.dataset.uiTheme==='classic'?'map':'courses'),false));
   for(const card of root.querySelectorAll('.subject-card'))card.id='subject-'+card.dataset.subject;
-  function guide(){const es=window.QuidenceI18n?.locale==='es';root.querySelector('[data-map-guide-title]').textContent=es?'Conoce una idea. Elige tu siguiente paso.':'Meet an idea. Choose your next step.';root.querySelector('[data-map-guide-copy]').textContent=es?'Selecciona un nodo para ver una breve introducción y sus enlaces. Para lecciones, evaluaciones y proyectos, abre Materias.':'Select a node for a short introduction and links. For lessons, checks and projects, open Subjects.';const check=root.querySelector('.subject-card[data-subject="ad01"] .challenge-link');if(check){check.setAttribute('data-no-translate','');check.textContent=es?'Comprueba tu comprensión →':'Test your understanding →';check.href='modules/ad01/dist/checks/?lang='+(es?'es':'en');}const a=root.querySelector('.q-map-subjects');a.textContent=es?'Ir a Materias →':'Go to Subjects →';a.href='?view=courses&lang='+(es?'es':'en');}
-  document.addEventListener('quidence:language',guide);guide();
+  function guide(){root.querySelector('[data-map-guide-title]').textContent='Meet an idea. Choose your next step.';root.querySelector('[data-map-guide-copy]').textContent='Select a node for a short introduction and links. For lessons, checks and projects, open Subjects.';const check=root.querySelector('.subject-card[data-subject="ad01"] .challenge-link');if(check){check.setAttribute('data-no-translate','');check.textContent='Test your understanding →';check.href='modules/ad01/dist/checks/';}const a=root.querySelector('.q-map-subjects');a.textContent='Go to Subjects →';a.href='?view=courses';}
+  guide();
   root.addEventListener('click',event=>{const a=event.target.closest('a[data-map-subjects]');if(!a||event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();const module=a.dataset.mapSubjects;
     if(module)root.querySelector('[data-learning-subject="'+module+'"]')?.click();
     root.querySelector('[data-category="all"]')?.click();show('courses');const target=module?root.querySelector('.subject-card[data-subject="'+module+'"]'):courseView;target?.scrollIntoView({block:'start',behavior:'instant'});if(module)target?.querySelector('.subject-link')?.focus({preventScroll:true});
@@ -35,7 +35,7 @@
   // Pin the subject rail only while all of it fits in the window, borders and margins included. On shorter windows it scrolls with the page, so its last cards are never cut off.
   const rail=document.querySelector('.qf-left-rail'),panel=rail?.querySelector('.qs-subject-panel');
   if(rail&&panel){const fit=()=>{const gap=parseFloat(getComputedStyle(rail).rowGap)||0,outer=e=>{const c=getComputedStyle(e);return(parseFloat(c.marginTop)||0)+(parseFloat(c.marginBottom)||0);},rest=[...rail.children].filter(e=>e!==panel).reduce((h,e)=>h+e.offsetHeight+outer(e)+gap,0);rail.classList.toggle('qf-rail-unpinned',panel.scrollHeight+panel.offsetHeight-panel.clientHeight+outer(panel)+rest+36>innerHeight);};
-    addEventListener('resize',fit);document.addEventListener('quidence:language',fit);if(window.ResizeObserver&&panel.firstElementChild)new ResizeObserver(fit).observe(panel.firstElementChild);fit();}
+    addEventListener('resize',fit);if(window.ResizeObserver&&panel.firstElementChild)new ResizeObserver(fit).observe(panel.firstElementChild);fit();}
   const requested=new URL(location.href).searchParams.get('view');show(['map','courses','intuition'].includes(requested)?requested:location.hash==='#practice-heading'?'courses':defaultView,false);
 })();
 

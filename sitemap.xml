@@ -1,267 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.quidence.com/cross-disciplinary/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/cross-disciplinary/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/cross-disciplinary/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/cross-disciplinary/?lang=es" />
+    <loc>https://www.quidence.com/cross-disciplinary/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/cross-disciplinary/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/cross-disciplinary/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/cross-disciplinary/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/cross-disciplinary/?lang=es" />
+    <loc>https://www.quidence.com/intuition/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/intuition/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/intuition/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/intuition/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/intuition/?lang=es" />
+    <loc>https://www.quidence.com/modules/ac01/dist/projects/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/intuition/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/intuition/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/intuition/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/intuition/?lang=es" />
+    <loc>https://www.quidence.com/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/modules/ac01/dist/projects/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/modules/ac01/dist/projects/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/modules/ac01/dist/projects/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/modules/ac01/dist/projects/?lang=es" />
+    <loc>https://www.quidence.com/data-use/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/modules/ac01/dist/projects/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/modules/ac01/dist/projects/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/modules/ac01/dist/projects/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/modules/ac01/dist/projects/?lang=es" />
+    <loc>https://www.quidence.com/courses/pre-algebra/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/?lang=es" />
+    <loc>https://www.quidence.com/courses/algebra-1/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/?lang=es" />
+    <loc>https://www.quidence.com/courses/geometry/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/data-use/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/data-use/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/data-use/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/data-use/?lang=es" />
+    <loc>https://www.quidence.com/courses/algebra-2/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/data-use/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/data-use/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/data-use/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/data-use/?lang=es" />
+    <loc>https://www.quidence.com/courses/basic-logic/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/courses/pre-algebra/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/pre-algebra/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/pre-algebra/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/pre-algebra/?lang=es" />
+    <loc>https://www.quidence.com/courses/coordinate-geometry/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/courses/pre-algebra/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/pre-algebra/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/pre-algebra/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/pre-algebra/?lang=es" />
+    <loc>https://www.quidence.com/modules/af01/dist/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/courses/algebra-1/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/algebra-1/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/algebra-1/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/algebra-1/?lang=es" />
+    <loc>https://www.quidence.com/modules/ad01/dist/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/courses/algebra-1/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/algebra-1/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/algebra-1/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/algebra-1/?lang=es" />
+    <loc>https://www.quidence.com/modules/ae01/dist/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/courses/geometry/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/geometry/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/geometry/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/geometry/?lang=es" />
+    <loc>https://www.quidence.com/modules/ab01/dist/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/courses/geometry/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/geometry/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/geometry/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/geometry/?lang=es" />
+    <loc>https://www.quidence.com/courses/number-theory/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/courses/algebra-2/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/algebra-2/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/algebra-2/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/algebra-2/?lang=es" />
+    <loc>https://www.quidence.com/courses/discrete-math/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/courses/algebra-2/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/algebra-2/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/algebra-2/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/algebra-2/?lang=es" />
+    <loc>https://www.quidence.com/courses/probability/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/courses/basic-logic/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/basic-logic/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/basic-logic/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/basic-logic/?lang=es" />
+    <loc>https://www.quidence.com/modules/ac01/dist/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/courses/basic-logic/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/basic-logic/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/basic-logic/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/basic-logic/?lang=es" />
+    <loc>https://www.quidence.com/courses/physics-1/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/courses/coordinate-geometry/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/coordinate-geometry/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/coordinate-geometry/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/coordinate-geometry/?lang=es" />
+    <loc>https://www.quidence.com/courses/physics-2/</loc>
   </url>
   <url>
-    <loc>https://www.quidence.com/courses/coordinate-geometry/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/coordinate-geometry/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/coordinate-geometry/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/coordinate-geometry/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/modules/af01/dist/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/modules/af01/dist/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/modules/af01/dist/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/modules/af01/dist/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/modules/af01/dist/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/modules/af01/dist/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/modules/af01/dist/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/modules/af01/dist/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/modules/ad01/dist/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/modules/ad01/dist/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/modules/ad01/dist/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/modules/ad01/dist/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/modules/ad01/dist/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/modules/ad01/dist/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/modules/ad01/dist/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/modules/ad01/dist/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/modules/ae01/dist/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/modules/ae01/dist/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/modules/ae01/dist/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/modules/ae01/dist/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/modules/ae01/dist/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/modules/ae01/dist/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/modules/ae01/dist/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/modules/ae01/dist/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/modules/ab01/dist/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/modules/ab01/dist/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/modules/ab01/dist/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/modules/ab01/dist/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/modules/ab01/dist/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/modules/ab01/dist/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/modules/ab01/dist/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/modules/ab01/dist/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/courses/number-theory/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/number-theory/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/number-theory/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/number-theory/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/courses/number-theory/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/number-theory/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/number-theory/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/number-theory/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/courses/discrete-math/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/discrete-math/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/discrete-math/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/discrete-math/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/courses/discrete-math/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/discrete-math/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/discrete-math/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/discrete-math/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/courses/probability/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/probability/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/probability/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/probability/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/courses/probability/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/probability/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/probability/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/probability/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/modules/ac01/dist/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/modules/ac01/dist/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/modules/ac01/dist/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/modules/ac01/dist/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/modules/ac01/dist/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/modules/ac01/dist/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/modules/ac01/dist/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/modules/ac01/dist/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/courses/physics-1/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/physics-1/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/physics-1/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/physics-1/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/courses/physics-1/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/physics-1/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/physics-1/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/physics-1/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/courses/physics-2/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/physics-2/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/physics-2/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/physics-2/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/courses/physics-2/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/physics-2/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/physics-2/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/physics-2/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/courses/algorithms/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/algorithms/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/algorithms/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/algorithms/?lang=es" />
-  </url>
-  <url>
-    <loc>https://www.quidence.com/courses/algorithms/?lang=es</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.quidence.com/courses/algorithms/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.quidence.com/courses/algorithms/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.quidence.com/courses/algorithms/?lang=es" />
+    <loc>https://www.quidence.com/courses/algorithms/</loc>
   </url>
 </urlset>

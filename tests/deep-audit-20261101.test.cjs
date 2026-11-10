@@ -60,15 +60,13 @@ test('the follow-up count stated to learners matches the vector diagnostic',()=>
  assert.match(read('modules/ab01/dist/student-materials.js'),/with up to 4 optional follow-ups\./);
 });
 
-test('translations and wording corrected after the audit',()=>{
- global.window=globalThis;delete require.cache[require.resolve('../assets/i18n-es/common.js')];require('../assets/i18n-es/common.js');
- assert.equal(globalThis.QuidenceSpanish['x < −1 or x > 3'],'x < −1 o x > 3');
+test('wording corrected after the audit',()=>{
  const benford=read('content/cross-disciplinary/projects.cjs');
  assert(!benford.includes('much more than chance would explain'));assert(!benford.includes('so the test finds no difference'));
  assert(benford.includes('so here χ² describes a distance rather than testing a hypothesis'));
  const intuition=read('intuition/data.js');
  assert.equal((intuition.match(/no three chords meet at one point inside the circle/g)||[]).length,2);
- assert.equal((intuition.match(/en un mismo punto dentro del círculo/g)||[]).length,2);
+ assert.equal((intuition.match(/en un mismo punto dentro del círculo/g)||[]).length,0,'the Spanish copy is gone');
  const nt=JSON.parse(read('courses/number-theory/data.json'));const text=JSON.stringify(nt);
  assert(text.includes('for b = 1, 2, 3 or 4 the largest is 7b − 5'));assert(text.includes('the swap of any two different symbols'));
 });

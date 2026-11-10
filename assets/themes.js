@@ -14,7 +14,6 @@
   });
   const COPY = {
     en: {label:'Appearance', names:['Classic','Paper Explorer','Learning Atlas','Geometric Studio'], titles:['Classic · original layout','Illustrated · warm paper and soft shapes','Illustrated · learning atlas and editorial type','Illustrated · geometric studio and bold shapes'], saved:'Remembered in this browser', unavailable:'For this visit only — browser saving is unavailable', change:'Change appearance'},
-    es: {label:'Apariencia', names:['Clásica','Paper Explorer','Learning Atlas','Geometric Studio'], titles:['Clásica · diseño original','Ilustrada · papel cálido y formas suaves','Ilustrada · atlas y tipografía editorial','Ilustrada · estudio geométrico y formas definidas'], saved:'Se recuerda en este navegador', unavailable:'Solo en esta visita: el navegador no permite guardar', change:'Cambiar apariencia'}
   };
   // A small preview of each appearance: its page colour, card corners, type and signature shapes.
   const PREVIEWS = {
@@ -29,15 +28,9 @@
   const valid = value => Object.hasOwn(THEMES, value);
   let current = DEFAULT, persistent = true, bar;
   function read() { try { const value = root.localStorage.getItem(KEY); persistent = true; return valid(value) ? value : DEFAULT; } catch { persistent = false; return DEFAULT; } }
-  // The bar goes in before i18n.js has loaded, so it starts in the language i18n.js is about to choose.
-  function locale() {
-    if (root.QuidenceI18n?.locale) return root.QuidenceI18n.locale;
-    if (root.document?.documentElement.getAttribute('data-fixed-language') === 'en') return 'en';
-    try { const requested = new URL(root.location.href).searchParams.get('lang'); if (requested === 'es' || requested === 'en') return requested; return root.localStorage.getItem('quidence_ui_locale_v1') === 'es' ? 'es' : 'en'; } catch { return 'en'; }
-  }
   function render() {
     if (!bar) return;
-    const text = COPY[locale() === 'es' ? 'es' : 'en'];
+    const text = COPY.en;
     bar.querySelector('.q-theme-label').textContent = text.label;
     bar.querySelector('[role="group"]').setAttribute('aria-label', text.label);
     bar.querySelector('.q-theme-note').textContent = persistent ? text.saved : text.unavailable;
@@ -130,7 +123,6 @@
     bar.addEventListener('keydown', event => { if (event.key === 'Escape' && bar.dataset.open === 'true') { setOpen(false); toggle.focus(); } });
     root.document.addEventListener('click', event => { if (bar.dataset.open === 'true' && !bar.contains(event.target)) setOpen(false); });
     root.document.body.prepend(bar); apply(current);
-    root.document.addEventListener('quidence:language',render);
     root.addEventListener('storage', event => { if (event.key === KEY || event.key === null) apply(read()); });
     root.addEventListener('pageshow', event => { if (event.persisted) apply(read()); });
   }
@@ -174,33 +166,12 @@
     const fetched = new Set();
     const preload = () => { if (current !== 'classic' || !root.Image) return; for (const logo of root.document.querySelectorAll('img.q-brand-logo[data-logo-dark-src]')) { const src = logo.dataset.logoDarkSrc; if (!fetched.has(src)) { fetched.add(src); const image = new root.Image(); image.fetchPriority = 'high'; image.src = src; } } };
     new root.MutationObserver(records => {
-      dropLanguageRow(records);
       const added = records.flatMap(record => [...record.addedNodes].flatMap(logosIn));
       if (added.length) { preload(); added.forEach(settleLogo); queueLogos(); }
     })
       .observe(root.document.documentElement, {childList:true, subtree:true});
     root.addEventListener('load', queueLogos, {once:true});
   }
-  // Pages whose header has no place for the language menu show it in a row under the appearance bar. That row goes
-  // in with the bar, and i18n.js takes it over when it loads. If the page's own header turns out to hold the menu,
-  // the row is removed as soon as the header is parsed, before it is painted.
-  const LANGUAGE_HOSTS = '.site-header,[data-language-host]';
-  function languageRow() {
-    const document = root.document;
-    // Only pages that load i18n.js get the row: pages without it, such as the Intuition Lab, bring their own menu.
-    if (!bar || !document.querySelector('script[src*="i18n.js"]') || document.documentElement.getAttribute('data-fixed-language') === 'en' || document.getElementById('quidence-language') || document.querySelector(LANGUAGE_HOSTS)) return;
-    const row = document.createElement('nav'); row.className = 'language-toolbar'; row.dataset.languageEarly = ''; row.setAttribute('aria-label','Language');
-    const label = document.createElement('label'); label.className = 'language-label'; label.setAttribute('for','quidence-language'); label.append('Language');
-    const select = document.createElement('select'); select.id = 'quidence-language'; select.setAttribute('aria-label','Language');
-    for (const [value,caption] of [['en','English'],['es','Español']]) { const option = document.createElement('option'); option.value = value; option.textContent = caption; option.lang = value; option.setAttribute('data-no-translate',''); select.append(option); }
-    label.append(select); row.append(label); bar.after(row);
-  }
-  // A page can also bring its own language menu, as the Intuition Lab does in its header.
-  const OWN_MENU = LANGUAGE_HOSTS + ',#quidence-language';
-  function dropLanguageRow(records) {
-    const row = root.document.querySelector('nav.language-toolbar[data-language-early]');
-    if (row && records.some(record => [...record.addedNodes].some(node => node.nodeType === 1 && !row.contains(node) && !node.contains(row) && (node.matches(OWN_MENU) || node.querySelector(OWN_MENU))))) row.remove();
-  }
-  if (root.document) { apply(read()); watchLogos(); whenBody(() => { mount(); languageRow(); recordsBanner(); }); }
+  if (root.document) { apply(read()); watchLogos(); whenBody(() => { mount(); recordsBanner(); }); }
   return Object.freeze({KEY,DEFAULT,THEMES,valid,apply,reportAppearance,get current(){return current;}});
 });

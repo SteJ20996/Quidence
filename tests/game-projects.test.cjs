@@ -18,8 +18,8 @@ test('numeric formats and tied best responses never become strict dominance',()=
  assert.equal(E.number(' 1,5 '),1.5);assert.equal(E.number('−2'),null);assert.equal(E.number('-2.5'),-2.5);for(const x of ['', '1,000.5','1.000,5','Infinity','1e3','1 000','4.'])assert.equal(E.number(x),null);
  const step=C.ACTIVITIES[0].steps.find(s=>s.id==='boundary'),expected=E.analysis(E.model(step.model));assert(E.check(step,expected).every(x=>x.status==='matched'));assert.equal(E.check(step,{...expected,ne:['01','10']}).find(x=>x.id==='ne').status,'recheck');
 });
-test('complete bilingual copy, distinct storage keys and all activity IDs',()=>{
- function walk(v){if(!v||typeof v!=='object')return;if('en'in v||'es'in v){assert.equal(typeof v.en,'string');assert.equal(typeof v.es,'string');assert(v.en.trim()&&v.es.trim());}for(const x of Object.values(v))walk(x);}
+test('complete English copy, distinct storage keys and all activity IDs',()=>{
+ function walk(v){if(!v||typeof v!=='object')return;if('en'in v||'es'in v){assert.equal(typeof v.en,'string');assert.equal(v.es,undefined);assert(v.en.trim());}for(const x of Object.values(v))walk(x);}
  walk(C);assert.deepEqual(C.ACTIVITIES.map(x=>x.id),E.IDS);
  for(const a of C.ACTIVITIES){assert.equal(new Set(a.steps.map(s=>s.id)).size,a.steps.length);assert(Policy.KEYS[E.key(a.id)]);const state=E.fresh(a.id,'sample');assert(Policy.valid(E.key(a.id),JSON.stringify(state)));}
 });
