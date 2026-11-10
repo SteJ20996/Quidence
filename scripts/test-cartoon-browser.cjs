@@ -16,13 +16,13 @@ async function main(){
   const english=async where=>{assert.equal(await page.locator('html').getAttribute('lang'),'en',where+' is in English');assert.equal(await page.locator(LANGUAGE_CONTROLS).count(),0,where+' has no language control');};
   const bounds=async()=>{assert(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=1,'page overflow');assert(await page.locator('.qf-left-rail').isHidden());const header=await page.locator('.qh-site-header').evaluate(e=>{const r=e.getBoundingClientRect();return [...e.children].every(c=>{const a=c.getBoundingClientRect();return !a.width||(a.left>=r.left-1&&a.right<=r.right+1);});});assert(header,'header clipping');};
   await page.goto(origin+'/');await english('home');assert.equal(await page.locator('html').getAttribute('data-ui-theme'),'studio');assert.equal(await page.locator('#quidence-home').getAttribute('data-home-view'),'courses');
-  assert.equal(await page.locator('.subject-card:visible').count(),20);
+  assert.equal(await page.locator('.subject-card:visible').count(),21);
   await page.locator('#request-subject').selectOption('number-theory');await page.locator('#learning-goal').fill(RAW);await page.locator('#learning-goal').blur();
   const original=await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1'));
   for(const theme of ['studio','paper','atlas'])for(const width of [320,768,1440]){
    await page.setViewportSize({width,height:1000});await chooseTheme(page,theme);
    assert.equal(await page.locator('#learning-goal').inputValue(),RAW);assert.equal(await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1')),original);
-   for(const [group,count]of [['all',20],['school',6],['further',8],['science',2],['cs',1],['cross',3]]){
+   for(const [group,count]of [['all',21],['school',6],['further',8],['science',2],['cs',1],['cross',4]]){
     await page.locator('button[data-home-view="courses"]').click();await page.locator('button[data-category="'+group+'"]').click();assert.equal(await page.locator('.subject-card:visible').count(),count);await bounds();
     await page.locator('button[data-home-view="map"]').click();// Cross-disciplinary projects span the subjects, so their category keeps all four maps.
     assert.equal(await page.locator('#cartoon-knowledge-map .map-panel').count(),['all','cross'].includes(group)?4:1);await bounds();result.mapViews++;
@@ -44,7 +44,7 @@ async function main(){
   // Every routed edge avoids unrelated cards (including the manually approved lanes).
   const geometry=await page.evaluate(()=>{const bad=[];for(const m of QuidenceCartoonMap.maps)for(const r of QuidenceCartoonMap.routes[m.id])for(let i=1;i<r.points.length;i++){const [a,b]=[r.points[i-1],r.points[i]];for(const n of m.nodes.filter(n=>n.id!==r.from&&n.id!==r.to)){if(a[0]===b[0]?a[0]>n.x&&a[0]<n.x+200&&Math.max(a[1],b[1])>n.y&&Math.min(a[1],b[1])<n.y+124:a[1]>n.y&&a[1]<n.y+124&&Math.max(a[0],b[0])>n.x&&Math.min(a[0],b[0])<n.x+200)bad.push(m.id+':'+r.from+'→'+r.to+' crosses '+n.id);}}return bad;});assert.deepEqual(geometry,[]);
   await page.locator('button[data-category="science"]').click();await page.reload();assert.equal(await page.locator('#cartoon-knowledge-map .map-panel').count(),1);assert.equal(await page.locator('[data-map="science"]').count(),1);
-  await chooseTheme(page,'classic');await page.locator('button[data-home-view="courses"]').click();assert.equal(await page.locator('.subject-card:visible').count(),20);assert(await page.locator('.qf-left-rail').isVisible());assert(await page.locator('.subject-card details').first().getAttribute('open')!==null);
+  await chooseTheme(page,'classic');await page.locator('button[data-home-view="courses"]').click();assert.equal(await page.locator('.subject-card:visible').count(),21);assert(await page.locator('.qf-left-rail').isVisible());assert(await page.locator('.subject-card details').first().getAttribute('open')!==null);
   await chooseTheme(page,'studio');assert.equal(await page.locator('.subject-card:visible').count(),2);assert(await page.locator('.subject-card details').first().getAttribute('open')===null);
   // All new questions, drafts, uncertainty, complete reports and exports in a real browser, opened from an address
   // that asks for Spanish: every step stays in English and the work is kept exactly.

@@ -43,10 +43,10 @@ function generalCuts(count,dim,seed){
 }
 function counts(dim,max,seed){const cuts=generalCuts(max,dim,seed);return Array.from({length:max+1},(_,k)=>k<dim?2**k:piecesAroundCorners(cuts.slice(0,k),dim,10).size);}
 
-test('three English projects in six steps each, with up-to-date page data and homepage entries',()=>{
+test('four English projects in six steps each, with up-to-date page data and homepage entries',()=>{
  assert.equal(fs.readFileSync(build.OUT,'utf8'),build.serialized(),'run node scripts/build-cross-disciplinary.cjs');
- assert.deepEqual(data.map(p=>p.id),['cross-p01','cross-p02','cross-p03']);assert.deepEqual(data.map(p=>p.steps.length),[6,6,6]);
- assert.deepEqual(data.map(p=>p.steps.reduce((n,s)=>n+s.fields.length,0)),[25,22,24]);
+ assert.deepEqual(data.map(p=>p.id),['cross-p01','cross-p02','cross-p03','cross-p04']);assert.deepEqual(data.map(p=>p.steps.length),[6,6,6,6]);
+ assert.deepEqual(data.map(p=>p.steps.reduce((n,s)=>n+s.fields.length,0)),[25,22,24,28]);
  assert.deepEqual(Object.keys(CROSS.projects),data.map(p=>p.id));
  const ids=data.flatMap(p=>p.steps.flatMap(s=>s.fields.map(f=>f.id)));assert.equal(new Set(ids).size,ids.length,'field ids are unique across projects');
  // The page data is English only: no Spanish punctuation or letters, and no second-language copy in the source.
@@ -240,3 +240,64 @@ test('first digits: changing units, the chi-square test and data that should not
  assert.ok(Math.abs(X.mantissa(1024n)-(Math.log10(1024)-3))<1e-12&&Math.abs(X.mantissa(2n**53n)-(53*Math.log10(2)-15))<1e-9);
 });
 
+
+// Li Ye's round city. The story alone fixes each answer: the start is written in terms of the city's radius r (the
+// corners and gates of a city with centre (0, 0)), and r is found where the line of sight is exactly r from the centre
+// (through the centre in problem 5). No rule from the proofs is used, and the hypotenuses are exact whole numbers.
+const CITY={1:[[-1,1],[320,0],[0,-600]],2:[[-1,0],[256,0],[0,-480]],3:[[0,1],[200,0],[0,-375]],4:[[0,0],[136,0],[0,-255]],5:[[-1,1],[180,0],[0,-360]],
+ 6:[[-1,-1],[192,0],[0,-360]],7:[[1,1],[80,0],[0,-150]],8:[[1,-1],[-48,0],[0,90]],9:[[0,-1],[72,0],[0,-135]],10:[[1,0],[16,0],[0,-30]]};
+function cityDiameters(n){const [s,e,t]=CITY[n],through=n===5;
+ const f=r=>{const S=[s[0]*r,s[1]*r],A=[S[0]+e[0],S[1]+e[1]],B=[S[0]+t[0],S[1]+t[1]];return Math.abs(A[0]*B[1]-A[1]*B[0])/Math.hypot(B[0]-A[0],B[1]-A[1])-(through?0:r);};
+ const out=[];for(let r=1;r<2000;r++){if(Math.sign(f(r))===Math.sign(f(r+1)))continue;let lo=r,hi=r+1;for(let i=0;i<90;i++){const m=(lo+hi)/2;if(Math.sign(f(m))===Math.sign(f(lo)))lo=m;else hi=m;}out.push(lo+hi);}
+ return out;}
+const wholeHypotenuse=(a,b)=>{const n=BigInt(a)**2n+BigInt(b)**2n;let c=BigInt(Math.round(Math.sqrt(Number(n))));while(c*c>n)c--;while((c+1n)*(c+1n)<=n)c++;assert.equal(c*c,n,`${a}, ${b}: the hypotenuse is a whole number`);return Number(c);};
+test('the round city: every problem’s story gives a city 240 across, and the line-of-sight lengths are whole numbers',()=>{
+ for(let n=1;n<=10;n++){const d=cityDiameters(n);assert.ok(d.some(x=>Math.abs(x-240)<1e-6),`problem ${n} gives ${d}`);
+  // Problems 1 and 8 also fit a second circle on the same line of sight: the one across the hypotenuse and the one inside.
+  // Li Ye's diagram decides which is meant; the other one's diameter times 240 is 2ab, the identity of step 6.
+  const [,e,t]=CITY[n],twoab=2*Math.abs(e[0]*t[1]);for(const x of d)if(Math.abs(x-240)>1e-6){assert.ok([1,8].includes(n),`problem ${n} has a second circle ${x}`);assert.ok(Math.abs(x*240-twoab)<1e-6);}}
+ for(const id of ['d1','d2','d5','d6','d8','d9','d10'])expect(id,240);
+ expect('xian1',wholeHypotenuse(320,600));expect('xian2',wholeHypotenuse(256,480));expect('xian6',wholeHypotenuse(192,360));expect('xian9',wholeHypotenuse(72,135));
+ assert.equal(wholeHypotenuse(320,600),680);assert.equal(wholeHypotenuse(16,30),34);
+});
+test('the round city: Li Ye’s ten circles touch the right lines, and their signed pieces make up the triangle',()=>{
+ const rnd=random(20261110);
+ for(let i=0;i<300;i++){const a=.5+rnd()*30,b=.5+rnd()*30;
+  for(const kind of Object.keys(X.LIYE)){const q=X.liye(kind,a,b),[x,y]=q.centre;
+   // Distances to the lines of the east leg (y = 0), the south leg (x = 0) and the hypotenuse, measured directly.
+   const dist=[Math.abs(y),Math.abs(x),Math.abs(b*x-a*y-a*b)/Math.hypot(a,b)];
+   q.signs.forEach((g,j)=>{if(g)assert.ok(Math.abs(dist[j]-q.r)<1e-9*(1+q.r),`${kind} touches side ${j}`);else assert.ok(dist[j]<1e-9*(1+q.r),`${kind}: centre on side ${j}`);});
+   // The sign says whether the centre is on the triangle's side of each line (+1), the far side (−1) or on it (0).
+   const inside=[-1,1,-1],side=[y,x,b*x-a*y-a*b].map((v,j)=>Math.abs(v)<1e-9*(1+q.r)?0:Math.sign(v)*inside[j]);assert.deepEqual(side,q.signs,kind+' signs');
+   const total=q.signs.reduce((s,g,j)=>s+g*q.r*[a,b,q.c][j]/2,0);assert.ok(Math.abs(total-a*b/2)<1e-9*a*b,kind+' pieces');}}
+ // The choices: the rule from the centre divides by c, and the piece on the east leg is taken away in problem 6.
+ assert.equal(X.LIYE.corner.divText,'c');expect('vertex','c');assert.equal(X.LIYE.acrossEast.signs[0],-1);expect('minus','outside');
+});
+test('the round city: nine of Li Ye’s triangles are multiples of (8, 15, 17), each by its own rule’s divisor',()=>{
+ const unit=[8,15,17],divisors=Object.fromEntries(Object.entries(X.LIYE).map(([k,v])=>[k,v.div(...unit)]));
+ assert.deepEqual(Object.values(divisors),[40,32,25,17,23,24,10,6,9,2]);
+ const used={1:'inside',2:'eastLeg',3:'southLeg',4:'corner',6:'acrossEast',7:'acrossSouth',8:'acrossHypotenuse',9:'halfEast',10:'halfSouth'};
+ for(const [n,kind] of Object.entries(used)){const [,e,t]=CITY[n],a=Math.abs(e[0]),b=Math.abs(t[1]),k=a/8;
+  assert.ok(Number.isInteger(k)&&15*k===b&&17*k===wholeHypotenuse(a,b),`problem ${n} is a multiple of (8, 15, 17)`);assert.equal(k,divisors[kind],`problem ${n}: k equals the divisor`);
+  assert.ok(Math.abs(X.liye(kind,a,b).d-240)<1e-9);}
+ expect('k6',192/8);expect('div6',15+17-8);expect('twoab',2*8*15);
+ // On one map, the line of sight of problem n runs from (start + east walk) to (start + south walk), with the city's radius 120.
+ const sight=n=>{const [s,e,t]=CITY[n],S=[s[0]*120,s[1]*120];return [[S[0]+e[0],S[1]+e[1]],[S[0]+t[0],S[1]+t[1]]];};
+ const onLine=([p,q],x)=>Math.abs((q[0]-p[0])*(x[1]-p[1])-(q[1]-p[1])*(x[0]-p[0]))<1e-9;
+ const lines=[];for(let n=1;n<=10;n++){const L=sight(n);if(!lines.some(M=>onLine(M,L[0])&&onLine(M,L[1])))lines.push(L);}
+ assert.equal(lines.length,2);assert.ok([1,2,3,4,6,7,8,9,10].every(n=>sight(n).every(x=>onLine(sight(1),x))),'nine lines of sight lie on problem 1’s');expect('sameLine','two');
+ // The lab's map uses the same walks.
+ for(const q of X.CITY_PROBLEMS){const [s,e,t]=CITY[q.n];assert.deepEqual(q.start,[s[0]*120,s[1]*120]);assert.deepEqual(q.walk,[e[0],t[1]]);}
+ assert.notEqual(180*15,360*8);expect('p5','no');assert.ok(Math.abs(120/180+120/360-1)<1e-12);
+ assert.ok(Math.abs(X.liye('hypotenuse',8*23,15*23).d-240)<1e-9,'23 × (8, 15, 17) also fits problem 5’s rule');
+});
+test('the round city: four diameters need no division, checked with the textbook radius formulas',()=>{
+ // Problem 7's diameter, 240 from the story, against the three sums of its sides.
+ const [a7,b7,c7]=[80,150,170];assert.deepEqual([b7+c7-a7,a7+c7-b7,a7+b7-c7],[240,100,60]);expect('d7','bca');
+ // For a triangle with area K and semiperimeter s, the circle inside has radius K/s and the circle across side c has K/(s − c).
+ const circles=(a,b,c)=>{const K=a*b/2,s=(a+b+c)/2;return {inside:2*K/s,acrossC:2*K/(s-c),acrossA:2*K/(s-a),acrossB:2*K/(s-b)};};
+ const t=circles(3,4,5);expect('in345',t.inside);expect('out345',t.acrossC);expect('product','2ab');
+ for(const [a,b,c] of [[3,4,5],[5,12,13],[8,15,17],[20,21,29],[320,600,680],[48,90,102]]){const q=circles(a,b,c);
+  assert.ok(Math.abs(q.inside-(a+b-c))<1e-9&&Math.abs(q.acrossC-(a+b+c))<1e-9,`${a}, ${b}, ${c}`);assert.ok(Math.abs(q.inside*q.acrossC-2*a*b)<1e-9);
+  assert.ok(Math.abs(q.acrossA-(a+c-b))<1e-9&&Math.abs(q.acrossB-(b+c-a))<1e-9);}
+});

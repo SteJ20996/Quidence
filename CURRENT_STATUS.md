@@ -1,3 +1,34 @@
+## 2026-11-10 · Cross-disciplinary project 4: Li Ye's round city
+
+The Cross-disciplinary Projects section has a fourth project, "One round city, ten right triangles" (`cross-disciplinary/?project=cross-p04`).
+- **Source.** It is built on the first ten problems of Li Ye's *Ceyuan haijing* (1248). Two people walk along two roads at right angles until each can just see the other past a round city wall. Each problem starts from a different place (a corner, a gate or the centre), and every answer is a city 240 bu across.
+- **Steps.**
+  1. The circle inside the triangle: pieces of height r from the centre give d = 2ab/(a + b + c).
+  2. Centres on a side (problems 2–5): two pieces, or one, remain.
+  3. Circles outside the triangle (problems 6–8): one piece is taken away.
+  4. Half outside (problems 9–10), checked with the distance from a point to a line.
+  5. Why the answers agree: nine of the ten lines of sight lie on one line, problem 1's hypotenuse, so those triangles are multiples of (8, 15, 17), the Nine Chapters' circle triangle; with 2ab = 240 for (8, 15, 17), the city forces each multiple to equal its rule's divisor. Problem 5 uses a second line, through the centre.
+  6. Four diameters without dividing: (a + b + c)(a + b − c) = 2ab.
+- **Courses.** Geometry, Algebra I, Coordinate Geometry and Number Theory. Chinese terms appear in pinyin only.
+- **Labs.** Six labs start on a 5-12-13 triangle:
+  - steps 1–3 join the centre to the corners, with outside pieces taken away;
+  - step 4 slides a centre along an axis;
+  - step 5 draws every problem's walks on one map of the city, and scales (8, 15, 17) around a circle 240 across;
+  - step 6 takes the square on c out of the square on a + b.
+- **Homepage.** A fourth card, with art in all four appearances: the city with problems 1, 7 and 8 drawn to scale. The catalogue line counts four cross-disciplinary projects.
+- **Checks.**
+  - The unit test recomputes each diameter from the story alone, by solving for the radius at which the line of sight touches the wall.
+  - Problems 1 and 8 also admit a second circle (diameters 1600 and 36). The story alone does not exclude it; Li Ye's diagram does.
+  - 300 random triangles check the ten circles' contacts and signed pieces.
+  - The browser test walks every step and lab. It found a coordinate-lab tolerance error, which is fixed.
+  - A second independent review found that nine lines of sight coincide (so step 5's "Li Ye chose" was wrong), and that the prompt and card announced the answer 240, which gave away nine fields. It also found that problem 5's line of sight is not a tangent, and that the Dongyuan sentence over-stated the preface. All are fixed.
+- **Not yet done.**
+  - The area method is a modern route; the text gives the rules without derivations.
+  - Who or what "Dongyuan" was is uncertain.
+  - No students or historians have reviewed the project.
+
+See [the review note](review/cross-disciplinary-li-ye-20261110.md).
+
 ## 2026-11-10 · Calculus: kinds of integrals (lesson 5), and limits as numbers (lesson 1)
 
 Calculus grows from four lessons to five. Lesson 5, "One symbol, four questions.", shows that the integral sign asks a different question depending on what is written at its ends.

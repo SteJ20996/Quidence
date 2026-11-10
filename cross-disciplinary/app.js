@@ -347,7 +347,7 @@ async function pop(id,token){const el=q(id);if(!el)return;const y=Number(el.getA
 /* ---------- The labs, one per step ---------- */
 const labState={};
 function lab(){const key=current().id+':'+stepIndex();return labState[key]||(labState[key]={});}
-const LABS={'cross-p01':[stickLab,pizzaLab,formulaLab,ballLab,trapLab,patternLab],'cross-p02':[circleLab,chordLab,fourLab,tableLab,pairLab,differenceLab],'cross-p03':[powersLab,rulerLab,sharesLab,wheelLab,unitsLab,testLab]};
+const LABS={'cross-p01':[stickLab,pizzaLab,formulaLab,ballLab,trapLab,patternLab],'cross-p02':[circleLab,chordLab,fourLab,tableLab,pairLab,differenceLab],'cross-p03':[powersLab,rulerLab,sharesLab,wheelLab,unitsLab,testLab],'cross-p04':[insideLab,onSideLab,acrossLab,coordinateLab,scaleLab,squareLab]};
 function labFor(){return LABS[current().id]?.[stepIndex()];}
 function renderLab(){stop();labFor()?.(lab());}
 function labAction(action,value){labFor()?.(lab(),action,value);}
@@ -869,7 +869,179 @@ function differenceLab(l,action){
   if(action==='diff-build')play(async token=>{l.built=false;draw();if(await buildDiff(token,rows,'cd')){l.built=true;draw();}});
 }
 
-document.addEventListener('input',e=>{if(e.target.dataset?.field&&(e.target.tagName==='TEXTAREA'||e.target.type==='text'))recordInput(e.target);else if(e.target.dataset?.lab&&e.target.type==='range')labAction(e.target.dataset.lab,e.target.value);});
+/* ---------- Li Ye's round city (cross-p04) ----------
+   Every picture is a right triangle with the right angle at the origin, the east leg a along +x and the south leg b
+   along −y, with one of Li Ye's ten circles from X.liye. Joining the centre to the corners splits the triangle into
+   three pieces of height r; a piece outside the triangle is drawn dashed and taken away. */
+const PIECE_IN='#badccc',PIECE_OUT='#f3c9b8',PIECE_EDGE='#2f6f63',PIECE_EDGE_OUT='#a1443f';
+const r2=v=>String(Math.round(v*100)/100),minus=v=>r2(v).replace(/^-/,'−');
+function cityFit(points,{w=420,h=300,pad=24}={}){
+  const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]),x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);
+  const s=Math.min((w-2*pad)/Math.max(x1-x0,1e-9),(h-2*pad)/Math.max(y1-y0,1e-9)),ox=(w-(x1-x0)*s)/2,oy=(h-(y1-y0)*s)/2;
+  return {s,map:([x,y])=>[ox+(x-x0)*s,oy+(y1-y)*s]};
+}
+const segment=(u,v,attrs)=>`<line x1="${u[0].toFixed(1)}" y1="${u[1].toFixed(1)}" x2="${v[0].toFixed(1)}" y2="${v[1].toFixed(1)}" ${attrs}/>`;
+// The foot of the perpendicular from o to the line through p and q.
+function foot(o,p,q){const d=[q[0]-p[0],q[1]-p[1]],t=((o[0]-p[0])*d[0]+(o[1]-p[1])*d[1])/(d[0]**2+d[1]**2);return [p[0]+t*d[0],p[1]+t*d[1]];}
+function cityScene(q,{pieces=0,rings=[],box=[],h=300}={}){
+  const {a,b,r,centre:o,signs}=q,C=[0,0],E=[a,0],S=[0,-b],bases=[[C,E],[C,S],[E,S]];
+  const {s,map}=cityFit([C,E,S,[o[0]-r,o[1]-r],[o[0]+r,o[1]+r],...rings.flatMap(R=>[[o[0]-R,o[1]-R],[o[0]+R,o[1]+R]]),...box],{h});
+  const P=p=>pt(map(p)),far=(p,q,t)=>[p[0]+(q[0]-p[0])*t,p[1]+(q[1]-p[1])*t],[cx,cy]=map(o);
+  // The three sides' lines run across the picture, since some circles touch a side only where it is extended.
+  let body=bases.map(([p,q])=>segment(map(far(p,q,-40)),map(far(p,q,41)),'stroke="#9aaeb1" stroke-width="1.2" stroke-dasharray="5 4"')).join('');
+  if(pieces)bases.forEach(([p,q],i)=>{const g=signs[i];if(g)body+=`<polygon class="dy-piece" points="${P(o)} ${P(p)} ${P(q)}" fill="${g>0?PIECE_IN:PIECE_OUT}" fill-opacity="${g>0?.8:.65}" stroke="${g>0?PIECE_EDGE:PIECE_EDGE_OUT}" stroke-width="1.5"${g<0?' stroke-dasharray="5 3"':''} opacity="${pieces}"/>`;});
+  body+=`<polygon points="${P(C)} ${P(E)} ${P(S)}" fill="none" stroke="${INK}" stroke-width="2.6" stroke-linejoin="round"/>`;
+  for(const R of rings)body+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(R*s).toFixed(1)}" fill="none" stroke="#536875" stroke-width="1.6" stroke-dasharray="6 4"/>`;
+  body+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(r*s).toFixed(1)}" fill="none" stroke="${CUT}" stroke-width="2.6"/>`;
+  // Radii to the points of contact: each meets its line at a right angle.
+  bases.forEach(([p,q],i)=>{if(signs[i])body+=segment([cx,cy],map(foot(o,p,q)),`stroke="${CUT}" stroke-width="1.4" stroke-dasharray="3 3"`);});
+  body+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.4" fill="${CUT}"/>`;
+  const tag=(p,q,text,dx,dy)=>{const m=map([(p[0]+q[0])/2,(p[1]+q[1])/2]);return `<text class="x-small" x="${(m[0]+dx).toFixed(1)}" y="${(m[1]+dy).toFixed(1)}" text-anchor="middle" font-weight="700" fill="${INK}">${text}</text>`;};
+  return body+tag(C,E,'a',0,-8)+tag(C,S,'b',-11,4)+tag(E,S,'c',11,12);
+}
+const SIDE_NAMES=['the east leg','the south leg','the hypotenuse'],PIECE_TERMS=['ra/2','rb/2','rc/2'];
+// "ra/2 + rb/2 − rc/2 = 4 + 9.6 − 10.4" and the matching sentence, built from the signs.
+function pieceSum(q){const vals=[q.a,q.b,q.c].map(v=>q.r*v/2);let terms='',nums='';
+  q.signs.forEach((g,i)=>{if(!g)return;const op=terms?(g<0?' − ':' + '):(g<0?'−':'');terms+=op+PIECE_TERMS[i];nums+=op+r2(vals[i]);});
+  return {vals,text:`${terms} = ${nums} = ${r2(q.a*q.b/2)} = ab/2`};}
+function pieceStatus(q){const {vals}=pieceSum(q),inside=[],outside=[];q.signs.forEach((g,i)=>{if(g>0)inside.push(i);if(g<0)outside.push(i);});
+  const list=ids=>{const parts=ids.map(i=>`${SIDE_NAMES[i]} (${r2(vals[i])})`);return parts.length>1?parts.slice(0,-1).join(', ')+' and '+parts.at(-1):parts[0];};
+  const total=`whose area is ab/2 = ${r2(q.a*q.b/2)}`;
+  if(!outside.length)return `${inside.length>1?'The pieces':'The piece'} on ${list(inside)} ${inside.length>1?'make':'makes'} up the triangle, ${total}.`;
+  return `The pieces on ${list(inside)}, minus the piece on ${list(outside)}, which lies outside the triangle, make up the triangle, ${total}.`;}
+function legSliders(l,max=24){return `<div class="dy-sliders"><label class="x-range"><span>East leg, a</span><input type="range" min="2" max="${max}" step="1" value="${l.a}" data-lab="dy-a" aria-valuetext="${l.a}"><output aria-live="off">${l.a}</output></label><label class="x-range"><span>South leg, b</span><input type="range" min="2" max="${max}" step="1" value="${l.b}" data-lab="dy-b" aria-valuetext="${l.b}"><output aria-live="off">${l.b}</output></label></div>`;}
+function sliderOut(id,text){const input=document.querySelector(`#lab [data-lab="${id}"]`);if(!input)return;input.setAttribute('aria-valuetext',text);const out=input.parentElement.querySelector('output');if(out)out.textContent=text;}
+// Steps 1 to 3 share one lab: a triangle, one of a few circles, and the pieces from its centre.
+function cityLab(kinds,{title,caption,a=5,b=12}){
+  return function(l,action,value){
+    l.kind??=kinds[0];l.a??=a;l.b??=b;l.pieces??=0;
+    const q=()=>X.liye(l.kind,l.a,l.b);
+    const picture=()=>svg(cityScene(q(),{pieces:l.pieces}),`A right triangle with legs ${l.a} and ${l.b}, and the circle ${X.LIYE[l.kind].label.toLowerCase()}${l.pieces?', split into pieces from the circle’s centre':''}`,300);
+    const rows=()=>{const c=q();return [['Legs a, b',`${l.a}, ${l.b}`],['Hypotenuse c',r2(c.c)],['Radius r',r2(c.r)],['Diameter',r2(c.d)]];};
+    const equation=()=>l.pieces?pieceSum(q()).text:'ab/2 = ?';
+    const status=()=>l.pieces?pieceStatus(q()):'Join the centre to the corners to split the triangle into pieces of height r.';
+    const draw=()=>labShell({title,views:kinds.length>1?views(kinds.map(k=>[k,X.LIYE[k].label]),l.kind):'',picture:picture(),
+      legend:`${legSliders(l)}<p class="lab-equation" data-no-translate>${equation()}</p><p class="x-legend"><span class="x-legend-item"><span class="x-key x-key-bar" style="background:${PIECE_IN}"></span>Piece added</span>${kinds.some(k=>X.LIYE[k].signs.includes(-1))?`<span class="x-legend-item"><span class="x-key x-key-ghost" style="background:${PIECE_OUT};border-color:${PIECE_EDGE_OUT}"></span>Piece taken away</span>`:''}<span class="x-legend-item"><span class="x-key x-key-dash"></span>A side’s line, extended</span></p>`,
+      rows:rows(),status:status(),caption,
+      buttons:button('dy-join','Join the centre to the corners',{primary:true,disabled:!!l.pieces})+button('dy-clear','Hide the pieces',{disabled:!l.pieces})});
+    if(!action){draw();return;}
+    if(action.startsWith('view-')){stop();l.kind=action.slice(5);l.pieces=0;draw();return;}
+    if(action==='dy-a'||action==='dy-b'){stop();l[action.slice(3)]=Number(value);if(l.pieces)l.pieces=1;sliderOut(action,String(l[action.slice(3)]));patch({picture:picture(),rows:rows(),status:status(),equation:equation()});return;}
+    if(action==='dy-clear'){stop();l.pieces=0;draw();return;}
+    if(action==='dy-join')play(async token=>{l.pieces=.001;draw();await animate(700,t=>document.querySelectorAll('#lab .dy-piece').forEach(el=>el.setAttribute('opacity',Math.max(.001,t).toFixed(3))));if(!token.cancel){l.pieces=1;draw();}});
+  };
+}
+// LABS is built near the top of the file, so these are function declarations that call the labs made here.
+const CITY_LABS={inside:cityLab(['inside'],{title:'The circle inside the triangle',a:8,b:15,caption:'The circle touches all three sides. Each radius to a point of contact meets the side at a right angle, so every piece has height r.'}),
+  onSide:cityLab(['eastLeg','southLeg','corner','hypotenuse'],{title:'A centre on a side',caption:'When the centre lies on a side, the piece on each such side has no area, and the circle touches only the other sides.'}),
+  across:cityLab(['acrossEast','acrossSouth','acrossHypotenuse'],{title:'A circle outside the triangle',caption:'The circle touches one side and the other two sides’ lines beyond the triangle. One piece then lies outside the triangle.'})};
+function insideLab(l,action,value){return CITY_LABS.inside(l,action,value);}
+function onSideLab(l,action,value){return CITY_LABS.onSide(l,action,value);}
+function acrossLab(l,action,value){return CITY_LABS.across(l,action,value);}
+// Step 4. A centre slides along an axis; a circle there touches both lines when its two distances agree.
+function coordinateLab(l,action,value){
+  l.a??=5;l.b??=12;l.axis??='y';
+  const c=()=>Math.hypot(l.a,l.b),lo=()=>l.axis==='y'?-l.b:-1.25*l.a*l.b/(c()-l.b),hi=()=>l.axis==='y'?1.25*l.a*l.b/(c()-l.a):l.a;
+  // It starts at the far end of the leg, where the distance to the hypotenuse is 0, so no circle touches both lines yet.
+  l.t??=null;if(l.t===null||l.t<lo()||l.t>hi())l.t=l.axis==='y'?-l.b:l.a;
+  // The two centres on each axis whose circle touches both lines: on the leg and on its extension beyond the right angle.
+  // A position counts as touching only at the slider step nearest one of them, and then the exact circle is shown.
+  const exact=()=>{const a=l.a,b=l.b,h=c();return l.axis==='y'?[-a*b/(a+h),a*b/(h-a)]:[a*b/(b+h),-a*b/(h-b)];},step=()=>(hi()-lo())/200;
+  const hit=()=>exact().find(x=>Math.abs(l.t-x)<=.75*step()),at=()=>hit()??l.t;
+  const centre=()=>l.axis==='y'?[0,at()]:[at(),0],leg=()=>Math.abs(at()),hyp=()=>X.toHypotenuse(l.a,l.b,centre()),close=()=>hit()!==undefined;
+  const picture=()=>{const o=centre(),C=[0,0],E=[l.a,0],S=[0,-l.b],r=leg();
+    const {s,map}=cityFit([C,E,S,l.axis==='y'?[0,lo()]:[lo(),0],l.axis==='y'?[0,hi()]:[hi(),0],[o[0]-r,o[1]-r],[o[0]+r,o[1]+r]]);
+    const far=(p,q,t)=>[p[0]+(q[0]-p[0])*t,p[1]+(q[1]-p[1])*t],[cx,cy]=map(o);
+    let body=segment(map([-1e4,0]),map([1e4,0]),'stroke="#c7d3d6" stroke-width="1.2"')+segment(map([0,-1e4]),map([0,1e4]),'stroke="#c7d3d6" stroke-width="1.2"');
+    body+=segment(map(far(E,S,-40)),map(far(E,S,41)),'stroke="#9aaeb1" stroke-width="1.2" stroke-dasharray="5 4"');
+    body+=`<polygon points="${pt(map(C))} ${pt(map(E))} ${pt(map(S))}" fill="#eef4f2" stroke="${INK}" stroke-width="2.6" stroke-linejoin="round"/>`;
+    if(close())body+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(r*s).toFixed(1)}" fill="none" stroke="${CUT}" stroke-width="2.6"/>`;
+    const toLeg=l.axis==='y'?[0,0]:[0,0];
+    body+=segment([cx,cy],map(toLeg),`stroke="#4f8f83" stroke-width="2.4"`)+segment([cx,cy],map(foot(o,E,S)),`stroke="${HOT}" stroke-width="2.4"`);
+    body+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="4.5" fill="${CUT}"/>`;
+    const O=map([0,0]);body+=`<text class="x-small" x="${(O[0]+6).toFixed(1)}" y="${(O[1]+14).toFixed(1)}">(0, 0)</text>`;
+    return svg(body,`Coordinates: the right angle at the origin, legs ${l.a} and ${l.b}, and a centre at (${r2(o[0])}, ${r2(o[1])})${close()?', with a circle that touches both lines':''}`,300);};
+  const rows=()=>[['Centre',`(${minus(centre()[0])}, ${minus(centre()[1])})`],[l.axis==='y'?'Distance to the x-axis':'Distance to the y-axis',r2(leg())],['Distance to the hypotenuse',r2(hyp())]];
+  const status=()=>close()?`The two distances agree: a circle of radius ${r2(leg())} centred here touches both lines.`:`The distances differ by ${r2(Math.abs(leg()-hyp()))}. Slide the centre until they agree.`;
+  const par=v=>v<0?`(${minus(v)})`:minus(v);
+  const equation=()=>`|b·x₀ − a·y₀ − ab| / c = |${l.b}·${par(centre()[0])} − ${l.a}·${par(centre()[1])} − ${l.a*l.b}| / ${r2(c())} = ${r2(hyp())}`;
+  const range=()=>`<label class="x-range"><span>${l.axis==='y'?'Centre on the y-axis, y₀':'Centre on the x-axis, x₀'}</span><input type="range" min="${lo()}" max="${hi()}" step="${step()}" value="${l.t}" data-lab="dy-t" aria-valuetext="${minus(at())}"><output aria-live="off">${minus(at())}</output></label>`;
+  const draw=()=>labShell({title:'Check with coordinates',views:views([['y','Centre on the y-axis'],['x','Centre on the x-axis']],l.axis),picture:picture(),
+    legend:`${legSliders(l)}${range()}<p class="lab-equation" data-no-translate>${equation()}</p><p class="x-legend"><span class="x-legend-item"><span class="x-key" style="border-top-color:#4f8f83"></span>Distance to the other leg’s line</span><span class="x-legend-item"><span class="x-key" style="border-top-color:${HOT}"></span>Distance to the hypotenuse</span></p>`,
+    rows:rows(),status:status(),caption:'A circle touches a line when its radius equals the distance from its centre to the line. With the centre on one leg’s line, compare its distances to the other leg and to the hypotenuse.',
+    buttons:button('dy-start','Back to the start',{primary:true})});
+  if(!action){draw();return;}
+  if(action==='view-x'||action==='view-y'){l.axis=action.slice(5);l.t=null;coordinateLab(l);return;}
+  if(action==='dy-start'){l.t=null;coordinateLab(l);return;}
+  if(action==='dy-a'||action==='dy-b'){l[action.slice(3)]=Number(value);l.t=null;coordinateLab(l);return;}
+  if(action==='dy-t'){l.t=Number(value);sliderOut('dy-t',minus(at()));patch({picture:picture(),rows:rows(),status:status(),equation:equation()});}
+}
+// Step 5. Li Ye's map: every problem's walks drawn around one city, with its line of sight continued across the map; and
+// multiples of (8, 15, 17) around a circle the size of the city, where a rule gives the city only for one multiple.
+function cityMap(l){
+  const {s,map}=cityFit([[-210,150],[260,-500]],{h:360,pad:16}),R=120,P=p=>pt(map(p));
+  const across=(p,q,attrs)=>{const t=v=>[p[0]+(q[0]-p[0])*v,p[1]+(q[1]-p[1])*v];return segment(map(t(-20)),map(t(21)),attrs);};
+  let body='';
+  // The roads that touch the wall at the four gates, and the roads straight out of the gates, run across the whole map.
+  const road=(p,q,attrs)=>segment(map(p),map(q),attrs),far=2000;
+  for(const v of [-R,R])body+=road([v,-far],[v,far],'stroke="#9aaeb1" stroke-width="1.6"')+road([-far,v],[far,v],'stroke="#9aaeb1" stroke-width="1.6"');
+  body+=road([0,-far],[0,far],'stroke="#c7d3d6" stroke-width="1.2" stroke-dasharray="4 4"')+road([-far,0],[far,0],'stroke="#c7d3d6" stroke-width="1.2" stroke-dasharray="4 4"');
+  const [cx,cy]=map([0,0]);body+=`<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(R*s).toFixed(1)}" fill="#f1edf9" stroke="#6542c0" stroke-width="2.4"/>`;
+  const q=X.CITY_PROBLEMS.find(x=>x.n===l.p);
+  if(q){const [A,B]=q.ends,S=q.start;
+    body+=across(A,B,`id="dy-sight" stroke="${CUT}" stroke-width="1.4" stroke-dasharray="6 4"`);
+    body+=`<polygon points="${P(S)} ${P(A)} ${P(B)}" fill="${PIECE_IN}" fill-opacity=".75" stroke="${INK}" stroke-width="2.4" stroke-linejoin="round"/>`;
+    body+=segment(map(A),map(B),`stroke="${CUT}" stroke-width="2.6"`)+`<circle cx="${map(S)[0].toFixed(1)}" cy="${map(S)[1].toFixed(1)}" r="4" fill="${INK}"/>`;}
+  return svg(body,q?`Li Ye’s city with problem ${q.n}: the walks from ${q.place}, and the line of sight continued across the map`:'Li Ye’s city: the round wall, the roads that touch it at the four gates, and the roads straight out of the gates',360);
+}
+const walkText=q=>`${Math.abs(q.walk[0])} ${q.walk[0]<0?'west':'east'}, ${Math.abs(q.walk[1])} ${q.walk[1]<0?'south':'north'}`;
+function scaleLab(l,action,value){
+  l.mode??='map';l.p??=0;l.kind??='inside';l.k??=1;
+  const q=()=>X.liye(l.kind,8*l.k,15*l.k),same=()=>Math.abs(q().d-240)<1e-9,prob=()=>X.CITY_PROBLEMS.find(x=>x.n===l.p);
+  const scalePicture=()=>svg(cityScene(q(),{rings:[120]}),`The triangle ${8*l.k}, ${15*l.k}, ${17*l.k}, its circle ${X.LIYE[l.kind].label.toLowerCase()}, and a dashed circle with the city’s diameter, 240`,300);
+  const rows=()=>l.mode==='map'?(prob()?[['Problem',String(l.p)],['Start',prob().place.replace(/^the /,'')],['Walks (bu)',walkText(prob())]]:null)
+    :[['Multiple k',String(l.k)],['Triangle',`${8*l.k}, ${15*l.k}, ${17*l.k}`],['This circle’s diameter',r2(q().d)],['The city’s diameter','240']];
+  const status=()=>l.mode==='map'?(prob()?`Problem ${l.p}: from ${prob().place}, ${walkText(prob())}. The dashed line continues its line of sight across the map.`:'Choose a problem to draw its walks on the map of the city.')
+    :same()?'This circle has exactly the city’s diameter, 240.':q().d<240?'This circle is smaller than the city. Try a larger multiple.':'This circle is larger than the city. Try a smaller multiple.';
+  const problems=()=>`<div class="x-views dy-problems" role="group" aria-label="Problems">${X.CITY_PROBLEMS.map(x=>`<button type="button" data-lab="dy-p${x.n}" aria-pressed="${x.n===l.p}" aria-label="Problem ${x.n}">${x.n}</button>`).join('')}</div>`;
+  const rule=()=>`<label class="dy-select"><span>Rule</span><select data-lab="dy-rule">${Object.entries(X.LIYE).map(([k,v])=>`<option value="${k}"${k===l.kind?' selected':''}>${esc(v.label)}</option>`).join('')}</select></label>`;
+  const draw=()=>labShell({title:l.mode==='map'?'Li Ye’s map':'Scale (8, 15, 17) around one city',views:views([['map','Li Ye’s map'],['scale','Scale (8, 15, 17)']],l.mode),picture:l.mode==='map'?cityMap(l):scalePicture(),
+    legend:l.mode==='map'?`${problems()}<p class="x-legend"><span class="x-legend-item"><span class="x-key"></span>Line of sight, continued</span><span class="x-legend-item"><span class="x-key x-key-line" style="border-top-color:#9aaeb1"></span>Roads that touch the wall</span></p>`
+      :`${rule()}<label class="x-range"><span>Multiple of (8, 15, 17), k</span><input type="range" min="1" max="45" step="1" value="${l.k}" data-lab="dy-k" aria-valuetext="${l.k}"><output aria-live="off">${l.k}</output></label><p class="x-legend"><span class="x-legend-item"><span class="x-key"></span>The rule’s circle</span><span class="x-legend-item"><span class="x-key x-key-dash" style="border-top-color:#536875;opacity:1"></span>A circle 240 across, the city</span></p>`,
+    rows:rows(),status:status(),caption:l.mode==='map'?'Each problem starts at a corner, a gate or the centre of the same city. Compare where the dashed lines lie.':'Each rule turns the triangle k × (8, 15, 17) into a circle. Change k until the rule’s circle matches the dashed city.',
+    buttons:l.mode==='map'?button('dy-clear-map','Clear the map',{primary:true,disabled:!l.p}):button('dy-k1','Back to k = 1',{primary:true,disabled:l.k===1})});
+  if(!action){draw();return;}
+  if(action==='view-map'||action==='view-scale'){l.mode=action.slice(5);draw();return;}
+  if(/^dy-p\d+$/.test(action)){l.p=Number(action.slice(4));draw();return;}
+  if(action==='dy-clear-map'){l.p=0;draw();return;}
+  if(action==='dy-rule'){l.kind=value;draw();return;}
+  if(action==='dy-k1'){l.k=1;draw();return;}
+  if(action==='dy-k'){l.k=Number(value);sliderOut('dy-k',String(l.k));patch({picture:scalePicture(),rows:rows(),status:status()});}
+}
+// Step 6. The square on a + b holds the square on c and four copies of the triangle, so (a + b)² − c² = 2ab.
+function squareLab(l,action,value){
+  l.a??=5;l.b??=12;l.lifted??=0;
+  const c=()=>Math.hypot(l.a,l.b);
+  const picture=()=>{const n=l.a+l.b,size=250,u=size/n,x0=(420-size)/2,y0=20,P=([x,y])=>pt([x0+x*u,y0+y*u]);
+    const tri=[[[0,0],[l.a,0],[0,l.b]],[[l.a,0],[n,0],[n,l.a]],[[n,l.a],[n,n],[l.b,n]],[[0,l.b],[l.b,n],[0,n]]];
+    let body=`<rect x="${x0}" y="${y0}" width="${size}" height="${size}" fill="#ffffff" stroke="${INK}" stroke-width="2.4"/>`;
+    body+=`<polygon points="${[[l.a,0],[n,l.a],[l.b,n],[0,l.b]].map(P).join(' ')}" fill="#bcd3ee" stroke="#3e6aa0" stroke-width="1.6" opacity="${(1-.85*l.lifted).toFixed(3)}" id="dy-csq"/>`;
+    tri.forEach((t,i)=>{body+=`<polygon points="${t.map(P).join(' ')}" fill="${PIECE_IN}" stroke="${PIECE_EDGE}" stroke-width="1.4"/>`;});
+    body+=`<text class="x-small" x="${(x0+size/2).toFixed(1)}" y="${(y0+size/2+4).toFixed(1)}" text-anchor="middle" font-weight="700" fill="#1f3f66" opacity="${(1-l.lifted).toFixed(3)}" id="dy-ctext">c²</text>`;
+    body+=`<text class="x-small" x="${(x0+l.a*u/2).toFixed(1)}" y="${(y0-6).toFixed(1)}" text-anchor="middle">a</text><text class="x-small" x="${(x0+(l.a+n)*u/2).toFixed(1)}" y="${(y0-6).toFixed(1)}" text-anchor="middle">b</text>`;
+    return svg(body,`A square with side a + b = ${n}, holding the square on the hypotenuse and four copies of the triangle${l.lifted?'; the square on the hypotenuse is taken away':''}`,290);};
+  const rows=()=>{const n=l.a+l.b;return [['(a + b)²',String(n*n)],['c²',r2(c()**2)],['(a + b)² − c²',r2(n*n-c()**2)],['(a + b + c)(a + b − c)',r2((n+c())*(n-c()))]];};
+  const status=()=>l.lifted?`What is left is the four triangles, each of area ab/2 = ${r2(l.a*l.b/2)}.`:'The square on a + b holds the square on c and four copies of the triangle.';
+  const draw=()=>labShell({title:'The square on a + b',picture:picture(),legend:legSliders(l,16),rows:rows(),status:status(),
+    caption:'The four right triangles surround a tilted square whose side is the hypotenuse c.',
+    buttons:button('dy-lift','Take away the square on c',{primary:true,disabled:!!l.lifted})+button('dy-back','Put it back',{disabled:!l.lifted})});
+  if(!action){draw();return;}
+  if(action==='dy-back'){stop();l.lifted=0;draw();return;}
+  if(action==='dy-a'||action==='dy-b'){stop();l[action.slice(3)]=Number(value);sliderOut(action,String(l[action.slice(3)]));patch({picture:picture(),rows:rows(),status:status()});return;}
+  if(action==='dy-lift')play(async token=>{await animate(700,t=>{attr(q('dy-csq'),{opacity:(1-.85*t).toFixed(3)});attr(q('dy-ctext'),{opacity:(1-t).toFixed(3)});});if(!token.cancel){l.lifted=1;draw();}});
+}
+
+document.addEventListener('input',e=>{if(e.target.dataset?.field&&(e.target.tagName==='TEXTAREA'||e.target.type==='text'))recordInput(e.target);else if(e.target.dataset?.lab&&(e.target.type==='range'||e.target.tagName==='SELECT'))labAction(e.target.dataset.lab,e.target.value);});
 document.addEventListener('change',e=>{if(e.target.dataset?.field&&e.target.type==='radio')recordInput(e.target);});
 document.addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b||b.disabled)return;

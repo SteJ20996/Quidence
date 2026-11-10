@@ -180,6 +180,43 @@ async function main(){
   }
   await step(4);await page.locator('#lab [data-lab="units-two"]').click();
   assert.equal(await page.locator('#lab-status').textContent(),'Every number is multiplied by 2. Powers of 2 starting with 1: 301 of 1000. Whole numbers starting with 1: 555 of 999.');
+  // Project 4: Li Ye's round city. Authored English text at two widths, and labs that start on a 5-12-13 triangle.
+  const p4=data[3];await project('cross-p04');
+  for(const width of [1440,375]){await page.setViewportSize({width,height:900});for(let i=0;i<p4.steps.length;i++){
+   const authored=source[3].steps[i];await step(i);await page.locator('#proof').evaluate(e=>e.open=true);
+   assert.equal(await page.locator('#project-head h2').textContent(),normalize(source[3].title.en));
+   assert.equal(await page.locator('#work h3').textContent(),normalize(authored.title.en));
+   assert.deepEqual(await page.locator('#work .x-chip').evaluateAll(as=>as.map(a=>a.dataset.course)),p4.steps[i].connects);
+   assert.deepEqual((await page.locator('.proof-content > p:not(.proof-label)').allTextContents()).map(normalize),authored.proof.map(x=>normalize(x.en)));
+   assert.equal(await page.locator('[data-field]').count(),p4.steps[i].fields.reduce((n,f)=>n+(f.type==='choice'?f.options.length:1),0));
+   assert(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=1,'overflow at project 4 step '+i+' and '+width);
+   if(width===1440)result.steps++;
+  }}
+  await page.setViewportSize({width:1440,height:900});
+  for(let i=0;i<6;i++)assert.doesNotMatch(await labText(i),/\b(320|600|680|256|480|544|192|360|408|72|135|153)\b/,'lab '+(i+1)+' starts on other data');
+  for(let i=0;i<5;i++)assert.doesNotMatch(await labText(i),/\b240\b/,'lab '+(i+1)+' does not announce the answer');
+  assert.match(await labText(0),/Join the centre to the corners/);assert.doesNotMatch(await labText(0),/make up the triangle/);
+  assert.equal(await run(0,['dy-join']),'The pieces on the east leg (12), the south leg (22.5) and the hypotenuse (25.5) make up the triangle, whose area is ab/2 = 60.');
+  await page.locator('#lab [data-lab="dy-a"]').evaluate(e=>{e.value='5';e.dispatchEvent(new Event('input',{bubbles:true}));});await page.locator('#lab [data-lab="dy-b"]').evaluate(e=>{e.value='12';e.dispatchEvent(new Event('input',{bubbles:true}));});
+  assert.deepEqual(await page.locator('#lab .x-readouts dd').allTextContents(),['5, 12','13','2','4']);
+  assert.equal(await run(1,['view-corner','dy-join']),'The piece on the hypotenuse (30) makes up the triangle, whose area is ab/2 = 30.');
+  assert.match(await run(2,['view-acrossEast','dy-join']),/^The pieces on the south leg \(.+\) and the hypotenuse \(.+\), minus the piece on the east leg \(.+\), which lies outside the triangle, make up the triangle, whose area is ab\/2 = 30\.$/);
+  await step(3);await page.locator('#lab [data-lab="dy-t"]').evaluate(e=>{e.value='7.5';e.dispatchEvent(new Event('input',{bubbles:true}));});
+  assert.match(normalize(await page.locator('#lab-status').textContent()),/^The two distances agree: a circle of radius 7\.\d+ centred here touches both lines\.$/);assert.equal(await page.locator('#lab svg circle').count(),2);
+  await page.locator('#lab [data-lab="view-x"]').click();assert.match(normalize(await page.locator('#lab-status').textContent()),/^The distances differ by/);
+  // The map draws each problem around one city: problems 1 and 7 continue along one line, problem 5 along another.
+  assert.equal(await run(4,[]),'Choose a problem to draw its walks on the map of the city.');
+  const sightOf=async n=>{await page.locator(`#lab [data-lab="dy-p${n}"]`).click();return page.locator('#dy-sight').evaluate(e=>['x1','y1','x2','y2'].map(k=>Math.round(Number(e.getAttribute(k)))));};
+  const s1=await sightOf(1),s7=await sightOf(7),s5=await sightOf(5);assert.notDeepEqual(s5,s1);
+  const along=(L,M)=>Math.abs((L[2]-L[0])*(M[1]-L[1])-(L[3]-L[1])*(M[0]-L[0]))/Math.hypot(L[2]-L[0],L[3]-L[1])<2&&Math.abs((L[2]-L[0])*(M[3]-L[1])-(L[3]-L[1])*(M[2]-L[0]))/Math.hypot(L[2]-L[0],L[3]-L[1])<2;assert.ok(along(s1,s7),'problems 1 and 7 share a line of sight');
+  assert.equal(normalize(await page.locator('#lab-status').textContent()),'Problem 5: from the north-west corner, 180 east, 360 south. The dashed line continues its line of sight across the map.');
+  await page.locator('#lab [data-lab="view-scale"]').click();await page.locator('#lab [data-lab="dy-rule"]').selectOption('acrossHypotenuse');await page.locator('#lab [data-lab="dy-k"]').evaluate(e=>{e.value='6';e.dispatchEvent(new Event('input',{bubbles:true}));});
+  assert.equal(normalize(await page.locator('#lab-status').textContent()),'This circle has exactly the city’s diameter, 240.');
+  assert.equal(await run(5,['dy-lift']),'What is left is the four triangles, each of area ab/2 = 30.');
+  for(const [i,actions]of [[0,['dy-clear','dy-join']],[1,['view-eastLeg','dy-join','view-southLeg','dy-join','view-hypotenuse','dy-join','dy-clear']],[2,['view-acrossSouth','dy-join','view-acrossHypotenuse','dy-join','dy-clear']],
+   [3,['view-y','dy-start','view-x','dy-start']],[4,['view-map','dy-p2','dy-p8','dy-p10','dy-clear-map','view-scale','dy-k1']],[5,['dy-back','dy-lift','dy-back']]]){
+   await step(i);for(const a of actions)await page.locator(`#lab [data-lab="${a}"]`).click();await idle();assert.doesNotMatch(await page.locator('#lab').innerHTML(),/NaN|Infinity|undefined/,'lab '+(i+1));
+  }
   await project('cross-p01');
   await step(3);await page.locator('#session').click();assert((await page.locator('.student-work').allTextContents()).includes(RAW));assert.equal(await page.locator('.student-work img').count(),0);
   const downloadPromise=page.waitForEvent('download');await page.locator('#export').click();const download=await downloadPromise;assert.match(download.suggestedFilename(),/^Quidence-cross-disciplinary-/);
@@ -188,7 +225,7 @@ async function main(){
   for(const [width,height]of [[1920,1080],[1440,900],[1024,768],[768,1024],[375,812],[320,812]]){
    await page.setViewportSize({width,height});
    assert.equal(await page.locator('#quidence-language,#language,[data-language-host]').count(),0,'no language control at '+width);
-   for(const id of ['cross-p03','cross-p02','cross-p01']){await project(id);for(let i=0;i<6;i++){await step(i);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow at '+width+' '+id+' step '+i);}}
+   for(const id of ['cross-p04','cross-p03','cross-p02','cross-p01']){await project(id);for(let i=0;i<6;i++){await step(i);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow at '+width+' '+id+' step '+i);}}
    result.layouts++;
   }
   // The language saved by an earlier version is still in storage, untouched.
@@ -206,8 +243,8 @@ async function main(){
    const hp=await home.newPage();hp.on('pageerror',e=>errors.push(theme+': '+e.message));await hp.goto(origin+'/?view=courses&lang=en');
    const card=hp.locator('.subject-card[data-subject="cross-p01"]');await card.waitFor({state:'visible'});
    assert.equal(new URL(await card.locator('.subject-link').getAttribute('href'),origin+'/').pathname,'/cross-disciplinary/');
-   for(const id of ['cross-p02','cross-p03'])assert.equal(new URL(await hp.locator(`.subject-card[data-subject="${id}"] .subject-link`).getAttribute('href'),origin+'/').searchParams.get('project'),id);
-   if(theme!=='classic'){await hp.locator('#subject-categories [data-category="cross"]').click();assert.deepEqual(await hp.locator('.subject-card:visible').evaluateAll(cs=>cs.map(c=>c.dataset.subject)),['cross-p01','cross-p02','cross-p03']);}
+   for(const id of ['cross-p02','cross-p03','cross-p04'])assert.equal(new URL(await hp.locator(`.subject-card[data-subject="${id}"] .subject-link`).getAttribute('href'),origin+'/').searchParams.get('project'),id);
+   if(theme!=='classic'){await hp.locator('#subject-categories [data-category="cross"]').click();assert.deepEqual(await hp.locator('.subject-card:visible').evaluateAll(cs=>cs.map(c=>c.dataset.subject)),['cross-p01','cross-p02','cross-p03','cross-p04']);}
    await home.close();
   }
   assert.deepEqual(errors,[]);assert.deepEqual(failed,[]);result.result='passed';

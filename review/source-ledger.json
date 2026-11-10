@@ -576,11 +576,11 @@
       "sourceFiles": [
         {
           "path": "content/cross-disciplinary/projects.cjs",
-          "sha256": "995f0b88768bd36a86b3a50c117ce0b39d7f9aac4a6dd091036b5aef28c9bf32"
+          "sha256": "5379d9ac8ca0138c84ad91a1c6bb1325f558d0714e7c359ae3dde788092347c5"
         },
         {
           "path": "cross-disciplinary/data.json",
-          "sha256": "e50c0f5492578927fb682d4a9656a1b4a9f9ff614ce6b7d9d79173319c6256cc"
+          "sha256": "2bc5d51ad698daa8b8d105709a84d29c0a4c126ae001f3c47dd244e23b26fea9"
         }
       ],
       "sourceReview": {
@@ -608,11 +608,11 @@
       "sourceFiles": [
         {
           "path": "content/cross-disciplinary/projects.cjs",
-          "sha256": "995f0b88768bd36a86b3a50c117ce0b39d7f9aac4a6dd091036b5aef28c9bf32"
+          "sha256": "5379d9ac8ca0138c84ad91a1c6bb1325f558d0714e7c359ae3dde788092347c5"
         },
         {
           "path": "cross-disciplinary/data.json",
-          "sha256": "e50c0f5492578927fb682d4a9656a1b4a9f9ff614ce6b7d9d79173319c6256cc"
+          "sha256": "2bc5d51ad698daa8b8d105709a84d29c0a4c126ae001f3c47dd244e23b26fea9"
         }
       ],
       "sourceReview": {
@@ -640,11 +640,43 @@
       "sourceFiles": [
         {
           "path": "content/cross-disciplinary/projects.cjs",
-          "sha256": "995f0b88768bd36a86b3a50c117ce0b39d7f9aac4a6dd091036b5aef28c9bf32"
+          "sha256": "5379d9ac8ca0138c84ad91a1c6bb1325f558d0714e7c359ae3dde788092347c5"
         },
         {
           "path": "cross-disciplinary/data.json",
-          "sha256": "e50c0f5492578927fb682d4a9656a1b4a9f9ff614ce6b7d9d79173319c6256cc"
+          "sha256": "2bc5d51ad698daa8b8d105709a84d29c0a4c126ae001f3c47dd244e23b26fea9"
+        }
+      ],
+      "sourceReview": {
+        "status": "not-cleared",
+        "reviewer": null,
+        "evidence": [],
+        "next": "Compare wording, scene, data, solution and every diagram against known inspirations; document human edits and permissions where needed."
+      },
+      "mathematicsReview": {
+        "status": "not-human-certified",
+        "automatedReference": "tests/cross-disciplinary.test.cjs"
+      },
+      "automatedReference": "tests/cross-disciplinary.test.cjs"
+    },
+    {
+      "id": "cross-disciplinary-project:cross-disciplinary:cross-p04",
+      "family": "cross-disciplinary-project",
+      "module": "cross-disciplinary",
+      "taskId": "cross-p04",
+      "title": "One round city, ten right triangles",
+      "bankVersion": "cross-disciplinary-v1",
+      "availability": "active",
+      "fingerprint": "8a822abcd7e3cc6dc546e3d17ac1e8823b14fb29c7569a06fff41eda1cf42029",
+      "fingerprintScope": "task definition excluding provenance label",
+      "sourceFiles": [
+        {
+          "path": "content/cross-disciplinary/projects.cjs",
+          "sha256": "5379d9ac8ca0138c84ad91a1c6bb1325f558d0714e7c359ae3dde788092347c5"
+        },
+        {
+          "path": "cross-disciplinary/data.json",
+          "sha256": "2bc5d51ad698daa8b8d105709a84d29c0a4c126ae001f3c47dd244e23b26fea9"
         }
       ],
       "sourceReview": {
