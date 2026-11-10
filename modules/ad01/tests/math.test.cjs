@@ -50,3 +50,26 @@ test('new questions have independent mathematical support',()=>{
  for(const x of [-2,-1.1,1.1,2])assert.ok(M.FUNCTIONS.rate.value(x)>0);
  assert.deepEqual(tasks.c8.correct,['middle']);
 });
+
+test('lesson 5: the antiderivative family shares every slope, and the tail areas match numerical integration',()=>{
+ for(const c of [-2,-.5,0,1.3,2])for(const x of [-1.5,0,1,2]){const h=1e-6;assert.ok(Math.abs((M.family(x+h,c)-M.family(x-h,c))/(2*h)-2*x)<1e-6);}
+ // Midpoint sums with many thin rectangles from 1 to b, compared with the exact areas used by the lesson.
+ const numeric=(f,b,n=200000)=>{let s=0;const w=(b-1)/n;for(let i=0;i<n;i++)s+=f(1+(i+.5)*w)*w;return s;};
+ for(const b of [1.5,10,100,1000]){assert.ok(Math.abs(numeric(x=>1/(x*x),b)-M.tailArea('inverse-square',b))<1e-4,'1/x² to '+b);assert.ok(Math.abs(numeric(x=>1/x,b)-M.tailArea('inverse',b))<1e-4,'1/x to '+b);}
+ assert.ok(M.tailArea('inverse-square',1e9)<1&&Math.abs(1-M.tailArea('inverse-square',1e6)-1e-6)<1e-12);assert.ok(M.tailArea('inverse',Math.exp(20))>19.99);
+ assert.ok(Math.abs(Math.exp(5)-148.41)<.01,'area 5 under 1/x needs b ≈ 148');
+ // Check c10: 1/x³ from 1 to b is 1/2 − 1/(2b²), which approaches 1/2.
+ for(const b of [2,10,1000])assert.ok(Math.abs(numeric(x=>1/(x*x*x),b)-(.5-1/(2*b*b)))<1e-4);
+ assert.throws(()=>M.tailArea('inverse',.5));
+});
+test('lesson 1: the wiggle keeps landing on its limit, the error band has a window, and 0.999… = 1',()=>{
+ for(const x of [-.6,-.1,-.013,-1e-4,1e-4,.007,.2,.6])assert.ok(Math.abs(M.limitValue('wiggle',x))<=Math.abs(x)+1e-15);
+ for(let k=1;k<=200;k++){const x=1/(k*Math.PI);assert.ok(Math.abs(M.limitValue('wiggle',x))<1e-12);assert.ok(Math.abs(M.limitValue('wiggle',-x))<1e-12);}
+ assert.ok(Number.isNaN(M.limitValue('wiggle',0)),'f(0) is undefined');
+ // Every sampled x in the window, other than the target, keeps the output inside the band.
+ for(const eps of [1,.3,.05,.001])for(const kind of ['hole','wiggle']){const {target,limit}=M.LIMITS[kind],d=M.bandWindow(kind,eps);for(let i=1;i<2000;i++){const t=d*i/2000;for(const x of [target+t,target-t])assert.ok(Math.abs(M.limitValue(kind,x)-limit)<eps,`${kind} ${eps} ${x}`);}}
+ // At the jump, outputs −1 and 1 occur arbitrarily close to 0, and no band of half-width ≤ 1 holds both, wherever it is centred.
+ for(const eps of [1,.3,.05,.001]){assert.equal(M.bandWindow('jump',eps),null);for(let c=-1.5;c<=1.5;c+=.01)assert.ok(Math.abs(-1-c)>=eps||Math.abs(1-c)>=eps);}
+ assert.equal(M.ninesInside(.001),4);assert.equal(M.ninesInside(.0011),3);assert.equal(M.ninesInside(.05),2);assert.equal(M.ninesInside(1),1);
+ for(let n=1;n<=12;n++){const written=Number('0.'+'9'.repeat(n));near(M.nines(n),written,1e-15);near(1-written,10**-n,1e-15);}
+});

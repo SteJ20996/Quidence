@@ -24,7 +24,7 @@ test('homepage offers fourteen mathematics courses, introductory physics, Algori
  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
  assert.equal([...html.matchAll(/data-subject="/g)].length,20);assert.equal([...html.matchAll(/data-course-state="available"/g)].length,20);assert.equal([...html.matchAll(/data-course-state="planned"/g)].length,0);assert.equal([...html.matchAll(/class="subject-link"/g)].length,20);
  assert.equal([...html.matchAll(/class="subject-card cross"/g)].length,3);assert.equal([...html.matchAll(/class="subject-card algorithms"/g)].length,1);
- assert.doesNotMatch(html,/Microeconomics|Macroeconomics/);assert.match(html,/Limits, derivatives, and accumulation activities are open/);assert.doesNotMatch(html,/AP Calculus|AP Statistics/);assert.match(html,/76 diagnostic problems, 22 field projects, two Coordinate Geometry projects, 11 Number Theory, 10 Discrete Mathematics and 10 Probability proof projects/);
+ assert.doesNotMatch(html,/Microeconomics|Macroeconomics/);assert.match(html,/Limits, derivatives, accumulation, and indefinite and improper integrals are open/);assert.doesNotMatch(html,/AP Calculus|AP Statistics/);assert.match(html,/76 diagnostic problems, 22 field projects, two Coordinate Geometry projects, 11 Number Theory, 10 Discrete Mathematics and 10 Probability proof projects/);
 });
 test('active figure families render finite states; calculus labels stay inside the frame',()=>{
  const samples=A.collect();assert.ok(samples.length>290);for(const s of samples){assert.doesNotMatch(s.svg,/NaN|Infinity/,s.name);if(s.group!=='ab01')assert.match(s.svg,/role="img"/,s.name);

@@ -5,19 +5,21 @@ const SCHEMA='ad01_beta01_session_v1',clone=x=>JSON.parse(JSON.stringify(x));
 const tasks=C.LESSONS.flatMap(l=>[l.predict,...l.checks]);
 const TASKS=Object.fromEntries(tasks.map(t=>[t.id,t]));
 function defaultLabs(){return[
- {kind:'hole',exponent:-.6,side:1},
+ {kind:'hole',exponent:-.6,side:1,showBand:false,band:-1,digits:3},
  {kind:'square',a:1,h:.5,side:1,showDerivative:false},
  {kind:'square',b:2,n:8,method:'midpoint'},
- {x:.5,h:.5,side:1}
+ {x:.5,h:.5,side:1},
+ {kind:'family',c:1,fn:'inverse-square',e:1}
 ];}
 function validLabs(labs){
  const range=(x,a,b)=>Number.isFinite(x)&&x>=a&&x<=b;
- if(!Array.isArray(labs)||labs.length!==4||labs.some(l=>!l||typeof l!=='object'))return false;
- const [a,b,c,d]=labs;
- return ['hole','jump'].includes(a.kind)&&range(a.exponent,-2.3,-.3)&&[-1,1].includes(a.side)
+ if(!Array.isArray(labs)||labs.length!==5||labs.some(l=>!l||typeof l!=='object'))return false;
+ const [a,b,c,d,e]=labs;
+ return ['hole','jump','wiggle','nines'].includes(a.kind)&&range(a.exponent,-2.3,-.3)&&[-1,1].includes(a.side)&&typeof a.showBand==='boolean'&&range(a.band,-3,0)&&Number.isInteger(a.digits)&&a.digits>=1&&a.digits<=12
   &&['square','absolute'].includes(b.kind)&&range(b.a,-2,2)&&range(b.h,.001,1)&&[-1,1].includes(b.side)&&typeof b.showDerivative==='boolean'
   &&['square','linear'].includes(c.kind)&&range(c.b,.25,2)&&Number.isInteger(c.n)&&c.n>=2&&c.n<=64&&['left','midpoint','right'].includes(c.method)
-  &&range(d.x,-2,2)&&range(d.h,.02,1)&&[-1,1].includes(d.side);
+  &&range(d.x,-2,2)&&range(d.h,.02,1)&&[-1,1].includes(d.side)
+  &&['family','tail'].includes(e.kind)&&range(e.c,-2,2)&&['inverse-square','inverse'].includes(e.fn)&&range(e.e,0,3);
 }
 function valid(task,answer){
  if(!answer||!Array.isArray(answer.choices)||typeof answer.explanation!=='string'||typeof answer.otherHelp!=='boolean')return false;
@@ -49,8 +51,20 @@ function submit(state,id,phase){
 function lessonDone(state,index){return state.lessons[index].reviewed&&C.LESSONS[index].checks.every(t=>state.records[t.id]?.status==='submitted');}
 function allDone(state){return C.LESSONS.every((_,i)=>lessonDone(state,i));}
 function last(state,id){return state.records[id]?.submissions.at(-1)||null;}
+// A record saved with the four-lesson course (ad01-beta-0.1) opens with the fifth lesson added. Its answers, drafts,
+// submissions and events are kept exactly; a record that was on the summary page opens at the new lesson instead.
+function upgrade(raw){
+ if(!raw||raw.schema!==SCHEMA||raw.contentVersion!=='ad01-beta-0.1'||!Array.isArray(raw.lessons)||raw.lessons.length!==4||!Array.isArray(raw.labs)||raw.labs.length!==4||!Array.isArray(raw.events))return raw;
+ const next=clone(raw);next.contentVersion=C.VERSION;next.lessons.push({seenSteps:[],reviewed:false});next.labs.push(defaultLabs()[4]);
+ // Lesson 1's lab gained the error band and the 0.999… example; earlier settings keep their values.
+ if(next.labs[0]&&typeof next.labs[0]==='object')next.labs[0]={...defaultLabs()[0],...next.labs[0]};
+ if(next.view==='summary'){next.view='lesson';next.lessonIndex=4;next.stage='predict';next.questionIndex=0;}
+ next.events.push({at:new Date().toISOString(),type:'content_upgraded',from:'ad01-beta-0.1',to:C.VERSION});
+ return next;
+}
 function hydrate(raw){
  try{
+  raw=upgrade(raw);
   if(!raw||raw.schema!==SCHEMA||raw.contentVersion!==C.VERSION||!validLabs(raw.labs)||!['orientation','lesson','summary'].includes(raw.view)||!['predict','learn','check','review'].includes(raw.stage))return null;
   if(!Number.isInteger(raw.lessonIndex)||raw.lessonIndex<0||raw.lessonIndex>=C.LESSONS.length||!Number.isInteger(raw.questionIndex)||raw.questionIndex<0||raw.questionIndex>1)return null;
   if(!Array.isArray(raw.lessons)||raw.lessons.length!==C.LESSONS.length||!Array.isArray(raw.events)||!raw.records||typeof raw.records!=='object'||Array.isArray(raw.records))return null;

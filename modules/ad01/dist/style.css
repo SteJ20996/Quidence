@@ -9,3 +9,6 @@
 @media print{.lab-controls,.step-tabs,.graph-legend{display:none}.learning-grid,.task-layout{display:block}.calculus-hero-art{display:none}.graph-figure{break-inside:avoid}.task-card{max-width:none}}
 
 .motion-controls{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:12px 0 18px}.motion-controls .tiny{flex:1;min-width:180px;margin:0}.range-row output{min-width:52px}#play-motion{min-width:148px}@media print{.motion-controls{display:none!important}}
+/* Lesson 5: four kinds of integral side by side, each opening its own picture. */
+.kinds-card{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 18px}.kinds-tile{display:flex;flex-direction:column;align-items:flex-start;gap:6px;border:1px solid var(--border);border-radius:10px;padding:10px;background:#fcfbff;min-width:0}.kinds-tile.active{border-color:var(--accent);background:var(--soft)}.kinds-tile svg{width:100%;max-width:120px;height:auto}.kinds-symbol{font-size:15px;font-weight:650;margin:0;overflow-wrap:anywhere}.kinds-gives{font-size:12px;color:var(--muted);line-height:1.45;margin:0;flex:1}.kinds-tile .btn{margin-top:4px}
+@media(max-width:900px){.kinds-card{grid-template-columns:repeat(2,minmax(0,1fr))}}

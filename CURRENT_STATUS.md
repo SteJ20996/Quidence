@@ -1,3 +1,38 @@
+## 2026-11-10 · Calculus: kinds of integrals (lesson 5), and limits as numbers (lesson 1)
+
+Calculus grows from four lessons to five. Lesson 5, "One symbol, four questions.", shows that the integral sign asks a different question depending on what is written at its ends.
+- **The four kinds.**
+  - ∫ₐᵇ f(x) dx is a number: the signed area from a to b (lesson 3).
+  - ∫ₐˣ f(t) dt is a function of x: the accumulation function (lesson 4).
+  - ∫ f(x) dx is a family of antiderivatives, F(x) + C.
+  - ∫ₐ^∞ f(x) dx is defined by a limit: if ∫ₐᵇ f(x) dx has a limit as b grows without bound, the improper integral is that number; otherwise it diverges.
+- **Symbol card.** The four symbols sit side by side, each with a small picture. The first two open lessons 3 and 4; the other two switch this lesson's graphs.
+- **Learner-controlled graphs.**
+  - *The constant C.* Dragging C slides x² + C up or down. The slope at x = 1 stays 2, and the graph of f(x) = 2x below does not move, so the derivative cannot recover C.
+  - *Improper integrals.* Dragging b from 1 to 1,000 on a log scale shades the region and plots the area against b, with the other function's area in grey. For 1/x² the area 1 − 1/b stays below 1 and its limit is 1. For 1/x each tenfold step in b adds ln 10 ≈ 2.3 to ln b, so the area has no ceiling.
+- **Prediction first.** Before the lesson: is the area of the endless region under y = 1/x² to the right of x = 1 finite? Two new questions follow: whether x² and x² + 5 are both antiderivatives of 2x, and which of ∫₁^∞ 1/x³ dx and ∫₁^∞ 1/x dx is finite.
+- **Saved work.** A record saved with the four-lesson course opens with lesson 5 added in memory. Its answers, records and events are unchanged, and a `content_upgraded` event is added. A record that had reached the summary moves to lesson 5's prediction.
+- **Lesson 1: a limit is a number, not a motion.** Lesson 1 said only that the moving point gets closer without landing, and lesson 3 that more rectangles illustrate convergence. Nothing said that the limit itself is one exact number, and lesson 5's slider repeats the moving picture. Lesson 1 now says it, with no new steps or questions:
+  - Step 1: x never equals the target, but the limit is one fixed number, and outputs may equal it (f(x) = 5).
+  - A new example, x·sin(1/x), is undefined at 0 and equals its limit 0 infinitely often near 0.
+  - An optional error band narrows from ±1 to ±0.001 around the limit, and the page draws the window of x that keeps every output inside. At the jump no window works. Step 4 states this test in words as the idea behind ε–δ.
+  - A new example, 0.9, 0.99, 0.999, …, uses the same test for 0.999… = 1: after n nines the gap is 10⁻ⁿ, and no positive gap survives every band. The algebraic tricks (times 3, 10x − x) are not used, because they already treat 0.999… as a number.
+  - Lessons 3 and 5 each link back in one sentence: the integral is the limit itself, not the last approximation.
+  - A second independent review found that the hole's window must exclude x = 1 itself, that "inside" must mean strictly inside, and that the 0.999… sentence mixed up a gap with a band. Step 1 also still opened with a motion definition, and step 4 had grown to 148 words. All are fixed.
+- **Independent review.** A separate reviewer recomputed every number and found problems that are now fixed:
+  - lesson 4's "continue" and the summary heading still assumed four lessons;
+  - the feedback page printed `^∞` literally in three places;
+  - some wording treated "a limit" as a fourth kind of answer, or suggested that a limit is never reached;
+  - steps 3 and 4 used (−1/x)′ and (ln x)′ without stating them;
+  - three graph descriptions did not match their drawings.
+- **Not included.** Multivariable integrals (∬, ∭, ∮) are left for a later course.
+- **Checks.**
+  - The maths test compares 1 − 1/b and ln b with midpoint-rule integration, and checks the area 1/2 − 1/(2b²) behind the second question.
+  - The flow test clicks the symbol cards, switches curves and moves the sliders through the real handlers. It also checks that finishing lesson 4 leads to lesson 5.
+  - The session test opens a four-lesson record and finds every answer unchanged.
+  - `npm test` and all 19 browser suites pass.
+- **Not yet done.** The lesson was written for Quidence and read by an independent reviewer. No students have tried it. Research on limits (Williams, 1991) suggests that a dynamic picture of b moving towards ∞ may strengthen the belief that a limit is never reached; the review note discusses this. See [the review note](review/calculus-kinds-of-integrals-20261110.md).
+
 ## 2026-11-10 · Algorithms part 4: checks and an Intuition Lab activity
 
 The Algorithms course now has the same three companions as the mathematics courses.
