@@ -1,15 +1,18 @@
 'use strict';
-// Cross-disciplinary projects in a browser: steps, proofs, answer checks, every lab in English and Spanish,
-// saved work, exports and phone layouts. Animations run with reduced motion, so each one jumps to its end.
+// Cross-disciplinary projects in a browser: steps, proofs, answer checks, every lab, saved work, exports and
+// phone layouts. Animations run with reduced motion, so each one jumps to its end. The site is English only:
+// an old language preference or address parameter changes nothing, and the learner's own words (here partly
+// in another language) are kept and exported exactly as written.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {chromium}=require('playwright'),{createServer}=require('../backend/server.cjs');
 const data=require('../cross-disciplinary/data.json'),C=require('../courses/number-theory/core.js'),source=require('../content/cross-disciplinary/projects.cjs');
 const KEY='quidence:cross-disciplinary:v1',RAW='Mi razonamiento original / my own proof\n  <img src=x onerror=alert(1)> & spaces.';
+const LOCALE='quidence_ui_locale_v1',NOTE='Write your responses in English. Work you saved earlier stays exactly as you wrote it.';
 const normalize=s=>String(s).replace(/\s+/g,' ').trim();
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
  const origin='http://127.0.0.1:'+server.address().port,errors=[],failed=[];
- const result={projects:data.length,steps:0,labs:0,layouts:0,languages:['en','es'],errors,failedRequests:failed};
+ const result={projects:data.length,steps:0,labs:0,layouts:0,languages:['en'],errors,failedRequests:failed};
  try{
   browser=await chromium.launch({executablePath:process.env.QUIDENCE_BROWSER_EXECUTABLE,args:['--no-sandbox']});
   const context=await browser.newContext({viewport:{width:1440,height:900},reducedMotion:'reduce'}),page=await context.newPage();
@@ -111,76 +114,87 @@ async function main(){
   await page.locator('#f-stick3').fill('5');await page.locator('#check').click();assert.match(await page.locator('#feedback-stick3').textContent(),/Try again/);
   await step(3);await page.locator('#f-face').fill(RAW);await page.locator('#check').click();assert.match(await page.locator('#feedback-face').textContent(),/saved for review/);
   const before=await page.evaluate(k=>localStorage.getItem(k),KEY);
-  await page.locator('#quidence-language').selectOption('es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');
+  // A language saved by an earlier version, or a lang address parameter, opens the page in English with no
+  // language control, showing the learner's words; the saved record and the saved preference stay unchanged.
+  // It opens in a separate browser profile holding the same record, so this page and its labs carry on as they are.
+  await page.evaluate(k=>localStorage.setItem(k,'es'),LOCALE);
+  const oldContext=await browser.newContext({viewport:{width:1440,height:900},reducedMotion:'reduce',storageState:{cookies:[],origins:[{origin,localStorage:[{name:KEY,value:before},{name:LOCALE,value:'es'}]}]}});
+  const old=await oldContext.newPage();old.on('pageerror',e=>errors.push(e.message));old.on('response',r=>{if(r.status()>=400)failed.push([r.status(),r.url()]);});
+  await old.goto(origin+'/cross-disciplinary/?lang=es');await old.locator('#app').waitFor({state:'visible'});
+  assert.equal(await old.locator('html').getAttribute('lang'),'en');assert.equal(await old.evaluate(()=>QuidenceI18n.locale),'en');
+  assert.equal(await old.locator('#quidence-language,#language,[data-language-host]').count(),0);
+  assert.equal(await old.locator('.content-language-note').textContent(),NOTE);assert.match(await old.locator('#check').textContent(),/Check/);
+  assert.equal(await old.locator('#project-head h2').textContent(),p.title);assert.equal(await old.locator('#work h3').first().textContent(),p.steps[3].title);
+  assert.equal(await old.locator('#f-face').inputValue(),RAW);assert.equal(await old.evaluate(k=>localStorage.getItem(k),KEY),before);
+  assert.equal(await old.evaluate(k=>localStorage.getItem(k),LOCALE),'es');await oldContext.close();
   assert.equal(await page.locator('#f-face').inputValue(),RAW);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),before);
-  // The Spanish written beside each English source is what the page shows, at desktop and phone widths.
+  // Each authored English source is what the page shows, at desktop and phone widths.
   for(const width of [1440,375]){await page.setViewportSize({width,height:900});for(let i=0;i<p.steps.length;i++){
-   const authored=source[0].steps[i];await step(i);await page.locator('#proof').evaluate(e=>e.open=true);await page.evaluate(()=>QuidenceI18n.apply());
-   assert.equal(await page.locator('#project-head h2').textContent(),normalize(source[0].title.es));
-   assert.equal(await page.locator('#work h3').textContent(),normalize(authored.title.es));
-   assert.deepEqual((await page.locator('.proof-content > p:not(.proof-label)').allTextContents()).map(normalize),authored.proof.map(x=>normalize(x.es)));
+   const authored=source[0].steps[i];await step(i);await page.locator('#proof').evaluate(e=>e.open=true);
+   assert.equal(await page.locator('#project-head h2').textContent(),normalize(source[0].title.en));
+   assert.equal(await page.locator('#work h3').textContent(),normalize(authored.title.en));
+   assert.deepEqual((await page.locator('.proof-content > p:not(.proof-label)').allTextContents()).map(normalize),authored.proof.map(x=>normalize(x.en)));
    for(const f of p.steps[i].fields)if(f.options)assert.deepEqual(await page.locator(`input[data-field="${f.id}"]`).evaluateAll(es=>es.map(e=>e.value)),C.orderedOptions(f,p.id+':'+i+':'+f.id).map(o=>o.value));
    // On a phone the lab sits inside the step, after the question that refers to it.
    assert.equal(await page.locator('#lab-slot #lab-card').count(),width<=1000?1:0);
    assert(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=1,'overflow at step '+i+' and '+width);
   }}
   await page.setViewportSize({width:1440,height:900});
-  // Every lab control runs in Spanish too, so its live text is checked for translations.
+  // Every lab control runs without a page error.
   for(const [i,actions]of [[0,['stick-reset','stick-next','stick-next','stick-repeat']],[1,['view-general','pizza-next','pizza-next','pizza-next','pizza-replay','view-point','pizza-next','pizza-next','pizza-next','pizza-reset']],
    [2,['view-stairs','stairs-pair','stairs-pair','view-crossings','cross-reset','cross-next']],[3,['ball-reset','ball-next','ball-next','ball-next','ball-replay','ball-reset']],
    [4,['view-chart','chart-grow','view-pizza','pizza-visit','view-ball','ball-visit','view-stack','stack-reset','stack-next']],[5,['view-table','table-build','table-all','view-pascal','dim-1','dim-2','dim-3','pascal-play']]]){
-   await step(i);for(const a of actions){await page.locator(`#lab [data-lab="${a}"]`).click();await page.evaluate(()=>QuidenceI18n.apply());}
+   await step(i);for(const a of actions)await page.locator(`#lab [data-lab="${a}"]`).click();
   }
-  await page.locator('#lab [data-lab="pascal-n"]').evaluate(e=>{e.value=6;e.dispatchEvent(new Event('input',{bubbles:true}));});await page.evaluate(()=>QuidenceI18n.apply());
-  assert.match(await page.locator('#lab-status').textContent(),/^Fila 6: los primeros 4 números suman 42\.$/);
-  // Project 2 in Spanish: authored text and every lab control.
+  await page.locator('#lab [data-lab="pascal-n"]').evaluate(e=>{e.value=6;e.dispatchEvent(new Event('input',{bubbles:true}));});
+  assert.match(await page.locator('#lab-status').textContent(),/^Row 6: the first 4 numbers add up to 42\.$/);
+  // Project 2: authored English text and every lab control.
   await project('cross-p02');
   for(const width of [1440,375]){await page.setViewportSize({width,height:900});for(let i=0;i<p2.steps.length;i++){
-   const authored=source[1].steps[i];await step(i);await page.locator('#proof').evaluate(e=>e.open=true);await page.evaluate(()=>QuidenceI18n.apply());
-   assert.equal(await page.locator('#project-head h2').textContent(),normalize(source[1].title.es));
-   assert.equal(await page.locator('#work h3').textContent(),normalize(authored.title.es));
-   assert.deepEqual((await page.locator('.proof-content > p:not(.proof-label)').allTextContents()).map(normalize),authored.proof.map(x=>normalize(x.es)));
+   const authored=source[1].steps[i];await step(i);await page.locator('#proof').evaluate(e=>e.open=true);
+   assert.equal(await page.locator('#project-head h2').textContent(),normalize(source[1].title.en));
+   assert.equal(await page.locator('#work h3').textContent(),normalize(authored.title.en));
+   assert.deepEqual((await page.locator('.proof-content > p:not(.proof-label)').allTextContents()).map(normalize),authored.proof.map(x=>normalize(x.en)));
    assert(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=1,'overflow at project 2 step '+i+' and '+width);
   }}
   await page.setViewportSize({width:1440,height:900});
   for(const [i,actions]of [[0,['view-general','circle-next','circle-next','circle-next','circle-reset','view-hexagon','circle-next']],[1,['chord-reset','chord-next','chord-next','chord-all']],
    [2,['view-pairs','pairs-play','pairs-new','view-map','map-reset','map-next','map-play']],[3,['table-reset','table-next','table-fill']],[4,['pair-play']],[5,['diff-build','diff-all']]]){
-   await step(i);for(const a of actions){await page.locator(`#lab [data-lab="${a}"]`).click();await page.evaluate(()=>QuidenceI18n.apply());}await idle();await page.evaluate(()=>QuidenceI18n.apply());
+   await step(i);for(const a of actions)await page.locator(`#lab [data-lab="${a}"]`).click();await idle();
   }
-  await step(4);await page.locator('#lab [data-lab="pair-n"]').evaluate(e=>{e.value=8;e.dispatchEvent(new Event('input',{bubbles:true}));});await page.evaluate(()=>QuidenceI18n.apply());
-  assert.equal(await page.locator('#lab-status').textContent(),'Puntos: 8. La fila 7 tiene 8 números y la suma usa solo los primeros cinco, así que R(8) = 99, no 128.');
-  // Project 3 in Spanish: authored text and every lab control.
+  await step(4);await page.locator('#lab [data-lab="pair-n"]').evaluate(e=>{e.value=8;e.dispatchEvent(new Event('input',{bubbles:true}));});
+  assert.equal(await page.locator('#lab-status').textContent(),'Points: 8. Row 7 has 8 numbers and the sum uses only the first five, so R(8) = 99, not 128.');
+  // Project 3: authored English text and every lab control.
   await project('cross-p03');
   for(const width of [1440,375]){await page.setViewportSize({width,height:900});for(let i=0;i<p3.steps.length;i++){
-   const authored=source[2].steps[i];await step(i);await page.locator('#proof').evaluate(e=>e.open=true);await page.evaluate(()=>QuidenceI18n.apply());
-   assert.equal(await page.locator('#project-head h2').textContent(),normalize(source[2].title.es));
-   assert.equal(await page.locator('#work h3').textContent(),normalize(authored.title.es));
-   assert.deepEqual((await page.locator('.proof-content > p:not(.proof-label)').allTextContents()).map(normalize),authored.proof.map(x=>normalize(x.es)));
+   const authored=source[2].steps[i];await step(i);await page.locator('#proof').evaluate(e=>e.open=true);
+   assert.equal(await page.locator('#project-head h2').textContent(),normalize(source[2].title.en));
+   assert.equal(await page.locator('#work h3').textContent(),normalize(authored.title.en));
+   assert.deepEqual((await page.locator('.proof-content > p:not(.proof-label)').allTextContents()).map(normalize),authored.proof.map(x=>normalize(x.en)));
    assert(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=1,'overflow at project 3 step '+i+' and '+width);
   }}
   await page.setViewportSize({width:1440,height:900});
   for(const [i,actions]of [[0,['pow-reset','pow-one','pow-ten']],[1,['ruler-reset','ruler-double','view-plain','view-log']],[2,['view-bars','shares-compare','view-line','shares-compare']],
    [3,['view-two','wheel-one','wheel-ten','view-ten','wheel-one','wheel-reset']],[4,['units-reset','units-two','units-three','units-reset']],[5,['view-threes','view-fib','view-heights']]]){
-   await step(i);for(const a of actions){await page.locator(`#lab [data-lab="${a}"]`).click();await page.evaluate(()=>QuidenceI18n.apply());}await idle();await page.evaluate(()=>QuidenceI18n.apply());
+   await step(i);for(const a of actions)await page.locator(`#lab [data-lab="${a}"]`).click();await idle();
   }
-  await step(4);await page.locator('#lab [data-lab="units-two"]').click();await page.evaluate(()=>QuidenceI18n.apply());
-  assert.equal(await page.locator('#lab-status').textContent(),'Cada número se multiplica por 2. Potencias de 2 que empiezan con 1: 301 de 1000. Números enteros que empiezan con 1: 555 de 999.');
+  await step(4);await page.locator('#lab [data-lab="units-two"]').click();
+  assert.equal(await page.locator('#lab-status').textContent(),'Every number is multiplied by 2. Powers of 2 starting with 1: 301 of 1000. Whole numbers starting with 1: 555 of 999.');
   await project('cross-p01');
   await step(3);await page.locator('#session').click();assert((await page.locator('.student-work').allTextContents()).includes(RAW));assert.equal(await page.locator('.student-work img').count(),0);
   const downloadPromise=page.waitForEvent('download');await page.locator('#export').click();const download=await downloadPromise;assert.match(download.suggestedFilename(),/^Quidence-cross-disciplinary-/);
-  const text=fs.readFileSync(await download.path(),'utf8');assert(text.includes(RAW));assert(text.includes('Historial de comprobaciones'));assert(text.includes('Estado de la respuesta:'));
+  const text=fs.readFileSync(await download.path(),'utf8');assert(text.includes(RAW));assert(text.includes('Check history'));assert(text.includes('Response status:'));
   await page.locator('#close-modal').click();await page.reload();await page.locator('#app').waitFor({state:'visible'});assert.equal(await page.locator('#f-face').inputValue(),RAW);
   for(const [width,height]of [[1920,1080],[1440,900],[1024,768],[768,1024],[375,812],[320,812]]){
    await page.setViewportSize({width,height});
-   for(const language of ['en','es']){
-    await page.locator('#quidence-language').selectOption(language);await page.waitForFunction(l=>QuidenceI18n.locale===l,language);
-    for(const id of ['cross-p03','cross-p02','cross-p01']){await project(id);for(let i=0;i<6;i++){await step(i);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow at '+width+' '+language+' '+id+' step '+i);}}
-    result.layouts++;
-   }
+   assert.equal(await page.locator('#quidence-language,#language,[data-language-host]').count(),0,'no language control at '+width);
+   for(const id of ['cross-p03','cross-p02','cross-p01']){await project(id);for(let i=0;i<6;i++){await step(i);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow at '+width+' '+id+' step '+i);}}
+   result.layouts++;
   }
-  const missing=await page.evaluate(()=>QuidenceI18n.missing);assert.deepEqual(missing,[],'untranslated cross-disciplinary content');
+  // The language saved by an earlier version is still in storage, untouched.
+  assert.equal(await page.evaluate(k=>localStorage.getItem(k),LOCALE),'es');
   // Failed saves remain visible; no successful-save claim is shown.
-  await page.evaluate(()=>{QuidenceStorage.setItem=()=>{throw Error('quota')};});await step(3);await page.locator('#f-face').fill(RAW+' more');await page.waitForTimeout(250);assert.match(await page.locator('#save-status').textContent(),/Could not save|No se pudo guardar/);
+  await page.evaluate(()=>{QuidenceStorage.setItem=()=>{throw Error('quota')};});await step(3);await page.locator('#f-face').fill(RAW+' more');await page.waitForTimeout(250);assert.match(await page.locator('#save-status').textContent(),/Could not save/);
   await context.close();
   // An unreadable saved record is kept as it was.
   const corruptContext=await browser.newContext(),cp=await corruptContext.newPage();await cp.goto(origin+'/cross-disciplinary/');await cp.locator('#app').waitFor({state:'visible'});

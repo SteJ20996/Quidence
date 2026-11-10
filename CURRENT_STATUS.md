@@ -16,7 +16,9 @@ The repository owner limited Quidence to English, including future subjects. [AG
 - **Checks.**
   - `tests/english-only.test.cjs` scans every published file for language menus, Spanish catalogues, `?lang=es` and Spanish punctuation.
   - `npm run test:english:browser` replaces `test:localization:browser`. The browser is set to Mexican Spanish, every address carries `?lang=es` and a Spanish preference is saved. It opens every released page at four widths, follows every same-site link from the homepage (119 routes), checks each page is English with no language control, no Spanish and no failed load, and checks that original answers reach reports exactly as written.
-  - AUDIT_LINE
+  - A one-off audit, also with the browser set to Mexican Spanish, followed every same-site link from the homepage in all four appearances (119 routes each, 476 page loads). On every route in Classic, and on the homepage in the other three, it then clicked each control that does not delete, download, record or send data (1,435 clicks) and read the page again. It found no Spanish, no page error and no failed load.
+  - A static scan of every released text file found Spanish only in the grader's unit spellings described above.
+  - Before-and-after screenshots of all 36 pages, at two widths in two appearances, show no layout change apart from the removed menus. Two places needed a fix: an empty column in the Classic homepage header and a lost margin on the Calculus check page.
   - The other browser suites and unit tests lost their Spanish steps; their English checks are unchanged.
 
 See [the review note](review/english-only-20261110.md).

@@ -1,13 +1,17 @@
 'use strict';
+// Probability in a browser: steps, proofs, answer checks, every lab, saved work, exports and layouts.
+// The site is English only: an old language preference or address parameter changes nothing, and the
+// learner's own words (here partly in another language) are kept and exported exactly as written.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const {chromium}=require('playwright'),{createServer}=require('../backend/server.cjs');
 const data=require('../courses/probability/data.json'),C=require('../courses/number-theory/core.js'),source=require('../content/probability/projects.cjs');
 const KEY='quidence:probability:v1',RAW='Mi razonamiento original / my own proof\n  <img src=x onerror=alert(1)> & spaces.';
+const LOCALE='quidence_ui_locale_v1',NOTE='Write your responses in English. Work you saved earlier stays exactly as you wrote it.';
 const normalize=s=>String(s).replace(/\s+/g,' ').trim();
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
  const origin='http://127.0.0.1:'+server.address().port,errors=[],failed=[];
- const result={projects:10,steps:0,layouts:0,languages:['en','es'],errors,failedRequests:failed};
+ const result={projects:10,steps:0,layouts:0,languages:['en'],errors,failedRequests:failed};
  try{
   browser=await chromium.launch({executablePath:process.env.QUIDENCE_BROWSER_EXECUTABLE,args:['--no-sandbox']});
   const context=await browser.newContext({viewport:{width:1440,height:900},reducedMotion:'reduce'}),page=await context.newPage();
@@ -31,25 +35,29 @@ async function main(){
   await check('pr-p05',1,'shared23',[['0.507',true],['0.5073',true],['0.508',false],['0.51',false]]);
   await check('pr-p07',3,'expectedRounds',[['36/11',true],['3.27',true],['3.273',true],['3.3',false],['3.28',false]]);
   await check('pr-p10',3,'exact100',[['0.057',true],['0.0569',true],['0.056',false]]);
-  // A reason is saved for review exactly as written, through a language switch.
+  // A reason is saved for review exactly as written.
   await chooseProject('pr-p01');await page.locator('[data-step="3"]').click();await page.locator('#f-averages').fill(RAW);await page.locator('#check').click();assert.match(await page.locator('#feedback-averages').textContent(),/saved for review/);
   const before=await page.evaluate(k=>localStorage.getItem(k),KEY);
-  await page.locator('#quidence-language').selectOption('es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');
+  // A language saved by an earlier version, or a lang address parameter, leaves the page in English with no
+  // language control; the learner's words and the saved record are unchanged, and so is the saved preference.
+  await page.evaluate(k=>localStorage.setItem(k,'es'),LOCALE);await page.goto(origin+'/courses/probability/?lang=es');await page.locator('#app').waitFor({state:'visible'});
+  assert.equal(await page.locator('html').getAttribute('lang'),'en');assert.equal(await page.evaluate(()=>QuidenceI18n.locale),'en');
+  assert.equal(await page.locator('#quidence-language,#language,[data-language-host]').count(),0);
+  assert.equal(await page.locator('.content-language-note').textContent(),NOTE);assert.match(await page.locator('#check').textContent(),/Check/);
+  assert.equal(await page.locator('#work h3').first().textContent(),data.find(p=>p.id==='pr-p01').steps[3].title);
   assert.equal(await page.locator('#f-averages').inputValue(),RAW);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),before);
-  assert.match(await page.locator('.content-language-note').textContent(),/inglés o español/);assert.match(await page.locator('#check').textContent(),/Comprueba/);
-  // Every authored title, proof paragraph and option is shown in the Spanish written beside its English source.
-  const collect=async()=>{await page.evaluate(()=>QuidenceI18n.apply());};
+  assert.equal(await page.evaluate(k=>localStorage.getItem(k),LOCALE),'es');
+  // Every authored title, proof paragraph and option is shown exactly as written in its English source.
   for(const width of [1440,375]){await page.setViewportSize({width,height:900});for(const [n,p]of data.entries()){await chooseProject(p.id);for(let i=0;i<p.steps.length;i++){
    const authored=source[n].steps[i];
-   await page.locator(`[data-step="${i}"]`).click();await page.locator('#proof').evaluate(e=>e.open=true);await collect();
-   assert.equal(await page.locator('#project-head h2').textContent(),normalize(source[n].title.es));
-   assert.equal(await page.locator('#work h3').textContent(),normalize(authored.title.es));
-   assert.deepEqual((await page.locator('.proof-content > p:not(.proof-label)').allTextContents()).map(normalize),authored.proof.map(x=>normalize(x.es)));
+   await page.locator(`[data-step="${i}"]`).click();await page.locator('#proof').evaluate(e=>e.open=true);
+   assert.equal(await page.locator('#project-head h2').textContent(),normalize(source[n].title.en));
+   assert.equal(await page.locator('#work h3').textContent(),normalize(authored.title.en));
+   assert.deepEqual((await page.locator('.proof-content > p:not(.proof-label)').allTextContents()).map(normalize),authored.proof.map(x=>normalize(x.en)));
    for(const f of p.steps[i].fields)if(f.options)assert.deepEqual(await page.locator(`input[data-field="${f.id}"]`).evaluateAll(es=>es.map(e=>e.value)),C.orderedOptions(f,p.id+':'+i+':'+f.id).map(o=>o.value));
    assert(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)<=1,'Probability overflow '+p.id+' '+i+' at '+width);
   }}}
   await page.setViewportSize({width:1440,height:900});
-  await page.locator('#quidence-language').selectOption('en');await page.waitForFunction(()=>QuidenceI18n.locale==='en');
   // Labs show a result only after the learner acts, so they do not answer a step in advance.
   const labText=async project=>{await chooseProject(project);await page.locator('[data-step="0"]').click();return normalize(await page.locator('#lab').textContent());};
   const status=async()=>normalize(await page.locator('#lab .lab-status').textContent());
@@ -68,8 +76,7 @@ async function main(){
   await chooseProject('pr-p01');await page.locator('[data-lab="dice-bets"]').click();assert.deepEqual(await page.locator('#lab .lab-line').allTextContents(),['Rolls: 4.','P(at least one six) > 1/2 and P(at least one double six) < 1/2.']);await page.locator('[data-lab="dice-grid"]').click();
   // The birthday curve is drawn only up to the current group, so its crossing of 1/2 is found, not shown.
   await chooseProject('pr-p05');assert.equal(await page.locator('#lab polyline').evaluate(e=>e.getAttribute('points').trim().split(/\s+/).length),10);for(let i=0;i<13;i++)await page.locator('[data-lab="bday-more"]').click();assert.match(await status(),/People: 23\. Pairs: 253\./);
-  // Every lab control runs in Spanish, so its live text is checked for translations too.
-  await page.locator('#quidence-language').selectOption('es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');
+  // Every lab control runs without a page error.
   for(const [project,actions]of [
    ['pr-p01',['dice-seven','dice-double','dice-six','dice-bets','bets-more','bets-less','dice-grid']],
    ['pr-p02',['points-0','points-count','points-1','points-count','points-2','points-count']],
@@ -81,11 +88,11 @@ async function main(){
    ['pr-p08',['collect-one','collect-hundred','collect-reset']],
    ['pr-p09',['galton-one','galton-hundred','galton-tilt','galton-hundred','galton-fair','galton-one','galton-reset']],
    ['pr-p10',['toss-10','toss-100','toss-1000','toss-reset']]
-  ]){await chooseProject(project);await page.locator('[data-step="0"]').click();await collect();for(const action of actions){await page.locator(`[data-lab="${action}"]`).click();await collect();}}
-  await page.locator('[data-project="pr-p01"]').click();await page.locator('[data-step="3"]').click();await page.locator('#f-averages').fill(RAW);await page.locator('#check').click();await collect();
+  ]){await chooseProject(project);await page.locator('[data-step="0"]').click();for(const action of actions)await page.locator(`[data-lab="${action}"]`).click();}
+  await page.locator('[data-project="pr-p01"]').click();await page.locator('[data-step="3"]').click();await page.locator('#f-averages').fill(RAW);await page.locator('#check').click();
   await page.locator('#session').click();assert((await page.locator('.student-work').allTextContents()).includes(RAW));assert.equal(await page.locator('.student-work img').count(),0);
   const downloadPromise=page.waitForEvent('download');await page.locator('#export').click();const download=await downloadPromise;assert.match(download.suggestedFilename(),/^Quidence-probability-/);
-  const text=fs.readFileSync(await download.path(),'utf8');assert(text.includes(RAW));assert(text.includes('Historial de comprobaciones'));assert(text.includes('Estado de la respuesta:'));assert(!/\n(?:Status|Response status):|\nEstado de la respuesta: (?:correct|retry|format|empty|pending)\b/.test(text));
+  const text=fs.readFileSync(await download.path(),'utf8');assert(text.includes(RAW));assert(text.includes('Check history'));assert(text.includes('Response status:'));assert(!/\nStatus:|\nResponse status: (?:correct|retry|format|empty|pending)\b/.test(text));
   await page.locator('#close-modal').click();await page.reload();await page.locator('#app').waitFor({state:'visible'});assert.equal(await page.locator('#f-averages').inputValue(),RAW);
   // Opted-in learning requests are captured only for this course.
   await page.evaluate(()=>QuidenceStorage.setItem('cluevera_learning_goal_v1',JSON.stringify({schema:'cluevera_learning_goal_v1',subject:'probability',text:'Explain conditional probability / conservar el original',includeInReport:true})));
@@ -94,26 +101,21 @@ async function main(){
   await page.locator('#check').click();assert.equal(await page.evaluate(k=>JSON.parse(QuidenceStorage.getItem(k)).attempts.at(-1).learningRequest,KEY),null);
   for(const [width,height]of [[1920,1080],[1440,900],[1024,768],[768,1024],[375,812],[320,812]]){
    await page.setViewportSize({width,height});
-   for(const language of ['en','es']){
-    await page.locator('#quidence-language').selectOption(language);await page.waitForFunction(l=>QuidenceI18n.locale===l,language);
-    await page.locator('dialog[open]').count().then(async n=>{if(n)await page.locator('#close-modal').click();});
-    await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
-    if(width<=375){const fits=await page.locator('#quidence-language').evaluate(e=>{
-      const s=getComputedStyle(e),canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');ctx.font=s.font;
-      const available=e.getBoundingClientRect().width-parseFloat(s.paddingLeft)-parseFloat(s.paddingRight)-20;
-      return available>=ctx.measureText(e.selectedOptions[0].textContent).width;
-    });assert(fits,'selected language must fit at '+width+' '+language);}
-    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow at '+width+' '+language);
-    await page.locator('#toolkit').click();assert.equal(await page.locator('.tool-proof').count(),4);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await page.locator('#close-modal').click();result.layouts++;
-   }
+   await page.locator('dialog[open]').count().then(async n=>{if(n)await page.locator('#close-modal').click();});
+   await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+   assert.equal(await page.locator('#quidence-language,#language,[data-language-host]').count(),0,'no language control at '+width);
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow at '+width);
+   await page.locator('#toolkit').click();assert.equal(await page.locator('.tool-proof').count(),4);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await page.locator('#close-modal').click();result.layouts++;
    if([1440,375].includes(width))await page.screenshot({path:path.join(__dirname,'../review/screenshots/probability-'+width+'-20261101.webp'),type:'webp',fullPage:true});
   }
   // Labs at phone width stay inside the page.
   await page.setViewportSize({width:320,height:812});
   for(const project of data.map(p=>p.id)){await chooseProject(project);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'lab overflow '+project);}
-  const missing=await page.evaluate(()=>QuidenceI18n.missing);assert.deepEqual(missing,[],'untranslated Probability content');result.spanishProofSteps=40;result.interactiveModels=10;
+  // The language saved by an earlier version is still in storage, untouched.
+  assert.equal(await page.evaluate(k=>localStorage.getItem(k),LOCALE),'es');
+  result.proofSteps=40;result.interactiveModels=10;
   // Failed saves remain visible; no successful-save claim is shown.
-  await page.evaluate(()=>{QuidenceStorage.setItem=()=>{throw Error('quota')};});await chooseProject('pr-p01');await page.locator('[data-step="3"]').click();await page.locator('#f-averages').fill(RAW+' more');await page.waitForTimeout(250);assert.match(await page.locator('#save-status').textContent(),/Could not save|No se pudo guardar/);
+  await page.evaluate(()=>{QuidenceStorage.setItem=()=>{throw Error('quota')};});await chooseProject('pr-p01');await page.locator('[data-step="3"]').click();await page.locator('#f-averages').fill(RAW+' more');await page.waitForTimeout(250);assert.match(await page.locator('#save-status').textContent(),/Could not save/);
   await context.close();
   const corruptContext=await browser.newContext(),cp=await corruptContext.newPage();await cp.goto(origin+'/courses/probability/');await cp.locator('#app').waitFor({state:'visible'});
   await cp.evaluate(k=>localStorage.setItem(k,'unreadable original'),KEY);await cp.reload();await cp.locator('#app').waitFor({state:'visible'});await cp.locator('#f-outcomes').fill('36');await cp.waitForTimeout(250);assert.equal(await cp.evaluate(k=>localStorage.getItem(k),KEY),'unreadable original');

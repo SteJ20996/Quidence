@@ -1,10 +1,12 @@
 'use strict';
 // Algorithms course in a real browser: the three views move together, predictions and every challenge
-// record evidence, the suggestion follows it, the page reads in English and Spanish, learner words survive
-// a language switch, a reload and an export, and a changed or unreadable record is never overwritten.
+// record evidence, the suggestion follows it, the page stays in English whatever language an earlier version
+// saved or the address asks for, learner words survive a reload and an export exactly as written, and a
+// changed or unreadable record is never overwritten.
 const assert=require('node:assert/strict'),fs=require('node:fs');
 const {chromium}=require('playwright'),{createServer}=require('../backend/server.cjs');
 const A=require('../courses/algorithms/core.js');
+const LOCALE='quidence_ui_locale_v1',NOTE='Write your answers and explanations in English. Work you saved earlier stays exactly as you wrote it.';
 const KEY='quidence:algorithms:v1',RAW='Primero miro el medio / I look at the middle\n  <img src=x onerror=alert(1)> & spaces.';
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
@@ -137,31 +139,34 @@ async function main(){
   await page.locator('#map [data-open="find-max"]').focus();await page.keyboard.press('Enter');assert.equal(await page.locator('[data-alg="find-max"]').getAttribute('aria-pressed'),'true');
   assert.equal(await page.locator('#idea').inputValue(),RAW);
 
-  // Spanish: the page, the record and the learner's words.
+  // A language saved by an earlier version, or a lang address parameter, leaves the page in English with no
+  // language control; the learner's words and the saved record are unchanged, and so is the saved preference.
   await page.waitForTimeout(400);const before=await page.evaluate(k=>localStorage.getItem(k),KEY);assert.ok(before.includes(JSON.stringify(RAW).slice(1,-1)));
-  await page.locator('#quidence-language').selectOption('es');await page.waitForFunction(()=>QuidenceI18n.locale==='es');
+  await page.evaluate(k=>localStorage.setItem(k,'es'),LOCALE);await page.goto(origin+'/courses/algorithms/?lang=es');await page.locator('#app').waitFor({state:'visible'});
+  assert.equal(await page.locator('html').getAttribute('lang'),'en');assert.equal(await page.evaluate(()=>QuidenceI18n.locale),'en');
+  assert.equal(await page.locator('#quidence-language,#language,[data-language-host]').count(),0);
   assert.equal(await page.locator('#idea').inputValue(),RAW);assert.equal(await page.evaluate(k=>localStorage.getItem(k),KEY),before);
-  assert.equal(await page.locator('#alg h2').textContent(),'Encontrar el máximo');assert.equal(await page.locator('#think-title').textContent(),'Piensa más allá');
-  assert.match(await page.locator('.content-language-note').textContent(),/inglés o en español/);assert.match(await page.locator('h1').textContent(),/Sigue la lógica/);
-  assert.match(await page.locator('#steps').textContent(),/para i desde 1 hasta n − 1:/);assert.match(await page.locator('#recbox .big').textContent(),/#2 Búsqueda lineal/);
-  assert.deepEqual(await page.evaluate(()=>QuidenceI18n.missing),[],'untranslated Algorithms page text');
-  // The session record shows the learner's words exactly, and exports them in Spanish notes.
-  await page.locator('#session').click();assert.equal(await page.locator('#modal-title').textContent(),'Tu sesión de algoritmos');assert.equal(await page.locator('#modal-body .student-work').first().textContent(),RAW);
+  assert.equal(await page.evaluate(k=>localStorage.getItem(k),LOCALE),'es');
+  assert.equal(await page.locator('#alg h2').textContent(),'Find the maximum');assert.equal(await page.locator('#think-title').textContent(),'Think further');
+  assert.equal(await page.locator('.content-language-note').textContent(),NOTE);assert.match(await page.locator('h1').textContent(),/Follow the logic/);
+  assert.match(await page.locator('#steps').textContent(),/for i from 1 to n − 1:/);assert.match(await page.locator('#recbox .big').textContent(),/#2 Linear search/);
+  // The session record shows the learner's words exactly, and exports them in the notes.
+  await page.locator('#session').click();assert.equal(await page.locator('#modal-title').textContent(),'Your algorithms session');assert.equal(await page.locator('#modal-body .student-work').first().textContent(),RAW);
   const dl=page.waitForEvent('download');await page.locator('#export').click();const file=await dl;assert.equal(file.suggestedFilename(),'Quidence-algorithms-session.md');
-  const md=fs.readFileSync(await file.path(),'utf8');assert.ok(md.includes(RAW));assert.match(md,/# Quidence · Algoritmos/);assert.match(md,/### Historial de revisiones/);assert.match(md,/Datos: Lista: -3, -1, -7/);
+  const md=fs.readFileSync(await file.path(),'utf8');assert.ok(md.includes(RAW));assert.match(md,/# Quidence · Algorithms/);assert.match(md,/### Check history/);assert.match(md,/Input: List: -3, -1, -7/);
   await page.locator('#close-modal').click();
   // A reload keeps the evidence and the words.
-  await page.reload();await page.locator('#app').waitFor({state:'visible'});await page.waitForFunction(()=>QuidenceI18n.locale==='es');
+  await page.reload();await page.locator('#app').waitFor({state:'visible'});
   assert.equal(await page.locator('#idea').inputValue(),RAW);assert.equal(await page.locator('#challenges .ch.done').count(),3);
-  await page.locator('#quidence-language').selectOption('en');await page.waitForFunction(()=>QuidenceI18n.locale==='en');
 
-  // Layout: no sideways scroll, and every flowchart label fits its box, at each width and in both languages.
-  for(const lang of ['en','es'])for(const [width,height] of [[1440,900],[1024,768],[768,1024],[375,812],[320,700]]){
-   await page.setViewportSize({width,height});await page.goto(origin+'/courses/algorithms/?lang='+lang);await page.locator('#app').waitFor({state:'visible'});if(lang==='es')await page.waitForFunction(()=>QuidenceI18n.locale==='es');
+  // Layout: no sideways scroll, no language control, and every flowchart label fits its box, at each width.
+  for(const [width,height] of [[1440,900],[1024,768],[768,1024],[375,812],[320,700]]){
+   await page.setViewportSize({width,height});await page.goto(origin+'/courses/algorithms/?lang=en');await page.locator('#app').waitFor({state:'visible'});
+   assert.equal(await page.locator('#quidence-language,#language,[data-language-host]').count(),0,'no language control at '+width);
    for(const k of A.ORDER){await open(k);
-    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`overflow ${k} ${width} ${lang}`);
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`overflow ${k} ${width}`);
     const tight=await page.evaluate(()=>[...document.querySelectorAll('#flow .fn')].filter(g=>{const t=g.querySelector('text').getBBox(),s=g.querySelector('rect,polygon').getBBox(),dec=g.querySelector('polygon');return t.width>(dec?s.width*(1-t.height/s.height):s.width-8);}).map(g=>g.dataset.node));
-    assert.deepEqual(tight,[],`flowchart labels ${k} ${lang}`);
+    assert.deepEqual(tight,[],`flowchart labels ${k} ${width}`);
     if(width<=375){const box=await page.locator('#flow svg').boundingBox();assert.ok(box.width/A.ALGS[k].flow.w>=.84,`flowchart readable at ${width}: ${k}`);}}
    result.layouts++;}
 
@@ -181,6 +186,8 @@ async function main(){
   await page.locator('#review-session').click();const orig=page.waitForEvent('download');await page.locator('#export-original').click();assert.equal(fs.readFileSync(await (await orig).path(),'utf8'),'unreadable original');
   await page.locator('#reset-open').click();await page.locator('#reset-confirm').click();assert.match(await page.locator('#toast').textContent(),/cleared/);
   const fresh=JSON.parse(await page.evaluate(k=>localStorage.getItem(k),KEY));assert.equal(fresh.version,1);assert.deepEqual(fresh.evidence,{});
+  // Resetting Algorithms leaves the language saved by an earlier version in storage, untouched.
+  assert.equal(await page.evaluate(k=>localStorage.getItem(k),LOCALE),'es');
   await page.evaluate(k=>localStorage.removeItem(k),KEY);
   assert.deepEqual(errors,[]);assert.deepEqual(failed,[]);
   console.log(JSON.stringify(result));

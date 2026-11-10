@@ -73,7 +73,11 @@ The four project data files rebuilt byte for byte.
   - no failed same-site load and no page error.
 
   It also fills 88 questions in 24 diagnostics and projects with an explanation that contains Spanish words. Those words must reach the on-screen report, the Markdown export and the printable report exactly as written.
-- AUDIT_SECTION
+- A one-off audit (not part of CI) used the same browser settings in all four appearances.
+  - It followed every same-site link from the homepage: 119 routes per appearance, 476 page loads.
+  - On every route in Classic, and on the homepage in the other three, it clicked each visible control whose label does not mention deleting, downloading, recording, signing in or sending (1,435 clicks), and read the page again after each click.
+  - It found no Spanish, no page error and no failed same-site load.
+- All 18 browser suites were updated and pass. Instead of switching to Spanish, they now reopen pages with `?lang=es` and a saved Spanish preference, and check that learner drafts, records and the preference are unchanged.
 - A static scan of every released text file found Spanish in one place only: the grader's unit spellings described above.
 
 ## Gaps
