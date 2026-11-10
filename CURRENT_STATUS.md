@@ -1,3 +1,39 @@
+## 2026-11-10 · Algorithms part 4: checks and an Intuition Lab activity
+
+The Algorithms course now has the same three companions as the mathematics courses.
+- **Foundation check: 15 questions, 30 parts.** It covers what the course assumes from middle school on:
+  - ordering numbers and reading positions counted from 0;
+  - division with remainders;
+  - counting and sums;
+  - powers of 2 and binary;
+  - following assignments and loops exactly.
+- **Understanding check: 4 problems, 16 parts.** Each follows the course's own pseudocode:
+  - the numbers binary search looks at, round by round;
+  - merging and insertion-sort comparisons, and the calls of a recursion;
+  - a shortest route against the nearest-town walk and the cheapest network;
+  - greedy change against the fewest coins, and the 1,048,576 subsets of 20 numbers.
+- **Intuition Lab: "Ten times the data. Ten times the work?"** It asks how many rounds binary search can need when a sorted list grows from 100 to 1,000 names.
+  - The slider runs from 10 names to a million.
+  - One bar per round shows that each miss keeps at most half of the names.
+  - The readouts set the most rounds, ⌊log₂ n⌋ + 1, beside checking the names one by one.
+  - The transfer asks for 4,095 names (12).
+- **Computer Science interface.**
+  - The Intuition Lab and the homepage's Intuition Lab view have a Computer Science filter and group in all four appearances.
+  - The course page has "Check foundations" and "Test your understanding" buttons and the activity's banner.
+  - The homepage card lists both checks.
+  - The catalogue line, which still said five algorithms, now counts 76 problems, 16 algorithms and sixteen foundation tracks.
+- **Saved work.**
+  - The bank becomes `quidence-challenges-12`, and version 11 stays frozen.
+  - Fifteen-subject foundation records saved before Algorithms are a published layout, and a test opens one unchanged.
+  - Saved reports name the subject.
+- **Checks.**
+  - A test recomputes every foundation part by running the steps it describes.
+  - `scripts/audit-challenges.py` recomputes the 16 understanding parts. It runs the searches and sorts with counters, calls the recursion, and lists every simple route, every set of four roads, every coin combination and every subset.
+  - The activity's model is checked against binary searches run for every target in sorted lists of up to 100,000 names.
+- **Not yet done.** The items are composed for Quidence and their answers are recomputed by code. No students have tried them and no one outside the project has reviewed them.
+
+See [the review note](review/algorithms-checks-20261110.md).
+
 ## 2026-11-10 · Quidence is English only
 
 The repository owner limited Quidence to English, including future subjects. [AGENTS.md](AGENTS.md) records the policy.

@@ -288,7 +288,7 @@ def fold(n):
     for _ in range(3):fold(n-1)
 fold(4)
 R['al-c02']={'merge':merge_count([2,9,14],[5,6,20,25]),'insertion':insertion_count([4,3,2,1,5]),'lines':log['lines'],'calls':log['calls']}
-roads={('P','Q'):4,('P','R'):1,('Q','R'):2,('Q','S'):5,('R','S'):8,('R','T'):9,('S','T'):3}
+roads={('P','Q'):4,('P','R'):1,('Q','R'):2,('Q','S'):10,('R','S'):8,('R','T'):9,('S','T'):3}
 length=lambda u,v:roads.get((u,v),roads.get((v,u)))
 towns='PQRST'
 def paths(u,goal,used,edges):
