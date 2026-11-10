@@ -1,5 +1,5 @@
 {
-  "method": "Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel\u2013Hakimi degree tests, every equally likely spin, coin and letter arrangement, a 10,000-part factory, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.",
+  "method": "Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel\u2013Hakimi degree tests, every equally likely spin, coin and letter arrangement, a 10,000-part factory, algorithms run step by step with counters, every simple route and every set of four roads, every coin combination and every subset of 20, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.",
   "questions": {
     "la-c01": {
       "k": "3",
@@ -482,6 +482,30 @@
       "variance": "3/2",
       "bound": "1/6",
       "exact": "1/32"
+    },
+    "al-c01": {
+      "first": "31",
+      "second": "52",
+      "rounds": "4",
+      "why": "sorted"
+    },
+    "al-c02": {
+      "merge": "5",
+      "insertion": "7",
+      "lines": "40",
+      "calls": "121"
+    },
+    "al-c03": {
+      "shortest": "10",
+      "nearest": "11",
+      "network": "11",
+      "treeRoute": "no"
+    },
+    "al-c04": {
+      "greedy": "3",
+      "fewest": "2",
+      "subsets": "1048576",
+      "claim": "check"
     }
   }
 }

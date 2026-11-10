@@ -60,7 +60,7 @@ function resolve(input){
   const url=new URL(input,ORIGIN),pathname=normalizePath(url.pathname),locale='en';
   let page=PAGES[pathname],moduleId=null;
   if(ACTIVITIES[pathname]){
-    const id=url.searchParams.get('module'),valid=pathname==='/checks/'?['ab01','ae01','af01','ac01','geometry','algebra-2'].includes(id):pathname==='/foundations/'?FOUNDATION_IDS.has(id):Object.hasOwn(COURSES,id)&&id!=='ac01'&&id!=='algorithms'&&(!['number-theory','discrete-math','probability','coordinate-geometry'].includes(id)||pathname==='/diagnostics/')||id==='physics';
+    const id=url.searchParams.get('module'),valid=pathname==='/checks/'?['ab01','ae01','af01','ac01','geometry','algebra-2'].includes(id):pathname==='/foundations/'?FOUNDATION_IDS.has(id):Object.hasOwn(COURSES,id)&&id!=='ac01'&&(!['number-theory','discrete-math','probability','coordinate-geometry','algorithms'].includes(id)||pathname==='/diagnostics/')||id==='physics';
     const title=id==='aa01'?'Pre-Algebra and Algebra I':id==='physics'?'Physics':COURSES[id]?.[1];
     moduleId=valid?id:null;
     const label=ACTIVITIES[pathname].en;
