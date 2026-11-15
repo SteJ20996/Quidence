@@ -381,3 +381,28 @@ test('Living Earth readouts: no future years, honest edge cases and precise smal
  assert.match(Graphs.lab('integrated-science',14,{split:6,rate:1}).readout,/\(1\.2%\)/);
  assert.match(Graphs.lab('integrated-science',15,{parent1:'Pp',parent2:'Pp',offspring:'1000'}).readout,/752 purple, 248 white/);
 });
+
+test('lessons with a hands-on investigation show a drawing of it in their feedback, made only of SVG',()=>{
+ const I=require('../assets/science-investigations.js');
+ assert.deepEqual(I.LESSONS,[1,2,5,6,9,10,11,12,16,17]);
+ for(let n=1;n<=C.LESSONS.length;n++){
+  const f=Graphs.investigation('integrated-science',n-1);
+  if(!I.LESSONS.includes(n)){assert.equal(f,'');continue;}
+  assert.match(f,/class="investigation-figure"/);assert.match(f,/<title id=/);assert.match(f,/<desc id=/);assert.match(f,/figcaption/);
+  // Drawn here: no images, links or outside resources.
+  assert.doesNotMatch(f,/<image|<img|href=|url\((?!#)|NaN|undefined/);
+ }
+ assert.equal(Graphs.investigation('physics',0),'');
+ // Every label fits inside the 520-wide drawing even in a wide typeface (0.62 × the font size per character), since
+ // the appearances use different fonts.
+ for(const n of I.LESSONS)for(const m of I.figure(n).matchAll(/<text x="([\d.-]+)" y="[\d.-]+" font-size="(\d+)" (?:text-anchor="(\w+)")?[^>]*>([^<]*)<\/text>/g)){
+  const x=+m[1],w=m[4].replace(/&[a-z#0-9]+;/g,'x').length*m[2]*0.62,left=m[3]==='middle'?x-w/2:m[3]==='end'?x-w:x;
+  assert(left>=4&&left+w<=516,'Lesson '+n+' label may overflow: '+m[4]);
+ }
+ // The drawing appears with "A useful next step" once the lesson's questions are done.
+ const h=harness('integrated-science',new Map());h.click('start');
+ h.choose('unsure');h.input('explanation','A first idea.');h.submit();h.click('next');
+ for(let j=0;j<4;j++)h.click('next-step');
+ for(const t of C.LESSONS[0].checks){h.choose(t.correct[0]);h.input('explanation','Because of the model.');h.submit();h.click('next');}
+ assert.match(h.app.innerHTML,/A useful next step/);assert.match(h.app.innerHTML,/investigation-figure/);assert.match(h.app.innerHTML,/Measuring onion skin cells/);
+});

@@ -1,3 +1,15 @@
+## 2026-11-15 · Integrated Science 6–10: drawings for the classroom investigations
+
+Ten of the eighteen lessons end with a hands-on investigation; each now has an SVG drawing of the setup, shown with "A useful next step" in the lesson's feedback.
+- **Drawn here, not copied.** The drawings are in `assets/science-investigations.js`. Outside pictures were not used, for three reasons:
+  - the site's Content Security Policy allows only its own images;
+  - the repository's IP process keeps graphics in code;
+  - many free pictures are not licensed for commercial use.
+- **Rules for any future photographs.** The review note records the rules for public-domain federal works and each Creative Commons license, with sources. It also lists candidate photographs, none of them downloaded or checked yet.
+- **Checks.** A unit test confirms which lessons have drawings, that each has a title and description, that none uses outside resources, and that every label fits even in a wide typeface. Screenshots were checked in three appearances and at phone width.
+
+See [the note](review/integrated-science-illustrations-20261115.md).
+
 ## 2026-11-15 · Integrated Science 6–10, part 4: grade 9, Living Earth
 
 Six lessons, one for each instructional segment of *Living Earth* (framework chapter 7).

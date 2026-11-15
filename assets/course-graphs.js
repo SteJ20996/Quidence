@@ -76,6 +76,8 @@ function lab(module,index,s){
  if(index===2)return{graph:circle(s.angle)+sine(s.angle),readout:`θ = ${s.angle}° = ${fmt(s.angle/180)}π radians · cos θ = ${fmt(Math.cos(s.angle*Math.PI/180))} · sin θ = ${fmt(Math.sin(s.angle*Math.PI/180))}`,formula:'Unit-circle point = (cos θ, sin θ); cos²θ + sin²θ = 1.',note:'Displayed decimals are rounded. A full turn adds 2π to the radian input and repeats both coordinates.'};
  const y=s.initial*s.factor**s.t,linear=s.initial*(1+s.t*(s.factor-1));return{graph:plot({fn:'exp',...s,compare:true}),readout:`t = ${fmt(s.t)} · Exponential amount = ${fmt(y)} · Matched line = ${fmt(linear)} · First-unit change = ${fmt(s.initial*(s.factor-1))}`,formula:`y = ${s.initial} × ${s.factor}ᵗ; t = log base ${s.factor} of (y/${s.initial})`,note:'The line shares the initial value and first time step. Its later values need not match the multiplicative model.'};
 }
-const api={fmt,mean,median,probability,SPINNER,sampleMeans,value,task,lab};
+// A drawing of a lesson's suggested classroom investigation, where a course has one.
+function investigation(module,index){if(module!=='integrated-science')return'';const I=typeof exports==='object'?require('./science-investigations.js'):root.QuidenceScienceInvestigations;return I?I.figure(index+1):'';}
+const api={fmt,mean,median,probability,SPINNER,sampleMeans,value,task,lab,investigation};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceCourseGraphs=api;
 })(typeof window==='undefined'?globalThis:window);
