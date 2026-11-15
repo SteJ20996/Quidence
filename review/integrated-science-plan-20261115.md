@@ -60,12 +60,14 @@ Lesson 10 claims MS-PS2-4 (gravity depends on mass) through its last step, but n
 
 | # | Segment | Lesson and phenomenon | Model | Core PEs |
 | --- | --- | --- | --- | --- |
-| 13 | Ecosystem interactions and energy | Why are there so few top predators? | Energy passed up trophic levels | HS-LS2-1, LS2-2, LS2-4 |
-| 14 | Photosynthesis and respiration | Why does the air's CO₂ rise and fall each year? | A seasonal cycle on a rising trend | HS-LS1-5, LS1-7, LS2-5 |
-| 15 | Evidence of evolution | Who is related to whom? | Counting differences between sequences | HS-LS4-1, LS4-2 |
-| 16 | Inheritance of traits | Why do traits skip a generation? | Crosses and their probabilities | HS-LS3-1, LS3-2, LS3-3 |
-| 17 | Structure, function and growth | How does the body hold its temperature? | A negative feedback loop around a set point | HS-LS1-3 |
-| 18 | Ecosystem stability and climate change | Where will a species live as it warms? | A temperature range shifting uphill | HS-LS2-6, LS4-5, ESS3-5 |
+| 13 | Ecosystem interactions and energy | Why are there so few top predators? | Energy passed up two to five levels of a food chain | HS-LS2-4, LS2-1 |
+| 14 | Photosynthesis and respiration | Why does the air's CO₂ rise and fall each year? | A yearly cycle on a rising trend at Mauna Loa, Utqiaġvik and the South Pole | HS-LS2-5, LS1-5 |
+| 15 | Evidence of evolution | Who is related to whom? | Two DNA sequences changing from a shared ancestor: a molecular clock | HS-LS4-1 |
+| 16 | Inheritance of traits | Why can a trait skip a generation? | Punnett squares for pea flower color, with samples of 4 to 1,000 offspring | HS-LS3-3, LS3-1, LS3-2 |
+| 17 | Structure, function and growth | How does the body hold its temperature? | Core temperature over two hours with no, weak, normal or strong negative feedback | HS-LS1-3, LS1-2 |
+| 18 | Ecosystem stability and climate change | Where will a species live as it warms? | A species' band of elevations moving up a cone-shaped mountain | HS-LS4-5, LS2-6 |
+
+The first plan also listed HS-LS2-2, LS1-7, LS4-2 and ESS3-5. The lessons do not teach them well enough to claim them, so they were dropped.
 
 ### Unit 5 · Grade 10: Chemistry in the Earth System
 

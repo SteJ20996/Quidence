@@ -203,7 +203,130 @@ function wave(medium,frequency,amplitude){
  const m=MEDIA[medium];
  return{...m,wavelength:m.speed/frequency,period:1/frequency,energy:amplitude*amplitude,inWindow:frequency*0.1};
 }
+// Living Earth. Energy up a food chain: each level passes on a share of the energy it receives.
+const LEVELS=['Plants','Plant-eaters','Small meat-eaters','Larger meat-eaters','Top predators'];
+function foodChain(producers,efficiency,levels){
+ const e=efficiency/100,energy=[];for(let k=0;k<levels;k++)energy.push(producers*e**k);
+ return{energy,top:energy[levels-1],share:energy[levels-1]/producers,lost:producers-energy[levels-1]};
+}
+function pyramid(v,levels){
+ const max=v.energy[0],H=42,top=30;let b='';
+ // Bars start after a column of level names; the value sits inside a wide bar and after a narrow one.
+ v.energy.forEach((x,k)=>{const y=top+(levels-1-k)*(H+8),x0=165,w=Math.max(2,290*x/max),inside=w>70;
+  b+=`<rect x="${x0}" y="${y}" width="${w.toFixed(1)}" height="${H}" rx="4" fill="${k?'#6542c0':'#087f76'}" opacity="${(0.95-0.12*k).toFixed(2)}"/><text x="${x0-10}" y="${y+H/2+5}" text-anchor="end" font-size="13" fill="#263c5b">${esc(LEVELS[k])}</text><text x="${(inside?x0+w-8:x0+w+8).toFixed(1)}" y="${y+H/2+5}" text-anchor="${inside?'end':'start'}" font-size="13" fill="${inside?'#ffffff':'#263c5b'}">${esc(fmt(x))}</text>`;});
+ return M.graphic('Energy at each level of a food chain',`Each bar is drawn to the same scale. Plants capture ${fmt(v.energy[0])} units; the top level receives ${fmt(v.top)} units, ${fmt(100*v.share)}% of the plants’ energy.`,b);
+}
+// Carbon dioxide records (NOAA Global Monitoring Laboratory), simplified: a yearly cycle on a rising trend from 2020.
+// swing is the peak-to-trough size of the yearly cycle in ppm; peak and low are the fractions of the year when it is
+// highest and lowest; offset is the station's difference from Mauna Loa's yearly mean.
+const STATIONS={
+ 'mauna-loa':{name:'Mauna Loa',swing:6.5,peak:.37,low:.74,offset:0,months:['May','late September']},
+ utqiagvik:{name:'Utqiaġvik',swing:18,peak:.33,low:.62,offset:1.2,months:['early May','mid-August']},
+ 'south-pole':{name:'South Pole',swing:1.2,peak:.78,low:.2,offset:-4,months:['October','March']}
+};
+const CO2_TREND={start:414.2,rise:2.5};
+function keeling(key,t){
+ // t in years since the start of 2020. A smooth fall from the peak to the low, then a smooth rise to the next peak.
+ const s=STATIONS[key],f=((t%1)+1)%1,fallLen=((s.low-s.peak)%1+1)%1,since=((f-s.peak)%1+1)%1;
+ const phase=since<fallLen?Math.cos(Math.PI*since/fallLen):-Math.cos(Math.PI*(since-fallLen)/(1-fallLen));
+ return CO2_TREND.start+s.offset+CO2_TREND.rise*t+s.swing/2*phase;
+}
+// DNA differences: two lineages from one ancestor of 1,000 positions; each lineage changes rate% of positions every
+// 10 million years, at positions drawn at random, so a position can change twice.
+const SITES=1000,BASES='ACGT';
+function lineages(split,rate){
+ const anc=[],r0=seeded(11);for(let i=0;i<SITES;i++)anc.push(BASES[Math.floor(r0()*4)]);
+ const k=Math.round(SITES*rate/100*split/10),evolve=seed=>{const r=seeded(seed),s=anc.slice();for(let i=0;i<k;i++){const p=Math.floor(r()*SITES),others=BASES.replace(s[p],'');s[p]=others[Math.floor(r()*3)];}return s;};
+ const a=evolve(23),b=evolve(37);let diff=0;for(let i=0;i<SITES;i++)if(a[i]!==b[i])diff++;
+ return{a,b,changes:k,diff,share:diff/SITES,expected:Math.min(1,2*rate/100*split/10)};
+}
+function alignment(v){
+ let b='';const W=9,x0=35;
+ for(let row=0;row<2;row++)for(const[j,seq,name]of[[0,v.a,'A'],[1,v.b,'B']]){
+  const y=50+row*90+j*26;b+=`<text x="${x0-10}" y="${y}" text-anchor="end" font-size="12" font-weight="700" fill="#52647b">${name}</text>`;
+  for(let i=0;i<50;i++){const p=row*50+i,x=x0+i*W,d=v.a[p]!==v.b[p];if(d&&j===0)b+=`<rect x="${x-1}" y="${y-15}" width="${W}" height="44" rx="2" fill="#f3d9a4"/>`;b+=`<text x="${x+3.5}" y="${y}" text-anchor="middle" font-family="monospace" font-size="12" fill="${d?'#8a3b12':'#263c5b'}">${seq[p]}</text>`;}
+ }
+ let shown=0;for(let p=0;p<100;p++)if(v.a[p]!==v.b[p])shown++;
+ return M.graphic('Two DNA sequences from a shared ancestor',`The first 100 of 1,000 positions; highlighted positions differ (${shown} here). Across all 1,000 positions, ${v.diff} differ.`,b+`<text x="260" y="260" text-anchor="middle" font-size="13" fill="#52647b">first 100 of 1,000 positions · differences highlighted</text>`);
+}
+// Inheritance of pea flower color: P (purple) is dominant over p (white).
+function cross(p1,p2,n){
+ const pairs=[];for(const a of p1)for(const c of p2)pairs.push([a,c].sort().join(''));
+ const share=g=>pairs.filter(x=>x===g).length/4,expected={PP:share('PP'),Pp:share('Pp'),pp:share('pp')};
+ // The seed was chosen so that the fixed samples look like typical real ones: small samples wander from the expected
+ // shares (Pp × Pp: 2 white of 4, 7 of 20) and large ones settle near them (248 of 1,000).
+ const r=seeded(875+p1.charCodeAt(1)*3+p2.charCodeAt(1)),counts={PP:0,Pp:0,pp:0};
+ for(let i=0;i<n;i++){const g=[p1[Math.floor(r()*2)],p2[Math.floor(r()*2)]].sort().join('');counts[g]++;}
+ return{pairs,expected,counts,white:counts.pp,purple:counts.PP+counts.Pp,whiteShare:expected.pp};
+}
+function punnett(s,v){
+ const x0=60,y0=60,c=70;let b=`<text x="${x0+c}" y="${y0-28}" text-anchor="middle" font-size="13" fill="#52647b">first parent ${s.parent1}</text><text x="${x0-34}" y="${y0+c}" text-anchor="middle" font-size="13" fill="#52647b" transform="rotate(-90 ${x0-34} ${y0+c})">second parent ${s.parent2}</text>`;
+ for(let i=0;i<2;i++){b+=`<text x="${x0+c/2+i*c}" y="${y0-8}" text-anchor="middle" font-size="16" font-weight="700" fill="#263c5b">${s.parent1[i]}</text><text x="${x0-12}" y="${y0+c/2+i*c+6}" text-anchor="middle" font-size="16" font-weight="700" fill="#263c5b">${s.parent2[i]}</text>`;}
+ for(let i=0;i<2;i++)for(let j=0;j<2;j++){const g=[s.parent1[i],s.parent2[j]].sort().join(''),white=g==='pp';b+=`<rect x="${x0+i*c}" y="${y0+j*c}" width="${c}" height="${c}" fill="${white?'#f4f6f8':'#e6dcf6'}" stroke="#52647b"/><circle cx="${x0+i*c+c/2}" cy="${y0+j*c+24}" r="11" fill="${white?'#ffffff':'#7a4bc2'}" stroke="#52647b"/><text x="${x0+i*c+c/2}" y="${y0+j*c+58}" text-anchor="middle" font-size="15" fill="#263c5b">${g}</text>`;}
+ // Expected and counted shares of white flowers.
+ const bx=330,bw=150,bar=(y,label,share)=>`<text x="${bx}" y="${y-6}" font-size="13" fill="#263c5b">${esc(label)}</text><rect x="${bx}" y="${y}" width="${bw}" height="18" fill="#e6dcf6" stroke="#52647b"/><rect x="${bx+bw*(1-share)}" y="${y}" width="${bw*share}" height="18" fill="#ffffff" stroke="#52647b"/>`;
+ const n=Number(s.offspring),counted=n?v.white/n:0;
+ b+=bar(90,'Expected white: '+fmt(100*v.expected.pp)+'%',v.expected.pp)+bar(150,`Counted white: ${v.white} of ${n.toLocaleString('en-US')} (${fmt(100*counted)}%)`,counted);
+ b+=`<text x="${bx}" y="200" font-size="12" fill="#52647b">purple shaded, white unshaded</text>`;
+ return M.graphic('Punnett square and counted offspring',`${s.parent1} × ${s.parent2}: expected ${fmt(100*(1-v.expected.pp))}% purple and ${fmt(100*v.expected.pp)}% white. Counted ${v.purple} purple and ${v.white} white of ${n}.`,b);
+}
+// Body temperature with negative feedback, minute by minute for 2 hours. Without control the body settles at the air
+// temperature plus 12 °C (heat from cells against heat lost to the air); feedback pushes back toward the 37 °C set point.
+const BODY={setPoint:37,loss:0.002,heat:0.024,gain:{none:0,weak:0.01,normal:0.04,strong:0.12},minutes:120};
+function body(air,feedback){
+ const g=BODY.gain[feedback];let t=BODY.setPoint;const out=[t];
+ for(let m=0;m<BODY.minutes;m++){t=t+BODY.loss*(air-t)+BODY.heat+g*(BODY.setPoint-t);out.push(t);}
+ return{series:out,final:out[out.length-1],steady:(BODY.loss*air+BODY.heat+g*BODY.setPoint)/(BODY.loss+g)};
+}
+// A species' band of elevations on a cone-shaped mountain; air cools 6.5 °C per km.
+const LAPSE=6.5;
+function uphill(warming,peak,low,width){
+ const shift=warming/LAPSE,area=(z1,z2)=>{const a=Math.min(z1,peak),c=Math.min(z2,peak);return Math.max(0,(peak-a)**2-(peak-c)**2);};
+ const before=area(low,low+width),z1=low+shift,z2=low+width+shift,after=area(z1,z2);
+ return{shift,z1,z2,top:Math.min(z2,peak),gone:z1>=peak,above:low>=peak,share:before?after/before:0};
+}
+function mountainBand(s,v){
+ const base=250,kmPx=46,X0=40,X1=480,cx=260,y=z=>base-z*kmPx,half=z=>(X1-X0)/2*(1-z/s.peak),top=y(s.peak);
+ const band=(z1,z2,fill,op)=>{const a=Math.min(z1,s.peak),c=Math.min(z2,s.peak);if(a>=c)return'';return`<path d="M${cx-half(a)} ${y(a)}L${cx-half(c)} ${y(c)}L${cx+half(c)} ${y(c)}L${cx+half(a)} ${y(a)}Z" fill="${fill}" opacity="${op}"/>`;};
+ let b=`<path d="M${X0} ${base}L${cx} ${top}L${X1} ${base}Z" fill="#e7ebf2" stroke="#5b7a52" stroke-width="2"/>`;
+ b+=band(s.low,s.low+s.width,'#9db8d6',.8)+band(v.z1,v.z2,'#087f76',.55);
+ b+=`<path d="M${cx-half(s.low)} ${y(s.low)}H${cx+half(s.low)}M${cx-half(Math.min(s.low+s.width,s.peak))} ${y(Math.min(s.low+s.width,s.peak))}H${cx+half(Math.min(s.low+s.width,s.peak))}" stroke="#3e6aa0" stroke-dasharray="5 4"/>`;
+ for(const z of[1,2,3,4])if(z<=s.peak)b+=`<path d="M${X0-6} ${y(z)}h6" stroke="#8391a5"/><text x="${X0-10}" y="${y(z)+4}" text-anchor="end" font-size="12" fill="#52647b">${z} km</text>`;
+ b+=`<text x="${X1}" y="40" text-anchor="end" font-size="13" fill="#3e6aa0">dashed: band today</text><text x="${X1}" y="58" text-anchor="end" font-size="13" fill="#087f76">green: band after ${fmt(s.warming)} °C</text>`;
+ return M.graphic('A species’ band on a mountain',`A ${fmt(s.peak)} km mountain. Today the species lives from ${fmt(s.low)} to ${fmt(s.low+s.width)} km. After ${fmt(s.warming)} °C of warming the band moves up ${fmt(1000*v.shift)} m${v.gone?' and passes the summit':''}; ${fmt(100*v.share)}% of today’s area is left.`,b);
+}
 function model(index,s){
+ if(index===12){const v=foodChain(s.producers,s.efficiency,s.levels);
+  return{graph:pyramid(v,s.levels),
+   readout:`${v.energy.map((x,k)=>LEVELS[k]+' '+(x>=1?fmt(x):x.toPrecision(2))).join(' → ')} · The top level gets ${100*v.share>=1?fmt(100*v.share):(100*v.share).toPrecision(2)}% of the plants’ energy; the rest leaves the chain, mostly as heat`,
+   formula:'Energy at the next level = energy at this level × the share passed on. Over n steps: energy at the top = plants’ energy × share^n.',
+   note:'The share passed on varies by ecosystem and animal, from under 5% to about 20%; 10% is a rule of thumb. Real food webs branch, and many animals eat at more than one level.'};}
+ if(index===13){const st=STATIONS[s.station],last=2026,first=last-s.years,trend=t=>CO2_TREND.start+st.offset+CO2_TREND.rise*t,vals=[];for(let i=0;i<=240;i++)vals.push(keeling(s.station,first-2020+s.years*i/240));
+  const lo=Math.floor((Math.min(...vals)-2)/5)*5,hi=Math.ceil((Math.max(...vals)+2)/5)*5;
+  return{graph:M.cartesian(`Carbon dioxide at ${st.name}`,[{label:'Monthly level',fn:x=>keeling(s.station,x-2020)},{label:'Long-term trend',fn:x=>trend(x-2020)}],{xmin:first,xmax:last,ymin:lo,ymax:hi,xlabel:'Year',ylabel:'Carbon dioxide (ppm)',left:80,ylabelX:22,xticks:Array.from({length:s.years+1},(_,i)=>first+i).filter((x,i,a)=>a.length<=6||(last-x)%2===0),yticks:Array.from({length:Math.floor((hi-lo)/5)+1},(_,i)=>lo+5*i).filter((x,i,a)=>a.length<=7||i%2===0)}),
+   readout:`${st.name}: yearly swing about ${fmt(st.swing)} ppm, highest around ${st.months[0]} and lowest around ${st.months[1]} · Long-term rise about ${fmt(CO2_TREND.rise)} ppm a year: ${fmt(trend(first-2020))} ppm at the start of ${first} to ${fmt(trend(last-2020))} ppm at the start of ${last}`,
+   formula:'Level = long-term trend + yearly cycle. The trend rises about 2.5 ppm a year; the yearly cycle rises and falls by the station’s swing. ppm means parts per million: molecules of carbon dioxide in every million molecules of air.',
+   note:'A simplified record built from typical values for each station (NOAA Global Monitoring Laboratory), not the measured data. The real swing and growth rate vary from year to year.'};}
+ if(index===14){const v=lineages(s.split,s.rate);
+  return{graph:alignment(v),
+   readout:`${fmt(s.split)} million years since the shared ancestor · Each lineage changed about ${v.changes} of 1,000 positions · ${v.diff} positions differ (${fmt(100*v.share)}%); 2 × rate × time predicts ${fmt(100*v.expected)}%`,
+   formula:'Expected share that differs ≈ 2 × (share changed per lineage per 10 million years) × (time ÷ 10 million years), while the share is small.',
+   note:'Changes are placed at random, so a position can change twice and a difference can disappear. Real genes change at different rates, and real clocks are checked against dated fossils.'};}
+ if(index===15){const n=Number(s.offspring),v=cross(s.parent1,s.parent2,n);
+  return{graph:punnett(s,v),
+   readout:`${s.parent1} × ${s.parent2}: expected PP ${fmt(100*v.expected.PP)}%, Pp ${fmt(100*v.expected.Pp)}%, pp ${fmt(100*v.expected.pp)}%, so ${fmt(100*(1-v.expected.pp))}% purple · Counted ${n.toLocaleString('en-US')} offspring: ${v.purple.toLocaleString('en-US')} purple, ${v.white.toLocaleString('en-US')} white (${fmt(100*v.white/n)}% white)`,
+   formula:'Each parent passes on one allele, each with a chance of 1/2. The chance of a combination is the product: for Pp × Pp, pp has a chance of 1/2 × 1/2 = 1/4.',
+   note:'The counts are a random sample drawn by the computer, the same sample each time for the same parents. Real crosses also depend on how many seeds grow.'};}
+ if(index===16){const v=body(s.air,s.feedback),state=v.final>=40?' · heat stroke danger':v.final<35?' · hypothermia':'';
+  return{graph:M.cartesian(`Core temperature in ${s.air} °C air`,[{label:`Feedback: ${s.feedback}`,fn:x=>curve(v.series)(x)},{label:'Set point, 37 °C',fn:()=>BODY.setPoint}],{xmin:0,xmax:120,ymin:10,ymax:60,xlabel:'Minutes',ylabel:'Core temperature (°C)',left:80,ylabelX:22,xticks:[0,30,60,90,120],yticks:[10,20,30,37,50,60]}),
+   readout:`Air ${s.air} °C, feedback ${s.feedback}: core temperature after 2 hours ${fmt(v.final)} °C, ${fmt(Math.abs(v.final-BODY.setPoint))} °C ${v.final>=BODY.setPoint?'above':'below'} the set point${state}`,
+   formula:'Each minute: change = 0.002 × (air − core) + 0.024 + feedback × (37 − core). Feedback strength: none 0, weak 0.01, normal 0.04, strong 0.12.',
+   note:'A made-up model of a person at rest without clothes or shelter, roughly at the speed of a real body. Real feedback is not a straight line: sweating needs water and shivering needs food, and both have limits. A core above about 42 °C is fatal.'};}
+ if(index===17){const v=uphill(s.warming,s.peak,s.low,s.width);
+  return{graph:mountainBand(s,v),
+   readout:v.above?`The band today starts at or above the ${fmt(s.peak)} km summit: lower the band or raise the mountain.`:`Band today ${fmt(s.low)}–${fmt(Math.min(s.low+s.width,s.peak))} km · After ${fmt(s.warming)} °C: ${v.gone?'above the summit, so no suitable area is left':`${fmt(v.z1)}–${fmt(v.top)} km`}, moved up ${fmt(1000*v.shift)} m · Area left ${fmt(100*v.share)}% of today’s`,
+   formula:'Move uphill = warming ÷ 6.5 °C per km. On a cone, the area above height z is proportional to (summit − z)², so a band’s area is (summit − bottom)² − (summit − top)².',
+   note:'A cone-shaped mountain with a steady cooling rate. Real slopes differ in shape, sun, soil and moisture, and species respond to more than average temperature.'};}
  if(index===8){const v=crash(s.mass,s.speed,s.road),road=s.road==='dry'?'dry':'wet',kmh=x=>x/3.6;
   const graph=s.view==='energy'?M.cartesian('Kinetic energy against speed',[{label:`${s.mass.toLocaleString('en-US')} kg`,fn:x=>s.mass*kmh(x)**2/2000},{label:'1,000 kg, for comparison',fn:x=>1000*kmh(x)**2/2000}],{xmin:0,xmax:130,ymin:0,ymax:2000,xlabel:'Speed (km/h)',ylabel:'Kinetic energy (kJ)',point:[s.speed,v.energy/1000],left:80,ylabelX:22,xticks:[0,20,40,60,80,100,120],yticks:[0,500,1000,1500,2000]})
    :M.cartesian(`Stopping distance on a ${road} road`,[{label:'Braking distance',fn:x=>kmh(x)**2/(2*v.rate)},{label:'Reaction distance (1.5 s)',fn:x=>kmh(x)*STOP.reaction}],{xmin:0,xmax:130,ymin:0,ymax:170,xlabel:'Speed (km/h)',ylabel:'Distance (m)',point:[s.speed,v.braking],left:80,ylabelX:22,xticks:[0,20,40,60,80,100,120],yticks:[0,50,100,150]});
@@ -276,6 +399,6 @@ function model(index,s){
   formula:'About 3 °C of eventual warming and about 3.9 W/m² of extra energy kept at first for each doubling: 278 → 556 → 1,112 ppm. Between doublings, count the fraction of a doubling: warming ≈ 3 °C × log₂(CO₂ ÷ 278 ppm).',
   note:'Carbon dioxide alone, after the ocean has caught up, which takes centuries. The warming measured so far, about 1.2 °C averaged over 2015–2024 compared with 1850–1900, also reflects other greenhouse gases, particles that cool, and the ocean’s delay.'};
 }
-const api={model,cell,heating,rainShadow,warming,particles,reaction,seafloor,foxes,crash,moon,selection,wave,STOP,MONTH,MEDIA,WATER,AIR,CO2,SUBSTANCES,REACTIONS,NORMAL,FOX,AMU};
+const api={model,cell,heating,rainShadow,warming,particles,reaction,seafloor,foxes,crash,moon,selection,wave,foodChain,keeling,lineages,cross,body,uphill,STATIONS,CO2_TREND,BODY,LAPSE,SITES,STOP,MONTH,MEDIA,WATER,AIR,CO2,SUBSTANCES,REACTIONS,NORMAL,FOX,AMU};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceScienceModels=api;
 })(typeof window==='undefined'?globalThis:window);

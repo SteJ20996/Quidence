@@ -1,3 +1,33 @@
+## 2026-11-15 · Integrated Science 6–10, part 4: grade 9, Living Earth
+
+Six lessons, one for each instructional segment of *Living Earth* (framework chapter 7).
+- **Lessons.**
+  13. Energy in food chains: why top predators are few.
+  14. The breathing planet: the yearly cycle and long-term rise of carbon dioxide at three stations.
+  15. Common ancestry: a molecular clock with DNA, fossils and anatomy.
+  16. Inheritance: Punnett squares for pea flower color, with samples of 4 to 1,000 offspring.
+  17. Homeostasis: core temperature with negative feedback.
+  18. Moving uphill: a species' band of elevations on a warming mountain, with the Yosemite resurvey.
+- **Alignment.** PEs checked against the chapter 7 segment boxes; four planned PEs the lessons do not teach were dropped.
+- **Site.**
+  - The course is version 4; records saved with 4, 8 or 12 lessons upgrade with every answer kept.
+  - The card, map and SEO lines are updated.
+- **Checks.**
+  - A unit test recomputes every model and the values the steps and questions use.
+  - An independent review found four errors, all fixed: the no-feedback temperature, a slider step too coarse for its test, a 32% outcome called "likely", and a mutation claim.
+  - It also led to these changes:
+    - a typical fixed sample of offspring;
+    - a slower body model;
+    - no future years on the carbon dioxide graph;
+    - fuller coverage of LS2-4, LS2-1, LS1-2 and LS3-3.
+- **Not yet done.**
+  - LS1-5 is text only.
+  - LS4-5 leaves out speciation.
+  - The feedback model is linear.
+  - No students or teachers have tried the lessons.
+
+See [the review note](review/integrated-science-unit4-20261115.md).
+
 ## 2026-11-15 · Integrated Science 6–10, part 3: grade 8
 
 Four grade 8 lessons, one for each instructional segment of California's integrated grade 8.

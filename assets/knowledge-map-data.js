@@ -228,7 +228,7 @@ const data={
       "node": "physics",
       "en": "Integrated Science 6–10",
       "scope": {
-        "en": "Cells, energy, atoms, forces, evolution and waves, building toward biology and chemistry"
+        "en": "Cells, energy, atoms, forces, evolution, heredity and ecosystems, building toward chemistry"
       },
       "module": "integrated-science"
     },
