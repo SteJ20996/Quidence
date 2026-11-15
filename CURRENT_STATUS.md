@@ -1,3 +1,31 @@
+## 2026-11-15 · Integrated Science 6–10, part 3: grade 8
+
+Four grade 8 lessons, one for each instructional segment of California's integrated grade 8.
+- **Lessons.**
+  9. Speed and crashes: kinetic energy, reaction and braking distances and braking force, with a kinetic energy graph and Newton's third law.
+  10. Moon phases: the Sun, Earth and Moon from above, the phase seen from Earth, rising times, gravity and eclipses.
+  11. Natural selection: rock pocket mice on dark lava or pale rock over 200 generations, and the Mc1r mutation.
+  12. Listening with waves: frequency, wavelength, amplitude and energy of sound in air, seawater and steel, with digital samples.
+- **Site.**
+  - The course is version 3; records saved with four or eight lessons upgrade with every answer kept.
+  - The card, map and SEO lines name the grade 8 topics.
+- **Checks.**
+  - A unit test recomputes each new model and checks both upgrades.
+  - An independent review confirmed the answer keys and the Moon drawing, and led to these changes:
+    - a kinetic energy graph;
+    - qualitative force and mass in place of acceleration = force ÷ mass;
+    - the cause of tides corrected;
+    - an honest selection readout, with a 0% start;
+    - digital samples and a definition of analog;
+    - corrected whale and hydrophone facts.
+- **Not yet done.**
+  - No design or argument task for PS2-1 and PS2-4.
+  - Sound only, for PS4-2.
+  - A one-trait selection model.
+  - No students or teachers have tried the lessons.
+
+See [the review note](review/integrated-science-unit3-20261115.md).
+
 ## 2026-11-15 · Integrated Science 6–10, part 2: grade 7
 
 Four grade 7 lessons, one for each instructional segment of California's integrated grade 7.

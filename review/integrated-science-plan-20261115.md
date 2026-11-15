@@ -45,14 +45,16 @@ PE codes come from the instructional-segment boxes in framework chapter 5, extra
 
 The first plan put MS-LS2-1 in lesson 8. The framework places it in segment 3, so lesson 8 builds toward the segment 4 PEs instead: changes to an ecosystem shift populations (LS2-4), and competing solutions are judged against criteria (LS2-5).
 
-### Unit 3 · Grade 8: forces, space and evolution
+### Unit 3 · Grade 8: forces, space, evolution and waves
 
 | # | Segment | Lesson and phenomenon | Model | Core PEs |
 | --- | --- | --- | --- | --- |
-| 9 | IS1 Objects move and collide | Why does speed matter so much in a crash? | Kinetic energy against mass and speed | MS-PS2-1, PS2-2, PS3-1 |
-| 10 | IS2 Noncontact forces | Why does the Moon change shape? | Sun–Earth–Moon angle and the lit fraction we see | MS-ESS1-1, ESS1-2, PS2-4 |
-| 11 | IS3 Evolution | How does a rare trait become common? | A variant with a small advantage, generation by generation | MS-LS4-4, LS4-6, LS3-1 |
-| 12 | IS4 Sustaining biodiversity | How do waves carry information? | Wavelength, frequency and speed; sampling a signal | MS-PS4-1, PS4-2, PS4-3 |
+| 9 | IS1 Objects move and collide | Why does speed matter so much in a crash? | Kinetic energy, reaction and braking distances, and braking force against mass, speed and road | MS-PS3-1, PS2-2, PS2-1 |
+| 10 | IS2 Noncontact forces | Why does the Moon change shape? | The Sun, Earth and Moon seen from above, the phase seen from Earth, and the rising time | MS-ESS1-1, PS2-4 |
+| 11 | IS3 Evolution | How does a rare trait become common? | Rock pocket mice: the share of dark mice over 200 generations on dark lava or pale rock | MS-LS4-4, LS4-6, LS3-1 |
+| 12 | IS4 Sustaining biodiversity | How do scientists listen to whales? | A sound wave in air, seawater or steel: frequency, wavelength, amplitude and energy | MS-PS4-1, PS4-2, PS4-3 |
+
+Lesson 10 claims MS-PS2-4 (gravity depends on mass) through its last step, but not MS-ESS1-2 (gravity's role across the solar system and galaxies), which it does not teach.
 
 ### Unit 4 · Grade 9: Living Earth
 

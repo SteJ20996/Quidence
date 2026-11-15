@@ -150,7 +150,84 @@ function foxes(eagles,plan){
 }
 const PLAN_NAMES={none:'No plan',remove:'Move the eagles away',release:'Release captive-bred foxes',both:'Both'};
 const curve=series=>x=>{const i=Math.floor(x),f=x-i;return i>=series.length-1?series[series.length-1]:series[i]*(1-f)+series[i+1]*f;};
+// Grade 8. Stopping: a driver reacts in about 1.5 s; typical braking rates are about 7 m/s² on a dry road and
+// 4 m/s² on a wet one.
+const STOP={reaction:1.5,rate:{dry:7,wet:4}};
+function crash(mass,kmh,road){
+ const v=kmh/3.6,a=STOP.rate[road];
+ return{v,energy:mass*v*v/2,reaction:v*STOP.reaction,braking:v*v/(2*a),force:mass*a,rate:a};
+}
+// The Moon: one cycle of phases (a synodic month) is 29.53 days.
+const MONTH=29.53;
+function moon(day){
+ const f=day/MONTH,angle=2*Math.PI*f,lit=(1-Math.cos(angle))/2;
+ const name=f<.03||f>=.97?'new moon':f<.22?'waxing crescent':f<.28?'first quarter':f<.47?'waxing gibbous':f<.53?'full moon':f<.72?'waning gibbous':f<.78?'third quarter':'waning crescent';
+ // Rising time: about 6 a.m. at new moon, and about 24 hours later over one cycle.
+ const minutes=Math.round((6*60+24*60*f)/10)*10%(24*60);
+ return{fraction:f,angle,lit,name,waxing:f<.5,rise:minutes};
+}
+const clock=m=>{const h=Math.floor(m/60),mm=m%60;return m===0?'midnight':m===720?'noon':`${h%12||12}:${String(mm).padStart(2,'0')} ${h<12?'a.m.':'p.m.'}`;};
+function phaseDisc(v,cx,cy,R){
+ // The lit part as seen from the Northern Hemisphere: right side while waxing, left side while waning.
+ const rx=R*Math.abs(Math.cos(v.angle)),gibbous=v.lit>.5,top=`${cx} ${cy-R}`,bottom=`${cx} ${cy+R}`;
+ let lit;
+ if(v.lit<.001)lit='';
+ else if(v.lit>.999)lit=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="#f4f1d0"/>`;
+ else if(v.waxing)lit=`<path d="M${top}A${R} ${R} 0 0 1 ${bottom}A${rx.toFixed(2)} ${R} 0 0 ${gibbous?1:0} ${top}Z" fill="#f4f1d0"/>`;
+ else lit=`<path d="M${top}A${R} ${R} 0 0 0 ${bottom}A${rx.toFixed(2)} ${R} 0 0 ${gibbous?0:1} ${top}Z" fill="#f4f1d0"/>`;
+ return`<circle cx="${cx}" cy="${cy}" r="${R}" fill="#3d4852"/>${lit}<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#52647b"/>`;
+}
+function moonView(s,v){
+ const ex=170,ey=150,orbit=95,a=Math.PI+v.angle,mx=ex+orbit*Math.cos(a),my=ey-orbit*Math.sin(a);
+ let b='';
+ for(const y of[70,110,150,190,230])b+=`<path d="M14 ${y}h34" stroke="#d99a1e" stroke-width="2"/><path d="M42 ${y-4}l7 4-7 4" fill="none" stroke="#d99a1e" stroke-width="2"/>`;
+ b+=`<text x="14" y="50" font-size="13" fill="#9a6a00">sunlight</text>`;
+ b+=`<circle cx="${ex}" cy="${ey}" r="${orbit}" fill="none" stroke="#c3cbd8" stroke-dasharray="5 5"/>`;
+ // Earth and Moon, each lit on the side facing the Sun (the left).
+ b+=`<circle cx="${ex}" cy="${ey}" r="24" fill="#2f5d8a"/><path d="M${ex} ${ey-24}A24 24 0 0 0 ${ex} ${ey+24}Z" fill="#7fb3e0"/><text x="${ex}" y="${ey+44}" text-anchor="middle" font-size="13" fill="#263c5b">Earth</text>`;
+ b+=`<circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="11" fill="#3d4852"/><path d="M${mx.toFixed(1)} ${(my-11).toFixed(1)}A11 11 0 0 0 ${mx.toFixed(1)} ${(my+11).toFixed(1)}Z" fill="#f4f1d0"/><circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="11" fill="none" stroke="#52647b"/>`;
+ b+=`<text x="${ex}" y="30" text-anchor="middle" font-size="13" fill="#52647b">seen from above the North Pole</text>`;
+ b+=phaseDisc(v,410,130,62)+`<text x="410" y="222" text-anchor="middle" font-size="15" font-weight="700" fill="#263c5b">${esc(v.name)}</text><text x="410" y="242" text-anchor="middle" font-size="13" fill="#52647b">seen from Earth: ${Math.round(100*v.lit)}% lit</text>`;
+ return M.graphic('The Moon’s phase',`Day ${fmt(s.day)} after new moon: ${v.name}, ${Math.round(100*v.lit)}% of the face we see is lit. Left: the Sun, Earth and the Moon seen from above the North Pole, not to scale. Right: the Moon as seen from the Northern Hemisphere.`,b);
+}
+// Natural selection on fur color: the better-matched color leaves (1 + advantage) times as many young.
+function selection(ground,advantage,start,generations=200){
+ const s=advantage/100,out=[start/100];let p=start/100;
+ for(let g=0;g<generations;g++){p=ground==='lava'?p*(1+s)/(p*(1+s)+(1-p)):p/(p+(1-p)*(1+s));out.push(p);}
+ const half=out.findIndex(x=>x>.5);
+ return{series:out,half:half<0?null:half};
+}
+// Sound speeds near 20 °C (typical values).
+const MEDIA={air:{name:'Air',speed:343},water:{name:'Seawater',speed:1500},steel:{name:'Steel',speed:5960}};
+function wave(medium,frequency,amplitude){
+ const m=MEDIA[medium];
+ return{...m,wavelength:m.speed/frequency,period:1/frequency,energy:amplitude*amplitude,inWindow:frequency*0.1};
+}
 function model(index,s){
+ if(index===8){const v=crash(s.mass,s.speed,s.road),road=s.road==='dry'?'dry':'wet',kmh=x=>x/3.6;
+  const graph=s.view==='energy'?M.cartesian('Kinetic energy against speed',[{label:`${s.mass.toLocaleString('en-US')} kg`,fn:x=>s.mass*kmh(x)**2/2000},{label:'1,000 kg, for comparison',fn:x=>1000*kmh(x)**2/2000}],{xmin:0,xmax:130,ymin:0,ymax:2000,xlabel:'Speed (km/h)',ylabel:'Kinetic energy (kJ)',point:[s.speed,v.energy/1000],left:80,ylabelX:22,xticks:[0,20,40,60,80,100,120],yticks:[0,500,1000,1500,2000]})
+   :M.cartesian(`Stopping distance on a ${road} road`,[{label:'Braking distance',fn:x=>kmh(x)**2/(2*v.rate)},{label:'Reaction distance (1.5 s)',fn:x=>kmh(x)*STOP.reaction}],{xmin:0,xmax:130,ymin:0,ymax:170,xlabel:'Speed (km/h)',ylabel:'Distance (m)',point:[s.speed,v.braking],left:80,ylabelX:22,xticks:[0,20,40,60,80,100,120],yticks:[0,50,100,150]});
+  return{graph,
+   readout:`${s.mass.toLocaleString('en-US')} kg at ${s.speed} km/h (${fmt(v.v)} m/s): kinetic energy ${fmt(v.energy/1000)} kJ · Reaction distance ${fmt(v.reaction)} m · Braking distance ${fmt(v.braking)} m · Braking force ${fmt(v.force/1000)} kN`,
+   formula:'Kinetic energy = ½ × mass × speed². Speed in m/s = km/h ÷ 3.6. Reaction distance = speed × 1.5 s. Braking distance = speed² ÷ (2 × braking rate). Braking force = mass × braking rate (force = mass × acceleration, a high school idea).',
+   note:`An ideal stop on a level road, slowing by ${v.rate} m/s every second (${v.rate} m/s²), a typical rate on a ${road} road. Real braking depends on tires, brakes and the road surface, heavy trucks need farther to stop, and reaction times vary from driver to driver.`};}
+ if(index===9){const v=moon(s.day);
+  return{graph:moonView(s,v),
+   readout:`Day ${fmt(s.day)} after new moon: ${v.name} · ${Math.round(100*v.lit)}% of the face we see is lit · Rises at about ${clock(v.rise)}`,
+   formula:'The lit part grows from 0 at new moon to 100% at full moon (day 14.8) and back, following lit fraction = (1 − cos(360° × day ÷ 29.53)) ÷ 2. Rising time ≈ 6 a.m. + 24 hours × day ÷ 29.53.',
+   note:'Not to scale: the Moon is about 30 Earth-widths from Earth, and the Sun about 400 times farther away than the Moon. Rising times are averages; real times shift with the season and the place.'};}
+ if(index===10){const v=selection(s.ground,s.advantage,s.start),at=g=>Math.round(100*v.series[g]);
+  return{graph:M.cartesian(`Dark mice on ${s.ground==='lava'?'dark lava':'pale rock'}`,[{label:'Share of dark mice',prefix:'Line: ',fn:x=>100*curve(v.series)(x)}],{xmin:0,xmax:200,ymin:0,ymax:100,xlabel:'Generation',ylabel:'Dark mice (%)',point:[100,100*v.series[100]],left:80,ylabelX:22,xticks:[0,50,100,150,200],yticks:[0,25,50,75,100]}),
+   readout:`Dark mice: ${s.start}% at the start · ${at(50)}% after 50 generations · ${at(100)}% after 100 · ${at(200)}% after 200 · ${s.ground==='sand'?(s.start>0&&s.advantage>0?'dark fur becomes rarer each generation':'no change'):v.half===null?'never more than half within 200 generations':`more than half from generation ${v.half}`}`,
+   formula:'Each generation the better-matched color leaves (1 + advantage) times as many young. On lava: dark share next = dark × (1 + advantage) ÷ (dark × (1 + advantage) + light). On pale rock the light mice have the advantage.',
+   note:'A simplified model: it treats fur color as one inherited trait with a fixed advantage, and leaves out dominance, mice moving between populations, and chance. The advantages are illustrations, not measurements.'};}
+ if(index===11){const v=wave(s.medium,s.frequency,s.amplitude),signal=t=>s.amplitude*Math.sin(2*Math.PI*s.frequency*t/1000),shown=s.samples==='on';
+  const series=[{label:`${s.frequency} Hz, amplitude ${s.amplitude}`,prefix:shown?undefined:'Line: ',fn:signal}];if(shown)series.push({label:'the digital version, one number every 2 ms',fn:t=>signal(2*Math.floor(t/2+1e-9))});
+  const numbers=shown?' · First samples: '+[0,2,4,6,8,10].map(t=>{const x=signal(t);return(Math.abs(x)<.005?0:x).toFixed(2).replace('-','−');}).join(', '):'';
+  return{graph:M.cartesian('Pressure at one place over 0.1 s',series,{xmin:0,xmax:100,ymin:-4.5,ymax:4.5,xlabel:'Time (ms)',ylabel:'Pressure change',left:80,ylabelX:22,xticks:[0,25,50,75,100],yticks:[-4,-2,0,2,4]}),
+   readout:`${v.name}, ${s.frequency} Hz: wavelength ${fmt(v.wavelength)} m · One wave every ${fmt(1000*v.period)} ms, ${fmt(v.inWindow)} wave${v.inWindow===1?'':'s'} in 0.1 s · Amplitude ${s.amplitude}: energy ${v.energy} times that of amplitude 1${numbers}`,
+   formula:'Wavelength = speed ÷ frequency. Time for one wave = 1 ÷ frequency. Energy grows with amplitude²: twice the amplitude, four times the energy.',
+   note:'Speeds are typical values: sound speed changes with temperature, and in seawater also with depth and saltiness. The graph shows the wave passing one place over time; ms means thousandths of a second. The samples are drawn far apart so they can be seen; a real hydrophone takes about 256,000 a second.'};}
  if(index===4){const v=particles(s.substance,s.temperature),state=v.state==='melting'?'at its melting point, solid and liquid together':v.state==='boiling'?'at its boiling point, liquid and gas together':'a '+v.state;
   const counts=Object.entries(v.atoms).map(([e,n])=>n+' '+ELEMENT[e]).join(', ');
   const side=`${molecule(s.substance,390,110)}<text x="390" y="200" text-anchor="middle" font-size="16" font-weight="700" fill="#263c5b">${esc(v.formula)}</text><text x="390" y="222" text-anchor="middle" font-size="13" fill="#52647b">${esc(counts)}: ${v.atomCount} atom${v.atomCount>1?'s':''}</text><text x="390" y="242" text-anchor="middle" font-size="13" fill="#52647b">mass ${Math.round(v.mass)} u · typical speed ${fmt(v.speed)} m/s</text>`;
@@ -199,6 +276,6 @@ function model(index,s){
   formula:'About 3 °C of eventual warming and about 3.9 W/m² of extra energy kept at first for each doubling: 278 → 556 → 1,112 ppm. Between doublings, count the fraction of a doubling: warming ≈ 3 °C × log₂(CO₂ ÷ 278 ppm).',
   note:'Carbon dioxide alone, after the ocean has caught up, which takes centuries. The warming measured so far, about 1.2 °C averaged over 2015–2024 compared with 1850–1900, also reflects other greenhouse gases, particles that cool, and the ocean’s delay.'};
 }
-const api={model,cell,heating,rainShadow,warming,particles,reaction,seafloor,foxes,WATER,AIR,CO2,SUBSTANCES,REACTIONS,NORMAL,FOX,AMU};
+const api={model,cell,heating,rainShadow,warming,particles,reaction,seafloor,foxes,crash,moon,selection,wave,STOP,MONTH,MEDIA,WATER,AIR,CO2,SUBSTANCES,REACTIONS,NORMAL,FOX,AMU};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceScienceModels=api;
 })(typeof window==='undefined'?globalThis:window);
