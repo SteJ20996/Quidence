@@ -1,6 +1,11 @@
 ## 2026-11-15 · Integrated Science 6–10: drawings for the classroom investigations
 
 Ten of the eighteen lessons end with a hands-on investigation; each now has an SVG drawing of the setup, shown with "A useful next step" in the lesson's feedback.
+- **To scale.**
+  - Each drawing uses typical real sizes, with a scale bar or axes in real units.
+  - The heating curve and the Moon's place in the sky (34° N, one hour after sunset) are computed.
+  - Only the air particles and the Moon's disc are enlarged, and the drawings say so.
+  - Drawing to scale showed that a sealed zip-top bag swells and reads lighter from the air's buoyancy. Lesson 6 now uses a capped soda bottle and says why.
 - **Drawn here, not copied.** The drawings are in `assets/science-investigations.js`. Outside pictures were not used, for three reasons:
   - the site's Content Security Policy allows only its own images;
   - the repository's IP process keeps graphics in code;

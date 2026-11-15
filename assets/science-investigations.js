@@ -2,123 +2,186 @@
 'use strict';
 // Drawings of the classroom investigations suggested at the end of Integrated Science lessons. Each is drawn here in
 // SVG, with no outside images, so it carries no third-party rights, works offline and follows the page's appearance.
-// The decision and the rules for any future photographs are in review/integrated-science-illustrations-20261115.md.
+// Objects are drawn to scale from typical real sizes, each drawing with its own scale bar; where something has to be
+// enlarged to be seen (air particles, the Moon's disc), the drawing says so. The sizes used and the rules for any
+// future photographs are in review/integrated-science-illustrations-20261115.md.
 const M=typeof module==='object'&&module.exports?require('./course-models.js'):root.QuidenceCourseModels;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const INK='#263c5b',MUTED='#52647b',LINE='#8391a5',TEAL='#087f76',PURPLE='#6542c0',RED='#d64545',WATER='#cfe3f3';
-const text=(x,y,t,o={})=>`<text x="${x}" y="${y}" font-size="${o.size||13}" ${o.anchor?`text-anchor="${o.anchor}"`:''} ${o.bold?'font-weight="700"':''} fill="${o.fill||INK}">${esc(t)}</text>`;
-const step=(n,x,y,t)=>`<circle cx="${x}" cy="${y-4}" r="9" fill="${TEAL}"/>${text(x,y,String(n),{anchor:'middle',fill:'#ffffff',bold:true,size:12})}${text(x+15,y,t)}`;
-const arrow=(x1,y1,x2,y2,c=PURPLE)=>{const a=Math.atan2(y2-y1,x2-x1),h=8;return`<path d="M${x1} ${y1}L${x2} ${y2}" stroke="${c}" stroke-width="2.5"/><path d="M${x2} ${y2}L${(x2-h*Math.cos(a-0.45)).toFixed(1)} ${(y2-h*Math.sin(a-0.45)).toFixed(1)}M${x2} ${y2}L${(x2-h*Math.cos(a+0.45)).toFixed(1)} ${(y2-h*Math.sin(a+0.45)).toFixed(1)}" stroke="${c}" stroke-width="2.5"/>`;};
+const f1=n=>Number(n.toFixed(1));
+const text=(x,y,t,o={})=>`<text x="${f1(x)}" y="${f1(y)}" font-size="${o.size||13}" ${o.anchor?`text-anchor="${o.anchor}"`:''} ${o.bold?'font-weight="700"':''} fill="${o.fill||INK}">${esc(t)}</text>`;
+const step=(n,x,y,t)=>`<circle cx="${x}" cy="${y-4}" r="9" fill="${TEAL}"/>${text(x,y,String(n),{anchor:'middle',fill:'#ffffff',bold:true,size:12})}${text(x+15,y,t,{size:12})}`;
+const arrow=(x1,y1,x2,y2,c=PURPLE)=>{const a=Math.atan2(y2-y1,x2-x1),h=8;return`<path d="M${f1(x1)} ${f1(y1)}L${f1(x2)} ${f1(y2)}" stroke="${c}" stroke-width="2.5"/><path d="M${f1(x2)} ${f1(y2)}L${f1(x2-h*Math.cos(a-0.45))} ${f1(y2-h*Math.sin(a-0.45))}M${f1(x2)} ${f1(y2)}L${f1(x2-h*Math.cos(a+0.45))} ${f1(y2-h*Math.sin(a+0.45))}" stroke="${c}" stroke-width="2.5"/>`;};
+// A scale bar: length in pixels and its label in real units.
+const scaleBar=(x,y,px,label)=>`<path d="M${f1(x)} ${f1(y)}h${f1(px)}M${f1(x)} ${f1(y-5)}v10M${f1(x+px)} ${f1(y-5)}v10" stroke="${INK}" stroke-width="2"/>`+text(x+px/2,y-8,label,{anchor:'middle',size:11,fill:MUTED});
+function seeded(seed){let t=seed>>>0;return()=>{t=(t+0x6D2B79F5)>>>0;let r=Math.imul(t^(t>>>15),1|t);r^=r+Math.imul(r^(r>>>7),61|r);return((r^(r>>>14))>>>0)/4294967296;};}
+// Lesson 2: the heating curve for 100 g of crushed ice from −10 °C, with 150 W reaching it.
+const HEAT={mass:100,start:-10,power:150,ice:2.09,melt:334,water:4.18};
+function heatingCurve(seconds){
+ const{mass,start,power,ice,melt,water}=HEAT,e=power*seconds,e1=mass*ice*(0-start),e2=e1+mass*melt;
+ return e<=e1?start+e/(mass*ice):e<=e2?0:(e-e2)/(mass*water);
+}
+// Lesson 10: where the Moon is one hour after sunset, for an observer at 34° N (Southern California) near an equinox,
+// treating the Sun and Moon as on the celestial equator; the Moon moves about 12.2° east of the Sun each day.
+const SKY={latitude:34,afterSunset:15,perDay:360/29.53};
+function moonSky(day){
+ const lat=SKY.latitude*Math.PI/180,ha=(90+SKY.afterSunset-SKY.perDay*day)*Math.PI/180;
+ const alt=Math.asin(Math.cos(lat)*Math.cos(ha)),az=Math.atan2(Math.sin(ha),Math.cos(ha)*Math.sin(lat));
+ return{altitude:alt*180/Math.PI,azimuth:az*180/Math.PI,lit:(1-Math.cos(2*Math.PI*day/29.53))/2};
+}
 // Each drawing returns [title, description, body]. The keys are lesson numbers (1-based).
 const DRAWINGS={
  1:()=>{let b='';
-  // Microscope: base, arm, stage, objective and eyepiece.
-  b+=`<path d="M40 250h120" stroke="${INK}" stroke-width="10" stroke-linecap="round"/><path d="M125 250V90q0-20-20-28" fill="none" stroke="${INK}" stroke-width="10" stroke-linecap="round"/><path d="M55 170h95" stroke="${INK}" stroke-width="7"/><rect x="62" y="162" width="46" height="6" fill="#ffffff" stroke="${LINE}"/><path d="M85 60L72 130h26z" fill="${LINE}"/><rect x="74" y="28" width="22" height="34" rx="3" fill="${MUTED}"/>`;
-  b+=text(30,290,'slide on the stage',{size:12,fill:MUTED});
-  // The view: onion skin cells as long boxes, each with a nucleus.
-  const cx=285,cy=130,R=92;b+=`<defs><clipPath id="inv-fov"><circle cx="${cx}" cy="${cy}" r="${R}"/></clipPath></defs><circle cx="${cx}" cy="${cy}" r="${R}" fill="#fbf8ec" stroke="${INK}" stroke-width="2"/><g clip-path="url(#inv-fov)">`;
-  for(let r=0;r<7;r++)for(let c=0;c<5;c++){const x=cx-R+c*44-(r%2)*20,y=cy-R+r*28;b+=`<rect x="${x}" y="${y}" width="44" height="28" fill="none" stroke="#9a8a4a"/><circle cx="${x+30}" cy="${y+14}" r="4" fill="#9a8a4a"/>`;}
-  b+=`</g>${arrow(cx-R,cy+R+14,cx+R,cy+R+14,TEAL)}${arrow(cx+R,cy+R+14,cx-R,cy+R+14,TEAL)}`+text(cx,cy+R+32,'field of view: measure its width',{anchor:'middle',size:12,fill:TEAL});
-  b+=step(1,395,70,'Measure')+text(410,86,'the field')+step(2,395,130,'Count the')+text(410,146,'cells across')+step(3,395,190,'Size =')+text(410,206,'width ÷ count',{size:12});
-  return['Measuring onion skin cells','A light microscope with a slide on its stage, and the circular field of view showing rows of boxy onion skin cells, each with a dark nucleus. Steps: measure the field’s width, count the cells across it, and divide the width by the count.',b];},
+  // A microscope about 35 cm tall, at 6 px per cm.
+  const k=6,base=262,x0=40,h=cm=>base-cm*k;
+  b+=`<rect x="${x0}" y="${h(3)}" width="${18*k}" height="${3*k}" rx="6" fill="${INK}"/><path d="M${x0+14*k} ${h(3)}V${h(27)}q0-${3*k}-${4*k}-${4*k}" fill="none" stroke="${INK}" stroke-width="${2.2*k}" stroke-linecap="round"/>`;
+  b+=`<rect x="${x0+1*k}" y="${h(13)}" width="${12*k}" height="${1*k}" fill="${INK}"/><rect x="${x0+2.5*k}" y="${h(13.15)}" width="${7.5*k}" height="3" fill="#ffffff" stroke="${LINE}"/>`;
+  b+=`<path d="M${x0+5.5*k} ${h(14)}h${1.6*k}l${0.4*k} -${4*k}h-${2.4*k}z" fill="${LINE}"/><rect x="${x0+4.9*k}" y="${h(31)}" width="${2.8*k}" height="${13*k}" fill="${MUTED}"/><rect x="${x0+5.2*k}" y="${h(35)}" width="${2.2*k}" height="${4*k}" rx="2" fill="${INK}"/>`;
+  b+=scaleBar(x0,286,10*k,'10 cm')+text(x0+6*k,h(13)+20,'slide',{anchor:'middle',size:11,fill:MUTED});
+  // The view at 400×: a field of view 0.45 mm across, at 400 px per mm. Onion skin cells about 250 by 50 µm, with
+  // nuclei about 15 µm across.
+  const cx=268,cy=140,R=90,u=0.4;b+=`<defs><clipPath id="inv-fov"><circle cx="${cx}" cy="${cy}" r="${R}"/></clipPath></defs><circle cx="${cx}" cy="${cy}" r="${R}" fill="#fbf8ec" stroke="${INK}" stroke-width="2"/><g clip-path="url(#inv-fov)">`;
+  for(let r=0;r<10;r++)for(let c=-1;c<3;c++){const w=250*u,ht=50*u,x=cx-R+c*w-(r%2)*w*0.45,y=cy-R+r*ht;b+=`<rect x="${f1(x)}" y="${f1(y)}" width="${w}" height="${ht}" fill="none" stroke="#9a8a4a"/><circle cx="${f1(x+w*0.6)}" cy="${f1(y+ht/2)}" r="${7.5*u}" fill="#9a8a4a"/>`;}
+  b+=`</g>`+scaleBar(cx-20,cy+R+26,100*u,'100 µm');
+  b+=text(cx,22,'at 400×: about 0.45 mm across',{anchor:'middle',size:12,fill:TEAL});
+  b+=step(1,372,90,'Field width:')+text(387,106,'0.45 mm at 400×',{size:11,fill:MUTED})+step(2,372,150,'Cells across it:')+text(387,166,'about 9',{size:11,fill:MUTED})+step(3,372,210,'Cell width:')+text(387,226,'0.45 ÷ 9 = 0.05 mm',{size:11,fill:MUTED});
+  return['Measuring onion skin cells','To scale, with scale bars. A light microscope about 35 cm tall with a slide on its stage. The circular field of view at 400 times, about 0.45 mm across, showing onion skin cells about 250 by 50 micrometers, each with a nucleus about 15 micrometers across. About 9 cells fit across the field, so each is about 0.05 mm wide.',b];},
  2:()=>{let b='';
-  // Hot plate, beaker of crushed ice, thermometer and stirrer.
-  b+=`<rect x="40" y="226" width="150" height="26" rx="4" fill="${MUTED}"/><circle cx="170" cy="239" r="6" fill="#ffffff"/><path d="M60 120v100h110V120" fill="${WATER}" stroke="${INK}" stroke-width="2.5"/>`;
-  for(let i=0;i<14;i++){const x=68+(i*23)%96,y=150+Math.floor(i/4)*17;b+=`<rect x="${x}" y="${y}" width="14" height="11" rx="2" fill="#ffffff" stroke="#9fb6cf"/>`;}
-  b+=`<rect x="124" y="70" width="8" height="140" rx="4" fill="#ffffff" stroke="${INK}"/><circle cx="128" cy="210" r="7" fill="${RED}"/><path d="M128 210V160" stroke="${RED}" stroke-width="3"/><path d="M84 80L100 205" stroke="${LINE}" stroke-width="4" stroke-linecap="round"/>`;
-  b+=text(40,282,'stir all the time; record every 30 s',{size:12,fill:MUTED});
-  // The expected graph: a slope, a flat part at 0 °C, a slope.
-  const gx=260,gy=220;b+=`<path d="M${gx} ${gy}H480M${gx} ${gy}V60" stroke="${LINE}"/><path d="M${gx} 200L${gx+40} 160H${gx+130}L${gx+210} 80" fill="none" stroke="${PURPLE}" stroke-width="3"/>`;
-  b+=text(gx+62,140,'flat at 0 °C while ice melts',{anchor:'middle',size:12,fill:PURPLE})+text(gx-6,164,'0 °C',{anchor:'end',size:12,fill:MUTED})+text(470,240,'time',{anchor:'end',size:12,fill:MUTED})+text(gx+4,56,'temperature',{size:12,fill:MUTED});
-  b+=text(260,264,'With an adult. Wear goggles:',{size:12,fill:RED})+text(260,280,'the hot plate stays hot.',{size:12,fill:RED});
-  return['Heating crushed ice','A beaker of crushed ice on a hot plate, with a thermometer and a stirring rod. Beside it, the expected graph of temperature against time: rising, then flat at 0 °C while the ice melts, then rising again. Safety: work with an adult and wear goggles.',b];},
+  // At 6 px per cm: a hot plate 18 cm wide, a 250 mL beaker 7 cm wide and 9.5 cm tall, a 30 cm thermometer and a
+  // 20 cm stirring rod, both leaning in the beaker. Ice pieces about 1.5 cm.
+  const k=6,floor=262,hp=9,x0=36;
+  b+=`<rect x="${x0}" y="${floor-hp*k}" width="${18*k}" height="${hp*k}" rx="5" fill="${MUTED}"/><rect x="${x0+2*k}" y="${floor-hp*k-0.6*k}" width="${14*k}" height="${0.6*k}" fill="${INK}"/><circle cx="${x0+15*k}" cy="${floor-hp*k/2}" r="${0.9*k}" fill="#ffffff"/>`;
+  const bx=x0+5.5*k,by=floor-hp*k-0.6*k,bw=7*k,bh=9.5*k;
+  b+=`<path d="M${bx} ${by-bh}V${by}h${bw}V${by-bh}" fill="${WATER}" stroke="${INK}" stroke-width="2"/>`;
+  const r=seeded(5);for(let i=0;i<9;i++){const s=(1+r()*0.6)*k,x=bx+3+r()*(bw-s-6),y=by-6*k+(i%3)*1.6*k+r()*k;b+=`<rect x="${f1(x)}" y="${f1(y)}" width="${f1(s)}" height="${f1(s*0.8)}" rx="2" fill="#ffffff" stroke="#9fb6cf"/>`;}
+  const lean=(len,ang,x,col,w)=>{const a=ang*Math.PI/180;return`<path d="M${f1(x)} ${by-3}L${f1(x+len*k*Math.sin(a))} ${f1(by-3-len*k*Math.cos(a))}" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`;};
+  b+=lean(30,8,bx+3.8*k,'#ffffff',5)+lean(30,8,bx+3.8*k,INK,1)+`<circle cx="${bx+3.8*k}" cy="${by-6}" r="4" fill="${RED}"/>`+lean(20,-14,bx+2*k,LINE,4);
+  b+=scaleBar(x0,288,10*k,'10 cm')+text(126,24,'Stir; record every 30 s.',{size:12,fill:MUTED});
+  // The expected graph for 100 g of ice and 150 W, drawn from the model above: 0–6 minutes, −10 to 40 °C.
+  const gx=262,gw=228,gy=222,gh=170,X=t=>gx+t/360*gw,Y=T=>gy-(T+10)/50*gh;
+  b+=`<path d="M${gx} ${gy}H${gx+gw}M${gx} ${gy}V${gy-gh}" stroke="${LINE}"/>`;
+  for(const T of[-10,0,20,40])b+=`<path d="M${gx-4} ${f1(Y(T))}h4" stroke="${LINE}"/>`+text(gx-7,Y(T)+4,T+' °C',{anchor:'end',size:11,fill:MUTED});
+  for(const m of[0,2,4,6])b+=`<path d="M${f1(X(m*60))} ${gy}v4" stroke="${LINE}"/>`+text(X(m*60),gy+16,m+' min',{anchor:'middle',size:11,fill:MUTED});
+  let d='';for(let s=0;s<=348;s+=3)d+=(s?'L':'M')+f1(X(s))+' '+f1(Y(heatingCurve(s)));b+=`<path d="${d}" fill="none" stroke="${PURPLE}" stroke-width="3"/>`;
+  b+=text(X(125),Y(0)-8,'melting: about 4 minutes',{anchor:'middle',size:11,fill:PURPLE})+text(gx+4,gy-gh-8,'100 g of ice, 150 W reaching it',{size:11,fill:MUTED});
+  b+=text(262,280,'With an adult. Wear goggles:',{size:12,fill:RED})+text(262,295,'the hot plate stays hot.',{size:12,fill:RED});
+  return['Heating crushed ice','To scale, with a 10 cm scale bar. A 250 mL beaker of crushed ice on a hot plate, with a 30 cm thermometer and a stirring rod leaning in it. Beside it, the graph expected for 100 g of ice from −10 °C if 150 W reaches it: a few seconds to warm to 0 °C, about 4 minutes flat at 0 °C while the ice melts, then about 2 minutes to reach 40 °C. Safety: work with an adult and wear goggles.',b];},
  5:()=>{let b='';
-  const bottle=(x,hot)=>{let s=`<rect x="${x-70}" y="150" width="140" height="100" rx="8" fill="${hot?'#f7d3c6':'#d6e9f7'}" stroke="${INK}"/>`+text(x,272,hot?'hot water':'ice water',{anchor:'middle',fill:hot?RED:'#2f6ea8'});
-   s+=`<path d="M${x-28} 245V135q0-18 14-26V96h28v13q14 8 14 26V245" fill="#ffffff" fill-opacity=".6" stroke="${INK}" stroke-width="2"/>`;
-   // The balloon: round and full over the hot bottle; limp over the cold one.
-   s+=hot?`<ellipse cx="${x}" cy="62" rx="34" ry="38" fill="${PURPLE}" opacity=".85"/><path d="M${x-14} 96h28" stroke="${INK}" stroke-width="3"/>`:`<path d="M${x-14} 96q-6-26 14-30q20 4 14 30" fill="${PURPLE}" opacity=".85"/><path d="M${x-14} 96h28" stroke="${INK}" stroke-width="3"/>`;
-   // Air particles inside, with motion arrows longer when hot.
-   const pts=[[x-12,160],[x+10,185],[x-6,210],[x+12,228],[x-14,138]],len=hot?14:6;
-   for(const[i,[px,py]]of pts.entries()){const a=i*1.3;s+=`<circle cx="${px}" cy="${py}" r="4" fill="${TEAL}"/><path d="M${px} ${py}l${(len*Math.cos(a)).toFixed(1)} ${(len*Math.sin(a)).toFixed(1)}" stroke="${TEAL}" stroke-width="2"/>`;}
+  // At 7 px per cm: a 500 mL bottle 21 cm tall and 6.5 cm wide in a bowl of water 22 cm wide. Warming the bottle's air
+  // from 20 °C to 60 °C makes it about 14% bigger, about 70 mL more: enough to fill the balloon to about 5 cm across.
+  // Cooling it to 0 °C makes it about 7% smaller, so the balloon is pulled into the neck.
+  const k=7,floor=252,setup=(x,hot)=>{let s=`<rect x="${x-11*k}" y="${floor-9*k}" width="${22*k}" height="${9*k}" rx="8" fill="${hot?'#f7d3c6':'#d6e9f7'}" stroke="${INK}"/>`;
+   const w=6.5*k,top=floor-21*k,neck=2.5*k;
+   s+=`<path d="M${x-w/2} ${floor-0.5*k}V${top+6*k}q0-${2.5*k} ${(w-neck)/2} -${3.5*k}V${top}h${neck}v${2.5*k}q${(w-neck)/2} ${1*k} ${(w-neck)/2} ${3.5*k}V${floor-0.5*k}z" fill="#ffffff" fill-opacity=".55" stroke="${INK}" stroke-width="2"/>`;
+   s+=hot?`<circle cx="${x}" cy="${top-2.5*k}" r="${2.5*k}" fill="${PURPLE}" opacity=".85"/>`:`<path d="M${x-neck/2} ${top}q${neck/2} ${1.5*k} ${neck} 0" fill="${PURPLE}" opacity=".85"/>`;
+   s+=`<path d="M${x-neck/2-2} ${top}h${neck+4}" stroke="${INK}" stroke-width="3"/>`;
+   s+=text(x,floor+18,hot?'hot water, about 60 °C':'ice water, about 0 °C',{anchor:'middle',size:12,fill:hot?RED:'#2f6ea8'});
+   const pts=[[x-8,floor-16*k],[x+9,floor-12*k],[x-6,floor-8*k],[x+8,floor-4*k],[x-9,floor-19*k]],len=hot?13:6;
+   for(const[i,[px,py]]of pts.entries()){const a=i*1.3;s+=`<circle cx="${px}" cy="${f1(py)}" r="3.5" fill="${TEAL}"/><path d="M${px} ${f1(py)}l${f1(len*Math.cos(a))} ${f1(len*Math.sin(a))}" stroke="${TEAL}" stroke-width="2"/>`;}
    return s;};
-  b+=bottle(140,true)+bottle(380,false);
-  b+=text(260,294,'same bottle, same air: only the temperature changes',{anchor:'middle',size:12,fill:MUTED});
-  return['A balloon on a bottle','Two drawings of an empty bottle with a balloon over its mouth. Standing in hot water, the balloon is full and the air particles inside have long motion arrows. Standing in ice water, the balloon is limp and the arrows are short.',b];},
+  b+=setup(130,true)+setup(390,false);
+  b+=text(130,28,'balloon about 5 cm across',{anchor:'middle',size:12,fill:PURPLE})+text(390,62,'pulled into the neck',{anchor:'middle',size:12,fill:PURPLE});
+  b+=scaleBar(225,292,10*k,'10 cm')+text(260,262,'air particles enlarged',{anchor:'middle',size:11,fill:MUTED});
+  return['A balloon on a bottle','To scale, with a 10 cm scale bar; the air particles are enlarged. A 500 mL bottle 21 cm tall with a balloon over its mouth, in a bowl of water. In hot water at about 60 °C the air expands by about 14%, about 70 mL, enough to fill the balloon to about 5 cm across; the particles have long motion arrows. In ice water the air shrinks by about 7% and the balloon is pulled into the neck; the arrows are short.',b];},
  6:()=>{let b='';
-  const scale=(x,reading,open)=>{let s=`<rect x="${x-80}" y="200" width="160" height="44" rx="6" fill="${MUTED}"/><rect x="${x-46}" y="212" width="92" height="22" rx="3" fill="#e9f3ea"/>`+text(x,229,reading,{anchor:'middle',bold:true,size:14,fill:'#1d5c2e'});
-   s+=`<path d="M${x-60} 196q0-70 20-96h80q20 26 20 96z" fill="#eef4fb" stroke="${INK}" stroke-width="2"/><path d="M${x-40} 100h80" stroke="${open?LINE:TEAL}" stroke-width="5" ${open?'stroke-dasharray="8 6"':''}/>`;
-   s+=`<path d="M${x-52} 196q0-40 10-56h84q10 16 10 56z" fill="${WATER}"/>`;
-   for(let i=0;i<6;i++)s+=`<circle cx="${x-30+i*12}" cy="${150-(i%3)*12}" r="4" fill="#ffffff" stroke="#7fa6c9"/>`;
-   if(open)s+=`<path d="M${x-10} 92q-6-18 4-30M${x+12} 92q8-18-2-30" fill="none" stroke="${LINE}" stroke-width="2"/>`+text(x,52,'gas escapes',{anchor:'middle',size:12,fill:MUTED});
+  // At 8 px per cm: kitchen scales with 18 cm platforms, and 500 mL soda bottles 22 cm tall and 6.5 cm wide holding
+  // 200 mL of water. Readings are examples: about 27 g of bottle and cap, 200 g of water and half a 3.2 g tablet.
+  const k=8,floor=250,setup=(x,capped,reading)=>{let s=`<rect x="${x-9*k}" y="${floor-3*k}" width="${18*k}" height="${3*k}" rx="4" fill="${MUTED}"/><rect x="${x-3.5*k}" y="${floor-2.4*k}" width="${7*k}" height="${1.8*k}" rx="2" fill="#e9f3ea"/>`+text(x,floor-1*k,reading,{anchor:'middle',bold:true,size:12,fill:'#1d5c2e'});
+   const w=6.5*k,base=floor-3*k,top=base-22*k,neck=2.5*k;
+   s+=`<path d="M${x-w/2} ${base}V${top+8*k}q0-${3*k} ${(w-neck)/2} -${5.5*k}V${top}h${neck}v${2.5*k}q${(w-neck)/2} ${2.5*k} ${(w-neck)/2} ${5.5*k}V${base}z" fill="#ffffff" fill-opacity=".6" stroke="${INK}" stroke-width="2"/>`;
+   s+=`<path d="M${x-w/2+2} ${base-1}V${base-6.6*k}h${w-4}V${base-1}z" fill="${WATER}"/>`;
+   for(let i=0;i<7;i++)s+=`<circle cx="${x-w/2+6+(i*9)%(w-12)}" cy="${base-1.2*k-(i*13)%(5*k)}" r="2.5" fill="#ffffff" stroke="#7fa6c9"/>`;
+   s+=capped?`<rect x="${x-neck/2-2}" y="${top-1.2*k}" width="${neck+4}" height="${1.2*k}" rx="2" fill="${TEAL}"/>`:`<path d="M${x-6} ${top-4}q-5-16 3-28M${x+6} ${top-4}q8-16 0-28" fill="none" stroke="${LINE}" stroke-width="2"/>`+text(x+30,top-14,'gas escapes',{size:12,fill:MUTED});
    return s;};
-  b+=scale(130,'250.0 g',false)+text(130,272,'sealed: same before and after',{anchor:'middle',size:12})+scale(390,'249.6 g',true)+text(390,272,'open: lighter after fizzing',{anchor:'middle',size:12});
-  b+=text(130,52,'water + antacid tablet',{anchor:'middle',size:12,fill:MUTED});
-  return['Mass before and after a reaction','Two zip-top bags with water and a fizzing antacid tablet on kitchen scales. The sealed bag reads 250.0 g before and after. The open bag lets gas escape and reads less after the fizzing. The readings are examples.',b];},
+  b+=setup(130,true,'228.6 g')+text(130,270,'capped: no change',{anchor:'middle',size:12});
+  b+=setup(390,false,'228.4 g')+text(390,270,'open: 0.2 g lighter after',{anchor:'middle',size:12});
+  b+=scaleBar(225,294,10*k,'10 cm');
+  return['Mass before and after a reaction','To scale, with a 10 cm scale bar. Two 500 mL soda bottles with 200 mL of water and half an antacid tablet, each on a kitchen scale. The capped bottle reads 228.6 g before and after the fizzing. The open bottle lets carbon dioxide escape and reads about 0.2 g less after. The readings are examples.',b];},
  9:()=>{let b='';
-  b+=`<path d="M20 240H500" stroke="${INK}" stroke-width="2"/>`;
-  // A ramp leaning on a stack of books, at three heights.
-  for(const[i,h]of[60,100,140].entries()){const y=240-h;b+=`<path d="M80 ${y}L250 240" stroke="${i===2?INK:LINE}" stroke-width="${i===2?4:2}" ${i===2?'':'stroke-dasharray="6 5"'}/>`+text(52,y+4,['low','middle','high'][i],{anchor:'end',size:12,fill:MUTED});}
-  b+=`<rect x="58" y="100" width="22" height="140" fill="#e2d6c3" stroke="${MUTED}"/>`+text(69,258,'books',{anchor:'middle',size:11,fill:MUTED});
-  b+=`<rect x="96" y="104" width="34" height="16" rx="4" fill="${RED}" transform="rotate(39 113 112)"/>`;
-  // The cup, pushed along the floor, and a ruler.
-  b+=`<path d="M300 240l6-40h28l6 40z" fill="#ffffff" stroke="${INK}" stroke-width="2"/>`+arrow(345,215,420,215,PURPLE)+text(382,205,'slides',{anchor:'middle',size:12,fill:PURPLE});
-  b+=`<rect x="300" y="248" width="190" height="16" fill="#f4e7b6" stroke="${MUTED}"/>`;for(let i=0;i<=19;i++)b+=`<path d="M${300+i*10} 248v${i%5?5:9}" stroke="${MUTED}"/>`;
-  b+=text(395,284,'measure how far the cup slides',{anchor:'middle',size:12,fill:MUTED});
-  return['A toy car hits a cup','A ramp leaning on a stack of books at three heights: low, middle and high. A toy car rolls down into a paper cup on the floor, and a ruler measures how far the cup slides.',b];},
+  // At 2.2 px per cm: a 1 m ramp leaning on books at 10, 20 and 30 cm, a toy car 7.5 cm long, a paper cup 9 cm tall
+  // and a meter stick.
+  const k=2.2,floor=232,x0=66,len=100;
+  for(const[i,hcm]of[10,20,30].entries()){const run=Math.sqrt(len*len-hcm*hcm)*k,top=floor-hcm*k;b+=`<path d="M${x0} ${f1(top)}L${f1(x0+run)} ${floor}" stroke="${i===2?INK:LINE}" stroke-width="${i===2?3:1.5}" ${i===2?'':'stroke-dasharray="5 4"'}/>`+text(x0-6*k-4,top+4,hcm+' cm',{anchor:'end',size:11,fill:MUTED});}
+  b+=`<rect x="${x0-6*k}" y="${floor-30*k}" width="${6*k}" height="${30*k}" fill="#e2d6c3" stroke="${MUTED}"/>`;
+  const a=Math.asin(30/len),cx=x0+8*Math.cos(a)*k,cy=floor-30*k+8*Math.sin(a)*k;b+=`<rect x="${f1(cx)}" y="${f1(cy-3*k)}" width="${7.5*k}" height="${3*k}" rx="2" fill="${RED}" transform="rotate(${f1(a*180/Math.PI)} ${f1(cx)} ${f1(cy)})"/>`;
+  b+=`<path d="M20 ${floor}H505" stroke="${INK}" stroke-width="2"/>`;
+  const run=Math.sqrt(len*len-900)*k,cup=x0+run+4;b+=`<path d="M${f1(cup)} ${floor}l${f1(-1.25*k)} -${9*k}h${8*k}l${f1(-1.25*k)} ${9*k}z" fill="#ffffff" stroke="${INK}" stroke-width="1.5"/>`;
+  b+=arrow(cup+10*k,floor-12*k,cup+40*k,floor-12*k,PURPLE)+text(cup+25*k,floor-15*k,'slides',{anchor:'middle',size:12,fill:PURPLE});
+  b+=`<rect x="${f1(cup)}" y="${floor+5}" width="${100*k}" height="${2.5*k}" fill="#f4e7b6" stroke="${MUTED}"/>`;for(let i=0;i<=10;i++)b+=`<path d="M${f1(cup+i*10*k)} ${floor+5}v${i%5?4:7}" stroke="${MUTED}"/>`;
+  b+=text(cup+50*k,floor+30,'how far the cup slides',{anchor:'middle',size:12,fill:MUTED});
+  b+=scaleBar(x0,286,20*k,'20 cm')+text(x0+25*k+8,290,'car 7.5 cm, cup 9 cm tall',{size:11,fill:MUTED});
+  return['A toy car hits a cup','To scale, with a 20 cm scale bar. A 1 m ramp leaning on books at 10, 20 and 30 cm, a toy car 7.5 cm long at the top, a paper cup 9 cm tall on the floor at the bottom, and a meter stick to measure how far the cup slides.',b];},
  10:()=>{let b='';
-  // Facing south: west, where the Sun has set, is on the right; east is on the left.
-  b+=`<rect x="0" y="0" width="520" height="300" fill="#22314d"/><path d="M0 230Q260 200 520 230V300H0z" fill="#1b2638"/><path d="M450 230h70" stroke="#e8a35c" stroke-width="6" opacity=".7"/>`+text(506,256,'west: sunset',{anchor:'end',size:12,fill:'#f0c38a'});
-  // The same time each evening: the Moon is farther east and fuller each night, lit on the side toward the Sun.
-  const nights=[[3,430,190,.15],[5,350,150,.3],[7,265,120,.5],[9,175,110,.7],[11,90,125,.85]];
-  for(const[day,x,y,lit]of nights){const r=16,rx=r*Math.abs(1-2*lit),gib=lit>.5;b+=`<circle cx="${x}" cy="${y}" r="${r}" fill="#3a4a66"/><path d="M${x} ${y-r}A${r} ${r} 0 0 1 ${x} ${y+r}A${rx.toFixed(1)} ${r} 0 0 ${gib?1:0} ${x} ${y-r}Z" fill="#f4f1d0"/>`+text(x,y+r+18,'day '+day,{anchor:'middle',size:12,fill:'#d8deea'});}
-  b+=arrow(420,60,110,60,'#9fb6cf')+text(265,48,'each evening at the same time, farther east',{anchor:'middle',size:12,fill:'#d8deea'});
-  b+=text(14,256,'east',{size:12,fill:'#d8deea'})+text(260,286,'facing south',{anchor:'middle',size:12,fill:'#d8deea'});
-  return['Watching the Moon each evening','The evening sky facing south, at the same time on five evenings from day 3 to day 11 after new moon. The Moon starts as a thin crescent low in the west near the sunset, lit on the side toward the Sun, and appears farther east and more fully lit each evening.',b];},
+  // The southern half of the sky, east (left) to west (right), with altitude and direction on the same angular scale,
+  // 2.6 px per degree. The Moon is about 0.5° across, which would be 1.3 px; it is drawn 12 times larger.
+  const k=2.6,cx=260,hz=230,X=az=>cx+az*k,Y=alt=>hz-alt*k;
+  b+=`<rect x="0" y="0" width="520" height="300" fill="#22314d"/><rect x="0" y="${hz}" width="520" height="${300-hz}" fill="#1b2638"/><path d="M${X(70)} ${hz}H520" stroke="#e8a35c" stroke-width="5" opacity=".6"/>`;
+  for(const[az,l]of[[-90,'east'],[-45,'southeast'],[0,'south'],[45,'southwest'],[90,'west']])b+=`<path d="M${f1(X(az))} ${hz}v6" stroke="#9fb6cf"/>`+text(X(az)+(az===-90?4:az===90?-4:0),hz+20,l,{anchor:az===-90?'start':az===90?'end':'middle',size:11,fill:'#d8deea'});
+  for(const alt of[20,40,60])b+=`<path d="M0 ${f1(Y(alt))}H520" stroke="#3a4a66" stroke-dasharray="3 5"/>`+text(4,Y(alt)-3,alt+'° up',{size:11,fill:'#9fb6cf'});
+  for(const day of[3,5,7,9,11]){const v=moonSky(day),x=X(v.azimuth),y=Y(v.altitude),r=7.8,rx=r*Math.abs(1-2*v.lit),gib=v.lit>.5;
+   // Lit toward the Sun, which has set in the west (right).
+   b+=`<circle cx="${f1(x)}" cy="${f1(y)}" r="${r}" fill="#3a4a66"/><path d="M${f1(x)} ${f1(y-r)}A${r} ${r} 0 0 1 ${f1(x)} ${f1(y+r)}A${f1(rx)} ${r} 0 0 ${gib?1:0} ${f1(x)} ${f1(y-r)}Z" fill="#f4f1d0"/>`+text(x,y+r+14,'day '+day,{anchor:'middle',size:11,fill:'#d8deea'});}
+  b+=text(260,22,'one hour after sunset, facing south, 34° N',{anchor:'middle',size:12,fill:'#d8deea'})+text(260,290,'angles to scale; the Moon drawn 12 times larger',{anchor:'middle',size:11,fill:'#9fb6cf'});
+  return['Watching the Moon each evening','Angles to scale; the Moon drawn 12 times larger than it looks. The southern half of the sky one hour after sunset, for Southern California near an equinox, on days 3, 5, 7, 9 and 11 after new moon. The Moon starts as a thin crescent low in the west-southwest, lit toward the set Sun, and each evening appears farther east and higher, then lower in the southeast, more fully lit.',b];},
  11:()=>{let b='';
-  const sheet=(x,dark)=>{let s=`<rect x="${x}" y="40" width="200" height="150" rx="6" fill="${dark?'#2e3440':'#efe6cf'}" stroke="${MUTED}"/>`;let k=0;
-   for(let r=0;r<5;r++)for(let c=0;c<7;c++){const px=x+20+c*27+(r%2)*10,py=60+r*28,isDark=(k++%2)===0;
-    // On each sheet the dots that match the sheet are left; the ones that stand out have mostly been picked up.
-    const kept=isDark===dark||((r*7+c)%5===0);if(kept)s+=`<circle cx="${px}" cy="${py}" r="7" fill="${isDark?'#3b3f47':'#f6f1e2'}" stroke="${isDark?'#1d2026':'#c9bd9a'}"/>`;}
-   return s;};
-  b+=sheet(30,true)+sheet(290,false);
-  b+=text(130,212,'dark sheet: dark dots left',{anchor:'middle',size:12})+text(390,212,'light sheet: light dots left',{anchor:'middle',size:12});
-  b+=step(1,40,250,'Scatter equal numbers of dark and light dots.')+step(2,40,276,'A partner picks dots for 10 s; count what is left.');
-  return['Dots that match their background','Two sheets, one dark and one light, after a partner has picked up as many dots as possible in 10 seconds. On the dark sheet mostly dark dots are left; on the light sheet mostly light dots are left. Steps: scatter equal numbers of each color, pick for 10 seconds, count what is left.',b];},
+  // At 8 px per cm: two letter-size sheets (27.9 by 21.6 cm) and hole-punch dots 6.4 mm across. Each sheet started with
+  // 50 dots of each color; the counts left are an example.
+  const k=8,w=27.9*k,h=21.6*k,sheet=(x,dark,keepDark,keepLight)=>{let s=`<rect x="${x}" y="30" width="${f1(w)}" height="${f1(h)}" rx="3" fill="${dark?'#2e3440':'#efe6cf'}" stroke="${MUTED}"/>`;const r=seeded(dark?3:8);
+   const dot=isDark=>{const px=x+8+r()*(w-16),py=38+r()*(h-16);return`<circle cx="${f1(px)}" cy="${f1(py)}" r="${f1(0.32*k)}" fill="${isDark?'#3b3f47':'#f6f1e2'}" stroke="${isDark?'#14161a':'#b9ad8a'}"/>`;};
+   for(let i=0;i<keepDark;i++)s+=dot(true);for(let i=0;i<keepLight;i++)s+=dot(false);return s;};
+  b+=sheet(16,true,44,11)+sheet(16+w+22,false,13,45);
+  b+=text(16+w/2,224,'dark sheet: 44 dark, 11 light',{anchor:'middle',size:12})+text(38+w*1.5,224,'light sheet: 13 dark, 45 light',{anchor:'middle',size:12});
+  b+=step(1,26,252,'Scatter 50 dark and 50 light dots on each sheet.')+step(2,26,276,'Pick dots for 10 s, then count what is left.');
+  b+=scaleBar(400,268,10*k,'10 cm');
+  return['Dots that match their background','To scale, with a 10 cm scale bar. Two letter-size sheets, one dark and one light, each started with 50 dark and 50 light hole-punch dots 6.4 mm across. After a partner picks dots for 10 seconds, the dark sheet has 44 dark and 11 light dots left, and the light sheet 13 dark and 45 light: the dots that match the sheet survive. The counts are an example.',b];},
  12:()=>{let b='';
-  const wave=(x,y,noise)=>{let d=`M${x} ${y}`;for(let i=1;i<=60;i++){const t=i/60,n=noise*Math.sin(i*7.3)*Math.cos(i*3.1);d+=`L${(x+t*55).toFixed(1)} ${(y-14*Math.sin(t*4*Math.PI)+n*10).toFixed(1)}`;}return`<path d="${d}" fill="none" stroke="${PURPLE}" stroke-width="2"/>`;};
-  const phone=(x,y)=>`<rect x="${x}" y="${y}" width="30" height="52" rx="5" fill="${INK}"/><rect x="${x+3}" y="${y+5}" width="24" height="40" rx="2" fill="#9fb6cf"/>`;
+  // Phones drawn at true proportions (7 by 15 cm, at 3 px per cm). The waves are graphs of the sound, not objects.
+  const k=3,wave=(x,y,noise)=>{let d=`M${x} ${y}`;for(let i=1;i<=60;i++){const t=i/60,n=noise*Math.sin(i*7.3)*Math.cos(i*3.1);d+=`L${f1(x+t*55)} ${f1(y-14*Math.sin(t*4*Math.PI)+n*10)}`;}return`<path d="${d}" fill="none" stroke="${PURPLE}" stroke-width="2"/>`;};
+  const phone=(x,y)=>`<rect x="${x}" y="${y}" width="${7*k}" height="${15*k}" rx="4" fill="${INK}"/><rect x="${x+2}" y="${y+4}" width="${7*k-4}" height="${15*k-9}" rx="2" fill="#9fb6cf"/>`;
   b+=text(20,36,'Analog: play it aloud and record again',{bold:true,size:13});
-  for(let i=0;i<4;i++){const x=20+i*125;b+=phone(x,50)+wave(x+36,76,i*0.9);if(i<3)b+=arrow(x+97,76,x+121,76,LINE);b+=text(x+60,122,['original','copy 1','copy 2','copy 3'][i],{anchor:'middle',size:12,fill:MUTED});}
+  for(let i=0;i<4;i++){const x=20+i*125;b+=phone(x,54)+wave(x+30,76,i*0.9);if(i<3)b+=arrow(x+92,76,x+118,76,LINE);b+=text(x+50,122,['original','copy 1','copy 2','copy 3'][i],{anchor:'middle',size:12,fill:MUTED});}
   b+=text(20,170,'Digital: copy the file of numbers',{bold:true,size:13});
-  for(let i=0;i<4;i++){const x=20+i*125;b+=`<rect x="${x}" y="186" width="96" height="44" rx="5" fill="#eef4fb" stroke="${LINE}"/>`+text(x+48,205,'0.00, 0.25,',{anchor:'middle',size:11,fill:INK})+text(x+48,221,'0.48, 0.68 …',{anchor:'middle',size:11,fill:INK});if(i<3)b+=arrow(x+100,208,x+122,208,LINE);b+=text(x+48,250,['original','copy 1','copy 2','copy 3'][i],{anchor:'middle',size:12,fill:MUTED});}
+  for(let i=0;i<4;i++){const x=20+i*125;b+=`<rect x="${x}" y="186" width="96" height="44" rx="5" fill="#eef4fb" stroke="${LINE}"/>`+text(x+48,205,'0.00, 0.25,',{anchor:'middle',size:11})+text(x+48,221,'0.48, 0.68 …',{anchor:'middle',size:11});if(i<3)b+=arrow(x+100,208,x+122,208,LINE);b+=text(x+48,250,['original','copy 1','copy 2','copy 3'][i],{anchor:'middle',size:12,fill:MUTED});}
   b+=text(260,284,'each analog copy adds noise; each digital copy is exact',{anchor:'middle',size:12,fill:MUTED});
-  return['Copying a recording','Top: a sound recorded on a phone, played aloud and recorded again three times; the wave gets noisier with each copy. Bottom: the same recording stored as numbers and copied three times; every copy holds the same numbers.',b];},
+  return['Copying a recording','A diagram, not a scene: the phones are drawn at true proportions, and the waves are graphs of the sound. Top: a sound recorded on a phone, played aloud and recorded again three times; the wave gets noisier with each copy. Bottom: the same recording stored as numbers and copied three times; every copy holds the same numbers.',b];},
  16:()=>{let b='';
-  const coin=(x,y,l)=>`<circle cx="${x}" cy="${y}" r="26" fill="#e9c46a" stroke="#b08a2e" stroke-width="3"/>`+text(x,y+7,l,{anchor:'middle',bold:true,size:20,fill:'#5b4410'});
-  b+=coin(70,80,'P')+coin(150,80,'p')+text(110,132,'parent 1’s coin',{anchor:'middle',size:12,fill:MUTED})+coin(70,190,'P')+coin(150,190,'p')+text(110,242,'parent 2’s coin',{anchor:'middle',size:12,fill:MUTED});
-  b+=text(110,30,'each coin: heads P, tails p',{anchor:'middle',size:12,fill:MUTED});
-  // A tally table.
-  const tx=270;b+=`<rect x="${tx}" y="50" width="220" height="150" fill="#ffffff" stroke="${LINE}"/><path d="M${tx} 90H${tx+220}M${tx} 130H${tx+220}M${tx} 170H${tx+220}M${tx+70} 50V200" stroke="${LINE}"/>`;
-  b+=text(tx+35,75,'Toss',{anchor:'middle',bold:true})+text(tx+145,75,'Tally',{anchor:'middle',bold:true});
-  const tally=(x,y,n)=>{let s='';for(let i=0;i<n;i++){const g=Math.floor(i/5),k=i%5;s+=k<4?`<path d="M${x+g*30+k*6} ${y-12}v16" stroke="${INK}" stroke-width="2"/>`:`<path d="M${x+g*30-2} ${y}l26 -12" stroke="${INK}" stroke-width="2"/>`;}return s;};
-  b+=text(tx+35,115,'PP',{anchor:'middle'})+tally(tx+86,116,9)+text(tx+35,155,'Pp',{anchor:'middle'})+tally(tx+86,156,21)+text(tx+35,195,'pp',{anchor:'middle'})+tally(tx+86,196,10);
-  b+=text(tx+110,232,'40 tosses; compare with ¼ : ½ : ¼',{anchor:'middle',size:12,fill:MUTED});
-  return['Coin tosses for a cross','Two coins for each parent’s alleles, heads P and tails p, and a tally table of 40 tosses: PP, Pp and pp, to compare with the expected one quarter, one half and one quarter.',b];},
+  // At 24 px per cm: quarters 2.43 cm across and a 3 by 5 inch card (12.7 by 7.6 cm).
+  const k=24,coin=(x,y,l)=>`<circle cx="${x}" cy="${y}" r="${f1(1.215*k)}" fill="#d8d8d8" stroke="#9a9a9a" stroke-width="2"/>`+text(x,y+7,l,{anchor:'middle',bold:true,size:20,fill:'#444b55'});
+  b+=coin(52,78,'P')+coin(122,78,'p')+text(87,124,'parent 1’s coin',{anchor:'middle',size:12,fill:MUTED})+coin(52,178,'P')+coin(122,178,'p')+text(87,224,'parent 2’s coin',{anchor:'middle',size:12,fill:MUTED});
+  b+=text(87,30,'heads P, tails p',{anchor:'middle',size:12,fill:MUTED});
+  const tx=184,ty=50,cw=12.7*k,ch=7.6*k;b+=`<rect x="${tx}" y="${ty}" width="${f1(cw)}" height="${f1(ch)}" fill="#ffffff" stroke="${LINE}"/>`;
+  for(let i=1;i<=3;i++)b+=`<path d="M${tx} ${f1(ty+i*ch/4)}H${f1(tx+cw)}" stroke="#c7d3e3"/>`;b+=`<path d="M${tx+60} ${ty}V${f1(ty+ch)}" stroke="${RED}" opacity=".5"/>`;
+  b+=text(tx+30,ty+30,'Toss',{anchor:'middle',bold:true})+text(tx+180,ty+30,'Tally (40 tosses)',{anchor:'middle',bold:true});
+  const tally=(x,y,n)=>{let s='';for(let i=0;i<n;i++){const g=Math.floor(i/5),q=i%5;s+=q<4?`<path d="M${x+g*30+q*6} ${y-12}v16" stroke="${INK}" stroke-width="2"/>`:`<path d="M${x+g*30-2} ${y}l26 -12" stroke="${INK}" stroke-width="2"/>`;}return s;};
+  const row=i=>ty+ch/4*i+ch/8+5;
+  b+=text(tx+30,row(1),'PP',{anchor:'middle'})+tally(tx+76,row(1),9)+text(tx+30,row(2),'Pp',{anchor:'middle'})+tally(tx+76,row(2),21)+text(tx+30,row(3),'pp',{anchor:'middle'})+tally(tx+76,row(3),10);
+  b+=text(tx+cw/2,ty+ch+22,'compare with ¼ : ½ : ¼, that is 10 : 20 : 10',{anchor:'middle',size:12,fill:MUTED});
+  b+=scaleBar(tx,288,5*k,'5 cm');
+  return['Coin tosses for a cross','To scale, with a 5 cm scale bar. Two quarters for each parent’s alleles, heads P and tails p, and a 3 by 5 inch card with a tally of 40 tosses: 9 PP, 21 Pp and 10 pp, to compare with the expected 10, 20 and 10.',b];},
  17:()=>{let b='';
-  // Two fingers on the wrist below the thumb, and a stopwatch.
-  b+=`<path d="M30 180q60-30 140-20l40 6" fill="none" stroke="#d9a77e" stroke-width="34" stroke-linecap="round"/><path d="M150 150q20-34 50-40M162 156q26-26 56-28" fill="none" stroke="#c8926a" stroke-width="12" stroke-linecap="round"/>`;
-  b+=text(120,236,'two fingers on the wrist,',{anchor:'middle',size:12,fill:MUTED})+text(120,252,'below the thumb',{anchor:'middle',size:12,fill:MUTED});
-  b+=`<circle cx="120" cy="70" r="30" fill="#ffffff" stroke="${INK}" stroke-width="3"/><path d="M120 70V48M120 70l14 8" stroke="${INK}" stroke-width="2.5"/><rect x="114" y="32" width="12" height="8" fill="${INK}"/>`+text(160,62,'count beats',{size:12,fill:MUTED})+text(160,78,'for 15 s × 4',{size:12,fill:MUTED});
-  // The expected record: rest, exercise, back to rest.
-  const gx=270,gy=220;b+=`<path d="M${gx} ${gy}H490M${gx} ${gy}V50" stroke="${LINE}"/><path d="M${gx} 170H${gx+30}L${gx+45} 80L${gx+70} 110L${gx+110} 150L${gx+160} 166L${gx+215} 170" fill="none" stroke="${PURPLE}" stroke-width="3"/>`;
-  b+=`<path d="M${gx} 170H490" stroke="${TEAL}" stroke-dasharray="5 4"/>`+text(486,186,'resting pulse',{anchor:'end',size:12,fill:TEAL})+text(gx+45,70,'after exercise',{anchor:'middle',size:12,fill:PURPLE})+text(486,240,'minutes',{anchor:'end',size:12,fill:MUTED})+text(gx+4,44,'beats per minute',{size:12,fill:MUTED});
-  return['Pulse after exercise','Two fingers on the wrist below the thumb and a stopwatch to count beats. Beside them, the expected record: the pulse jumps after a minute of exercise, then falls back to the resting pulse over a few minutes.',b];}
+  // At 8 px per cm: a forearm about 6 cm wide, two fingertips about 1.6 cm wide on the wrist below the thumb, and a
+  // stopwatch 5.5 cm across.
+  const k=8;b+=`<path d="M20 ${200}h${20*k}" stroke="#d9a77e" stroke-width="${6*k}" stroke-linecap="round"/>`;
+  b+=`<path d="M${30+12*k} 182q${2*k} -${5*k} ${6*k} -${7*k}M${30+14*k} 186q${2*k} -${5*k} ${6*k} -${7*k}" fill="none" stroke="#c8926a" stroke-width="${1.6*k}" stroke-linecap="round"/>`;
+  b+=text(110,252,'two fingers on the wrist,',{anchor:'middle',size:12,fill:MUTED})+text(110,268,'below the thumb',{anchor:'middle',size:12,fill:MUTED});
+  b+=`<circle cx="70" cy="70" r="${2.75*k}" fill="#ffffff" stroke="${INK}" stroke-width="3"/><path d="M70 70V${70-2*k}M70 70l${1.4*k} ${0.8*k}" stroke="${INK}" stroke-width="2.5"/><rect x="65" y="${70-2.75*k-7}" width="10" height="7" fill="${INK}"/>`+text(108,64,'count beats',{size:12,fill:MUTED})+text(108,80,'for 15 s, × 4',{size:12,fill:MUTED});
+  b+=scaleBar(20,292,5*k,'5 cm');
+  // A typical record: resting about 72 beats a minute, about 128 just after a minute of exercise, back near rest
+  // within about 5 minutes.
+  const gx=268,gw=222,gy=226,gh=170,X=m=>gx+m/8*gw,Y=bpm=>gy-(bpm-60)/80*gh,data=[[0,72],[1,72],[2,128],[3,104],[4,90],[5,82],[6,76],[7,73],[8,72]];
+  b+=`<path d="M${gx} ${gy}H${gx+gw}M${gx} ${gy}V${gy-gh}" stroke="${LINE}"/>`;
+  for(const v of[60,80,100,120,140])b+=`<path d="M${gx-4} ${f1(Y(v))}h4" stroke="${LINE}"/>`+text(gx-7,Y(v)+4,String(v),{anchor:'end',size:11,fill:MUTED});
+  for(const m of[0,2,4,6,8])b+=`<path d="M${f1(X(m))} ${gy}v4" stroke="${LINE}"/>`+text(X(m),gy+16,String(m),{anchor:'middle',size:11,fill:MUTED});
+  b+=`<rect x="${f1(X(1))}" y="${gy-gh}" width="${f1(X(2)-X(1))}" height="${gh}" fill="${PURPLE}" opacity=".08"/>`+text(X(1.5),gy-gh+14,'exercise',{anchor:'middle',size:11,fill:PURPLE});
+  b+=`<path d="${data.map(([m,v],i)=>(i?'L':'M')+f1(X(m))+' '+f1(Y(v))).join('')}" fill="none" stroke="${PURPLE}" stroke-width="3"/><path d="M${gx} ${f1(Y(72))}H${gx+gw}" stroke="${TEAL}" stroke-dasharray="5 4"/>`;
+  b+=text(gx+gw,Y(72)+16,'resting, about 72',{anchor:'end',size:11,fill:TEAL})+text(gx+4,gy-gh-8,'beats per minute',{size:11,fill:MUTED})+text(gx+gw,gy+30,'minutes',{anchor:'end',size:11,fill:MUTED});
+  return['Pulse after exercise','To scale, with a 5 cm scale bar. Two fingers on the wrist below the thumb and a stopwatch, to count beats for 15 seconds and multiply by 4. Beside them, a typical record: about 72 beats a minute at rest, about 128 just after a minute of exercise, and back near 72 within about 5 minutes.',b];}
 };
 function figure(lesson){
  const draw=DRAWINGS[lesson];if(!draw)return'';
  const[title,description,body]=draw();
  return`<div class="investigation-figure">${M.graphic(title,description,body)}</div>`;
 }
-const api={figure,LESSONS:Object.keys(DRAWINGS).map(Number)};
+const api={figure,heatingCurve,moonSky,HEAT,SKY,LESSONS:Object.keys(DRAWINGS).map(Number)};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceScienceInvestigations=api;
 })(typeof window==='undefined'?globalThis:window);

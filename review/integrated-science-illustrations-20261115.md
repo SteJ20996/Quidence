@@ -6,18 +6,22 @@ The repository owner asked for pictures in the experiment parts of the science l
 
 Ten of the eighteen lessons end with a hands-on investigation for a class ("A useful next step"). Each now has a drawing of the setup and what to look for, shown under the suggestion once the lesson's questions are done:
 
-| Lesson | Investigation | Drawing |
+| Lesson | Investigation | Drawn to scale from |
 | --- | --- | --- |
-| 1 Cells as systems | Onion skin cells under a microscope | Microscope, the field of view with cells, and three steps to estimate cell size |
-| 2 Heating ice | Heating crushed ice on a hot plate | Beaker, thermometer and stirrer, the expected flat part at 0 °C, and a safety line |
-| 5 Particles in motion | A balloon on a bottle in hot and ice water | Full and limp balloons, with particle arrows long and short |
-| 6 Atoms in living things | An antacid tablet in a zip-top bag on a scale | Sealed bag: same mass; open bag: lighter (readings marked as examples) |
-| 9 Speed and crashes | A toy car down a ramp into a cup | Ramp at three heights, the cup and a ruler |
-| 10 Moon phases | Watching the evening Moon | The southern sky at the same time on five evenings, the Moon fuller and farther east each evening |
-| 11 Natural selection | Picking paper dots off dark and light sheets | The dots left on each sheet, and two steps |
-| 12 Listening with waves | Copying a recording | Analog copies getting noisier; digital copies holding the same numbers |
-| 16 Inheritance | Tossing coins for alleles | Two coins per parent and a tally of 40 tosses |
-| 17 Homeostasis | Pulse after exercise | Fingers on the wrist, a stopwatch, and the pulse falling back to rest |
+| 1 Cells as systems | Onion skin cells under a microscope | A microscope about 35 cm tall; the field of view at 400×, about 0.45 mm across (field number 18 with a 40× objective); onion skin cells about 250 by 50 µm with nuclei about 15 µm; about 9 cells across the field |
+| 2 Heating ice | Heating crushed ice on a hot plate | A 250 mL beaker (7 by 9.5 cm), a 30 cm thermometer, an 18 cm hot plate, ice pieces about 1.5 cm; the graph computed for 100 g of ice from −10 °C with 150 W reaching it: about 4 minutes flat at 0 °C |
+| 5 Particles in motion | A balloon on a bottle in hot and ice water | A 500 mL bottle 21 by 6.5 cm in a 22 cm bowl. Air warmed from 20 °C to 60 °C grows about 14% (about 70 mL), a ball about 5 cm across; cooled to 0 °C it shrinks about 7%. The air particles are enlarged, and the drawing says so. |
+| 6 Atoms in living things | Half an antacid tablet in a capped soda bottle on a scale | 500 mL soda bottles 22 cm tall on 18 cm scales; example readings of 228.6 g, and 228.4 g after the open bottle loses carbon dioxide |
+| 9 Speed and crashes | A toy car down a ramp into a cup | A 1 m ramp at 10, 20 and 30 cm, a 7.5 cm toy car, a 9 cm paper cup and a meter stick |
+| 10 Moon phases | Watching the evening Moon | Angles to scale: the Moon's altitude and direction one hour after sunset at 34° N near an equinox, computed for days 3–11. The Moon's disc, 0.5° across, would be 1.3 px, so it is drawn 12 times larger, and the drawing says so. |
+| 11 Natural selection | Picking paper dots off dark and light sheets | Letter-size sheets and 6.4 mm hole-punch dots, 50 of each color per sheet; example counts left |
+| 12 Listening with waves | Copying a recording | A diagram, not a scene: phones at true proportions (7 by 15 cm); the waves are graphs of sound |
+| 16 Inheritance | Tossing coins for alleles | Quarters 2.43 cm across and a 3 by 5 inch card with a tally of 40 tosses |
+| 17 Homeostasis | Pulse after exercise | A forearm about 6 cm wide, fingertips about 1.6 cm, a 5.5 cm stopwatch; a typical record from 72 to 128 beats a minute and back within about 5 minutes |
+
+Every drawing has a scale bar or axes in real units, and its description says whether it is to scale and what is enlarged. Sizes are typical values for common classroom equipment, not measurements of one product.
+
+**A finding from drawing to scale.** Lesson 6 first suggested a sealed zip-top bag. Working out the sizes showed a problem with that design. Half a tablet makes over 0.1 L of carbon dioxide, and a whole one about 0.3 L. The gas swells the bag, the bag pushes aside that much more air, and the air's buoyancy lowers the scale reading by about 0.1–0.4 g. Students would see a "sealed" bag lose mass. The investigation now uses half a tablet in a capped plastic soda bottle, which does not swell and is made to hold pressure; the lesson text explains why.
 
 The other eight lessons end with a data, map or reading task rather than an experiment, so they have no drawing.
 
@@ -61,5 +65,5 @@ None of these photographs has been downloaded or checked yet.
 
 ## Gaps
 
-- The drawings are schematic, not to scale. They were checked by eye in three appearances and at phone width, but not by a teacher.
+- The drawings use typical sizes, not measurements of particular equipment. They were checked by eye and at phone width, but not by a teacher.
 - The safety guidance is one line (lesson 2). A school should apply its own lab-safety rules.

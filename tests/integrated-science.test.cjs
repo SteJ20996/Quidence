@@ -391,6 +391,8 @@ test('lessons with a hands-on investigation show a drawing of it in their feedba
   assert.match(f,/class="investigation-figure"/);assert.match(f,/<title id=/);assert.match(f,/<desc id=/);assert.match(f,/figcaption/);
   // Drawn here: no images, links or outside resources.
   assert.doesNotMatch(f,/<image|<img|href=|url\((?!#)|NaN|undefined/);
+  // Each drawing says how it is scaled, and draws a scale bar or scaled axes.
+  assert.match(f,/<desc[^>]*>[^<]*(To scale|Angles to scale|true proportions)/);
  }
  assert.equal(Graphs.investigation('physics',0),'');
  // Every label fits inside the 520-wide drawing even in a wide typeface (0.62 × the font size per character), since
@@ -405,4 +407,8 @@ test('lessons with a hands-on investigation show a drawing of it in their feedba
  for(let j=0;j<4;j++)h.click('next-step');
  for(const t of C.LESSONS[0].checks){h.choose(t.correct[0]);h.input('explanation','Because of the model.');h.submit();h.click('next');}
  assert.match(h.app.innerHTML,/A useful next step/);assert.match(h.app.innerHTML,/investigation-figure/);assert.match(h.app.innerHTML,/Measuring onion skin cells/);
+ // The computed parts of two drawings: the heating curve and the Moon's place in the sky.
+ close(I.heatingCurve(0),-10);close(I.heatingCurve(100),0);close(I.heatingCurve(348),40,0.05);
+ const melt=(100*334)/150;assert(melt>200&&melt<240,'melting takes about 4 minutes');
+ const m7=I.moonSky(7),m11=I.moonSky(11);assert(m7.altitude>45&&m7.azimuth>0&&m7.azimuth<45);assert(m11.azimuth<0);assert(I.moonSky(3).altitude<I.moonSky(5).altitude);
 });
