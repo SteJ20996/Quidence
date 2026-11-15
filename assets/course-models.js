@@ -17,7 +17,7 @@ function cartesian(title,series,{xmin=0,xmax=12,ymin=0,ymax=12,xlabel='x',ylabel
  series.forEach((s,j)=>{let d='',previous=null;for(let i=0;i<=240;i++){const x=xmin+(xmax-xmin)*i/240,y=s.fn(x);if(y===null||!Number.isFinite(y)){previous=null;continue;}const split=s.gap!==undefined&&previous!==null&&(previous-s.gap)*(x-s.gap)<=0;d+=(previous===null||split?'M':'L')+fmt(px(x))+' '+fmt(py(y))+' ';previous=x;}b+=`<path d="${d}" clip-path="url(#${clip})" fill="none" stroke="${j?'#087f76':'#6542c0'}" stroke-width="3" ${j?'stroke-dasharray="7 4"':''}/>`;});
  if(point&&point.every(Number.isFinite)&&point[0]>=xmin&&point[0]<=xmax&&point[1]>=ymin&&point[1]<=ymax)b+=`<circle cx="${px(point[0])}" cy="${py(point[1])}" r="5" fill="#a84324"/>`;
  b+=`<text x="270" y="291" text-anchor="middle" class="axis-label">${esc(xlabel)}</text><text x="${ylabelX}" y="145" transform="rotate(-90 ${ylabelX} 145)" text-anchor="middle" class="axis-label">${esc(ylabel)}</text>`;
- return '<div class="course-model-legend">'+series.map((s,j)=>'<span>'+ (j?'Dashed: ':'Solid: ')+esc(s.label)+'</span>').join('')+'</div>'+graphic(title,title+'. '+series.map(s=>s.label).join('; ')+'. Axes: '+xlabel+', '+ylabel+'.',b);
+ return '<div class="course-model-legend">'+series.map((s,j)=>'<span>'+(s.prefix??(j?'Dashed: ':'Solid: '))+esc(s.label)+'</span>').join('')+'</div>'+graphic(title,title+'. '+series.map(s=>s.label).join('; ')+'. Axes: '+xlabel+', '+ylabel+'.',b);
 }
 const market=shift=>({price:6+shift/2,quantity:6+shift/2});
 const midpointElasticity=(p1,q1,p2,q2)=>Math.abs(((q2-q1)/((q1+q2)/2))/((p2-p1)/((p1+p2)/2)));

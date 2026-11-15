@@ -22,7 +22,7 @@ test('pre-calculus cover point lies exactly on a circle, and all six assets are 
 });
 test('homepage offers fourteen mathematics courses, introductory physics, Algorithms and four cross-disciplinary projects',()=>{
  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
- assert.equal([...html.matchAll(/data-subject="/g)].length,21);assert.equal([...html.matchAll(/data-course-state="available"/g)].length,21);assert.equal([...html.matchAll(/data-course-state="planned"/g)].length,0);assert.equal([...html.matchAll(/class="subject-link"/g)].length,21);
+ assert.equal([...html.matchAll(/data-subject="/g)].length,22);assert.equal([...html.matchAll(/data-course-state="available"/g)].length,22);assert.equal([...html.matchAll(/data-course-state="planned"/g)].length,0);assert.equal([...html.matchAll(/class="subject-link"/g)].length,22);
  assert.equal([...html.matchAll(/class="subject-card cross"/g)].length,4);assert.equal([...html.matchAll(/class="subject-card algorithms"/g)].length,1);
  assert.doesNotMatch(html,/Microeconomics|Macroeconomics/);assert.match(html,/Limits, derivatives, accumulation, and indefinite and improper integrals are open/);assert.doesNotMatch(html,/AP Calculus|AP Statistics/);assert.match(html,/76 diagnostic problems, 22 field projects, two Coordinate Geometry projects, 11 Number Theory, 10 Discrete Mathematics and 10 Probability proof projects/);
 });

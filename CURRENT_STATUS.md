@@ -1,3 +1,36 @@
+## 2026-11-15 · New course: Integrated Science 6–10 (part 1: grade 6)
+
+A new course, *Integrated Science 6–10* (`courses/integrated-science/`), aligned with California's science framework.
+- **Plan.** It follows grades 6–8 of the 2016 *California Science Framework*'s Preferred Integrated Course Model, then *Living Earth* and *Chemistry in the Earth System*. It is one course, with one lesson per instructional segment: 24 lessons in five pull requests. See [the plan](review/integrated-science-plan-20261115.md).
+- **This pull request: grade 6, four lessons.**
+  1. Why are cells so small: surface area for each unit of volume of a cube and a flat cell, then tissues, organs and systems.
+  2. Heating ice: a heating curve with the energy of each stage, and how the water cycle carries energy aloft.
+  3. Rain shadows: air crossing the Sierra Nevada cools, forms cloud and rains out, and arrives warmer and drier.
+  4. Global warming: the energy balance, about 3 °C and 3.9 W/m² for each doubling of carbon dioxide, and how natural causes were ruled out.
+- **Alignment.** Each lesson page names its segment and the PEs it "builds toward". The PEs were checked by hand against the segment boxes in chapter 5. Three that the lessons do not teach (MS-PS3-3, MS-LS1-4, MS-ESS3-3) were dropped.
+- **Site.**
+  - The lesson menu groups lessons by unit.
+  - A new card in Middle School and Science, before Physics 1, with art in all four appearances.
+  - A third course start on the map's Physics node.
+  - Records, sync, SEO (23 sitemap pages) and the static release.
+  - The subject rail, now about 1,090 px tall, scrolls with the page at 1920 × 1080 and stays pinned at 1200 px and taller.
+- **Checks.**
+  - A new unit test recomputes every model and answer key and the settings each step asks for, and runs the course with save, reload and export.
+  - An independent review found three errors, all fixed:
+    - a rain-shadow step that contradicted the lab at its default settings;
+    - a sentence implying most of today's carbon dioxide came from fuel;
+    - an ice-warming stage too short to see on the slider.
+  - It also led to these changes:
+    - the rain-shadow note now says the model overstates the far-side warming;
+    - the figures were updated to 2025 carbon dioxide (426 ppm) and 2015–2024 warming (about 1.2 °C);
+    - the cell-shape comparison now uses cells of about the same volume.
+- **Not yet done.**
+  - Lesson 2 goes past grade 6 assessment boundaries on purpose, and lesson 4 teaches more mechanism than the framework expects in grade 6.
+  - Models cannot replace investigations.
+  - No students or teachers have tried the lessons.
+
+See [the review note](review/integrated-science-unit1-20261115.md).
+
 ## 2026-11-10 · Cross-disciplinary project 4: Li Ye's round city
 
 The Cross-disciplinary Projects section has a fourth project, "One round city, ten right triangles" (`cross-disciplinary/?project=cross-p04`).

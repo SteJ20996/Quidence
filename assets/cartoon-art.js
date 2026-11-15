@@ -27,7 +27,8 @@ venn:'<g fill-opacity=".55"><circle cx="22" cy="18" r="13" fill="var(--mint)"/><
 dots:'<g fill="var(--coral)"><circle cx="12" cy="13" r="5"/><circle cx="28" cy="13" r="5"/><circle cx="44" cy="13" r="5"/></g><g fill="var(--mint)"><circle cx="12" cy="31" r="5"/><circle cx="28" cy="31" r="5"/><circle cx="44" cy="31" r="5"/></g>',
  surface:'<path d="M6 31Q19 5 31 21T54 16v14Q42 44 30 28T6 43Z" fill="var(--lilac)"/><path d="M17 15v20m13-14v7m12-7v14" opacity=".6"/>',
  pendulum:'<path d="M8 6h45M30 6v28M30 6 11 29m19-23 19 23"/><path d="M11 29q19 22 38 0" stroke-dasharray="3 4" opacity=".4"/><circle cx="11" cy="29" r="6" fill="var(--lilac)"/><circle cx="30" cy="34" r="6" fill="var(--coral)"/><circle cx="49" cy="29" r="6" fill="var(--mint)"/>',
- circuit:'<path d="M8 17V9h17m11 0h15v29H8V28m17-24v10m6-13v16m0-8h5M3 20h10m-7 5h4"/><path d="m22 38 3-5 4 10 4-10 4 10 3-5" fill="none"/>',
+ science:'<ellipse cx="16" cy="26" rx="12" ry="9" fill="var(--mint)"/><circle cx="19" cy="24" r="3"/><path d="M30 42L44 18L58 42Z" fill="var(--lilac)"/><path d="M36 15h10" stroke="var(--coral)"/><path d="M37 20l-1 4M42 20l-1 4"/>',
+circuit:'<path d="M8 17V9h17m11 0h15v29H8V28m17-24v10m6-13v16m0-8h5M3 20h10m-7 5h4"/><path d="m22 38 3-5 4 10 4-10 4 10 3-5" fill="none"/>',
  orbit:'<circle cx="30" cy="24" r="7" fill="var(--coral)"/><ellipse cx="30" cy="24" rx="25" ry="10" transform="rotate(-25 30 24)"/><ellipse cx="30" cy="24" rx="25" ry="10" transform="rotate(45 30 24)"/><circle cx="50" cy="10" r="4" fill="var(--mint)"/>'
 };
 function icon(name){return `<svg viewBox="0 0 60 48" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round">${pictures[name]||pictures.shapes}</svg>`}

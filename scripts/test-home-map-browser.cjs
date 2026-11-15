@@ -28,7 +28,7 @@ async function main(){
    });
    assert.deepEqual(bounds,{overflow:false,overlaps:[],headerClipping:[]});output.mapStates++;
   }
-  for(const [width,height]of [[1280,720],[1200,900],[1920,1080],[1024,768],[375,812],[320,812]]){
+  for(const [width,height]of [[1280,720],[1200,900],[1920,1080],[1920,1200],[1024,768],[375,812],[320,812]]){
    const context=await browser.newContext({viewport:{width,height}}),page=await context.newPage();listen(page);
    await page.addInitScript(()=>localStorage.setItem('quidence_ui_theme_v1','classic'));await page.goto(origin+'/');await ready(page);
    await english(page,'home');
@@ -42,8 +42,9 @@ async function main(){
     for(let chapter=0;chapter<4;chapter++){await page.locator('button[data-chapter="'+chapter+'"]').click();await geometry(page);}
     await page.locator('button[data-chapter="0"]').click();
     // The subject rail stays pinned only when all of it fits; otherwise it scrolls with the page and nothing in it is cut off.
+    // With eighteen courses it is about 1,090 px tall, so it scrolls at 1080 px and stays pinned at 1200 px.
     if(width>=960){const rail=await page.evaluate(()=>{const r=document.querySelector('.qf-left-rail'),p=r.querySelector('.qs-subject-panel');return{hidden:p.scrollHeight-p.clientHeight,position:getComputedStyle(r).position};});
-     assert(rail.hidden<=1,`${width}x${height} ${address}: ${rail.hidden}px of the subject rail is cut off`);assert.equal(rail.position,height>=1080?'sticky':'static',`${width}x${height} ${address} rail position`);}
+     assert(rail.hidden<=1,`${width}x${height} ${address}: ${rail.hidden}px of the subject rail is cut off`);assert.equal(rail.position,height>=1200?'sticky':'static',`${width}x${height} ${address} rail position`);}
     if(width===1280&&address==='/'){
      await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:path.join(__dirname,'../review/screenshots/home-map-1280-en.webp'),type:'webp'});
     }
@@ -55,9 +56,9 @@ async function main(){
    assert.equal(await page.locator('#goal-include-report').isChecked(),false,'New subject needs its own report opt-in');
    await page.locator('#goal-include-report').check();
    await page.locator('button[data-home-view="courses"]').click();
-   assert.equal(await page.locator('.subject-card:visible').count(),21);
+   assert.equal(await page.locator('.subject-card:visible').count(),22);
    assert.deepEqual(await page.locator('.group-heading h2').allTextContents(),['Middle School','High School','College Level','Computer Science','Cross-disciplinary Projects']);
-   const levels=await page.locator('.catalogue-group').evaluateAll(groups=>groups.map(g=>g.querySelectorAll('.subject-card').length));assert.deepEqual(levels,[1,8,7,1,4]);
+   const levels=await page.locator('.catalogue-group').evaluateAll(groups=>groups.map(g=>g.querySelectorAll('.subject-card').length));assert.deepEqual(levels,[2,8,7,1,4]);
    assert.equal(await page.locator('.home-map-view').isVisible(),false);
    assert.equal(await page.locator('#learning-goal').inputValue(),RAW);assert(await page.locator('#goal-include-report').isChecked());
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
@@ -108,7 +109,7 @@ async function main(){
   }
   const unavailable=await browser.newContext(),blocked=await unavailable.newPage();listen(blocked);
   await blocked.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw Error('Storage denied');}}));
-  await blocked.goto(origin+'/');await chooseTheme(blocked,'classic');await ready(blocked);await blocked.locator('button[data-home-view="courses"]').click();assert.equal(await blocked.locator('.subject-card:visible').count(),21);await unavailable.close();
+  await blocked.goto(origin+'/');await chooseTheme(blocked,'classic');await ready(blocked);await blocked.locator('button[data-home-view="courses"]').click();assert.equal(await blocked.locator('.subject-card:visible').count(),22);await unavailable.close();
   const routes=['/','/assets/home.js','/assets/knowledge-map.js','/assets/knowledge-map-data.js'];let failed=0;
   for(let batch=0;batch<3;batch++)await Promise.all(Array.from({length:40},async(_,i)=>{const response=await fetch(origin+routes[i%routes.length]);if(response.status!==200||!(await response.text()).length)failed++;}));
   output.stress.localRequests={concurrency:40,total:120,failed};assert.equal(failed,0);
