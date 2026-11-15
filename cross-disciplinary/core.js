@@ -96,6 +96,31 @@
   function chiSquare(counts){const n=counts.reduce((a,b)=>a+b,0);return counts.reduce((s,o,i)=>{const e=n*benford(i+1);return s+(o-e)**2/e;},0);}
   // The mantissa of a positive whole number: the part after the decimal point of its logarithm.
   function mantissa(n){const s=String(n),lead=s.slice(0,15);return Math.log10(Number(lead))-(lead.length-1);}
-  const api={benford,firstDigit,powers,fibonacci,tally,chiSquare,mantissa,PIZZA,CONCURRENT,TRIANGLE,CIRCLE,HEXAGON,chordLine,chords,point,BALL,dot,cross,unit,disc,split,pieces,chord,crossings,face,ballCounts,choose,addressOf,ballAddresses,tetrahedron,flip};
+  // Li Ye's ten circles for a right triangle with legs a (east) and b (south). The right angle is at the origin, the east
+  // leg runs to (a, 0) and the south leg to (0, −b). Each circle has radius ab/D, where D is a sum or difference of the
+  // sides, and a centre. `signs` gives the piece standing on the east leg, the south leg and the hypotenuse, each a
+  // triangle with its apex at the centre and height r: +1 inside the triangle, −1 outside it, 0 when the centre lies on
+  // that side's line. The signed pieces always add up to the triangle: Σ sign · r · side/2 = ab/2.
+  const LIYE={
+   inside:{n:1,label:'Inside',div:(a,b,c)=>a+b+c,divText:'a + b + c',centre:r=>[r,-r],signs:[1,1,1]},
+   eastLeg:{n:2,label:'On the east leg',div:(a,b,c)=>b+c,divText:'b + c',centre:r=>[r,0],signs:[0,1,1]},
+   southLeg:{n:3,label:'On the south leg',div:(a,b,c)=>a+c,divText:'a + c',centre:r=>[0,-r],signs:[1,0,1]},
+   corner:{n:4,label:'At the right angle',div:(a,b,c)=>c,divText:'c',centre:()=>[0,0],signs:[0,0,1]},
+   hypotenuse:{n:5,label:'On the hypotenuse',div:(a,b)=>a+b,divText:'a + b',centre:r=>[r,-r],signs:[1,1,0]},
+   acrossEast:{n:6,label:'Across the east leg',div:(a,b,c)=>b+c-a,divText:'b + c − a',centre:r=>[r,r],signs:[-1,1,1]},
+   acrossSouth:{n:7,label:'Across the south leg',div:(a,b,c)=>a+c-b,divText:'a + c − b',centre:r=>[-r,-r],signs:[1,-1,1]},
+   acrossHypotenuse:{n:8,label:'Across the hypotenuse',div:(a,b,c)=>a+b-c,divText:'a + b − c',centre:r=>[r,-r],signs:[1,1,-1]},
+   halfEast:{n:9,label:'Beyond the corner, north',div:(a,b,c)=>c-a,divText:'c − a',centre:r=>[0,r],signs:[-1,0,1]},
+   halfSouth:{n:10,label:'Beyond the corner, west',div:(a,b,c)=>c-b,divText:'c − b',centre:r=>[-r,0],signs:[0,-1,1]}};
+  function liye(kind,a,b){const k=LIYE[kind],c=Math.hypot(a,b),D=k.div(a,b,c),r=a*b/D;return {kind,a,b,c,D,r,d:2*r,centre:k.centre(r),signs:k.signs};}
+  // The distance from (x, y) to the hypotenuse, the line bx − ay − ab = 0 through (a, 0) and (0, −b).
+  const toHypotenuse=(a,b,[x,y])=>Math.abs(b*x-a*y-a*b)/Math.hypot(a,b);
+  // The ten problems on one map: the city's centre at (0, 0), radius 120 bu, east +x and north +y. Each has a start and
+  // an east–west and a north–south walk (problem 8 walks west and north).
+  const CITY_PROBLEMS=[[1,[-120,120],'the north-west corner',[320,-600]],[2,[-120,0],'the west gate',[256,-480]],[3,[0,120],'the north gate',[200,-375]],
+   [4,[0,0],'the centre',[136,-255]],[5,[-120,120],'the north-west corner',[180,-360]],[6,[-120,-120],'the south-west corner',[192,-360]],
+   [7,[120,120],'the north-east corner',[80,-150]],[8,[120,-120],'the south-east corner',[-48,90]],[9,[0,-120],'the south gate',[72,-135]],
+   [10,[120,0],'the east gate',[16,-30]]].map(([n,start,place,walk])=>({n,start,place,walk,ends:[[start[0]+walk[0],start[1]],[start[0],start[1]+walk[1]]]}));
+  const api={LIYE,liye,toHypotenuse,CITY_PROBLEMS,benford,firstDigit,powers,fibonacci,tally,chiSquare,mantissa,PIZZA,CONCURRENT,TRIANGLE,CIRCLE,HEXAGON,chordLine,chords,point,BALL,dot,cross,unit,disc,split,pieces,chord,crossings,face,ballCounts,choose,addressOf,ballAddresses,tetrahedron,flip};
   root.CrossCore=api;if(typeof module==='object'&&module.exports)module.exports=api;
 })(globalThis);

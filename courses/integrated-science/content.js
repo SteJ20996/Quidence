@@ -1,0 +1,1 @@
+(function(root){'use strict';const C=typeof module==='object'&&module.exports?require('../../assets/science-content.js'):root.QuidenceScienceContent;const course=C.create();if(typeof module==='object'&&module.exports)module.exports=course;else root.QuidenceCourseContent=course;})(typeof window==='undefined'?globalThis:window);

@@ -223,6 +223,16 @@ const data={
       "module": "physics-2"
     },
     {
+      "id": "integratedscience",
+      "chapter": 2,
+      "node": "physics",
+      "en": "Integrated Science 6–10",
+      "scope": {
+        "en": "Cells, energy, atoms, plates and populations, building toward biology and chemistry"
+      },
+      "module": "integrated-science"
+    },
+    {
       "id": "gametheory",
       "chapter": 1,
       "node": "gametheory",
@@ -303,7 +313,8 @@ const data={
     ],
     "physics": [
       "physics1",
-      "physics2"
+      "physics2",
+      "integratedscience"
     ],
     "mechanics": [
       "physics1"

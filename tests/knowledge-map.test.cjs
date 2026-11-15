@@ -20,7 +20,7 @@ test('map course starts use the current courses and keep advanced directions exp
  assert.deepEqual(Map.courseCandidates(0,['algebra1','geometry']),[]);
  assert.deepEqual(Map.courseCandidates(0,['__proto__']),[]);
  assert.deepEqual(Map.courseCandidates(999,['operations']),[]);
- assert.deepEqual(Map.courseCandidates(2,['physics']),['physics1','physics2']);
+ assert.deepEqual(Map.courseCandidates(2,['physics']),['physics1','physics2','integratedscience']);
 });
 test('continuing upward only crosses to the matching concepts on the next chapter',()=>{
  for(const [index,bridge]of Data.bridges.entries())for(const [from,to]of Object.entries(bridge)){

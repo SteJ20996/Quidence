@@ -30,6 +30,7 @@ const KEYS={
  'basic-logic_beta01_session_v1':{label:'Basic Logic',schema:'basic-logic_beta01_session_v1'},
  'physics-1_beta01_session_v1':{label:'Physics 1 Foundations',schema:'physics-1_beta01_session_v1'},
  'physics-2_beta01_session_v1':{label:'Physics 2 Foundations',schema:'physics-2_beta01_session_v1'},
+ 'integrated-science_beta01_session_v1':{label:'Integrated Science 6–10',schema:'integrated-science_beta01_session_v1'},
  physics_beta01_session_v1:{label:'Physics',schema:'physics_beta01_session_v1'},
  microeconomics_beta01_session_v1:{label:'Microeconomics',schema:'microeconomics_beta01_session_v1'},
  cluevera_foundation_portfolio_v1:{label:'Foundation checks',schema:'cluevera_foundation_portfolio_v1'},

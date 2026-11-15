@@ -111,3 +111,9 @@
 @media(max-width:420px){.x-diff-cell{font-size:13px;min-height:30px;margin:0 1px}.x-pascal{padding:10px 3px}.x-pascal-cell{font-size:10.5px;min-height:24px;margin:0}.x-address-cell{font-size:12px}.x-range{grid-template-columns:minmax(0,1fr) 3em}.x-range span{grid-column:1/-1}}
 @media(max-width:420px){.x-dim-cell{font-size:13px;min-height:28px}.x-dim,.x-dim-head,.x-dim-row{gap:3px}}
 @media(prefers-reduced-motion:reduce){.x-diff-cell,.x-address-cell,.x-pascal-cell,.x-dim-cell{transition:none}}
+/* Li Ye's round city: two leg sliders side by side, stacked on narrow screens. */
+.dy-sliders{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+@media (max-width:560px){.dy-sliders{grid-template-columns:1fr}}
+.dy-select{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:center;margin:12px 2px 0;font-size:12px}
+.dy-select select{min-height:38px;font:inherit;font-size:14px;padding:4px 8px;border:1px solid #aebfc2;border-radius:8px;background:#fff;color:inherit}
+.dy-problems button{min-width:40px}

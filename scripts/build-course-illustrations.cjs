@@ -25,6 +25,16 @@ out['cross-chords']=wrap('Two puzzles, one sequence','Chords among six points on
 // Cross-disciplinary project 3: Benford's shares of the first digits 1 to 9.
 b='<text x="160" y="24" text-anchor="middle">P(d) = log₁₀(1 + 1/d)</text><path d="M34 128H290" class="axis"/>';for(let d=1;d<=9;d++){const h=88*Math.log10(1+1/d)/Math.log10(2),x=40+28*(d-1);b+=`<rect x="${x}" y="${(128-h).toFixed(1)}" width="20" height="${h.toFixed(1)}" rx="2" fill="${d===1?'#fbe9e3':'#f1edf9'}" stroke="${d===1?'#a84324':'#6542c0'}" stroke-width="${d===1?2.4:1.6}"/><text x="${x+10}" y="146" text-anchor="middle">${d}</text>`;}
 out['cross-benford']=wrap('Why do so many numbers start with 1?','Nine bars show Benford’s law: the share of numbers whose first digit is d is log base 10 of 1 + 1/d. The bar for the digit 1 is the tallest, and the bars get shorter up to the digit 9.',b);
+// Cross-disciplinary project 4: Li Ye's round city with three of his ten right triangles, drawn to scale (0.42 px per bu).
+// The city is 240 across; problem 1 starts at the north-west corner, problem 7 at the north-east and problem 8 at the south-east.
+{const P=([x,y])=>`${(124+0.42*x).toFixed(1)} ${(81-0.42*y).toFixed(1)}`;
+b=`<path d="M${P([-120,120])}H${(124+0.42*120).toFixed(1)}V${(81+0.42*120).toFixed(1)}H${(124-0.42*120).toFixed(1)}Z" fill="none" stroke="#8595ac" stroke-width="1.2" stroke-dasharray="4 3"/>`;
+b+=`<circle cx="124" cy="81" r="${(0.42*120).toFixed(1)}" fill="#f1edf9" stroke="#6542c0" stroke-width="2.6"/>`;
+b+=`<path d="M${P([-120,-170])}L${P([-120,120])}L${P([200,120])}L${P([200-320*0.4833,-170])}" fill="none" stroke="#142236" stroke-width="2.2" stroke-linejoin="round"/>`;
+b+=`<path d="M${P([120,120])}L${P([200,120])}L${P([120,-30])}Z" fill="#fbe9e3" stroke="#a84324" stroke-width="2"/>`;
+b+=`<path d="M${P([120,-120])}L${P([72,-120])}L${P([120,-30])}Z" fill="#e3f3ee" stroke="#087f76" stroke-width="2"/>`;
+b+='<text x="266" y="72" text-anchor="middle" style="font-size:15px;font-weight:700">one city</text><text x="266" y="92" text-anchor="middle" class="small">ten walks</text>';}
+out['cross-dongyuan']=wrap('One round city, ten right triangles','A round city wall inside a square of roads, with three right triangles around it: a large one around the whole city and two small ones at its eastern corners. The long side of each triangle just touches the wall.',b);
 // Algorithms: a flowchart whose decision loops back, beside a list being compared pair by pair. No words, so it needs no translation.
 b='<rect x="58" y="12" width="60" height="20" rx="10" fill="#f1edf9" stroke="#6542c0" stroke-width="2"/><path d="M88 32V46" class="axis" stroke-width="1.6"/><path d="m83 42 5 6 5-6" fill="#8595ac"/>';
 b+='<path d="M88 50 124 72 88 94 52 72Z" fill="#fbe9e3" stroke="#a84324" stroke-width="2.5"/><path d="M88 94V108" class="axis" stroke-width="1.6"/><path d="m83 104 5 6 5-6" fill="#8595ac"/>';

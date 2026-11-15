@@ -1,3 +1,97 @@
+## 2026-11-15 · Integrated Science 6–10, part 2: grade 7
+
+Four grade 7 lessons, one for each instructional segment of California's integrated grade 7.
+- **Lessons.**
+  5. Particles in motion: the state, particle arrangement and typical speed of five substances from −250 °C to 150 °C, with a ball-and-stick drawing of each molecule.
+  6. Atoms in living things: where a tree's mass comes from, counting atoms through photosynthesis, respiration and burning methane.
+  7. Moving plates: seafloor magnetic stripes and ages give the spreading rate; plate processes place California's gold, geothermal heat and oil.
+  8. Recovering a population: island foxes at carrying capacity, the arrival of golden eagles, and recovery plans compared against criteria.
+- **Alignment.** PEs checked by hand against the grade 7 segment boxes. MS-LS2-1, planned for lesson 8, belongs to segment 3, so lesson 8 builds toward LS2-4 and LS2-5.
+- **Site.**
+  - The course is version 2. A record saved with only the grade 6 lessons opens with the grade 7 lessons added and every answer kept.
+  - The menu shows two unit labels; lesson counts above seven are written in words; this course's summary heading reads "Connect the model to the world".
+  - The card, map and SEO lines name the new topics.
+- **Checks.**
+  - A unit test recomputes each new model and the values each step and question uses, and checks the saved-record upgrade.
+  - An independent review found no errors and confirmed all twelve answer keys. It led to these changes:
+    - one arrow scale in the particle drawing for every state;
+    - lesson 6 rests on atom counts, with masses labeled as beyond grade 7;
+    - "respiration is photosynthesis backward" rewritten;
+    - a fossil question for MS-ESS2-3;
+    - the San Andreas step no longer uses the spreading lab;
+    - real fox counts, biodiversity and constraints added to lesson 8.
+- **Not yet done.**
+  - Several parts go beyond grade 7 assessment boundaries, and each is labeled.
+  - Extended structures are described but not modeled.
+  - The fox model's rates are made up and it has no chance events.
+  - No students or teachers have tried the lessons.
+
+See [the review note](review/integrated-science-unit2-20261115.md).
+
+## 2026-11-15 · New course: Integrated Science 6–10 (part 1: grade 6)
+
+A new course, *Integrated Science 6–10* (`courses/integrated-science/`), aligned with California's science framework.
+- **Plan.** It follows grades 6–8 of the 2016 *California Science Framework*'s Preferred Integrated Course Model, then *Living Earth* and *Chemistry in the Earth System*. It is one course, with one lesson per instructional segment: 24 lessons in five pull requests. See [the plan](review/integrated-science-plan-20261115.md).
+- **This pull request: grade 6, four lessons.**
+  1. Why are cells so small: surface area for each unit of volume of a cube and a flat cell, then tissues, organs and systems.
+  2. Heating ice: a heating curve with the energy of each stage, and how the water cycle carries energy aloft.
+  3. Rain shadows: air crossing the Sierra Nevada cools, forms cloud and rains out, and arrives warmer and drier.
+  4. Global warming: the energy balance, about 3 °C and 3.9 W/m² for each doubling of carbon dioxide, and how natural causes were ruled out.
+- **Alignment.** Each lesson page names its segment and the PEs it "builds toward". The PEs were checked by hand against the segment boxes in chapter 5. Three that the lessons do not teach (MS-PS3-3, MS-LS1-4, MS-ESS3-3) were dropped.
+- **Site.**
+  - The lesson menu groups lessons by unit.
+  - A new card in Middle School and Science, before Physics 1, with art in all four appearances.
+  - A third course start on the map's Physics node.
+  - Records, sync, SEO (23 sitemap pages) and the static release.
+  - The subject rail, now about 1,090 px tall, scrolls with the page at 1920 × 1080 and stays pinned at 1200 px and taller.
+- **Checks.**
+  - A new unit test recomputes every model and answer key and the settings each step asks for, and runs the course with save, reload and export.
+  - An independent review found three errors, all fixed:
+    - a rain-shadow step that contradicted the lab at its default settings;
+    - a sentence implying most of today's carbon dioxide came from fuel;
+    - an ice-warming stage too short to see on the slider.
+  - It also led to these changes:
+    - the rain-shadow note now says the model overstates the far-side warming;
+    - the figures were updated to 2025 carbon dioxide (426 ppm) and 2015–2024 warming (about 1.2 °C);
+    - the cell-shape comparison now uses cells of about the same volume.
+- **Not yet done.**
+  - Lesson 2 goes past grade 6 assessment boundaries on purpose, and lesson 4 teaches more mechanism than the framework expects in grade 6.
+  - Models cannot replace investigations.
+  - No students or teachers have tried the lessons.
+
+See [the review note](review/integrated-science-unit1-20261115.md).
+
+## 2026-11-10 · Cross-disciplinary project 4: Li Ye's round city
+
+The Cross-disciplinary Projects section has a fourth project, "One round city, ten right triangles" (`cross-disciplinary/?project=cross-p04`).
+- **Source.** It is built on the first ten problems of Li Ye's *Ceyuan haijing* (1248). Two people walk along two roads at right angles until each can just see the other past a round city wall. Each problem starts from a different place (a corner, a gate or the centre), and every answer is a city 240 bu across.
+- **Steps.**
+  1. The circle inside the triangle: pieces of height r from the centre give d = 2ab/(a + b + c).
+  2. Centres on a side (problems 2–5): two pieces, or one, remain.
+  3. Circles outside the triangle (problems 6–8): one piece is taken away.
+  4. Half outside (problems 9–10), checked with the distance from a point to a line.
+  5. Why the answers agree: nine of the ten lines of sight lie on one line, problem 1's hypotenuse, so those triangles are multiples of (8, 15, 17), the Nine Chapters' circle triangle; with 2ab = 240 for (8, 15, 17), the city forces each multiple to equal its rule's divisor. Problem 5 uses a second line, through the centre.
+  6. Four diameters without dividing: (a + b + c)(a + b − c) = 2ab.
+- **Courses.** Geometry, Algebra I, Coordinate Geometry and Number Theory. Chinese terms appear in pinyin only.
+- **Labs.** Six labs start on a 5-12-13 triangle:
+  - steps 1–3 join the centre to the corners, with outside pieces taken away;
+  - step 4 slides a centre along an axis;
+  - step 5 draws every problem's walks on one map of the city, and scales (8, 15, 17) around a circle 240 across;
+  - step 6 takes the square on c out of the square on a + b.
+- **Homepage.** A fourth card, with art in all four appearances: the city with problems 1, 7 and 8 drawn to scale. The catalogue line counts four cross-disciplinary projects.
+- **Checks.**
+  - The unit test recomputes each diameter from the story alone, by solving for the radius at which the line of sight touches the wall.
+  - Problems 1 and 8 also admit a second circle (diameters 1600 and 36). The story alone does not exclude it; Li Ye's diagram does.
+  - 300 random triangles check the ten circles' contacts and signed pieces.
+  - The browser test walks every step and lab. It found a coordinate-lab tolerance error, which is fixed.
+  - A second independent review found that nine lines of sight coincide (so step 5's "Li Ye chose" was wrong), and that the prompt and card announced the answer 240, which gave away nine fields. It also found that problem 5's line of sight is not a tangent, and that the Dongyuan sentence over-stated the preface. All are fixed.
+- **Not yet done.**
+  - The area method is a modern route; the text gives the rules without derivations.
+  - Who or what "Dongyuan" was is uncertain.
+  - No students or historians have reviewed the project.
+
+See [the review note](review/cross-disciplinary-li-ye-20261110.md).
+
 ## 2026-11-10 · Calculus: kinds of integrals (lesson 5), and limits as numbers (lesson 1)
 
 Calculus grows from four lessons to five. Lesson 5, "One symbol, four questions.", shows that the integral sign asks a different question depending on what is written at its ends.
