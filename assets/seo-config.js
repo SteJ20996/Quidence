@@ -23,7 +23,7 @@ const COURSES={
   probability:['/courses/probability/','Probability','Explore chance, conditional probability, expected value and the law of large numbers through ten projects with step-by-step reference proofs.'],
   ac01:['/modules/ac01/dist/','Game Theory Foundations','Explore payoff tables, best responses, dominant strategies, and pure Nash equilibria in four English lessons.'],
   'physics-1':['/courses/physics-1/','Physics 1 Foundations','Explore motion, forces, energy, momentum, rotation, oscillations, and fluids in introductory lessons.'],
-  'integrated-science':['/courses/integrated-science/','Integrated Science 6–10','Explore cells, heat, weather, and climate through interactive models aligned with California’s integrated science, building toward biology and chemistry.'],
+  'integrated-science':['/courses/integrated-science/','Integrated Science 6–10','Explore cells, energy, atoms, plates, and populations through interactive models aligned with California’s integrated science, building toward biology and chemistry.'],
   'physics-2':['/courses/physics-2/','Physics 2 Foundations','Explore heat, electric fields, circuits, magnetism, optics, waves, and photons after basic mechanics.'],
   algorithms:['/courses/algorithms/','Algorithms','Follow classic algorithms step by step as flowcharts, numbered steps and code in Python, Java and MATLAB, then find counterexamples, bottlenecks and improvements.'],
 };

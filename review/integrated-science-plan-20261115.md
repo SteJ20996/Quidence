@@ -38,10 +38,12 @@ PE codes come from the instructional-segment boxes in framework chapter 5, extra
 
 | # | Segment | Lesson and phenomenon | Model | Core PEs |
 | --- | --- | --- | --- | --- |
-| 5 | IS1 Made of atoms | What changes when water boils? | Particles in a box: temperature, motion and state | MS-PS1-1, PS1-4 |
-| 6 | IS2 Matter cycles, energy flows | Where does a tree's mass come from? | Counting atoms in photosynthesis and burning; mass before and after | MS-PS1-2, PS1-5, LS1-6, LS1-7 |
-| 7 | IS3 Earth's resources and ecosystems | How fast do continents move? | Seafloor age against distance from a ridge | MS-ESS2-3, ESS3-1, LS2-1 |
-| 8 | IS4 Sustaining biodiversity | What limits a population? | Growth toward a carrying capacity, with a disturbance | MS-LS2-1, LS2-4, LS2-5 |
+| 5 | IS1 Made of atoms | What changes when a substance melts or boils? | Particles of five substances: state, arrangement and typical speed against temperature; a ball-and-stick drawing of each molecule | MS-PS1-1, PS1-4 |
+| 6 | IS2 Matter cycles, energy flows | Where does a tree's mass come from? | Atoms and masses before and after photosynthesis, respiration and burning methane | MS-PS1-5, LS1-6, LS1-7 |
+| 7 | IS3 Earth's resources and ecosystems | How fast do plates move? | Magnetic stripes and seafloor age against distance from a ridge | MS-ESS2-3, ESS3-1 |
+| 8 | IS4 Sustaining biodiversity | What limits a population, and how can it recover? | A fox population at its carrying capacity, a new predator, and two recovery plans compared | MS-LS2-4, LS2-5 |
+
+The first plan put MS-LS2-1 in lesson 8. The framework places it in segment 3, so lesson 8 builds toward the segment 4 PEs instead: changes to an ecosystem shift populations (LS2-4), and competing solutions are judged against criteria (LS2-5).
 
 ### Unit 3 · Grade 8: forces, space and evolution
 

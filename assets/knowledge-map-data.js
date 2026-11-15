@@ -228,7 +228,7 @@ const data={
       "node": "physics",
       "en": "Integrated Science 6–10",
       "scope": {
-        "en": "Cells, heat, weather and climate, building toward biology and chemistry"
+        "en": "Cells, energy, atoms, plates and populations, building toward biology and chemistry"
       },
       "module": "integrated-science"
     },

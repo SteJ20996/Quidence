@@ -1,3 +1,33 @@
+## 2026-11-15 · Integrated Science 6–10, part 2: grade 7
+
+Four grade 7 lessons, one for each instructional segment of California's integrated grade 7.
+- **Lessons.**
+  5. Particles in motion: the state, particle arrangement and typical speed of five substances from −250 °C to 150 °C, with a ball-and-stick drawing of each molecule.
+  6. Atoms in living things: where a tree's mass comes from, counting atoms through photosynthesis, respiration and burning methane.
+  7. Moving plates: seafloor magnetic stripes and ages give the spreading rate; plate processes place California's gold, geothermal heat and oil.
+  8. Recovering a population: island foxes at carrying capacity, the arrival of golden eagles, and recovery plans compared against criteria.
+- **Alignment.** PEs checked by hand against the grade 7 segment boxes. MS-LS2-1, planned for lesson 8, belongs to segment 3, so lesson 8 builds toward LS2-4 and LS2-5.
+- **Site.**
+  - The course is version 2. A record saved with only the grade 6 lessons opens with the grade 7 lessons added and every answer kept.
+  - The menu shows two unit labels; lesson counts above seven are written in words; this course's summary heading reads "Connect the model to the world".
+  - The card, map and SEO lines name the new topics.
+- **Checks.**
+  - A unit test recomputes each new model and the values each step and question uses, and checks the saved-record upgrade.
+  - An independent review found no errors and confirmed all twelve answer keys. It led to these changes:
+    - one arrow scale in the particle drawing for every state;
+    - lesson 6 rests on atom counts, with masses labeled as beyond grade 7;
+    - "respiration is photosynthesis backward" rewritten;
+    - a fossil question for MS-ESS2-3;
+    - the San Andreas step no longer uses the spreading lab;
+    - real fox counts, biodiversity and constraints added to lesson 8.
+- **Not yet done.**
+  - Several parts go beyond grade 7 assessment boundaries, and each is labeled.
+  - Extended structures are described but not modeled.
+  - The fox model's rates are made up and it has no chance events.
+  - No students or teachers have tried the lessons.
+
+See [the review note](review/integrated-science-unit2-20261115.md).
+
 ## 2026-11-15 · New course: Integrated Science 6–10 (part 1: grade 6)
 
 A new course, *Integrated Science 6–10* (`courses/integrated-science/`), aligned with California's science framework.

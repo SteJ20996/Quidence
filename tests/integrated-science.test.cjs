@@ -5,16 +5,18 @@ const C=require('../courses/integrated-science/content.js'),S=require('../assets
 const Models=require('../assets/science-models.js'),Graphs=require('../assets/course-graphs.js'),Policy=require('../assets/sync-policy.js');
 const close=(a,b,tol=1e-9)=>assert(Math.abs(a-b)<=tol,a+' != '+b);
 
-test('the course follows the plan: one lesson per grade 6 segment, each with four steps and three questions',()=>{
- assert.equal(C.MODULE,'integrated-science');assert.equal(C.LESSONS.length,4);
- assert.deepEqual(C.UNITS.map(u=>u.id),['grade-6']);
- assert.deepEqual(C.LESSONS.map(l=>l.short),['Cells as systems','Heating ice','Rain shadows','Global warming']);
+test('the course follows the plan: one lesson per grade 6 and grade 7 segment, each with four steps and three questions',()=>{
+ assert.equal(C.MODULE,'integrated-science');assert.equal(C.LESSONS.length,8);
+ assert.deepEqual(C.UNITS.map(u=>u.id),['grade-6','grade-7']);
+ assert.deepEqual(C.LESSONS.map(l=>l.short),['Cells as systems','Heating ice','Rain shadows','Global warming','Particles in motion','Atoms in living things','Moving plates','Recovering a population']);
  // Each PE comes from the matching instructional-segment box in chapter 5 of the 2016 California Science Framework.
- const segments={1:['MS-LS1-1','MS-LS1-2','MS-LS1-3','MS-LS1-8','MS-ESS2-4','MS-ESS2-6'],2:['MS-ESS2-4','MS-ESS2-6','MS-PS3-3','MS-PS3-4','MS-PS3-5'],3:['MS-LS1-4','MS-LS1-5','MS-LS1-8','MS-LS3-2','MS-ESS2-5','MS-ESS2-6'],4:['MS-LS1-4','MS-LS1-5','MS-ESS3-3','MS-ESS3-5']};
+ const segments={'6-1':['MS-LS1-1','MS-LS1-2','MS-LS1-3','MS-LS1-8','MS-ESS2-4','MS-ESS2-6'],'6-2':['MS-ESS2-4','MS-ESS2-6','MS-PS3-3','MS-PS3-4','MS-PS3-5'],'6-3':['MS-LS1-4','MS-LS1-5','MS-LS1-8','MS-LS3-2','MS-ESS2-5','MS-ESS2-6'],'6-4':['MS-LS1-4','MS-LS1-5','MS-ESS3-3','MS-ESS3-5'],
+  '7-1':['MS-PS1-1','MS-PS1-3','MS-PS1-4','MS-ESS3-1','MS-LS2-3'],'7-2':['MS-LS1-6','MS-LS1-7','MS-ESS2-1','MS-PS1-2','MS-PS1-5','MS-PS1-6'],'7-3':['MS-LS2-1','MS-LS2-2','MS-LS2-3','MS-ESS2-3','MS-ESS3-1','MS-PS1-2','MS-PS1-3','MS-PS1-5'],'7-4':['MS-LS2-4','MS-LS2-5','MS-ESS2-2','MS-ESS3-2','MS-PS1-3']};
  for(const[i,l]of C.LESSONS.entries()){
-  assert.equal(l.id,'integrated-science-lesson-'+(i+1));assert.equal(l.unit,'grade-6');
-  assert.equal(l.segment,'Grade 6, instructional segment '+(i+1));
-  assert(l.pe.length>0);for(const pe of l.pe)assert(segments[i+1].includes(pe),l.short+': '+pe);
+  const grade=6+Math.floor(i/4),segment=i%4+1;
+  assert.equal(l.id,'integrated-science-lesson-'+(i+1));assert.equal(l.unit,'grade-'+grade);
+  assert.equal(l.segment,'Grade '+grade+', instructional segment '+segment);
+  assert(l.pe.length>0);for(const pe of l.pe)assert(segments[grade+'-'+segment].includes(pe),l.short+': '+pe);
   assert.equal(l.steps.length,4);
   for(const s of l.steps){assert(s.title&&s.text);for(const k of['predict','test','explain'])assert(s.activity[k],k);}
   const tasks=[l.predict,...l.checks];assert.equal(tasks.length,3);
@@ -29,7 +31,8 @@ test('the course follows the plan: one lesson per grade 6 segment, each with fou
  }
  assert.match(C.scope,/Selected foundations/);assert.match(C.scope,/Not a complete year of science/);
  assert.equal(C.bridge,undefined);
- assert.equal(S.create().LESSONS.length,4,'create() returns a fresh copy');
+ assert.equal(S.create().LESSONS.length,8,'create() returns a fresh copy');
+ assert.equal(C.VERSION,'integrated-science-2');assert.deepEqual(C.PREVIOUS,[{version:'integrated-science-1',lessons:4}]);
 });
 
 test('the cell model: surface area for each unit of volume is 6/s for a cube and 12/s for a slab a quarter as thick',()=>{
@@ -121,10 +124,10 @@ test('the complete course flow saves answers and reasoning, reloads, groups less
  const map=new Map([['physics_beta01_session_v1','another subject remains untouched']]);
  let h=harness('integrated-science',map);
  assert.equal(map.has(h.E.SCHEMA),false);
- assert.match(h.app.innerHTML,/Selected foundations/);assert.doesNotMatch(h.app.innerHTML,/course-bridge/);
+ assert.match(h.app.innerHTML,/Selected foundations/);assert.doesNotMatch(h.app.innerHTML,/course-bridge/);assert.match(h.app.innerHTML,/Eight starting points\./);assert.match(h.app.innerHTML,/after all eight lessons/);
  h.click('start');
- assert.match(h.app.innerHTML,/class="lesson-unit">Grade 6</);
- assert.equal((h.app.innerHTML.match(/class="lesson-unit"/g)||[]).length,1);
+ assert.match(h.app.innerHTML,/class="lesson-unit">Grade 6</);assert.match(h.app.innerHTML,/class="lesson-unit">Grade 7</);
+ assert.equal((h.app.innerHTML.match(/class="lesson-unit"/g)||[]).length,2);
  assert.match(h.app.innerHTML,/California grade 6, instructional segment 1 · builds toward MS-LS1-1, MS-LS1-2, MS-LS1-3/);
  h.choose('unsure');h.input('explanation','Volume grows faster than surface area; keep this draft.');
  h=harness('integrated-science',map);
@@ -146,7 +149,111 @@ test('the complete course flow saves answers and reasoning, reloads, groups less
  assert.equal(map.get('physics_beta01_session_v1'),'another subject remains untouched');
  h.click('export-json');
  const report=JSON.parse(await h.blobs[0].text());
- assert.equal(Object.keys(report.records).length,12);
+ assert.match(h.app.innerHTML,/EIGHT-LESSON SUMMARY/);assert.match(h.app.innerHTML,/Connect the model<br>to the world\./);
+ assert.equal(Object.keys(report.records).length,24);
  assert.match(report.note,/explanations need human review/);
  assert.equal(JSON.parse(map.get('cluevera_saved_reports_v1')).items[0].module,'integrated-science');
+});
+
+test('a record saved with only the grade 6 lessons opens with the grade 7 lessons added and every answer kept',()=>{
+ const map=new Map();let h=harness('integrated-science',map);h.click('start');
+ for(let i=0;i<4;i++){
+  if(i)h.click('continue');
+  h.choose('unsure');h.input('explanation','First idea for lesson '+(i+1));h.submit();h.click('next');
+  for(let j=0;j<4;j++)h.click('next-step');
+  for(const t of C.LESSONS[i].checks){h.choose(t.correct[0]);h.input('explanation','Because of '+t.id);h.submit();h.click('next');}
+ }
+ const now=h.saved();
+ // The record as the four-lesson version saved it, finished and on its summary.
+ const old={...now,contentVersion:'integrated-science-1',labs:now.labs.slice(0,4),lessons:now.lessons.slice(0,4),view:'summary',lessonIndex:3,stage:'review'};
+ assert.deepEqual(Object.keys(old.records).map(id=>id.split('-q')[0]).filter((x,i,a)=>a.indexOf(x)===i),['integrated-science-l1','integrated-science-l2','integrated-science-l3','integrated-science-l4']);
+ const up=h.E.hydrate(JSON.parse(JSON.stringify(old)));
+ assert(up,'The old record upgrades');
+ assert.equal(up.contentVersion,'integrated-science-2');assert.equal(up.labs.length,8);assert.equal(up.lessons.length,8);
+ assert.deepEqual(up.records,old.records,'Every saved answer and explanation is kept exactly');
+ assert.deepEqual(up.labs.slice(0,4),old.labs);assert.deepEqual(up.labs.slice(4),C.LESSONS.slice(4).map(l=>l.defaults));
+ assert.equal(up.view,'orientation');assert.equal(up.lessonIndex,4);
+ const event=up.events[up.events.length-1];assert.equal(event.type,'lessons_added');assert.equal(event.from,'integrated-science-1');
+ assert.deepEqual(event.lessons,C.LESSONS.slice(4).map(l=>l.id));
+ map.set(h.E.SCHEMA,JSON.stringify(old));
+ const resumed=harness('integrated-science',map);resumed.click('start');
+ assert.match(resumed.app.innerHTML,/LESSON 5 OF 8/);assert.match(resumed.app.innerHTML,/California grade 7, instructional segment 1 · builds toward MS-PS1-1, MS-PS1-4/);
+ assert(Policy.valid(resumed.E.SCHEMA,map.get(resumed.E.SCHEMA)));
+});
+
+test('the particle model: typical speed √(3kT/m), states at sea-level pressure, and atoms in each formula',()=>{
+ const k=1.380649e-23,u=1.66053907e-27,speed=(c,m)=>Math.sqrt(3*k*(c+273.15)/(m*u));
+ for(const[key,s]of Object.entries(Models.SUBSTANCES))for(let c=-250;c<=150;c+=5){
+  const v=Models.particles(key,c);close(v.speed,speed(c,s.mass),1e-6);close(v.kelvin,c+273.15);
+  const want=s.sublime!==undefined?(c<s.sublime?'solid':'gas'):c<s.melt?'solid':c===s.melt?'melting':c<s.boil?'liquid':c===s.boil?'boiling':'gas';
+  assert.equal(v.state,want,key+' '+c);
+ }
+ // Each formula's atoms, and its mass from hydrogen 1.008, carbon 12.011 and oxygen 15.999.
+ const exact={H:1.008,C:12.011,O:15.999};
+ for(const[key,s]of Object.entries(Models.SUBSTANCES)){
+  const fromFormula=Object.entries(s.atoms).reduce((m,[e,n])=>m+exact[e]*n,0);close(s.mass,fromFormula,0.02);
+  const digits=s.formula.replace(/[₀-₉]/g,d=>'₀₁₂₃₄₅₆₇₈₉'.indexOf(d));const counted={};for(const[,e,n]of digits.matchAll(/([A-Z][a-z]?)(\d*)/g))counted[e]=(counted[e]||0)+Number(n||1);
+  assert.deepEqual(counted,s.atoms,key);
+ }
+ assert.equal(Models.particles('ethanol',25).atomCount,9);assert.equal(Models.particles('methane',25).atomCount,5);
+ // Step 2: water at 0 °C and 100 °C. Step 3 and question 2: −100 °C. Step 4: 25 °C. Question 3: 20 °C.
+ assert.equal(Models.particles('water',0).state,'melting');assert.equal(Models.particles('water',100).state,'boiling');
+ assert(Math.abs(Models.particles('water',0).speed-615)<2&&Math.abs(Models.particles('water',100).speed-719)<2);
+ assert.deepEqual(['oxygen','carbon-dioxide','ethanol','water'].map(x=>Models.particles(x,-100).state),['gas','solid','liquid','solid']);
+ assert(Math.abs(Models.particles('water',25).speed-640)<5&&Math.abs(Models.particles('carbon-dioxide',25).speed-410)<5);
+ assert(Math.abs(Models.particles('oxygen',20).speed-480)<5&&Math.abs(Models.particles('carbon-dioxide',20).speed-410)<5);
+});
+
+test('the reaction model: atoms and mass are the same before and after, and most of a sugar’s mass comes from carbon dioxide',()=>{
+ for(const key of Object.keys(Models.REACTIONS))for(let n=1;n<=10;n++){
+  const v=Models.reaction(key,n);assert.deepEqual(v.before.atoms,v.after.atoms,key);close(v.before.mass,v.after.mass);
+  // Recount the mass from the atoms.
+  close(v.before.mass,v.before.atoms.H*1+v.before.atoms.C*12+v.before.atoms.O*16);
+ }
+ const p=Models.reaction('photosynthesis',1);assert.deepEqual(p.before.atoms,{C:6,H:12,O:18});close(p.before.mass,372);
+ assert.deepEqual(p.fromAir,{sugar:180,fromCO2:168});assert.equal(Math.round(100*168/180),93);
+ assert.deepEqual(Models.reaction('photosynthesis',5).after.atoms,{C:30,H:60,O:90});
+ close(Models.reaction('methane',1).before.mass,80);
+ assert.equal(Models.reaction('respiration',1).fromAir,null);
+});
+
+test('the seafloor model: age = distance ÷ speed, with stripes from the polarity time scale',()=>{
+ for(let r=0.5;r<=8;r+=0.25)for(let d=0;d<=200;d+=5){const v=Models.seafloor(r,d);close(v.kmPerMyr,10*r);close(v.age,d/(10*r));}
+ for(let i=0;i<Models.NORMAL.length;i++){const[a,b]=Models.NORMAL[i];assert(a<b);if(i)assert(a>Models.NORMAL[i-1][1]);}
+ assert.deepEqual(Models.NORMAL[0],[0,0.78]);
+ assert.equal(Models.seafloor(2.5,0).normal,true);assert.equal(Models.seafloor(2.5,50).normal,false);
+ close(Models.seafloor(1.25,100).age,8);close(Models.seafloor(5,50).age,1);
+ // Question 2: 60 km in 2 million years is 3 cm per year.
+ close(60/2/10,3);
+ // Step 3: 4,000 km at 2.5 cm per year in total takes 160 million years.
+ close(4000/(2.5*10),160);
+ assert.equal(Models.seafloor(0.5,100).known,false);
+});
+
+test('the fox model: a population at carrying capacity, a new predator, and two recovery plans',()=>{
+ const F=Models.FOX,step=(n,take,add)=>n+F.growth*n*(1-n/F.capacity)-take*n+add;
+ for(const eagles of[0,20,50,60])for(const plan of['none','remove','release','both']){
+  const v=Models.foxes(eagles,plan);let n=F.capacity;assert.equal(v.series.length,41);
+  for(let t=0;t<40;t++){const hunted=t>=5&&!(t>=10&&(plan==='remove'||plan==='both')),add=(plan==='release'||plan==='both')&&t>=10&&t<20?20:0;n=step(n,hunted?eagles/100:0,add);close(v.series[t+1],n,1e-9);}
+ }
+ assert(Models.foxes(0,'none').series.every(n=>n===1500));
+ // Step 2: about 190 foxes in year 10 with eagles taking half.
+ const none=Models.foxes(50,'none'),remove=Models.foxes(50,'remove'),release=Models.foxes(50,'release'),both=Models.foxes(50,'both');
+ assert(none.series[10]>170&&none.series[10]<200);assert(none.series[40]<1);
+ assert.equal(remove.back,20);assert.equal(both.back,18);assert.equal(release.back,null);assert(remove.series[40]>1450);
+ // Question 2: releases slow the fall, which continues after they stop.
+ for(let t=11;t<=20;t++)assert(release.series[t]<release.series[t-1]&&release.series[t]>none.series[t]);
+ for(let t=21;t<=40;t++)assert(release.series[t]<release.series[t-1]);
+ assert.match(Graphs.lab('integrated-science',7,{eagles:0,plan:'none'}).readout,/Never below 1,000 foxes/);
+ assert.match(Graphs.lab('integrated-science',7,{eagles:50,plan:'remove'}).readout,/Back to 1,000 foxes in year 20/);
+});
+
+test('the particle drawing uses one arrow scale in every state, so arrow length follows temperature, not state',()=>{
+ const lengths=s=>[...Graphs.lab('integrated-science',4,s).graph.matchAll(/<path d="M([\d.]+) ([\d.]+)L([\d.]+) ([\d.]+)" stroke="#6542c0"/g)].map(m=>Math.hypot(m[3]-m[1],m[4]-m[2]));
+ for(const[sub,c]of[['water',-5],['water',5],['water',0],['water',100],['water',105],['oxygen',-100],['carbon-dioxide',-100],['ethanol',-100]]){
+  const want=Models.particles(sub,c).speed*.03,ls=lengths({substance:sub,temperature:c});assert(ls.length>0);
+  for(const l of ls)assert(Math.abs(l-want)<0.2,sub+' '+c+': '+l+' vs '+want);
+ }
+ assert.match(Graphs.lab('integrated-science',4,{substance:'oxygen',temperature:-250}).readout,/at −250 °C/);
+ assert.match(Graphs.lab('integrated-science',7,{eagles:50,plan:'release'}).readout,/Year 40: 1 fox ·/);
 });
