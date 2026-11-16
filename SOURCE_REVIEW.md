@@ -28,6 +28,15 @@
 
 使用者提供的 Drive 原件 `Buenas Preguntas de Matemáticas .pdf`（SHA-256 `cc60bc9a6baf650069d5b88e9ead77216f8b0bb93ffd70ab24b15eec9163790a`）已成功讀取，共 162 頁。混合手寫、圖形和多語言排版，文字抽取不是完整的內容/來源比對。原件存放在儲存庫之外；未提交原件或真實學生匯出。需使用者標記自編內容與外部摘錄、給出 Q11/P4 開發參考頁及已知出處；審核結論仍未清除。
 
+## 2026-11-16 綜合科學照片與 NOAA 實測資料
+
+Integrated Science 6–10 加入三張美國聯邦政府作品圖片，存於 `assets/photos/`：
+- 島嶼狐：NPS / Jessica Weinberg McClosky；
+- 鼠兔：NPS / Devin Stucki；
+- 月相：NASA Goddard 的渲染圖，非照片。
+
+另加入 NOAA GML 的 Mauna Loa 2016–2025 年二氧化碳月平均資料。每張圖的署名都在其原始頁面上逐一核對，沒有 ©；原檔 SHA-256、處理方式（縮圖、轉 WebP、移除中繼資料、月相並排）與被排除的候選都記錄在 `review/integrated-science-photos-20261116.md`。`THIRD_PARTY_NOTICES.md` 依 NPS 要求加註「No claim to original U.S. Government works」。岩囊鼠沒有找到可商用的深色個體照片，因此未加入。此紀錄不等同人工清權。
+
 ## 2026-11-15 綜合科學實驗插圖
 
 Integrated Science 6–10 的十六張課堂實驗示意圖（2026-11-16 加入十年級的六張）由本專案直接編寫 SVG（`assets/science-investigations.js`），不引用外部圖片、照片或標誌，讀數標明為示例。網站的內容安全政策只允許站內圖片；日後若加入真實照片，須逐張確認授權可商用（美國聯邦政府作品須核對署名行；CC 授權排除 NC，ND 不改作），存入儲存庫並記錄來源、作者、授權與修改。規則與候選見 `review/integrated-science-illustrations-20261115.md`。此紀錄不等同人工清權。

@@ -1,3 +1,30 @@
+## 2026-11-16 · Integrated Science 6–10: public-domain photographs and NOAA's measured carbon dioxide
+
+- **Images.** Three U.S. Government works, each credit checked on its own source page:
+  - an island fox (NPS / Jessica Weinberg McClosky), lesson 8;
+  - four Moon phases (NASA Goddard renderings from Lunar Reconnaissance Orbiter data, not photographs), lesson 10;
+  - an American pika (NPS / Devin Stucki), lesson 18.
+- **How they are shown.**
+  - The images are self-hosted as WebP in `assets/photos/`.
+  - Each is shown with a caption, credit, licence and source link.
+  - `THIRD_PARTY_NOTICES.md` lists them with "No claim to original U.S. Government works".
+- **Not added.** Lesson 11 has no photograph: no acceptable image of a dark rock pocket mouse was found. The rejected candidates are recorded.
+- **Lesson 14.**
+  - The Mauna Loa view draws NOAA's measured monthly means for 2016–2025.
+  - They exposed an error: the model's trend used 2020's annual mean as its value at the start of 2020, 1.3 ppm too high. It now uses the least-squares value, 412.9 ppm.
+  - The model is within 0.68 ppm root mean square of the measurements.
+- **Checks.** Tests check:
+  - the image files, their declared sizes and the credit shown on the page;
+  - the fit, the seasonal cycle and the agreement with the data.
+
+See [the note](review/integrated-science-photos-20261116.md).
+
+## 2026-11-16 · Learning Atlas: every course card the same size
+
+- **Columns.** Every group uses the same columns as School Mathematics: four on wide screens, three from 1,001 to 1,280 px, two on phones. Science spans the full width, so its three courses share one row.
+- **Size.** All cards have the same width and height, with buttons along the bottom.
+- **Checks.** The atlas browser suite checks this at four widths.
+
 ## 2026-11-16 · Integrated Science 6–10, part 6: checks and an Intuition Lab activity
 
 - **Foundation check.** 15 questions with 30 parts, on the grade 5 science and grade 5–6 mathematics the course assumes:

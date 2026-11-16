@@ -460,6 +460,42 @@ test('Chemistry in the Earth System models: burning fuel, mixing, ions, rates, f
  assert.match(Graphs.lab('integrated-science',23,{co2:1000,added:220}).readout,/0\.68% more than at 280 ppm/);
 });
 
+test('the carbon dioxide model agrees with NOAA’s measured Mauna Loa monthly means, which the lab draws for Mauna Loa only',()=>{
+ const v=Models.MLO_MONTHLY.values,t=v.map((_,i)=>2016+(i+.5)/12);assert.equal(v.length,120);assert.equal(Models.MLO_MONTHLY.start,2016);
+ for(const[i,x]of t.entries())close(Models.measured(x),v[i],1e-9);
+ // The model's trend is the least-squares line through the measurements.
+ const n=v.length,mt=t.reduce((a,b)=>a+b)/n,mv=v.reduce((a,b)=>a+b)/n,slope=t.reduce((s,x,i)=>s+(x-mt)*(v[i]-mv),0)/t.reduce((s,x)=>s+(x-mt)**2,0);
+ close(slope,Models.CO2_TREND.rise,0.05);close(mv+slope*(2020-mt),Models.CO2_TREND.start,0.05);
+ // With the trend removed, the measured yearly cycle has the model's swing, highest in May and lowest in September or October.
+ const cycle=Array.from({length:12},(_,m)=>{const r=v.filter((_,i)=>i%12===m).map((y,k)=>y-(mv+slope*(t[m+12*k]-mt)));return r.reduce((a,b)=>a+b)/r.length;});
+ close(Math.max(...cycle)-Math.min(...cycle),Models.STATIONS['mauna-loa'].swing,0.3);assert.equal(cycle.indexOf(Math.max(...cycle)),4);assert([8,9].includes(cycle.indexOf(Math.min(...cycle))));
+ const rms=Math.sqrt(t.reduce((s,x,i)=>s+(Models.keeling('mauna-loa',x-2020)-v[i])**2,0)/n);assert(rms<1,'model within 1 ppm rms: '+rms);
+ const mlo=Graphs.lab('integrated-science',13,{station:'mauna-loa',years:10}),pole=Graphs.lab('integrated-science',13,{station:'south-pole',years:10});
+ assert.match(mlo.graph,/Measured monthly mean \(NOAA\)/);assert.match(mlo.readout,/Measured by NOAA: 427\.5 ppm in December 2025; the year’s peak was 430\.5 ppm in May/);assert.match(mlo.note,/Dr\. Xin Lan, NOAA Global Monitoring Laboratory.*Dr\. Ralph Keeling, Scripps/);assert.match(mlo.note,/Maunakea/);
+ assert.doesNotMatch(pole.graph,/Measured monthly mean/);assert.doesNotMatch(pole.readout,/Measured by NOAA/);
+});
+
+test('lesson photographs are stored with the site, sized as declared, and always shown with credit, licence and source',()=>{
+ const fs=require('fs'),path=require('path'),dir=path.join(__dirname,'../courses/integrated-science');
+ // Width and height from a WebP header (lossy VP8, lossless VP8L or extended VP8X).
+ const size=buf=>{const kind=buf.toString('ascii',12,16);if(kind==='VP8 ')return[buf.readUInt16LE(26)&0x3fff,buf.readUInt16LE(28)&0x3fff];if(kind==='VP8L'){const b=buf.readUInt32LE(21);return[(b&0x3fff)+1,((b>>14)&0x3fff)+1];}if(kind==='VP8X')return[buf.readUIntLE(24,3)+1,buf.readUIntLE(27,3)+1];throw Error('not WebP');};
+ const photos=C.LESSONS.flatMap((l,i)=>l.steps.map((s,j)=>[i,j,s.photo]).filter(x=>x[2]));
+ assert.deepEqual(photos.map(([i,j])=>[i+1,j+1]),[[8,2],[10,2],[18,1]]);
+ for(const[,,p]of photos){
+  assert.match(p.src,/^\.\.\/\.\.\/assets\/photos\/[a-z-]+\.webp$/);const file=path.join(dir,p.src),buf=fs.readFileSync(file);
+  assert.equal(buf.toString('ascii',0,4),'RIFF');assert.equal(buf.toString('ascii',8,12),'WEBP');assert.deepEqual(size(buf),[p.width,p.height],p.src);
+  assert(buf.length<170000,p.src+' is '+buf.length+' bytes');
+  for(const k of['alt','caption','credit','license'])assert(p[k]&&p[k].length>8,k);
+  assert.match(p.source,/^https:\/\/(www\.nps\.gov|images\.nasa\.gov)\//);assert.match(p.license,/^Public domain/);assert.doesNotMatch(p.license,/\bN[CD]\b/);
+ }
+ // The step shows the photograph with its credit, licence and a link to its source.
+ const h=harness('integrated-science',new Map());h.click('start');h.click('open',7);
+ h.choose('unsure');h.input('explanation','A first idea.');h.submit();h.click('next');h.click('step',1);
+ assert.match(h.app.innerHTML,/class="lesson-photo"><img src="\.\.\/\.\.\/assets\/photos\/island-fox\.webp" alt="A grey and rust-colored island fox/);
+ assert.match(h.app.innerHTML,/Photo: NPS \/ Jessica Weinberg McClosky · Public domain, U\.S\. National Park Service · <a href="https:\/\/www\.nps\.gov\/im\/medn\/island-fox\.htm" target="_blank" rel="noopener" aria-label="Source page for this image \(opens in a new tab\)">source ↗<\/a>/);
+ h.click('step',0);assert.doesNotMatch(h.app.innerHTML,/lesson-photo/);
+});
+
 test('lessons with a hands-on investigation show a drawing of it in their feedback, made only of SVG',()=>{
  const I=require('../assets/science-investigations.js');
  assert.deepEqual(I.LESSONS,[1,2,5,6,9,10,11,12,16,17,19,20,21,22,23,24]);
