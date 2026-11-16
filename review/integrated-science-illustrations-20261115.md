@@ -72,7 +72,7 @@ Some lessons show real things that a photograph would make vivid. If the owner w
 | 14 The breathing planet | A real carbon dioxide record | Draw from NOAA GML data, which is public domain, rather than copy the Scripps Keeling Curve image, which is not |
 | 18 Moving uphill | An American pika | NPS photos credited to NPS without © |
 
-None of these photographs has been downloaded or checked yet.
+**Update, 2026-11-16.** The island fox, the Moon phases and the pika now have public-domain images, and lesson 14 draws NOAA's measured Mauna Loa record. No acceptable photograph of dark rock pocket mice was found, so lesson 11 has none. Details and the checks made are in [integrated-science-photos-20261116.md](integrated-science-photos-20261116.md).
 
 ## Gaps
 

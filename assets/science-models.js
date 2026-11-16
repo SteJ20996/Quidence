@@ -224,7 +224,16 @@ const STATIONS={
  utqiagvik:{name:'Utqiaġvik',swing:18,peak:.33,low:.62,offset:1.2,months:['early May','mid-August']},
  'south-pole':{name:'South Pole',swing:1.2,peak:.78,low:.2,offset:-4,months:['October','March']}
 };
-const CO2_TREND={start:414.2,rise:2.5};
+// The trend is a straight line fitted to NOAA's measured Mauna Loa monthly means for 2016–2025: 412.9 ppm at the
+// start of 2020, rising 2.47 ppm a year (rounded to 2.5).
+const CO2_TREND={start:412.9,rise:2.5};
+// NOAA Global Monitoring Laboratory, Mauna Loa monthly mean CO₂ (ppm), January 2016 to December 2025, from
+// gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv (file created 2026-10-09, retrieved 2026-11-16, SHA-256
+// d895fb5b…f675). Data credit: Dr. Xin Lan, NOAA GML, and Dr. Ralph Keeling, Scripps Institution of Oceanography.
+// From December 2022 to early July 2023, after the Mauna Loa eruption, NOAA measured at Maunakea, about 34 km north.
+const MLO_MONTHLY={start:2016,values:[402.73,404.25,405.06,407.60,407.90,406.99,404.59,402.45,401.23,401.79,403.72,404.64,406.36,406.66,407.54,409.22,409.89,409.08,407.33,405.32,403.57,403.82,405.31,407.00,408.15,408.52,409.59,410.45,411.44,410.99,408.90,407.16,405.71,406.19,408.21,409.27,411.03,411.96,412.18,413.54,414.86,414.15,411.96,410.17,408.76,408.74,410.47,411.97,413.59,414.32,414.72,416.42,417.28,416.58,414.58,412.75,411.50,411.49,413.10,414.23,415.49,416.72,417.61,419.01,419.09,418.93,416.90,414.42,413.26,413.90,414.97,416.67,418.13,419.24,418.76,420.19,420.97,420.94,418.85,417.15,415.91,415.74,417.47,418.99,419.48,420.31,420.99,423.35,424.00,423.68,421.83,419.68,418.50,418.82,420.46,421.86,422.80,424.55,425.38,426.51,426.90,426.91,425.55,422.99,422.03,422.38,423.85,425.40,426.65,427.09,428.15,429.64,430.51,429.61,427.87,425.48,424.37,424.87,426.46,427.49]};
+const MONTH_NAMES=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function measured(x){const i=(x-MLO_MONTHLY.start)*12-.5,v=MLO_MONTHLY.values,k=Math.max(0,Math.min(v.length-2,Math.floor(i))),f=Math.max(0,Math.min(1,i-k));return v[k]+(v[k+1]-v[k])*f;}
 function keeling(key,t){
  // t in years since the start of 2020. A smooth fall from the peak to the low, then a smooth rise to the next peak.
  const s=STATIONS[key],f=((t%1)+1)%1,fallLen=((s.low-s.peak)%1+1)%1,since=((f-s.peak)%1+1)%1;
@@ -427,10 +436,12 @@ function model(index,s){
    note:'The share passed on varies by ecosystem and animal, from under 5% to about 20%; 10% is a rule of thumb. Real food webs branch, and many animals eat at more than one level.'};}
  if(index===13){const st=STATIONS[s.station],last=2026,first=last-s.years,trend=t=>CO2_TREND.start+st.offset+CO2_TREND.rise*t,vals=[];for(let i=0;i<=240;i++)vals.push(keeling(s.station,first-2020+s.years*i/240));
   const lo=Math.floor((Math.min(...vals)-2)/5)*5,hi=Math.ceil((Math.max(...vals)+2)/5)*5;
-  return{graph:M.cartesian(`Carbon dioxide at ${st.name}`,[{label:'Monthly level',fn:x=>keeling(s.station,x-2020)},{label:'Long-term trend',fn:x=>trend(x-2020)}],{xmin:first,xmax:last,ymin:lo,ymax:hi,xlabel:'Year',ylabel:'Carbon dioxide (ppm)',left:80,ylabelX:22,xticks:Array.from({length:s.years+1},(_,i)=>first+i).filter((x,i,a)=>a.length<=6||(last-x)%2===0),yticks:Array.from({length:Math.floor((hi-lo)/5)+1},(_,i)=>lo+5*i).filter((x,i,a)=>a.length<=7||i%2===0)}),
-   readout:`${st.name}: yearly swing about ${fmt(st.swing)} ppm, highest around ${st.months[0]} and lowest around ${st.months[1]} · Long-term rise about ${fmt(CO2_TREND.rise)} ppm a year: ${fmt(trend(first-2020))} ppm at the start of ${first} to ${fmt(trend(last-2020))} ppm at the start of ${last}`,
+  const mlo=s.station==='mauna-loa',series=[{label:'Model: monthly level',prefix:mlo?'Thick line: ':'Solid: ',fn:x=>keeling(s.station,x-2020)},{label:'Model: long-term trend',fn:x=>trend(x-2020)}];
+  if(mlo)series.push({label:'Measured monthly mean (NOAA)',prefix:'Thin orange line: ',color:'#b4441f',width:1.6,dash:'',fn:measured});
+  return{graph:M.cartesian(`Carbon dioxide at ${st.name}`,series,{xmin:first,xmax:last,ymin:lo,ymax:hi,xlabel:'Year',ylabel:'Carbon dioxide (ppm)',left:80,ylabelX:22,xticks:Array.from({length:s.years+1},(_,i)=>first+i).filter((x,i,a)=>a.length<=6||(last-x)%2===0),yticks:Array.from({length:Math.floor((hi-lo)/5)+1},(_,i)=>lo+5*i).filter((x,i,a)=>a.length<=7||i%2===0)}),
+   readout:`${st.name}: yearly swing about ${fmt(st.swing)} ppm, highest around ${st.months[0]} and lowest around ${st.months[1]} · Long-term rise about ${fmt(CO2_TREND.rise)} ppm a year: ${fmt(trend(first-2020))} ppm at the start of ${first} to ${fmt(trend(last-2020))} ppm at the start of ${last}${mlo?` · Measured by NOAA: ${MLO_MONTHLY.values[MLO_MONTHLY.values.length-1].toFixed(1)} ppm in December 2025; the year’s peak was ${Math.max(...MLO_MONTHLY.values.slice(-12)).toFixed(1)} ppm in ${MONTH_NAMES[MLO_MONTHLY.values.slice(-12).indexOf(Math.max(...MLO_MONTHLY.values.slice(-12)))]}`:''}`,
    formula:'Level = long-term trend + yearly cycle. The trend rises about 2.5 ppm a year; the yearly cycle rises and falls by the station’s swing. ppm means parts per million: molecules of carbon dioxide in every million molecules of air.',
-   note:'A simplified record built from typical values for each station (NOAA Global Monitoring Laboratory), not the measured data. The real swing and growth rate vary from year to year.'};}
+   note:'The model is a smooth curve built from typical values for each station (NOAA Global Monitoring Laboratory). For Mauna Loa, NOAA’s measured monthly means for 2016–2025 are drawn too: the real swing and growth rate vary from year to year. From December 2022 to early July 2023, after Mauna Loa erupted, NOAA measured at Maunakea, 34 km away. Data: Dr. Xin Lan, NOAA Global Monitoring Laboratory (gml.noaa.gov/ccgg/trends), and Dr. Ralph Keeling, Scripps Institution of Oceanography (scrippsco2.ucsd.edu).'};}
  if(index===14){const v=lineages(s.split,s.rate);
   return{graph:alignment(v),
    readout:`${fmt(s.split)} million years since the shared ancestor · Each lineage changed about ${v.changes} of 1,000 positions · ${v.diff} positions differ (${fmt(100*v.share)}%); 2 × rate × time predicts ${fmt(100*v.expected)}%`,
@@ -523,6 +534,6 @@ function model(index,s){
   formula:'About 3 °C of eventual warming and about 3.9 W/m² of extra energy kept at first for each doubling: 278 → 556 → 1,112 ppm. Between doublings, count the fraction of a doubling: warming ≈ 3 °C × log₂(CO₂ ÷ 278 ppm).',
   note:'Carbon dioxide alone, after the ocean has caught up, which takes centuries. The warming measured so far, about 1.2 °C averaged over 2015–2024 compared with 1850–1900, also reflects other greenhouse gases, particles that cool, and the ocean’s delay.'};
 }
-const api={model,cell,heating,rainShadow,warming,particles,reaction,seafloor,foxes,crash,moon,selection,wave,foodChain,keeling,lineages,cross,body,uphill,combustion,mixing,ionic,rate,feedback,seawater,FUELS,BOND,MOLAR,SPECIFIC,ELEMENTS,FEEDBACK,SEA,STATIONS,CO2_TREND,BODY,LAPSE,SITES,STOP,MONTH,MEDIA,WATER,AIR,CO2,SUBSTANCES,REACTIONS,NORMAL,FOX,AMU};
+const api={model,measured,MLO_MONTHLY,cell,heating,rainShadow,warming,particles,reaction,seafloor,foxes,crash,moon,selection,wave,foodChain,keeling,lineages,cross,body,uphill,combustion,mixing,ionic,rate,feedback,seawater,FUELS,BOND,MOLAR,SPECIFIC,ELEMENTS,FEEDBACK,SEA,STATIONS,CO2_TREND,BODY,LAPSE,SITES,STOP,MONTH,MEDIA,WATER,AIR,CO2,SUBSTANCES,REACTIONS,NORMAL,FOX,AMU};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceScienceModels=api;
 })(typeof window==='undefined'?globalThis:window);

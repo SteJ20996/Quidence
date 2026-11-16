@@ -20,3 +20,4 @@
 .lesson-unit{flex-basis:100%;margin:8px 2px 0;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted,#52647b)}
 .lesson-unit:first-of-type{margin-top:2px}
 .next-step-note .investigation-figure{margin-top:14px}.next-step-note .investigation-figure .graph-figure{margin:0}
+.lesson-photo{margin:16px 0 4px;max-width:560px}.lesson-photo img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid rgba(38,60,91,.18)}.lesson-photo figcaption{margin-top:6px;font-size:.88rem;line-height:1.45;overflow-wrap:anywhere}.lesson-photo .photo-credit{display:block;margin-top:2px;font-size:.8rem;color:var(--muted,#52647b)}
