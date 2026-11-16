@@ -1,5 +1,8 @@
 'use strict';
 const path = require('node:path');
+// Every test file must be run by some script: a file left off these lists would pass silently without ever running.
+{const fs=require('node:fs'),dir=path.join(__dirname,'../tests'),runners=fs.readdirSync(__dirname).filter(f=>f.endsWith('.cjs')).map(f=>fs.readFileSync(path.join(__dirname,f),'utf8')).join('\n')+fs.readFileSync(path.join(__dirname,'../package.json'),'utf8');
+ const missing=fs.readdirSync(dir).filter(f=>/\.test\.(c|m)?js$/.test(f)&&!runners.includes(f));if(missing.length){console.error('Test files that no script runs: '+missing.join(', '));process.exit(1);}}
 const intuition = require('node:child_process').spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/intuition.test.cjs')],{stdio:'inherit'});if(intuition.status!==0)process.exit(intuition.status??1);
 const {spawnSync} = require('node:child_process');
 for (const script of ['test-aa01.cjs', 'test-ab01.cjs', 'test-ac01.cjs', 'test-ad01.cjs', 'test-foundations.cjs', 'test-new-subjects.cjs', 'test-number-theory.cjs']) {
@@ -15,7 +18,7 @@ const diagnostic = spawnSync(process.execPath, ['--test', path.join(__dirname,'.
 
 const projects = spawnSync(process.execPath, ['--test',path.join(__dirname,'../tests/projects.test.cjs')], {stdio:'inherit'});if(projects.status!==0)process.exit(projects.status??1);
 
-const hardening=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/site-audit-20261101.test.cjs'),path.join(__dirname,'../tests/deep-audit-20261101.test.cjs'),path.join(__dirname,'../tests/statistics-sampling.test.cjs'),path.join(__dirname,'../tests/fractions.test.cjs'),path.join(__dirname,'../tests/algorithms.test.cjs'),path.join(__dirname,'../tests/ac01-restoration.test.cjs'),path.join(__dirname,'../tests/game-projects.test.cjs'),path.join(__dirname,'../tests/knowledge-map.test.cjs'),path.join(__dirname,'../tests/brand-compat.test.cjs'),path.join(__dirname,'../tests/security.test.cjs'),path.join(__dirname,'../tests/csp.test.cjs'),path.join(__dirname,'../tests/local-records.test.cjs'),path.join(__dirname,'../tests/explanation-policy.test.cjs'),path.join(__dirname,'../tests/account-ui.test.cjs')],{stdio:'inherit'});if(hardening.status!==0)process.exit(hardening.status??1);
+const hardening=spawnSync(process.execPath,['--test',path.join(__dirname,'../tests/site-audit-20261101.test.cjs'),path.join(__dirname,'../tests/deep-audit-20261101.test.cjs'),path.join(__dirname,'../tests/statistics-sampling.test.cjs'),path.join(__dirname,'../tests/fractions.test.cjs'),path.join(__dirname,'../tests/algorithms.test.cjs'),path.join(__dirname,'../tests/integrated-science.test.cjs'),path.join(__dirname,'../tests/ac01-restoration.test.cjs'),path.join(__dirname,'../tests/game-projects.test.cjs'),path.join(__dirname,'../tests/knowledge-map.test.cjs'),path.join(__dirname,'../tests/brand-compat.test.cjs'),path.join(__dirname,'../tests/security.test.cjs'),path.join(__dirname,'../tests/csp.test.cjs'),path.join(__dirname,'../tests/local-records.test.cjs'),path.join(__dirname,'../tests/explanation-policy.test.cjs'),path.join(__dirname,'../tests/account-ui.test.cjs')],{stdio:'inherit'});if(hardening.status!==0)process.exit(hardening.status??1);
 
 const inventory=spawnSync(process.execPath,[path.join(__dirname,"build-source-ledger.cjs"),"--check"],{stdio:"inherit"});if(inventory.status!==0)process.exit(inventory.status??1);
 
