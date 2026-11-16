@@ -1,3 +1,78 @@
+## 2026-11-15 · Integrated Science 6–10: drawings for the classroom investigations
+
+Ten of the eighteen lessons end with a hands-on investigation; each now has an SVG drawing of the setup, shown with "A useful next step" in the lesson's feedback.
+- **To scale.**
+  - Each drawing uses typical real sizes, with a scale bar or axes in real units.
+  - The heating curve and the Moon's place in the sky (34° N, one hour after sunset) are computed.
+  - Only the air particles and the Moon's disc are enlarged, and the drawings say so.
+  - Drawing to scale showed that a sealed zip-top bag swells and reads lighter from the air's buoyancy. Lesson 6 now uses a capped soda bottle and says why.
+- **Drawn here, not copied.** The drawings are in `assets/science-investigations.js`. Outside pictures were not used, for three reasons:
+  - the site's Content Security Policy allows only its own images;
+  - the repository's IP process keeps graphics in code;
+  - many free pictures are not licensed for commercial use.
+- **Rules for any future photographs.** The review note records the rules for public-domain federal works and each Creative Commons license, with sources. It also lists candidate photographs, none of them downloaded or checked yet.
+- **Checks.** A unit test confirms which lessons have drawings, that each has a title and description, that none uses outside resources, and that every label fits even in a wide typeface. Screenshots were checked in three appearances and at phone width.
+
+See [the note](review/integrated-science-illustrations-20261115.md).
+
+## 2026-11-15 · Integrated Science 6–10, part 4: grade 9, Living Earth
+
+Six lessons, one for each instructional segment of *Living Earth* (framework chapter 7).
+- **Lessons.**
+  13. Energy in food chains: why top predators are few.
+  14. The breathing planet: the yearly cycle and long-term rise of carbon dioxide at three stations.
+  15. Common ancestry: a molecular clock with DNA, fossils and anatomy.
+  16. Inheritance: Punnett squares for pea flower color, with samples of 4 to 1,000 offspring.
+  17. Homeostasis: core temperature with negative feedback.
+  18. Moving uphill: a species' band of elevations on a warming mountain, with the Yosemite resurvey.
+- **Alignment.** PEs checked against the chapter 7 segment boxes; four planned PEs the lessons do not teach were dropped.
+- **Site.**
+  - The course is version 4; records saved with 4, 8 or 12 lessons upgrade with every answer kept.
+  - The card, map and SEO lines are updated.
+- **Checks.**
+  - A unit test recomputes every model and the values the steps and questions use.
+  - An independent review found four errors, all fixed: the no-feedback temperature, a slider step too coarse for its test, a 32% outcome called "likely", and a mutation claim.
+  - It also led to these changes:
+    - a typical fixed sample of offspring;
+    - a slower body model;
+    - no future years on the carbon dioxide graph;
+    - fuller coverage of LS2-4, LS2-1, LS1-2 and LS3-3.
+- **Not yet done.**
+  - LS1-5 is text only.
+  - LS4-5 leaves out speciation.
+  - The feedback model is linear.
+  - No students or teachers have tried the lessons.
+
+See [the review note](review/integrated-science-unit4-20261115.md).
+
+## 2026-11-15 · Integrated Science 6–10, part 3: grade 8
+
+Four grade 8 lessons, one for each instructional segment of California's integrated grade 8.
+- **Lessons.**
+  9. Speed and crashes: kinetic energy, reaction and braking distances and braking force, with a kinetic energy graph and Newton's third law.
+  10. Moon phases: the Sun, Earth and Moon from above, the phase seen from Earth, rising times, gravity and eclipses.
+  11. Natural selection: rock pocket mice on dark lava or pale rock over 200 generations, and the Mc1r mutation.
+  12. Listening with waves: frequency, wavelength, amplitude and energy of sound in air, seawater and steel, with digital samples.
+- **Site.**
+  - The course is version 3; records saved with four or eight lessons upgrade with every answer kept.
+  - The card, map and SEO lines name the grade 8 topics.
+- **Checks.**
+  - A unit test recomputes each new model and checks both upgrades.
+  - An independent review confirmed the answer keys and the Moon drawing, and led to these changes:
+    - a kinetic energy graph;
+    - qualitative force and mass in place of acceleration = force ÷ mass;
+    - the cause of tides corrected;
+    - an honest selection readout, with a 0% start;
+    - digital samples and a definition of analog;
+    - corrected whale and hydrophone facts.
+- **Not yet done.**
+  - No design or argument task for PS2-1 and PS2-4.
+  - Sound only, for PS4-2.
+  - A one-trait selection model.
+  - No students or teachers have tried the lessons.
+
+See [the review note](review/integrated-science-unit3-20261115.md).
+
 ## 2026-11-15 · Integrated Science 6–10, part 2: grade 7
 
 Four grade 7 lessons, one for each instructional segment of California's integrated grade 7.
