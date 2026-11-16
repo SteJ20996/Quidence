@@ -1,3 +1,38 @@
+## 2026-11-16 · Integrated Science 6–10, part 5: grade 10, Chemistry in the Earth System
+
+Six lessons, one for each instructional segment of *Chemistry in the Earth System* (framework chapter 7). All 24 planned lessons are now open.
+- **Lessons.**
+  19. Combustion: moles, mass conservation and bond energies for methane, octane and ethanol.
+  20. Heat flow: mixing in an insulated cup, specific heat, and the ocean as Earth's heat store.
+  21. Ions and charge: valence electrons, ion charges and formulas, with minerals.
+  22. Reaction rates: concentration, temperature and activation energy.
+  23. Climate feedbacks: water vapor, ice and clouds turning about 1.2 °C into about 3 °C, with NSIDC albedo and sea-ice data.
+  24. Ocean acidification: seawater carbonate chemistry, pH and carbonate ions, with sodium carbonate added as an oyster hatchery does.
+- **Drawings.** Each lesson's hands-on investigation has a drawing to scale.
+- **Alignment.** PEs checked against the chapter 7 segment boxes; HS-PS3-2 was dropped.
+- **Site.**
+  - The course is version 5; records saved with 4, 8, 12 or 18 lessons upgrade with every answer kept.
+  - The card, map and SEO lines are updated.
+  - The card text stays four lines in both DejaVu Sans and Inter, so every card in its row is the same height.
+- **Checks.**
+  - A unit test recomputes every model, including the alkalinity balance of the seawater model and the numbers written on the drawings.
+  - An independent review found two errors, both fixed. The seawater note had the effect of temperature backwards: cold water loses more pH, not less. And the lesson treated a 0.1 fall in pH, the figure for about 2000, as today's; at 420 ppm the fall is nearer 0.14.
+  - It also led to these changes:
+    - a tea light instead of an alcohol burner;
+    - 50 °C instead of 60 °C water;
+    - an octet misconception corrected;
+    - ethanol's carbon dioxide explained;
+    - a sodium carbonate control, so HS-PS1-6 can be practised;
+    - sea-ice and albedo data for HS-ESS2-2;
+    - safety notes for each activity.
+- **Not yet done.**
+  - HS-PS3-1 is covered in part.
+  - The feedback model gives only the eventual warming.
+  - The investigations show example readings.
+  - No students or teachers have tried the lessons.
+
+See [the review note](review/integrated-science-unit5-20261116.md).
+
 ## 2026-11-15 · Integrated Science 6–10: drawings for the classroom investigations
 
 Ten of the eighteen lessons end with a hands-on investigation; each now has an SVG drawing of the setup, shown with "A useful next step" in the lesson's feedback.

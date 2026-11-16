@@ -295,7 +295,131 @@ function mountainBand(s,v){
  b+=`<text x="${X1}" y="40" text-anchor="end" font-size="13" fill="#3e6aa0">dashed: band today</text><text x="${X1}" y="58" text-anchor="end" font-size="13" fill="#087f76">green: band after ${fmt(s.warming)} °C</text>`;
  return M.graphic('A species’ band on a mountain',`A ${fmt(s.peak)} km mountain. Today the species lives from ${fmt(s.low)} to ${fmt(s.low+s.width)} km. After ${fmt(s.warming)} °C of warming the band moves up ${fmt(1000*v.shift)} m${v.gone?' and passes the summit':''}; ${fmt(100*v.share)}% of today’s area is left.`,b);
 }
+// Chemistry in the Earth System. Fuels: formula counts, molar masses (g/mol, from C 12.011, H 1.008, O 15.999) and
+// lower heating values (kJ/mol, with water as vapor). Bonds broken and formed for one mole of fuel, with average bond
+// energies (kJ/mol): C–H 413, C–C 348, C–O 358, O–H 463, O=O 498, C=O in CO₂ 799.
+const MOLAR={C:12.011,H:1.008,O:15.999},BOND={CH:413,CC:348,CO:358,OH:463,OO:498,CdO:799};
+const FUELS={
+ methane:{name:'Methane',formula:'CH₄',atoms:{C:1,H:4,O:0},heat:802.3,bonds:{CH:4}},
+ octane:{name:'Octane',formula:'C₈H₁₈',atoms:{C:8,H:18,O:0},heat:5074,bonds:{CC:7,CH:18}},
+ ethanol:{name:'Ethanol',formula:'C₂H₆O',atoms:{C:2,H:6,O:1},heat:1235,bonds:{CC:1,CH:5,CO:1,OH:1}}
+};
+const mass=a=>a.C*MOLAR.C+a.H*MOLAR.H+a.O*MOLAR.O;
+function combustion(key,grams){
+ const f=FUELS[key],M=mass(f.atoms),mol=grams/M,o2=f.atoms.C+f.atoms.H/4-f.atoms.O/2,co2=f.atoms.C,h2o=f.atoms.H/2;
+ const mCO2=mass({C:1,H:0,O:2}),mH2O=mass({C:0,H:2,O:1}),mO2=2*MOLAR.O;
+ const broken=Object.entries(f.bonds).reduce((s,[b,n])=>s+n*BOND[b],0)+o2*BOND.OO,formed=co2*2*BOND.CdO+h2o*2*BOND.OH;
+ const energy=mol*f.heat;
+ return{...f,M,mol,o2:mol*o2*mO2,co2:mol*co2*mCO2,h2o:mol*h2o*mH2O,energy,perGram:f.heat/M,perMJ:co2*mCO2/f.heat*1000,broken,formed,bondEstimate:formed-broken};
+}
+function bondBars(v){
+ const max=Math.max(v.formed,v.broken),W=330,x0=150,bar=(y,val,label,color)=>`<rect x="${x0}" y="${y}" width="${(W*val/max).toFixed(1)}" height="30" fill="${color}" opacity=".85"/><text x="${x0-10}" y="${y+20}" text-anchor="end" font-size="13" fill="#263c5b">${esc(label)}</text><text x="${(x0+W*val/max+6).toFixed(1)}" y="${y+20}" font-size="13" fill="#263c5b">${esc(fmt(val)+' kJ')}</text>`;
+ return M.graphic(`Bond energy for one mole of ${v.name.toLowerCase()}`,`Breaking the bonds in one mole of ${v.name.toLowerCase()} and its oxygen takes about ${fmt(v.broken)} kJ; forming the bonds in the carbon dioxide and water releases about ${fmt(v.formed)} kJ, so about ${fmt(v.bondEstimate)} kJ is released. Measured: ${fmt(v.heat)} kJ.`,
+  `<text x="260" y="40" text-anchor="middle" font-size="13" fill="#52647b">average bond energies, one mole of fuel</text>`+bar(70,v.broken,'bonds broken (in)','#6542c0')+bar(130,v.formed,'bonds formed (out)','#087f76')+bar(190,v.bondEstimate,'released overall','#b4441f')+`<text x="260" y="262" text-anchor="middle" font-size="13" fill="#52647b">measured energy released: ${esc(fmt(v.heat))} kJ per mole</text>`);
+}
+// Mixing: specific heats in J/(g·°C) (OpenStax College Physics, table 14.1).
+const SPECIFIC={water:4.18,aluminum:0.90,iron:0.45};
+function mixing(object,hotMass,hotTemp,coldMass,coldTemp){
+ const ch=SPECIFIC[object],cc=SPECIFIC.water,final=(hotMass*ch*hotTemp+coldMass*cc*coldTemp)/(hotMass*ch+coldMass*cc);
+ return{final,energy:hotMass*ch*(hotTemp-final),ch};
+}
+function thermometers(s,v){
+ const base=240,top=50,H=base-top,Y=t=>base-t/100*H,th=(x,t,label,color)=>`<rect x="${x-7}" y="${top-6}" width="14" height="${H+12}" rx="7" fill="#ffffff" stroke="#52647b"/><circle cx="${x}" cy="${base+12}" r="11" fill="${color}"/><rect x="${x-3}" y="${Y(t).toFixed(1)}" width="6" height="${(base+6-Y(t)).toFixed(1)}" fill="${color}"/><text x="${x}" y="${base+40}" text-anchor="middle" font-size="12" fill="#263c5b">${esc(label)}</text><text x="${x+14}" y="${(Y(t)+4).toFixed(1)}" font-size="12" fill="#263c5b">${esc(fmt(t)+' °C')}</text>`;
+ let b='';for(const t of[0,20,40,60,80,100])b+=`<path d="M40 ${Y(t)}h10" stroke="#8391a5"/><text x="36" y="${Y(t)+4}" text-anchor="end" font-size="11" fill="#52647b">${t}</text>`;
+ b+=`<text x="140" y="28" text-anchor="middle" font-size="13" fill="#52647b">before</text><text x="400" y="28" text-anchor="middle" font-size="13" fill="#52647b">after mixing</text>`;
+ b+=th(100,s.hotTemp,s.object==='water'?'hot water':'hot '+s.object,'#d64545')+th(180,s.coldTemp,'cold water','#2f6ea8')+th(360,v.final,'hot sample','#b4441f')+th(440,v.final,'water','#b4441f');
+ b+=`<path d="M220 140h90" stroke="#6542c0" stroke-width="2.5"/><path d="M310 140l-8 -5v10z" fill="#6542c0"/><text x="265" y="130" text-anchor="middle" font-size="12" fill="#6542c0">${esc(fmt(v.energy/1000)+' kJ')}</text><text x="265" y="160" text-anchor="middle" font-size="11" fill="#52647b">hot to cold</text>`;
+ return M.graphic('Temperatures before and after mixing',`Before: the hot sample at ${s.hotTemp} °C and the water at ${s.coldTemp} °C. After: both at ${fmt(v.final)} °C. About ${fmt(v.energy/1000)} kJ moved from the hot sample to the water.`,b);
+}
+// Ions: shells, valence electrons and ion charges.
+const ELEMENTS={
+ Na:{name:'sodium',shells:[2,8,1],charge:1},K:{name:'potassium',shells:[2,8,8,1],charge:1},Mg:{name:'magnesium',shells:[2,8,2],charge:2},Ca:{name:'calcium',shells:[2,8,8,2],charge:2},Al:{name:'aluminum',shells:[2,8,3],charge:3},
+ Cl:{name:'chlorine',anion:'chloride',shells:[2,8,7],charge:-1},F:{name:'fluorine',anion:'fluoride',shells:[2,7],charge:-1},O:{name:'oxygen',anion:'oxide',shells:[2,6],charge:-2},S:{name:'sulfur',anion:'sulfide',shells:[2,8,6],charge:-2},N:{name:'nitrogen',anion:'nitride',shells:[2,5],charge:-3}
+};
+const gcd=(a,b)=>b?gcd(b,a%b):a,SUB='₀₁₂₃₄₅₆₇₈₉';
+function ionic(metal,nonmetal){
+ const m=ELEMENTS[metal],n=ELEMENTS[nonmetal],g=gcd(m.charge,-n.charge),nm=-n.charge/g,nn=m.charge/g,sub=k=>k===1?'':String(k).split('').map(d=>SUB[d]).join('');
+ const SUP='⁰¹²³⁴⁵⁶⁷⁸⁹',charge=c=>(Math.abs(c)===1?'':String(Math.abs(c)).split('').map(d=>SUP[d]).join(''))+(c>0?'⁺':'⁻');
+ return{metal:m,nonmetal:n,nm,nn,formula:metal+sub(nm)+nonmetal+sub(nn),name:m.name+' '+n.anion,valenceMetal:m.shells[m.shells.length-1],valenceNonmetal:n.shells[n.shells.length-1],ionMetal:metal+charge(m.charge),ionNonmetal:nonmetal+charge(n.charge)};
+}
+function atomDrawing(sym,el,cx,cy,highlight){
+ let b=`<circle cx="${cx}" cy="${cy}" r="12" fill="#263c5b"/><text x="${cx}" y="${cy+5}" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">${sym}</text>`;
+ el.shells.forEach((n,i)=>{const r=24+i*16;b+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#c3cbd8"/>`;for(let k=0;k<n;k++){const a=2*Math.PI*k/n-Math.PI/2,outer=i===el.shells.length-1;b+=`<circle cx="${(cx+r*Math.cos(a)).toFixed(1)}" cy="${(cy+r*Math.sin(a)).toFixed(1)}" r="${outer?4.5:3}" fill="${outer?highlight:'#8391a5'}"/>`;}});
+ return b;
+}
+function ionDrawing(metal,nonmetal,v){
+ let b=atomDrawing(metal,v.metal,130,130,'#d64545')+atomDrawing(nonmetal,v.nonmetal,390,130,'#087f76');
+ b+=`<path d="M205 130h105" stroke="#6542c0" stroke-width="2.5"/><path d="M310 130l-9 -5v10z" fill="#6542c0"/><text x="258" y="120" text-anchor="middle" font-size="12" fill="#6542c0">${esc(v.metal.charge+' electron'+(v.metal.charge>1?'s':'')+' each')}</text>`;
+ b+=`<text x="130" y="236" text-anchor="middle" font-size="13" fill="#263c5b">${esc(v.metal.name+': '+v.valenceMetal+' valence')}</text><text x="390" y="236" text-anchor="middle" font-size="13" fill="#263c5b">${esc(v.nonmetal.name+': '+v.valenceNonmetal+' valence')}</text>`;
+ b+=`<text x="260" y="276" text-anchor="middle" font-size="16" font-weight="700" fill="#263c5b">${esc(v.ionMetal+' and '+v.ionNonmetal+' → '+v.formula)}</text>`;
+ return M.graphic(`Making ${v.name}`,`${v.metal.name} has ${v.valenceMetal} valence electron${v.valenceMetal>1?'s':''} and ${v.nonmetal.name} has ${v.valenceNonmetal}. ${v.metal.name} loses electrons to become ${v.ionMetal}; ${v.nonmetal.name} gains them to become ${v.ionNonmetal}. The charges balance in ${v.formula}.`,b);
+}
+// Rates: the rate relative to 25 °C and 1 mol/L, from the share of collisions with at least the activation energy.
+const GAS=8.314;
+function rate(celsius,concentration,barrier){
+ const T=celsius+273.15,Ea=barrier*1000;
+ return concentration*Math.exp(-Ea/GAS*(1/T-1/298.15));
+}
+// Feedbacks, in W/m² per °C of warming (IPCC AR6 WG1 chapter 7, central values): Planck response 3.22; water vapor
+// with lapse rate 1.30; surface albedo 0.35; clouds 0.42.
+const FEEDBACK={planck:3.22,vapor:1.30,albedo:0.35,clouds:0.42};
+function feedback(forcing,vapor,albedo,clouds){
+ const sum=(vapor?FEEDBACK.vapor:0)+(albedo?FEEDBACK.albedo:0)+(clouds?FEEDBACK.clouds:0),f=sum/FEEDBACK.planck,first=forcing/FEEDBACK.planck;
+ const rounds=[];let total=0;for(let k=0;k<=12;k++){total+=first*f**k;rounds.push(total);}
+ return{f,first,total:forcing/(FEEDBACK.planck-sum),rounds,gain:1/(1-f)};
+}
+// Seawater carbonate chemistry at 25 °C and salinity 35, on the total pH scale: CO₂ solubility K0 (Weiss 1974),
+// carbonic acid K1 and K2 (Lueker et al. 2000), boric acid KB and water Kw (Dickson), total alkalinity 2,300 µmol/kg
+// and total boron 416 µmol/kg. [H⁺] is found by bisection so that the alkalinity balances. With sodium carbonate
+// added (µmol/kg), the water first comes into balance with the air, then the carbonate is added in a closed tank:
+// dissolved carbon rises by the amount added and alkalinity by twice that.
+const SEA={K0:0.0284,K1:10**-5.847,K2:10**-8.966,KB:10**-8.597,Kw:10**-13.22,alkalinity:2300e-6,boron:416e-6};
+const bisect=excess=>{let lo=1e-10,hi=1e-6;for(let i=0;i<200;i++){const h=Math.sqrt(lo*hi);if(excess(h)>0)lo=h;else hi=h;}return Math.sqrt(lo*hi);};
+const otherAlkalinity=h=>SEA.boron*SEA.KB/(SEA.KB+h)+SEA.Kw/h-h;
+function seawater(ppm,added=0){
+ const air=SEA.K0*ppm*1e-6;
+ let h=bisect(h=>SEA.K1*air/h+2*SEA.K1*SEA.K2*air/(h*h)+otherAlkalinity(h)-SEA.alkalinity);
+ const hco3=SEA.K1*air/h,co3=SEA.K2*hco3/h;
+ if(!added)return{pH:-Math.log10(h),h,co2:air,hco3,co3,dic:air+hco3+co3,alkalinity:SEA.alkalinity};
+ const dic=air+hco3+co3+added*1e-6,alkalinity=SEA.alkalinity+2*added*1e-6,split=h=>{const d=h*h+SEA.K1*h+SEA.K1*SEA.K2;return{co2:dic*h*h/d,hco3:dic*SEA.K1*h/d,co3:dic*SEA.K1*SEA.K2/d};};
+ h=bisect(h=>{const x=split(h);return x.hco3+2*x.co3+otherAlkalinity(h)-alkalinity;});
+ return{pH:-Math.log10(h),h,...split(h),dic,alkalinity};
+}
 function model(index,s){
+ if(index===18){const v=combustion(s.fuel,s.grams);
+  return{graph:bondBars(v)+M.table('Masses in the reaction',['Substance','Mass (g)'],[[v.formula+' burned',fmt(s.grams)],['O₂ used',fmt(v.o2)],['CO₂ made',fmt(v.co2)],['H₂O made',fmt(v.h2o)]],''),
+   readout:`${fmt(s.grams)} g of ${v.name.toLowerCase()} (${fmt(v.mol)} mol) + ${fmt(v.o2)} g of oxygen → ${fmt(v.co2)} g of carbon dioxide + ${fmt(v.h2o)} g of water · Energy released about ${fmt(v.energy)} kJ, ${fmt(v.perGram)} kJ per gram · ${fmt(v.perMJ)} g of carbon dioxide per megajoule`,
+   formula:{methane:'CH₄ + 2 O₂ → CO₂ + 2 H₂O',octane:'2 C₈H₁₈ + 25 O₂ → 16 CO₂ + 18 H₂O',ethanol:'C₂H₆O + 3 O₂ → 2 CO₂ + 3 H₂O'}[s.fuel]+'. Moles = mass ÷ molar mass; molar masses: C 12.011, H 1.008, O 15.999 g/mol. Energy released = bonds formed − bonds broken.',
+   note:'Complete burning, with the water produced as vapor. Average bond energies give an estimate within a few percent of the measured value. Gasoline is a mixture; octane stands in for it.'};}
+ if(index===19){const v=mixing(s.object,s.hotMass,s.hotTemp,s.coldMass,s.coldTemp);
+  return{graph:thermometers(s,v),
+   readout:`${s.hotMass} g of ${s.object==='water'?'water':s.object} at ${s.hotTemp} °C + ${s.coldMass} g of water at ${s.coldTemp} °C → both at ${fmt(v.final)} °C · About ${fmt(v.energy/1000)} kJ moved from hot to cold`,
+   formula:`Energy lost by the hot sample = energy gained by the water: m₁c₁(T₁ − T) = m₂c₂(T − T₂), so T = (m₁c₁T₁ + m₂c₂T₂) ÷ (m₁c₁ + m₂c₂). c = ${fmt(v.ch)} J/(g·°C) for the hot sample and 4.18 for water.`,
+   note:'An insulated container that loses no energy to the room and takes up none itself. Real cups lose some heat, so measured temperatures fall a little short.'};}
+ if(index===20){const v=ionic(s.metal,s.nonmetal);
+  return{graph:ionDrawing(s.metal,s.nonmetal,v),
+   readout:`${v.metal.name} ${v.metal.shells.join(', ')}: ${v.valenceMetal} valence → ${v.ionMetal} · ${v.nonmetal.name} ${v.nonmetal.shells.join(', ')}: ${v.valenceNonmetal} valence → ${v.ionNonmetal} · ${v.name}, ${v.formula}: ${v.nm} ${v.metal.name} ion${v.nm>1?'s':''} for ${v.nn} ${v.nonmetal.anion} ion${v.nn>1?'s':''}`,
+   formula:'Metals lose their valence electrons; nonmetals gain enough to fill an outer shell of eight. The ions combine in the ratio that makes the total charge zero.',
+   note:'The shell drawing is a simple model; electrons are not little balls in fixed circles. Some compounds, such as those of aluminum, are partly covalent.'};}
+ if(index===21){const r=rate(s.temperature,s.concentration,Number(s.barrier)),ref25=rate(25,s.concentration,Number(s.barrier)),plus10=rate(s.temperature+10,s.concentration,Number(s.barrier))/r;
+  return{graph:M.cartesian('Relative rate against temperature',[{label:`${s.barrier} kJ/mol at ${fmt(s.concentration)} mol/L`,prefix:'Line: ',fn:t=>rate(t,s.concentration,Number(s.barrier))}],{xmin:0,xmax:60,ymin:0,ymax:60,xlabel:'Temperature (°C)',ylabel:'Rate (1 = 25 °C, 1 mol/L)',point:[s.temperature,r],left:80,ylabelX:22,xticks:[0,10,20,30,40,50,60],yticks:[0,10,20,30,40,50,60]}),
+   readout:`${s.temperature} °C, ${fmt(s.concentration)} mol/L, activation energy ${s.barrier} kJ/mol: relative rate ${fmt(r)} (1 = 25 °C and 1 mol/L) · Temperature alone: ${fmt(r/ref25)} × the rate at 25 °C · 10 °C warmer: ${fmt(plus10)} × faster`,
+   formula:'Rate ∝ concentration × e^(−Ea ÷ RT), with R = 8.314 J/(mol·K) and T in kelvins. The exponential term is the share of collisions with at least the activation energy Ea.',
+   note:'A simple reaction whose rate is proportional to one concentration. Collisions also become more frequent as particles speed up, by under 2% for each 10 °C; the lab leaves this out. Real reactions can depend on concentrations in other ways, and catalysts change the activation energy.'};}
+ if(index===22){const v=feedback(s.forcing,s.vapor==='on',s.albedo==='on',s.clouds==='on');
+  return{graph:M.cartesian('Warming as the feedback loop goes round',[{label:'Total warming after each round',prefix:'Line: ',fn:x=>v.rounds[Math.min(12,Math.floor(x))]}],{xmin:0,xmax:12,ymin:0,ymax:10,xlabel:'Round of the feedback loop',ylabel:'Warming (°C)',point:[12,v.rounds[12]],left:80,ylabelX:22,xticks:[0,2,4,6,8,10,12],yticks:[0,2,4,6,8,10]}),
+   readout:`${fmt(s.forcing)} W/m²: ${fmt(v.first)} °C with no feedbacks · Each round adds ${fmt(100*v.f)}% of the round before · Total ${fmt(v.total)} °C, ${fmt(v.gain)} times the first warming`,
+   formula:'First warming = extra energy ÷ 3.22 W/m² per °C. Total = first warming ÷ (1 − f), where f = (sum of the feedbacks that are on) ÷ 3.22. Feedbacks in W/m² per °C: water vapor 1.30 (with the change in how fast air cools with height), ice and snow 0.35, clouds 0.42.',
+   note:'Central values from the IPCC’s 2021 assessment. They give about 3.4 °C for doubled carbon dioxide; the IPCC’s best estimate, combining several lines of evidence, is about 3 °C, likely 2.5–4 °C. The model is the eventual warming, after centuries.'};}
+ if(index===23){const added=s.added||0,v=seawater(s.co2,added),pre=seawater(280),more=v.h/pre.h,carb=v.co3/pre.co3,top=added?9:8.3;
+  const change=(r,noun)=>r>=1?`${fmt(100*(r-1))}% more ${noun}`:`${fmt(100*(1-r))}% fewer ${noun}`;
+  const series=[{label:'pH of seawater in balance with the air',prefix:'Line: ',fn:c=>seawater(c).pH}];
+  if(added)series.push({label:`With ${added} µmol/kg of sodium carbonate added`,prefix:'Line: ',fn:c=>seawater(c,added).pH});
+  return{graph:M.cartesian('Surface seawater pH against carbon dioxide',series,{xmin:280,xmax:1000,ymin:7.6,ymax:top,xlabel:'Carbon dioxide (ppm)',ylabel:'pH',point:[s.co2,v.pH],left:80,ylabelX:22,xticks:[280,400,600,800,1000],yticks:added?[7.6,7.8,8,8.2,8.4,8.6,8.8,9]:[7.6,7.7,7.8,7.9,8,8.1,8.2,8.3]})
+    +M.table('Compared with 280 ppm, before industry',['Quantity','At 280 ppm','Now'],[['Sodium carbonate added (µmol/kg)','0',String(added)],['pH',fmt(pre.pH),fmt(v.pH)],['Hydrogen ions','1',fmt(more)+' times'],['Carbonate ions (µmol/kg)',fmt(pre.co3*1e6),fmt(v.co3*1e6)]],''),
+   readout:`${s.co2} ppm${added?` and ${added} µmol/kg of sodium carbonate added`:''}: pH ${v.pH.toFixed(2)} · ${change(more,'hydrogen ions')} than at 280 ppm · Carbonate ions ${fmt(v.co3*1e6)} µmol/kg, ${change(carb,'').trim()} than at 280 ppm`,
+   formula:'pH = −log₁₀[H⁺]. CO₂ + H₂O ⇌ H₂CO₃ ⇌ H⁺ + HCO₃⁻ and H⁺ + CO₃²⁻ ⇌ HCO₃⁻, with seawater’s equilibrium constants at 25 °C. Sodium carbonate, Na₂CO₃, adds carbonate ions: the dissolved carbon rises by the amount added and the alkalinity by twice that.',
+   note:'Surface seawater at 25 °C in balance with the air; sodium carbonate is added afterward, in a closed tank. This model’s pH falls by about 0.1 between 280 ppm and 370 ppm, the level around 2000, close to estimates from measurements (about 0.11 from 1770 to 2000), and by about 0.14 at 420 ppm. Cold polar water holds less carbonate, so it has lost more pH (about 0.16 in the Arctic) and warm tropical water less. Water out of balance with the air, and coastal water affected by upwelling, rivers and living things, varies further.'};}
  if(index===12){const v=foodChain(s.producers,s.efficiency,s.levels);
   return{graph:pyramid(v,s.levels),
    readout:`${v.energy.map((x,k)=>LEVELS[k]+' '+(x>=1?fmt(x):x.toPrecision(2))).join(' → ')} · The top level gets ${100*v.share>=1?fmt(100*v.share):(100*v.share).toPrecision(2)}% of the plants’ energy; the rest leaves the chain, mostly as heat`,
@@ -399,6 +523,6 @@ function model(index,s){
   formula:'About 3 °C of eventual warming and about 3.9 W/m² of extra energy kept at first for each doubling: 278 → 556 → 1,112 ppm. Between doublings, count the fraction of a doubling: warming ≈ 3 °C × log₂(CO₂ ÷ 278 ppm).',
   note:'Carbon dioxide alone, after the ocean has caught up, which takes centuries. The warming measured so far, about 1.2 °C averaged over 2015–2024 compared with 1850–1900, also reflects other greenhouse gases, particles that cool, and the ocean’s delay.'};
 }
-const api={model,cell,heating,rainShadow,warming,particles,reaction,seafloor,foxes,crash,moon,selection,wave,foodChain,keeling,lineages,cross,body,uphill,STATIONS,CO2_TREND,BODY,LAPSE,SITES,STOP,MONTH,MEDIA,WATER,AIR,CO2,SUBSTANCES,REACTIONS,NORMAL,FOX,AMU};
+const api={model,cell,heating,rainShadow,warming,particles,reaction,seafloor,foxes,crash,moon,selection,wave,foodChain,keeling,lineages,cross,body,uphill,combustion,mixing,ionic,rate,feedback,seawater,FUELS,BOND,MOLAR,SPECIFIC,ELEMENTS,FEEDBACK,SEA,STATIONS,CO2_TREND,BODY,LAPSE,SITES,STOP,MONTH,MEDIA,WATER,AIR,CO2,SUBSTANCES,REACTIONS,NORMAL,FOX,AMU};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceScienceModels=api;
 })(typeof window==='undefined'?globalThis:window);

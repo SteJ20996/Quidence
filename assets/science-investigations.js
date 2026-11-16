@@ -175,7 +175,113 @@ const DRAWINGS={
   b+=`<rect x="${f1(X(1))}" y="${gy-gh}" width="${f1(X(2)-X(1))}" height="${gh}" fill="${PURPLE}" opacity=".08"/>`+text(X(1.5),gy-gh+14,'exercise',{anchor:'middle',size:11,fill:PURPLE});
   b+=`<path d="${data.map(([m,v],i)=>(i?'L':'M')+f1(X(m))+' '+f1(Y(v))).join('')}" fill="none" stroke="${PURPLE}" stroke-width="3"/><path d="M${gx} ${f1(Y(72))}H${gx+gw}" stroke="${TEAL}" stroke-dasharray="5 4"/>`;
   b+=text(gx+gw,Y(72)+16,'resting, about 72',{anchor:'end',size:11,fill:TEAL})+text(gx+4,gy-gh-8,'beats per minute',{size:11,fill:MUTED})+text(gx+gw,gy+30,'minutes',{anchor:'end',size:11,fill:MUTED});
-  return['Pulse after exercise','To scale, with a 5 cm scale bar. Two fingers on the wrist below the thumb and a stopwatch, to count beats for 15 seconds and multiply by 4. Beside them, a typical record: about 72 beats a minute at rest, about 128 just after a minute of exercise, and back near 72 within about 5 minutes.',b];}
+  return['Pulse after exercise','To scale, with a 5 cm scale bar. Two fingers on the wrist below the thumb and a stopwatch, to count beats for 15 seconds and multiply by 4. Beside them, a typical record: about 72 beats a minute at rest, about 128 just after a minute of exercise, and back near 72 within about 5 minutes.',b];},
+ 19:()=>{let b='';
+  // At 5 px per cm: a ring stand on a 20 cm plate holding a 355 mL soda can (12.2 cm tall, 6.6 cm wide) with 100 g of
+  // water, 2.9 cm deep, just above a tea-light candle (3.8 cm wide, 1.6 cm tall) with a flame about 2.5 cm tall; a 30 cm
+  // thermometer; and a scale with an 18 cm platform. Readings are examples: 0.6 g of wax burned warms the water 20 °C.
+  const k=5,base=262,h=cm=>base-cm*k,cx=80;
+  const tealight=(x,y,lit)=>`<rect x="${x-1.9*k}" y="${y-1.6*k}" width="${3.8*k}" height="${1.6*k}" rx="2" fill="#d5dae1" stroke="${INK}" stroke-width="1.5"/><path d="M${x} ${y-1.6*k}v-${0.5*k}" stroke="${INK}" stroke-width="1.5"/>`+(lit?`<path d="M${x} ${y-2.1*k}c-${1*k} -${0.8*k} -${0.8*k} -${1.7*k} 0 -${2.5*k}c${0.8*k} ${0.9*k} ${1*k} ${1.8*k} 0 ${2.5*k}z" fill="#f2a43a" stroke="#d9772b"/>`:'');
+  b+=`<rect x="20" y="${h(1)}" width="${20*k}" height="${1*k}" rx="2" fill="${MUTED}"/><path d="M28 ${h(1)}V${h(40)}" stroke="${MUTED}" stroke-width="${1*k}"/>`;
+  b+=tealight(cx,h(1),true);
+  const can0=h(6),can1=h(18.2);
+  b+=`<rect x="${cx-3.3*k}" y="${can1}" width="${6.6*k}" height="${can0-can1}" rx="4" fill="#dfe4ea" stroke="${INK}" stroke-width="2"/><rect x="${cx-3.3*k+2}" y="${h(9.2)}" width="${6.6*k-4}" height="${2.9*k-1}" fill="${WATER}"/>`;
+  b+=`<path d="M28 ${h(16)}H${cx-3.3*k}" stroke="${INK}" stroke-width="3"/>`;
+  b+=`<rect x="${cx+5}" y="${h(36.5)}" width="5" height="${30*k}" rx="2" fill="#ffffff" stroke="${LINE}"/><circle cx="${cx+7.5}" cy="${h(6.5)}" r="4" fill="${RED}"/><path d="M${cx+7.5} ${h(6.5)}V${h(21)}" stroke="${RED}" stroke-width="2"/>`;
+  b+=text(cx+16,h(32),'thermometer',{size:11,fill:MUTED})+text(cx+22,h(15),'can',{size:11,fill:MUTED})+text(cx+22,h(7.6),'100 g water',{size:11,fill:MUTED})+text(cx+22,h(2),'tea light',{size:11,fill:MUTED});
+  // The scale, with the same candle on it, put out and cooled.
+  const sx=215;b+=`<rect x="${sx-9*k}" y="${h(3)}" width="${18*k}" height="${3*k}" rx="4" fill="${MUTED}"/><rect x="${sx-6*k}" y="${h(2.4)}" width="${12*k}" height="${1.8*k}" rx="2" fill="#e9f3ea"/>`+text(sx,h(1),'14.0 g',{anchor:'middle',bold:true,size:11,fill:'#1d5c2e'});
+  b+=tealight(sx,h(3),false)+text(sx,278,'on a 0.1 g scale',{anchor:'middle',size:11,fill:MUTED});
+  b+=step(1,282,52,'Weigh the candle: 14.6 g')+step(2,282,80,'Heat 100 g of water')+step(3,282,108,'Water: 20 °C → 40 °C')+step(4,282,136,'Cool, weigh again: 14.0 g');
+  b+=text(282,172,'100 g × 4.18 × 20 °C = 8.4 kJ',{size:11})+text(282,190,'0.6 g of wax: 14 kJ per gram',{size:11})+text(282,208,'The lab: 44.4 kJ/g for octane.',{size:11,fill:MUTED})+text(282,226,'Most of the heat missed the can.',{size:11,fill:MUTED});
+  b+=scaleBar(282,288,10*k,'10 cm');
+  return['Energy from burning fuel','To scale, with a 10 cm scale bar. With an adult, a tea-light candle under a soda can holding 100 g of water, held by a ring stand, with a thermometer in the water; and the cooled candle on a 0.1 g scale. Example readings: the candle goes from 14.6 g to 14.0 g while the water warms from 20 °C to 40 °C, so 8.4 kJ reached the water from 0.6 g of wax, 14 kJ per gram: about a third of the 44.4 kJ per gram that octane, a similar fuel, releases in the lab.',b];},
+ 20:()=>{let b='';
+  // At 6 px per cm: 12 oz foam cups, 10.5 cm deep, 8.4 cm across the top and 5.4 cm across the bottom inside (about
+  // 400 mL to the brim); the water levels are computed from that shape. 30 cm thermometers. Readings are examples.
+  const k=6,base=250,H=10.5,R=4.2,r0=2.7,rad=y=>r0+(R-r0)*y/H,vol=y=>Math.PI*y/3*(r0*r0+r0*rad(y)+rad(y)**2);
+  const level=mL=>{let lo=0,hi=H;for(let i=0;i<60;i++){const m=(lo+hi)/2;if(vol(m)<mL)lo=m;else hi=m;}return lo;};
+  const cup=(x,mL,reading,color,lid)=>{const y=level(mL);let s=`<path d="M${f1(x-r0*k)} ${base}L${f1(x-R*k)} ${f1(base-H*k)}H${f1(x+R*k)}L${f1(x+r0*k)} ${base}z" fill="#ffffff" stroke="${INK}" stroke-width="2"/>`;
+   s+=`<path d="M${f1(x-r0*k+1)} ${base-1}L${f1(x-rad(y)*k+1)} ${f1(base-y*k)}H${f1(x+rad(y)*k-1)}L${f1(x+r0*k-1)} ${base-1}z" fill="${color}"/>`;
+   if(lid)s+=`<path d="M${f1(x-R*k-4)} ${f1(base-H*k)}h${f1(2*R*k+8)}" stroke="${MUTED}" stroke-width="4"/><path d="M${f1(x-r0*k-5)} ${base+3}L${f1(x-R*k-5)} ${f1(base-H*k)}M${f1(x+r0*k+5)} ${base+3}L${f1(x+R*k+5)} ${f1(base-H*k)}" stroke="${LINE}" stroke-width="2"/>`;
+   s+=`<rect x="${x+4}" y="${f1(base-0.5*k-30*k)}" width="5" height="${30*k}" rx="2" fill="#ffffff" stroke="${LINE}"/><circle cx="${x+6.5}" cy="${base-0.5*k-4}" r="4" fill="${RED}"/>`;
+   return s+text(x+6.5,f1(base-31*k-6),reading,{anchor:'middle',bold:true,size:12});};
+  b+=cup(70,100,'50 °C','#f6d2c4')+cup(190,100,'10 °C',WATER)+cup(400,200,'29 °C','#e3d9ef',true);
+  b+=arrow(250,150,320,150)+text(285,138,'pour both in',{anchor:'middle',size:11,fill:PURPLE});
+  b+=text(70,270,'100 g at 50 °C',{anchor:'middle',size:12})+text(190,270,'100 g at 10 °C',{anchor:'middle',size:12})+text(400,270,'measured: 29 °C',{anchor:'middle',size:12});
+  b+=text(400,286,'predicted: 30 °C',{anchor:'middle',size:12,fill:TEAL})+text(436,176,'two cups',{size:11,fill:MUTED})+text(436,190,'and a lid',{size:11,fill:MUTED});
+  b+=scaleBar(130,292,10*k,'10 cm');
+  return['Mixing hot and cold water','To scale, with a 10 cm scale bar. Foam cups holding 100 g of hot tap water at 50 °C and 100 g of cold water at 10 °C, each with a thermometer, poured together into a third cup nested in a fourth, with a lid. The formula predicts 30 °C; an example measurement is 29 °C, a little lower because some heat goes into the cup and the room.',b];},
+ 21:()=>{let b='';
+  // Three views, each to its own scale. A dish 10 cm across at 1.4 px per mm, with crystals 1–3 mm across. The
+  // crystals at 20 px per mm. The ions at 100 px per nm, from ionic radii (Na⁺ 0.102 nm, Cl⁻ 0.181 nm) and the
+  // sodium–chloride spacing in halite (0.282 nm), so neighboring ions touch along each row.
+  const rnd=seeded(21);
+  b+=`<circle cx="92" cy="150" r="70" fill="#eef2f6" stroke="${INK}" stroke-width="2"/><circle cx="92" cy="150" r="64" fill="none" stroke="${LINE}"/>`;
+  for(let i=0;i<46;i++){const a=rnd()*2*Math.PI,d=40+rnd()*22,s=1.4*(1+rnd()*2);b+=`<rect x="${f1(92+d*Math.cos(a)-s/2)}" y="${f1(150+d*Math.sin(a)-s/2)}" width="${f1(s)}" height="${f1(s)}" fill="#ffffff" stroke="${MUTED}" stroke-width=".6"/>`;}
+  b+=text(92,64,'dish, 10 cm across',{anchor:'middle',size:11,fill:MUTED})+scaleBar(57,250,70,'5 cm');
+  // The box on the dish is the middle view's area at the dish's scale: 164 by 134 px at 20 px per mm is 8.2 by 6.7 mm.
+  b+=`<rect x="136" y="166" width="11.5" height="9.4" fill="none" stroke="${PURPLE}" stroke-width="1.5"/><path d="M147.5 166L196 88M147.5 175.4L196 222" stroke="${PURPLE}" stroke-dasharray="3 3"/>`;
+  b+=`<rect x="196" y="88" width="164" height="134" fill="#f7f9fb" stroke="${LINE}"/>`;
+  const cube=(x,y,mm)=>{const s=mm*20;let c=`<rect x="${x}" y="${y}" width="${s}" height="${s}" fill="#ffffff" stroke="${MUTED}" stroke-width="1.5"/>`;for(let j=1;j<4;j++){const m=s*j/8;c+=`<rect x="${f1(x+m)}" y="${f1(y+m)}" width="${f1(s-2*m)}" height="${f1(s-2*m)}" fill="none" stroke="#c3cbd8"/>`;}return c;};
+  b+=cube(206,98,2.8)+cube(272,104,1.2)+cube(300,140,2)+cube(222,168,1.4)+cube(262,184,0.9);
+  b+=text(278,80,'crystals: cubes 1–3 mm',{anchor:'middle',size:11,fill:MUTED})+scaleBar(250,250,20,'1 mm');
+  // The ions are far too small to mark on the middle view: they are enlarged five million times more.
+  b+=`<circle cx="340" cy="160" r="2" fill="${PURPLE}"/><path d="M340 160L380 88M340 160L380 222" stroke="${PURPLE}" stroke-dasharray="3 3"/>`;
+  b+=`<rect x="380" y="88" width="132" height="134" fill="#f7f9fb" stroke="${LINE}"/>`;
+  const sp=28.2;for(let i=0;i<4;i++)for(let j=0;j<4;j++){const na=(i+j)%2===0,x=403+i*sp,y=113+j*sp;b+=`<circle cx="${f1(x)}" cy="${f1(y)}" r="${na?10.2:18.1}" fill="${na?PURPLE:TEAL}" fill-opacity="${na?1:.75}"/>`;}
+  b+=text(446,80,'ions 0.28 nm apart',{anchor:'middle',size:11,fill:MUTED})+scaleBar(421,250,50,'0.5 nm');
+  b+=`<circle cx="392" cy="266" r="6" fill="${PURPLE}"/>`+text(402,270,'Na⁺',{size:11})+`<circle cx="450" cy="266" r="8" fill="${TEAL}" fill-opacity=".75"/>`+text(462,270,'Cl⁻',{size:11});
+  b+=text(196,292,'A 1 mm edge: about 3.5 million ions in a row',{size:11});
+  return['Salt crystals from evaporation','To scale at three magnifications, each with its own scale bar. Left: a dish 10 cm across after the salt water has evaporated, with crystals 1–3 mm across. Middle: the crystals enlarged, square with stepped faces. Right: sodium ions (radius 0.102 nm) and chloride ions (0.181 nm) in one layer of halite, 0.282 nm apart, so that a 1 mm edge holds about 3.5 million ions in a row. The cubic stacking of the ions makes the cubic crystals.',b];},
+ 22:()=>{let b='';
+  // At 7 px per cm: drinking glasses 14 cm tall and 7.5 cm wide, glow sticks 15 cm long and 1.5 cm thick, and ice
+  // cubes about 2.5 cm across.
+  const k=7,base=246,glass=(x,fill)=>`<path d="M${x-3.75*k} ${base-14*k}V${base}h${7.5*k}V${base-14*k}" fill="none" stroke="${INK}" stroke-width="2"/><rect x="${x-3.75*k+2}" y="${base-11*k}" width="${7.5*k-4}" height="${11*k-1}" fill="${fill}"/>`;
+  // Each stick rests on the bottom and leans 12° against the glass.
+  const stick=(x,bright)=>`<g transform="rotate(12 ${x} ${base-2})">${bright?`<rect x="${x-2.5*k}" y="${base-2-16*k}" width="${5*k}" height="${16*k}" rx="18" fill="#b8f0a8" opacity=".45"/>`:''}<rect x="${x-0.75*k}" y="${base-2-15*k}" width="${1.5*k}" height="${15*k}" rx="5" fill="#5ccf45" opacity="${bright?1:.3}" stroke="#3c8f2c"/></g>`;
+  b+=glass(140,'#fbe6dc')+stick(140,true)+glass(380,'#e2eef8')+stick(380,false);
+  for(const[dx,dy]of[[-15,0],[9,4],[-4,22]])b+=`<rect x="${380+dx-1.25*k}" y="${base-11*k+dy}" width="${2.5*k}" height="${2.5*k}" rx="3" fill="#ffffff" fill-opacity=".8" stroke="#9fb7cf"/>`;
+  b+=text(140,base-15*k-14,'hot tap water, about 50 °C',{anchor:'middle',size:12})+text(380,base-15*k-14,'ice water, about 0 °C',{anchor:'middle',size:12});
+  b+=text(140,268,'brighter, but fades sooner',{anchor:'middle',size:12,fill:TEAL})+text(380,268,'dimmer, but lasts longer',{anchor:'middle',size:12,fill:TEAL});
+  b+=text(260,96,'same kind of glow stick: soaked 5 minutes, then activated together',{anchor:'middle',size:11,fill:MUTED});
+  b+=scaleBar(242,292,5*k,'5 cm');
+  return['Glow sticks in hot and cold water','To scale, with a 5 cm scale bar. Two drinking glasses, one of hot tap water at about 50 °C and one of ice water at about 0 °C, each holding a 15 cm glow stick of the same kind, soaked for 5 minutes and then activated at the same time. The warm one glows brighter but fades sooner; the cold one glows dimmer but lasts longer, because its reaction runs more slowly.',b];},
+ 23:()=>{let b='';
+  // At 4 px per cm: a desk lamp whose bulb is 30 cm above the desk, between two letter-size sheets (21.6 cm wide)
+  // laid 2 cm apart, each over a 30 cm thermometer, so the bulb is the same distance from both. The graph shows example
+  // readings every minute for 10 minutes.
+  const k=4,desk=210,bx=176;
+  b+=`<path d="M8 ${desk}H262" stroke="${LINE}" stroke-width="3"/>`;
+  b+=`<rect x="10" y="${desk-2*k}" width="${15*k}" height="${2*k}" rx="3" fill="${MUTED}"/><path d="M40 ${desk-2*k}V${desk-45*k}L${bx} ${desk-38*k}" fill="none" stroke="${MUTED}" stroke-width="5"/>`;
+  b+=`<path d="M${bx-5*k} ${desk-32*k}L${bx-2*k} ${desk-38*k}h${4*k}L${bx+5*k} ${desk-32*k}z" fill="${INK}"/><circle cx="${bx}" cy="${desk-30*k}" r="${2*k}" fill="#ffe08a" stroke="#d9a22b"/>`;
+  const sheet=(x0,fill,label)=>`<rect x="${x0}" y="${desk-6}" width="${21.6*k}" height="4" fill="${fill}" stroke="${INK}"/><circle cx="${f1(x0+10.8*k)}" cy="${desk-1}" r="2" fill="${RED}"/>`+text(x0+10.8*k,desk+18,label,{anchor:'middle',size:11,fill:MUTED});
+  b+=sheet(bx-1*k-21.6*k,INK,'black paper')+sheet(bx+1*k,'#ffffff','white paper');
+  b+=`<path d="M${bx} ${desk-28*k}L${bx-11.8*k} ${desk-7}M${bx} ${desk-28*k}L${bx+11.8*k} ${desk-7}" stroke="#d9a22b" stroke-dasharray="4 4"/>`;
+  b+=text(132,desk+36,'same distance from the bulb',{anchor:'middle',size:11,fill:MUTED})+scaleBar(20,288,10*k,'10 cm');
+  // Example readings: from 22 °C, black paper rising toward 31 °C and white toward 25 °C.
+  const gx=320,gw=180,gy=200,gh=150,X=m=>gx+m/10*gw,Y=t=>gy-(t-20)/12*gh,curve=rise=>Array.from({length:11},(_,m)=>[m,22+rise*(1-Math.exp(-m/4))]);
+  b+=`<path d="M${gx} ${gy}H${gx+gw}M${gx} ${gy}V${gy-gh}" stroke="${LINE}"/>`;
+  for(const t of[20,24,28,32])b+=`<path d="M${gx-4} ${f1(Y(t))}h4" stroke="${LINE}"/>`+text(gx-7,Y(t)+4,String(t),{anchor:'end',size:11,fill:MUTED});
+  for(const m of[0,5,10])b+=`<path d="M${f1(X(m))} ${gy}v4" stroke="${LINE}"/>`+text(X(m),gy+16,String(m),{anchor:'middle',size:11,fill:MUTED});
+  for(const[rise,color,label]of[[9.8,INK,'black'],[3.3,TEAL,'white']]){const d=curve(rise);b+=`<path d="${d.map(([m,t],i)=>(i?'L':'M')+f1(X(m))+' '+f1(Y(t))).join('')}" fill="none" stroke="${color}" stroke-width="2.5"/>`+d.map(([m,t])=>`<circle cx="${f1(X(m))}" cy="${f1(Y(t))}" r="2.5" fill="${color}"/>`).join('')+text(gx+gw-2,Y(d[10][1])-8,label,{anchor:'end',size:11,fill:color});}
+  b+=text(gx,gy-gh-10,'°C, example readings',{size:11,fill:MUTED})+text(gx+gw,gy+32,'minutes',{anchor:'end',size:11,fill:MUTED});
+  return['Dark and bright surfaces under a lamp','To scale, with a 10 cm scale bar. A desk lamp with its bulb 30 cm above the desk, between a sheet of black paper and a sheet of white paper, each laid over a thermometer, so the bulb is the same distance from both. Example readings every minute for 10 minutes: the thermometer under black paper rises from 22 °C to about 31 °C, the one under white paper to about 25 °C. A bulb that runs hot shows the difference best; an LED bulb warms both less.',b];},
+ 24:()=>{let b='';
+  // At 8 px per cm: clear 9 oz plastic cups 9.5 cm tall, 7.5 cm across the top and 5 cm across the bottom, filled to
+  // 6 cm, and a drinking straw 19.7 cm long and 0.6 cm wide. The color key is a guide, not to scale.
+  const k=8,base=250,cup=(x,fill)=>{const t=base-9.5*k,w=y=>2.5+(3.75-2.5)*y/9.5;return`<path d="M${f1(x-2.5*k)} ${base}L${f1(x-3.75*k)} ${f1(t)}M${f1(x+2.5*k)} ${base}L${f1(x+3.75*k)} ${f1(t)}M${f1(x-2.5*k)} ${base}H${f1(x+2.5*k)}" stroke="${INK}" stroke-width="2" fill="none"/><path d="M${f1(x-2.5*k+2)} ${base-1}L${f1(x-w(6)*k+2)} ${base-6*k}H${f1(x+w(6)*k-2)}L${f1(x+2.5*k-2)} ${base-1}z" fill="${fill}"/>`;};
+  b+=cup(100,'#6a55b5')+cup(270,'#a8479a');
+  b+=`<g transform="rotate(10 270 ${base-4})"><rect x="${270-0.3*k}" y="${f1(base-4-19.7*k)}" width="${0.6*k}" height="${19.7*k}" fill="#ffffff" stroke="${INK}" stroke-width="1.5"/></g>`;
+  for(const[dx,dy,r]of[[-8,-14,3],[6,-24,2.5],[-2,-34,3.5],[10,-40,2]])b+=`<circle cx="${270+dx}" cy="${base+dy}" r="${r}" fill="#ffffff" fill-opacity=".7"/>`;
+  b+=text(100,272,'left alone',{anchor:'middle',size:12})+text(270,272,'after a minute of breath',{anchor:'middle',size:12});
+  b+=text(100,150,'cabbage juice',{anchor:'middle',size:11,fill:MUTED})+text(100,164,'in water',{anchor:'middle',size:11,fill:MUTED});
+  b+=text(185,40,'breath: about 4% CO₂, 100 times the air',{anchor:'middle',size:11,fill:MUTED});
+  const key=[[2,'#d23b3b'],[4,'#de5f9b'],[6,'#a8479a'],[7,'#7a4fb0'],[8,'#6a55b5'],[10,'#2f8f86'],[12,'#a9b832']];
+  key.forEach(([p,c],i)=>{b+=`<rect x="430" y="${60+i*26}" width="26" height="26" fill="${c}"/>`+text(464,77+i*26,'pH '+p,{size:11});});
+  b+=text(443,48,'color key',{anchor:'middle',size:11,fill:MUTED})+text(443,256,'acid at top',{anchor:'middle',size:11,fill:MUTED});
+  b+=scaleBar(20,292,5*k,'5 cm');
+  return['Breath in red cabbage juice','To scale, with a 5 cm scale bar; the color key is a guide. Two clear cups of red cabbage juice in water. The one left alone stays blue-purple; after a minute of gentle breathing through a straw, the other turns a redder purple, because breath is about 4% carbon dioxide, about 100 times as much as the air, and carbon dioxide makes the water more acidic. Seawater changes much less for the same carbon dioxide because carbonate and borate in it take up hydrogen ions.',b];},
 };
 function figure(lesson){
  const draw=DRAWINGS[lesson];if(!draw)return'';

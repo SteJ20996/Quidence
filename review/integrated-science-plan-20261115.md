@@ -73,12 +73,14 @@ The first plan also listed HS-LS2-2, LS1-7, LS4-2 and ESS3-5. The lessons do not
 
 | # | Segment | Lesson and phenomenon | Model | Core PEs |
 | --- | --- | --- | --- | --- |
-| 19 | Combustion | How much CO₂ comes from burning fuel? | Atoms and masses in combustion; bond energies | HS-PS1-4, PS1-7, PS3-1 |
-| 20 | Heat and energy in the Earth system | Why does heat flow from hot to cold? | Mixing two water samples | HS-PS3-1, PS3-2, PS3-4 |
-| 21 | Atoms, elements and molecules | Why does sodium pair with chlorine? | Valence electrons and charge balance | HS-PS1-1, PS1-2 |
-| 22 | Chemical reactions | Why do reactions speed up when heated? | Collisions, concentration and temperature | HS-PS1-5 |
-| 23 | Chemistry of climate change | Why can a small warming grow? | Ice–albedo feedback and its gain | HS-ESS2-2, ESS2-4 |
-| 24 | Ocean acidification | What does a drop of 0.1 in pH mean? | The pH scale and dissolved CO₂ | HS-PS1-6, ESS2-6 |
+| 19 | Combustion | How much carbon dioxide comes from burning fuel? | Masses and moles for burning methane, octane or ethanol; energy from average bond energies | HS-PS1-7, PS1-4, PS3-1 |
+| 20 | Heat and energy in the Earth system | Why does heat flow from hot to cold? | Mixing hot water, iron or aluminum with cold water in an insulated cup | HS-PS3-4, PS3-1 |
+| 21 | Atoms, elements and molecules | Why does sodium pair with chlorine? | Electron shells, valence electrons and ion charges for five metals and five nonmetals | HS-PS1-1, PS1-2 |
+| 22 | Chemical reactions | Why do reactions speed up when heated? | Relative rate from concentration, temperature and activation energy (e^(−Ea/RT)) | HS-PS1-5 |
+| 23 | Chemistry of climate change | Why can a small warming grow? | Warming from 1–8 W/m² with water vapor, ice and cloud feedbacks switched on or off | HS-ESS2-4, ESS2-2 |
+| 24 | Ocean acidification | What does a drop of 0.1 in pH mean? | Surface seawater carbonate chemistry from 280 to 1,000 ppm of carbon dioxide, with sodium carbonate added as a hatchery does | HS-ESS2-6, PS1-6 |
+
+The first plan also listed HS-PS3-2 for lesson 20. The lesson describes energy as particle motion but does not model it at the scale the PE asks for, so it was dropped. Lesson 23 models water vapor and clouds as well as ice, and asks students to work with albedo and sea-ice data for HS-ESS2-2. Lesson 24 claims HS-PS1-6 through its last step, where students add sodium carbonate to water at 1,000 ppm, as an oyster hatchery does, until the carbonate ions are restored.
 
 ## Pull requests
 
