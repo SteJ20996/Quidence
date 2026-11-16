@@ -318,4 +318,4 @@ html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card.cros
 html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card.cross .course-bridge-label{grid-column:2;grid-row:4;align-self:center;margin:0;font-size:11px}
 html[data-ui-theme="studio"] body[data-q-theme].quidence-home .subject-card.cross .card-more{grid-row:5}
 /* In Learning Atlas the single project card fills its row on narrow screens instead of sitting beside an empty column. */
-@media(max-width:900px){html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-atlas-group:is([data-atlas-group="cross"],[data-atlas-group="cs"]) .subject-card:only-child{grid-column:1/-1}}
+
