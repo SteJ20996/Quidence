@@ -15,6 +15,15 @@ async function main(){
   await page.goto(origin+'/?lang=en');await english();const originalLinks=await links();
   await chooseTheme(page,'atlas');await page.evaluate(()=>document.fonts.ready);
   assert.deepEqual(await page.locator('.q-atlas-group').evaluateAll(es=>es.map(e=>[e.dataset.atlasGroup,e.querySelectorAll('.subject-card').length])),[['school',6],['further',8],['science',3],['cs',1],['cross',4]]);
+  // Every card has the size of a School Mathematics card, and Science's three courses share one row.
+  for(const [width,columns] of [[1440,4],[1180,3],[900,4],[390,2]]){
+   await page.setViewportSize({width,height:1000});await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+   const boxes=await page.locator('.q-atlas-group').evaluateAll(es=>es.map(e=>[e.dataset.atlasGroup,[...e.querySelectorAll('.subject-card')].map(c=>{const r=c.getBoundingClientRect();return [Math.round(r.width),Math.round(r.height),Math.round(r.top)];})]));
+   const all=boxes.flatMap(([,cards])=>cards);assert.equal(new Set(all.map(c=>c[0])).size,1,width+' widths '+JSON.stringify(boxes));assert.equal(new Set(all.map(c=>c[1])).size,1,width+' heights '+JSON.stringify(boxes));
+   const school=boxes.find(([g])=>g==='school')[1];assert.equal(school.filter(c=>c[2]===school[0][2]).length,columns,width+' columns');
+   if(columns>=3)assert.equal(new Set(boxes.find(([g])=>g==='science')[1].map(c=>c[2])).size,1,width+' science wraps');
+  }
+  await page.setViewportSize({width:1280,height:720});
   const raw='Keep this exact work: −1/3\n幾何 x² = 9 <original>';await page.locator('#request-subject').selectOption('geometry');await page.locator('#learning-goal').fill(raw);await page.locator('#learning-goal').blur();
   await page.locator('.q-paper-options>summary').click();await page.locator('#goal-include-report').check();
   const saved=await page.evaluate(()=>localStorage.getItem('cluevera_learning_goal_v1'));
