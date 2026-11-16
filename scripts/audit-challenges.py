@@ -326,6 +326,27 @@ for x in sorted(pool,reverse=True):
     if total+x<=target:total+=x
 assert total!=target and any(sum(c)==target for r in range(4) for c in combinations(pool,r))
 R['al-c04']={'greedy':taken,'fewest':fewest,'subsets':subsets,'claim':'check'}
-assert len(R)==82
-output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel–Hakimi degree tests, every equally likely spin, coin and letter arrangement, a 10,000-part factory, algorithms run step by step with counters, every simple route and every set of four roads, every coin combination and every subset of 20, and a double-precision exponential value with endpoint comparisons. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
+# Integrated Science: the heating curve, the burning of methane, Punnett squares and a feedback loop, from the stated values.
+mass,ice_c,melt,water_c,power=200,F(209,100),334,F(418,100),250
+warm_ice=mass*ice_c*(0-(-15));melt_energy=mass*melt;seconds=melt_energy/power
+assert 267<seconds<268 and seconds-267<F(1,2)
+R['is-c01']={'warmIce':warm_ice,'meltSeconds':round(seconds),'warmWater':mass*water_c*(20-0),'why':'arrangement'}
+molar={'C':12,'H':1,'O':16}
+def molar_mass(atoms):return sum(molar[a]*k for a,k in atoms.items())
+methane,oxygen,co2,water={'C':1,'H':4},{'O':2},{'C':1,'O':2},{'H':2,'O':1}
+equation={'left':[(1,methane),(2,oxygen)],'right':[(1,co2),(2,water)]}
+for el in 'CHO':assert sum(k*a.get(el,0) for k,a in equation['left'])==sum(k*a.get(el,0) for k,a in equation['right'])
+mol=F(48,molar_mass(methane))
+masses_in=48+mol*2*molar_mass(oxygen);masses_out=mol*molar_mass(co2)+mol*2*molar_mass(water);assert masses_in==masses_out
+R['is-c02']={'moles':mol,'oxygen':mol*2*molar_mass(oxygen),'carbon':mol*molar_mass(co2),'heavier':'oxygen'}
+def offspring(a,b):return [x+y for x in a for y in b]
+cross=offspring('Pp','Pp');white=[g for g in cross if g=='pp'];purple=[g for g in cross if 'P' in g];carriers=[g for g in purple if 'p' in g]
+test=offspring('pp','Pp')
+R['is-c03']={'white':400*F(len(white),len(cross)),'carriers':F(len(carriers),len(purple)),'testCross':100*F(sum(1 for g in test if g=='pp'),len(test)),'how':'hidden'}
+first,f=F(12,10),F(6,10);rounds=[first*f**k for k in range(200)]
+assert abs(sum(rounds)-first/(1-f))<F(1,10**30)
+# [H+] = 10^-pH exactly for whole-number pH: pH 6 has 1/10^6 and pH 8 has 1/10^8 mol/L.
+R['is-c04']={'twoRounds':rounds[0]+rounds[1],'total':first/(1-f),'ions':F(1,10**6)/F(1,10**8),'matters':'carbonate'}
+assert len(R)==86
+output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel–Hakimi degree tests, every equally likely spin, coin and letter arrangement, a 10,000-part factory, algorithms run step by step with counters, every simple route and every set of four roads, every coin combination and every subset of 20, a double-precision exponential value with endpoint comparisons, and for Integrated Science the heating and burning arithmetic with balanced atoms, every Punnett box, and a feedback series summed term by term. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
 path=Path(__file__).resolve().parents[1]/'review'/'challenge-math-audit.json';path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(output,indent=2)+'\n');print(json.dumps({'questions':len(R),'components':sum(len(x)for x in R.values()),'output':str(path)}))

@@ -1,3 +1,40 @@
+## 2026-11-16 · Integrated Science 6–10, part 6: checks and an Intuition Lab activity
+
+- **Foundation check.** 15 questions with 30 parts, on the grade 5 science and grade 5–6 mathematics the course assumes:
+  - metric units;
+  - rates, means and powers of ten;
+  - tables, graphs and fair tests;
+  - matter and energy, including where a plant's mass comes from;
+  - food chains, Earth's water and the Sun in the sky.
+- **Understanding check.** 4 problems with 16 parts in bank `quidence-challenges-13`, built on the course's own models:
+  - a heating curve;
+  - moles in burning methane;
+  - Punnett squares;
+  - a feedback series and the pH scale.
+- **Intuition Lab.** "Steady heat. Steady warming?": steady heating stalls at 0 °C while ice melts and at 100 °C while water boils.
+- **Site.**
+  - The card, the course navigation and the check menus link to the checks, and the course page shows the activity.
+  - The homepage summary now counts three science courses, 80 diagnostic problems and seventeen foundation tracks. Integrated Science had been missing from the science count.
+  - Card heights match in DejaVu Sans and Inter.
+- **Checks.**
+  - Tests recompute all 30 foundation parts from their conditions.
+  - `audit-challenges.py` recomputes the 16 understanding parts with exact fractions.
+  - The activity's plateaus are checked second by second.
+  - An independent read found no wrong key. It led to these changes:
+    - a USGS-consistent fresh-water item;
+    - a physically plausible cooling table;
+    - new values for `is-c01`, which the activity had given away;
+    - a limit question for the feedback total;
+    - a note that boiling takes far longer than melting;
+    - accurate dependencies;
+    - a percent field that accepts "50%".
+- **Not yet done.**
+  - No learner data.
+  - The cited misconception studies are older and local.
+  - The checks do not assess planning or carrying out investigations.
+
+See [the note](review/integrated-science-checks-20261116.md).
+
 ## 2026-11-16 · Integrated Science 6–10, part 5: grade 10, Chemistry in the Earth System
 
 Six lessons, one for each instructional segment of *Chemistry in the Earth System* (framework chapter 7). All 24 planned lessons are now open.

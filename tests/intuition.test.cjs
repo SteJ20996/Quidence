@@ -3,8 +3,21 @@ const test=require('node:test'),assert=require('node:assert/strict'),D=require('
 const d=id=>D.find(x=>x.id===id);
 const store=()=>{const values=new Map();return {values,getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k),keys:()=>[...values.keys()]};};
 function attempt(){return {id:'a',locale:'en',createdAt:'2026-10-24',value:3,draftPrediction:0,draftReason:'A larger circumference.',confidence:1,original:{choice:0,choiceText:'The middle band',question:d('sphere').claim.en,reason:'A larger circumference.',confidence:1,locale:'en'},observations:'Both areas match.',settings:[],transfer:'20',checks:[],reflection:'The ds factor matters.',final:2,completedAt:null,step:3};}
-test('all seventeen subjects have complete English text and finite slider states',()=>{assert.equal(D.length,17);assert.equal(new Set(D.map(x=>x.id)).size,17);for(const row of D){{for(const k of ['title','claim','options','control','explain','transfer','transferWhy']){assert.ok(row[k].en?.length,`${row.id} ${k}`);assert.deepEqual(Object.keys(row[k]),['en'],`${row.id} ${k} has English only`);}assert.equal(row.options.en.length,4);if(typeof row.formula==='object')assert.deepEqual(Object.keys(row.formula),['en']);}assert.ok(row.answer>=0&&row.answer<4);for(let v=row.range[0];v<=row.range[1]+1e-9;v+=row.range[2])assert.ok(calc(row,+v.toFixed(6)).every(Number.isFinite),`${row.id}: ${v}`);}});
+test('all eighteen subjects have complete English text and finite slider states',()=>{assert.equal(D.length,18);assert.equal(new Set(D.map(x=>x.id)).size,18);for(const row of D){{for(const k of ['title','claim','options','control','explain','transfer','transferWhy']){assert.ok(row[k].en?.length,`${row.id} ${k}`);assert.deepEqual(Object.keys(row[k]),['en'],`${row.id} ${k} has English only`);}assert.equal(row.options.en.length,4);if(typeof row.formula==='object')assert.deepEqual(Object.keys(row.formula),['en']);}assert.ok(row.answer>=0&&row.answer<4);for(let v=row.range[0];v<=row.range[1]+1e-9;v+=row.range[2])assert.ok(calc(row,+v.toFixed(6)).every(Number.isFinite),`${row.id}: ${v}`);}});
 test('models agree with independently calculated counterexamples, boundaries and transfer values',()=>{assert.equal(calc(d('multiply'),.5)[2],4);assert.deepEqual(calc(d('plans'),6),[24,24,0]);assert.equal(calc(d('perimeter'),6)[2],36);assert.equal(calc(d('perimeter'),5)[2],35);assert.equal(calc(d('square'),.5)[2],-.25);assert.equal(calc(d('square'),-.5)[2],.75);assert.equal(calc(d('waves'),.5)[1],4);assert.deepEqual(calc(d('groups'),10),[36,74,10]);assert.deepEqual(calc(d('groups'),50),[60,50,50]);assert.deepEqual(calc(d('transforms'),2),[-1,2,-2,1]);assert.deepEqual(calc(d('transforms'),1),[-1,1,-1,1]);assert.deepEqual(calc(d('primes'),40),[40,1681,41]);for(let n=0;n<40;n++)assert.equal(calc(d('primes'),n)[2],0);assert.deepEqual(calc(d('choices'),3),[1,1]);assert.deepEqual(calc(d('apex'),1),[5,0,-10]);assert.equal(calc(d('apex'),1.2)[1],-2);assert.deepEqual(calc(d('circuit'),3),[4,3,1]);});
+test('the heating model follows the stated specific and latent heats, stays flat while melting and boiling, and gives the transfer value',()=>{
+ const m=d('melt');assert.equal(m.answer,1);assert.equal(m.group,'science');
+ // Independent stage boundaries from the stated values: 100 g, −10 °C, 150 J each second.
+ const warm=100*2.09*10,melt=100*334,heat=100*4.18*100,boil=2260,at=e=>e/150;
+ assert(Math.abs(calc(m,0)[1]+10)<1e-9);assert.equal(calc(m,0)[2],100);
+ for(let t=Math.ceil(at(warm));t<=Math.floor(at(warm+melt));t++){assert.equal(calc(m,t)[1],0);const ice=100-(150*t-warm)/334;assert(Math.abs(calc(m,t)[2]-ice)<1e-9);}
+ for(let t=Math.ceil(at(warm+melt+heat));t<=600;t++)assert.equal(calc(m,t)[1],100);
+ assert(Math.abs(calc(m,600)[4]-(150*600-warm-melt-heat)/boil)<1e-9);
+ // Between the plateaus the water warms at 150 ÷ (100 × 4.18) °C each second, half the rate of the ice.
+ assert(Math.abs((calc(m,400)[1]-calc(m,300)[1])/100-150/418)<1e-9);assert(Math.abs((calc(m,10)[1]-calc(m,0)[1])/10-150/209)<1e-9);
+ for(let t=0;t<600;t+=10)assert(calc(m,t+10)[1]>=calc(m,t)[1]);
+ assert.equal(m.target,50*334/100);assert(Math.round(at(melt))===223&&Math.round(at(warm))===14);
+});
 test('the card model turns over exactly the cards whose hidden side could break the rule, checked against every letter and digit',()=>{
  const c=d('cards');assert.equal(c.answer,1);assert.equal(c.target,3);
  const letters=[...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'],digits=[...'0123456789'],breaks=(letter,digit)=>'AEIOU'.includes(letter)&&Number(digit)%2===1;
