@@ -30,7 +30,7 @@
 
 ## 2026-11-15 綜合科學實驗插圖
 
-Integrated Science 6–10 的十張課堂實驗示意圖由本專案直接編寫 SVG（`assets/science-investigations.js`），不引用外部圖片、照片或標誌，讀數標明為示例。網站的內容安全政策只允許站內圖片；日後若加入真實照片，須逐張確認授權可商用（美國聯邦政府作品須核對署名行；CC 授權排除 NC，ND 不改作），存入儲存庫並記錄來源、作者、授權與修改。規則與候選見 `review/integrated-science-illustrations-20261115.md`。此紀錄不等同人工清權。
+Integrated Science 6–10 的十六張課堂實驗示意圖（2026-11-16 加入十年級的六張）由本專案直接編寫 SVG（`assets/science-investigations.js`），不引用外部圖片、照片或標誌，讀數標明為示例。網站的內容安全政策只允許站內圖片；日後若加入真實照片，須逐張確認授權可商用（美國聯邦政府作品須核對署名行；CC 授權排除 NC，ND 不改作），存入儲存庫並記錄來源、作者、授權與修改。規則與候選見 `review/integrated-science-illustrations-20261115.md`。此紀錄不等同人工清權。
 
 ## 2026-10-08 物理第三輪圖形
 

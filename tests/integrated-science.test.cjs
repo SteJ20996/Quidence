@@ -5,21 +5,24 @@ const C=require('../courses/integrated-science/content.js'),S=require('../assets
 const Models=require('../assets/science-models.js'),Graphs=require('../assets/course-graphs.js'),Policy=require('../assets/sync-policy.js');
 const close=(a,b,tol=1e-9)=>assert(Math.abs(a-b)<=tol,a+' != '+b);
 
-test('the course follows the plan: one lesson per segment of grades 6–8 and Living Earth, each with four steps and three questions',()=>{
- assert.equal(C.MODULE,'integrated-science');assert.equal(C.LESSONS.length,18);
- assert.deepEqual(C.UNITS.map(u=>u.id),['grade-6','grade-7','grade-8','living-earth']);
- assert.deepEqual(C.LESSONS.map(l=>l.short),['Cells as systems','Heating ice','Rain shadows','Global warming','Particles in motion','Atoms in living things','Moving plates','Recovering a population','Speed and crashes','Moon phases','Natural selection','Listening with waves','Energy in food chains','The breathing planet','Common ancestry','Inheritance','Homeostasis','Moving uphill']);
+test('the course follows the plan: one lesson per segment of grades 6–8, Living Earth and Chemistry in the Earth System, each with four steps and three questions',()=>{
+ assert.equal(C.MODULE,'integrated-science');assert.equal(C.LESSONS.length,24);
+ assert.deepEqual(C.UNITS.map(u=>u.id),['grade-6','grade-7','grade-8','living-earth','chemistry']);
+ assert.deepEqual(C.LESSONS.map(l=>l.short),['Cells as systems','Heating ice','Rain shadows','Global warming','Particles in motion','Atoms in living things','Moving plates','Recovering a population','Speed and crashes','Moon phases','Natural selection','Listening with waves','Energy in food chains','The breathing planet','Common ancestry','Inheritance','Homeostasis','Moving uphill','Combustion','Heat flow','Ions and charge','Reaction rates','Climate feedbacks','Ocean acidification']);
  // Each PE comes from the matching instructional-segment box in chapter 5 of the 2016 California Science Framework.
  const segments={'6-1':['MS-LS1-1','MS-LS1-2','MS-LS1-3','MS-LS1-8','MS-ESS2-4','MS-ESS2-6'],'6-2':['MS-ESS2-4','MS-ESS2-6','MS-PS3-3','MS-PS3-4','MS-PS3-5'],'6-3':['MS-LS1-4','MS-LS1-5','MS-LS1-8','MS-LS3-2','MS-ESS2-5','MS-ESS2-6'],'6-4':['MS-LS1-4','MS-LS1-5','MS-ESS3-3','MS-ESS3-5'],
   '7-1':['MS-PS1-1','MS-PS1-3','MS-PS1-4','MS-ESS3-1','MS-LS2-3'],'7-2':['MS-LS1-6','MS-LS1-7','MS-ESS2-1','MS-PS1-2','MS-PS1-5','MS-PS1-6'],'7-3':['MS-LS2-1','MS-LS2-2','MS-LS2-3','MS-ESS2-3','MS-ESS3-1','MS-PS1-2','MS-PS1-3','MS-PS1-5'],'7-4':['MS-LS2-4','MS-LS2-5','MS-ESS2-2','MS-ESS3-2','MS-PS1-3'],
   '8-1':['MS-PS2-1','MS-PS2-2','MS-PS3-1','MS-LS4-1'],'8-2':['MS-ESS1-1','MS-ESS1-2','MS-ESS1-3','MS-PS2-3','MS-PS2-4','MS-PS2-5','MS-PS3-2'],'8-3':['MS-LS3-1','MS-LS4-1','MS-LS4-2','MS-LS4-3','MS-LS4-4','MS-LS4-5','MS-LS4-6','MS-ESS1-4'],'8-4':['MS-PS4-1','MS-PS4-2','MS-PS4-3','MS-ESS1-1','MS-ESS3-3','MS-ESS3-4','MS-LS4-4','MS-LS4-6'],
   // Living Earth segment boxes in framework chapter 7.
-  'LE-1':['HS-LS2-1','HS-LS2-2','HS-LS2-4','HS-LS2-8'],'LE-2':['HS-ESS1-6','HS-ESS2-6','HS-ESS2-7','HS-ESS3-6','HS-LS1-5','HS-LS1-6','HS-LS1-7','HS-LS2-3','HS-LS2-5'],'LE-3':['HS-ESS1-5','HS-ESS2-5','HS-ESS3-1','HS-ESS3-4','HS-LS4-1','HS-LS4-2','HS-LS4-4','HS-LS4-5'],'LE-4':['HS-LS3-1','HS-LS3-2','HS-LS3-3','HS-LS4-2','HS-LS4-3'],'LE-5':['HS-LS1-1','HS-LS1-2','HS-LS1-3','HS-LS1-4'],'LE-6':['HS-ESS3-5','HS-ESS3-6','HS-LS2-6','HS-LS2-7','HS-LS4-5','HS-LS4-6']};
+  'LE-1':['HS-LS2-1','HS-LS2-2','HS-LS2-4','HS-LS2-8'],'LE-2':['HS-ESS1-6','HS-ESS2-6','HS-ESS2-7','HS-ESS3-6','HS-LS1-5','HS-LS1-6','HS-LS1-7','HS-LS2-3','HS-LS2-5'],'LE-3':['HS-ESS1-5','HS-ESS2-5','HS-ESS3-1','HS-ESS3-4','HS-LS4-1','HS-LS4-2','HS-LS4-4','HS-LS4-5'],'LE-4':['HS-LS3-1','HS-LS3-2','HS-LS3-3','HS-LS4-2','HS-LS4-3'],'LE-5':['HS-LS1-1','HS-LS1-2','HS-LS1-3','HS-LS1-4'],'LE-6':['HS-ESS3-5','HS-ESS3-6','HS-LS2-6','HS-LS2-7','HS-LS4-5','HS-LS4-6'],
+  // Chemistry in the Earth System segment boxes in framework chapter 7.
+  'CES-1':['HS-PS1-3','HS-PS1-4','HS-PS1-7','HS-PS3-1'],'CES-2':['HS-ESS2-3','HS-ETS1-4','HS-PS3-1','HS-PS3-2','HS-PS3-4'],'CES-3':['HS-PS1-1','HS-PS1-2','HS-PS1-7'],'CES-4':['HS-PS1-3','HS-PS1-4','HS-PS1-5','HS-PS1-7','HS-PS2-4','HS-PS3-5'],'CES-5':['HS-ESS2-2','HS-ESS2-4','HS-ESS2-6','HS-ESS3-2','HS-ESS3-5','HS-ESS3-6'],'CES-6':['HS-ESS2-2','HS-ESS2-6','HS-PS1-5','HS-PS1-6','HS-PS1-7']};
  for(const[i,l]of C.LESSONS.entries()){
-  const living=i>=12,grade=living?9:6+Math.floor(i/4),segment=living?i-11:i%4+1;
-  assert.equal(l.id,'integrated-science-lesson-'+(i+1));assert.equal(l.unit,living?'living-earth':'grade-'+grade);
-  assert.equal(l.segment,living?'Living Earth, instructional segment '+segment:'Grade '+grade+', instructional segment '+segment);
-  assert(l.pe.length>0);for(const pe of l.pe)assert(segments[(living?'LE':grade)+'-'+segment].includes(pe),l.short+': '+pe);
+  const course=i>=18?'chemistry':i>=12?'living-earth':null,grade=6+Math.floor(Math.min(i,12)/4)+(i>=18),segment=course?(i-12)%6+1:i%4+1;
+  const name={chemistry:'Chemistry in the Earth System','living-earth':'Living Earth'}[course],box={chemistry:'CES','living-earth':'LE'}[course]||grade;
+  assert.equal(l.id,'integrated-science-lesson-'+(i+1));assert.equal(l.unit,course||'grade-'+grade);
+  assert.equal(l.segment,course?name+', instructional segment '+segment:'Grade '+grade+', instructional segment '+segment);
+  assert(l.pe.length>0);for(const pe of l.pe)assert(segments[box+'-'+segment].includes(pe),l.short+': '+pe);
   assert.equal(l.steps.length,4);
   for(const s of l.steps){assert(s.title&&s.text);for(const k of['predict','test','explain'])assert(s.activity[k],k);}
   const tasks=[l.predict,...l.checks];assert.equal(tasks.length,3);
@@ -34,8 +37,8 @@ test('the course follows the plan: one lesson per segment of grades 6–8 and Li
  }
  assert.match(C.scope,/Selected foundations/);assert.match(C.scope,/Not a complete year of science/);
  assert.equal(C.bridge,undefined);
- assert.equal(S.create().LESSONS.length,18,'create() returns a fresh copy');
- assert.equal(C.VERSION,'integrated-science-4');assert.deepEqual(C.PREVIOUS,[{version:'integrated-science-1',lessons:4},{version:'integrated-science-2',lessons:8},{version:'integrated-science-3',lessons:12}]);
+ assert.equal(S.create().LESSONS.length,24,'create() returns a fresh copy');
+ assert.equal(C.VERSION,'integrated-science-5');assert.deepEqual(C.PREVIOUS,[{version:'integrated-science-1',lessons:4},{version:'integrated-science-2',lessons:8},{version:'integrated-science-3',lessons:12},{version:'integrated-science-4',lessons:18}]);
 });
 
 test('the cell model: surface area for each unit of volume is 6/s for a cube and 12/s for a slab a quarter as thick',()=>{
@@ -127,10 +130,10 @@ test('the complete course flow saves answers and reasoning, reloads, groups less
  const map=new Map([['physics_beta01_session_v1','another subject remains untouched']]);
  let h=harness('integrated-science',map);
  assert.equal(map.has(h.E.SCHEMA),false);
- assert.match(h.app.innerHTML,/Selected foundations/);assert.doesNotMatch(h.app.innerHTML,/course-bridge/);assert.match(h.app.innerHTML,/Eighteen starting points\./);assert.match(h.app.innerHTML,/after all eighteen lessons/);
+ assert.match(h.app.innerHTML,/Selected foundations/);assert.doesNotMatch(h.app.innerHTML,/course-bridge/);assert.match(h.app.innerHTML,/Twenty-four starting points\./);assert.match(h.app.innerHTML,/after all twenty-four lessons/);
  h.click('start');
- for(const g of[6,7,8])assert.match(h.app.innerHTML,new RegExp('class="lesson-unit">Grade '+g+'<'));assert.match(h.app.innerHTML,/class="lesson-unit">Grade 9 · Living Earth</);
- assert.equal((h.app.innerHTML.match(/class="lesson-unit"/g)||[]).length,4);
+ for(const g of[6,7,8])assert.match(h.app.innerHTML,new RegExp('class="lesson-unit">Grade '+g+'<'));assert.match(h.app.innerHTML,/class="lesson-unit">Grade 9 · Living Earth</);assert.match(h.app.innerHTML,/class="lesson-unit">Grade 10 · Chemistry in the Earth System</);
+ assert.equal((h.app.innerHTML.match(/class="lesson-unit"/g)||[]).length,5);
  assert.match(h.app.innerHTML,/California grade 6, instructional segment 1 · builds toward MS-LS1-1, MS-LS1-2, MS-LS1-3/);
  h.choose('unsure');h.input('explanation','Volume grows faster than surface area; keep this draft.');
  h=harness('integrated-science',map);
@@ -152,8 +155,8 @@ test('the complete course flow saves answers and reasoning, reloads, groups less
  assert.equal(map.get('physics_beta01_session_v1'),'another subject remains untouched');
  h.click('export-json');
  const report=JSON.parse(await h.blobs[0].text());
- assert.match(h.app.innerHTML,/EIGHTEEN-LESSON SUMMARY/);assert.match(h.app.innerHTML,/Connect the model<br>to the world\./);
- assert.equal(Object.keys(report.records).length,54);
+ assert.match(h.app.innerHTML,/TWENTY-FOUR-LESSON SUMMARY/);assert.match(h.app.innerHTML,/Connect the model<br>to the world\./);
+ assert.equal(Object.keys(report.records).length,72);
  assert.match(report.note,/explanations need human review/);
  assert.equal(JSON.parse(map.get('cluevera_saved_reports_v1')).items[0].module,'integrated-science');
 });
@@ -172,7 +175,7 @@ test('a record saved with only the grade 6 lessons opens with the later lessons 
  assert.deepEqual(Object.keys(old.records).map(id=>id.split('-q')[0]).filter((x,i,a)=>a.indexOf(x)===i),['integrated-science-l1','integrated-science-l2','integrated-science-l3','integrated-science-l4']);
  const up=h.E.hydrate(JSON.parse(JSON.stringify(old)));
  assert(up,'The old record upgrades');
- assert.equal(up.contentVersion,'integrated-science-4');assert.equal(up.labs.length,18);assert.equal(up.lessons.length,18);
+ assert.equal(up.contentVersion,'integrated-science-5');assert.equal(up.labs.length,24);assert.equal(up.lessons.length,24);
  assert.deepEqual(up.records,old.records,'Every saved answer and explanation is kept exactly');
  assert.deepEqual(up.labs.slice(0,4),old.labs);assert.deepEqual(up.labs.slice(4),C.LESSONS.slice(4).map(l=>l.defaults));
  assert.equal(up.view,'orientation');assert.equal(up.lessonIndex,4);
@@ -180,7 +183,7 @@ test('a record saved with only the grade 6 lessons opens with the later lessons 
  assert.deepEqual(event.lessons,C.LESSONS.slice(4).map(l=>l.id));
  map.set(h.E.SCHEMA,JSON.stringify(old));
  const resumed=harness('integrated-science',map);resumed.click('start');
- assert.match(resumed.app.innerHTML,/LESSON 5 OF 18/);assert.match(resumed.app.innerHTML,/California grade 7, instructional segment 1 · builds toward MS-PS1-1, MS-PS1-4/);
+ assert.match(resumed.app.innerHTML,/LESSON 5 OF 24/);assert.match(resumed.app.innerHTML,/California grade 7, instructional segment 1 · builds toward MS-PS1-1, MS-PS1-4/);
  assert(Policy.valid(resumed.E.SCHEMA,map.get(resumed.E.SCHEMA)));
 });
 
@@ -267,7 +270,7 @@ test('a record saved with eight lessons, part-way through grade 7, opens with th
  const now=h.saved();
  const old={...now,contentVersion:'integrated-science-2',labs:now.labs.slice(0,8),lessons:now.lessons.slice(0,8)};
  const up=h.E.hydrate(JSON.parse(JSON.stringify(old)));
- assert(up);assert.equal(up.labs.length,18);assert.deepEqual(up.records,old.records);
+ assert(up);assert.equal(up.labs.length,24);assert.deepEqual(up.records,old.records);
  assert.equal(up.view,old.view);assert.equal(up.lessonIndex,old.lessonIndex);
  const event=up.events[up.events.length-1];assert.equal(event.from,'integrated-science-2');assert.deepEqual(event.lessons,C.LESSONS.slice(8).map(l=>l.id));
 });
@@ -382,9 +385,84 @@ test('Living Earth readouts: no future years, honest edge cases and precise smal
  assert.match(Graphs.lab('integrated-science',15,{parent1:'Pp',parent2:'Pp',offspring:'1000'}).readout,/752 purple, 248 white/);
 });
 
+test('a record saved with eighteen lessons, at the end of Living Earth, opens with the grade 10 lessons added',()=>{
+ const map=new Map();let h=harness('integrated-science',map);h.click('start');
+ h.choose('unsure');h.input('explanation','Finished Living Earth.');h.submit();
+ const now=h.saved();
+ const old={...now,contentVersion:'integrated-science-4',labs:now.labs.slice(0,18),lessons:now.lessons.slice(0,18)};
+ const up=h.E.hydrate(JSON.parse(JSON.stringify(old)));
+ assert(up);assert.equal(up.contentVersion,'integrated-science-5');assert.equal(up.labs.length,24);assert.deepEqual(up.records,old.records);
+ assert.deepEqual(up.labs.slice(18),C.LESSONS.slice(18).map(l=>l.defaults));
+ const event=up.events[up.events.length-1];assert.equal(event.type,'lessons_added');assert.equal(event.from,'integrated-science-4');assert.deepEqual(event.lessons,C.LESSONS.slice(18).map(l=>l.id));
+});
+
+test('Chemistry in the Earth System models: burning fuel, mixing, ions, rates, feedbacks and seawater',()=>{
+ // Burning: atoms balance, so mass in equals mass out; energy = moles × heat of combustion (water as vapor).
+ const mm={C:12.011,H:1.008,O:15.999},mass=(c,h,o)=>c*mm.C+h*mm.H+o*mm.O;
+ for(const[key,c,h,o,heat]of[['methane',1,4,0,802.3],['octane',8,18,0,5074],['ethanol',2,6,1,1235]]){
+  for(const g of[10,100,1000]){
+   const v=Models.combustion(key,g),mol=g/mass(c,h,o);
+   close(v.mol,mol);close(v.o2,mol*(c+h/4-o/2)*2*mm.O);close(v.co2,mol*c*mass(1,0,2));close(v.h2o,mol*h/2*mass(0,2,1));
+   close(g+v.o2,v.co2+v.h2o,1e-6);close(v.energy,mol*heat);
+  }
+  const v=Models.combustion(key,100);close(v.perMJ,c*mass(1,0,2)/heat*1000);
+  // Average bond energies give the measured value to within a few percent.
+  assert(Math.abs(v.bondEstimate-heat)/heat<0.03,key+' bond estimate '+v.bondEstimate);
+ }
+ const m=Models.combustion('methane',100);close(m.co2,274.3,0.1);close(m.energy,5001,1);close(m.perMJ,54.85,0.01);
+ assert(Models.combustion('octane',100).perMJ>m.perMJ,'gasoline gives more carbon dioxide per unit of energy than natural gas');
+ // Mixing: energy lost by the hot sample equals energy gained by the water.
+ for(const obj of['water','iron','aluminum'])for(const[hm,ht,cm,ct]of[[100,80,200,20],[10,100,1000,0],[1000,40,10,30]]){
+  const v=Models.mixing(obj,hm,ht,cm,ct),c=Models.SPECIFIC[obj];
+  close(hm*c*(ht-v.final),cm*4.18*(v.final-ct),1e-6);close(v.energy,hm*c*(ht-v.final));assert(v.final>=ct&&v.final<=ht);
+ }
+ close(Models.mixing('water',100,80,100,20).final,50);
+ assert(Models.mixing('iron',100,80,100,20).final<Models.mixing('aluminum',100,80,100,20).final,'iron holds less energy per degree');
+ // Ions: the charges add to zero, and the formulas match.
+ const formulas={NaCl:['Na','Cl'],MgCl2:['Mg','Cl'],Al2O3:['Al','O'],CaF2:['Ca','F'],AlN:['Al','N'],K2S:['K','S'],Mg3N2:['Mg','N'],CaO:['Ca','O']};
+ for(const[f,[a,b]]of Object.entries(formulas)){const v=Models.ionic(a,b);assert.equal(v.formula.replace(/[₀-₉]/g,d=>'₀₁₂₃₄₅₆₇₈₉'.indexOf(d)),f);assert.equal(v.nm*Models.ELEMENTS[a].charge+v.nn*Models.ELEMENTS[b].charge,0);}
+ for(const[k,e]of Object.entries(Models.ELEMENTS)){const valence=e.shells[e.shells.length-1];assert.equal(e.charge>0?e.charge:8-valence,e.charge>0?valence:-e.charge,k);}
+ assert.equal(Models.ionic('Mg','O').ionMetal,'Mg²⁺');assert.equal(Models.ionic('Na','Cl').ionNonmetal,'Cl⁻');
+ // Rates: e^(−Ea/RT) relative to 25 °C; doubling the concentration doubles the rate.
+ for(const Ea of[40,50,80]){
+  close(Models.rate(25,1,Ea),1);close(Models.rate(25,2,Ea),2);
+  close(Models.rate(35,1,Ea),Math.exp(Ea*1000/8.314*(1/298.15-1/308.15)));
+ }
+ const r50=Models.rate(35,1,50);assert(r50>1.8&&r50<2.0,'about double for 10 °C at 50 kJ/mol');
+ assert(Models.rate(35,1,80)>Models.rate(35,1,40),'a higher barrier makes the rate more sensitive to temperature');
+ // Feedbacks: the rounds add up to first ÷ (1 − f); doubled carbon dioxide (3.93 W/m²) gives about 3.4 °C.
+ for(const combo of[[0,0,0],[1,0,0],[1,1,0],[1,1,1]]){
+  const v=Models.feedback(4,...combo.map(Boolean)),sum=[1.30,0.35,0.42].reduce((s,x,i)=>s+(combo[i]?x:0),0);
+  close(v.f,sum/3.22);close(v.first,4/3.22);close(v.total,4/(3.22-sum));close(v.gain,1/(1-v.f));
+  close(v.rounds[0],v.first);for(let k=1;k<v.rounds.length;k++)assert(v.rounds[k]>=v.rounds[k-1]);assert(v.rounds[12]<=v.total+1e-12);
+ }
+ close(Models.feedback(3.93,true,true,true).total,3.42,0.01);close(Models.feedback(4,false,false,false).total,1.24,0.01);
+ // Seawater: the alkalinity balances at the computed pH, and pH falls as carbon dioxide rises.
+ const S=Models.SEA;
+ for(const ppm of[280,420,700,1000]){
+  const v=Models.seawater(ppm),h=v.h,ta=v.hco3+2*v.co3+S.boron*S.KB/(S.KB+h)+S.Kw/h-h;
+  close(ta,S.alkalinity,1e-12);close(v.hco3,S.K1*S.K0*ppm*1e-6/h);close(v.co3,S.K2*v.hco3/h);
+ }
+ const p280=Models.seawater(280).pH,p420=Models.seawater(420).pH,p1000=Models.seawater(1000).pH;
+ close(p280,8.17,0.02);close(p420,8.03,0.02);close(p1000,7.70,0.02);
+ for(let ppm=290;ppm<=1000;ppm+=10)assert(Models.seawater(ppm).pH<Models.seawater(ppm-10).pH);
+ assert(Models.seawater(420).co3<Models.seawater(280).co3);
+ close(Models.seawater(280).pH-Models.seawater(370).pH,0.1,0.01);close(Models.seawater(280).pH-Models.seawater(420).pH,0.14,0.01);
+ assert.match(Graphs.lab('integrated-science',23,{co2:420,added:0}).note,/about 0\.1 between 280 ppm and 370 ppm.*about 0\.11 from 1770 to 2000.*about 0\.14 at 420 ppm/);
+ // Sodium carbonate in a closed tank: dissolved carbon rises by the amount added and alkalinity by twice that.
+ for(const[ppm,added]of[[420,100],[1000,220],[280,600]]){
+  const before=Models.seawater(ppm),v=Models.seawater(ppm,added),h=v.h;
+  close(v.dic,before.dic+added*1e-6,1e-12);close(v.alkalinity,S.alkalinity+2*added*1e-6,1e-12);close(v.co2+v.hco3+v.co3,v.dic,1e-12);
+  close(v.hco3+2*v.co3+S.boron*S.KB/(S.KB+h)+S.Kw/h-h,v.alkalinity,1e-12);assert(v.pH>before.pH&&v.co3>before.co3);
+ }
+ // About 220 µmol/kg brings water at 1,000 ppm back to the carbonate it had at 280 ppm, as step 4 asks.
+ assert(Models.seawater(1000,200).co3<Models.seawater(280).co3&&Models.seawater(1000,240).co3>Models.seawater(280).co3);
+ assert.match(Graphs.lab('integrated-science',23,{co2:1000,added:220}).readout,/0\.68% more than at 280 ppm/);
+});
+
 test('lessons with a hands-on investigation show a drawing of it in their feedback, made only of SVG',()=>{
  const I=require('../assets/science-investigations.js');
- assert.deepEqual(I.LESSONS,[1,2,5,6,9,10,11,12,16,17]);
+ assert.deepEqual(I.LESSONS,[1,2,5,6,9,10,11,12,16,17,19,20,21,22,23,24]);
  for(let n=1;n<=C.LESSONS.length;n++){
   const f=Graphs.investigation('integrated-science',n-1);
   if(!I.LESSONS.includes(n)){assert.equal(f,'');continue;}
@@ -410,5 +488,10 @@ test('lessons with a hands-on investigation show a drawing of it in their feedba
  // The computed parts of two drawings: the heating curve and the Moon's place in the sky.
  close(I.heatingCurve(0),-10);close(I.heatingCurve(100),0);close(I.heatingCurve(348),40,0.05);
  const melt=(100*334)/150;assert(melt>200&&melt<240,'melting takes about 4 minutes');
+ // The numbers written on the grade 10 drawings: the soda-can example, and the ions along a 1 mm edge of salt.
+ assert.equal(Models.combustion('octane',1).perGram.toFixed(1),'44.4');assert.match(I.figure(19),/44\.4 kJ per gram/);
+ close(100*4.18*20/1000,8.36);close(8.36/0.6,13.9,0.05);assert.match(I.figure(19),/8\.4 kJ reached the water from 0\.6 g of wax, 14 kJ per gram/);
+ assert.match(I.figure(20),/predicts 30 °C/);
+ close(1e-3/0.282e-9/1e6,3.55,0.01);assert.match(I.figure(21),/about 3\.5 million ions/);
  const m7=I.moonSky(7),m11=I.moonSky(11);assert(m7.altitude>45&&m7.azimuth>0&&m7.azimuth<45);assert(m11.azimuth<0);assert(I.moonSky(3).altitude<I.moonSky(5).altitude);
 });
