@@ -18,8 +18,8 @@ test('three parts, twelve lessons, each with four steps, three questions and a m
   assert(l.next);
  }
  const card=Catalog.COURSES.quantitative;assert.equal(card.group,'further');assert.equal(card.lessonCount,C.LESSONS.length);assert.equal(card.course,'courses/quantitative/');
- // No check or project is published yet, so the card must not link to one.
- for(const k of['foundation','challenge','project','intuition'])assert.equal(card[k],undefined,k);
+ // The foundation check, the understanding check and the Intuition Lab activity are published; there are no field projects.
+ assert.equal(card.foundation,'foundations/?module=quantitative');assert.equal(card.challenge,'diagnostics/?module=quantitative');assert.equal(card.challengeCount,4);assert.equal(card.project,undefined);assert.equal(card.intuition,'intuition/#patterns');
 });
 
 test('Fermi estimates: errors multiply, so their logarithms add and spread like √n',()=>{

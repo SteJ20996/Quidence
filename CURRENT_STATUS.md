@@ -1,3 +1,24 @@
+## 2026-11-17 · Quantitative Reasoning, part 4: checks and an Intuition Lab activity
+
+- **Foundation check.** 15 questions with 30 parts on what the course assumes: percents and ratios, powers and roots, rounding and estimating, chance and counting, and averages and odds.
+- **Understanding check.** 4 problems with 16 parts that apply the course's shortcuts to new numbers:
+  - Fermi bounds and the rule of 72;
+  - the square-root law and "at least one";
+  - indicators, symmetry and Bayes in counts;
+  - ruin, the Kelly share, waiting times and Penney's game.
+
+  The bank becomes `quidence-challenges-14`; version 13 stays frozen, so earlier reports still open.
+- **Intuition Lab activity: "HH or HT: which comes sooner?"** The learner moves n and sees the exact chance that each pattern has appeared by flip n. HT takes 4 flips on average and HH takes 6, yet a race between them is even.
+- **Saved work.** A foundation record saved with the seventeen earlier subjects is a published layout, with a test.
+- **Homepage.** The card links to the checks, and its "not yet available" note is gone. The homepage line now counts 84 diagnostic problems and eighteen foundation tracks.
+- **Checks.**
+  - The 30 foundation parts are recomputed in the tests.
+  - The 16 understanding parts are recomputed in exact fractions by `scripts/audit-challenges.py`, with linear solves for waiting times and races.
+  - The activity is checked against every sequence of up to 14 flips.
+- **Independent read.** It found no wrong key. Its main point: 6 understanding parts reused the lessons' own numbers, so they tested recall. All six now use new numbers, and its other fixes are recorded in the note.
+
+See [the checks note](review/quantitative-checks-20261117.md).
+
 ## 2026-11-17 · Quantitative Reasoning, part 3: decisions under uncertainty
 
 - **Four lessons complete the course**, now twelve lessons. Everything is in points, never money.

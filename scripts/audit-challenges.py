@@ -347,6 +347,68 @@ first,f=F(12,10),F(6,10);rounds=[first*f**k for k in range(200)]
 assert abs(sum(rounds)-first/(1-f))<F(1,10**30)
 # [H+] = 10^-pH exactly for whole-number pH: pH 6 has 1/10^6 and pH 8 has 1/10^8 mol/L.
 R['is-c04']={'twoRounds':rounds[0]+rounds[1],'total':first/(1-f),'ions':F(1,10**6)/F(1,10**8),'matters':'carbonate'}
-assert len(R)==86
+# Quantitative Reasoning: a Fermi estimate with bounds, the square-root law and the complement rule, indicators, symmetry
+# and counts, and ruin, the Kelly share, waiting times and Penney's game, each recomputed by a different route.
+from itertools import permutations, combinations, product
+lo,hi=F(1,4),F(1);gm_sq=lo*hi;gm=F(1,2);assert gm*gm==gm_sq and gm/lo==hi/gm
+R['qr-c01']={'perStudent':gm,'total':600*gm*180,'double':F(72,4),'why':'times'}
+# Standard deviation of 400 fair tosses from the variance n·p·(1 − p); P(no success) by enumerating success counts.
+var=400*F(1,2)*F(1,2);sd=10;assert sd*sd==var
+none=sum(F(1) if k==0 else 0 for k in range(11))*F(4,5)**10
+at_least=1-none;assert abs(at_least-F(8926258176,10**10))<F(1,10**9)
+# To the nearest 10 percent; the course's shortcuts, 2^30 ≈ 10^9 and 1 − e^−2 ≈ 0.865, round to the same answer.
+assert round(10*at_least)*10==round(10*(1-F(1,10)))*10==90 and 0.85<1-2.718281828**-2<0.95
+R['qr-c02']={'sd':sd,'low':200-2*sd,'atLeast':round(10*at_least)*10,'overcount':'overlap'}
+# Matches: average fixed points over all 7! orders of 7 names (the answer does not depend on the number of names).
+avg_fixed=F(sum(sum(1 for i,x in enumerate(p) if i==x) for p in permutations(range(7))),5040);assert avg_fixed==1
+# First special card: enumerate every set of 4 positions among 29.
+firsts=[min(c)+1 for c in combinations(range(29),4)];first=F(sum(firsts),len(firsts));assert first==6
+tp,fp=F(30)*F(9,10),F(970)*F(10,100);share=tp/(tp+fp);assert tp==27 and fp==97
+R['qr-c03']={'matches':avg_fixed,'position':first,'positive':round(100*share),'alarms':'many'}
+# Ruin: the fair walk's equations P(x) = (P(x − 1) + P(x + 1)) / 2 with P(0) = 0, P(60) = 1 have the solution x / 60.
+P=[F(x,60) for x in range(61)];assert all(P[x]==(P[x-1]+P[x+1])/2 for x in range(1,60))
+# Kelly: the growth p·ln(1 + f) + q·ln(1 − f) has derivative p/(1 + f) − q/(1 − f), zero at f = p − q.
+p,q=F(13,20),F(7,20);f=p-q;assert p/(1+f)-q/(1-f)==0
+# Waiting time for HTH: solve the expected-steps equations on the states '', 'H', 'HT' exactly.
+# E0 = 1 + (E_H + E0)/2; E_H = 1 + (E_H + E_HT)/2; E_HT = 1 + (0 + E0)/2  ->  substitute.
+def wait(pattern):
+    states=[pattern[:k] for k in range(len(pattern))];idx={s:i for i,s in enumerate(states)};n=len(states)
+    A=[[F(0)]*(n+1) for _ in range(n)]
+    for s in states:
+        i=idx[s];A[i][i]+=1;A[i][n]+=1
+        for c in 'HT':
+            t=s+c
+            while t and not pattern.startswith(t):t=t[1:]
+            if t!=pattern:A[i][idx[t]]-=F(1,2)
+    for col in range(n):
+        piv=next(r for r in range(col,n) if A[r][col]!=0);A[col],A[piv]=A[piv],A[col]
+        for r_ in range(n):
+            if r_!=col and A[r_][col]!=0:
+                m=A[r_][col]/A[col][col];A[r_]=[a-m*b for a,b in zip(A[r_],A[col])]
+    return A[0][n]/A[0][0]
+assert wait('HTHT')==20 and wait('HTH')==10 and wait('HT')==4 and wait('HH')==6
+# Penney: the chance that THH appears before HHT, from the exact equations on the states of partial matches.
+def race(a,b):
+    states=sorted({x[:k] for x in (a,b) for k in range(len(x))});idx={s:i for i,s in enumerate(states)};n=len(states)
+    A=[[F(0)]*(n+1) for _ in range(n)]
+    for s in states:
+        i=idx[s];A[i][i]+=1
+        for c in 'HT':
+            t=s+c
+            if t.endswith(a):A[i][n]+=F(1,2);continue
+            if t.endswith(b):continue
+            while t and not (a.startswith(t) or b.startswith(t)):t=t[1:]
+            A[i][idx[t]]-=F(1,2)
+    for col in range(n):
+        piv=next(r for r in range(col,n) if A[r][col]!=0);A[col],A[piv]=A[piv],A[col]
+        for r_ in range(n):
+            if r_!=col and A[r_][col]!=0:
+                m=A[r_][col]/A[col][col];A[r_]=[x-m*y for x,y in zip(A[r_],A[col])]
+    return A[idx['']][n]/A[idx['']][idx['']]
+assert race('THH','HHT')==F(3,4) and race('HH','HT')==F(1,2) and race('THH','HHH')==F(7,8)
+assert race('TTH','THT')==F(2,3) and race('HTH','THT')==F(1,2) and race('TTT','THT')==F(2,5)
+best=max(['HHH','HHT','HTH','HTT','THH','TTH','TTT'],key=lambda x:race(x,'THT'));assert best=='TTH'
+R['qr-c04']={'reach':100*P[18],'kelly':100*f,'wait':wait('HTHT'),'beats':'tth'}
+assert len(R)==90
 output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel–Hakimi degree tests, every equally likely spin, coin and letter arrangement, a 10,000-part factory, algorithms run step by step with counters, every simple route and every set of four roads, every coin combination and every subset of 20, a double-precision exponential value with endpoint comparisons, and for Integrated Science the heating and burning arithmetic with balanced atoms, every Punnett box, and a feedback series summed term by term. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
 path=Path(__file__).resolve().parents[1]/'review'/'challenge-math-audit.json';path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(output,indent=2)+'\n');print(json.dumps({'questions':len(R),'components':sum(len(x)for x in R.values()),'output':str(path)}))

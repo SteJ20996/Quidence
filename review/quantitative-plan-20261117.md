@@ -17,14 +17,14 @@ There are twelve lessons in three parts. Each lesson teaches one shortcut that c
 | --- | --- |
 | **1 · Fast estimates** (open since 2026-11-17) | Fermi estimates; mental approximations (doubling times, 2¹⁰ ≈ 10³, percent changes); the square-root law and 68–95–99.7; quick bounds (complement, union bound, rule of three) |
 | **2 · Probability shortcuts** (open since 2026-11-17) | Indicator variables and linearity of expectation; symmetry; first-step analysis; Bayes' rule with natural frequencies |
-| **3 · Decisions under uncertainty** (third pull request) | Expected value, risk and ruin; bet sizing as resource allocation (Kelly); waiting times and patterns (why HH takes longer to appear than HT); quoting a price and adverse selection |
+| **3 · Decisions under uncertainty** (open since 2026-11-17) | Expected value, risk and ruin; bet sizing as resource allocation (Kelly); waiting times and patterns (why HH takes longer to appear than HT); quoting a price and adverse selection |
 
 The course page also has **quick rounds**:
 - each round has five short questions mixed across the open lessons;
 - the learner answers, says how sure they are, and only then sees the check;
 - the round reports accuracy, average confidence and a Brier score.
 
-The fourth pull request adds a foundation check, an understanding check and an Intuition Lab activity. Until then the homepage card lists them as not yet available.
+The fourth pull request adds a foundation check, an understanding check and an Intuition Lab activity; see [quantitative-checks-20261117.md](quantitative-checks-20261117.md).
 
 ## What the research supports, and where it is thin
 
