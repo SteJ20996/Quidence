@@ -217,9 +217,12 @@ test('quick rounds: every question is recomputed from its own wording, and answe
  for(const item of all('collect')){const d=Number(item.prompt.match(/fair (\d+)-sided/)[1]);assert(R.check(item,String(d*(Math.log(d)+0.5772))),'d(ln d + 0.577)');assert.equal(R.check(item,String(d)),false,'d rolls');}
  for(const item of all('first'))assert.match(item.prompt,/A decimal is fine\./);
  for(const item of all('bayes')){assert(item.tol<=3&&item.tol<=item.exact/4,'3 points, or a quarter of the answer');assert.equal(R.check(item,String(item.exact/2)),false,'half the right answer');const m=item.prompt.match(/affects (\d+) in 1,000 people\. A test is positive for (\d+)% of people who have it and for (\d+)%/),b=+m[1],se=+m[2],f=+m[3];assert(R.check(item,String(100*b*se/(b*se+1000*f))),'rounding 1,000 − b to 1,000');assert.equal(R.check(item,String(se)),false,'the detection rate is not the answer');}
- // A saved Part 1 round is rebuilt exactly as it was played before Part 2 was added.
- const fingerprint=require('node:crypto').createHash('sha256').update(JSON.stringify(Array.from({length:300},(_,i)=>R.makeRound(i+1,[1,2,3,4])))).digest('hex');
- assert.equal(fingerprint,'2d93bcdc11d5940cb69dcbc3b4c5d7c4c4b5cc97edae7c5a8fbfe52a36b15090');
+ // A saved Part 1 round is rebuilt exactly as it was played before Part 2 was added: the same templates, numbers and
+ // tolerances. The fingerprint leaves out the computed answers, whose last binary digit can differ between JavaScript
+ // engines; those are checked above against a recomputation from each prompt.
+ const key=it=>({template:it.template,prompt:it.prompt,kind:it.kind,tol:it.tol,rel:it.rel,accept:it.accept,options:it.options});
+ const fingerprint=require('node:crypto').createHash('sha256').update(JSON.stringify(Array.from({length:300},(_,i)=>R.makeRound(i+1,[1,2,3,4]).map(key)))).digest('hex');
+ assert.equal(fingerprint,'c9adb68e8dc0152624964651ac699b735c8d47be54f4e55ba270a34db23fa8ce');
  assert.deepEqual(R.LESSONS,[1,2,3,4,5,6,7,8]);for(let seed=1;seed<=200;seed++)for(const item of R.makeRound(seed,[1,2,3,4]))assert(R.TEMPLATES[item.template].lesson<=4);
  assert.equal(R.parse('1,000'),1000);assert.equal(R.parse('−25%'),-25);assert.equal(R.parse('–4'),-4);assert.equal(R.parse(' 0.5 '),0.5);assert.equal(R.parse('1e3'),1000);assert.equal(R.parse('12 years'),null);assert.equal(R.parse(''),null);
 });
