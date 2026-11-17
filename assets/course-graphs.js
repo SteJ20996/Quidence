@@ -61,6 +61,7 @@ function sampling(s){const dorm=s.sampling==='volunteer'?8:5;return table(['Grou
 function task(s){if(s.type==='course-model')return Models.model(s.course,s.index,s.settings).graph;if(s.type==='dots')return dots(s.values,s.caption);if(s.type==='table')return table(s.headers,s.rows,s.caption);if(s.type==='circle')return circle(s.angle);return plot(s);}
 function lab(module,index,s){
  if(module==='integrated-science')return (typeof exports==='object'?require('./science-models.js'):root.QuidenceScienceModels).model(index,s);
+ if(module==='quantitative')return (typeof exports==='object'?require('./quant-models.js'):root.QuidenceQuantModels).model(index,s);
  if(['physics-1','physics-2'].includes(module))return (typeof exports==='object'?require('./physics-foundation-models.js'):root.QuidencePhysicsFoundationModels).model(module,index,s);
  if(module==='physics')return (typeof exports==='object'?require('./physics-models.js'):root.QuidencePhysicsModels).model(index,s);
  if(['pre-algebra','algebra-1','geometry','algebra-2','basic-logic'].includes(module))return Models.model(module,index,s);

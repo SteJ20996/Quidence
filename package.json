@@ -12,7 +12,7 @@
     "version:activities": "node scripts/version-activity-assets.cjs",
     "test:brand:browser": "node scripts/test-brand-browser.cjs",
     "test:home:browser": "node scripts/test-home-map-browser.cjs",
-    "test:browser": "node scripts/test-activity-browser.cjs",
+    "test:browser": "node scripts/test-activity-browser.cjs && node scripts/test-quant-browser.cjs",
     "test": "node scripts/test-all.cjs",
     "test:sync": "node --test tests/backend-sync.test.cjs tests/sync-client.test.cjs tests/security.test.cjs",
     "test:projects": "node --test tests/projects.test.cjs",

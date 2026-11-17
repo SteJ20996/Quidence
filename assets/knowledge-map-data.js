@@ -203,6 +203,16 @@ const data={
       "module": "probability"
     },
     {
+      "id": "quantitative",
+      "chapter": 0,
+      "node": "probability",
+      "en": "Quantitative Reasoning",
+      "scope": {
+        "en": "Fast estimates and quick checks under uncertainty: Fermi estimates, mental approximations, the square-root law and bounds"
+      },
+      "module": "quantitative"
+    },
+    {
       "id": "physics1",
       "chapter": 2,
       "node": "mechanics",
@@ -294,7 +304,8 @@ const data={
       "statistics"
     ],
     "probability": [
-      "probability"
+      "probability",
+      "quantitative"
     ],
     "statistics": [
       "statistics"

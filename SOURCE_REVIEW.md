@@ -28,6 +28,14 @@
 
 使用者提供的 Drive 原件 `Buenas Preguntas de Matemáticas .pdf`（SHA-256 `cc60bc9a6baf650069d5b88e9ead77216f8b0bb93ffd70ab24b15eec9163790a`）已成功讀取，共 162 頁。混合手寫、圖形和多語言排版，文字抽取不是完整的內容/來源比對。原件存放在儲存庫之外；未提交原件或真實學生匯出。需使用者標記自編內容與外部摘錄、給出 Q11/P4 開發參考頁及已知出處；審核結論仍未清除。
 
+## 2026-11-17 量化推理（Quantitative Reasoning）第一部分
+
+四課課文、十二道選擇題與九種快速回合題型都由本專案自行撰寫。沒有抄錄量化面試題書，例如 Zhou《A Practical Guide to Quantitative Finance Interviews》或 Mosteller《Fifty Challenging Problems in Probability》。數字與情境（餐巾紙、狗食、腳踏車零件、藥物副作用等）均為原創。
+
+課文引用的是一般數學知識，不是特定作品的表述：Fermi 估算、72 法則、68–95–99.7、聯集上界，以及 Hanley 與 Lippman-Hand（1983）的「三法則」。研究依據與其限制記錄在 `review/quantitative-plan-20261117.md`。
+
+日後第二、三部分若使用經典公開謎題（如 Monty Hall、集券問題），須重寫題目並換用新數字。此紀錄不等同人工清權。
+
 ## 2026-11-16 綜合科學照片與 NOAA 實測資料
 
 Integrated Science 6–10 加入三張美國聯邦政府作品圖片，存於 `assets/photos/`：
