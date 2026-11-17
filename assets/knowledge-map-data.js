@@ -208,7 +208,7 @@ const data={
       "node": "probability",
       "en": "Quantitative Reasoning",
       "scope": {
-        "en": "Fast estimates and quick checks under uncertainty: Fermi estimates, mental approximations, the square-root law and bounds"
+        "en": "Fast estimates and probability shortcuts: Fermi estimates, mental approximations, the square-root law, bounds, indicators, symmetry, first-step analysis and Bayes in counts"
       },
       "module": "quantitative"
     },
