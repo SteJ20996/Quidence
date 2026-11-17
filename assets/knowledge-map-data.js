@@ -208,7 +208,7 @@ const data={
       "node": "probability",
       "en": "Quantitative Reasoning",
       "scope": {
-        "en": "Fast estimates and probability shortcuts: Fermi estimates, mental approximations, the square-root law, bounds, indicators, symmetry, first-step analysis and Bayes in counts"
+        "en": "Fast estimates, probability shortcuts and decisions under uncertainty: Fermi estimates, bounds, indicators, symmetry, Bayes in counts, ruin, stake sizing, coin-flip patterns and quoting a price"
       },
       "module": "quantitative"
     },

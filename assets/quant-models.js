@@ -88,6 +88,64 @@ function tree(v){
  return M.graphic('A positive test, in counts',`Of ${n(v.N)} people, ${n(v.have)} have the condition and ${n(v.tp)} of them test positive; ${n(v.fp)} of the ${n(v.not)} without it also test positive. Of all ${n(total)} positive results, ${n(v.tp)} come from people who have it.`,b);
 }
 
+// Lesson 9. Each round you win 1 point with chance p or lose 1. Starting with b points, play until 0 or T.
+// Betting 1 point a time: P(reach T) = (1 − r^b) ÷ (1 − r^T) with r = q ÷ p, or b ÷ T in a fair game.
+function ruin(p,b,T){const q=1-p;if(Math.abs(p-q)<1e-12)return{reach:b/T,rounds:b*(T-b)};const r=q/p,reach=(1-r**b)/(1-r**T);return{reach,rounds:b/(q-p)-T/(q-p)*reach};}
+// Bold play: stake what is needed to reach T, or everything you have, whichever is smaller. Solved by repeated sweeps.
+function bold(p,T){const f=new Array(T+1).fill(0);f[T]=1;for(let it=0;it<20000;it++){let change=0;for(let x=1;x<T;x++){const s=Math.min(x,T-x),v=p*f[x+s]+(1-p)*f[x-s];change=Math.max(change,Math.abs(v-f[x]));f[x]=v;}if(change<1e-15)break;}return f;}
+function lines(title,description,series,{xmin,xmax,ymin,ymax,xticks,yticks,xlabel,ylabel,marker,yfmt=y=>fmt(y)}){
+ const left=70,X=x=>left+(x-xmin)/(xmax-xmin)*(470-left),Y=y=>240-(y-ymin)/(ymax-ymin)*195;
+ let b='';for(const x of xticks)b+=`<path d="M${X(x).toFixed(1)} 45V240" stroke="#e4e8ef"/><text x="${X(x).toFixed(1)}" y="258" text-anchor="middle" font-size="12" fill="#52647b">${esc(fmt(x))}</text>`;
+ for(const y of yticks)b+=`<path d="M${left} ${Y(y).toFixed(1)}H470" stroke="#e4e8ef"/><text x="${left-8}" y="${(Y(y)+4).toFixed(1)}" text-anchor="end" font-size="12" fill="#52647b">${esc(yfmt(y))}</text>`;
+ b+=`<path d="M${left} 45V240H470" fill="none" stroke="#8391a5"/>`;
+ for(const s of series){const pts=s.data.filter(([,y])=>Number.isFinite(y));b+=`<path d="${pts.map(([x,y],i)=>(i?'L':'M')+X(x).toFixed(1)+' '+Y(y).toFixed(1)).join(' ')}" fill="none" stroke="${s.color}" stroke-width="${s.width||2.5}"${s.dash?` stroke-dasharray="${s.dash}"`:''}/>`;if(s.dots)for(const[x,y]of pts)b+=`<circle cx="${X(x).toFixed(1)}" cy="${Y(y).toFixed(1)}" r="2.6" fill="${s.color}"/>`;}
+ if(marker)b+=`<circle cx="${X(marker[0]).toFixed(1)}" cy="${Y(marker[1]).toFixed(1)}" r="5.5" fill="#a84324"/>`;
+ b+=`<text x="270" y="286" text-anchor="middle" font-size="12" fill="#52647b">${esc(xlabel)}</text><text x="20" y="145" transform="rotate(-90 20 145)" text-anchor="middle" font-size="12" fill="#52647b">${esc(ylabel)}</text>`;
+ return '<div class="course-model-legend">'+series.map(s=>'<span>'+esc(s.prefix)+esc(s.label)+'</span>').join('')+'</div>'+M.graphic(title,description,b);
+}
+
+// Lesson 10. Each round you stake a share f of your points; you win b times the stake with chance p, or lose the stake.
+// Long-run growth per round: g(f) = p ln(1 + b f) + q ln(1 − f), largest at the Kelly share f* = p − q ÷ b.
+function kelly(p,b,f,n=100){
+ const q=1-p,star=Math.max(0,p-q/b),g=f>=1?-Infinity:p*Math.log(1+b*f)+q*Math.log(1-f);
+ // After n rounds with W wins, the points are multiplied by (1 + b f)^W (1 − f)^(n − W), and W is binomial.
+ const logm=w=>f>=1?(w===n?n*Math.log(1+b):-Infinity):w*Math.log(1+b*f)+(n-w)*Math.log(1-f);
+ const pmf=Array.from({length:n+1},(_,w)=>Math.exp(logFact(n)-logFact(w)-logFact(n-w)+w*Math.log(p)+(n-w)*Math.log(q)));
+ let c=0,medianW=n;for(let w=0;w<=n;w++){c+=pmf[w];if(c>=0.5){medianW=w;break;}}
+ const below=Math.min(1,pmf.reduce((s,x,w)=>logm(w)<-1e-12?s+x:s,0)),half=Math.min(1,pmf.reduce((s,x,w)=>logm(w)<Math.log(0.5)?s+x:s,0));
+ return{star,g,median:Math.exp(logm(medianW)),mean:(1+f*(p*b-q))**n,below,half,n};
+}
+const times=x=>!(x>0)?'0':x<0.001?'less than 0.001':x<100?Number(x.toPrecision(3)).toLocaleString('en-US'):x<1e6?Math.round(x).toLocaleString('en-US'):(()=>{const e=Math.floor(Math.log10(x));return (x/10**e).toFixed(1)+' × 10'+sup(e);})();
+
+// Lesson 11. Waiting for a pattern of fair coin flips. The expected wait is the sum of 2^k over every k for which the
+// first k letters equal the last k (each overlap makes a failed attempt cost less progress).
+function patternWait(a){let e=0;for(let k=1;k<=a.length;k++)if(a.slice(0,k)===a.slice(-k))e+=2**k;return e;}
+// Exact chance that the pattern first appears on flip n, by tracking how much of it is already matched.
+function firstTime(a,N){
+ const step=(s,c)=>{let t=a.slice(0,s)+c;while(t&&!a.startsWith(t))t=t.slice(1);return t.length;};
+ let dist=new Array(a.length).fill(0);dist[0]=1;const out=[];
+ for(let n=1;n<=N;n++){const next=new Array(a.length).fill(0);let hit=0;for(let s=0;s<a.length;s++){if(!dist[s])continue;for(const c of'HT'){const t=step(s,c);if(t===a.length)hit+=dist[s]/2;else next[t]+=dist[s]/2;}}out.push(hit);dist=next;}
+ return out;
+}
+// A race between two different patterns of the same length: the chance that a appears first.
+function race(a,b){
+ const keep=t=>{while(t&&!a.startsWith(t)&&!b.startsWith(t))t=t.slice(1);return t;};
+ let dist=new Map([['',1]]),won=0,left=1;
+ for(let n=0;n<5000&&left>1e-15;n++){const next=new Map();for(const[t,pr]of dist)for(const c of'HT'){const u=t+c;if(u.endsWith(a)){won+=pr/2;continue;}if(u.endsWith(b))continue;const k=keep(u);next.set(k,(next.get(k)||0)+pr/2);}dist=next;left=[...dist.values()].reduce((x,y)=>x+y,0);}
+ return won;
+}
+const PATTERNS=['HH','HT','TH','TT','HHH','HHT','HTH','HTT','THH','THT','TTH','TTT'];
+
+// Lesson 12. A sealed box holds a value V, equally likely anywhere from 0 to 100 points. You offer to buy at 50 − s and
+// to sell at 50 + s. A share α of traders know V and trade only when it pays them; the others buy or sell at random.
+function quote(alpha,s){
+ const fromRandom=(1-alpha)*s,fromInformed=-alpha*(50-s)**2/100;
+ const buyRandom=(1-alpha)/2,buyInformed=alpha*(50-s)/100,evBuy=buyRandom+buyInformed>0?(buyRandom*50+buyInformed*(150+s)/2)/(buyRandom+buyInformed):50;
+ // Break-even: (1 − α)s = α(50 − s)² ÷ 100, which gives s = 50(1 − √(1 − α²)) ÷ α.
+ const breakeven=alpha>0?50*(1-Math.sqrt(1-alpha*alpha))/alpha:0;
+ return{fromRandom,fromInformed,profit:fromRandom+fromInformed,evBuy,breakeven};
+}
+
 function model(index,s){
  if(index===0){const v=fermi(s.factors,s.spread);
   return{graph:histogram(v,s.factors,s.spread),
@@ -133,8 +191,30 @@ function model(index,s){
    readout:`Of ${n(v.N)} people, ${n(v.have)} have the condition and ${n(v.tp)} of them test positive · Of the ${n(v.not)} without it, ${n(v.fp)} test positive · Of all ${n(v.tp+v.fp)} positive results, ${n(v.tp)} are people who have it: ${(100*v.posterior).toFixed(1)}% · In odds: ${n(v.have)} : ${n(v.not)} before the test, × ${fmt(v.lr)} for a positive result`,
    formula:'P(condition | positive) = true positives ÷ all positives. In odds form: odds after = odds before × (share of people with it who test positive ÷ share of people without it who test positive).',
    note:'Illustrative numbers, not a real test. A second positive test multiplies the odds again only if its errors are independent of the first test’s. In practice a positive screening result is followed by a different test, and only a doctor can interpret a real result.'};}
+ if(index===8){const p=s.chance/100,b=s.start,T=20,timid=ruin(p,b,T),bf=bold(p,T),xs=Array.from({length:T+1},(_,x)=>x);
+  return{graph:lines(`Reaching ${T} points before 0, at ${s.chance}% a round`,`The chance of reaching ${T} points before running out, from each starting amount, when each round is won with chance ${s.chance}%. One line bets 1 point a round; the other bets boldly. The dot marks a start of ${b} points betting 1 point a round.`,[{label:'Bet 1 point a round',prefix:'Purple: ',color:'#6542c0',data:xs.map(x=>[x,ruin(p,x,T).reach]),dots:true},{label:'Bet boldly: everything, or just what you need',prefix:'Orange: ',color:'#b4441f',data:xs.map(x=>[x,bf[x]]),dash:'6 4',dots:true}],{xmin:0,xmax:T,ymin:0,ymax:1,xticks:[0,5,10,15,20],yticks:[0,.25,.5,.75,1],xlabel:'Points at the start',ylabel:'Chance of reaching 20',marker:[b,timid.reach],yfmt:y=>Math.round(100*y)+'%'}),
+   readout:`${s.chance}% a round: each round is worth 2p − 1 = ${Math.abs(2*p-1)<1e-9?'0':((2*p-1)>0?'+':'−')+Math.abs(2*p-1).toFixed(2)} points on average · From ${b} points, betting 1 point a round: ${(100*timid.reach).toFixed(1)}% chance to reach ${T}, after about ${Math.round(timid.rounds)} rounds on average · Betting boldly: ${(100*bf[b]).toFixed(1)}%`,
+   formula:`Betting 1 point a round, P(reach ${T}) = (1 − r^b) ÷ (1 − r^${T}) with r = (1 − p) ÷ p; in a fair game it is b ÷ ${T}. The expected change per round is p − (1 − p) = 2p − 1 points.`,
+   note:'Points in a game, not money. Rounds are independent and won with the same chance. Bold play stakes what is needed to reach 20, or everything you have if that is less. The chances are exact, not simulated.'};}
+ if(index===9){const p=s.chance/100,b=Number(s.payoff),f=s.share/100,v=kelly(p,b,f),k=kelly(p,b,v.star),gmax=Math.max(k.g,1e-4),top=Number((gmax*1.6).toPrecision(2)),bottom=-top;
+  return{graph:M.cartesian(`Long-run growth for each share staked`,[{label:'Growth per round, ln of the typical multiplier',prefix:'Line: ',fn:x=>x>=100?null:kelly(p,b,x/100).g}],{xmin:0,xmax:100,ymin:bottom,ymax:top,xlabel:'Share of your points staked each round (%)',ylabel:'Growth per round',point:Number.isFinite(v.g)?[s.share,v.g]:undefined,left:80,ylabelX:22,xticks:[0,20,40,60,80,100],yticks:[bottom,bottom/2,0,top/2,top]}),
+   readout:`Win ${b===1?'your stake':'twice your stake'} with chance ${s.chance}%: the Kelly share is ${p.toFixed(2)} − ${(1-p).toFixed(2)} ÷ ${b} = ${(100*v.star).toFixed(1)}% · Staking ${s.share}%: growth ${Number.isFinite(v.g)?v.g.toFixed(4).replace('-','−'):'−∞'} a round · After ${v.n} rounds the typical result multiplies your points by ${times(v.median)}; the average result by ${times(v.mean)} · Chance of ending below where you started: ${(100*v.below).toFixed(1)}%; of losing more than half: ${(100*v.half).toFixed(1)}%`,
+   formula:'Growth per round g(f) = p ln(1 + b f) + (1 − p) ln(1 − f). It is largest at the Kelly share f = p − (1 − p) ÷ b and, when the edge is small, falls back to about 0 near twice that share.',
+   note:'Points in a game, not money. Rounds are independent, and the chance and payoff are known exactly; in real life they are not, which is one reason to stake less. When the edge is negative, as in casino games and lotteries, the Kelly share is 0: stake nothing.'};}
+ if(index===10){const a=s.mine,b=s.theirs,N=30,da=firstTime(a,N),db=firstTime(b,N),ns=Array.from({length:N},(_,i)=>i+1),top=Math.ceil(Math.max(...da,...db)*20)/20;
+  const parts=x=>{const k=[];for(let j=1;j<=x.length;j++)if(x.slice(0,j)===x.slice(-j))k.push(2**j);return k.length>1?k.join(' + ')+' = '+patternWait(x):String(patternWait(x));};
+  const raceText=a===b?'Choose two different patterns to race them':a.length!==b.length?'A race compares two patterns of the same length':`In a race, ${a} appears first ${(100*race(a,b)).toFixed(1)}% of the time`;
+  return{graph:lines(`When ${a} and ${b} first appear`,`Exact chances that ${a} and ${b} first appear on each flip from 1 to ${N}, flipping a fair coin. ${a} takes ${patternWait(a)} flips on average and ${b} takes ${patternWait(b)}.`,[{label:a,prefix:'Purple: ',color:'#6542c0',data:ns.map((n,i)=>[n,da[i]])},{label:b,prefix:'Orange: ',color:'#b4441f',data:ns.map((n,i)=>[n,db[i]]),dash:'6 4'}],{xmin:0,xmax:N,ymin:0,ymax:top,xticks:[0,5,10,15,20,25,30],yticks:[0,top/2,top],xlabel:'Flip on which the pattern first appears',ylabel:'Chance',yfmt:y=>Math.round(100*y)+'%'}),
+   readout:`Average wait for ${a}: ${parts(a)} flips · for ${b}: ${parts(b)} flips · ${raceText}`,
+   formula:'Average wait = the sum of 2^k over every k for which the first k letters of the pattern equal its last k letters. HH: 2 + 4 = 6; HT: 4.',
+   note:'A fair coin, flipped until the pattern appears. The chances are computed exactly by tracking how much of each pattern is already matched.'};}
+ if(index===11){const al=s.informed/100,v=quote(al,s.spread),top=Math.max(5,Math.ceil(50*(1-al)/5)*5),bottom=-Math.max(5,Math.ceil(25*al/5)*5);
+  return{graph:M.cartesian('Points per trader for each spread',[{label:'Expected points per trader',prefix:'Line: ',fn:x=>quote(al,x).profit}],{xmin:0,xmax:50,ymin:bottom,ymax:top,xlabel:'Half-spread: how far each price is from 50',ylabel:'Points per trader',point:[s.spread,v.profit],left:80,ylabelX:22,xticks:[0,10,20,30,40,50],yticks:[bottom,0,top/2,top]}),
+   readout:`You buy at ${50-s.spread} and sell at ${50+s.spread} · Traders who guess bring +${s.spread} each (${100-s.informed}% of traders); informed traders cost ${((50-s.spread)**2/100).toFixed(2)} each on average (${s.informed}%) · Expected: ${Math.abs(v.profit)<0.005?'0':(v.profit>0?'+':'−')+Math.abs(v.profit).toFixed(2)} points per trader · Break-even half-spread: ${v.breakeven.toFixed(2)} · After someone buys at ${50+s.spread}, the box is worth ${v.evBuy.toFixed(2)} on average`,
+   formula:'Expected points per trader = (1 − α) × s − α × (50 − s)² ÷ 100. It is zero at s = 50(1 − √(1 − α²)) ÷ α.',
+   note:'Points in a game, not money. The box’s value is equally likely anywhere from 0 to 100. Informed traders buy only when the value is above your selling price, and sell only when it is below your buying price; the others buy or sell with equal chance.'};}
  return null;
 }
-const api={model,fermi,doubling,spread,binomial,atLeastOne,matches,faces,firstSpecial,turns,collect,bayes,FERMI,seeded};
+const api={model,fermi,doubling,spread,binomial,atLeastOne,matches,faces,firstSpecial,turns,collect,bayes,ruin,bold,kelly,patternWait,firstTime,race,quote,PATTERNS,FERMI,seeded};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceQuantModels=api;
 })(typeof window==='undefined'?globalThis:window);

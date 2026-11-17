@@ -1,3 +1,23 @@
+## 2026-11-17 · Quantitative Reasoning, part 3: decisions under uncertainty
+
+- **Four lessons complete the course**, now twelve lessons. Everything is in points, never money.
+  9. **Expected value and ruin.** The chance of reaching 20 points before 0, betting 1 point a round or boldly, at 40–60% a round. When the odds are against you, the lesson says the best choice is not to play.
+  10. **How much to stake.** Long-run growth for every share staked, and the Kelly share. After 100 rounds it shows the typical and average results and the chance of ending below the start. It also covers why half the Kelly share is common, and that the Kelly share is 0 for casino games and lotteries.
+  11. **Waiting for patterns.** Why HH takes 6 flips on average and HT takes 4, races between patterns, and Penney's game.
+  12. **Quoting a price.** Buying and selling prices when some traders know more, the break-even spread, and why a trade is information.
+- **Quick rounds.** Six new templates. Rounds saved before Part 3 are still rebuilt exactly.
+- **Saved progress.** Course records from Part 1 or Part 2 gain the new lessons and keep every answer.
+- **Homepage.** The card now says all three parts are open, and keeps the height of its row.
+- **Checks.** The models are checked by:
+  - a direct linear solve;
+  - convolution, one round at a time;
+  - a numerical search for the Kelly share;
+  - Conway's rule for every race;
+  - direct integration for quoting.
+- **Independent review.** It found no errors, and 5 items to fix and 6 minor items, all fixed. The most important was safety: lesson 9 now says that when the odds are against you, every plan loses points on average and not playing is best.
+
+See [the Part 3 note](review/quantitative-part3-20261117.md).
+
 ## 2026-11-17 · Integrated Science 6–10: new card illustrations
 
 - **Why.** The old cards put a cell, a mountain, a cloud over the peak, rain on the slope, an unexplained arrow and an unlabeled curve side by side. The pieces overlapped and did not read as one idea.

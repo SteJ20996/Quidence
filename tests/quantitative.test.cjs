@@ -5,12 +5,12 @@ const C=require('../courses/quantitative/content.js'),Q=require('../assets/quant
 const Models=require('../assets/quant-models.js'),Graphs=require('../assets/course-graphs.js'),Policy=require('../assets/sync-policy.js'),Catalog=require('../assets/course-catalog.js');
 const close=(a,b,tol=1e-9)=>assert(Math.abs(a-b)<=tol,a+' != '+b);
 
-test('Parts 1 and 2 have eight lessons, each with four steps, three questions and a model whose controls hold its defaults',()=>{
- assert.equal(C.MODULE,'quantitative');assert.equal(C.VERSION,'quantitative-2');assert.deepEqual(C.PREVIOUS,[{version:'quantitative-1',lessons:4}]);
- assert.deepEqual(C.UNITS.map(u=>u.id),['estimates','shortcuts']);assert.deepEqual(C.LESSONS.map(l=>l.short),['Fermi estimates','Mental approximations','The square-root law','Quick bounds','Indicators and expectation','Symmetry','First-step analysis','Bayes in counts']);
- assert.equal(Q.create().LESSONS.length,8,'create() returns a fresh copy');
+test('three parts, twelve lessons, each with four steps, three questions and a model whose controls hold its defaults',()=>{
+ assert.equal(C.MODULE,'quantitative');assert.equal(C.VERSION,'quantitative-3');assert.deepEqual(C.PREVIOUS,[{version:'quantitative-1',lessons:4},{version:'quantitative-2',lessons:8}]);
+ assert.deepEqual(C.UNITS.map(u=>u.id),['estimates','shortcuts','decisions']);assert.deepEqual(C.LESSONS.map(l=>l.short),['Fermi estimates','Mental approximations','The square-root law','Quick bounds','Indicators and expectation','Symmetry','First-step analysis','Bayes in counts','Expected value and ruin','How much to stake','Waiting for patterns','Quoting a price']);
+ assert.equal(Q.create().LESSONS.length,12,'create() returns a fresh copy');
  for(const[i,l]of C.LESSONS.entries()){
-  assert.equal(l.id,'quantitative-lesson-'+(i+1));assert.equal(l.unit,i<4?'estimates':'shortcuts');assert.equal(l.segment,undefined);
+  assert.equal(l.id,'quantitative-lesson-'+(i+1));assert.equal(l.unit,i<4?'estimates':i<8?'shortcuts':'decisions');assert.equal(l.segment,undefined);
   assert.equal(l.steps.length,4);for(const s of l.steps){assert(s.title&&s.text);for(const k of['predict','test','explain'])assert(s.activity[k],k);}
   const tasks=[l.predict,...l.checks];assert.equal(tasks.length,3);
   for(const[j,t]of tasks.entries()){assert.equal(t.id,'quantitative-l'+(i+1)+'-q'+(j+1));assert.equal(t.options.length,3);assert.deepEqual(t.correct,['0']);assert.equal(new Set(t.options.map(o=>o.label)).size,3);assert(t.explanation);assert.equal(t.options.findIndex(o=>o.id==='0'),(3-(i+j)%3)%3);}
@@ -125,12 +125,80 @@ test('Bayes in counts: the counts agree with Bayes’ rule in probabilities and 
  assert.match(Graphs.lab('quantitative',7,{base:1,sensitivity:90,falsepos:9}).readout,/Of all 9,810 positive results, 900 are people who have it: 9\.2%/);
 });
 
-test('a record saved with Part 1 alone gains Part 2 and keeps every answer',()=>{
+test('a record saved with Part 1, or with Parts 1 and 2, gains the later lessons and keeps every answer',()=>{
  const map=new Map(),h=harness('quantitative',map);h.click('start');h.choose('unsure');h.input('explanation','Part 1 draft, kept.');
- const now=h.saved(),old={...now,contentVersion:'quantitative-1',labs:now.labs.slice(0,4),lessons:now.lessons.slice(0,4)};
- const up=h.E.hydrate(JSON.parse(JSON.stringify(old)));assert(up);assert.equal(up.contentVersion,'quantitative-2');assert.equal(up.labs.length,8);assert.equal(up.lessons.length,8);
- assert.deepEqual(up.records,old.records);assert.deepEqual(up.labs.slice(4),C.LESSONS.slice(4).map(l=>l.defaults));
- const event=up.events[up.events.length-1];assert.equal(event.type,'lessons_added');assert.equal(event.from,'quantitative-1');assert.deepEqual(event.lessons,C.LESSONS.slice(4).map(l=>l.id));
+ for(const[version,n]of[['quantitative-1',4],['quantitative-2',8]]){
+  const now=h.saved(),old={...now,contentVersion:version,labs:now.labs.slice(0,n),lessons:now.lessons.slice(0,n)};
+  const up=h.E.hydrate(JSON.parse(JSON.stringify(old)));assert(up,version);assert.equal(up.contentVersion,'quantitative-3');assert.equal(up.labs.length,12);assert.equal(up.lessons.length,12);
+  assert.deepEqual(up.records,old.records);assert.deepEqual(up.labs.slice(n),C.LESSONS.slice(n).map(l=>l.defaults));
+  const event=up.events[up.events.length-1];assert.equal(event.type,'lessons_added');assert.equal(event.from,version);assert.deepEqual(event.lessons,C.LESSONS.slice(n).map(l=>l.id));
+ }
+});
+
+// Solves x = A x + c for the states 1..T−1 of a walk on 0..T by Gaussian elimination, independent of the models' formulas.
+function solveWalk(T,moves){const n=T-1,A=Array.from({length:n},()=>new Array(n+1).fill(0));
+ for(let x=1;x<T;x++){const r=x-1;A[r][r]+=1;for(const[to,pr,gain]of moves(x)){if(to>0&&to<T)A[r][to-1]-=pr;A[r][n]+=pr*(gain(to)||0);}}
+ for(let c=0;c<n;c++){let piv=c;for(let r=c+1;r<n;r++)if(Math.abs(A[r][c])>Math.abs(A[piv][c]))piv=r;[A[c],A[piv]]=[A[piv],A[c]];for(let r=0;r<n;r++){if(r===c)continue;const f=A[r][c]/A[c][c];for(let k=c;k<=n;k++)A[r][k]-=f*A[c][k];}}
+ return[0,...A.map((row,i)=>row[n]/row[i]),1];}
+
+test('Expected value and ruin: the formulas against a direct solution of the walk',()=>{
+ for(const p of[0.4,0.45,0.5,0.55,0.6])for(const T of[10,20]){
+  const reach=solveWalk(T,x=>[[x+1,p,to=>to===T?1:0],[x-1,1-p,()=>0]]);
+  const steps=(()=>{const n=T-1,A=Array.from({length:n},()=>new Array(n+1).fill(0));for(let x=1;x<T;x++){const r=x-1;A[r][r]=1;A[r][n]=1;if(x+1<T)A[r][x]-=p;if(x-1>0)A[r][x-2]-=1-p;}for(let c=0;c<n;c++){for(let r=0;r<n;r++){if(r===c)continue;const f=A[r][c]/A[c][c];for(let k=c;k<=n;k++)A[r][k]-=f*A[c][k];}}return[0,...A.map((row,i)=>row[n]/row[i]),0];})();
+  const boldExact=solveWalk(T,x=>{const s=Math.min(x,T-x);return[[x+s,p,to=>to===T?1:0],[x-s,1-p,()=>0]];}),bold=Models.bold(p,T);
+  for(let b=1;b<T;b++){const v=Models.ruin(p,b,T);close(v.reach,reach[b],1e-9);close(v.rounds,steps[b],1e-6);close(bold[b],boldExact[b],1e-9);}
+ }
+ close(Models.ruin(.5,5,20).reach,.25);close(Models.ruin(.55,10,20).reach,.8815,.0001);close(Models.ruin(.55,10,20).rounds,76.3,.05);close(Models.ruin(.45,10,20).reach,.1185,.0001);
+ close(Models.bold(.45,20)[10],.45,1e-12);close(Models.bold(.4,20)[10],.4,1e-12);close(Models.ruin(.4,10,20).reach,.017,.0005);close(Models.ruin(.4,5,10).reach,.116,.001);
+ close(Models.ruin(.5,30,100).reach,.3);
+});
+
+test('How much to stake: growth, the Kelly share and the spread of results after 100 rounds',()=>{
+ for(const p of[.55,.6,.7])for(const b of[1,2]){const star=Models.kelly(p,b,0).star;close(star,p-(1-p)/b,1e-12);
+  // The Kelly share is where the growth is largest, found here by a fine search.
+  let best=0,bg=-Infinity;for(let f=0;f<0.999;f+=0.0005){const g=Models.kelly(p,b,f).g;if(g>bg){bg=g;best=f;}}close(best,star,0.001);
+  for(const f of[0,0.1,star,0.4,0.9]){const v=Models.kelly(p,b,f);
+   // Points after 100 rounds by convolving one round at a time.
+   let dist=new Map([[0,1]]);for(let r=0;r<100;r++){const next=new Map();for(const[w,pr]of dist){next.set(w+1,(next.get(w+1)||0)+pr*p);next.set(w,(next.get(w)||0)+pr*(1-p));}dist=next;}
+   let below=0,half=0,mean=0;for(const[w,pr]of dist){const m=(1+b*f)**w*(1-f)**(100-w);mean+=pr*m;if(m<1-1e-12)below+=pr;if(m<0.5)half+=pr;}
+   close(v.below,below,1e-9);close(v.half,half,1e-9);close(v.mean,mean,1e-6*mean);}}
+ const k20=Models.kelly(.6,1,.2),k40=Models.kelly(.6,1,.4),k10=Models.kelly(.6,1,.1),all=Models.kelly(.6,1,1);
+ close(k20.median,7.49,0.01);assert(k40.g<0&&k40.g>-0.003);assert(k40.below>0.5);close(k10.g/k20.g,0.75,0.01);
+ assert.equal(all.median,0);assert.equal(all.g,-Infinity);close(all.below,1,1e-9);
+ close(Models.kelly(.4,2,0).star,.1);close(Models.kelly(2/3,1,0).star,1/3);close(1/0.6-1,0.667,0.001);close(.4*2-.6,.2);
+});
+
+test('Waiting for patterns: the overlap rule, the exact waiting times and Conway races',()=>{
+ for(const a of Models.PATTERNS){const d=Models.firstTime(a,600);close(d.reduce((s,x)=>s+x,0),1,1e-12);close(d.reduce((s,x,i)=>s+(i+1)*x,0),Models.patternWait(a),1e-9);}
+ assert.deepEqual(['HT','HH','HHT','HTH','HHH'].map(Models.patternWait),[4,6,8,10,14]);
+ // Conway's leading numbers give the odds of a race between two different patterns of the same length.
+ const c=(x,y)=>{let t=0;for(let k=1;k<=x.length;k++)if(x.slice(-k)===y.slice(0,k))t+=2**(k-1);return t;};
+ for(const a of Models.PATTERNS)for(const b of Models.PATTERNS)if(a!==b&&a.length===b.length){const odds=(c(b,b)-c(b,a))/((c(b,b)-c(b,a))+(c(a,a)-c(a,b)));close(Models.race(a,b),odds,1e-9);}
+ close(Models.race('HH','HT'),.5,1e-9);close(Models.race('HHT','THH'),.25,1e-9);close(Models.race('HHH','THH'),.125,1e-9);
+ // The "second player" rule: the opposite of their second letter, then their first two letters, always wins more often.
+ const flip=x=>x==='H'?'T':'H';for(const a of Models.PATTERNS.filter(x=>x.length===3)){const b=flip(a[1])+a.slice(0,2);assert(Models.race(b,a)>0.5,a+' is beaten by '+b);}
+});
+
+test('Quoting a price: profit, the value after a buy and the break-even spread, against direct integration',()=>{
+ const N=200000;
+ for(const al of[0,.1,.2,.4,.6])for(const s of[0,5,10,20,49]){
+  let profit=0,buyW=0,buyV=0;for(let i=0;i<N;i++){const V=100*(i+0.5)/N;
+   profit+=(1-al)*(0.5*(50+s-V)+0.5*(V-(50-s)))+al*((V>50+s?50+s-V:0)+(V<50-s?V-(50-s):0));
+   buyW+=(1-al)*0.5+al*(V>50+s?1:0);buyV+=((1-al)*0.5+al*(V>50+s?1:0))*V;}
+  const v=Models.quote(al,s);close(v.profit,profit/N,1e-6);close(v.evBuy,buyV/buyW,1e-4);
+ }
+ for(const al of[.1,.2,.3,.6]){let lo=0,hi=50;for(let i=0;i<80;i++){const m=(lo+hi)/2;if(Models.quote(al,m).profit<0)lo=m;else hi=m;}close(Models.quote(al,0).breakeven,lo,1e-9);
+  // At the break-even half-spread, the selling price equals the box's value after a buy.
+  close(Models.quote(al,lo).evBuy,50+lo,1e-6);}
+ close(Models.quote(0,5).profit,5);close(Models.quote(.2,5).fromRandom,4);close(-Models.quote(.2,5).fromInformed,4.05,1e-12);close(Models.quote(.2,5).evBuy,55.05,0.005);
+ assert.deepEqual([.1,.3,.6].map(a=>Number(Models.quote(a,0).breakeven.toFixed(1))),[2.5,7.7,16.7]);
+});
+
+test('every setting a Part 3 step asks for can be set with its controls',()=>{
+ const settings=[[8,'chance',[50,55,45]],[8,'start',[5,10]],[9,'chance',[60]],[9,'share',[100,20,10,30,40]],[11,'informed',[0,20,10,30,60]],[11,'spread',[5]]];
+ for(const[i,name,values]of settings){const c=C.LESSONS[i].controls.find(x=>x.name===name);for(const v of values){assert(v>=c.min&&v<=c.max,name+' '+v);const k=(v-c.min)/c.step;close(k,Math.round(k),1e-9);}}
+ for(const name of['mine','theirs'])for(const v of['HH','HT','HTH','HHT','THH','HHH'])assert(C.LESSONS[10].controls.find(x=>x.name===name).options.some(([x])=>x===v));
+ assert(C.LESSONS[9].controls.find(x=>x.name==='payoff').options.some(([x])=>x==='1'));
 });
 
 test('every lab renders at the defaults and at every control extreme without NaN',()=>{
@@ -143,13 +211,13 @@ test('every lab renders at the defaults and at every control extreme without NaN
 test('the complete course flow saves answers and reasoning, reloads, shows the part and exports',async()=>{
  const map=new Map([['physics_beta01_session_v1','another subject remains untouched']]);
  let h=harness('quantitative',map);assert.equal(map.has(h.E.SCHEMA),false);assert.equal(h.E.SCHEMA,'quantitative_beta01_session_v1');
- assert.match(h.app.innerHTML,/Eight starting points\./);assert.match(h.app.innerHTML,/after all eight lessons/);
+ assert.match(h.app.innerHTML,/Twelve starting points\./);assert.match(h.app.innerHTML,/after all twelve lessons/);
  h.click('start');assert.match(h.app.innerHTML,/class="lesson-unit">Part 1 · Fast estimates</);assert.doesNotMatch(h.app.innerHTML,/lesson-standards/);
  h.choose('unsure');h.input('explanation','Multiply the factors; keep this draft.');
  h=harness('quantitative',map);assert.equal(h.app.querySelector('[name="explanation"]').value,'Multiply the factors; keep this draft.');
  for(let i=0;i<C.LESSONS.length;i++){
   const lesson=C.LESSONS[i];if(i){h.click('continue');h.choose('unsure');h.input('explanation','A first guess from the factors.');}
-  assert.match(h.app.innerHTML,new RegExp('class="lesson-unit">'+(i<4?'Part 1 · Fast estimates':'Part 2 · Probability shortcuts')+'<'));
+  assert.match(h.app.innerHTML,new RegExp('class="lesson-unit">'+(i<4?'Part 1 · Fast estimates':i<8?'Part 2 · Probability shortcuts':'Part 3 · Decisions under uncertainty')+'<'));
   h.submit();h.click('next');const before=JSON.stringify(h.saved().records);
   for(const c of lesson.controls)h.lab(c.name,c.options?c.options[c.options.length-1][0]:c.max);
   assert.doesNotMatch(h.app.innerHTML,/NaN/);assert.equal(JSON.stringify(h.saved().records),before,'Moving a slider is not an answer');
@@ -159,8 +227,8 @@ test('the complete course flow saves answers and reasoning, reloads, shows the p
  h.click('continue');assert.equal(h.saved().view,'summary');assert(h.E.hydrate(h.saved()));
  assert(Policy.valid(h.E.SCHEMA,map.get(h.E.SCHEMA)));assert.equal(map.get('physics_beta01_session_v1'),'another subject remains untouched');
  h.click('export-json');const report=JSON.parse(await h.blobs[0].text());
- assert.match(h.app.innerHTML,/EIGHT-LESSON SUMMARY/);assert.match(h.app.innerHTML,/Guess fast\.<br>Then check\./);
- assert.equal(Object.keys(report.records).length,24);assert.match(report.note,/explanations need human review/);
+ assert.match(h.app.innerHTML,/TWELVE-LESSON SUMMARY/);assert.match(h.app.innerHTML,/Guess fast\.<br>Then check\./);
+ assert.equal(Object.keys(report.records).length,36);assert.match(report.note,/explanations need human review/);
  assert.equal(JSON.parse(map.get('cluevera_saved_reports_v1')).items[0].module,'quantitative');
 });
 
@@ -182,7 +250,13 @@ test('quick rounds: every question is recomputed from its own wording, and answe
   color:p=>{const m=p.match(/has (\d+) red and (\d+) blue/);return 100*num(m[1])/(num(m[1])+num(m[2]));},
   turns:p=>{const d=num(p.match(/chance 1 in (\d+)/)[1]);let w=0;for(let r=0;r<5000;r++)w+=(1-1/d)**(2*r)/d;return 100*w;},
   collect:p=>{const d=num(p.match(/fair (\d+)-sided/)[1]);let e=0;for(let k=1;k<=d;k++)e+=d/k;return e;},
-  bayes:p=>{const m=p.match(/affects (\d+) in 1,000 people\. A test is positive for (\d+)% of people who have it and for (\d+)%/);const b=num(m[1])/1000,s=num(m[2])/100,f=num(m[3])/100;return 100*b*s/(b*s+(1-b)*f);}
+  bayes:p=>{const m=p.match(/affects (\d+) in 1,000 people\. A test is positive for (\d+)% of people who have it and for (\d+)%/);const b=num(m[1])/1000,s=num(m[2])/100,f=num(m[3])/100;return 100*b*s/(b*s+(1-b)*f);},
+  ruin:p=>{const m=p.match(/start with (\d+) points and stop at 0 or at (\d+)/);return 100*num(m[1])/num(m[2]);},
+  ev:p=>{const m=p.match(/pays (\d+) points with chance (\d+)%; otherwise you lose (\d+) points/);return num(m[2])/100*num(m[1])-(1-num(m[2])/100)*num(m[3]);},
+  kelly:p=>{const m=p.match(/win (what you stake|twice what you stake) with chance (\d+)%/),b=m[1]==='what you stake'?1:2,pr=num(m[2])/100;return 100*(pr-(1-pr)/b);},
+  pattern:p=>Models.patternWait(p.match(/until ([HT]+) first appears/)[1]),
+  penney:p=>{const m=p.match(/until ([HT]+) or ([HT]+) appears/),r=Models.race(m[1],m[2]);return Math.abs(r-0.5)<1e-9?'tie':r>0.5?'a':'b';},
+  given:p=>{const m=p.match(/(\d+)% of traders know the number[\s\S]*buys from you at (\d+)\./);return Models.quote(num(m[1])/100,num(m[2])-50).evBuy;}
  };
  assert.deepEqual(Object.keys(recompute).sort(),R.IDS.slice().sort());
  const seen=new Set();
@@ -201,7 +275,8 @@ test('quick rounds: every question is recomputed from its own wording, and answe
  }
  assert.equal(seen.size,R.IDS.length,'every template appears');
  // The lessons' own shortcuts are accepted wherever the bank can ask them; common wrong methods are not.
- const all=id=>{const out=new Map();for(let seed=1;seed<=4000;seed++)for(const item of R.makeRound(seed))if(item.template===id)out.set(item.prompt,item);return[...out.values()];};
+ const ROUNDS=Array.from({length:12000},(_,i)=>R.makeRound(i+1));
+ const all=id=>{const out=new Map();for(const round of ROUNDS)for(const item of round)if(item.template===id)out.set(item.prompt,item);return[...out.values()];};
  for(const item of all('doubling')){const r=Number(item.prompt.match(/by (\d+)%/)[1]);assert(R.check(item,String(72/r)),'rule of 72 at '+r);assert(R.check(item,String(69.3/r)),'69.3 at '+r);assert(R.check(item,String(69/r)),'69 at '+r);assert.equal(R.check(item,String(100/r)),false,'100 ÷ rate at '+r);}
  for(const item of all('atleast')){const m=item.prompt.match(/Each of (\d+) independent tries has a (\d+)%/),n=+m[1],p=+m[2]/100;assert(R.check(item,String(100*(1-Math.exp(-n*p)))),'1 − e^(−np) for '+n+' at '+p);if(n*p>0.3)assert.equal(R.check(item,String(100*n*p)),false,'n × p for '+n+' at '+p);}
  const products=all('product');assert.equal(products.length,150,'every product combination appears');
@@ -217,13 +292,22 @@ test('quick rounds: every question is recomputed from its own wording, and answe
  for(const item of all('collect')){const d=Number(item.prompt.match(/fair (\d+)-sided/)[1]);assert(R.check(item,String(d*(Math.log(d)+0.5772))),'d(ln d + 0.577)');assert.equal(R.check(item,String(d)),false,'d rolls');}
  for(const item of all('first'))assert.match(item.prompt,/A decimal is fine\./);
  for(const item of all('bayes')){assert(item.tol<=3&&item.tol<=item.exact/4,'3 points, or a quarter of the answer');assert.equal(R.check(item,String(item.exact/2)),false,'half the right answer');const m=item.prompt.match(/affects (\d+) in 1,000 people\. A test is positive for (\d+)% of people who have it and for (\d+)%/),b=+m[1],se=+m[2],f=+m[3];assert(R.check(item,String(100*b*se/(b*se+1000*f))),'rounding 1,000 − b to 1,000');assert.equal(R.check(item,String(se)),false,'the detection rate is not the answer');}
+ for(const item of all('ev')){const m=item.prompt.match(/pays (\d+) points with chance (\d+)%; otherwise you lose (\d+)/),w=+m[1],pr=+m[2]/100,l=+m[3];assert.equal(R.check(item,String(pr*w)),false,'ignoring the loss');assert.equal(R.check(item,String(pr*w-l)),false,'not weighting the loss');}
+ for(const item of all('kelly')){const pr=+item.prompt.match(/chance (\d+)%/)[1];assert.equal(R.check(item,String(pr)),false,'the chance of winning');}
+ for(const item of all('ruin')){assert.equal(R.check(item,'50'),item.exact>=48&&item.exact<=52,'a fair game is not a coin toss for the whole game');}
+ for(const item of all('pattern')){const a=item.prompt.match(/until ([HT]+) first/)[1];if(Models.patternWait(a)!==2**a.length)assert.equal(R.check(item,String(2**a.length)),false,'2^length ignores overlap');}
+ for(const item of all('penney')){assert.equal(item.options.length,3);assert.deepEqual(R.scale(item),R.SCALES.number,'three options start below 50%');}
+ for(const item of all('given')){const m=item.prompt.match(/(\d+)% of traders know[\s\S]*buys from you at (\d+)\./),al=+m[1]/100,ask=+m[2];assert.equal(R.check(item,'50'),false,'a buy carries information');assert.equal(R.check(item,String(ask)),false,'the selling price');assert.equal(R.check(item,String(al*(ask+100)/2+(1-al)*50)),false,'mixing by the share of traders, not of buyers');}
+ const races=all('penney');assert(races.some(i=>i.exact==='tie')&&races.some(i=>i.exact!=='tie'),'ties and wins both appear');
  // A saved Part 1 round is rebuilt exactly as it was played before Part 2 was added: the same templates, numbers and
  // tolerances. The fingerprint leaves out the computed answers, whose last binary digit can differ between JavaScript
  // engines; those are checked above against a recomputation from each prompt.
  const key=it=>({template:it.template,prompt:it.prompt,kind:it.kind,tol:it.tol,rel:it.rel,accept:it.accept,options:it.options});
  const fingerprint=require('node:crypto').createHash('sha256').update(JSON.stringify(Array.from({length:300},(_,i)=>R.makeRound(i+1,[1,2,3,4]).map(key)))).digest('hex');
  assert.equal(fingerprint,'c9adb68e8dc0152624964651ac699b735c8d47be54f4e55ba270a34db23fa8ce');
- assert.deepEqual(R.LESSONS,[1,2,3,4,5,6,7,8]);for(let seed=1;seed<=200;seed++)for(const item of R.makeRound(seed,[1,2,3,4]))assert(R.TEMPLATES[item.template].lesson<=4);
+ assert.deepEqual(R.LESSONS,[1,2,3,4,5,6,7,8,9,10,11,12]);
+ const part2=require('node:crypto').createHash('sha256').update(JSON.stringify(Array.from({length:300},(_,i)=>R.makeRound(i+1,[1,2,3,4,5,6,7,8]).map(key)))).digest('hex');
+ assert.equal(part2,'b728c6d5d5d3160030247eb3ed17b3ba186b2adffd724139f92538e135d8d11d','a saved Part 2 round is rebuilt exactly');for(let seed=1;seed<=200;seed++)for(const item of R.makeRound(seed,[1,2,3,4]))assert(R.TEMPLATES[item.template].lesson<=4);
  assert.equal(R.parse('1,000'),1000);assert.equal(R.parse('−25%'),-25);assert.equal(R.parse('–4'),-4);assert.equal(R.parse(' 0.5 '),0.5);assert.equal(R.parse('1e3'),1000);assert.equal(R.parse('12 years'),null);assert.equal(R.parse(''),null);
 });
 
