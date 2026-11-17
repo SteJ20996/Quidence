@@ -9,6 +9,12 @@ const pick=(name,label,options)=>({name,label,options});
 const st=(title,text,predict,test,explain,hint='')=>({title,text,try:[predict,test,explain].join(' '),activity:{predict,test,explain,hint}});
 const q=(prompt,correct,wrong1,wrong2,explanation)=>({prompt,labels:[correct,wrong1,wrong2],explanation});
 const PATTERNS=['HH','HT','TH','TT','HHH','HHT','HTH','HTT','THH','THT','TTH','TTT'];
+// Shown on the course page, and on the lessons about staking, so that the points never read as advice to gamble.
+const HELP='If gambling, yours or someone else’s, is causing worry, talk to a trusted adult. In the United States, the National Problem Gambling Helpline is free and confidential, 24 hours a day: call or text 1-800-MY-RESET (1-800-697-3738). Elsewhere, look for your country’s gambling helpline.';
+const NOTICE={eyebrow:'POINTS, NOT MONEY',title:'About gambling',paragraphs:[
+ 'This course uses points, never money. Gambling for money is designed so that players lose on average: casino games, sports betting and lotteries have a negative expected value, so the stake that grows your money fastest is zero.',
+ 'Fast repeated bets, near misses and the feeling that skill can control chance make gambling hard to stop, and knowing the odds is not enough on its own to protect anyone. Gambling for money is illegal for minors in most places.',
+ HELP],link:{label:'National Problem Gambling Helpline: chat online',href:'https://www.ncpgambling.org/chat/'}};
 const UNITS=[
  {id:'estimates',title:'Part 1 · Fast estimates',topic:'Fermi estimates, mental approximations, the square-root law and quick bounds'},
  {id:'shortcuts',title:'Part 2 · Probability shortcuts',topic:'Indicators and linearity of expectation, symmetry, first-step analysis and Bayes’ rule in counts'},
@@ -111,7 +117,7 @@ const SPECS=[
    q('Of 1,000 people, 20 have a condition. A test is positive for 18 of them and for 49 of the other 980. Among the people who test positive, what share has the condition?','About 27%: 18 of 67','90%: 18 of 20','About 2%: 18 of 1,000','There are 18 + 49 = 67 positive results, and 18 of them come from people with the condition: 18 ÷ 67 ≈ 27%.'),
    q('Why does a positive result for a rare condition often mean less than the test’s accuracy suggests?','False positives from the many people without it can outnumber true positives from the few who have it.','Tests are less accurate when a condition is rare.','Positive results are rounded down when a condition is rare.','The test’s two rates do not change with how common the condition is. But 9% of 990 people is far more than 90% of 10 people, so most positive results are false.')],
   next:'Find a news story that reports a test, a screening or an alarm, such as a smoke detector or a spam filter. Estimate its base rate and its two positive rates, then use counts of 1,000 or 10,000 to say what one alert means.'},
- {unit:'decisions',short:'Expected value and ruin',title:'When is a good bet still a bad idea?',goal:'Use expected value to see which way a game drifts, and the chance of running out to see whether you survive long enough to benefit.',
+ {unit:'decisions',short:'Expected value and ruin',notice:'When the odds are against you, every plan in this lesson loses points on average, and real gambling games are set up that way on purpose: the best choice is not to play. '+HELP,title:'When is a good bet still a bad idea?',goal:'Use expected value to see which way a game drifts, and the chance of running out to see whether you survive long enough to benefit.',
   defaults:{chance:50,start:10},controls:[range('chance','Chance of winning each round (%)',40,60),range('start','Points at the start (the goal is 20)',1,19)],
   steps:[
    st('A fair game still ends.','In a fair game you win or lose 1 point each round with equal chance, so your expected points never change. Yet if you play until you reach 20 or run out, the game must end one way or the other. Starting with b points, the chance of reaching 20 is b ÷ 20: what you have, as a share of the goal. From 5 points it is 25%.','Starting with 5 points in a fair game, what is the chance of reaching 20 before running out?','Set 50% and 5 points, and read the chance of reaching 20.','Explain why the expected final amount is still 5 points, even though most players end with 0.'),
@@ -123,7 +129,7 @@ const SPECS=[
    q('Each round you win 1 point with chance 40% and lose 1 otherwise. To turn 10 points into 20, which plan gives the best chance?','Stake all 10 points at once: 40%','Bet 1 point at a time, so the luck averages out','Bet 2 points at a time','Betting 1 point at a time reaches 20 only about 1.7% of the time, and 2 points at a time about 12%: the more rounds, the more the edge against you adds up. One bold bet gives 40%. Better still is not to play: every plan loses points on average, and one bold bet ends with 8 points on average, where not playing keeps 10.'),
    q('What does a game’s expected value tell you?','The average result over many plays, not the chance of running out first','The result you will most likely get','The worst result that can happen','In a fair game from 5 points, playing to 20, the expected final amount is 5, yet 75% of players end with 0. Expected value is an average; on its own it says nothing about risk.')],
   next:'Play the fair game with a coin: start with 5 tokens, stop at 0 or 10, and record how often you reach 10. Pool results with classmates and compare with 5 ÷ 10 = 50%.'},
- {unit:'decisions',short:'How much to stake',title:'How much should you put at stake?',goal:'Choose what share of your points to stake on a favorable round that repeats, and see why staking too much loses even with an edge.',
+ {unit:'decisions',short:'How much to stake',notice:'The Kelly share is for a known edge in your favor. Casino games, sports betting and lotteries have an edge against you, so the right stake is zero, and a stake that feels small can still grow into a harm. '+HELP,title:'How much should you put at stake?',goal:'Choose what share of your points to stake on a favorable round that repeats, and see why staking too much loses even with an edge.',
   defaults:{chance:60,payoff:'1',share:20},controls:[range('chance','Chance of winning each round (%)',51,80),pick('payoff','What a win pays',[['1','As much as you stake (1 to 1)'],['2','Twice what you stake (2 to 1)']]),range('share','Share of your points staked each round (%)',0,100)],
   steps:[
    st('An edge is not a reason to stake everything.','Each round you win your stake with chance 60%, or lose it. Every point staked is worth 0.2 points on average, so staking everything gives the largest average. But one loss leaves you with nothing, and in 100 rounds you will almost surely lose at least once.','With a 60% chance each round, should you stake all your points every round?','Set 60%, 1 to 1 and 100%. Read the typical result and the average result after 100 rounds.','Explain how the average result can be huge while the typical result is zero.'),
@@ -171,8 +177,8 @@ function create(){
   lead:'Estimate, approximate and decide under uncertainty with a few reusable moves. Make a quick call first, then test it against a model.',
   prerequisite:'Fractions, percents, exponents and basic probability. The first Probability projects help.',
   scope:'Selected foundations: all three parts, twelve lessons on fast estimates, probability shortcuts and decisions under uncertainty. Not a complete course.',
-  reportsHref:'../../reports/',LESSONS:lessons};
+  notice:clone(NOTICE),reportsHref:'../../reports/',LESSONS:lessons};
 }
-const api={create,UNITS,SPECS};
+const api={create,UNITS,SPECS,NOTICE};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceQuantContent=api;
 })(typeof window==='undefined'?globalThis:window);

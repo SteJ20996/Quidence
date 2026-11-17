@@ -18,6 +18,15 @@ test('three parts, twelve lessons, each with four steps, three questions and a m
   assert(l.next);
  }
  const card=Catalog.COURSES.quantitative;assert.equal(card.group,'further');assert.equal(card.lessonCount,C.LESSONS.length);assert.equal(card.course,'courses/quantitative/');
+ // A notice about gambling sits on the course page and on the two lessons about stakes, with a current helpline.
+ assert.equal(C.notice.title,'About gambling');assert(C.notice.paragraphs.some(p=>/1-800-MY-RESET \(1-800-697-3738\)/.test(p)));assert.equal(C.notice.link.href,'https://www.ncpgambling.org/chat/');
+ assert(C.notice.paragraphs.some(p=>/negative expected value/.test(p)));assert(C.notice.paragraphs.some(p=>/illegal for minors/.test(p)));
+ assert.deepEqual(C.LESSONS.filter(l=>l.notice).map(l=>l.short),['Expected value and ruin','How much to stake']);for(const l of C.LESSONS.filter(l=>l.notice))assert.match(l.notice,/1-800-MY-RESET/);
+ // On the maps the course is a branch of applied mathematics.
+ const Map=require('../assets/knowledge-map-data.js'),course=Map.courses.find(x=>x.id==='quantitative');assert.equal(course.chapter,1);assert.equal(course.node,'quantreason');
+ assert(Map.chapters[1].nodes.some(n=>n.id==='quantreason'&&n.layer==='applied'));assert.equal(Map.words.en.layers[1][Map.chapters[1].groups.indexOf('applied')],'Applied Mathematics');assert.deepEqual(Map.bindings.quantreason,['quantitative']);
+ const Cartoon=require('../assets/cartoon-map-data.js'),further=Cartoon.maps.find(m=>m.id==='further');assert(further.nodes.some(n=>n.id==='quantitative'&&n.kind==='course'));assert.equal(further.nodes.find(n=>n.id==='applied').title.en,'Applied mathematics');
+ assert(further.edges.some(e=>e[0]==='quantitative'&&e[1]==='applied'));assert(further.edges.some(e=>e[0]==='probability'&&e[1]==='quantitative'));
  // The foundation check, the understanding check and the Intuition Lab activity are published; there are no field projects.
  assert.equal(card.foundation,'foundations/?module=quantitative');assert.equal(card.challenge,'diagnostics/?module=quantitative');assert.equal(card.challengeCount,4);assert.equal(card.project,undefined);assert.equal(card.intuition,'intuition/#patterns');
 });
@@ -211,12 +220,13 @@ test('every lab renders at the defaults and at every control extreme without NaN
 test('the complete course flow saves answers and reasoning, reloads, shows the part and exports',async()=>{
  const map=new Map([['physics_beta01_session_v1','another subject remains untouched']]);
  let h=harness('quantitative',map);assert.equal(map.has(h.E.SCHEMA),false);assert.equal(h.E.SCHEMA,'quantitative_beta01_session_v1');
- assert.match(h.app.innerHTML,/Twelve starting points\./);assert.match(h.app.innerHTML,/after all twelve lessons/);
+ assert.match(h.app.innerHTML,/Twelve starting points\./);assert.match(h.app.innerHTML,/after all twelve lessons/);assert.match(h.app.innerHTML,/id="course-notice-title">About gambling</);assert.match(h.app.innerHTML,/1-800-MY-RESET/);
  h.click('start');assert.match(h.app.innerHTML,/class="lesson-unit">Part 1 · Fast estimates</);assert.doesNotMatch(h.app.innerHTML,/lesson-standards/);
  h.choose('unsure');h.input('explanation','Multiply the factors; keep this draft.');
  h=harness('quantitative',map);assert.equal(h.app.querySelector('[name="explanation"]').value,'Multiply the factors; keep this draft.');
  for(let i=0;i<C.LESSONS.length;i++){
   const lesson=C.LESSONS[i];if(i){h.click('continue');h.choose('unsure');h.input('explanation','A first guess from the factors.');}
+  assert.equal(/id="lesson-notice-title"/.test(h.app.innerHTML),Boolean(C.LESSONS[i].notice),'lesson notice on '+C.LESSONS[i].short);
   assert.match(h.app.innerHTML,new RegExp('class="lesson-unit">'+(i<4?'Part 1 · Fast estimates':i<8?'Part 2 · Probability shortcuts':'Part 3 · Decisions under uncertainty')+'<'));
   h.submit();h.click('next');const before=JSON.stringify(h.saved().records);
   for(const c of lesson.controls)h.lab(c.name,c.options?c.options[c.options.length-1][0]:c.max);

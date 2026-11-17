@@ -1,3 +1,29 @@
+## 2026-11-17 · Quantitative Reasoning: gambling-harm notes and its place on the maps
+
+- **Gambling-harm notes** in the course's key places:
+  - **Course page.** An "About gambling" box follows the introduction, with a button to the helpline's online chat. It says:
+    - gambling for money has a negative expected value;
+    - near misses and the illusion of control make it hard to stop, and knowing the odds is not enough to protect anyone;
+    - gambling is illegal for minors in most places;
+    - the US National Problem Gambling Helpline is 1-800-MY-RESET (1-800-697-3738).
+  - **Lessons 9 and 10.** Each carries a paragraph of its own. Against the odds, the best choice is not to play. The Kelly share is for a known edge in your favor, so for casino games, sports betting and lotteries the right stake is zero.
+  - **Quick rounds.** One line before a round: stakes are points, never money.
+  - The helpline number was checked on the NCPG website on 2026-11-17; the older 1-800-GAMBLER is no longer listed there.
+- **Maps.** The course is shown as a branch of applied mathematics.
+  - **Knowledge map, University Maths.** The layer "Computing and Probability" is now "Applied Mathematics". It holds a new "Quantitative reasoning" node bound to the course.
+  - **Learning map, Further Mathematics.** A new course card follows Statistics and links to the branch card, renamed "Applied mathematics". The group counts 8 course entrances.
+- **Tests.** They check:
+  - the notice text and the helpline number;
+  - that only lessons 9 and 10 have a notice;
+  - the layer label, the node, its binding and its links.
+- **Limits.** The note records these:
+  - static notices and mathematics teaching change knowledge more than behaviour;
+  - only the US helpline is given;
+  - the published understanding problem `qr-c04` cannot be edited in place, so it has no notice.
+- **Quick-round templates.** More will come later, so the memorization gap stays open for now.
+
+See [the gambling and map note](review/quantitative-gambling-map-20261117.md).
+
 ## 2026-11-17 · Quantitative Reasoning, part 4: checks and an Intuition Lab activity
 
 - **Foundation check.** 15 questions with 30 parts on what the course assumes: percents and ratios, powers and roots, rounding and estimating, chance and counting, and averages and odds.
