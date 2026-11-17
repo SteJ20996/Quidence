@@ -1,3 +1,28 @@
+## 2026-11-17 · Quantitative Reasoning, part 1: fast estimates and quick rounds
+
+- **New course.** *Quantitative Reasoning* is in the Further Mathematics group, after Probability. It is for high school to early university. Part 1 of 3 is open: four lessons on fast estimates.
+  1. **Fermi estimates.** Why a product of rough factors is usually closer than its parts. A seeded simulation of 4,000 estimates shows how the factors' errors partly cancel. Its note says when they do not: when two factors share an error.
+  2. **Mental approximations.** Doubling times against the rule of 72 and 69.3 ÷ rate; 2¹⁰ ≈ 10³; why percent changes multiply.
+  3. **The square-root law.** Exact binomial probabilities for 10 to 10,000 fair tosses, beside 68–95–99.7.
+  4. **Quick bounds.** The complement rule, the union bound n × p, 1 − e^(−np), and the rule of three.
+- **Quick rounds.** Five short questions mixed across the lessons:
+  - The learner answers, says how sure they are, and only then sees the check.
+  - Number questions show the rule for counting as right before the learner answers. They offer confidence ratings from 10%; the two-option question starts at 50%.
+  - Each round reports accuracy, average confidence and a Brier score. A table shows the last eight rounds.
+  - Calibration is judged only on the last 20 answers across rounds: five answers are too few.
+  - A timer is optional and only counts up.
+  - Rounds are saved in the browser under their own key, and sync like other records. A saved record that cannot be read is kept as it is, and nothing is saved over it.
+- **Shown everywhere.** The course appears in all four appearances, the knowledge map (beside Probability), records, SEO data and the static release.
+- **Not yet available.** The homepage card lists the foundation check, the understanding check and the Intuition Lab activity as not yet available. Parts 2 and 3 and those checks follow in three more pull requests.
+- **Checks.**
+  - Unit tests recompute every lesson model independently: an exact binomial sum, enumeration for the bounds, and the simulation's spread.
+  - Over 400 seeds, they check every quick-round answer against a value recomputed from the question's own wording.
+  - The tests also check that each lesson's own shortcut is accepted wherever the bank asks for it, such as the rule of 72 and 1 − e^(−np), and that common wrong methods are not.
+  - A browser suite plays a full round in two appearances, at desktop and phone widths, and reloads it. It also checks the announcements and where focus moves.
+- **Independent review.** It found 2 errors, 10 items to fix and 6 minor items, all now fixed. The 2 errors were an activity asking for 300 tries when the control stops at 50, and a tolerance that marked the lesson's own approximation wrong. The note lists every item and the gaps that remain.
+
+See [the plan](review/quantitative-plan-20261117.md) and [the Part 1 note](review/quantitative-part1-20261117.md).
+
 ## 2026-11-16 · Integrated Science 6–10: public-domain photographs and NOAA's measured carbon dioxide
 
 - **Images.** Three U.S. Government works, each credit checked on its own source page:
