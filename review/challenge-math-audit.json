@@ -530,6 +530,30 @@
       "total": "3",
       "ions": "100",
       "matters": "carbonate"
+    },
+    "qr-c01": {
+      "perStudent": "1/2",
+      "total": "54000",
+      "double": "18",
+      "why": "times"
+    },
+    "qr-c02": {
+      "sd": "10",
+      "low": "180",
+      "atLeast": "90",
+      "overcount": "overlap"
+    },
+    "qr-c03": {
+      "matches": "1",
+      "position": "6",
+      "positive": "22",
+      "alarms": "many"
+    },
+    "qr-c04": {
+      "reach": "30",
+      "kelly": "30",
+      "wait": "20",
+      "beats": "tth"
     }
   }
 }
