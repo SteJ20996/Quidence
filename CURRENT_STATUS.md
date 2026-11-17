@@ -1,3 +1,13 @@
+## 2026-11-17 · Integrated Science 6–10: new card illustrations
+
+- **Why.** The old cards put a cell, a mountain, a cloud over the peak, rain on the slope, an unexplained arrow and an unlabeled curve side by side. The pieces overlapped and did not read as one idea.
+- **Classic.** Two labeled diagrams, in the style of the Physics cards:
+  - a rain shadow, with wind pushing air up the windward slope, the cloud and rain on that side, and the slopes labeled "wet" and "dry";
+  - a heating curve for water, with flat stretches at 0 °C and 100 °C. Its description says it is not to scale.
+- **Paper Explorer, Learning Atlas and Geometric Studio.** One scene in each appearance's own style:
+  - wind, a cloud raining on the windward slope, a snow-capped mountain, a tree on the wet side, and the sun over the dry side;
+  - nothing overlaps the mountain, and the shapes fill the card like the neighboring Physics art.
+
 ## 2026-11-17 · Quantitative Reasoning, part 2: probability shortcuts
 
 - **Four new lessons.** Each has an exact model.
