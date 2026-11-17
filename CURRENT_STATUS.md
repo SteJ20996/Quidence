@@ -1,3 +1,18 @@
+## 2026-11-17 · Quantitative Reasoning, part 2: probability shortcuts
+
+- **Four new lessons.** Each has an exact model.
+  5. **Indicators and expectation.** Name matching and the number of different dice faces. Each exact distribution is shown beside the indicator sum.
+  6. **Symmetry.** Positions in a shuffle, the average position (N + 1) ÷ (K + 1) of the first special card, and the edge of the player who draws first.
+  7. **First-step analysis.** Waiting for a success, taking turns with 2–6 players, and collecting every outcome in stages.
+  8. **Bayes in counts.** A natural-frequency tree for 100,000 people, a second test, and the odds form.
+- **Quick rounds.** Seven new question templates. A round saved before Part 2 is still rebuilt exactly.
+- **Saved progress.** A course record saved with Part 1 alone gains the new lessons and keeps every answer.
+- **Homepage.** The card now says Parts 1 and 2 of 3 are open, with eight lessons, and keeps the height of its row.
+- **Checks.** The models are checked against enumeration of every arrangement or roll, long sums and a backward recursion.
+- **Independent review.** It found 1 error, 6 items to fix and 8 minor items. All are fixed except one minor item, a tolerance kept for the reason given in the note. The error was a step asking for a 99% detection rate when the control moved in steps of 5. A test now checks that every setting a lesson asks for can be set.
+
+See [the Part 2 note](review/quantitative-part2-20261117.md).
+
 ## 2026-11-17 · Quantitative Reasoning, part 1: fast estimates and quick rounds
 
 - **New course.** *Quantitative Reasoning* is in the Further Mathematics group, after Probability. It is for high school to early university. Part 1 of 3 is open: four lessons on fast estimates.

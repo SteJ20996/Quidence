@@ -49,7 +49,7 @@ function mount(host,storage=root.localStorage,now=()=>Date.now()){
  const startClock=()=>{started=now();ui.elapsed=0;if(clock)clearInterval(clock);if(record.timer&&typeof setInterval==='function')clock=setInterval(tick,1000);};
  host.addEventListener('click',e=>{
   const action=e.target.closest?.('[data-qr]')?.dataset.qr;if(!action||action==='timer')return;e.preventDefault();
-  if(action==='start'){record.rounds.push({seed:Math.floor(Math.random()*2**31),lessons:[1,2,3,4],startedAt:new Date(now()).toISOString(),answers:[]});ui={storage:ui.storage};persist();startClock();render('#qr-prompt');}
+  if(action==='start'){record.rounds.push({seed:Math.floor(Math.random()*2**31),lessons:R.LESSONS.slice(),startedAt:new Date(now()).toISOString(),answers:[]});ui={storage:ui.storage};persist();startClock();render('#qr-prompt');}
   if(action==='submit'){
    const round=current(record),item=R.makeRound(round.seed,round.lessons)[round.answers.length],form=body.querySelector('[data-qr-form]');
    const response=item.kind==='choice'?(form.querySelector('input[name="qr-answer"]:checked')?.value??''):(form.querySelector('input[name="qr-answer"]').value||'').trim();

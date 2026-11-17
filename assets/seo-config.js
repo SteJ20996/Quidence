@@ -21,7 +21,7 @@ const COURSES={
   'number-theory':['/courses/number-theory/','Number Theory','Explore divisibility, primes, and congruences through eleven projects with step-by-step reference proofs.'],
   'discrete-math':['/courses/discrete-math/','Discrete Mathematics','Explore graphs, counting, recurrences and proof techniques through ten projects with step-by-step reference proofs.'],
   probability:['/courses/probability/','Probability','Explore chance, conditional probability, expected value and the law of large numbers through ten projects with step-by-step reference proofs.'],
-  quantitative:['/courses/quantitative/','Quantitative Reasoning','Practice fast estimates, mental approximations, the square-root law and quick bounds, then check each guess against an interactive model.'],
+  quantitative:['/courses/quantitative/','Quantitative Reasoning','Practice fast estimates and probability shortcuts, from Fermi estimates and the square-root law to symmetry and Bayes’ rule in counts, then check each guess against an interactive model.'],
   ac01:['/modules/ac01/dist/','Game Theory Foundations','Explore payoff tables, best responses, dominant strategies, and pure Nash equilibria in four English lessons.'],
   'physics-1':['/courses/physics-1/','Physics 1 Foundations','Explore motion, forces, energy, momentum, rotation, oscillations, and fluids in introductory lessons.'],
   'integrated-science':['/courses/integrated-science/','Integrated Science 6–10','Explore cells, energy, atoms, forces, ecosystems, evolution, inheritance, reactions and climate through interactive models aligned with California’s integrated science, Living Earth, and Chemistry in the Earth System courses.'],

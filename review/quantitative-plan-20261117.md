@@ -15,8 +15,8 @@ There are twelve lessons in three parts. Each lesson teaches one shortcut that c
 
 | Part | Lessons |
 | --- | --- |
-| **1 · Fast estimates** (this pull request) | Fermi estimates; mental approximations (doubling times, 2¹⁰ ≈ 10³, percent changes); the square-root law and 68–95–99.7; quick bounds (complement, union bound, rule of three) |
-| **2 · Probability shortcuts** | Indicator variables and linearity of expectation; symmetry; first-step analysis; Bayes' rule with natural frequencies |
+| **1 · Fast estimates** (open since 2026-11-17) | Fermi estimates; mental approximations (doubling times, 2¹⁰ ≈ 10³, percent changes); the square-root law and 68–95–99.7; quick bounds (complement, union bound, rule of three) |
+| **2 · Probability shortcuts** (second pull request) | Indicator variables and linearity of expectation; symmetry; first-step analysis; Bayes' rule with natural frequencies |
 | **3 · Decisions under uncertainty** | Expected value, risk and ruin; bet sizing as resource allocation (Kelly); waiting times and patterns (why HH takes longer to appear than HT); quoting a price and adverse selection |
 
 The course page also has **quick rounds**:
