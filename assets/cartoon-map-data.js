@@ -18,7 +18,7 @@ const maps=[
  node('coordinate',980,535,tr('Coordinate geometry'),'course','axes',tr('Use coordinates to connect algebraic relationships and geometric figures.')),
  node('data',500,10,tr('Data & graphs'),'concept','bars',tr('Read scales and representations; this connects to probability and statistics.'))
  ],edges:[['arithmetic','fractions'],['arithmetic','signed'],['fractions','prealgebra'],['signed','prealgebra'],['prealgebra','algebra1'],['algebra1','algebra2'],['shapes','geometry'],['geometry','coordinate'],['algebra1','coordinate','related'],['fractions','data','related'],['algebra1','logic','related'],['geometry','logic','related']]},
-{id:'further',number:'02',name:tr('Further Mathematics'),count:7,
+{id:'further',number:'02',name:tr('Further Mathematics'),count:8,
  intro:tr('Functions, proof and data — connected, without one compulsory route.'),
  note:tr('Advanced branches are concept previews. Select one to see its topics; a node does not promise a complete course.'),
  selected:'calculus',nodes:[
@@ -36,8 +36,9 @@ const maps=[
  node('analysis',980,5,tr('Analysis'),'branch','wave',tr('An expandable concept family, not an available course.'),[tr('Real & complex analysis'),tr('Measure, functional & harmonic analysis'),tr('Partial differential equations')]),
  node('algebra',980,210,tr('Algebra & numbers'),'branch','dots',tr('Explore deeper algebraic structures and number theory.'),[tr('Advanced linear & abstract algebra'),tr('Groups, rings & fields'),tr('Algebraic number theory')]),
  node('space',980,410,tr('Geometry & space'),'branch','shapes',tr('Geometric structures connect with calculus, linear algebra and proof.'),[tr('Topology'),tr('Differential geometry')]),
- node('applied',980,590,tr('Data & computation'),'branch','axes',tr('Directions that combine several mathematical tools.'),[tr('Numerical analysis & optimization'),tr('Probability theory & mathematical statistics')])
- ],edges:[['schoolbridge','precalc'],['schoolbridge','linear'],['schoolbridge','proof'],['schoolbridge','probability','related'],['precalc','calculus'],['proof','number'],['proof','discrete'],['probability','statistics'],['linear','game','related'],['calculus','multivar'],['multivar','analysis','related'],['number','algebra','related'],['multivar','space','related'],['statistics','applied','related']]},
+ node('quantitative',740,560,tr('Quantitative Reasoning'),'course','bell',tr('An available course in applied mathematics: fast estimates, probability shortcuts and decisions under uncertainty, in points, never money.')),
+ node('applied',980,590,tr('Applied mathematics'),'branch','axes',tr('Mathematics put to work on data, computation and decisions. Quantitative Reasoning is the course entrance to this branch.'),[tr('Quantitative reasoning & decisions'),tr('Numerical analysis & optimization'),tr('Probability theory & mathematical statistics')])
+ ],edges:[['schoolbridge','precalc'],['schoolbridge','linear'],['schoolbridge','proof'],['schoolbridge','probability','related'],['precalc','calculus'],['proof','number'],['proof','discrete'],['probability','statistics'],['linear','game','related'],['calculus','multivar'],['multivar','analysis','related'],['number','algebra','related'],['multivar','space','related'],['statistics','applied','related'],['probability','quantitative'],['quantitative','applied']]},
 {id:'science',number:'03',name:tr('Science'),count:2,
  intro:tr('Start with the physics we offer. See where the ideas can lead.'),
  note:tr('Physics 1 and 2 use algebra and graphs; no calculus is required. Later branches introduce more advanced mathematics.'),
@@ -73,7 +74,7 @@ const maps=[
  edges:[['csbridge','algorithms'],['algorithms','searching'],['algorithms','sorting'],['algorithms','numberalgo'],['searching','graphalgo','related'],['sorting','recursion','related'],['numberalgo','recursion','related'],['graphalgo','complexity','related'],['recursion','dynamic','related']]}
 ];
 
-const bindings={prealgebra:'pre-algebra',algebra1:'algebra-1',algebra2:'algebra-2',logic:'basic-logic',geometry:'geometry',coordinate:'coordinate-geometry',precalc:'af01',linear:'ab01',calculus:'ad01',game:'ac01',number:'number-theory',discrete:'discrete-math',probability:'probability',statistics:'ae01',physics1:'physics-1',physics2:'physics-2',algorithms:'algorithms'};for(const m of maps)for(const n of m.nodes)if(n.kind==='course')n.module=bindings[n.id];
+const bindings={prealgebra:'pre-algebra',algebra1:'algebra-1',algebra2:'algebra-2',logic:'basic-logic',geometry:'geometry',coordinate:'coordinate-geometry',precalc:'af01',linear:'ab01',calculus:'ad01',game:'ac01',number:'number-theory',discrete:'discrete-math',probability:'probability',quantitative:'quantitative',statistics:'ae01',physics1:'physics-1',physics2:'physics-2',algorithms:'algorithms'};for(const m of maps)for(const n of m.nodes)if(n.kind==='course')n.module=bindings[n.id];
 // Suggested starting courses only, never promises of a complete advanced course.
 const related={arithmetic:'pre-algebra',fractions:'pre-algebra',signed:'pre-algebra',shapes:'geometry',coordinate:'coordinate-geometry',data:'ae01',schoolbridge:'pre-algebra',proof:'discrete-math',multivar:'ad01',analysis:'ad01',algebra:'number-theory',space:'geometry',applied:'ae01',mathbridge:'algebra-1',motion:'physics-1',energy:'physics-1',heat:'physics-2',fields:'physics-2',waves:'physics-2',mechanics:'physics-1',thermal:'physics-2',relativity:'physics-1',quantum:'physics-2',materials:'physics-2',csbridge:'basic-logic',searching:'algorithms',sorting:'algorithms',numberalgo:'number-theory',graphalgo:'algorithms',recursion:'algorithms',complexity:'algorithms',dynamic:'algorithms'};
 for(const m of maps)for(const n of m.nodes)if(!n.module)n.relatedModule=related[n.id];

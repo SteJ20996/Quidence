@@ -75,7 +75,7 @@ The reviewer had not written the lessons. It found no errors, and reported 5 ite
 
 - **Real stakes.** The lessons stay with points, and lesson 10 says the Kelly share is 0 when the edge is negative, as in casino games and lotteries.
   - Even so, a lesson on stake sizing could be misused.
-  - The course does not discuss gambling harms. A link to age-appropriate guidance could be added if the owner wants one.
+  - *Update, same day:* at the owner's request, the course page, lessons 9 and 10 and the quick rounds now state gambling harms and give a helpline. See [the gambling and map note](quantitative-gambling-map-20261117.md), which also records what such notes can and cannot do.
 - **Kelly's assumptions.**
   - The Kelly share assumes the chance and payoff are known exactly and that the rounds repeat many times. The lesson names both, and Samuelson's (1979) objection that the fastest long-run growth is not the same as what is best for a person.
   - It does not model uncertainty about p. That uncertainty is the main practical reason for staking a fraction of the Kelly share (MacLean, Thorp & Ziemba, 2011).

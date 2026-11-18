@@ -21,7 +21,7 @@ const data={
           "Analysis",
           "Algebra and Numbers",
           "Geometry and Topology",
-          "Computing and Probability"
+          "Applied Mathematics"
         ],
         [
           "Maths Tools",
@@ -204,11 +204,11 @@ const data={
     },
     {
       "id": "quantitative",
-      "chapter": 0,
-      "node": "probability",
+      "chapter": 1,
+      "node": "quantreason",
       "en": "Quantitative Reasoning",
       "scope": {
-        "en": "Fast estimates, probability shortcuts and decisions under uncertainty: Fermi estimates, bounds, indicators, symmetry, Bayes in counts, ruin, stake sizing, coin-flip patterns and quoting a price"
+        "en": "A course in applied mathematics: fast estimates, probability shortcuts and decisions under uncertainty, from Fermi estimates and Bayes in counts to ruin, stake sizing and coin-flip patterns"
       },
       "module": "quantitative"
     },
@@ -375,6 +375,9 @@ const data={
     ],
     "complexity": [
       "algorithms"
+    ],
+    "quantreason": [
+      "quantitative"
     ]
   },
   "chapters": [
@@ -834,6 +837,13 @@ const data={
           "y": 0.665,
           "layer": "applied",
           "en": "Game theory"
+        },
+        {
+          "id": "quantreason",
+          "x": 0.93,
+          "y": 0.47,
+          "layer": "applied",
+          "en": "Quantitative reasoning"
         }
       ],
       "links": [
@@ -983,6 +993,11 @@ const data={
         [
           "gametheory",
           "optimization",
+          "r"
+        ],
+        [
+          "gametheory",
+          "quantreason",
           "r"
         ]
       ]
@@ -1767,6 +1782,10 @@ const data={
     "complexity": {
       "en": "Compare how fast the cost of a method grows with its input, up to the open question P versus NP.",
       "relatedModule": "algorithms"
+    },
+    "quantreason": {
+      "en": "Applied mathematics for deciding under uncertainty: fast estimates, probability shortcuts, expected value, risk and how much to stake, in points, never money.",
+      "relatedModule": "quantitative"
     }
   }
 };
