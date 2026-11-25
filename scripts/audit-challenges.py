@@ -371,6 +371,40 @@ dark,light,gens=F(1),F(8),0
 while dark<light:dark*=2;gens+=15
 after75=F(1)*2**(75//15)
 R['is-c08']={'rise':rise(F(1,2))-rise(F(1,4)),'half':gens,'percent':100*after75/(after75+8),'phase':'waning'}
+# Integrated Science, the remaining lessons: unit cubes counted for surface and volume, air followed kilometer by
+# kilometer over a range, doublings counted by halving, energy passed up a chain level by level, a molecular clock,
+# a lapse rate, energy balanced in mixing, charges cancelled by search, and a rate doubled step by step.
+def cube(side):
+    faces=sum(1 for x in range(side) for y in range(side) for z in range(side) for d in range(6)
+              if not (0<=(x,y,z)[d%3]+(1 if d<3 else -1)<side))  # unit faces on the outside
+    return faces,side**3
+a4,v4=cube(4);a12,v12=cube(12);assert (a4,v4)==(96,64) and a12==6*144
+R['is-c09']={'ratio':F(a4,v4),'volume':F(v12,v4),'surface':F(27*a4,a12),'elephant':'more'}
+temp,dew,height=20,12,3;base=F(125,1000)*(temp-dew);t=F(temp);h=F(0);step=F(1,1000)
+while h<height:
+    t-=(10 if h<base else 5)*step;h+=step
+assert h==height and t==0
+far=t+10*height
+ppm,doublings=F(1112),0
+while ppm>278:ppm/=2;doublings+=1
+assert ppm==278
+R['is-c10']={'cloudBase':base*1000,'far':far,'warming':3*doublings,'how':'infrared'}
+def chain(share):
+    e=[F(200000)]
+    for _ in range(3):e.append(e[-1]*share)
+    return e[-1]
+R['is-c11']={'top':chain(F(1,10)),'times':chain(F(2,10))/chain(F(1,10)),'peak':417+F(25,10)*(2030-2020),'fall':'plants'}
+per_lineage=F(1,100)*1000/10  # positions per million years in one lineage
+lapse=F(65,10)
+R['is-c12']={'differences':2*per_lineage*6,'split':30/(2*per_lineage),'shift':F(26,10)/lapse*1000,'next':'summit'}
+def mix(m1,c1,t1,m2,c2,t2):return (m1*c1*t1+m2*c2*t2)/(m1*c1+m2*c2)
+cw,ci=F(418,100),F(45,100);T=mix(200,cw,80,600,cw,20);assert 200*cw*(80-T)==600*cw*(T-20)
+Ti=mix(200,ci,80,600,cw,20);assert 22<Ti<F(45,2)
+R['is-c13']={'final':T,'energy':200*cw*(80-T),'iron':round(Ti),'response':'sweat'}
+sulfide=next(k for k in range(1,10) if 2*3-2*k==0)
+factor=1
+for _ in range((50-20)//10):factor*=2
+R['is-c14']={'sulfide':sulfide,'heat':factor,'both':factor*2,'why':'share'}
 # Quantitative Reasoning: a Fermi estimate with bounds, the square-root law and the complement rule, indicators, symmetry
 # and counts, and ruin, the Kelly share, waiting times and Penney's game, each recomputed by a different route.
 from itertools import permutations, combinations, product
@@ -433,6 +467,6 @@ assert race('THH','HHT')==F(3,4) and race('HH','HT')==F(1,2) and race('THH','HHH
 assert race('TTH','THT')==F(2,3) and race('HTH','THT')==F(1,2) and race('TTT','THT')==F(2,5)
 best=max(['HHH','HHT','HTH','HTT','THH','TTH','TTT'],key=lambda x:race(x,'THT'));assert best=='TTH'
 R['qr-c04']={'reach':100*P[18],'kelly':100*f,'wait':wait('HTHT'),'beats':'tth'}
-assert len(R)==94
-output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel–Hakimi degree tests, every equally likely spin, coin and letter arrangement, a 10,000-part factory, algorithms run step by step with counters, every simple route and every set of four roads, every coin combination and every subset of 20, a double-precision exponential value with endpoint comparisons, and for Integrated Science the heating, burning and respiration arithmetic with balanced atoms, every Punnett box, a feedback series summed term by term, the fox model run year by year, and a ratio doubled block by block. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
+assert len(R)==100
+output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel–Hakimi degree tests, every equally likely spin, coin and letter arrangement, a 10,000-part factory, algorithms run step by step with counters, every simple route and every set of four roads, every coin combination and every subset of 20, a double-precision exponential value with endpoint comparisons, and for Integrated Science the heating, burning and respiration arithmetic with balanced atoms, every Punnett box, a feedback series summed term by term, the fox model run year by year, a ratio doubled block by block, unit cubes counted, air followed over a range meter by meter, and charges cancelled by search. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
 path=Path(__file__).resolve().parents[1]/'review'/'challenge-math-audit.json';path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(output,indent=2)+'\n');print(json.dumps({'questions':len(R),'components':sum(len(x)for x in R.values()),'output':str(path)}))

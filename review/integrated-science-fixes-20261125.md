@@ -265,6 +265,80 @@ The pattern is what the lesson teaches. The numbers are not predictions, and the
 - **A 40-year window.** Releases alone look less bad when they start late, because the simulation ends soon after they stop. The 30-or-more column and the median show the decline.
 - **No technical terms.** "Each fox's luck" is what ecologists call demographic stochasticity, and "bad years" is environmental stochasticity. The lesson avoids the terms, so a learner who meets them later must make the link.
 
+## The check in two parts, covering every lesson (later change)
+
+**Why.** After round 4, the understanding check covered 13 of the 24 lessons. Adding the other 11 to one check would make it 14 multi-part problems, too long for one sitting.
+
+**Parts, for any subject.** The check engine now lets a subject's check come in parts.
+- **Each part is its own check.** It has its own session, its own report and its own export, so a learner can take the parts in any order and on different days.
+- **The overview offers the parts.** The chosen part is marked, and the overview shows that part's scope and number of problems. Switching parts returns to the latest check of that part, so no draft is lost.
+- **Checks saved earlier keep their problems.** A session without a part, from any earlier bank, opens with exactly its earlier problems. A saved part that does not exist is rejected when a record opens.
+- **What each report covers.** The report, the scope note and the supplied-information notes cover only the part's problems.
+- **Only Integrated Science uses parts so far.** Every other subject's check is unchanged.
+- **Independent read of the code.** A reviewer who had not written the change found three problems, all fixed:
+  - **Scope text.** Reports, exports and the overview showed the current whole-check scope. So a part's report claimed all 24 lessons, and a check saved under bank 15 claimed a two-part structure it never had. Each now shows the scope it was taken under: its part's, else its own bank's. An earlier check also says that it keeps its original questions.
+  - **Re-clicking the chosen part.** Clicking the part already chosen threw away a new check that had just been started and reopened the finished one. It now does nothing.
+  - **A future crash.** "Start a new check" would have thrown an error if a later bank renamed a part. It now falls back to the first part.
+  - **Smaller fix.** Each part's downloads are now named after the part.
+
+  The reviewer also checked:
+  - that hydrate rejects bad parts;
+  - that every report section stays within its part;
+  - that switching parts loses no draft;
+  - that further checks and projects are unaffected.
+
+**Integrated Science in two parts.**
+
+| Part | Problems | Lessons |
+| --- | --- | --- |
+| Grades 6–8 | 7 | 1–12 |
+| High school | 7 | 13–24 |
+
+**Six new problems** cover the 11 lessons that had none:
+
+| Problem | Lessons | Numbers asked | Wrong choices stand for |
+| --- | --- | --- | --- |
+| is-c09 Why cells stay small | 1 | A 4 µm cube's surface ÷ volume (1.5 per µm); tripling the side multiplies the volume by 27; cutting a 12 µm cube into 4 µm cubes triples the surface | "an elephant has larger cells" |
+| is-c10 Over the mountains, and a warmer planet | 3, 4 | The cloud base (1,000 m) and the far-side temperature (30 °C) for air crossing a 3 km range; warming from 278 to 1,112 ppm (6 °C, two doublings) | the ozone hole; heat from burning fuel |
+| is-c11 Energy up a food chain, carbon in the air | 13, 14 | 200 units at the fourth level; 8 times as much at 20%; the May 2030 peak at 2.5 ppm a year (442 ppm) | less fuel burned in summer; warm seas taking up more |
+| is-c12 DNA clocks and shrinking ranges | 15, 18 | 12 differences in 6 million years (two lineages); 30 differences mean 15 million years; 2.6 °C moves a band 400 m uphill | evolving to bear the heat within a few years; a cooling summit |
+| is-c13 Heat flow and a steady body | 17, 20 | Mixed water at 35 °C; 37,620 J given off; with iron, about 22 °C | a raised set point; shivering |
+| is-c14 Ions in balance, reactions in a hurry | 21, 22 | 3 sulfide ions for 2 aluminum ions; 8 times as fast from 20 °C to 50 °C with a doubling rule; 16 times with twice the concentration | "more frequent collisions are the main reason"; "heat breaks all the bonds" |
+
+**How they were built.**
+- **Every value is stated, and the numbers agree with the course's models.** For example, the rain-shadow model gives a 1,000 m cloud base and 30 °C on the far side; the mixing model gives 35 °C and 22.08 °C.
+- **Where a stated rule and a model differ, the solution says so.** is-c14 states a doubling rule for temperature. The lesson's own model, with a 50 kJ/mol barrier, gives about 6.7 times from 20 °C to 50 °C, not 8.
+- **Lengths.** As before, the right option is never more than 1.1 times the shortest.
+- **Exact recomputation.** `scripts/audit-challenges.py` recomputes every answer exactly, by different routes:
+  - counting the unit faces of cubes;
+  - following the air over the range meter by meter;
+  - halving 1,112 ppm until it reaches 278;
+  - passing energy up the chain level by level;
+  - cancelling charges by search.
+
+**Independent read of the problems.** A reviewer who had not written them recomputed all 17 numbers with the course's models and found them correct. The reviewer raised these points, all fixed:
+- **An unstated assumption.** is-c10's 30 °C needs the air to sink with no cloud left, which the prompt did not say. It now says so, and that the coast is at sea level.
+- **A true but wrong-cause option.** is-c11's "people burn less fuel in summer" is true. The solution now says why it cannot be the cause: burning less still adds carbon dioxide, so the level cannot fall.
+- **A distractor wrong for the wrong reason.** is-c12's "a thicker coat" is no help in warming, so it could be rejected without the idea it tests. It now reads "evolve to bear the heat within a few years".
+- **An overstated sentence.** is-c12's solution said traits change "only if the variation already exists", which contradicts lesson 11's new mutations. It now says lasting change takes many generations and suitable inherited variation.
+- **A second reading of a number.** is-c14's "twice the concentration" could mean both reactants (answer 32). It now names one reactant, A.
+- **Smaller fixes.**
+  - is-c13 uses 38 °C, a more natural exercise temperature than 37.4 °C.
+  - is-c14's weak option now states the real error: "more frequent collisions are the main reason".
+  - Several labels and sentences are clearer.
+
+**How saved work is kept.**
+- **Published problems are never edited.** This is bank 16; bank 15 is frozen as `assets/challenge-bank-v15.js`.
+- **The eight earlier problems are carried over unchanged.** A test checks each one.
+- **Earlier checks keep their problems.** A check started under bank 15 keeps its eight problems; one started under bank 14 keeps its four.
+- **Counts.** The course page shows 14 problems, and the homepage counts 94 diagnostic problems.
+
+**Gaps.**
+- **No learner data.** Nobody has taken the new problems, so their difficulty is unknown.
+- **Uneven difficulty.** Some problems ask more than their grade usually does, such as the two-lineage clock and the iron mixing.
+- **One lesson per field.** Most problems join two lessons, so a learner who has studied only one can answer only part of the problem. "Not studied" can be marked per problem, not per field.
+- **A part is not a unit test.** Each part spans 12 lessons and samples each lesson with one or two questions, so it cannot show mastery of any one lesson.
+
 ## What comes next
 
 | Round | Work | Why |
@@ -272,7 +346,7 @@ The pattern is what the lesson teaches. The numbers are not predictions, and the
 | 2 (done above) | Ask before telling. | Predicting before a demonstration improves learning over watching it. Crouch, Fagen, Callan and Mazur (2004) found that students who predicted the outcome of physics demonstrations understood them better afterwards than students who only watched. The predict–observe–explain sequence (White & Gunstone, 1992) depends on the prediction coming first. |
 | 3 (done above) | Rewrite the checks as new situations, with wrong options drawn from known misconceptions and options of similar length | Item-writing guidelines ask for plausible distractors based on common errors, and options of similar length (Haladyna, Downing & Rodriguez, 2002) |
 | 4 (done above) | Add understanding problems for grades 7 and 8, as a new bank version | Four problems covered 5 of the 24 lessons, none from grades 7 or 8 |
-| Later | Problems for the 11 lessons still uncovered, as a check in parts | One check for all 24 lessons would be too long for one sitting |
+| Later (done above) | Problems for the 11 lessons still uncovered, as a check in parts | One check for all 24 lessons would be too long for one sitting |
 | Later (done above) | Give lesson 8's fox model a chance of dying out | The model had no chance events, so captive breeding added only two years and looked like a waste. Yet keeping populations of about 15 foxes from dying out by chance was its real purpose. |
 
 ## Gaps

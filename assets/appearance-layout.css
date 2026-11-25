@@ -63,7 +63,7 @@ html[data-ui-theme] body[data-q-theme] :where(.q-link-button,.subject-home-nav>a
 html[data-ui-theme] body[data-q-theme] .catalog-heading .text-button{padding:6px 9px;font-size:12px}
 /* Phones: smaller buttons, so two short ones share a row. */
 @media(max-width:600px){html[data-ui-theme] body[data-q-theme] :where(.q-link-button,.subject-home-nav>a,.course-bridge>a,.readiness-links>a,.text-button,.text-btn,[data-q-ui="aa01"] .ghost,.own-toggle,.f-toolbar>a,header.q-brand-header nav>a,.goal-actions>a,.q-paper-options-body>a,.card-more>a:is(.intuition-link,.cross-related),.breadcrumb>.link-button):not([hidden]){padding:8px 10px;font-size:12px}html[data-ui-theme] body[data-q-theme] .subject-home-nav{gap:6px 8px}}
-html[data-ui-theme] body[data-q-theme] :is(.text-button,.text-btn,[data-q-ui="aa01"] .ghost,.own-toggle)[aria-pressed="true"]{background:var(--q-mint);border-color:var(--q-primary)}
+html[data-ui-theme] body[data-q-theme] :is(.text-button,.text-btn,[data-q-ui="aa01"] .ghost,.own-toggle)[aria-pressed="true"]{background:var(--q-mint);border-color:var(--q-primary)}html[data-ui-theme] body[data-q-theme] .f-parts button[aria-pressed="true"]{background:var(--q-mint);border-color:var(--q-primary);box-shadow:inset 0 0 0 1px var(--q-primary)}
 /* On homepage cards, the foundation and Intuition Lab links sit with the other card links and take their size and
    shape: large blocks in Classic, compact rows in the illustrated appearances. */
 html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card>.foundation-link{border:1px solid var(--q-control);background:var(--q-paper);text-decoration:none}
