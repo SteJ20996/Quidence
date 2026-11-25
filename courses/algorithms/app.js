@@ -58,7 +58,7 @@ const U={
  errList:L('Enter 2 to 12 whole numbers between −999 and 999, separated by commas.'),
  errTarget:L('The target must be a whole number between −999 and 999.'),
  errPair:L('Enter two whole numbers from 1 to 999,999.'),
- chain:L('Logic chain'),chainNote:L('The flowchart and the steps move together.'),flowHint:L('The flowchart is wider than the screen: scroll it sideways to see all of it.'),
+ chain:L('Logic chain'),chainNote:L('The flowchart and the steps move together.'),flowHint:L('The flowchart is wider than the screen: scroll it sideways to see all of it.'),mapHint:L('The route map is wider than the screen: scroll it sideways to see all of it.'),
  flowLabel:L('Flowchart of {name}'),steps:L('Steps'),
  pickNote:L('Choose a box in the flowchart: the one you think runs the most times on this list.'),
  data:L('Data'),begin:L('Press <strong>Next step</strong> to begin.'),
@@ -173,26 +173,29 @@ function openAlg(key,scroll){if(!A.ORDER.includes(key))return;const fromTabs=$('
 function renderMap(recNum){const pos=Object.fromEntries(A.MAP.nodes.map(([n,name,x,y])=>[n,{x,y}]));
  let s=`<svg viewBox="0 0 920 305" aria-labelledby="map-title"><defs><marker id="mh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="mh"/></marker><marker id="mhl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="mhl"/></marker></defs>`;
  for(const [label,y] of A.MAP.rows)s+=`<text class="maprow" x="10" y="${y-29}">${esc(tx(label))}</text>`;
+ // Edge labels are drawn last, over every line and box, so nothing crosses them.
+ let labels='';
  for(const [a,b,label] of A.MAP.edges){const p=pos[a],q=pos[b];let x1=p.x,y1=p.y,x2=q.x,y2=q.y;if(y1===y2){x1+=x2>x1?70:-70;x2+=x2>x1?-70:70;}else{y1+=22;y2-=22;}
   const live=A.NUM[a]&&A.NUM[b];s+=`<path class="mapedge${live?' live':''}" d="M${x1} ${y1}L${x2} ${y2}" marker-end="url(#mh${live?'l':''})"/>`;
-  if(label)s+=`<text class="mapedgelabel" x="${(x1+x2)/2+6}" y="${(y1+y2)/2+4}">${esc(tx(label))}</text>`;}
+  if(label)labels+=`<text class="mapedgelabel" x="${(x1+x2)/2+6}" y="${(y1+y2)/2+4}">${esc(tx(label))}</text>`;}
  for(const [n,name,x,y] of A.MAP.nodes){const key=A.NUM[n],parts=tx(name).split('\n'),label=parts.join(' ');
   const cls=['mapnode',key?'live':'',key===cur.key?'on':'',n===recNum?'rec':''].filter(Boolean).join(' ');
   const text=parts.length>1?`<text x="${x-40}" y="${y-3}">${esc(parts[0])}</text><text x="${x-40}" y="${y+12}">${esc(parts[1])}</text>`:`<text x="${x-40}" y="${y+5}">${esc(label)}</text>`;
   s+=`<g class="${cls}"${key?` tabindex="0" role="button" data-open="${key}" aria-label="${esc(u('openAlg',{n,name:label}))}"${key===cur.key?' aria-current="true"':''}`:''}><title>#${n} ${esc(label)}${key?'':' ('+esc(u('planned'))+')'}</title><rect x="${x-70}" y="${y-22}" width="140" height="44" rx="8"/><text class="num" x="${x-60}" y="${y+5}">${n}</text>${text}</g>`;}
- $('map').innerHTML=s+'</svg>';}
+ $('map').innerHTML=s+labels+'</svg>';flowFit();}
 function renderTabs(){$('tabs').setAttribute('aria-label',u('tabs'));$('tabs').innerHTML=A.ORDER.map(k=>`<button type="button" id="tab-${k}" aria-pressed="${k===cur.key}" data-alg="${k}"><span class="n">#${A.ALGS[k].num}</span>${esc(tx(A.ALGS[k].name))}</button>`).join('');}
 
 /* ---------------- Logic chain ---------------- */
 function flowSvg(){const a=alg(),f=a.flow,e=step(),now=e?e.node:null,prev=cur.idx>0?cur.events[cur.idx-1].node:null;
  let s=`<svg viewBox="0 0 ${f.w} ${f.h}" style="--fw:${f.w}px" role="${cur.pick?'group':'img'}" aria-label="${esc(u('flowLabel',{name:tx(a.name)}))}"><defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="fah"/></marker><marker id="fac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="fahc"/></marker></defs>`;
- for(const [from,to,pts,label,lp,style] of f.edges){const on=prev===from&&(now===to||style==='dash'&&now==='base'&&e&&e.jump);s+=`<path class="fe${on?' cur':''}${style==='dash'?' dash':''}" d="M${pts.map(p=>p.join(' ')).join('L')}" marker-end="url(#fa${on?'c':''})"/>`;if(label)s+=`<text class="fl" x="${lp[0]}" y="${lp[1]}">${esc(tx(label))}</text>`;}
+ let labels='';
+ for(const [from,to,pts,label,lp,style] of f.edges){const on=prev===from&&(now===to||style==='dash'&&now==='base'&&e&&e.jump);s+=`<path class="fe${on?' cur':''}${style==='dash'?' dash':''}" d="M${pts.map(p=>p.join(' ')).join('L')}" marker-end="url(#fa${on?'c':''})"/>`;if(label)labels+=`<text class="fl" x="${lp[0]}" y="${lp[1]}">${esc(tx(label))}</text>`;}
  const chosen=ev().bottle?.node;
  for(const n of f.nodes){const pick=cur.pick&&n.id!=='start',text=tx(n.text);
   const shape=n.kind==='dec'?`<polygon points="${n.x},${n.y-n.h/2} ${n.x+n.w/2},${n.y} ${n.x},${n.y+n.h/2} ${n.x-n.w/2},${n.y}"/>`:`<rect x="${n.x-n.w/2}" y="${n.y-n.h/2}" width="${n.w}" height="${n.h}" rx="${n.kind==='term'?n.h/2:4}"/>`;
   s+=`<g class="fn${n.id===now?' cur':''}${pick?' pick':''}${!cur.pick&&chosen===n.id&&['bubble-sort','insertion-sort'].includes(cur.key)?' chosen':''}" data-node="${n.id}"${pick?` tabindex="0" role="button" aria-label="${esc(text)}"`:''}>${shape}<text x="${n.x}" y="${n.y+1}">${esc(text)}</text></g>`;}
- return s+'</svg>';}
-function stepsList(){const e=step();return alg().pseudo[lc()].map((l,i)=>{const on=e&&e.line===i;return `<li class="${on?'cur':''}"${on?' aria-current="step"':''}><span class="ln">${i+1}</span><span class="tx">${esc(l)}</span>${on&&e.chip?`<span class="chip">${esc(tx(e.chip))}</span>`:''}</li>`;}).join('');}
+ return s+labels+'</svg>';}
+function stepsList(){const e=step();return alg().pseudo[lc()].map((l,i)=>{const on=e&&e.line===i;return `<li class="${on?'cur':''}"${on?' aria-current="step"':''}><span class="ln">${i+1}</span><span class="tx">${esc(l).replace(/\S+(?: [−+×÷=≤≥←] \S+)+/g,'<span class="nw">$&</span>')}</span>${on&&e.chip?`<span class="chip">${esc(tx(e.chip))}</span>`:''}</li>`;}).join('');}
 
 /* ---------------- Data view ---------------- */
 function dataView(){const a=alg();if(a.kind==='hanoi')return hanoiView();if(a.kind==='grid')return gridView();if(a.kind==='coins')return coinsView();if(a.kind==='dp')return dpView();if(a.kind==='graph')return graphView();if(a.kind==='subset')return subsetView();
@@ -305,8 +308,9 @@ function renderBench(){const a=alg(),e=step(),nx=cur.events[cur.idx+1],asking=cu
  const tw=document.querySelector('#alg .tracewrap');if(tw)tw.scrollTop=tw.scrollHeight;flowFit();
  if(asking){const o=document.querySelector('[data-opt]');if(o)o.focus();}
  else if(active){const el=$(active);if(el&&!el.disabled)el.focus();else if(active==='b-next'||active==='b-back'||active==='b-play'){const f=$('b-next')&&!$('b-next').disabled?$('b-next'):$('b-reset');f.focus();}}}
-// On a narrow screen the flowchart scrolls sideways; say so only when it is wider than its box.
-function flowFit(){const f=$('flow'),h=$('flow-hint');if(f&&h)h.hidden=!(f.scrollWidth>f.clientWidth+2);}
+// On a narrow screen the flowchart and the route map scroll sideways; say so only when one is wider than its box.
+function flowFit(){const f=$('flow'),h=$('flow-hint');if(f&&h)h.hidden=!(f.scrollWidth>f.clientWidth+2);
+ const m=$('map');if(!m)return;let mh=$('map-hint');if(!mh){mh=document.createElement('p');mh.id='map-hint';mh.className='flow-hint muted small-print';m.after(mh);}mh.textContent=u('mapHint');mh.hidden=!(m.scrollWidth>m.clientWidth+2);}
 addEventListener('resize',()=>flowFit());
 function say(text){const el=$('announce');el.textContent='';setTimeout(()=>{el.textContent=text;},40);}
 function announce(){const e=step();say(e?plain(tx(e.note)):'');}

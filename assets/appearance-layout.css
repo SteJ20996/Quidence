@@ -81,12 +81,19 @@ html[data-ui-theme="atlas"] body[data-q-theme]{--q-link-chip-radius:3px}
 html[data-ui-theme="studio"] body[data-q-theme]{--q-link-chip-radius:999px}
 html[data-ui-theme] body[data-q-theme] :where(p,li,aside,footer,figcaption,small,dd,td,blockquote,.related-courses,.breadcrumbs,[class*="footer"],.q-atlas-only,.q-studio-only,.q-paper-only) a[href]:not([class]):not(:where(nav) a):not(:where(.course-bridge,.subject-home-nav,.readiness-links,.q-paper-options-body,.f-toolbar,.intuition-subject-entry)>a),
 html[data-ui-theme] body[data-q-theme] :is(.q-paper-footer,.q-atlas-qidolab,.q-studio-qidolab,.q-studio-record-note,.q-atlas-note,.qi-records){
-  padding:.1em .5em;border:1px solid color-mix(in srgb,currentColor 45%,transparent);border-radius:var(--q-link-chip-radius);
+  padding:.16em .5em;border:1px solid color-mix(in srgb,currentColor 45%,transparent);border-radius:var(--q-link-chip-radius);
   background:color-mix(in srgb,currentColor 7%,transparent);text-decoration:none;-webkit-box-decoration-break:clone;box-decoration-break:clone
 }
 html[data-ui-theme] body[data-q-theme] :where(p,li,aside,footer,figcaption,small,dd,td,blockquote,.related-courses,.breadcrumbs,[class*="footer"],.q-atlas-only,.q-studio-only,.q-paper-only) a[href]:not([class]):not(:where(nav) a):not(:where(.course-bridge,.subject-home-nav,.readiness-links,.q-paper-options-body,.f-toolbar,.intuition-subject-entry)>a):hover,
 html[data-ui-theme] body[data-q-theme] :is(.q-paper-footer,.q-atlas-qidolab,.q-studio-qidolab,.q-studio-record-note,.q-atlas-note,.qi-records):hover{background:color-mix(in srgb,currentColor 15%,transparent);border-color:currentColor;text-decoration:none}
 html[data-ui-theme] body[data-q-theme] a.skip{text-decoration:none}
+html[data-ui-theme] body[data-q-theme] :where(p,li,aside,footer,figcaption,small,dd,td,blockquote,.related-courses,.breadcrumbs,[class*="footer"],.q-atlas-only,.q-studio-only,.q-paper-only) a[href]:not([class]):not(:where(nav) a):not(:where(.course-bridge,.subject-home-nav,.readiness-links,.q-paper-options-body,.f-toolbar,.intuition-subject-entry)>a){color:var(--q-primary)}
+/* A chip moves to the next line as a whole rather than splitting; one longer than the line still wraps inside. */
+:where(html[data-ui-theme] body[data-q-theme] :is(p,li,aside,footer,figcaption,small,dd,td,blockquote) a[href]:not([class])){display:inline-block;max-width:100%;line-height:1.35}
+/* Subject chips on the check pages, and native checkboxes and radio buttons, take the appearance's colors rather than
+   the browser's default blue. */
+html[data-ui-theme] body[data-q-theme] .check-subjects a:not([aria-current="page"]){color:var(--q-ink)}
+html[data-ui-theme] body[data-q-theme] :is(input[type="radio"],input[type="checkbox"]){accent-color:var(--q-primary)}
 /* Breadcrumb links and the Studio records note stand on their own, so each is a full tap target (WCAG 2.2 asks for 24 px). */
 html[data-ui-theme] body[data-q-theme] :is(.breadcrumbs a[href],a.q-studio-record-note){display:inline-flex;align-items:center;min-height:28px}
 /* 2. Show-more toggles: a compact outlined button with its own arrow. */
@@ -116,3 +123,7 @@ html[data-ui-theme] body[data-q-theme] .number-line button:not([aria-pressed="tr
 /* Check and report eyebrows sit on cream pages in the illustrated appearances; a slightly darker teal keeps them
    above a 4.5:1 contrast there. */
 html[data-ui-theme] body[data-q-theme] .f-eyebrow{color:color-mix(in srgb,var(--f-teal,#087f76) 85%,#000)}
+/* Dialog close buttons are round outlined buttons, like every other control. */
+html[data-ui-theme] body[data-q-theme] .dialog-close{display:inline-grid;place-items:center;min-width:40px;min-height:40px;padding:0;border:1px solid color-mix(in srgb,currentColor 40%,transparent);border-radius:50%;background:color-mix(in srgb,currentColor 5%,transparent)}
+/* Inline link chips are at least 24 px tall, WCAG 2.2's minimum target, even inside small notes. */
+:where(html[data-ui-theme] body[data-q-theme] :is(p,li,aside,footer,figcaption,small,dd,td,blockquote) a[href]:not([class])){box-sizing:border-box;min-height:24px}

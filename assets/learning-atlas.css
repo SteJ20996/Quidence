@@ -110,3 +110,5 @@ html[data-ui-theme="atlas"] #cartoon-knowledge-map .map-num{font-family:'Quidenc
 @media(prefers-reduced-motion:reduce){html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .subject-card{transition:none}}
 @media print{html[data-ui-theme="atlas"] body[data-q-theme]{background:white!important}html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-atlas-observatory,html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-atlas-books{display:none}}
 html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-atlas-grid .subject-card h3{text-wrap:balance}html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .q-atlas-grid .subject-card>.subject-link{margin-top:auto}
+/* The subtitle stops short of the landscape on the right, which it ran into at tablet and small-laptop widths. */
+@media(min-width:768px){html[data-ui-theme="atlas"] body[data-q-theme].quidence-home .qf-page-heading p{max-width:min(850px,58%)}}

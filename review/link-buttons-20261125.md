@@ -50,10 +50,11 @@ The owner asked for "all", so the logo exemption is a judgement. It can be revis
 ## How it is checked
 
 - `scripts/link-button-audit.cjs` is now strict: only the logo and drawn diagram shapes are exempt.
-- `npm run test:themes:browser` already ran the audit on all 38 pages at 320 px and 1440 px in the four appearances: 308 checks. It now also checks 9 page states in each appearance, 36 checks in all:
+- `npm run test:themes:browser` already ran the audit on all 38 pages at 320 px and 1440 px in the four appearances: 308 checks. It now also checks 11 page states in each appearance, 44 checks in all:
   - an Intuition Lab activity, a cross-disciplinary project, an algorithm and a game-theory project;
   - the homepage map and Intuition Lab views;
-  - lessons with photo credits, with the gambling notice, and with proofs.
+  - lessons with photo credits, with the gambling notice, and with proofs;
+  - the Math Voice Lab and Think in Motion pages with their dialogs open (added after the spot-check below found a plain close button).
 - The full census of 158 states passes in the four appearances at both widths.
 
 ## Why outlines, and what the evidence leaves open

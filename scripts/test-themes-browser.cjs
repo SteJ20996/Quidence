@@ -127,14 +127,16 @@ async function main(){
    assert.equal(await offline.locator('html').getAttribute('data-ui-theme'),theme);
    assert.equal(await offline.locator('.student-work').textContent(),'My exact answer: −1/3');
    await offline.emulateMedia({media:'print'});assert.equal(await offline.locator('body').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(255, 255, 255)');await offline.close();
-   // Page states with controls of their own: an activity, a project, an algorithm, the map, and lessons that show photo
-   // credits, a safety notice or a proof.
+   // Page states with controls of their own: an activity, a project, an algorithm, the map, lessons that show photo
+   // credits, a safety notice or a proof, and the dialogs with fixed content, opened.
    await page.setViewportSize({width:1440,height:1000});
-   for(const [url,open] of [['/intuition/#multiply'],['/cross-disciplinary/?project=cross-p01'],['/courses/algorithms/?algorithm=dijkstra'],['/modules/ac01/dist/projects/?activity=food-trucks'],['/?view=map'],['/?view=intuition'],['/courses/integrated-science/',7],['/courses/quantitative/',8],['/courses/discrete-math/']]){
+   for(const [url,open] of [['/intuition/#multiply'],['/cross-disciplinary/?project=cross-p01'],['/courses/algorithms/?algorithm=dijkstra'],['/modules/ac01/dist/projects/?activity=food-trucks'],['/?view=map'],['/?view=intuition'],['/courses/integrated-science/',7],['/courses/quantitative/',8],['/courses/discrete-math/'],['/explain/','dialogs'],['/modules/ad01/dist/think/','dialogs']]){
     await page.goto(origin+url);await page.waitForFunction(()=>window.QuidenceI18n?.locale==='en');
-    if(open!==undefined){await page.locator(`[data-action="open"][data-index="${open}"]`).first().click();await page.locator('.lesson-link.active').waitFor();}
+    if(open==='dialogs')await page.evaluate(()=>document.querySelectorAll('dialog').forEach(d=>{if(!d.open)d.show();}));
+    else if(open!==undefined){await page.locator(`[data-action="open"][data-index="${open}"]`).first().click();await page.locator('.lesson-link.active').waitFor();}
     await page.evaluate(()=>document.querySelectorAll('details').forEach(d=>{d.open=true;}));
     assert.deepEqual(await page.evaluate(linkLikeControls),[],`${theme} ${url} ${open??''}: every link and control must look like a button`);result.stateButtonChecks++;
+    if(open==='dialogs')await page.evaluate(()=>document.querySelectorAll('dialog[open]').forEach(d=>d.close()));
    }
   }
   // Phones show one button with the current appearance; it opens the four previews as an even two-column grid.
