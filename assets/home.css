@@ -227,7 +227,7 @@ body.quidence-home .qa-step:disabled{cursor:default}
 body.quidence-home .eyebrow{color:#07786f}
 
 /* Full course names remain readable in the subject picker. */
-body.quidence-home .learning-subject-buttons button[data-compact-physics],body.quidence-home .learning-subject-buttons button[data-learning-subject="integrated-science"]{grid-column:1 / -1;white-space:normal;overflow-wrap:normal;word-break:normal;hyphens:none;line-height:1.35}
+body.quidence-home .learning-subject-buttons button[data-compact-physics],body.quidence-home .learning-subject-buttons button[data-learning-subject="integrated-science"],body.quidence-home .learning-subject-buttons button:is([data-learning-subject="quantitative"],[data-learning-subject="discrete-math"]){grid-column:1 / -1;white-space:normal;overflow-wrap:normal;word-break:normal;hyphens:none;line-height:1.35}
 .goal-sharing-note{font-size:13px;line-height:1.6;margin:12px 0;color:var(--muted,#526467)}
 /* Classic subject cards follow the Physics 1 reading order. Shared grid rows
    align neighbouring cards without pushing Start down with an auto margin. */

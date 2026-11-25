@@ -1,3 +1,27 @@
+## 2026-11-25 · Every clickable control looks like a button
+
+- **Request.** The owner asked that every clickable link be marked as a button, in any style. The earlier change covered standalone links only; links inside sentences and footers, tabs, steppers, lesson lists and map places were exempt.
+- **Census.** A script visited 38 pages and 158 page states: every lesson, Intuition Lab activity, project and algorithm. It ran in the four appearances. Before the change, 1,829 to 1,876 of about 5,000 visible controls per appearance looked plain at 1440 px.
+- **Styles** (`assets/appearance-layout.css`), each in its appearance's corner shape:
+  - links inside sentences, notes, breadcrumbs and footers become outlined chips that stay in the line;
+  - show-more toggles become compact outlined buttons;
+  - tabs and steppers are outlined, and the current one keeps its fill;
+  - lesson, project and activity lists and map places are outlined;
+  - number-line points get a soft fill.
+- **Exempt.** The logo, and controls drawn as shapes in diagrams. The logo exemption is a judgement and can be revisited.
+- **Also fixed.** In Classic, the homepage subject picker no longer splits "Quantitative Reasoning" and "Discrete Mathematics" mid-word.
+- **Tests.**
+  - `scripts/link-button-audit.cjs` is strict.
+  - The themes suite checks all pages at two widths in four appearances: 308 checks. It also checks 9 page states in each appearance: 36 checks.
+  - The full census of 158 states passes at both widths.
+- **Gaps.**
+  - Some labels that are not clickable are also outlined.
+  - Inline chips are small targets.
+  - States reached only after answering questions were not visited.
+  - No learners have tried the change.
+
+See [the button note](review/link-buttons-20261125.md).
+
 ## 2026-11-17 · Quantitative Reasoning: gambling-harm notes and its place on the maps
 
 - **Gambling-harm notes** in the course's key places:
