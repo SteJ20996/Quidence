@@ -84,6 +84,8 @@ function hydrate(input){
   if(!Number.isInteger(raw.lessonIndex)||raw.lessonIndex<0||raw.lessonIndex>=C.LESSONS.length||!Number.isInteger(raw.questionIndex)||raw.questionIndex<0||raw.questionIndex>1)return null;
   if(!Array.isArray(raw.lessons)||raw.lessons.length!==C.LESSONS.length||!Number.isFinite(Date.parse(raw.createdAt))||!Array.isArray(raw.events)||raw.events.some(e=>!e||typeof e.type!=='string'||!Number.isFinite(Date.parse(e.at)))||!raw.records||typeof raw.records!=='object'||Array.isArray(raw.records))return null;
   if(raw.lessons.some(l=>!l||typeof l.reviewed!=='boolean'||!Array.isArray(l.seenSteps)||new Set(l.seenSteps).size!==l.seenSteps.length||l.seenSteps.some(s=>!Number.isInteger(s)||s<0||s>3)))return null;
+  // Step predictions are optional: four entries, each empty or a saved prediction of up to 500 characters.
+  if(raw.lessons.some(l=>l.stepPredictions!==undefined&&!(Array.isArray(l.stepPredictions)&&l.stepPredictions.length===4&&l.stepPredictions.every(p=>p===null||p&&typeof p==='object'&&typeof p.text==='string'&&p.text.length<=500&&typeof p.unsure==='boolean'&&p.unsure===!p.text&&Number.isFinite(Date.parse(p.at))))))return null;
   for(const [id,r] of Object.entries(raw.records)){
    if(!TASKS[id]||!r||!['draft','submitted'].includes(r.status)||typeof r.feedbackSeen!=='boolean'||!Array.isArray(r.submissions)||!draftValid(TASKS[id],r.draft))return null;
    for(const s of r.submissions)if(!s||!valid(TASKS[id],s.answer)||s.result!==score(TASKS[id],s.answer)||!Number.isFinite(Date.parse(s.at))||!s.support||!['predict','check'].includes(s.support.phase)||typeof s.support.feedbackSeen!=='boolean'||typeof s.support.lessonSeen!=='boolean'||s.support.otherHelp!==s.answer.otherHelp)return null;

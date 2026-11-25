@@ -142,11 +142,13 @@ test('the complete course flow saves answers and reasoning, reloads, groups less
   const lesson=C.LESSONS[i];
   if(i){h.click('continue');h.choose('unsure');h.input('explanation','I compare the model with the rule.');}
   h.submit();h.click('next');
+  // Each step opens after a prediction; "not sure" counts.
+  h.click('skip-step-prediction');
   const before=JSON.stringify(h.saved().records);
   for(const c of lesson.controls)h.lab(c.name,c.options?c.options[c.options.length-1][0]:c.max);
   assert.doesNotMatch(h.app.innerHTML,/NaN/);
   assert.equal(JSON.stringify(h.saved().records),before,'Moving a slider is not an answer');
-  for(let j=0;j<4;j++)h.click('next-step');
+  for(let j=0;j<4;j++){if(j)h.click('skip-step-prediction');h.click('next-step');}
   for(const task of lesson.checks){h.choose(task.correct[0]);h.input('explanation','The model shows it: '+task.explanation.slice(0,40));h.submit();h.click('next');}
  }
  h.click('continue');
@@ -166,7 +168,7 @@ test('a record saved with only the grade 6 lessons opens with the later lessons 
  for(let i=0;i<4;i++){
   if(i)h.click('continue');
   h.choose('unsure');h.input('explanation','First idea for lesson '+(i+1));h.submit();h.click('next');
-  for(let j=0;j<4;j++)h.click('next-step');
+  for(let j=0;j<4;j++){h.click('skip-step-prediction');h.click('next-step');}
   for(const t of C.LESSONS[i].checks){h.choose(t.correct[0]);h.input('explanation','Because of '+t.id);h.submit();h.click('next');}
  }
  const now=h.saved();
@@ -490,7 +492,7 @@ test('lesson photographs are stored with the site, sized as declared, and always
  }
  // The step shows the photograph with its credit, licence and a link to its source.
  const h=harness('integrated-science',new Map());h.click('start');h.click('open',7);
- h.choose('unsure');h.input('explanation','A first idea.');h.submit();h.click('next');h.click('step',1);
+ h.choose('unsure');h.input('explanation','A first idea.');h.submit();h.click('next');h.click('step',1);h.click('skip-step-prediction');
  assert.match(h.app.innerHTML,/class="lesson-photo"><img src="\.\.\/\.\.\/assets\/photos\/island-fox\.webp" alt="A grey and rust-colored island fox/);
  assert.match(h.app.innerHTML,/Photo: NPS \/ Jessica Weinberg McClosky · Public domain, U\.S\. National Park Service · <a href="https:\/\/www\.nps\.gov\/im\/medn\/island-fox\.htm" target="_blank" rel="noopener" aria-label="Source page for this image \(opens in a new tab\)">source ↗<\/a>/);
  h.click('step',0);assert.doesNotMatch(h.app.innerHTML,/lesson-photo/);
@@ -518,7 +520,7 @@ test('lessons with a hands-on investigation show a drawing of it in their feedba
  // The drawing appears with "A useful next step" once the lesson's questions are done.
  const h=harness('integrated-science',new Map());h.click('start');
  h.choose('unsure');h.input('explanation','A first idea.');h.submit();h.click('next');
- for(let j=0;j<4;j++)h.click('next-step');
+ for(let j=0;j<4;j++){h.click('skip-step-prediction');h.click('next-step');}
  for(const t of C.LESSONS[0].checks){h.choose(t.correct[0]);h.input('explanation','Because of the model.');h.submit();h.click('next');}
  assert.match(h.app.innerHTML,/A useful next step/);assert.match(h.app.innerHTML,/investigation-figure/);assert.match(h.app.innerHTML,/Measuring onion skin cells/);
  // The computed parts of two drawings: the heating curve and the Moon's place in the sky.
@@ -563,7 +565,7 @@ test('lesson 20 reads energy per degree, and lesson 16 can draw new samples whil
 test('a record saved before lesson 16 had a sample control opens with sample 1 and every answer kept',()=>{
  const map=new Map();const h=harness('integrated-science',map);h.click('start');
  h.choose('unsure');h.input('explanation','My first idea');h.submit();h.click('next');
- for(let j=0;j<4;j++)h.click('next-step');
+ for(let j=0;j<4;j++){h.click('skip-step-prediction');h.click('next-step');}
  for(const t of C.LESSONS[0].checks){h.choose(t.correct[0]);h.input('explanation','Because of '+t.id);h.submit();h.click('next');}
  const now=h.saved(),j=C.LESSONS.findIndex(l=>l.short==='Inheritance');
  const old=JSON.parse(JSON.stringify(now));delete old.labs[j].sample;old.labs[j].offspring='100';
@@ -577,4 +579,40 @@ test('science reviews judge the science, and the hands-on activities carry their
  assert.match(next('Cells as systems'),/wash your hands/);assert.match(next('Heating ice'),/goggles/);
  assert.match(next('Particles in motion'),/poured by an adult/);assert.match(next('Atoms in living things'),/eye protection/);
  assert.match(next('Combustion'),/the same 4\.18 J as in lesson 2/);
+});
+
+test('each science step asks for a prediction before it shows its text and model, and keeps the prediction',()=>{
+ const map=new Map();const h=harness('integrated-science',map);h.click('start');
+ h.choose('unsure');h.input('explanation','First idea');h.submit();h.click('next');
+ const L=C.LESSONS[0],html=()=>h.app.innerHTML;
+ // Step 1 waits for a prediction: its question shows; its text and the model do not; it is not yet opened.
+ assert.match(html(),/Predict first/);assert(html().includes(L.steps[0].activity.predict.replace(/’/g,'’')));
+ assert(!html().includes('id="lab-graphs"'),'the model waits');assert(!html().includes(L.steps[0].text.slice(0,40)),'the step text waits');
+ assert.equal(h.saved().lessons[0].seenSteps.length,0);
+ // An empty prediction is not saved.
+ h.click('save-step-prediction');assert.equal(h.saved().lessons[0].stepPredictions,undefined);
+ h.input('stepPrediction','It grows eight times');h.click('save-step-prediction');
+ const p=h.saved().lessons[0].stepPredictions;assert.equal(p[0].text,'It grows eight times');assert.equal(p[0].unsure,false);
+ assert(html().includes('id="lab-graphs"'),'the model opens');assert(html().includes('It grows eight times'));assert.deepEqual(h.saved().lessons[0].seenSteps,[0]);
+ assert.doesNotMatch(html(),/<span class="activity-label">Predict first<\/span>/,'the answered prediction is not asked again');
+ // "Not sure" is kept as such; a saved prediction is never replaced.
+ h.click('next-step');h.click('skip-step-prediction');const q=h.saved().lessons[0].stepPredictions;assert.equal(q[1].unsure,true);assert.equal(q[1].text,'');
+ h.click('prev-step');assert.equal(h.saved().lessons[0].stepPredictions[0].text,'It grows eight times');
+ assert(h.saved().events.filter(e=>e.type==='step_prediction_saved').length===2);
+});
+
+test('saved step predictions are validated, appear in the feedback and report, and older records without them still open',()=>{
+ const map=new Map();const h=harness('integrated-science',map);h.click('start');
+ h.choose('unsure');h.input('explanation','First idea');h.submit();h.click('next');
+ h.input('stepPrediction','My guess');h.click('save-step-prediction');
+ for(let j=0;j<4;j++){if(j)h.click('skip-step-prediction');h.click('next-step');}
+ for(const t of C.LESSONS[0].checks){h.choose(t.correct[0]);h.input('explanation','Because of '+t.id);h.submit();h.click('next');}
+ assert.match(h.app.innerHTML,/Your predictions in the lesson steps/);assert.match(h.app.innerHTML,/My guess/);
+ const saved=h.saved();
+ assert(h.E.hydrate(JSON.parse(JSON.stringify(saved))),'a record with step predictions opens');
+ const older=JSON.parse(JSON.stringify(saved));delete older.lessons[0].stepPredictions;assert(h.E.hydrate(older),'a record without them opens');
+ for(const bad of[[null,null,null],[{text:'x',unsure:true,at:new Date().toISOString()},null,null,null],[{text:'x'.repeat(501),unsure:false,at:new Date().toISOString()},null,null,null]]){
+  const b=JSON.parse(JSON.stringify(saved));b.lessons[0].stepPredictions=bad;assert.equal(h.E.hydrate(b),null);}
+ const explains=C.LESSONS.flatMap(l=>l.steps.map(s=>s.activity.explain));
+ for(const giveaway of[/eight times as much/,/rises at sunset/,/close to, but not exactly/,/so close to the water/,/far side is warmer/,/cannot see the Moon/])assert(!explains.some(e=>giveaway.test(e)),'explain prompts do not state the result: '+giveaway);
 });

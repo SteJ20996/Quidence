@@ -48,11 +48,35 @@ The first two points were checked here directly. Lesson 22's `rate()` divided by
 - the upgrade of an older record;
 - the safety notes.
 
+## Round 2: ask before telling (this change)
+
+**How each step works now.** Each step opens with its prediction. Only the step's title and its question show, and the model panel says it will open after the prediction.
+- The learner either writes a prediction (up to 500 characters) or chooses "I'm not sure yet". The step's text, its activity and the model then appear.
+- The saved prediction stays above the text and is never replaced. The activity list no longer asks for it again.
+- A step counts as opened only after this. So the fresh questions, which need all four steps opened, come after four predictions or four "not sure" answers.
+- The lesson's feedback page lists the step predictions, and so does the Markdown report. The JSON export holds them with the rest of the record.
+
+**Scope.** This applies only to courses that set `predictFirst`, which is only Integrated Science.
+
+**Saved work.** Predictions are stored per lesson as four entries, each empty or `{text, unsure, at}`, and are validated when a record opens. A record saved before this change has no step predictions and still opens: every answer is kept, and its steps ask for predictions only if they have not been opened yet.
+
+**Prompts that gave the answer away.** 33 of the 96 "explain" prompts stated the result the step's own prediction asks for. Examples:
+- "Explain why a full moon rises at sunset" followed "About what time does a full moon rise?"
+- "Explain why doubling the efficiency gives eight times as much energy" followed a question asking how many times as much.
+
+Each one now asks the learner to explain what they read in the model: "Use the view from above to explain the rising time you found."
+
+**What this does not fix.**
+- **"Not sure" at every step.** A learner can still choose "not sure" at every step. That is deliberate: forcing a guess can turn a prediction into noise.
+- **Effort.** Nothing checks whether a prediction was thought through.
+- **The text still gives the answer.** Once shown, the step text still answers the prediction. That is now the intended order: the guess first, then the evidence, then the explanation.
+- **No evidence for this course.** The research on predicting first (Crouch et al., 2004) comes from university physics demonstrations, with a teacher in the room. Whether a written prediction does the same for 11–16-year-olds working alone has not been tested here.
+
 ## What comes next
 
 | Round | Work | Why |
 | --- | --- | --- |
-| 2 | Ask before telling. Each step shows the prediction first and records a quick answer. The readout and the explanation appear only after that, and explain prompts stop stating the result. | Predicting before a demonstration improves learning over watching it. Crouch, Fagen, Callan and Mazur (2004) found that students who predicted the outcome of physics demonstrations understood them better afterwards than students who only watched. The predict–observe–explain sequence (White & Gunstone, 1992) depends on the prediction coming first. |
+| 2 (done above) | Ask before telling. | Predicting before a demonstration improves learning over watching it. Crouch, Fagen, Callan and Mazur (2004) found that students who predicted the outcome of physics demonstrations understood them better afterwards than students who only watched. The predict–observe–explain sequence (White & Gunstone, 1992) depends on the prediction coming first. |
 | 3 | Rewrite the checks as new situations, with wrong options drawn from known misconceptions and options of similar length | Item-writing guidelines ask for plausible distractors based on common errors, and options of similar length (Haladyna, Downing & Rodriguez, 2002) |
 | 4 | Add understanding problems for grades 7 and 8 and the other uncovered units, as a new bank version | Four problems now cover 5 of the 24 lessons |
 | Later | Give lesson 8's fox model a chance of dying out | The model has no chance events, so captive breeding adds only two years and looks like a waste. Yet keeping populations of about 15 foxes from dying out by chance was its real purpose. A chance model needs choices of its own (bad years, an Allee threshold), so it is a separate piece of work. |

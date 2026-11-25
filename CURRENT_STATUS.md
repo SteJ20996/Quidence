@@ -1,3 +1,20 @@
+## 2026-11-25 · Integrated Science, round 2: ask before telling
+
+- **Each step opens with its prediction.**
+  - Only the title and the question show at first, and the model panel says it opens after the prediction.
+  - The learner writes a prediction (up to 500 characters) or chooses "I'm not sure yet". The step's text, activity and model then appear.
+  - The prediction stays above the text and is never replaced. It also appears on the lesson's feedback page and in the Markdown report, and the JSON export includes it.
+- **A step counts as opened only after its prediction.** The fresh questions still need all four steps opened.
+- **33 of 96 explain prompts gave the answer away.** For example, "explain why a full moon rises at sunset" came after "About what time does a full moon rise?". They now ask learners to explain what they read in the model.
+- **Scope.** Only courses that set `predictFirst`, which is only Integrated Science.
+- **Saved work.** Step predictions are validated. Older records without them still open, with every answer kept.
+- **Limits.**
+  - "Not sure" is always allowed.
+  - Nothing checks whether a prediction was thought through.
+  - The evidence for predicting first comes from university physics demonstrations, not from 11–16-year-olds working alone.
+
+See [the review and fixes note](review/integrated-science-fixes-20261125.md).
+
 ## 2026-11-25 · Integrated Science: independent review and round 1 of fixes
 
 - **Review.** An independent reviewer read all 24 lessons and ran every model.
