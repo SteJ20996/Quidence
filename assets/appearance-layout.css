@@ -87,6 +87,8 @@ html[data-ui-theme] body[data-q-theme] :is(.q-paper-footer,.q-atlas-qidolab,.q-s
 html[data-ui-theme] body[data-q-theme] :where(p,li,aside,footer,figcaption,small,dd,td,blockquote,.related-courses,.breadcrumbs,[class*="footer"],.q-atlas-only,.q-studio-only,.q-paper-only) a[href]:not([class]):not(:where(nav) a):not(:where(.course-bridge,.subject-home-nav,.readiness-links,.q-paper-options-body,.f-toolbar,.intuition-subject-entry)>a):hover,
 html[data-ui-theme] body[data-q-theme] :is(.q-paper-footer,.q-atlas-qidolab,.q-studio-qidolab,.q-studio-record-note,.q-atlas-note,.qi-records):hover{background:color-mix(in srgb,currentColor 15%,transparent);border-color:currentColor;text-decoration:none}
 html[data-ui-theme] body[data-q-theme] a.skip{text-decoration:none}
+/* Breadcrumb links and the Studio records note stand on their own, so each is a full tap target (WCAG 2.2 asks for 24 px). */
+html[data-ui-theme] body[data-q-theme] :is(.breadcrumbs a[href],a.q-studio-record-note){display:inline-flex;align-items:center;min-height:28px}
 /* 2. Show-more toggles: a compact outlined button with its own arrow. */
 html[data-ui-theme] body[data-q-theme] details>summary{
   width:fit-content;max-width:100%;box-sizing:border-box;min-height:40px;padding:8px 14px;
@@ -111,3 +113,6 @@ html[data-ui-theme] body[data-q-theme] :is(.lesson-link,.route-item,.area-nav,.q
 /* Number-line points sit on the line, so a soft fill marks each one instead of an outline the line would cut. */
 html[data-ui-theme] body[data-q-theme] .number-line button:not([aria-pressed="true"]){border-color:transparent;background:color-mix(in srgb,currentColor 6%,transparent)}
 html[data-ui-theme] body[data-q-theme] .number-line button:not([aria-pressed="true"]):hover{border-color:transparent;background:color-mix(in srgb,currentColor 13%,transparent)}
+/* Check and report eyebrows sit on cream pages in the illustrated appearances; a slightly darker teal keeps them
+   above a 4.5:1 contrast there. */
+html[data-ui-theme] body[data-q-theme] .f-eyebrow{color:color-mix(in srgb,var(--f-teal,#087f76) 85%,#000)}

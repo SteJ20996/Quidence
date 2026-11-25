@@ -227,3 +227,8 @@ dialog{border:1px solid var(--line);border-radius:18px;width:min(800px,calc(100%
  .cell{min-width:40px;height:42px}.arr{gap:5px}.ch textarea{font-size:16px}.rec{padding:16px 14px}.site-footer{padding:18px 16px;font-size:10px}.modal-top{padding:16px}.modal-top h2{font-size:17px}#modal-body{padding:18px}.summary-stats{gap:7px}.summary-stats>div{padding:12px 9px;font-size:10px}.summary-stats span{font-size:20px}}
 @media(max-width:360px){.header-inner{padding:14px;gap:8px}.header-button{font-size:10px}.shell{padding-left:12px;padding-right:12px}.cell{min-width:36px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}.cell.swap{transform:none}}
+
+/* Builder blocks shrink to the card on narrow screens instead of running past its edge; the closed menu shortens
+   its text, and the open menu still lists every block in full. */
+.builder{grid-template-columns:minmax(0,1fr)}.builder .row>select{min-width:0;flex:0 1 auto}
+.flow-hint{margin:6px 0 0}

@@ -58,7 +58,7 @@ const U={
  errList:L('Enter 2 to 12 whole numbers between −999 and 999, separated by commas.'),
  errTarget:L('The target must be a whole number between −999 and 999.'),
  errPair:L('Enter two whole numbers from 1 to 999,999.'),
- chain:L('Logic chain'),chainNote:L('The flowchart and the steps move together.'),
+ chain:L('Logic chain'),chainNote:L('The flowchart and the steps move together.'),flowHint:L('The flowchart is wider than the screen: scroll it sideways to see all of it.'),
  flowLabel:L('Flowchart of {name}'),steps:L('Steps'),
  pickNote:L('Choose a box in the flowchart: the one you think runs the most times on this list.'),
  data:L('Data'),begin:L('Press <strong>Next step</strong> to begin.'),
@@ -272,7 +272,7 @@ function renderBench(){const a=alg(),e=step(),nx=cur.events[cur.idx+1],asking=cu
   <div class="panel chain">
    <div class="panel-head"><span class="eyebrow">${esc(u('chain'))}</span><span class="muted small-print">${esc(u('chainNote'))}</span></div>
    ${cur.pick?`<p class="fb pick-note" role="status">${esc(u('pickNote'))}</p>`:''}
-   <div class="flow" id="flow" tabindex="-1">${flowSvg()}</div>
+   <div class="flow" id="flow" tabindex="-1">${flowSvg()}</div><p class="flow-hint muted small-print" id="flow-hint" hidden>${esc(u('flowHint'))}</p>
   </div>
   <div class="side">
    <div class="panel steps-panel"><span class="eyebrow">${esc(u('steps'))}</span><ol class="steps" id="steps" aria-label="${esc(u('steps'))}" data-no-frac>${stepsList()}</ol></div>
@@ -302,9 +302,12 @@ function renderBench(){const a=alg(),e=step(),nx=cur.events[cur.idx+1],asking=cu
   <div class="row"><button type="button" id="b-teach" aria-expanded="${cur.teach>=0}">${esc(u(cur.teach>=0?'teachClose':'teachOpen'))}</button></div>
   ${cur.teach>=0?teachBlock():''}
  </div>`;
- const tw=document.querySelector('#alg .tracewrap');if(tw)tw.scrollTop=tw.scrollHeight;
+ const tw=document.querySelector('#alg .tracewrap');if(tw)tw.scrollTop=tw.scrollHeight;flowFit();
  if(asking){const o=document.querySelector('[data-opt]');if(o)o.focus();}
  else if(active){const el=$(active);if(el&&!el.disabled)el.focus();else if(active==='b-next'||active==='b-back'||active==='b-play'){const f=$('b-next')&&!$('b-next').disabled?$('b-next'):$('b-reset');f.focus();}}}
+// On a narrow screen the flowchart scrolls sideways; say so only when it is wider than its box.
+function flowFit(){const f=$('flow'),h=$('flow-hint');if(f&&h)h.hidden=!(f.scrollWidth>f.clientWidth+2);}
+addEventListener('resize',()=>flowFit());
 function say(text){const el=$('announce');el.textContent='';setTimeout(()=>{el.textContent=text;},40);}
 function announce(){const e=step();say(e?plain(tx(e.note)):'');}
 function focusNext(){const n=$('b-next');(n&&!n.disabled?n:$('b-reset')).focus();}
