@@ -257,6 +257,63 @@ test('the fox model: a population at carrying capacity, a new predator, and two 
  assert.match(Graphs.lab('integrated-science',7,{eagles:50,plan:'remove'}).readout,/Back to 1,000 foxes in year 20/);
 });
 
+test('the fox model with chance: a Poisson draw around the model, bad years that average out, founders for captive breeding, and plans compared on 1,000 islands',()=>{
+ // A later start lets the foxes fall lower first: about 17 left in year 20, near the real low of about 15.
+ assert.deepEqual(Models.foxes(50,'remove',10),Models.foxes(50,'remove'));
+ const late=Models.foxes(50,'remove',20);assert(late.lowest>15&&late.lowest<18);assert.equal(late.series.indexOf(late.lowest),20);
+ // The draw: zero for nothing; the average and spread of a Poisson count, for small and large values.
+ const rnd=(()=>{let t=12345;return()=>{t=(t*1103515245+12345)%2147483648;return t/2147483648;};})();
+ assert.equal(Models.poisson(0,rnd),0);
+ for(const mean of[3,12,200,1500]){const xs=[...Array(20000)].map(()=>Models.poisson(mean,rnd)),m=xs.reduce((a,b)=>a+b)/xs.length,v=xs.reduce((a,b)=>a+(b-m)**2,0)/xs.length;
+  assert(xs.every(Number.isInteger)&&xs.every(x=>x>=0));assert(Math.abs(m-mean)<0.05*mean+0.1,mean+' mean '+m);assert(Math.abs(v-mean)<0.1*mean+0.3,mean+' variance '+v);}
+ // Seeded: the same settings give the same islands every time.
+ assert.deepEqual(Models.foxRuns(50,'remove',20,'bad',200,5),Models.foxRuns(50,'remove',20,'bad',200,5));
+ // Bad years halve the value and the other years are a little better, so a year's value averages out to the model's.
+ const C2=Models.FOX_CHANCE;close(C2.badYear*C2.badCut+(1-C2.badYear)*C2.goodLift,1,1e-12);
+ // Without eagles nothing dies out, and the typical island stays near 1,500 with either kind of chance.
+ for(const chance of['luck','bad']){const calm=Models.foxRuns(0,'none',10,chance);assert.equal(calm.diedOut,0);assert.equal(calm.viable,1000);assert(Math.abs(calm.median-1500)<40,chance+' '+calm.median);}
+ // Captive breeding needs foxes caught when the plan starts: an island with fewer than 2 left then gets no releases.
+ assert.equal(Models.FOUNDERS,2);const dead=Models.foxRuns(50,'release',20,'bad'),gone=Models.foxRuns(50,'release',20,'bad',1000,1000);
+ assert.deepEqual(dead.diedOut,gone.diedOut);for(const [k,path] of gone.paths.entries())if(gone.diedAt[k]!==null&&gone.diedAt[k]<20)assert(path.slice(20).every(n=>n===0),'no releases on island '+k);
+ // Early action keeps every island; late action with bad years loses many; captive-bred foxes are insurance.
+ for(const plan of['remove','both'])assert.equal(Models.foxRuns(50,plan,10,'bad').diedOut,0);
+ const R=p=>Models.foxRuns(50,p,20,'bad'),none=R('none'),remove=R('remove'),release=R('release'),both=R('both');
+ assert(none.diedOut>900&&none.median===0&&none.viable===0);
+ // Losses before the plan starts are the same under every plan.
+ for(const r of[remove,release,both])assert.equal(r.before,none.before);assert(none.before>0);
+ assert(remove.diedOut-remove.before>50,'moving the eagles away late still loses islands after the plan starts: '+remove.diedOut);
+ assert(both.diedOut<remove.diedOut&&both.viable>remove.viable&&both.median>remove.median);
+ assert(release.median<20&&release.viable<50,'releases alone leave a dwindling population: '+release.median);
+ assert(Models.foxRuns(50,'remove',20,'luck').diedOut<remove.diedOut/5,'each fox’s luck alone rarely ends 17 foxes in this model');
+ assert(Models.foxRuns(50,'remove',15,'bad').diedOut<remove.diedOut/5,'five years earlier is much safer');
+ // The view: chance off reads as before; chance on shows 20 islands and a table of the four plans.
+ const off=Graphs.lab('integrated-science',7,{eagles:50,plan:'remove',start:10,chance:'off'});
+ assert.equal(off.readout,Graphs.lab('integrated-science',7,{eagles:50,plan:'remove'}).readout);assert.match(off.note,/Turn chance on/);
+ const on=Graphs.lab('integrated-science',7,{eagles:50,plan:'remove',start:20,chance:'bad'});
+ assert.match(on.readout,/wild foxes died out on 133 of 1,000 simulated islands \(57 of them by year 20\); 30 or more foxes in year 40 on 853 of 1,000/);
+ assert.equal((on.graph.match(/<circle [^>]*fill="#a84324"/g)||[]).length,(()=>{const r=Models.foxRuns(50,'remove',20,'bad',1000,20);return r.diedAt.filter(t=>t!==null).length+r.diedAt.filter(t=>t!==null&&t>=20).length;})(),'a red dot for each island that died out, in each panel it falls in');
+ assert.match(on.graph,/30 or more in year 40/);assert.match(on.graph,/On 57 islands the wild foxes died out by year 20/);
+ assert.equal((on.graph.match(/stroke-opacity=".55"/g)||[]).length,40,"20 islands in each of the two panels");assert.match(on.graph,/Close-up: 0 to 100 foxes/);
+ for(const row of['No plan','Move the eagles away \\(chosen\\)','Release captive-bred foxes','Both'])assert.match(on.graph,new RegExp('<th scope="row">'+row));
+ assert.match(on.formula,/halves that value; the other years are a little better/);const luck=Graphs.lab('integrated-science',7,{eagles:50,plan:'remove',start:20,chance:'luck'});
+ assert.doesNotMatch(luck.formula,/halve/);assert.doesNotMatch(luck.graph,/same bad years/);assert.match(on.note,/not real odds/);
+ assert.doesNotMatch(Graphs.lab('integrated-science',7,{eagles:50,plan:'none',start:20,chance:'bad'}).graph,/plan from year|plan starts</);
+ const L=C.LESSONS.find(l=>l.short==='Recovering a population');assert.deepEqual(L.defaults,{eagles:50,plan:'none',start:10,chance:'off'});
+ assert.match(L.steps[2].activity.test,/start the plans in year 20/);assert.match(L.steps[3].text,/insurance/);
+ assert.match(L.steps[3].activity.test,/^Turn chance off and start the plan in year 10\./,'step 4 resets what step 3 changed');
+});
+
+test('a record saved before lesson 8 had chance controls opens with the plan in year 10, chance off, and every answer kept',()=>{
+ const map=new Map();const h=harness('integrated-science',map);h.click('start');
+ h.choose('unsure');h.input('explanation','My first idea');h.submit();h.click('next');
+ for(let j=0;j<4;j++){h.click('skip-step-prediction');h.click('next-step');}
+ for(const t of C.LESSONS[0].checks){h.choose(t.correct[0]);h.input('explanation','Because of '+t.id);h.submit();h.click('next');}
+ const now=h.saved(),j=C.LESSONS.findIndex(l=>l.short==='Recovering a population');
+ const old=JSON.parse(JSON.stringify(now));delete old.labs[j].start;delete old.labs[j].chance;old.labs[j].eagles=40;old.labs[j].plan='both';
+ const up=h.E.hydrate(JSON.parse(JSON.stringify(old)));
+ assert(up,'the record opens');assert.deepEqual(up.records,old.records);assert.deepEqual(up.labs[j],{eagles:40,plan:'both',start:10,chance:'off'});
+});
+
 test('the particle drawing uses one arrow scale in every state, so arrow length follows temperature, not state',()=>{
  const lengths=s=>[...Graphs.lab('integrated-science',4,s).graph.matchAll(/<path d="M([\d.]+) ([\d.]+)L([\d.]+) ([\d.]+)" stroke="#6542c0"/g)].map(m=>Math.hypot(m[3]-m[1],m[4]-m[2]));
  for(const[sub,c]of[['water',-5],['water',5],['water',0],['water',100],['water',105],['oxygen',-100],['carbon-dioxide',-100],['ethanol',-100]]){

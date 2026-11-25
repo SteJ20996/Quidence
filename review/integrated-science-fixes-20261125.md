@@ -171,7 +171,99 @@ Before this round, the understanding check had four problems, on lessons 2, 16, 
 - **Difficulty.** is-c06 asks a grade 7 learner to solve 0.3 × (1 − n ÷ 1,500) = 0.1, which is algebra a grade 7 course may not yet have taught. It is marked challenging. No learner data confirm any problem's difficulty.
 - **Idealized models.**
   - **Moonrise.** The 6-hour rule uses an average delay. At mid-latitudes the real daily delay varies with the season, from about half an hour to more than an hour (the "harvest moon" effect).
-  - **Foxes.** The fox model has no chance events.
+  - **Foxes.** The fox model had no chance events; see the lesson 8 section below.
+
+## Lesson 8: a chance of dying out (later change)
+
+**Why.** Lesson 8's model showed only averages. In it, captive breeding added just two years to the recovery and looked like a waste. The National Park Service, though, describes captive breeding as "insurance against the loss of foxes". At the low point in 1999, only about 15 foxes were left on San Miguel Island and about 15 on Santa Rosa Island (National Park Service, 2008). A model without chance cannot show what that insurance was for.
+
+**What changed.**
+- **Two new controls.**
+  - **The year the plan starts:** 10 to 20, default 10.
+  - **Chance:** off (the default), "each fox's luck", or "each fox's luck and bad years".
+- **Chance off is the earlier lab.** With chance off and the plan in year 10, the lab gives exactly the earlier numbers, so every step, question and saved setting keeps its meaning. A record saved before this change opens with the plan in year 10 and chance off.
+- **Chance on runs 1,000 simulated islands.**
+  - **Each fox's luck.** Each year, the number of wild foxes is a random whole number whose average is the model's value (a Poisson draw). Its spread is about the square root of that value: about ±4 around 15 foxes and about ±39 around 1,500. So luck that hardly matters to 1,500 foxes can end 15.
+  - **Bad years.** Each year has a 1 in 10 chance of drought or disease, which halves the value. The other years are 1/18 better, so over many years the value averages out to the model's. Bad years change how much the numbers swing, not the average.
+  - **A fair comparison.** Every plan faces the same bad years on each island.
+  - **Captive breeding needs founders.** Captive-bred foxes come from foxes caught when the plan starts, so an island with fewer than 2 foxes left then gets no releases.
+- **What the view shows.**
+  - 20 of the islands, with a red dot for the year an island's wild foxes died out.
+  - A close-up of 0 to 100 foxes after the plan starts.
+  - A table for all four plans: islands whose wild foxes died out, islands with 30 or more foxes in year 40, and the typical (median) number in year 40.
+  - How many islands lost their foxes before any plan could start.
+- **Steps 3 and 4.**
+  - **Step 3** adds the risk of dying out to the criteria. It asks the learner to start the plans in year 20, when fewer than 20 foxes are left, and to compare them with chance on.
+  - **Step 4** says what really happened: foxes were taken into pens as insurance, San Miguel had more females than males, and 254 foxes had been released by 2008. Its activity first sets chance off and the plan back to year 10.
+  - **The four prediction questions are unchanged.** A saved prediction is stored with its step, so changing a question would attach old predictions to new wording.
+
+**What the model shows.** With eagles taking 50% and the plans starting in year 20, with luck and bad years:
+
+| Plan | Islands whose wild foxes died out | Islands with 30 or more foxes in year 40 | Typical number in year 40 |
+| --- | --- | --- | --- |
+| No plan | 945 | 0 | 0 |
+| Move the eagles away | 133 | 853 | 641 |
+| Release captive-bred foxes | 237 | 16 | 5 |
+| Both | 88 | 917 | 1,275 |
+
+- **Some losses come before any plan.** 57 of these islands lost their wild foxes by year 20, under every plan.
+- **Removing the cause is still needed.** Releases alone leave a dwindling population: a median of 5 foxes in year 40, and only 16 of 1,000 islands with 30 or more.
+- **Removing the cause is not always enough once few animals are left.** After year 20, "Move the eagles away" loses 76 more islands; adding captive-bred foxes cuts that to 31.
+- **Acting early matters most.**
+  - With the plans in year 10, when about 190 foxes are left, no island loses its foxes under either plan that moves the eagles.
+  - Starting in year 15 instead of 20 cuts the islands lost under "Move the eagles away" from 133 to 10.
+- **Each fox's luck alone matters less here.** Without bad years, moving the eagles in year 20 loses 20 of 1,000 islands.
+
+**How sensitive the numbers are.** The bad-year rule is made up, and with the plans in year 20 the results change a lot with it:
+
+| Bad years | Lost, "Move the eagles away" | Lost, "Both" | 30 or more in year 40, "Move the eagles away" | 30 or more, "Both" |
+| --- | --- | --- | --- | --- |
+| 1 in 10, halving (the lab) | 133 | 88 | 853 | 917 |
+| 1 in 20, halving | 67 | 39 | 928 | 963 |
+| 1 in 10, cutting by 30% | 41 | 20 | 954 | 980 |
+| 1 in 5, halving | 272 | 205 | 681 | 803 |
+
+The same pattern holds in every row:
+- "Both" loses fewer islands than "Move the eagles away" and leaves more with 30 or more foxes;
+- releases alone fail;
+- an earlier start loses fewer islands.
+
+The pattern is what the lesson teaches. The numbers are not predictions, and the lab's note says so.
+
+**Independent read.** A reviewer who had not written the change ran the model and found the Poisson draw, the shared bad years and the counts correct. The reviewer found these problems, all fixed:
+- **Bad years lowered the average.** In the first version, bad years only ever lowered the value, so even without eagles the islands averaged well below 1,500. The other years are now a little better, and a test checks that the average is unchanged.
+- **The table favored releases alone.** A column counting islands with any fox at all made releases alone look better than moving the eagles, although its typical island had 3 foxes. The column now counts islands with 30 or more, the threshold Bakker, Doak and Ferrara (2021) used for San Nicolas Island foxes.
+- **Captive foxes came from nowhere.** Releases could restore an island whose wild foxes had all died, though in reality the captive foxes were that island's own last foxes. Releases now need at least 2 foxes left when the plan starts.
+- **Step 4 could not be done from step 3's settings.** Its activity now turns chance off and sets the plan back to year 10 first.
+- **Smaller fixes.**
+  - Losses before the plan are now reported separately.
+  - Red dots mark die-outs, which a line hides while foxes are being released.
+  - The 30-fox note no longer says real islands "count as lost" below 30, which contradicted their recovery from 15.
+  - The note says the numbers are invented, so they are not read as real odds.
+  - The captions no longer mention a plan year when there is no plan.
+
+**Checked by tests.**
+- The draw's mean and variance, for values from 3 to 1,500.
+- Bad years average out.
+- Chance off reproduces the earlier model.
+- The same settings give the same islands every time.
+- Founders are needed for releases.
+- The comparisons above.
+- A record saved before the change opens.
+
+**Checked by hand.** At 390 and 1280 px the view has no page overflow, and the table fits a phone screen.
+
+**Gaps.**
+- **Not fitted to data.** The growth rate, the carrying capacity and the bad-year rule are not estimated from island fox data. Real viability analyses estimate survival and breeding from field counts, as Bakker, Doak and Ferrara (2021) did for San Nicolas Island foxes.
+- **What it leaves out.**
+  - inbreeding;
+  - uneven numbers of males and females;
+  - disease spreading from fox to fox;
+  - chance within the captive breeding itself;
+  - the time it took to move the eagles: the model treats it as instant.
+- **Founders, simply.** Catching foxes for breeding does not remove them from the wild count in the model, and 2 foxes are enough to breed from. Real founders were few and uneven: San Miguel had more females than males.
+- **A 40-year window.** Releases alone look less bad when they start late, because the simulation ends soon after they stop. The 30-or-more column and the median show the decline.
+- **No technical terms.** "Each fox's luck" is what ecologists call demographic stochasticity, and "bad years" is environmental stochasticity. The lesson avoids the terms, so a learner who meets them later must make the link.
 
 ## What comes next
 
@@ -181,7 +273,7 @@ Before this round, the understanding check had four problems, on lessons 2, 16, 
 | 3 (done above) | Rewrite the checks as new situations, with wrong options drawn from known misconceptions and options of similar length | Item-writing guidelines ask for plausible distractors based on common errors, and options of similar length (Haladyna, Downing & Rodriguez, 2002) |
 | 4 (done above) | Add understanding problems for grades 7 and 8, as a new bank version | Four problems covered 5 of the 24 lessons, none from grades 7 or 8 |
 | Later | Problems for the 11 lessons still uncovered, as a check in parts | One check for all 24 lessons would be too long for one sitting |
-| Later | Give lesson 8's fox model a chance of dying out | The model has no chance events, so captive breeding adds only two years and looks like a waste. Yet keeping populations of about 15 foxes from dying out by chance was its real purpose. A chance model needs choices of its own (bad years, an Allee threshold), so it is a separate piece of work. |
+| Later (done above) | Give lesson 8's fox model a chance of dying out | The model had no chance events, so captive breeding added only two years and looked like a waste. Yet keeping populations of about 15 foxes from dying out by chance was its real purpose. |
 
 ## Gaps
 
@@ -205,6 +297,9 @@ Before this round, the understanding check had four problems, on lessons 2, 16, 
 - Hestenes, D., Wells, M., & Swackhamer, G. (1992). Force Concept Inventory. *The Physics Teacher*, 30(3), 141–158.
 - Vredenburg, V. T. (2004). Reversing introduced species effects: Experimental removal of introduced fish leads to rapid recovery of a declining frog. *PNAS*, 101(20), 7646–7650.
 
+- Bakker, V. J., Doak, D. F., & Ferrara, F. J. (2021). Understanding extinction risk and resilience in an extremely small population facing climate and ecosystem change. *Ecosphere*, 12(8), e03724.
+- National Park Service (2008). *Captive breeding program that prevented extinction of endangered island fox ends*. Channel Islands National Park news release.
+- National Park Service (2016). *The restoration of the island fox*. Channel Islands National Park.
 - Meerman, R., & Brown, A. J. (2014). When somebody loses weight, where does the fat go? *BMJ*, 349, g7257.
 - Crouch, C. H., Fagen, A. P., Callan, J. P., & Mazur, E. (2004). Classroom demonstrations: Learning tools or entertainment? *American Journal of Physics*, 72(6), 835–838.
 - Haladyna, T. M., Downing, S. M., & Rodriguez, M. C. (2002). A review of multiple-choice item-writing guidelines for classroom assessment. *Applied Measurement in Education*, 15(3), 309–333.

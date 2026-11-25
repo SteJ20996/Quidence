@@ -143,10 +143,43 @@ function stripes(s,v){
 // Island foxes: a made-up model, not island fox data. Growth slows near the carrying capacity; eagles arrive in
 // year 5; a plan starts in year 10.
 const FOX={capacity:1500,growth:0.3,arrive:5,start:10,release:20,releaseYears:10,years:40};
-function foxes(eagles,plan){
- const take=eagles/100,run=p=>{let n=FOX.capacity;const out=[n];for(let t=0;t<FOX.years;t++){const hunted=t>=FOX.arrive&&!(t>=FOX.start&&(p==='remove'||p==='both')),added=(p==='release'||p==='both')&&t>=FOX.start&&t<FOX.start+FOX.releaseYears?FOX.release:0;n=n+FOX.growth*n*(1-n/FOX.capacity)-(hunted?take*n:0)+added;out.push(n);}return out;};
- const series=run(plan),none=run('none'),back=series.findIndex((n,t)=>t>FOX.start&&n>=1000);
+// Captive-bred foxes come from foxes caught on the island when the plan starts, so releases need at least 2 foxes
+// left then; on an island with fewer there is nothing to breed from.
+const FOUNDERS=2;
+function foxes(eagles,plan,start=FOX.start){
+ const take=eagles/100,run=p=>{let n=FOX.capacity,breeding=false;const out=[n];for(let t=0;t<FOX.years;t++){if(t===start)breeding=n>=FOUNDERS;const hunted=t>=FOX.arrive&&!(t>=start&&(p==='remove'||p==='both')),added=(p==='release'||p==='both')&&breeding&&t>=start&&t<start+FOX.releaseYears?FOX.release:0;n=n+FOX.growth*n*(1-n/FOX.capacity)-(hunted?take*n:0)+added;out.push(n);}return out;};
+ const series=run(plan),none=run('none'),back=series.findIndex((n,t)=>t>start&&n>=1000);
  return{series,none,lowest:Math.min(...series),back:back<0?null:back};
+}
+// Chance: each year the number of wild foxes is a whole number drawn at random around the model's value (a Poisson
+// draw, so its spread is about the square root of the value: large next to a small population, small next to a
+// large one). With bad years on, each year has a 1 in 10 chance of drought or disease that halves the value, and the
+// other years are a little better, so that over many years the value averages out to the model's. Released foxes
+// are added after the draw. Every plan faces the same bad years on each simulated island.
+const FOX_CHANCE={runs:1000,shown:20,badYear:0.1,badCut:0.5,viable:30};
+FOX_CHANCE.goodLift=(1-FOX_CHANCE.badYear*FOX_CHANCE.badCut)/(1-FOX_CHANCE.badYear);
+function poisson(mean,rnd){
+ if(!(mean>0))return 0;
+ if(mean<30){const limit=Math.exp(-mean);let k=0,p=rnd();while(p>limit){k++;p*=rnd();}return k;}
+ // For larger values the normal curve with the same mean and spread is close enough, and much faster.
+ const u=rnd()||1e-12,z=Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*rnd());return Math.max(0,Math.round(mean+Math.sqrt(mean)*z));
+}
+function foxRuns(eagles,plan,start=FOX.start,chance='luck',runs=FOX_CHANCE.runs,keep=0){
+ const take=eagles/100;let diedOut=0,before=0,present=0,viable=0;const paths=[],diedAt=[],last=[];
+ for(let r=0;r<runs;r++){
+  const weather=seeded(9001+r),luck=seeded(77+7919*r);let n=FOX.capacity,gone=null,breeding=false;const path=r<keep?[n]:null;
+  for(let t=0;t<FOX.years;t++){
+   if(t===start)breeding=n>=FOUNDERS;
+   const hunted=t>=FOX.arrive&&!(t>=start&&(plan==='remove'||plan==='both')),added=(plan==='release'||plan==='both')&&breeding&&t>=start&&t<start+FOX.releaseYears?FOX.release:0;
+   const bad=weather()<FOX_CHANCE.badYear;let mean=Math.max(0,n+FOX.growth*n*(1-n/FOX.capacity)-(hunted?take*n:0));
+   if(chance==='bad')mean*=bad?FOX_CHANCE.badCut:FOX_CHANCE.goodLift;
+   const wild=poisson(mean,luck);if(wild===0&&gone===null)gone=t+1;n=wild+added;if(path)path.push(n);
+  }
+  if(gone!==null){diedOut++;if(gone<=start)before++;}if(n>0)present++;if(n>=FOX_CHANCE.viable)viable++;
+  if(path){paths.push(path);diedAt.push(gone);}last.push(n);
+ }
+ last.sort((a,b)=>a-b);
+ return{runs,diedOut,before,present,viable,paths,diedAt,median:(last[(runs-1)>>1]+last[runs>>1])/2};
 }
 const PLAN_NAMES={none:'No plan',remove:'Move the eagles away',release:'Release captive-bred foxes',both:'Both'};
 const curve=series=>x=>{const i=Math.floor(x),f=x-i;return i>=series.length-1?series[series.length-1]:series[i]*(1-f)+series[i+1]*f;};
@@ -511,13 +544,39 @@ function model(index,s){
    readout:`Spreading ${fmt(s.rate)} cm per year on each side = ${fmt(v.kmPerMyr)} km per million years · Sample ${s.distance} km from the ridge: about ${fmt(v.age)} million years old${v.known?`, magnetized ${v.normal?'like today’s field':'opposite to today’s field'}`:''}`,
    formula:'Age = distance ÷ speed. 1 cm per year = 10 km per million years. The dark stripe around the ridge reaches rock 780,000 years old.',
    note:'Real ridges change speed over time, and their stripes are blurred and offset by faults. Stripe ages are rounded from the geomagnetic polarity time scale for the last 5.2 million years.'};}
- if(index===7){const v=foxes(s.eagles,s.plan),whole=n=>Math.round(n).toLocaleString('en-US'),count=n=>whole(n)+(whole(n)==='1'?' fox':' foxes');
+ if(index===7){const start=s.start??FOX.start,chance=s.chance??'off',v=foxes(s.eagles,s.plan,start),whole=n=>Math.round(n).toLocaleString('en-US'),count=n=>whole(n)+(whole(n)==='1'?' fox':' foxes');
+  const formula=`Each year: foxes next year = foxes + 0.3 × foxes × (1 − foxes ÷ 1,500) − foxes taken by eagles + foxes released. Eagles arrive in year 5; the plan starts in year ${start}.`;
+  if(chance!=='off'){
+   const runs=Object.fromEntries(Object.keys(PLAN_NAMES).map(p=>[p,foxRuns(s.eagles,p,start,chance,FOX_CHANCE.runs,p===s.plan?FOX_CHANCE.shown:0)])),mine=runs[s.plan],of=n=>`${n.toLocaleString('en-US')} of ${FOX_CHANCE.runs.toLocaleString('en-US')}`;
+   // Two panels: all 40 years, then a close-up of the years after the plan starts, where small numbers decide.
+   // A red dot marks the year an island's wild foxes died out (during releases its line stays at the released foxes).
+   const panel=(x0,ymax,yticks)=>{const px=t=>80+(t-x0)/(40-x0)*390,py=n=>240-n/ymax*195,line=path=>path.map((n,t)=>[t,n]).filter(([t])=>t>=x0).map(([t,n],k)=>(k?'L':'M')+fmt(px(t))+' '+fmt(py(n))).join(' ');
+    const xticks=x0?[x0,...[15,20,25,30,35,40].filter(t=>t>=x0+3)]:[0,5,10,20,30,40];
+    let b=`<defs><clipPath id="fox-clip-${x0}"><rect x="80" y="40" width="392" height="204"/></clipPath></defs>`;
+    for(const t of xticks)b+=`<path d="M${px(t)} 45V240" stroke="#e4e8ef"/><text x="${px(t)}" y="262" text-anchor="middle" class="tick">${t}</text>`;
+    for(const n of yticks)b+=`<path d="M80 ${py(n)}H470" stroke="#e4e8ef"/><text x="70" y="${py(n)+4}" text-anchor="end" class="tick">${whole(n)}</text>`;
+    b+='<path d="M80 45V240H470" fill="none" stroke="#8391a5"/>';
+    for(const path of mine.paths)b+=`<path d="${line(path)}" clip-path="url(#fox-clip-${x0})" fill="none" stroke="${path[40]>0?'#2f6fa3':'#a84324'}" stroke-opacity=".55" stroke-width="1.5"/>`;
+    b+=`<path d="${line(v.series)}" clip-path="url(#fox-clip-${x0})" fill="none" stroke="#1f2a3a" stroke-width="2.5" stroke-dasharray="7 5"/>`;
+    for(const t of mine.diedAt)if(t!==null&&t>=x0)b+=`<circle cx="${fmt(px(t))}" cy="${py(0)}" r="4" fill="#a84324"/>`;
+    if(!x0&&s.plan!=='none')b+=`<path d="M${px(start)} 45V240" stroke="#7a5a00" stroke-dasharray="3 4"/><text x="${px(start)+4}" y="58" class="tick">plan starts</text>`;
+    return b+'<text x="275" y="291" text-anchor="middle" class="axis-label">Year</text><text x="22" y="145" transform="rotate(-90 22 145)" text-anchor="middle" class="axis-label">Foxes</text>';};
+   const lost=mine.diedAt.filter(t=>t!==null).length,kind=chance==='bad'?'each fox’s luck and bad years':'each fox’s luck',from=s.plan==='none'?'':`, plan from year ${start}`;
+   const graph=M.graphic('Twenty simulated islands with chance',`${PLAN_NAMES[s.plan]}, eagles taking ${s.eagles}%${from}, with ${kind}. Thin lines: ${FOX_CHANCE.shown} simulated islands (blue: foxes on the island in year 40, red: none). Red dots: the year an island’s wild foxes died out. Dashed line: the model without chance.`,panel(0,2000,[0,500,1000,1500,2000]))
+    +M.graphic('Close-up: 0 to 100 foxes',`The same ${FOX_CHANCE.shown} islands from year ${start} to year 40. Red dots mark the year an island’s wild foxes died out; while foxes are being released, its line stays at the released foxes.`,panel(start,100,[0,25,50,75,100]))
+    +M.table(`Out of ${FOX_CHANCE.runs.toLocaleString('en-US')} simulated islands, with ${kind}: on how many the wild foxes died out, on how many at least ${FOX_CHANCE.viable} foxes are left in year 40, and the typical number in year 40`,['Plan','Died out',`${FOX_CHANCE.viable} or more in year 40`,'Typical in year 40'],Object.keys(PLAN_NAMES).map(p=>[PLAN_NAMES[p]+(p===s.plan?' (chosen)':''),whole(runs[p].diedOut),whole(runs[p].viable),whole(runs[p].median)]),
+     (chance==='bad'?'Each plan faces the same bad years on each island. ':'')+`On ${whole(runs.none.before)} islands the wild foxes died out by year ${start}, before any plan could start. Captive-bred foxes come from foxes caught when the plan starts, so an island with none left then gets no releases. Studies of real foxes treat fewer than about ${FOX_CHANCE.viable} as close to lost. The typical number is the median: the middle island when all ${FOX_CHANCE.runs.toLocaleString('en-US')} are put in order.`,'count-table');
+   return{graph,
+    readout:`${PLAN_NAMES[s.plan]}: wild foxes died out on ${of(mine.diedOut)} simulated islands (${whole(mine.before)} of them by year ${start}); ${FOX_CHANCE.viable} or more foxes in year 40 on ${of(mine.viable)} · Shown: ${FOX_CHANCE.shown} islands, ${lost} died out · Without chance: lowest ${count(v.lowest)}`,
+    formula:formula+' With chance on, each year’s number of wild foxes is a random whole number whose average is the model’s value'+(chance==='bad'?'. About 1 year in 10 is a bad year that halves that value; the other years are a little better, so over many years it averages out':'')+'. Released foxes are added after the draw.',
+    note:'A made-up model, not island fox data: the 1-in-10 bad years and the other numbers are invented, so the results show a pattern, not real odds. It leaves out inbreeding, too few mates, disease spreading from fox to fox, and chance in the captive breeding itself.'};
+  }
   const series=s.plan==='none'?[{label:'No plan',prefix:'Line: ',fn:curve(v.series)}]:[{label:PLAN_NAMES[s.plan],fn:curve(v.series)},{label:'No plan',fn:curve(v.none)}];
   const recovery=v.lowest>=1000?'Never below 1,000 foxes':v.back?`Back to 1,000 foxes in year ${v.back}`:'Not back to 1,000 foxes within 40 years';
-  return{graph:M.cartesian('Island foxes over 40 years',series,{xmin:0,xmax:40,ymin:0,ymax:1600,xlabel:'Year',ylabel:'Foxes',point:[10,v.series[10]],left:80,ylabelX:22,xticks:[0,5,10,20,30,40],yticks:[0,500,1000,1500]}),
-   readout:`Year 10: ${count(v.series[10])} · Year 40: ${count(v.series[40])} · Lowest: ${count(v.lowest)} · ${recovery}`,
-   formula:'Each year: foxes next year = foxes + 0.3 × foxes × (1 − foxes ÷ 1,500) − foxes taken by eagles + foxes released. Eagles arrive in year 5; a plan starts in year 10.',
-   note:'A made-up model, not island fox data. It leaves out chance events such as disease or a bad year, which can wipe out a very small population; guarding against them is one reason the real program also raised foxes in captivity.'};}
+  return{graph:M.cartesian('Island foxes over 40 years',series,{xmin:0,xmax:40,ymin:0,ymax:1600,xlabel:'Year',ylabel:'Foxes',point:[start,v.series[start]],left:80,ylabelX:22,xticks:[0,5,10,20,30,40],yticks:[0,500,1000,1500]}),
+   readout:`Year ${start}: ${count(v.series[start])} · Year 40: ${count(v.series[40])} · Lowest: ${count(v.lowest)} · ${recovery}`,
+   formula,
+   note:'A made-up model, not island fox data. Without chance, it gives one smooth number each year. Real populations are counts of single animals: in a small one, a few unlucky deaths or one bad year of drought or disease can wipe it out. Turn chance on to see it.'};}
  if(index===0){const v=cell(s.side,s.shape);
   return{graph:M.cartesian('Surface area for each unit of volume',[{label:'Cube: 6 ÷ side',fn:x=>6/x},{label:'Flat slab: 12 ÷ side',fn:x=>12/x}],{xmin:2,xmax:20,ymin:0,ymax:6.5,xlabel:'Side length (µm)',ylabel:'Surface area ÷ volume (per µm)',point:[s.side,v.ratio],left:80,ylabelX:22,xticks:[2,5,10,15,20],yticks:[0,1,2,3,4,5,6]}),
    readout:`Side ${s.side} µm · Surface area ${fmt(v.area)} µm² · Volume ${fmt(v.volume)} µm³ · Ratio ${fmt(v.ratio)} per µm`,
@@ -541,6 +600,6 @@ function model(index,s){
   formula:'About 3 °C of eventual warming and about 3.9 W/m² of extra energy kept at first for each doubling: 278 → 556 → 1,112 ppm. Between doublings, count the fraction of a doubling: warming ≈ 3 °C × log₂(CO₂ ÷ 278 ppm).',
   note:'Carbon dioxide alone, after the ocean has caught up, which takes centuries. The warming measured so far, about 1.2 °C averaged over 2015–2024 compared with 1850–1900, also reflects other greenhouse gases, particles that cool, and the ocean’s delay.'};
 }
-const api={barrierRatio,model,measured,MLO_MONTHLY,cell,heating,rainShadow,warming,particles,reaction,seafloor,foxes,crash,moon,selection,wave,foodChain,keeling,lineages,cross,body,uphill,combustion,mixing,ionic,rate,feedback,seawater,FUELS,BOND,MOLAR,SPECIFIC,ELEMENTS,FEEDBACK,SEA,STATIONS,CO2_TREND,BODY,LAPSE,SITES,STOP,MONTH,MEDIA,WATER,AIR,CO2,SUBSTANCES,REACTIONS,NORMAL,FOX,AMU};
+const api={barrierRatio,model,measured,MLO_MONTHLY,cell,heating,rainShadow,warming,particles,reaction,seafloor,foxes,foxRuns,poisson,FOX_CHANCE,crash,moon,selection,wave,foodChain,keeling,lineages,cross,body,uphill,combustion,mixing,ionic,rate,feedback,seawater,FUELS,BOND,MOLAR,SPECIFIC,ELEMENTS,FEEDBACK,SEA,STATIONS,CO2_TREND,BODY,LAPSE,SITES,STOP,MONTH,MEDIA,WATER,AIR,CO2,SUBSTANCES,REACTIONS,NORMAL,FOX,FOUNDERS,AMU};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceScienceModels=api;
 })(typeof window==='undefined'?globalThis:window);
