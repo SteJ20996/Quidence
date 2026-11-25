@@ -49,24 +49,81 @@ html[data-ui-theme] body[data-q-theme]{--q-link-button-radius:8px}
 html[data-ui-theme="paper"] body[data-q-theme]{--q-link-button-radius:8px 10px 8px 9px}
 html[data-ui-theme="atlas"] body[data-q-theme]{--q-link-button-radius:4px}
 html[data-ui-theme="studio"] body[data-q-theme]{--q-link-button-radius:24px}
-:where(html[data-ui-theme] body[data-q-theme]) :where(.q-link-button,.subject-home-nav>a,.course-bridge>a,.readiness-links>a,.text-button,.text-btn,[data-q-ui="aa01"] .ghost,.own-toggle,.f-toolbar>a,header.q-brand-header nav>a,.goal-actions>a,.q-paper-options-body>a,.card-more>a:is(.intuition-link,.cross-related)):where(:not([hidden])){display:inline-flex;align-items:center;justify-content:center;gap:6px}
-html[data-ui-theme] body[data-q-theme] :where(.q-link-button,.subject-home-nav>a,.course-bridge>a,.readiness-links>a,.text-button,.text-btn,[data-q-ui="aa01"] .ghost,.own-toggle,.f-toolbar>a,header.q-brand-header nav>a,.goal-actions>a,.q-paper-options-body>a,.card-more>a:is(.intuition-link,.cross-related)):not([hidden]){
+:where(html[data-ui-theme] body[data-q-theme]) :where(.q-link-button,.subject-home-nav>a,.course-bridge>a,.readiness-links>a,.text-button,.text-btn,[data-q-ui="aa01"] .ghost,.own-toggle,.f-toolbar>a,header.q-brand-header nav>a,.goal-actions>a,.q-paper-options-body>a,.card-more>a:is(.intuition-link,.cross-related),.breadcrumb>.link-button):where(:not([hidden])){display:inline-flex;align-items:center;justify-content:center;gap:6px}
+html[data-ui-theme] body[data-q-theme] :where(.q-link-button,.subject-home-nav>a,.course-bridge>a,.readiness-links>a,.text-button,.text-btn,[data-q-ui="aa01"] .ghost,.own-toggle,.f-toolbar>a,header.q-brand-header nav>a,.goal-actions>a,.q-paper-options-body>a,.card-more>a:is(.intuition-link,.cross-related),.breadcrumb>.link-button):not([hidden]){
   box-sizing:border-box;min-height:44px;padding:9px 14px;border:1px solid var(--q-control);border-radius:var(--q-link-button-radius);
   background:var(--q-paper);color:var(--q-ink);box-shadow:none;font-family:inherit;font-size:13px;font-weight:600;line-height:1.3;
   text-align:center;text-decoration:none;cursor:pointer
 }
-html[data-ui-theme] body[data-q-theme] :where(.q-link-button,.subject-home-nav>a,.course-bridge>a,.readiness-links>a,.text-button,.text-btn,[data-q-ui="aa01"] .ghost,.own-toggle,.f-toolbar>a,header.q-brand-header nav>a,.goal-actions>a,.q-paper-options-body>a,.card-more>a:is(.intuition-link,.cross-related)):not([hidden]):hover:not(:disabled){
+html[data-ui-theme] body[data-q-theme] :where(.q-link-button,.subject-home-nav>a,.course-bridge>a,.readiness-links>a,.text-button,.text-btn,[data-q-ui="aa01"] .ghost,.own-toggle,.f-toolbar>a,header.q-brand-header nav>a,.goal-actions>a,.q-paper-options-body>a,.card-more>a:is(.intuition-link,.cross-related),.breadcrumb>.link-button):not([hidden]):hover:not(:disabled){
   background:var(--q-mint);border-color:var(--q-primary);color:var(--q-ink);text-decoration:none
 }
 .q-link-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
 .q-paper-options-body>a{align-self:flex-start}
 html[data-ui-theme] body[data-q-theme] .catalog-heading .text-button{padding:6px 9px;font-size:12px}
 /* Phones: smaller buttons, so two short ones share a row. */
-@media(max-width:600px){html[data-ui-theme] body[data-q-theme] :where(.q-link-button,.subject-home-nav>a,.course-bridge>a,.readiness-links>a,.text-button,.text-btn,[data-q-ui="aa01"] .ghost,.own-toggle,.f-toolbar>a,header.q-brand-header nav>a,.goal-actions>a,.q-paper-options-body>a,.card-more>a:is(.intuition-link,.cross-related)):not([hidden]){padding:8px 10px;font-size:12px}html[data-ui-theme] body[data-q-theme] .subject-home-nav{gap:6px 8px}}
+@media(max-width:600px){html[data-ui-theme] body[data-q-theme] :where(.q-link-button,.subject-home-nav>a,.course-bridge>a,.readiness-links>a,.text-button,.text-btn,[data-q-ui="aa01"] .ghost,.own-toggle,.f-toolbar>a,header.q-brand-header nav>a,.goal-actions>a,.q-paper-options-body>a,.card-more>a:is(.intuition-link,.cross-related),.breadcrumb>.link-button):not([hidden]){padding:8px 10px;font-size:12px}html[data-ui-theme] body[data-q-theme] .subject-home-nav{gap:6px 8px}}
 html[data-ui-theme] body[data-q-theme] :is(.text-button,.text-btn,[data-q-ui="aa01"] .ghost,.own-toggle)[aria-pressed="true"]{background:var(--q-mint);border-color:var(--q-primary)}
 /* On homepage cards, the foundation and Intuition Lab links sit with the other card links and take their size and
    shape: large blocks in Classic, compact rows in the illustrated appearances. */
 html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card>.foundation-link{border:1px solid var(--q-control);background:var(--q-paper);text-decoration:none}
 html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card>.foundation-link:hover{border-color:var(--q-primary);background:var(--q-mint)}
-html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card :is(.foundation-link,.card-more>a:is(.intuition-link,.cross-related)){justify-content:flex-start;padding:6px 9px;border-radius:9px;font-size:13px;font-weight:500;line-height:1.35;text-align:left}
+html[data-ui-theme="classic"] body[data-q-theme].quidence-home .subject-card :is(.foundation-link,.card-more>a:is(.intuition-link,.cross-related),.breadcrumb>.link-button){justify-content:flex-start;padding:6px 9px;border-radius:9px;font-size:13px;font-weight:500;line-height:1.35;text-align:left}
 html[data-ui-theme]:not([data-ui-theme="classic"]) body[data-q-theme].quidence-home .card-more>a:is(.intuition-link,.cross-related){justify-content:flex-start;min-height:0;padding:9px;border-radius:12px;font-size:12px;font-weight:650;text-align:left}
+/* Every clickable control looks like a button, in a shape that suits where it sits. A census of every page and page
+   state in the four appearances found the kinds below; scripts/link-button-audit.cjs checks that none is left plain.
+   Only the logo, which links home on every page, and drawn shapes in diagrams are exempt.
+   1. Links inside sentences, notes, breadcrumbs and footers: an outlined chip that stays in the line of text and
+      keeps the link's own color. Links that already have a class have their own button design and are left alone. */
+html[data-ui-theme] body[data-q-theme]{--q-link-chip-radius:6px}
+html[data-ui-theme="paper"] body[data-q-theme]{--q-link-chip-radius:6px 8px 6px 7px}
+html[data-ui-theme="atlas"] body[data-q-theme]{--q-link-chip-radius:3px}
+html[data-ui-theme="studio"] body[data-q-theme]{--q-link-chip-radius:999px}
+html[data-ui-theme] body[data-q-theme] :where(p,li,aside,footer,figcaption,small,dd,td,blockquote,.related-courses,.breadcrumbs,[class*="footer"],.q-atlas-only,.q-studio-only,.q-paper-only) a[href]:not([class]):not(:where(nav) a):not(:where(.course-bridge,.subject-home-nav,.readiness-links,.q-paper-options-body,.f-toolbar,.intuition-subject-entry)>a),
+html[data-ui-theme] body[data-q-theme] :is(.q-paper-footer,.q-atlas-qidolab,.q-studio-qidolab,.q-studio-record-note,.q-atlas-note,.qi-records){
+  padding:.16em .5em;border:1px solid color-mix(in srgb,currentColor 45%,transparent);border-radius:var(--q-link-chip-radius);
+  background:color-mix(in srgb,currentColor 7%,transparent);text-decoration:none;-webkit-box-decoration-break:clone;box-decoration-break:clone
+}
+html[data-ui-theme] body[data-q-theme] :where(p,li,aside,footer,figcaption,small,dd,td,blockquote,.related-courses,.breadcrumbs,[class*="footer"],.q-atlas-only,.q-studio-only,.q-paper-only) a[href]:not([class]):not(:where(nav) a):not(:where(.course-bridge,.subject-home-nav,.readiness-links,.q-paper-options-body,.f-toolbar,.intuition-subject-entry)>a):hover,
+html[data-ui-theme] body[data-q-theme] :is(.q-paper-footer,.q-atlas-qidolab,.q-studio-qidolab,.q-studio-record-note,.q-atlas-note,.qi-records):hover{background:color-mix(in srgb,currentColor 15%,transparent);border-color:currentColor;text-decoration:none}
+html[data-ui-theme] body[data-q-theme] a.skip{text-decoration:none}
+html[data-ui-theme] body[data-q-theme] :where(p,li,aside,footer,figcaption,small,dd,td,blockquote,.related-courses,.breadcrumbs,[class*="footer"],.q-atlas-only,.q-studio-only,.q-paper-only) a[href]:not([class]):not(:where(nav) a):not(:where(.course-bridge,.subject-home-nav,.readiness-links,.q-paper-options-body,.f-toolbar,.intuition-subject-entry)>a){color:var(--q-primary)}
+/* A chip moves to the next line as a whole rather than splitting; one longer than the line still wraps inside. */
+:where(html[data-ui-theme] body[data-q-theme] :is(p,li,aside,footer,figcaption,small,dd,td,blockquote) a[href]:not([class])){display:inline-block;max-width:100%;line-height:1.35}
+/* Subject chips on the check pages, and native checkboxes and radio buttons, take the appearance's colors rather than
+   the browser's default blue. */
+html[data-ui-theme] body[data-q-theme] .check-subjects a:not([aria-current="page"]){color:var(--q-ink)}
+html[data-ui-theme] body[data-q-theme] :is(input[type="radio"],input[type="checkbox"]){accent-color:var(--q-primary)}
+/* Breadcrumb links and the Studio records note stand on their own, so each is a full tap target (WCAG 2.2 asks for 24 px). */
+html[data-ui-theme] body[data-q-theme] :is(.breadcrumbs a[href],a.q-studio-record-note){display:inline-flex;align-items:center;min-height:28px}
+/* 2. Show-more toggles: a compact outlined button with its own arrow. */
+html[data-ui-theme] body[data-q-theme] details>summary{
+  width:fit-content;max-width:100%;box-sizing:border-box;min-height:40px;padding:8px 14px;
+  border:1px solid color-mix(in srgb,currentColor 40%,transparent);border-radius:var(--q-link-button-radius);
+  background:color-mix(in srgb,currentColor 5%,transparent);cursor:pointer
+}
+html[data-ui-theme] body[data-q-theme] details>summary:hover{border-color:currentColor;background:color-mix(in srgb,currentColor 12%,transparent)}
+/* 3. Tabs and steppers: each choice is outlined; the current one keeps its own fill. */
+html[data-ui-theme] body[data-q-theme] :is(nav.module-nav,.f-mode-nav,.f-view-controls,.qi-filters,.activity-tabs,.q-categories,.step-nav,nav.steps,.header-tools,.qa-chapters,.qf-page-nav)>:is(a,button){
+  border:1px solid color-mix(in srgb,currentColor 38%,transparent);border-radius:var(--q-link-button-radius)
+}
+html[data-ui-theme] body[data-q-theme] nav.steps>button{padding-left:12px;padding-right:12px}
+/* The homepage category tabs and the Intuition Lab filters have stronger appearance rules of their own. */
+html[data-ui-theme] body[data-q-theme].quidence-home .q-categories>button:not([aria-pressed="true"]),
+html[data-ui-theme] body[data-q-theme] #intuition-view .qi-filters>button:not([aria-pressed="true"]){border:1px solid color-mix(in srgb,currentColor 38%,transparent)}
+html[data-ui-theme="paper"] body[data-q-theme] #intuition-view .qi-filters>button:not([aria-pressed="true"]){border-bottom-color:transparent}
+/* 4. Lists of lessons, projects and activities, map places and number-line points: each item is outlined. */
+html[data-ui-theme] body[data-q-theme] :is(.lesson-link,.route-item,.area-nav,.qa-node,.number-line button):not(.active,[aria-current="true"],[aria-current="step"],[aria-current="page"],[aria-pressed="true"]){
+  border:1px solid color-mix(in srgb,currentColor 28%,transparent);border-radius:var(--q-link-button-radius)
+}
+html[data-ui-theme] body[data-q-theme] :is(.lesson-link,.route-item,.area-nav,.qa-node,.number-line button):not(.active,[aria-current="true"],[aria-current="step"],[aria-current="page"],[aria-pressed="true"]):hover{border-color:currentColor}
+/* Number-line points sit on the line, so a soft fill marks each one instead of an outline the line would cut. */
+html[data-ui-theme] body[data-q-theme] .number-line button:not([aria-pressed="true"]){border-color:transparent;background:color-mix(in srgb,currentColor 6%,transparent)}
+html[data-ui-theme] body[data-q-theme] .number-line button:not([aria-pressed="true"]):hover{border-color:transparent;background:color-mix(in srgb,currentColor 13%,transparent)}
+/* Check and report eyebrows sit on cream pages in the illustrated appearances; a slightly darker teal keeps them
+   above a 4.5:1 contrast there. */
+html[data-ui-theme] body[data-q-theme] .f-eyebrow{color:color-mix(in srgb,var(--f-teal,#087f76) 85%,#000)}
+/* Dialog close buttons are round outlined buttons, like every other control. */
+html[data-ui-theme] body[data-q-theme] .dialog-close{display:inline-grid;place-items:center;min-width:40px;min-height:40px;padding:0;border:1px solid color-mix(in srgb,currentColor 40%,transparent);border-radius:50%;background:color-mix(in srgb,currentColor 5%,transparent)}
+/* Inline link chips are at least 24 px tall, WCAG 2.2's minimum target, even inside small notes. */
+:where(html[data-ui-theme] body[data-q-theme] :is(p,li,aside,footer,figcaption,small,dd,td,blockquote) a[href]:not([class])){box-sizing:border-box;min-height:24px}

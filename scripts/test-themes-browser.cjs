@@ -11,7 +11,7 @@ async function english(page,where){
 }
 async function main(){
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
- const result={layouts:0,buttonChecks:0,headerContrastChecks:0,logoLoadChecks:0,pages:files().filter(f=>f.endsWith('.html')).length,themes:4,alignedHomeLayouts:0,classicCardLayouts:0,logoContrastChecks:0,errors:[],failures:[]};
+ const result={layouts:0,buttonChecks:0,stateButtonChecks:0,headerContrastChecks:0,logoLoadChecks:0,pages:files().filter(f=>f.endsWith('.html')).length,themes:4,alignedHomeLayouts:0,classicCardLayouts:0,logoContrastChecks:0,errors:[],failures:[]};
  const homeEdges=new Map();
  const shots=path.join(__dirname,'../review/theme-screenshots');fs.mkdirSync(shots,{recursive:true});
  try{
@@ -109,10 +109,10 @@ async function main(){
     // Header and toolbar text stays readable when an appearance repaints the header.
     assert.deepEqual(await page.evaluate(lowContrastHeaderText),[],`${theme} ${file} ${width}: header text must have a 4.5:1 contrast`);
     result.headerContrastChecks++;
-    // Standalone navigation links and actions look like buttons in every appearance, including links that only
-    // show once a disclosure is open.
+    // Every link, button, toggle and tab looks like a button in every appearance, including links inside sentences and
+    // footers and links that only show once a disclosure is open.
     await page.evaluate(()=>document.querySelectorAll('details').forEach(d=>{d.open=true;}));
-    assert.deepEqual(await page.evaluate(linkLikeControls),[],`${theme} ${file} ${width}: standalone links and actions must look like buttons`);
+    assert.deepEqual(await page.evaluate(linkLikeControls),[],`${theme} ${file} ${width}: every link and control must look like a button`);
     result.buttonChecks++;
     assert.equal(await page.evaluate(key=>localStorage.getItem(key),LOCALE),'es',file+' left the saved language preference in place');
     result.layouts++;
@@ -121,12 +121,23 @@ async function main(){
    assert.equal(await page.locator('.subject-card:visible').count(),23);
    await page.screenshot({path:path.join(shots,theme+'-courses.png')});
    await page.evaluate(()=>document.querySelectorAll('details').forEach(d=>{d.open=true;}));
-   assert.deepEqual(await page.evaluate(linkLikeControls),[],theme+' homepage course cards: standalone links must look like buttons');result.buttonChecks++;
+   assert.deepEqual(await page.evaluate(linkLikeControls),[],theme+' homepage course cards: every link and control must look like a button');result.buttonChecks++;
    const html=await page.evaluate(()=>QuidenceReportTools.documentHtml('Report','<h1>Report</h1><p class="student-work">My exact answer: −1/3</p>'));
    const offline=await context.newPage();await offline.setContent(html);
    assert.equal(await offline.locator('html').getAttribute('data-ui-theme'),theme);
    assert.equal(await offline.locator('.student-work').textContent(),'My exact answer: −1/3');
    await offline.emulateMedia({media:'print'});assert.equal(await offline.locator('body').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(255, 255, 255)');await offline.close();
+   // Page states with controls of their own: an activity, a project, an algorithm, the map, lessons that show photo
+   // credits, a safety notice or a proof, and the dialogs with fixed content, opened.
+   await page.setViewportSize({width:1440,height:1000});
+   for(const [url,open] of [['/intuition/#multiply'],['/cross-disciplinary/?project=cross-p01'],['/courses/algorithms/?algorithm=dijkstra'],['/modules/ac01/dist/projects/?activity=food-trucks'],['/?view=map'],['/?view=intuition'],['/courses/integrated-science/',7],['/courses/quantitative/',8],['/courses/discrete-math/'],['/explain/','dialogs'],['/modules/ad01/dist/think/','dialogs']]){
+    await page.goto(origin+url);await page.waitForFunction(()=>window.QuidenceI18n?.locale==='en');
+    if(open==='dialogs')await page.evaluate(()=>document.querySelectorAll('dialog').forEach(d=>{if(!d.open)d.show();}));
+    else if(open!==undefined){await page.locator(`[data-action="open"][data-index="${open}"]`).first().click();await page.locator('.lesson-link.active').waitFor();}
+    await page.evaluate(()=>document.querySelectorAll('details').forEach(d=>{d.open=true;}));
+    assert.deepEqual(await page.evaluate(linkLikeControls),[],`${theme} ${url} ${open??''}: every link and control must look like a button`);result.stateButtonChecks++;
+    if(open==='dialogs')await page.evaluate(()=>document.querySelectorAll('dialog[open]').forEach(d=>d.close()));
+   }
   }
   // Phones show one button with the current appearance; it opens the four previews as an even two-column grid.
   {const phone=await browser.newContext({viewport:{width:390,height:800}}),p=await phone.newPage();listen(p);await p.goto(origin+'/');

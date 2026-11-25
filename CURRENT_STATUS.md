@@ -1,3 +1,54 @@
+## 2026-11-25 · Random spot-check of the whole site
+
+- **Method.** `scripts/spot-check-browser.cjs` draws seeded random samples: a page state, an appearance and a width from 320 to 1920 px, then 0–3 random clicks. It runs automated checks and saves screenshots.
+  - Five rounds took 256 samples and made about 480 internal link checks. No link was broken and no script error occurred.
+  - An independent reviewer read the 64 screenshots of round 2.
+- **Fixed.**
+  - **Linear Algebra.** Matrices use square brackets; single bars mean a determinant. The third worked product no longer breaks or loses its bracket.
+  - **Algorithms.**
+    - The builder menus fit the card on phones.
+    - The flowchart and route map say they scroll when they are wider than the screen.
+    - The workbench stacks below 1100 px, so flowchart text is not shrunk to about 9 px.
+    - Diagram labels are drawn above lines and boxes.
+    - Index numbers keep clear of the row above.
+    - Steps do not break inside expressions.
+  - **Colors.** Inline links and check-page subject chips use the appearance's colors, not browser-default blue, and so do native radio buttons and checkboxes.
+  - **Chips.** A chip wraps whole instead of splitting.
+  - **Contrast.** Footer grey and Atlas eyebrows reach 4.5:1.
+  - **Target sizes.** Breadcrumbs, the Studio records note and chips in small notes are at least 24 px tall.
+  - **Dialogs.** The Math Voice Lab dialog's "×" is an outlined round button.
+  - **Atlas homepage.** The subtitle no longer runs into the picture.
+- **Left.** The note lists what was not changed and why. That includes:
+  - the inactive "My report" tab, which WCAG exempts;
+  - small chart text on phones, which needs a layout for each chart.
+- **Tests.** The themes suite now opens dialogs and checks their controls. All 23 browser suites and `npm test` pass.
+
+See [the spot-check note](review/spot-check-20261125.md).
+
+## 2026-11-25 · Every clickable control looks like a button
+
+- **Request.** The owner asked that every clickable link be marked as a button, in any style. The earlier change covered standalone links only; links inside sentences and footers, tabs, steppers, lesson lists and map places were exempt.
+- **Census.** A script visited 38 pages and 158 page states: every lesson, Intuition Lab activity, project and algorithm. It ran in the four appearances. Before the change, 1,829 to 1,876 of about 5,000 visible controls per appearance looked plain at 1440 px.
+- **Styles** (`assets/appearance-layout.css`), each in its appearance's corner shape:
+  - links inside sentences, notes, breadcrumbs and footers become outlined chips that stay in the line;
+  - show-more toggles become compact outlined buttons;
+  - tabs and steppers are outlined, and the current one keeps its fill;
+  - lesson, project and activity lists and map places are outlined;
+  - number-line points get a soft fill.
+- **Exempt.** The logo, and controls drawn as shapes in diagrams. The logo exemption is a judgement and can be revisited.
+- **Also fixed.** In Classic, the homepage subject picker no longer splits "Quantitative Reasoning" and "Discrete Mathematics" mid-word.
+- **Tests.**
+  - `scripts/link-button-audit.cjs` is strict.
+  - The themes suite checks all pages at two widths in four appearances: 308 checks. It also checks 11 page states in each appearance, dialogs open included: 44 checks.
+  - The full census of 158 states passes at both widths.
+- **Gaps.**
+  - Some labels that are not clickable are also outlined.
+  - Inline chips are small targets.
+  - States reached only after answering questions were not visited.
+  - No learners have tried the change.
+
+See [the button note](review/link-buttons-20261125.md).
+
 ## 2026-11-17 · Quantitative Reasoning: gambling-harm notes and its place on the maps
 
 - **Gambling-harm notes** in the course's key places:
