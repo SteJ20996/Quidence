@@ -72,12 +72,58 @@ Each one now asks the learner to explain what they read in the model: "Use the v
 - **The text still gives the answer.** Once shown, the step text still answers the prediction. That is now the intended order: the guess first, then the evidence, then the explanation.
 - **No evidence for this course.** The research on predicting first (Crouch et al., 2004) comes from university physics demonstrations, with a teacher in the room. Whether a written prediction does the same for 11–16-year-olds working alone has not been tested here.
 
+## Round 3: new questions, with every earlier answer kept (this change)
+
+All 72 lesson questions are revised: each lesson's question before the lesson and its two fresh questions after it.
+- **Fresh questions use new situations.** They put the lesson's idea into a context and with numbers that appear nowhere in the lesson. Examples:
+  - a potato cut into cubes (lesson 1);
+  - Santa Ana winds (lesson 3);
+  - an echo sounder in Monterey Bay (lesson 12);
+  - a sealed globe ecosystem (lesson 13);
+  - magnesium nitride (lesson 21).
+
+  No question shares a run of more than 7 words with its lesson's text, predictions, tests or prompts.
+- **Wrong options are known misconceptions or typical errors.** Examples:
+  - "warm water lowers the energy a reaction needs";
+  - 10 °C per km instead of 6.5 °C per km;
+  - adding growth factors instead of multiplying them;
+  - "humans evolved from today's chimpanzees";
+  - "the next seed is due to be white".
+
+  Many such ideas are documented in studies of students' thinking, among them:
+  - Driver, Squires, Rushworth and Wood-Robinson (1994);
+  - Bishop and Anderson (1990) on natural selection;
+  - Baxter (1989) on Moon phases;
+  - Hestenes, Wells and Swackhamer (1992) on forces;
+  - Boyes and Stanisstreet (1993) on the greenhouse effect and the ozone layer.
+- **Option lengths are balanced.** The right answer is now the longest option in 17 of 72 questions (24%), down from 49. In every question the longest option is at most 1.25 times the shortest.
+- **Numbers are checked.** Every number comes from the course's own models, and the lab can be set to every setting a question names. Real-world facts were checked:
+  - the October 2023 eclipses;
+  - Venus and Mercury;
+  - mustard plants flowering earlier after drought (Franks, Sim & Weis, 2007);
+  - trout removal and frog recovery in Sierra lakes (Vredenburg, 2004).
+
+**How saved answers are kept.** A saved answer is stored by question id and option, so changing a question in place would attach old answers to wording the learner never saw.
+- **New ids.** Each revised question has a new id ending in `-r2` and names the version-1 question it replaces.
+- **Frozen wording.** The version-1 wordings are kept frozen in the course content, and a test fails if they change.
+- **Upgrade.** A record saved under version 5 opens under version 6 with every answer unchanged, and an event notes the revision.
+- **Finished lessons stay finished.** A lesson counts as done when each question, or its earlier wording, has been answered. Learners who finished are not asked again.
+- **Unfinished lessons.** A half-finished lesson asks only the questions still unanswered, in their new wording.
+- **Display.** The feedback page, the summary and the reports show each answer with the wording it answered, and say so when that wording is an earlier one. The JSON export includes the retired definitions.
+- **Scope.** The engine change works for any course that later revises questions; only Integrated Science uses it so far.
+
+**Gaps.**
+- **No item statistics.** No learner has answered the new items, so their difficulty and how well they separate understanding from guessing are unknown.
+- **Transfer varies.** A few questions are near transfer, using the lesson's model with new numbers (3.1, 7.1, 15.1, 20.1). Item 13.2, the sealed globe, is close to step 4's idea.
+- **Difficulty varies.** Some items ask more than the grade usually does: the √2 speed ratio in grade 7 (5.2), and multiplying rate factors (22.1).
+- **Unchecked citations.** The drafts named other studies for some misconceptions. Only the sources above were checked, and only those are cited here.
+
 ## What comes next
 
 | Round | Work | Why |
 | --- | --- | --- |
 | 2 (done above) | Ask before telling. | Predicting before a demonstration improves learning over watching it. Crouch, Fagen, Callan and Mazur (2004) found that students who predicted the outcome of physics demonstrations understood them better afterwards than students who only watched. The predict–observe–explain sequence (White & Gunstone, 1992) depends on the prediction coming first. |
-| 3 | Rewrite the checks as new situations, with wrong options drawn from known misconceptions and options of similar length | Item-writing guidelines ask for plausible distractors based on common errors, and options of similar length (Haladyna, Downing & Rodriguez, 2002) |
+| 3 (done above) | Rewrite the checks as new situations, with wrong options drawn from known misconceptions and options of similar length | Item-writing guidelines ask for plausible distractors based on common errors, and options of similar length (Haladyna, Downing & Rodriguez, 2002) |
 | 4 | Add understanding problems for grades 7 and 8 and the other uncovered units, as a new bank version | Four problems now cover 5 of the 24 lessons |
 | Later | Give lesson 8's fox model a chance of dying out | The model has no chance events, so captive breeding adds only two years and looks like a waste. Yet keeping populations of about 15 foxes from dying out by chance was its real purpose. A chance model needs choices of its own (bad years, an Allee threshold), so it is a separate piece of work. |
 
@@ -95,6 +141,13 @@ Each one now asks the learner to explain what they read in the model: "Use the v
   This will be addressed with the round 3 rewrite.
 
 ## Sources
+- Baxter, J. (1989). Children's understanding of familiar astronomical events. *International Journal of Science Education*, 11(5), 502–513.
+- Bishop, B. A., & Anderson, C. W. (1990). Student conceptions of natural selection and its role in evolution. *Journal of Research in Science Teaching*, 27(5), 415–427.
+- Boyes, E., & Stanisstreet, M. (1993). The "Greenhouse Effect": Children's perceptions of causes, consequences and cures. *International Journal of Science Education*, 15(5), 531–552.
+- Driver, R., Squires, A., Rushworth, P., & Wood-Robinson, V. (1994). *Making Sense of Secondary Science: Research into Children's Ideas*. Routledge.
+- Franks, S. J., Sim, S., & Weis, A. E. (2007). Rapid evolution of flowering time by an annual plant in response to a climate fluctuation. *PNAS*, 104(4), 1278–1282.
+- Hestenes, D., Wells, M., & Swackhamer, G. (1992). Force Concept Inventory. *The Physics Teacher*, 30(3), 141–158.
+- Vredenburg, V. T. (2004). Reversing introduced species effects: Experimental removal of introduced fish leads to rapid recovery of a declining frog. *PNAS*, 101(20), 7646–7650.
 
 - Crouch, C. H., Fagen, A. P., Callan, J. P., & Mazur, E. (2004). Classroom demonstrations: Learning tools or entertainment? *American Journal of Physics*, 72(6), 835–838.
 - Haladyna, T. M., Downing, S. M., & Rodriguez, M. C. (2002). A review of multiple-choice item-writing guidelines for classroom assessment. *Applied Measurement in Education*, 15(3), 309–333.

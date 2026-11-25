@@ -27,7 +27,8 @@ test('the course follows the plan: one lesson per segment of grades 6–8, Livin
   for(const s of l.steps){assert(s.title&&s.text);for(const k of['predict','test','explain'])assert(s.activity[k],k);}
   const tasks=[l.predict,...l.checks];assert.equal(tasks.length,3);
   for(const[j,t]of tasks.entries()){
-   assert.equal(t.id,'integrated-science-l'+(i+1)+'-q'+(j+1));assert.equal(t.options.length,3);assert.deepEqual(t.correct,['0']);
+   // A revised question gets a new id and names the version-1 id it replaces.
+   assert.equal(t.id.replace(/-r2$/,''),'integrated-science-l'+(i+1)+'-q'+(j+1));if(t.replaces)assert.deepEqual(t.replaces,['integrated-science-l'+(i+1)+'-q'+(j+1)]);assert.equal(t.options.length,3);assert.deepEqual(t.correct,['0']);
    assert.equal(new Set(t.options.map(o=>o.label)).size,3);assert(t.explanation);
    // The correct answer is not always in the same place.
    assert.equal(t.options.findIndex(o=>o.id==='0'),(3-(i+j)%3)%3);
@@ -38,7 +39,7 @@ test('the course follows the plan: one lesson per segment of grades 6–8, Livin
  assert.match(C.scope,/Selected foundations/);assert.match(C.scope,/Not a complete year of science/);
  assert.equal(C.bridge,undefined);
  assert.equal(S.create().LESSONS.length,24,'create() returns a fresh copy');
- assert.equal(C.VERSION,'integrated-science-5');assert.deepEqual(C.PREVIOUS,[{version:'integrated-science-1',lessons:4},{version:'integrated-science-2',lessons:8},{version:'integrated-science-3',lessons:12},{version:'integrated-science-4',lessons:18}]);
+ assert.equal(C.VERSION,'integrated-science-6');assert.deepEqual(C.PREVIOUS,[{version:'integrated-science-5',lessons:24,revised:true},{version:'integrated-science-1',lessons:4},{version:'integrated-science-2',lessons:8},{version:'integrated-science-3',lessons:12},{version:'integrated-science-4',lessons:18}]);
 });
 
 test('the cell model: surface area for each unit of volume is 6/s for a cube and 12/s for a slab a quarter as thick',()=>{
@@ -177,7 +178,7 @@ test('a record saved with only the grade 6 lessons opens with the later lessons 
  assert.deepEqual(Object.keys(old.records).map(id=>id.split('-q')[0]).filter((x,i,a)=>a.indexOf(x)===i),['integrated-science-l1','integrated-science-l2','integrated-science-l3','integrated-science-l4']);
  const up=h.E.hydrate(JSON.parse(JSON.stringify(old)));
  assert(up,'The old record upgrades');
- assert.equal(up.contentVersion,'integrated-science-5');assert.equal(up.labs.length,24);assert.equal(up.lessons.length,24);
+ assert.equal(up.contentVersion,'integrated-science-6');assert.equal(up.labs.length,24);assert.equal(up.lessons.length,24);
  assert.deepEqual(up.records,old.records,'Every saved answer and explanation is kept exactly');
  assert.deepEqual(up.labs.slice(0,4),old.labs);assert.deepEqual(up.labs.slice(4),C.LESSONS.slice(4).map(l=>l.defaults));
  assert.equal(up.view,'orientation');assert.equal(up.lessonIndex,4);
@@ -393,7 +394,7 @@ test('a record saved with eighteen lessons, at the end of Living Earth, opens wi
  const now=h.saved();
  const old={...now,contentVersion:'integrated-science-4',labs:now.labs.slice(0,18),lessons:now.lessons.slice(0,18)};
  const up=h.E.hydrate(JSON.parse(JSON.stringify(old)));
- assert(up);assert.equal(up.contentVersion,'integrated-science-5');assert.equal(up.labs.length,24);assert.deepEqual(up.records,old.records);
+ assert(up);assert.equal(up.contentVersion,'integrated-science-6');assert.equal(up.labs.length,24);assert.deepEqual(up.records,old.records);
  assert.deepEqual(up.labs.slice(18),C.LESSONS.slice(18).map(l=>l.defaults));
  const event=up.events[up.events.length-1];assert.equal(event.type,'lessons_added');assert.equal(event.from,'integrated-science-4');assert.deepEqual(event.lessons,C.LESSONS.slice(18).map(l=>l.id));
 });
@@ -615,4 +616,37 @@ test('saved step predictions are validated, appear in the feedback and report, a
   const b=JSON.parse(JSON.stringify(saved));b.lessons[0].stepPredictions=bad;assert.equal(h.E.hydrate(b),null);}
  const explains=C.LESSONS.flatMap(l=>l.steps.map(s=>s.activity.explain));
  for(const giveaway of[/eight times as much/,/rises at sunset/,/close to, but not exactly/,/so close to the water/,/far side is warmer/,/cannot see the Moon/])assert(!explains.some(e=>giveaway.test(e)),'explain prompts do not state the result: '+giveaway);
+});
+
+test('revised questions keep every earlier answer: a finished lesson stays finished and shows the wording it answered',()=>{
+ const revised=C.LESSONS.flatMap(l=>[l.predict,...l.checks]).filter(t=>t.replaces);
+ assert(revised.length>=60,'most questions are revised');
+ for(const t of revised){assert.match(t.id,/-r2$/);assert.equal(t.replaces.length,1);const old=C.RETIRED.find(r=>r.id===t.replaces[0]);assert(old,'the earlier wording is kept');assert.notEqual(old.prompt+old.options.map(o=>o.label).join(),t.prompt+t.options.map(o=>o.label).join());}
+ assert.equal(C.RETIRED.length,revised.length);
+ // A learner who finished lesson 1 under version 5, answering the earlier wordings.
+ const map=new Map();let h=harness('integrated-science',map);h.click('start');
+ const L=C.LESSONS[0],oldIds=[L.predict,...L.checks].map(t=>t.replaces?t.replaces[0]:t.id);
+ const state=h.saved(),at=new Date().toISOString();
+ oldIds.forEach((id,k)=>{const task=h.E.TASKS[id],answer={choices:[task.correct[0]],explanation:'Old answer '+k,otherHelp:false};
+  state.records[id]={draft:answer,status:'submitted',feedbackSeen:true,submissions:[{at,answer,result:h.E.score(task,answer),support:{phase:k?'check':'predict',lessonSeen:k>0,feedbackSeen:false,otherHelp:false}}]};});
+ Object.assign(state,{contentVersion:'integrated-science-5',view:'lesson',lessonIndex:0,stage:'review',questionIndex:1});
+ state.lessons[0]={seenSteps:[0,1,2,3],reviewed:true};
+ const up=h.E.hydrate(JSON.parse(JSON.stringify(state)));
+ assert(up,'the record opens');assert.equal(up.contentVersion,C.VERSION);assert.deepEqual(up.records,state.records,'every answer is kept exactly');
+ assert(h.E.lessonDone(up,0),'the lesson stays finished');assert.equal(up.events.at(-1).type,'questions_revised');
+ map.set(h.E.SCHEMA,JSON.stringify(up));h=harness('integrated-science',map);
+ const old1=h.E.TASKS[oldIds[1]];assert(h.app.innerHTML.includes(old1.prompt.replace(/&/g,'&amp;').slice(0,40)),'the feedback shows the earlier wording');
+ assert.match(h.app.innerHTML,/You answered an earlier wording of this question/);
+ // A lesson half done under version 5 asks only the questions not yet answered, in their new wording.
+ const half=JSON.parse(JSON.stringify(state));delete half.records[oldIds[2]];Object.assign(half,{stage:'check',questionIndex:1});half.lessons[0].reviewed=false;
+ const up2=h.E.hydrate(half);assert(up2);assert(!h.E.lessonDone(up2,0));assert.equal(L.checks.findIndex(t=>!h.E.answered(up2,t)),1);
+});
+
+test('the revised questions balance option lengths, and the first published wordings stay frozen',()=>{
+ const all=C.LESSONS.flatMap(l=>[l.predict,...l.checks]);
+ const longest=all.filter(t=>{const c=t.options.find(o=>o.id==='0').label.length;return t.options.every(o=>o.id==='0'||o.label.length<c);}).length;
+ assert(longest<=all.length/3,'the right answer is the longest option in '+longest+' of '+all.length+' questions');
+ for(const t of all){const L=t.options.map(o=>o.label.length);assert(Math.max(...L)/Math.min(...L)<=1.25,t.id+' option lengths');}
+ // Answers saved against the version-1 wordings are shown with them, so those wordings never change.
+ assert.equal(require('crypto').createHash('sha256').update(JSON.stringify(C.RETIRED)).digest('hex'),'dad50374893a2d4ac1ce7df9ee78762f6a743f47b6522d1dec41e1b3e2018756');
 });

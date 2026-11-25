@@ -1,3 +1,22 @@
+## 2026-11-25 · Integrated Science, round 3: all 72 questions revised, every earlier answer kept
+
+- **New questions.**
+  - **New situations.** The fresh questions use contexts and numbers that appear nowhere in the lesson, such as a potato cut into cubes, Santa Ana winds, an echo sounder in Monterey Bay, a sealed globe ecosystem and magnesium nitride. No question shares more than 7 consecutive words with its lesson.
+  - **Misconception-based wrong options.** Wrong options are known misconceptions or typical errors.
+  - **Balanced lengths.** The right answer is the longest option in 17 of 72 questions, down from 49, and the longest option is at most 1.25 times the shortest.
+  - **Checked numbers.** Every number comes from the course's models, and every lab setting a question names can be made.
+- **Saved answers.**
+  - **New ids, frozen wordings.** Revised questions get new ids (`-r2`) that name the questions they replace. The version-1 wordings are frozen, and a test fails if they change.
+  - **Upgrade.** Records saved under version 5 open under version 6 with every answer unchanged.
+  - **Finished lessons stay finished.** A lesson is done when each question, or its earlier wording, is answered.
+  - **Half-finished lessons.** They ask only the unanswered questions, in their new wording.
+  - **Display.** Feedback, the summary and the reports show answers with the wording they answered.
+- **Gaps.**
+  - No learners have answered the new items yet.
+  - A few questions are near transfer, and a few are above their grade.
+
+See [the review and fixes note](review/integrated-science-fixes-20261125.md).
+
 ## 2026-11-25 · Integrated Science, round 2: ask before telling
 
 - **Each step opens with its prediction.**
