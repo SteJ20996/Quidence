@@ -1,6 +1,6 @@
-# Integrated Science 6–10: independent review and the first round of fixes · 2026-11-25
+# Integrated Science 6–10: independent review and four rounds of fixes · 2026-11-25
 
-The repository owner said the middle-school science course still needed work. A reviewer who had not written the course read all 24 lessons. The reviewer ran every model at the settings each step asks for, and checked the understanding problems, the foundation items and the activity drawings. This note records what the review found, what this first round fixes, and what the next rounds will do.
+The repository owner said the middle-school science course still needed work. A reviewer who had not written the course read all 24 lessons. The reviewer ran every model at the settings each step asks for, and checked the understanding problems, the foundation items and the activity drawings. This note records what the review found, what each of four rounds fixed, and what remains.
 
 ## What the review found
 
@@ -118,19 +118,75 @@ All 72 lesson questions are revised: each lesson's question before the lesson an
 - **Difficulty varies.** Some items ask more than the grade usually does: the √2 speed ratio in grade 7 (5.2), and multiplying rate factors (22.1).
 - **Unchecked citations.** The drafts named other studies for some misconceptions. Only the sources above were checked, and only those are cited here.
 
+## Round 4: understanding problems for grades 7 and 8 (this change)
+
+Before this round, the understanding check had four problems, on lessons 2, 16, 19, 23 and 24. None came from grades 7 or 8. Four problems are added, each on two lessons of those grades.
+
+| Problem | Lessons | Numbers asked | Choice, and the error each wrong option stands for |
+| --- | --- | --- | --- |
+| is-c05 Fast molecules, rearranged atoms | 5, 6 | A hydrogen molecule moves 4 times as fast as an oxygen molecule at one temperature. By the ratio of molecular masses, 90 g of glucose uses 96 g of oxygen in respiration and makes 186 g of carbon dioxide and water. | Where the glucose's atoms go. Wrong: "changed into energy" (matter turned into energy); "breathing out removes only air". |
+| is-c06 Rates on the seafloor and on an island | 7, 8 | One side of a ridge moves 2.5 cm a year; two points on opposite sides move 50 cm apart in 10 years. In the course's fox model, eagles taking 10% a year hold the foxes at 1,000. | Why the foxes level off below 1,500. Wrong: "the island has less food" (a predator's toll read as a shortage of resources); "the foxes learn to hide". |
+| is-c07 Energy, stopping and echoes | 9, 12 | 240 kJ for 1,200 kg at 20 m/s. Braking from twice the speed takes 4 times as far: 50 m. An echo after 0.6 s in seawater means 450 m of water. | How a crumple zone protects. Wrong: "a shorter stop"; "a lighter car". |
+| is-c08 A spreading color and the Moon's clock | 11, 10 | A ratio of 1 dark mouse to 8 light ones, doubling every 15 generations, reaches half after 45 generations and 80% after 75. A full moon rises about 6 hours later than a first-quarter moon. | Naming a thin Moon seen before sunrise, lit on the left. Wrong: waxing for waning; "a new moon". |
+
+**How the problems were built.**
+- **Every value is stated.** A problem gives each number and rule it needs, such as the fox model's growth rule or the doubling time of the ratio, so a match checks reasoning, not recall.
+- **The numbers agree with the course's models.** At the problems' settings:
+  - the fox model levels off at 1,000.1 foxes by year 40;
+  - the seafloor model dates rock 150 km out at 6 million years;
+  - the crash model gives 240 kJ, and 12.5 m and 50 m of braking on a wet road from 10 and 20 m/s;
+  - the Moon model rises 150 minutes later three days after full moon.
+- **Distractors and lengths.** As in round 3, each wrong option is a typical error. The right option is never longer than 1.1 times the shortest, and in three of the four it is the shortest. A test checks the length limit.
+- **Answers are recomputed separately.** `scripts/audit-challenges.py` recomputes every answer with exact fractions:
+  - it balances the respiration equation atom by atom;
+  - it runs the fox model year by year until it settles;
+  - it doubles the mouse ratio block by block.
+- **Supplied information.** The check's notes list the values each problem supplies. What the check does not cover now includes two things: watching the real Moon, and the chance that a small population dies out by bad luck.
+
+**Independent read.** A reviewer who had not written the problems recomputed all 12 numbers and found them correct. The reviewer also raised 13 points, all addressed. The main ones:
+- **Moles.** is-c05 used moles, which the course first teaches in lesson 19 (grade 10). It now works from the ratio of molecular masses, as lesson 5 does.
+- **A defensible distractor.** is-c06's "carrying capacity" option could be argued; see below. Its question now also says "above zero", since no foxes also balances.
+- **Rounding.** is-c07 asked for 112.5 m, which invites a whole number; it now asks about twice the speed (50 m). is-c08's 6 hours now says "to the nearest hour", since the 50-minutes-a-day rule gives about 6.2.
+- **Units.** is-c07 now says that kg and m/s give joules, and that 1 kJ = 1,000 J.
+- **A wrong follow-up.** is-c08's follow-up placed a waxing gibbous moon high in the south at sunset, where lesson 10 places a first-quarter moon. It now asks about the Moon ten days after new moon.
+- **Smaller fixes.** An echo sounder in the hull, not people on deck, hears the echo, because lesson 12 says sound in water barely crosses the surface. is-c08 now asks about the mice before the Moon, so its two Moon questions sit together. is-c05's follow-up no longer explains a helium balloon by speed alone, since the size of helium atoms matters as much.
+
+**How saved work is kept.** Published problems are never edited in place, so this is a new bank version, 15.
+- **The first four problems are carried over unchanged.** The new science module reuses the published task objects, and a test checks that they are identical.
+- **Bank 14 is frozen** as `assets/challenge-bank-v14.js`, and bank 15 keeps it in its history.
+- **A check started under bank 14 keeps its four problems and its answers.** A new check has eight problems, in lesson order.
+- **The course page and the homepage count** say 8 problems for Integrated Science and 88 diagnostic problems in all.
+
+**The prerequisites were understated.** The gap noted below for round 1 was still open. The course's prerequisite now names the mathematics the lessons use: squares and square roots, repeated doubling, powers of ten and scientific notation, and the pH scale.
+
+**Evidence and its limits.**
+- **Matter into energy.** Meerman and Brown (2014) asked 150 doctors, dietitians and personal trainers where body fat goes when people lose weight. More than half said it turns into energy or heat. Most of its mass is in fact breathed out as carbon dioxide. Their survey was of adults and about fat, not glucose. The error is the one is-c05's distractor names; how common it is among 13-year-olds is not shown there.
+- **Moon phases.** Baxter (1989) found that children's explanations of phases often rely on Earth's shadow. The waxing–waning distinction tested here is a different, narrower skill, and no study of it was checked.
+- **No source for some distractors.** No study was checked for the crumple-zone and food-shortage distractors. They come from the lessons' own contrasts (a longer stop lowers the force; a predator's toll is not a shortage of food), not from measured misconception rates.
+- **Carrying capacity is defined two ways.** Lesson 8 defines it as the largest population the environment can support, while some textbooks count predation among the factors that set it. A wrong option saying "the carrying capacity fell" could therefore be defended, so the option names a shortage of food instead.
+
+**Gaps.**
+- **Coverage is still partial.** The check now covers 13 of the 24 lessons (2, 5–12, 16, 19, 23, 24). Lessons 1, 3 and 4 of grade 6 and lessons 13–15, 17, 18 and 20–22 of high school have no problem. Adding them to one check would make it about 14 problems long. A check per grade band would need the check page to offer parts, which it does not yet do.
+- **Length.** Eight multi-part problems are long for one sitting. Progress is saved, but how many learners finish is unknown.
+- **Difficulty.** is-c06 asks a grade 7 learner to solve 0.3 × (1 − n ÷ 1,500) = 0.1, which is algebra a grade 7 course may not yet have taught. It is marked challenging. No learner data confirm any problem's difficulty.
+- **Idealized models.**
+  - **Moonrise.** The 6-hour rule uses an average delay. At mid-latitudes the real daily delay varies with the season, from about half an hour to more than an hour (the "harvest moon" effect).
+  - **Foxes.** The fox model has no chance events.
+
 ## What comes next
 
 | Round | Work | Why |
 | --- | --- | --- |
 | 2 (done above) | Ask before telling. | Predicting before a demonstration improves learning over watching it. Crouch, Fagen, Callan and Mazur (2004) found that students who predicted the outcome of physics demonstrations understood them better afterwards than students who only watched. The predict–observe–explain sequence (White & Gunstone, 1992) depends on the prediction coming first. |
 | 3 (done above) | Rewrite the checks as new situations, with wrong options drawn from known misconceptions and options of similar length | Item-writing guidelines ask for plausible distractors based on common errors, and options of similar length (Haladyna, Downing & Rodriguez, 2002) |
-| 4 | Add understanding problems for grades 7 and 8 and the other uncovered units, as a new bank version | Four problems now cover 5 of the 24 lessons |
+| 4 (done above) | Add understanding problems for grades 7 and 8, as a new bank version | Four problems covered 5 of the 24 lessons, none from grades 7 or 8 |
+| Later | Problems for the 11 lessons still uncovered, as a check in parts | One check for all 24 lessons would be too long for one sitting |
 | Later | Give lesson 8's fox model a chance of dying out | The model has no chance events, so captive breeding adds only two years and looks like a waste. Yet keeping populations of about 15 foxes from dying out by chance was its real purpose. A chance model needs choices of its own (bad years, an Allee threshold), so it is a separate piece of work. |
 
 ## Gaps
 
 - **No learners have tried the course.** Readability scores (Flesch–Kincaid grade 6.3 to 10.9 by lesson) say nothing about whether learners understand it.
-- **This round changes no questions.** The length cue and the repeated checks remain until round 3, so current results from the questions still overstate understanding.
+- **Round 1 changed no questions.** The length cue and the repeated checks remained until round 3, so results from questions answered before round 3 overstate understanding.
 - **The lesson 22 readout is a contrast between two models.** It gives two reactions the same collision factor, which real reactions with and without a catalyst need not share. The note says so.
 - **The mathematics behind the lessons is still understated.** The prerequisites the course page lists (whole numbers, decimals, ratios and simple formulas) leave out several things the lessons use:
   - logarithms (lessons 4 and 24);
@@ -138,7 +194,7 @@ All 72 lesson questions are revised: each lesson's question before the lesson an
   - scientific notation (lesson 19);
   - an exponential (lesson 22).
 
-  This will be addressed with the round 3 rewrite.
+  Round 4 adds them to the course's prerequisite.
 
 ## Sources
 - Baxter, J. (1989). Children's understanding of familiar astronomical events. *International Journal of Science Education*, 11(5), 502–513.
@@ -149,6 +205,7 @@ All 72 lesson questions are revised: each lesson's question before the lesson an
 - Hestenes, D., Wells, M., & Swackhamer, G. (1992). Force Concept Inventory. *The Physics Teacher*, 30(3), 141–158.
 - Vredenburg, V. T. (2004). Reversing introduced species effects: Experimental removal of introduced fish leads to rapid recovery of a declining frog. *PNAS*, 101(20), 7646–7650.
 
+- Meerman, R., & Brown, A. J. (2014). When somebody loses weight, where does the fat go? *BMJ*, 349, g7257.
 - Crouch, C. H., Fagen, A. P., Callan, J. P., & Mazur, E. (2004). Classroom demonstrations: Learning tools or entertainment? *American Journal of Physics*, 72(6), 835–838.
 - Haladyna, T. M., Downing, S. M., & Rodriguez, M. C. (2002). A review of multiple-choice item-writing guidelines for classroom assessment. *Applied Measurement in Education*, 15(3), 309–333.
 - White, R., & Gunstone, R. (1992). *Probing Understanding*. Falmer Press.

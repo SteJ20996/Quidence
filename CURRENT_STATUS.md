@@ -1,3 +1,32 @@
+## 2026-11-25 · Integrated Science, round 4: understanding problems for grades 7 and 8
+
+- **Four new problems.** Each covers two lessons of grades 7 or 8:
+  - **is-c05:** particle speeds and atoms in respiration (lessons 5–6);
+  - **is-c06:** seafloor spreading and the fox model with eagles (lessons 7–8);
+  - **is-c07:** kinetic energy, braking distance and an echo (lessons 9 and 12);
+  - **is-c08:** moonrise, a crescent's phase and natural selection (lessons 10–11).
+
+  Every value is stated in the problem, and the numbers agree with the course's models. Wrong options are typical errors, and the right option is never more than 1.1 times the shortest.
+- **Bank 15.**
+  - **What it holds.** The published problems are carried over unchanged, and bank 14 is frozen as `assets/challenge-bank-v14.js`.
+  - **Old and new checks.** A check started under bank 14 keeps its four problems and answers. New checks have eight problems, in lesson order.
+  - **Counts.** The course page shows 8 problems, and the homepage counts 88 diagnostic problems.
+- **Checked separately.** `scripts/audit-challenges.py` recomputes all 94 tasks exactly, including running the fox model year by year.
+- **Independent read.** A reviewer who had not written the problems found all 12 numbers correct and raised 13 points, all addressed, chiefly:
+  - is-c05 used moles before lesson 19 teaches them;
+  - a defensible "carrying capacity" distractor;
+  - an answer of 112.5 m that invited rounding;
+  - joules not stated;
+  - a follow-up question that contradicted lesson 10;
+  - who hears an echo at sea.
+- **Prerequisites.** The course's prerequisite now names the mathematics the lessons use: square roots, repeated doubling, powers of ten and scientific notation, and the pH scale.
+- **Gaps.**
+  - 11 of the 24 lessons still have no understanding problem.
+  - is-c06 needs a small equation that grade 7 may not have reached.
+  - No learner has tried the new problems.
+
+See [the review and fixes note](review/integrated-science-fixes-20261125.md).
+
 ## 2026-11-25 · Integrated Science, round 3: all 72 questions revised, every earlier answer kept
 
 - **New questions.**

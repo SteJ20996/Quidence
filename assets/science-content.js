@@ -430,7 +430,7 @@ function create(){
  return{MODULE:id,TITLE:'Integrated Science 6–10',reviewFocus:'science',predictFirst:true,VERSION:'integrated-science-6',PREVIOUS:[{version:'integrated-science-5',lessons:24,revised:true},{version:'integrated-science-1',lessons:4},{version:'integrated-science-2',lessons:8},{version:'integrated-science-3',lessons:12},{version:'integrated-science-4',lessons:18}],UNITS:clone(UNITS),summaryHeadline:'Connect the model\nto the world.',
   eyebrow:'INTEGRATED SCIENCE · GRADES 6–10',headline:'Build a model.\nTest it against the world.',
   lead:'Follow California’s integrated science from cells, weather, atoms, plates, forces and waves in grades 6 to 8 through Living Earth in grade 9 and Chemistry in the Earth System in grade 10, one model at a time.',
-  prerequisite:'Use whole numbers, decimals, ratios, and simple formulas. Scientific relationships are supplied in each lesson.',
+  prerequisite:'Use whole numbers, decimals, ratios, percents and simple formulas. Some lessons also use squares and square roots, repeated doubling, powers of ten and scientific notation, and the pH scale; each lesson explains what it uses, and scientific relationships are supplied.',
   scope:'Selected foundations: one lesson for each instructional segment of California’s integrated grades 6–8 and the Living Earth and Chemistry in the Earth System courses. Not a complete year of science or a laboratory program.',
   reportsHref:'../../reports/',LESSONS:lessons,
   // Earlier wordings of revised questions, kept so saved answers validate and show as they were answered.

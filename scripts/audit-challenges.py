@@ -347,6 +347,30 @@ first,f=F(12,10),F(6,10);rounds=[first*f**k for k in range(200)]
 assert abs(sum(rounds)-first/(1-f))<F(1,10**30)
 # [H+] = 10^-pH exactly for whole-number pH: pH 6 has 1/10^6 and pH 8 has 1/10^8 mol/L.
 R['is-c04']={'twoRounds':rounds[0]+rounds[1],'total':first/(1-f),'ions':F(1,10**6)/F(1,10**8),'matters':'carbonate'}
+# Integrated Science, grades 7 and 8: equal energy of motion, respiration with balanced atoms, seafloor spreading,
+# the course's fox model run year by year, kinetic energy and braking distance from the model's rate, an echo,
+# moonrise from the fraction of the cycle, and a ratio doubled generation block by block.
+v_ratio_sq=F(32,2);v_ratio=isqrt(int(v_ratio_sq));assert v_ratio*v_ratio==v_ratio_sq
+glucose={'C':6,'H':12,'O':6};respiration={'left':[(1,glucose),(6,oxygen)],'right':[(6,co2),(6,water)]}
+for el in 'CHO':assert sum(k*a.get(el,0) for k,a in respiration['left'])==sum(k*a.get(el,0) for k,a in respiration['right'])
+g_mol=F(90,molar_mass(glucose));o2_used=g_mol*6*molar_mass(oxygen);made=g_mol*6*molar_mass(co2)+g_mol*6*molar_mass(water)
+assert 90+o2_used==made
+R['is-c05']={'speed':v_ratio,'oxygen':o2_used,'products':made,'atoms':'leave'}
+km_per_myr=F(150,6);cm_per_year=km_per_myr*100000/10**6
+# The model: n -> n + 0.3 n (1 - n/1500) - 0.1 n. Iterate from 1,500 (rounded to 10^-12 each year) and check it
+# settles where additions equal losses; near that point each year shrinks the gap by a factor of 0.8.
+n=F(1500)
+for year in range(120):n=n+F(3,10)*n*(1-n/1500)-F(1,10)*n;n=F(round(n*10**12),10**12)
+fixed=1500*(1-F(1,10)/F(3,10));assert abs(n-fixed)<F(1,10**6) and F(3,10)*fixed*(1-fixed/1500)==F(1,10)*fixed
+R['is-c06']={'rate':cm_per_year,'apart':2*cm_per_year*10,'balance':fixed,'level':'balance'}
+wet=4;stop10=F(10**2,2*wet);assert stop10==F(25,2)
+R['is-c07']={'energy':F(1,2)*1200*20**2/1000,'braking':stop10*F(20,10)**2,'depth':F(1500)*F(6,10)/2,'crumple':'longer'}
+# Rising time: 6 a.m. at new moon and a full day later over one cycle; first quarter at 1/4, full moon at 1/2.
+rise=lambda f:6+24*f
+dark,light,gens=F(1),F(8),0
+while dark<light:dark*=2;gens+=15
+after75=F(1)*2**(75//15)
+R['is-c08']={'rise':rise(F(1,2))-rise(F(1,4)),'half':gens,'percent':100*after75/(after75+8),'phase':'waning'}
 # Quantitative Reasoning: a Fermi estimate with bounds, the square-root law and the complement rule, indicators, symmetry
 # and counts, and ruin, the Kelly share, waiting times and Penney's game, each recomputed by a different route.
 from itertools import permutations, combinations, product
@@ -409,6 +433,6 @@ assert race('THH','HHT')==F(3,4) and race('HH','HT')==F(1,2) and race('THH','HHH
 assert race('TTH','THT')==F(2,3) and race('HTH','THT')==F(1,2) and race('TTT','THT')==F(2,5)
 best=max(['HHH','HHT','HTH','HTT','THH','TTH','TTT'],key=lambda x:race(x,'THT'));assert best=='TTH'
 R['qr-c04']={'reach':100*P[18],'kelly':100*f,'wait':wait('HTHT'),'beats':'tth'}
-assert len(R)==90
-output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel–Hakimi degree tests, every equally likely spin, coin and letter arrangement, a 10,000-part factory, algorithms run step by step with counters, every simple route and every set of four roads, every coin combination and every subset of 20, a double-precision exponential value with endpoint comparisons, and for Integrated Science the heating and burning arithmetic with balanced atoms, every Punnett box, and a feedback series summed term by term. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
+assert len(R)==94
+output={'method':'Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel–Hakimi degree tests, every equally likely spin, coin and letter arrangement, a 10,000-part factory, algorithms run step by step with counters, every simple route and every set of four roads, every coin combination and every subset of 20, a double-precision exponential value with endpoint comparisons, and for Integrated Science the heating, burning and respiration arithmetic with balanced atoms, every Punnett box, a feedback series summed term by term, the fox model run year by year, and a ratio doubled block by block. Authored answer keys are not imported.','questions':{key:{field:str(value)if isinstance(value,(int,float,F))else value for field,value in answers.items()}for key,answers in R.items()}}
 path=Path(__file__).resolve().parents[1]/'review'/'challenge-math-audit.json';path.parent.mkdir(exist_ok=True);path.write_text(json.dumps(output,indent=2)+'\n');print(json.dumps({'questions':len(R),'components':sum(len(x)for x in R.values()),'output':str(path)}))
