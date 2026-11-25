@@ -1,3 +1,36 @@
+## 2026-11-25 · Integrated Science lesson 8: a chance of dying out
+
+- **New controls.**
+  - **The year the plan starts:** 10 to 20.
+  - **Chance:** off; each fox's luck; or each fox's luck and bad years.
+
+  With chance off and the plan in year 10, the lab is exactly as before, and old records open with those settings.
+- **1,000 simulated islands.** With chance on, each year's number of wild foxes is a random whole number around the model's value (a Poisson draw).
+  - **Bad years.** About 1 year in 10, the value is halved, and other years are a little better, so the average is unchanged. Every plan faces the same bad years.
+  - **Founders.** Captive-bred foxes need at least 2 foxes left when the plan starts.
+- **What the view shows.**
+  - 20 of the islands;
+  - a close-up of 0 to 100 foxes;
+  - a table of all four plans: islands lost, islands with 30 or more foxes in year 40, and the typical number in year 40.
+- **What it shows the learner.**
+  - With the plans starting in year 20, when fewer than 20 foxes are left, moving the eagles away loses 133 of 1,000 islands. 57 of them are lost before any plan starts.
+  - Adding captive-bred foxes cuts the losses after the plan starts from 76 to 31.
+  - Releases alone leave a typical 5 foxes.
+  - Starting in year 15 loses only 10.
+  - The percentages depend on the made-up bad-year rule; the pattern does not.
+- **Lesson text.** Step 3 adds the risk of dying out to the criteria. Step 4 tells how foxes were taken into pens as insurance in 1999–2000. The prediction questions are unchanged, so saved predictions keep their wording.
+- **Independent read.** A reviewer found the draw and counts correct and five problems, all fixed:
+  - bad years lowered the average;
+  - the table favored releases alone;
+  - captive foxes came from nowhere;
+  - step 4 could not be done from step 3's settings;
+  - a few captions.
+- **Gaps.**
+  - The model is not fitted to fox data, and it counts a population as lost only at zero; real studies use about 30 foxes.
+  - It leaves out inbreeding, disease spreading from fox to fox and chance in captive breeding.
+
+See [the review and fixes note](review/integrated-science-fixes-20261125.md#lesson-8-a-chance-of-dying-out-later-change).
+
 ## 2026-11-25 · Integrated Science, round 4: understanding problems for grades 7 and 8
 
 - **Four new problems.** Each covers two lessons of grades 7 or 8:
