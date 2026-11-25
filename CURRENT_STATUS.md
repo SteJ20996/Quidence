@@ -1,3 +1,34 @@
+## 2026-11-25 · Integrated Science: independent review and round 1 of fixes
+
+- **Review.** An independent reviewer read all 24 lessons and ran every model.
+  - About 80 numbers and claims are correct.
+  - The weaknesses are in teaching and assessment:
+    - about half of the step predictions are answered just above them;
+    - at least 15 of 48 "new situation" checks repeat the lessons;
+    - in 49 of 72 questions the right option is the longest;
+    - the understanding check covers 5 of 24 lessons.
+  - There is one model error, in lesson 22.
+- **Round 1: errors and misleading setups.**
+  - **Lesson 22.** It compared each barrier only with itself, so a catalyst's lower barrier looked slower. The graph now reads "× its own rate at 25 °C", and a readout compares barriers at the same temperature: at 25 °C, 40 kJ/mol is about 1.0 × 10⁷ times as fast as 80 kJ/mol.
+  - **Lessons 3 and 18.** The two cooling rates are explained: about 10 °C per km for rising cloud-free air, and about 6.5 °C per km on average around a mountain.
+  - **Lesson 2.** The energy slider reaches 1,600 kJ and the axis scales with the mass, so the boiling plateau at 500 g is no longer cut off.
+  - **Lesson 16.** A sample slider draws 10 samples; sample 1 is unchanged. Three of the ten samples of 4 have no white offspring, near the expected 32%.
+  - **Lesson 20.** The readout gives energy per degree: 0.84 kJ for water and 0.09 kJ for iron.
+  - **Lessons 9 and 24.** Lesson 9's missing graph and lesson 24's model value stated as fact are corrected.
+  - **Lessons 12, 18 and 6.** Rewording.
+  - **Lessons 19 and 20.** Both now refer back to lesson 2.
+  - **Definitions.** kJ, albedo, IPCC, upwelling and µmol/kg.
+  - **Safety.** Notes added.
+  - **Reviews.** Science questions ask a reviewer to judge "the science".
+- **Saved work.** A lab control added to a lesson takes its default in older records. Every answer and setting is kept, with a test.
+- **Next.**
+  - Round 2: predict before reading.
+  - Round 3: rewrite checks as new situations with misconception-based options of similar length.
+  - Round 4: understanding problems for grades 7–8.
+  - The fox model's chance of dying out is separate work.
+
+See [the review and fixes note](review/integrated-science-fixes-20261125.md).
+
 ## 2026-11-25 · Random spot-check of the whole site
 
 - **Method.** `scripts/spot-check-browser.cjs` draws seeded random samples: a page state, an appearance and a width from 320 to 1920 px, then 0–3 random clicks. It runs automated checks and saves screenshots.

@@ -55,6 +55,11 @@ function last(state,id){return state.records[id]?.submissions.at(-1)||null;}
 // A course may append lessons. A record saved under an earlier version whose
 // lessons are still the first ones gains empty places for the new lessons;
 // its answers, drafts and history are kept exactly, and an event records the change.
+// A lab control added to a lesson after a record was saved takes its default value; every saved setting is kept.
+function fillLabs(raw){
+ if(!raw||!Array.isArray(raw.labs)||raw.labs.length!==C.LESSONS.length)return raw;
+ return{...raw,labs:raw.labs.map((lab,i)=>lab&&typeof lab==='object'&&!Array.isArray(lab)?{...clone(C.LESSONS[i].defaults),...lab}:lab)};
+}
 function upgrade(raw){
  const prior=raw&&(C.PREVIOUS||[]).find(p=>p.version===raw.contentVersion);
  if(!prior||prior.lessons>=C.LESSONS.length||raw.schema!==SCHEMA||!Array.isArray(raw.lessons)||raw.lessons.length!==prior.lessons||!Array.isArray(raw.labs)||raw.labs.length!==prior.lessons||!Array.isArray(raw.events))return raw;
@@ -74,7 +79,7 @@ function upgrade(raw){
 }
 function hydrate(input){
  try{
-  const raw=upgrade(input);
+  const raw=fillLabs(upgrade(input));
   if(!raw||raw.schema!==SCHEMA||raw.contentVersion!==C.VERSION||!validLabs(raw.labs)||!['orientation','lesson','summary'].includes(raw.view)||!['predict','learn','check','review'].includes(raw.stage))return null;
   if(!Number.isInteger(raw.lessonIndex)||raw.lessonIndex<0||raw.lessonIndex>=C.LESSONS.length||!Number.isInteger(raw.questionIndex)||raw.questionIndex<0||raw.questionIndex>1)return null;
   if(!Array.isArray(raw.lessons)||raw.lessons.length!==C.LESSONS.length||!Number.isFinite(Date.parse(raw.createdAt))||!Array.isArray(raw.events)||raw.events.some(e=>!e||typeof e.type!=='string'||!Number.isFinite(Date.parse(e.at)))||!raw.records||typeof raw.records!=='object'||Array.isArray(raw.records))return null;

@@ -531,3 +531,50 @@ test('lessons with a hands-on investigation show a drawing of it in their feedba
  close(1e-3/0.282e-9/1e6,3.55,0.01);assert.match(I.figure(21),/about 3\.5 million ions/);
  const m7=I.moonSky(7),m11=I.moonSky(11);assert(m7.altitude>45&&m7.azimuth>0&&m7.azimuth<45);assert(m11.azimuth<0);assert(I.moonSky(3).altitude<I.moonSky(5).altitude);
 });
+
+test('lesson 22 compares barriers at one temperature, so a catalyst’s lower barrier always speeds a reaction',()=>{
+ // Each line compares a reaction with itself at 25 °C; barriers are compared at the same temperature.
+ close(Models.barrierRatio(25,40,80),Math.exp(40000/(8.314*298.15)),1);assert(Models.barrierRatio(25,40,80)>1e7&&Models.barrierRatio(25,40,80)<1.1e7);
+ for(const t of[0,25,35,55])for(const[lo,hi]of[[40,50],[50,80],[40,80]])assert(Models.barrierRatio(t,lo,hi)>1,`a lower barrier is faster at ${t} °C`);
+ const i=C.LESSONS.findIndex(l=>l.short==='Reaction rates'),view=Models.model(i,{...C.LESSONS[i].defaults,temperature:35,barrier:'50'});
+ assert.match(view.readout,/× this reaction’s rate at 25 °C/);assert.match(view.readout,/40 kJ\/mol is 49\.6 times as fast as 50 kJ\/mol; 50 kJ\/mol is 1\.2 × 10⁵ times as fast as 80 kJ\/mol/);
+ assert.doesNotMatch(view.readout,/1 = 25 °C/,'no shared reference that the barriers do not have');
+ assert.match(C.LESSONS[i].steps[2].activity.test,/how much faster a lower barrier is at the same temperature/);
+});
+
+test('lesson setups match their labs: the heating axis covers every mass, and each step’s settings can be made',()=>{
+ const i=C.LESSONS.findIndex(l=>l.short==='Heating ice'),energy=C.LESSONS[i].controls.find(c=>c.name==='energy'),mass=C.LESSONS[i].controls.find(c=>c.name==='mass');
+ assert(energy.max>=Models.heating(mass.max,0).total,'the energy slider reaches the end of boiling for the largest mass');
+ for(const m of[100,200,350,500]){const g=Models.model(i,{mass:m,energy:0}).graph,ticks=[...g.matchAll(/>(\d+)<\/text>/g)].map(x=>+x[1]);assert(Math.max(...ticks)>=Models.heating(m,0).total-100,`the axis reaches the end of boiling at ${m} g`);}
+ const L9=C.LESSONS.find(l=>l.short==='Speed and crashes');assert.doesNotMatch(L9.steps[0].activity.explain,/energy against mass/);
+ const L18=C.LESSONS.find(l=>l.short==='Moving uphill');assert.match(L18.steps[0].text,/10 °C per kilometer \(lesson 3\)/);
+ const k=C.LESSONS.indexOf(L18),low=Models.uphill(5,4,3,L18.defaults.width);assert(low.share<0.1,'from 3 km, 5 °C leaves under a tenth of the area');
+});
+
+test('lesson 20 reads energy per degree, and lesson 16 can draw new samples while sample 1 stays as before',()=>{
+ const i=C.LESSONS.findIndex(l=>l.short==='Heat flow'),w=Models.model(i,{...C.LESSONS[i].defaults}).readout,f=Models.model(i,{...C.LESSONS[i].defaults,object:'iron'}).readout;
+ const per=r=>+r.match(/gave off ([\d.]+) kJ for each degree/)[1];assert.equal(per(w),0.84);assert.equal(per(f),0.09);
+ assert.deepEqual([4,20,1000].map(n=>Models.cross('Pp','Pp',n).white),[2,7,248],'sample 1 is the earlier fixed sample');
+ const fours=[...Array(10)].map((_,s)=>Models.cross('Pp','Pp',4,s+1).white);assert.deepEqual(fours,[2,1,0,1,0,3,1,1,2,0]);
+ assert.equal(fours.filter(x=>x===0).length,3,'3 of 10 samples have no white offspring, near (3/4)^4 ≈ 32%');
+ const j=C.LESSONS.findIndex(l=>l.short==='Inheritance');assert.equal(C.LESSONS[j].defaults.sample,1);assert.match(C.LESSONS[j].steps[2].activity.test,/move the sample from 1 to 10/);
+});
+
+test('a record saved before lesson 16 had a sample control opens with sample 1 and every answer kept',()=>{
+ const map=new Map();const h=harness('integrated-science',map);h.click('start');
+ h.choose('unsure');h.input('explanation','My first idea');h.submit();h.click('next');
+ for(let j=0;j<4;j++)h.click('next-step');
+ for(const t of C.LESSONS[0].checks){h.choose(t.correct[0]);h.input('explanation','Because of '+t.id);h.submit();h.click('next');}
+ const now=h.saved(),j=C.LESSONS.findIndex(l=>l.short==='Inheritance');
+ const old=JSON.parse(JSON.stringify(now));delete old.labs[j].sample;old.labs[j].offspring='100';
+ const up=h.E.hydrate(JSON.parse(JSON.stringify(old)));
+ assert.equal(Object.keys(old.records).length,3,'the record holds the three answers');assert(up,'the record opens');assert.deepEqual(up.records,old.records);assert.equal(up.labs[j].sample,1);assert.equal(up.labs[j].offspring,'100','a saved setting is kept');
+});
+
+test('science reviews judge the science, and the hands-on activities carry their safety notes',()=>{
+ assert.equal(C.reviewFocus,'science');
+ const next=s=>C.LESSONS.find(l=>l.short===s).next;
+ assert.match(next('Cells as systems'),/wash your hands/);assert.match(next('Heating ice'),/goggles/);
+ assert.match(next('Particles in motion'),/poured by an adult/);assert.match(next('Atoms in living things'),/eye protection/);
+ assert.match(next('Combustion'),/the same 4\.18 J as in lesson 2/);
+});
