@@ -3,7 +3,11 @@
 function create(C){
 const SCHEMA=C.MODULE+'_beta01_session_v1',clone=x=>JSON.parse(JSON.stringify(x));
 const tasks=C.LESSONS.flatMap(l=>[l.predict,...l.checks]);
-const TASKS=Object.fromEntries(tasks.map(t=>[t.id,t]));
+// Earlier wordings of revised questions stay defined, so every answer saved against them still validates and is
+// always shown with the wording it answered. A current question names the ids it replaces.
+const TASKS=Object.fromEntries(tasks.concat(C.RETIRED||[]).map(t=>[t.id,t]));
+// The id of the version of a question that was answered: the current one, or an earlier wording it replaces.
+function answered(state,t){return[t.id,...(t.replaces||[])].find(id=>state.records[id]?.status==='submitted')||null;}
 // Only presentation is shuffled. Stored choices retain their original content IDs.
 function choiceOptions(state,task){
  let seed=2166136261;
@@ -49,14 +53,22 @@ function submit(state,id,phase){
  const entry={at:new Date().toISOString(),answer:clone(r.draft),result:score(t,r.draft),support:{phase,lessonSeen:state.lessons[li].seenSteps.length>0,feedbackSeen:r.feedbackSeen,otherHelp:r.draft.otherHelp}};
  r.submissions.push(entry);r.status='submitted';log(state,'answer_submitted',{taskId:id,submission:r.submissions.length});return true;
 }
-function lessonDone(state,index){return state.lessons[index].reviewed&&state.lessons[index].seenSteps.length===4&&[C.LESSONS[index].predict,...C.LESSONS[index].checks].every(t=>state.records[t.id]?.status==='submitted');}
+function lessonDone(state,index){return state.lessons[index].reviewed&&state.lessons[index].seenSteps.length===4&&[C.LESSONS[index].predict,...C.LESSONS[index].checks].every(t=>answered(state,t));}
 function allDone(state){return C.LESSONS.every((_,i)=>lessonDone(state,i));}
 function last(state,id){return state.records[id]?.submissions.at(-1)||null;}
 // A course may append lessons. A record saved under an earlier version whose
 // lessons are still the first ones gains empty places for the new lessons;
 // its answers, drafts and history are kept exactly, and an event records the change.
+// A lab control added to a lesson after a record was saved takes its default value; every saved setting is kept.
+function fillLabs(raw){
+ if(!raw||!Array.isArray(raw.labs)||raw.labs.length!==C.LESSONS.length)return raw;
+ return{...raw,labs:raw.labs.map((lab,i)=>lab&&typeof lab==='object'&&!Array.isArray(lab)?{...clone(C.LESSONS[i].defaults),...lab}:lab)};
+}
 function upgrade(raw){
  const prior=raw&&(C.PREVIOUS||[]).find(p=>p.version===raw.contentVersion);
+ // A version that revised questions without adding lessons: every saved answer stays under the id it was given, and
+ // the questions that replace them count it as answered.
+ if(prior&&prior.revised&&prior.lessons===C.LESSONS.length&&raw.schema===SCHEMA&&Array.isArray(raw.events)){const next=clone(raw);next.contentVersion=C.VERSION;next.events.push({at:new Date().toISOString(),type:'questions_revised',from:prior.version,to:C.VERSION});return next;}
  if(!prior||prior.lessons>=C.LESSONS.length||raw.schema!==SCHEMA||!Array.isArray(raw.lessons)||raw.lessons.length!==prior.lessons||!Array.isArray(raw.labs)||raw.labs.length!==prior.lessons||!Array.isArray(raw.events))return raw;
  const added=C.LESSONS.slice(prior.lessons),newIds=new Set(added.flatMap(l=>[l.predict.id,...l.checks.map(t=>t.id)]));
  // The earlier version could not hold answers to the new lessons, so such a record is not upgraded and fails validation.
@@ -74,29 +86,31 @@ function upgrade(raw){
 }
 function hydrate(input){
  try{
-  const raw=upgrade(input);
+  const raw=fillLabs(upgrade(input));
   if(!raw||raw.schema!==SCHEMA||raw.contentVersion!==C.VERSION||!validLabs(raw.labs)||!['orientation','lesson','summary'].includes(raw.view)||!['predict','learn','check','review'].includes(raw.stage))return null;
   if(!Number.isInteger(raw.lessonIndex)||raw.lessonIndex<0||raw.lessonIndex>=C.LESSONS.length||!Number.isInteger(raw.questionIndex)||raw.questionIndex<0||raw.questionIndex>1)return null;
   if(!Array.isArray(raw.lessons)||raw.lessons.length!==C.LESSONS.length||!Number.isFinite(Date.parse(raw.createdAt))||!Array.isArray(raw.events)||raw.events.some(e=>!e||typeof e.type!=='string'||!Number.isFinite(Date.parse(e.at)))||!raw.records||typeof raw.records!=='object'||Array.isArray(raw.records))return null;
   if(raw.lessons.some(l=>!l||typeof l.reviewed!=='boolean'||!Array.isArray(l.seenSteps)||new Set(l.seenSteps).size!==l.seenSteps.length||l.seenSteps.some(s=>!Number.isInteger(s)||s<0||s>3)))return null;
+  // Step predictions are optional: four entries, each empty or a saved prediction of up to 500 characters.
+  if(raw.lessons.some(l=>l.stepPredictions!==undefined&&!(Array.isArray(l.stepPredictions)&&l.stepPredictions.length===4&&l.stepPredictions.every(p=>p===null||p&&typeof p==='object'&&typeof p.text==='string'&&p.text.length<=500&&typeof p.unsure==='boolean'&&p.unsure===!p.text&&Number.isFinite(Date.parse(p.at))))))return null;
   for(const [id,r] of Object.entries(raw.records)){
    if(!TASKS[id]||!r||!['draft','submitted'].includes(r.status)||typeof r.feedbackSeen!=='boolean'||!Array.isArray(r.submissions)||!draftValid(TASKS[id],r.draft))return null;
    for(const s of r.submissions)if(!s||!valid(TASKS[id],s.answer)||s.result!==score(TASKS[id],s.answer)||!Number.isFinite(Date.parse(s.at))||!s.support||!['predict','check'].includes(s.support.phase)||typeof s.support.feedbackSeen!=='boolean'||typeof s.support.lessonSeen!=='boolean'||s.support.otherHelp!==s.answer.otherHelp)return null;
    if(r.status==='submitted'&&(!r.submissions.length||!valid(TASKS[id],r.draft)||JSON.stringify(r.draft)!==JSON.stringify(r.submissions.at(-1).answer)))return null;
   }
   const lesson=C.LESSONS[raw.lessonIndex];
-  if(raw.stage!=='predict'&&raw.records[lesson.predict.id]?.status!=='submitted')return null;
+  if(raw.stage!=='predict'&&!answered(raw,lesson.predict))return null;
   if(['check','review'].includes(raw.stage)&&raw.lessons[raw.lessonIndex].seenSteps.length!==4)return null;
-  if(raw.stage==='review'&&!lesson.checks.every(t=>raw.records[t.id]?.status==='submitted'))return null;
+  if(raw.stage==='review'&&!lesson.checks.every(t=>answered(raw,t)))return null;
   if(raw.view==='summary'&&!allDone(raw))return null;
   return clone(raw);
  }catch{return null;}
 }
 function exportRecord(state){
  if(!allDone(state))throw new Error('Finish all '+C.LESSONS.length+' lessons before exporting the complete report.');
- return{...clone(state),taskDefinitions:clone(C.LESSONS),note:'Initial predictions and checks after instruction are separate observations. Revisions and help remain in history. Required explanations need human review; fixed choices alone do not establish understanding. No validated mastery, behavior, effort, or AI-use inference.'};
+ return{...clone(state),taskDefinitions:clone(C.LESSONS),retiredTaskDefinitions:clone(C.RETIRED||[]),note:'Initial predictions and checks after instruction are separate observations. Revisions and help remain in history. Required explanations need human review; fixed choices alone do not establish understanding. No validated mastery, behavior, effort, or AI-use inference.'};
 }
-const api={SCHEMA,TASKS,choiceOptions,defaultLabs,validLabs,valid,score,fresh,record,update,submit,log,lessonDone,allDone,last,upgrade,hydrate,exportRecord};
+const api={SCHEMA,TASKS,answered,choiceOptions,defaultLabs,validLabs,valid,score,fresh,record,update,submit,log,lessonDone,allDone,last,upgrade,hydrate,exportRecord};
 return api;
 }
 if(typeof module==='object'&&module.exports)module.exports={create};else root.QuidenceCourseEngine=create(root.QuidenceCourseContent);

@@ -259,12 +259,13 @@ function alignment(v){
  return M.graphic('Two DNA sequences from a shared ancestor',`The first 100 of 1,000 positions; highlighted positions differ (${shown} here). Across all 1,000 positions, ${v.diff} differ.`,b+`<text x="260" y="260" text-anchor="middle" font-size="13" fill="#52647b">first 100 of 1,000 positions · differences highlighted</text>`);
 }
 // Inheritance of pea flower color: P (purple) is dominant over p (white).
-function cross(p1,p2,n){
+function cross(p1,p2,n,sample=1){
  const pairs=[];for(const a of p1)for(const c of p2)pairs.push([a,c].sort().join(''));
  const share=g=>pairs.filter(x=>x===g).length/4,expected={PP:share('PP'),Pp:share('Pp'),pp:share('pp')};
  // The seed was chosen so that the fixed samples look like typical real ones: small samples wander from the expected
- // shares (Pp × Pp: 2 white of 4, 7 of 20) and large ones settle near them (248 of 1,000).
- const r=seeded(875+p1.charCodeAt(1)*3+p2.charCodeAt(1)),counts={PP:0,Pp:0,pp:0};
+ // shares (Pp × Pp, sample 1: 2 white of 4, 7 of 20) and large ones settle near them (248 of 1,000). Samples 1 to 10
+ // of 4 offspring include 3 with no white one, close to the expected (3/4)⁴ ≈ 32%.
+ const r=seeded(875+p1.charCodeAt(1)*3+p2.charCodeAt(1)+(sample-1)*28),counts={PP:0,Pp:0,pp:0};
  for(let i=0;i<n;i++){const g=[p1[Math.floor(r()*2)],p2[Math.floor(r()*2)]].sort().join('');counts[g]++;}
  return{pairs,expected,counts,white:counts.pp,purple:counts.PP+counts.Pp,whiteShare:expected.pp};
 }
@@ -363,12 +364,16 @@ function ionDrawing(metal,nonmetal,v){
  b+=`<text x="260" y="276" text-anchor="middle" font-size="16" font-weight="700" fill="#263c5b">${esc(v.ionMetal+' and '+v.ionNonmetal+' → '+v.formula)}</text>`;
  return M.graphic(`Making ${v.name}`,`${v.metal.name} has ${v.valenceMetal} valence electron${v.valenceMetal>1?'s':''} and ${v.nonmetal.name} has ${v.valenceNonmetal}. ${v.metal.name} loses electrons to become ${v.ionMetal}; ${v.nonmetal.name} gains them to become ${v.ionNonmetal}. The charges balance in ${v.formula}.`,b);
 }
-// Rates: the rate relative to 25 °C and 1 mol/L, from the share of collisions with at least the activation energy.
+// Rates: a reaction's rate compared with its own rate at 25 °C and 1 mol/L, from the share of collisions with at least
+// the activation energy. Each barrier is compared with itself, so the lines show how strongly temperature matters.
 const GAS=8.314;
 function rate(celsius,concentration,barrier){
  const T=celsius+273.15,Ea=barrier*1000;
  return concentration*Math.exp(-Ea/GAS*(1/T-1/298.15));
 }
+// How many times faster a reaction with activation energy `low` is than one with `high`, at the same temperature and
+// concentrations, if their collisions are otherwise alike. This is what a catalyst does: it offers a lower barrier.
+function barrierRatio(celsius,low,high){return Math.exp((high-low)*1000/(GAS*(celsius+273.15)));}
 // Feedbacks, in W/m² per °C of warming (IPCC AR6 WG1 chapter 7, central values): Planck response 3.22; water vapor
 // with lapse rate 1.30; surface albedo 0.35; clouds 0.42.
 const FEEDBACK={planck:3.22,vapor:1.30,albedo:0.35,clouds:0.42};
@@ -402,7 +407,7 @@ function model(index,s){
    note:'Complete burning, with the water produced as vapor. Average bond energies give an estimate within a few percent of the measured value. Gasoline is a mixture; octane stands in for it.'};}
  if(index===19){const v=mixing(s.object,s.hotMass,s.hotTemp,s.coldMass,s.coldTemp);
   return{graph:thermometers(s,v),
-   readout:`${s.hotMass} g of ${s.object==='water'?'water':s.object} at ${s.hotTemp} °C + ${s.coldMass} g of water at ${s.coldTemp} °C → both at ${fmt(v.final)} °C · About ${fmt(v.energy/1000)} kJ moved from hot to cold`,
+   readout:`${s.hotMass} g of ${s.object==='water'?'water':s.object} at ${s.hotTemp} °C + ${s.coldMass} g of water at ${s.coldTemp} °C → both at ${fmt(v.final)} °C · About ${fmt(v.energy/1000)} kJ moved from hot to cold${s.hotTemp>v.final?` · The hot sample gave off ${fmt(v.energy/1000/(s.hotTemp-v.final))} kJ for each degree it cooled`:''}`,
    formula:`Energy lost by the hot sample = energy gained by the water: m₁c₁(T₁ − T) = m₂c₂(T − T₂), so T = (m₁c₁T₁ + m₂c₂T₂) ÷ (m₁c₁ + m₂c₂). c = ${fmt(v.ch)} J/(g·°C) for the hot sample and 4.18 for water.`,
    note:'An insulated container that loses no energy to the room and takes up none itself. Real cups lose some heat, so measured temperatures fall a little short.'};}
  if(index===20){const v=ionic(s.metal,s.nonmetal);
@@ -410,11 +415,13 @@ function model(index,s){
    readout:`${v.metal.name} ${v.metal.shells.join(', ')}: ${v.valenceMetal} valence → ${v.ionMetal} · ${v.nonmetal.name} ${v.nonmetal.shells.join(', ')}: ${v.valenceNonmetal} valence → ${v.ionNonmetal} · ${v.name}, ${v.formula}: ${v.nm} ${v.metal.name} ion${v.nm>1?'s':''} for ${v.nn} ${v.nonmetal.anion} ion${v.nn>1?'s':''}`,
    formula:'Metals lose their valence electrons; nonmetals gain enough to fill an outer shell of eight. The ions combine in the ratio that makes the total charge zero.',
    note:'The shell drawing is a simple model; electrons are not little balls in fixed circles. Some compounds, such as those of aluminum, are partly covalent.'};}
- if(index===21){const r=rate(s.temperature,s.concentration,Number(s.barrier)),ref25=rate(25,s.concentration,Number(s.barrier)),plus10=rate(s.temperature+10,s.concentration,Number(s.barrier))/r;
-  return{graph:M.cartesian('Relative rate against temperature',[{label:`${s.barrier} kJ/mol at ${fmt(s.concentration)} mol/L`,prefix:'Line: ',fn:t=>rate(t,s.concentration,Number(s.barrier))}],{xmin:0,xmax:60,ymin:0,ymax:60,xlabel:'Temperature (°C)',ylabel:'Rate (1 = 25 °C, 1 mol/L)',point:[s.temperature,r],left:80,ylabelX:22,xticks:[0,10,20,30,40,50,60],yticks:[0,10,20,30,40,50,60]}),
-   readout:`${s.temperature} °C, ${fmt(s.concentration)} mol/L, activation energy ${s.barrier} kJ/mol: relative rate ${fmt(r)} (1 = 25 °C and 1 mol/L) · Temperature alone: ${fmt(r/ref25)} × the rate at 25 °C · 10 °C warmer: ${fmt(plus10)} × faster`,
-   formula:'Rate ∝ concentration × e^(−Ea ÷ RT), with R = 8.314 J/(mol·K) and T in kelvins. The exponential term is the share of collisions with at least the activation energy Ea.',
-   note:'A simple reaction whose rate is proportional to one concentration. Collisions also become more frequent as particles speed up, by under 2% for each 10 °C; the lab leaves this out. Real reactions can depend on concentrations in other ways, and catalysts change the activation energy.'};}
+ if(index===21){const b=Number(s.barrier),r=rate(s.temperature,s.concentration,b),plus10=rate(s.temperature+10,s.concentration,b)/r,
+   big=x=>{if(x<1000)return fmt(x);const e=Math.floor(Math.log10(x)),m=Math.round(x/10**e*10)/10;return(m===10?'1':fmt(m))+' × 10'+String(m===10?e+1:e).replace(/./g,d=>'⁰¹²³⁴⁵⁶⁷⁸⁹'[d]);},
+   compare=[40,50,80].filter(x=>x!==b).map(o=>{const lo=Math.min(o,b),hi=Math.max(o,b);return`${lo} kJ/mol is ${big(barrierRatio(s.temperature,lo,hi))} times as fast as ${hi} kJ/mol`;}).join('; ');
+  return{graph:M.cartesian('How the rate grows with temperature',[{label:`${s.barrier} kJ/mol at ${fmt(s.concentration)} mol/L`,prefix:'Line: ',fn:t=>rate(t,s.concentration,b)}],{xmin:0,xmax:60,ymin:0,ymax:60,xlabel:'Temperature (°C)',ylabel:'Rate (× rate at 25 °C, 1 mol/L)',point:[s.temperature,r],left:80,ylabelX:22,xticks:[0,10,20,30,40,50,60],yticks:[0,10,20,30,40,50,60]}),
+   readout:`${s.temperature} °C, ${fmt(s.concentration)} mol/L, activation energy ${s.barrier} kJ/mol: ${fmt(r)} × this reaction’s rate at 25 °C and 1 mol/L · 10 °C warmer: ${fmt(plus10)} × faster · Same temperature, different barriers: ${compare}`,
+   formula:'Rate ∝ concentration × e^(−Ea ÷ RT), with R = 8.314 J/(mol·K) and T in kelvins. The exponential term is the share of collisions with at least the activation energy Ea. Two barriers at the same temperature differ by e^((Ea₁ − Ea₂) ÷ RT).',
+   note:'Each line compares one reaction with itself at 25 °C, so it shows how strongly temperature matters. Different barriers differ far more: at 25 °C a reaction with 40 kJ/mol is about 10 million times as fast as one with 80 kJ/mol, if their collisions are otherwise alike, which is how a catalyst speeds a reaction. A simple reaction whose rate is proportional to one concentration; collisions also become more frequent as particles speed up, by under 2% for each 10 °C, which the lab leaves out.'};}
  if(index===22){const v=feedback(s.forcing,s.vapor==='on',s.albedo==='on',s.clouds==='on');
   return{graph:M.cartesian('Warming as the feedback loop goes round',[{label:'Total warming after each round',prefix:'Line: ',fn:x=>v.rounds[Math.min(12,Math.floor(x))]}],{xmin:0,xmax:12,ymin:0,ymax:10,xlabel:'Round of the feedback loop',ylabel:'Warming (°C)',point:[12,v.rounds[12]],left:80,ylabelX:22,xticks:[0,2,4,6,8,10,12],yticks:[0,2,4,6,8,10]}),
    readout:`${fmt(s.forcing)} W/m²: ${fmt(v.first)} °C with no feedbacks · Each round adds ${fmt(100*v.f)}% of the round before · Total ${fmt(v.total)} °C, ${fmt(v.gain)} times the first warming`,
@@ -447,11 +454,11 @@ function model(index,s){
    readout:`${fmt(s.split)} million years since the shared ancestor · Each lineage changed about ${v.changes} of 1,000 positions · ${v.diff} positions differ (${fmt(100*v.share)}%); 2 × rate × time predicts ${fmt(100*v.expected)}%`,
    formula:'Expected share that differs ≈ 2 × (share changed per lineage per 10 million years) × (time ÷ 10 million years), while the share is small.',
    note:'Changes are placed at random, so a position can change twice and a difference can disappear. Real genes change at different rates, and real clocks are checked against dated fossils.'};}
- if(index===15){const n=Number(s.offspring),v=cross(s.parent1,s.parent2,n);
+ if(index===15){const n=Number(s.offspring),v=cross(s.parent1,s.parent2,n,Number(s.sample)||1);
   return{graph:punnett(s,v),
    readout:`${s.parent1} × ${s.parent2}: expected PP ${fmt(100*v.expected.PP)}%, Pp ${fmt(100*v.expected.Pp)}%, pp ${fmt(100*v.expected.pp)}%, so ${fmt(100*(1-v.expected.pp))}% purple · Counted ${n.toLocaleString('en-US')} offspring: ${v.purple.toLocaleString('en-US')} purple, ${v.white.toLocaleString('en-US')} white (${fmt(100*v.white/n)}% white)`,
    formula:'Each parent passes on one allele, each with a chance of 1/2. The chance of a combination is the product: for Pp × Pp, pp has a chance of 1/2 × 1/2 = 1/4.',
-   note:'The counts are a random sample drawn by the computer, the same sample each time for the same parents. Real crosses also depend on how many seeds grow.'};}
+   note:'The counts are a random sample drawn by the computer. Each sample number gives its own sample, the same one each time, so a result can be checked again. Real crosses also depend on how many seeds grow.'};}
  if(index===16){const v=body(s.air,s.feedback),state=v.final>=40?' · heat stroke danger':v.final<35?' · hypothermia':'';
   return{graph:M.cartesian(`Core temperature in ${s.air} °C air`,[{label:`Feedback: ${s.feedback}`,fn:x=>curve(v.series)(x)},{label:'Set point, 37 °C',fn:()=>BODY.setPoint}],{xmin:0,xmax:120,ymin:10,ymax:60,xlabel:'Minutes',ylabel:'Core temperature (°C)',left:80,ylabelX:22,xticks:[0,30,60,90,120],yticks:[10,20,30,37,50,60]}),
    readout:`Air ${s.air} °C, feedback ${s.feedback}: core temperature after 2 hours ${fmt(v.final)} °C, ${fmt(Math.abs(v.final-BODY.setPoint))} °C ${v.final>=BODY.setPoint?'above':'below'} the set point${state}`,
@@ -518,7 +525,7 @@ function model(index,s){
    note:'Real cells are not cubes or slabs. The model keeps only how surface and volume change with size and shape.'};}
  if(index===1){const v=heating(s.mass,s.energy);
   const state=v.stage==='melting'?`melting: ${fmt(100*v.fraction)}% of the ice has melted`:v.stage==='boiling'?`boiling: ${fmt(100*v.fraction)}% of the water has boiled away`:v.stage==='all steam'?'all the water has boiled away; the model stops here':v.stage;
-  return{graph:M.cartesian('Temperature as energy is added',[{label:'Ice, then water, then steam at 1 atmosphere',prefix:'Line: ',fn:v.curve}],{xmin:0,xmax:800,ymin:-30,ymax:115,xlabel:'Energy added (kJ)',ylabel:'Temperature (°C)',point:[Math.min(s.energy,v.total),v.temperature],left:80,ylabelX:22,yticks:[-20,0,20,40,60,80,100]})
+  return{graph:M.cartesian('Temperature as energy is added',[{label:'Ice, then water, then steam at 1 atmosphere',prefix:'Line: ',fn:v.curve}],{xmin:0,xmax:Math.max(200,Math.ceil(v.total*1.05/100)*100),ymin:-30,ymax:115,xlabel:'Energy added (kJ)',ylabel:'Temperature (°C)',point:[Math.min(s.energy,v.total),v.temperature],left:80,ylabelX:22,yticks:[-20,0,20,40,60,80,100]})
     +M.table('Energy for each stage',['Stage','Energy (kJ)'],[['Warm the ice from −20 °C to 0 °C',fmt(v.stages[0])],['Melt the ice',fmt(v.stages[1])],['Warm the water from 0 °C to 100 °C',fmt(v.stages[2])],['Boil the water away',fmt(v.stages[3])]],''),
    readout:`Mass ${s.mass} g · Energy added ${s.energy} kJ · Temperature ${fmt(v.temperature)} °C · ${state}`,
    formula:'Warming: energy = mass × c × temperature change, with c = 2.09 J/(g·°C) for ice and 4.18 J/(g·°C) for water. Melting takes 334 J/g; boiling takes 2,256 J/g.',
@@ -534,6 +541,6 @@ function model(index,s){
   formula:'About 3 °C of eventual warming and about 3.9 W/m² of extra energy kept at first for each doubling: 278 → 556 → 1,112 ppm. Between doublings, count the fraction of a doubling: warming ≈ 3 °C × log₂(CO₂ ÷ 278 ppm).',
   note:'Carbon dioxide alone, after the ocean has caught up, which takes centuries. The warming measured so far, about 1.2 °C averaged over 2015–2024 compared with 1850–1900, also reflects other greenhouse gases, particles that cool, and the ocean’s delay.'};
 }
-const api={model,measured,MLO_MONTHLY,cell,heating,rainShadow,warming,particles,reaction,seafloor,foxes,crash,moon,selection,wave,foodChain,keeling,lineages,cross,body,uphill,combustion,mixing,ionic,rate,feedback,seawater,FUELS,BOND,MOLAR,SPECIFIC,ELEMENTS,FEEDBACK,SEA,STATIONS,CO2_TREND,BODY,LAPSE,SITES,STOP,MONTH,MEDIA,WATER,AIR,CO2,SUBSTANCES,REACTIONS,NORMAL,FOX,AMU};
+const api={barrierRatio,model,measured,MLO_MONTHLY,cell,heating,rainShadow,warming,particles,reaction,seafloor,foxes,crash,moon,selection,wave,foodChain,keeling,lineages,cross,body,uphill,combustion,mixing,ionic,rate,feedback,seawater,FUELS,BOND,MOLAR,SPECIFIC,ELEMENTS,FEEDBACK,SEA,STATIONS,CO2_TREND,BODY,LAPSE,SITES,STOP,MONTH,MEDIA,WATER,AIR,CO2,SUBSTANCES,REACTIONS,NORMAL,FOX,AMU};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceScienceModels=api;
 })(typeof window==='undefined'?globalThis:window);

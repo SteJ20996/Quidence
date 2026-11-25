@@ -27,7 +27,8 @@ test('the course follows the plan: one lesson per segment of grades 6–8, Livin
   for(const s of l.steps){assert(s.title&&s.text);for(const k of['predict','test','explain'])assert(s.activity[k],k);}
   const tasks=[l.predict,...l.checks];assert.equal(tasks.length,3);
   for(const[j,t]of tasks.entries()){
-   assert.equal(t.id,'integrated-science-l'+(i+1)+'-q'+(j+1));assert.equal(t.options.length,3);assert.deepEqual(t.correct,['0']);
+   // A revised question gets a new id and names the version-1 id it replaces.
+   assert.equal(t.id.replace(/-r2$/,''),'integrated-science-l'+(i+1)+'-q'+(j+1));if(t.replaces)assert.deepEqual(t.replaces,['integrated-science-l'+(i+1)+'-q'+(j+1)]);assert.equal(t.options.length,3);assert.deepEqual(t.correct,['0']);
    assert.equal(new Set(t.options.map(o=>o.label)).size,3);assert(t.explanation);
    // The correct answer is not always in the same place.
    assert.equal(t.options.findIndex(o=>o.id==='0'),(3-(i+j)%3)%3);
@@ -38,7 +39,7 @@ test('the course follows the plan: one lesson per segment of grades 6–8, Livin
  assert.match(C.scope,/Selected foundations/);assert.match(C.scope,/Not a complete year of science/);
  assert.equal(C.bridge,undefined);
  assert.equal(S.create().LESSONS.length,24,'create() returns a fresh copy');
- assert.equal(C.VERSION,'integrated-science-5');assert.deepEqual(C.PREVIOUS,[{version:'integrated-science-1',lessons:4},{version:'integrated-science-2',lessons:8},{version:'integrated-science-3',lessons:12},{version:'integrated-science-4',lessons:18}]);
+ assert.equal(C.VERSION,'integrated-science-6');assert.deepEqual(C.PREVIOUS,[{version:'integrated-science-5',lessons:24,revised:true},{version:'integrated-science-1',lessons:4},{version:'integrated-science-2',lessons:8},{version:'integrated-science-3',lessons:12},{version:'integrated-science-4',lessons:18}]);
 });
 
 test('the cell model: surface area for each unit of volume is 6/s for a cube and 12/s for a slab a quarter as thick',()=>{
@@ -142,11 +143,13 @@ test('the complete course flow saves answers and reasoning, reloads, groups less
   const lesson=C.LESSONS[i];
   if(i){h.click('continue');h.choose('unsure');h.input('explanation','I compare the model with the rule.');}
   h.submit();h.click('next');
+  // Each step opens after a prediction; "not sure" counts.
+  h.click('skip-step-prediction');
   const before=JSON.stringify(h.saved().records);
   for(const c of lesson.controls)h.lab(c.name,c.options?c.options[c.options.length-1][0]:c.max);
   assert.doesNotMatch(h.app.innerHTML,/NaN/);
   assert.equal(JSON.stringify(h.saved().records),before,'Moving a slider is not an answer');
-  for(let j=0;j<4;j++)h.click('next-step');
+  for(let j=0;j<4;j++){if(j)h.click('skip-step-prediction');h.click('next-step');}
   for(const task of lesson.checks){h.choose(task.correct[0]);h.input('explanation','The model shows it: '+task.explanation.slice(0,40));h.submit();h.click('next');}
  }
  h.click('continue');
@@ -166,7 +169,7 @@ test('a record saved with only the grade 6 lessons opens with the later lessons 
  for(let i=0;i<4;i++){
   if(i)h.click('continue');
   h.choose('unsure');h.input('explanation','First idea for lesson '+(i+1));h.submit();h.click('next');
-  for(let j=0;j<4;j++)h.click('next-step');
+  for(let j=0;j<4;j++){h.click('skip-step-prediction');h.click('next-step');}
   for(const t of C.LESSONS[i].checks){h.choose(t.correct[0]);h.input('explanation','Because of '+t.id);h.submit();h.click('next');}
  }
  const now=h.saved();
@@ -175,7 +178,7 @@ test('a record saved with only the grade 6 lessons opens with the later lessons 
  assert.deepEqual(Object.keys(old.records).map(id=>id.split('-q')[0]).filter((x,i,a)=>a.indexOf(x)===i),['integrated-science-l1','integrated-science-l2','integrated-science-l3','integrated-science-l4']);
  const up=h.E.hydrate(JSON.parse(JSON.stringify(old)));
  assert(up,'The old record upgrades');
- assert.equal(up.contentVersion,'integrated-science-5');assert.equal(up.labs.length,24);assert.equal(up.lessons.length,24);
+ assert.equal(up.contentVersion,'integrated-science-6');assert.equal(up.labs.length,24);assert.equal(up.lessons.length,24);
  assert.deepEqual(up.records,old.records,'Every saved answer and explanation is kept exactly');
  assert.deepEqual(up.labs.slice(0,4),old.labs);assert.deepEqual(up.labs.slice(4),C.LESSONS.slice(4).map(l=>l.defaults));
  assert.equal(up.view,'orientation');assert.equal(up.lessonIndex,4);
@@ -391,7 +394,7 @@ test('a record saved with eighteen lessons, at the end of Living Earth, opens wi
  const now=h.saved();
  const old={...now,contentVersion:'integrated-science-4',labs:now.labs.slice(0,18),lessons:now.lessons.slice(0,18)};
  const up=h.E.hydrate(JSON.parse(JSON.stringify(old)));
- assert(up);assert.equal(up.contentVersion,'integrated-science-5');assert.equal(up.labs.length,24);assert.deepEqual(up.records,old.records);
+ assert(up);assert.equal(up.contentVersion,'integrated-science-6');assert.equal(up.labs.length,24);assert.deepEqual(up.records,old.records);
  assert.deepEqual(up.labs.slice(18),C.LESSONS.slice(18).map(l=>l.defaults));
  const event=up.events[up.events.length-1];assert.equal(event.type,'lessons_added');assert.equal(event.from,'integrated-science-4');assert.deepEqual(event.lessons,C.LESSONS.slice(18).map(l=>l.id));
 });
@@ -490,7 +493,7 @@ test('lesson photographs are stored with the site, sized as declared, and always
  }
  // The step shows the photograph with its credit, licence and a link to its source.
  const h=harness('integrated-science',new Map());h.click('start');h.click('open',7);
- h.choose('unsure');h.input('explanation','A first idea.');h.submit();h.click('next');h.click('step',1);
+ h.choose('unsure');h.input('explanation','A first idea.');h.submit();h.click('next');h.click('step',1);h.click('skip-step-prediction');
  assert.match(h.app.innerHTML,/class="lesson-photo"><img src="\.\.\/\.\.\/assets\/photos\/island-fox\.webp" alt="A grey and rust-colored island fox/);
  assert.match(h.app.innerHTML,/Photo: NPS \/ Jessica Weinberg McClosky · Public domain, U\.S\. National Park Service · <a href="https:\/\/www\.nps\.gov\/im\/medn\/island-fox\.htm" target="_blank" rel="noopener" aria-label="Source page for this image \(opens in a new tab\)">source ↗<\/a>/);
  h.click('step',0);assert.doesNotMatch(h.app.innerHTML,/lesson-photo/);
@@ -518,7 +521,7 @@ test('lessons with a hands-on investigation show a drawing of it in their feedba
  // The drawing appears with "A useful next step" once the lesson's questions are done.
  const h=harness('integrated-science',new Map());h.click('start');
  h.choose('unsure');h.input('explanation','A first idea.');h.submit();h.click('next');
- for(let j=0;j<4;j++)h.click('next-step');
+ for(let j=0;j<4;j++){h.click('skip-step-prediction');h.click('next-step');}
  for(const t of C.LESSONS[0].checks){h.choose(t.correct[0]);h.input('explanation','Because of the model.');h.submit();h.click('next');}
  assert.match(h.app.innerHTML,/A useful next step/);assert.match(h.app.innerHTML,/investigation-figure/);assert.match(h.app.innerHTML,/Measuring onion skin cells/);
  // The computed parts of two drawings: the heating curve and the Moon's place in the sky.
@@ -530,4 +533,120 @@ test('lessons with a hands-on investigation show a drawing of it in their feedba
  assert.match(I.figure(20),/predicts 30 °C/);
  close(1e-3/0.282e-9/1e6,3.55,0.01);assert.match(I.figure(21),/about 3\.5 million ions/);
  const m7=I.moonSky(7),m11=I.moonSky(11);assert(m7.altitude>45&&m7.azimuth>0&&m7.azimuth<45);assert(m11.azimuth<0);assert(I.moonSky(3).altitude<I.moonSky(5).altitude);
+});
+
+test('lesson 22 compares barriers at one temperature, so a catalyst’s lower barrier always speeds a reaction',()=>{
+ // Each line compares a reaction with itself at 25 °C; barriers are compared at the same temperature.
+ close(Models.barrierRatio(25,40,80),Math.exp(40000/(8.314*298.15)),1);assert(Models.barrierRatio(25,40,80)>1e7&&Models.barrierRatio(25,40,80)<1.1e7);
+ for(const t of[0,25,35,55])for(const[lo,hi]of[[40,50],[50,80],[40,80]])assert(Models.barrierRatio(t,lo,hi)>1,`a lower barrier is faster at ${t} °C`);
+ const i=C.LESSONS.findIndex(l=>l.short==='Reaction rates'),view=Models.model(i,{...C.LESSONS[i].defaults,temperature:35,barrier:'50'});
+ assert.match(view.readout,/× this reaction’s rate at 25 °C/);assert.match(view.readout,/40 kJ\/mol is 49\.6 times as fast as 50 kJ\/mol; 50 kJ\/mol is 1\.2 × 10⁵ times as fast as 80 kJ\/mol/);
+ assert.doesNotMatch(view.readout,/1 = 25 °C/,'no shared reference that the barriers do not have');
+ assert.match(C.LESSONS[i].steps[2].activity.test,/how much faster a lower barrier is at the same temperature/);
+});
+
+test('lesson setups match their labs: the heating axis covers every mass, and each step’s settings can be made',()=>{
+ const i=C.LESSONS.findIndex(l=>l.short==='Heating ice'),energy=C.LESSONS[i].controls.find(c=>c.name==='energy'),mass=C.LESSONS[i].controls.find(c=>c.name==='mass');
+ assert(energy.max>=Models.heating(mass.max,0).total,'the energy slider reaches the end of boiling for the largest mass');
+ for(const m of[100,200,350,500]){const g=Models.model(i,{mass:m,energy:0}).graph,ticks=[...g.matchAll(/>(\d+)<\/text>/g)].map(x=>+x[1]);assert(Math.max(...ticks)>=Models.heating(m,0).total-100,`the axis reaches the end of boiling at ${m} g`);}
+ const L9=C.LESSONS.find(l=>l.short==='Speed and crashes');assert.doesNotMatch(L9.steps[0].activity.explain,/energy against mass/);
+ const L18=C.LESSONS.find(l=>l.short==='Moving uphill');assert.match(L18.steps[0].text,/10 °C per kilometer \(lesson 3\)/);
+ const k=C.LESSONS.indexOf(L18),low=Models.uphill(5,4,3,L18.defaults.width);assert(low.share<0.1,'from 3 km, 5 °C leaves under a tenth of the area');
+});
+
+test('lesson 20 reads energy per degree, and lesson 16 can draw new samples while sample 1 stays as before',()=>{
+ const i=C.LESSONS.findIndex(l=>l.short==='Heat flow'),w=Models.model(i,{...C.LESSONS[i].defaults}).readout,f=Models.model(i,{...C.LESSONS[i].defaults,object:'iron'}).readout;
+ const per=r=>+r.match(/gave off ([\d.]+) kJ for each degree/)[1];assert.equal(per(w),0.84);assert.equal(per(f),0.09);
+ assert.deepEqual([4,20,1000].map(n=>Models.cross('Pp','Pp',n).white),[2,7,248],'sample 1 is the earlier fixed sample');
+ const fours=[...Array(10)].map((_,s)=>Models.cross('Pp','Pp',4,s+1).white);assert.deepEqual(fours,[2,1,0,1,0,3,1,1,2,0]);
+ assert.equal(fours.filter(x=>x===0).length,3,'3 of 10 samples have no white offspring, near (3/4)^4 ≈ 32%');
+ const j=C.LESSONS.findIndex(l=>l.short==='Inheritance');assert.equal(C.LESSONS[j].defaults.sample,1);assert.match(C.LESSONS[j].steps[2].activity.test,/move the sample from 1 to 10/);
+});
+
+test('a record saved before lesson 16 had a sample control opens with sample 1 and every answer kept',()=>{
+ const map=new Map();const h=harness('integrated-science',map);h.click('start');
+ h.choose('unsure');h.input('explanation','My first idea');h.submit();h.click('next');
+ for(let j=0;j<4;j++){h.click('skip-step-prediction');h.click('next-step');}
+ for(const t of C.LESSONS[0].checks){h.choose(t.correct[0]);h.input('explanation','Because of '+t.id);h.submit();h.click('next');}
+ const now=h.saved(),j=C.LESSONS.findIndex(l=>l.short==='Inheritance');
+ const old=JSON.parse(JSON.stringify(now));delete old.labs[j].sample;old.labs[j].offspring='100';
+ const up=h.E.hydrate(JSON.parse(JSON.stringify(old)));
+ assert.equal(Object.keys(old.records).length,3,'the record holds the three answers');assert(up,'the record opens');assert.deepEqual(up.records,old.records);assert.equal(up.labs[j].sample,1);assert.equal(up.labs[j].offspring,'100','a saved setting is kept');
+});
+
+test('science reviews judge the science, and the hands-on activities carry their safety notes',()=>{
+ assert.equal(C.reviewFocus,'science');
+ const next=s=>C.LESSONS.find(l=>l.short===s).next;
+ assert.match(next('Cells as systems'),/wash your hands/);assert.match(next('Heating ice'),/goggles/);
+ assert.match(next('Particles in motion'),/poured by an adult/);assert.match(next('Atoms in living things'),/eye protection/);
+ assert.match(next('Combustion'),/the same 4\.18 J as in lesson 2/);
+});
+
+test('each science step asks for a prediction before it shows its text and model, and keeps the prediction',()=>{
+ const map=new Map();const h=harness('integrated-science',map);h.click('start');
+ h.choose('unsure');h.input('explanation','First idea');h.submit();h.click('next');
+ const L=C.LESSONS[0],html=()=>h.app.innerHTML;
+ // Step 1 waits for a prediction: its question shows; its text and the model do not; it is not yet opened.
+ assert.match(html(),/Predict first/);assert(html().includes(L.steps[0].activity.predict.replace(/’/g,'’')));
+ assert(!html().includes('id="lab-graphs"'),'the model waits');assert(!html().includes(L.steps[0].text.slice(0,40)),'the step text waits');
+ assert.equal(h.saved().lessons[0].seenSteps.length,0);
+ // An empty prediction is not saved.
+ h.click('save-step-prediction');assert.equal(h.saved().lessons[0].stepPredictions,undefined);
+ h.input('stepPrediction','It grows eight times');h.click('save-step-prediction');
+ const p=h.saved().lessons[0].stepPredictions;assert.equal(p[0].text,'It grows eight times');assert.equal(p[0].unsure,false);
+ assert(html().includes('id="lab-graphs"'),'the model opens');assert(html().includes('It grows eight times'));assert.deepEqual(h.saved().lessons[0].seenSteps,[0]);
+ assert.doesNotMatch(html(),/<span class="activity-label">Predict first<\/span>/,'the answered prediction is not asked again');
+ // "Not sure" is kept as such; a saved prediction is never replaced.
+ h.click('next-step');h.click('skip-step-prediction');const q=h.saved().lessons[0].stepPredictions;assert.equal(q[1].unsure,true);assert.equal(q[1].text,'');
+ h.click('prev-step');assert.equal(h.saved().lessons[0].stepPredictions[0].text,'It grows eight times');
+ assert(h.saved().events.filter(e=>e.type==='step_prediction_saved').length===2);
+});
+
+test('saved step predictions are validated, appear in the feedback and report, and older records without them still open',()=>{
+ const map=new Map();const h=harness('integrated-science',map);h.click('start');
+ h.choose('unsure');h.input('explanation','First idea');h.submit();h.click('next');
+ h.input('stepPrediction','My guess');h.click('save-step-prediction');
+ for(let j=0;j<4;j++){if(j)h.click('skip-step-prediction');h.click('next-step');}
+ for(const t of C.LESSONS[0].checks){h.choose(t.correct[0]);h.input('explanation','Because of '+t.id);h.submit();h.click('next');}
+ assert.match(h.app.innerHTML,/Your predictions in the lesson steps/);assert.match(h.app.innerHTML,/My guess/);
+ const saved=h.saved();
+ assert(h.E.hydrate(JSON.parse(JSON.stringify(saved))),'a record with step predictions opens');
+ const older=JSON.parse(JSON.stringify(saved));delete older.lessons[0].stepPredictions;assert(h.E.hydrate(older),'a record without them opens');
+ for(const bad of[[null,null,null],[{text:'x',unsure:true,at:new Date().toISOString()},null,null,null],[{text:'x'.repeat(501),unsure:false,at:new Date().toISOString()},null,null,null]]){
+  const b=JSON.parse(JSON.stringify(saved));b.lessons[0].stepPredictions=bad;assert.equal(h.E.hydrate(b),null);}
+ const explains=C.LESSONS.flatMap(l=>l.steps.map(s=>s.activity.explain));
+ for(const giveaway of[/eight times as much/,/rises at sunset/,/close to, but not exactly/,/so close to the water/,/far side is warmer/,/cannot see the Moon/])assert(!explains.some(e=>giveaway.test(e)),'explain prompts do not state the result: '+giveaway);
+});
+
+test('revised questions keep every earlier answer: a finished lesson stays finished and shows the wording it answered',()=>{
+ const revised=C.LESSONS.flatMap(l=>[l.predict,...l.checks]).filter(t=>t.replaces);
+ assert(revised.length>=60,'most questions are revised');
+ for(const t of revised){assert.match(t.id,/-r2$/);assert.equal(t.replaces.length,1);const old=C.RETIRED.find(r=>r.id===t.replaces[0]);assert(old,'the earlier wording is kept');assert.notEqual(old.prompt+old.options.map(o=>o.label).join(),t.prompt+t.options.map(o=>o.label).join());}
+ assert.equal(C.RETIRED.length,revised.length);
+ // A learner who finished lesson 1 under version 5, answering the earlier wordings.
+ const map=new Map();let h=harness('integrated-science',map);h.click('start');
+ const L=C.LESSONS[0],oldIds=[L.predict,...L.checks].map(t=>t.replaces?t.replaces[0]:t.id);
+ const state=h.saved(),at=new Date().toISOString();
+ oldIds.forEach((id,k)=>{const task=h.E.TASKS[id],answer={choices:[task.correct[0]],explanation:'Old answer '+k,otherHelp:false};
+  state.records[id]={draft:answer,status:'submitted',feedbackSeen:true,submissions:[{at,answer,result:h.E.score(task,answer),support:{phase:k?'check':'predict',lessonSeen:k>0,feedbackSeen:false,otherHelp:false}}]};});
+ Object.assign(state,{contentVersion:'integrated-science-5',view:'lesson',lessonIndex:0,stage:'review',questionIndex:1});
+ state.lessons[0]={seenSteps:[0,1,2,3],reviewed:true};
+ const up=h.E.hydrate(JSON.parse(JSON.stringify(state)));
+ assert(up,'the record opens');assert.equal(up.contentVersion,C.VERSION);assert.deepEqual(up.records,state.records,'every answer is kept exactly');
+ assert(h.E.lessonDone(up,0),'the lesson stays finished');assert.equal(up.events.at(-1).type,'questions_revised');
+ map.set(h.E.SCHEMA,JSON.stringify(up));h=harness('integrated-science',map);
+ const old1=h.E.TASKS[oldIds[1]];assert(h.app.innerHTML.includes(old1.prompt.replace(/&/g,'&amp;').slice(0,40)),'the feedback shows the earlier wording');
+ assert.match(h.app.innerHTML,/You answered an earlier wording of this question/);
+ // A lesson half done under version 5 asks only the questions not yet answered, in their new wording.
+ const half=JSON.parse(JSON.stringify(state));delete half.records[oldIds[2]];Object.assign(half,{stage:'check',questionIndex:1});half.lessons[0].reviewed=false;
+ const up2=h.E.hydrate(half);assert(up2);assert(!h.E.lessonDone(up2,0));assert.equal(L.checks.findIndex(t=>!h.E.answered(up2,t)),1);
+});
+
+test('the revised questions balance option lengths, and the first published wordings stay frozen',()=>{
+ const all=C.LESSONS.flatMap(l=>[l.predict,...l.checks]);
+ const longest=all.filter(t=>{const c=t.options.find(o=>o.id==='0').label.length;return t.options.every(o=>o.id==='0'||o.label.length<c);}).length;
+ assert(longest<=all.length/3,'the right answer is the longest option in '+longest+' of '+all.length+' questions');
+ for(const t of all){const L=t.options.map(o=>o.label.length);assert(Math.max(...L)/Math.min(...L)<=1.25,t.id+' option lengths');}
+ // Answers saved against the version-1 wordings are shown with them, so those wordings never change.
+ assert.equal(require('crypto').createHash('sha256').update(JSON.stringify(C.RETIRED)).digest('hex'),'dad50374893a2d4ac1ce7df9ee78762f6a743f47b6522d1dec41e1b3e2018756');
 });

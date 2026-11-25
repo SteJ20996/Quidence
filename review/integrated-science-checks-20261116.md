@@ -80,3 +80,7 @@ A separate review recomputed every key from its prompt alone. It also ran the si
   These studies describe students in particular countries and decades. They do not show that a one-item check finds the misconception reliably, or that the activity changes it.
 - **Exact matching only.** Number answers are matched at the precision the learner writes. Explanations are kept for review, not graded.
 - **The check is not a lab practical.** Nothing here checks whether a student can plan or carry out an investigation, which is central to CA NGSS.
+
+## Update · 2026-11-25
+
+Bank 15 adds four understanding problems for grades 7 and 8 (is-c05 to is-c08), so the check now has eight problems. The four problems described here are carried over unchanged, and checks started earlier keep them as they were. See [the round 4 section of the review and fixes note](integrated-science-fixes-20261125.md#round-4-understanding-problems-for-grades-7-and-8-this-change).

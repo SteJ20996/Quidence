@@ -1,3 +1,99 @@
+## 2026-11-25 · Integrated Science, round 4: understanding problems for grades 7 and 8
+
+- **Four new problems.** Each covers two lessons of grades 7 or 8:
+  - **is-c05:** particle speeds and atoms in respiration (lessons 5–6);
+  - **is-c06:** seafloor spreading and the fox model with eagles (lessons 7–8);
+  - **is-c07:** kinetic energy, braking distance and an echo (lessons 9 and 12);
+  - **is-c08:** moonrise, a crescent's phase and natural selection (lessons 10–11).
+
+  Every value is stated in the problem, and the numbers agree with the course's models. Wrong options are typical errors, and the right option is never more than 1.1 times the shortest.
+- **Bank 15.**
+  - **What it holds.** The published problems are carried over unchanged, and bank 14 is frozen as `assets/challenge-bank-v14.js`.
+  - **Old and new checks.** A check started under bank 14 keeps its four problems and answers. New checks have eight problems, in lesson order.
+  - **Counts.** The course page shows 8 problems, and the homepage counts 88 diagnostic problems.
+- **Checked separately.** `scripts/audit-challenges.py` recomputes all 94 tasks exactly, including running the fox model year by year.
+- **Independent read.** A reviewer who had not written the problems found all 12 numbers correct and raised 13 points, all addressed, chiefly:
+  - is-c05 used moles before lesson 19 teaches them;
+  - a defensible "carrying capacity" distractor;
+  - an answer of 112.5 m that invited rounding;
+  - joules not stated;
+  - a follow-up question that contradicted lesson 10;
+  - who hears an echo at sea.
+- **Prerequisites.** The course's prerequisite now names the mathematics the lessons use: square roots, repeated doubling, powers of ten and scientific notation, and the pH scale.
+- **Gaps.**
+  - 11 of the 24 lessons still have no understanding problem.
+  - is-c06 needs a small equation that grade 7 may not have reached.
+  - No learner has tried the new problems.
+
+See [the review and fixes note](review/integrated-science-fixes-20261125.md).
+
+## 2026-11-25 · Integrated Science, round 3: all 72 questions revised, every earlier answer kept
+
+- **New questions.**
+  - **New situations.** The fresh questions use contexts and numbers that appear nowhere in the lesson, such as a potato cut into cubes, Santa Ana winds, an echo sounder in Monterey Bay, a sealed globe ecosystem and magnesium nitride. No question shares more than 7 consecutive words with its lesson.
+  - **Misconception-based wrong options.** Wrong options are known misconceptions or typical errors.
+  - **Balanced lengths.** The right answer is the longest option in 17 of 72 questions, down from 49, and the longest option is at most 1.25 times the shortest.
+  - **Checked numbers.** Every number comes from the course's models, and every lab setting a question names can be made.
+- **Saved answers.**
+  - **New ids, frozen wordings.** Revised questions get new ids (`-r2`) that name the questions they replace. The version-1 wordings are frozen, and a test fails if they change.
+  - **Upgrade.** Records saved under version 5 open under version 6 with every answer unchanged.
+  - **Finished lessons stay finished.** A lesson is done when each question, or its earlier wording, is answered.
+  - **Half-finished lessons.** They ask only the unanswered questions, in their new wording.
+  - **Display.** Feedback, the summary and the reports show answers with the wording they answered.
+- **Gaps.**
+  - No learners have answered the new items yet.
+  - A few questions are near transfer, and a few are above their grade.
+
+See [the review and fixes note](review/integrated-science-fixes-20261125.md).
+
+## 2026-11-25 · Integrated Science, round 2: ask before telling
+
+- **Each step opens with its prediction.**
+  - Only the title and the question show at first, and the model panel says it opens after the prediction.
+  - The learner writes a prediction (up to 500 characters) or chooses "I'm not sure yet". The step's text, activity and model then appear.
+  - The prediction stays above the text and is never replaced. It also appears on the lesson's feedback page and in the Markdown report, and the JSON export includes it.
+- **A step counts as opened only after its prediction.** The fresh questions still need all four steps opened.
+- **33 of 96 explain prompts gave the answer away.** For example, "explain why a full moon rises at sunset" came after "About what time does a full moon rise?". They now ask learners to explain what they read in the model.
+- **Scope.** Only courses that set `predictFirst`, which is only Integrated Science.
+- **Saved work.** Step predictions are validated. Older records without them still open, with every answer kept.
+- **Limits.**
+  - "Not sure" is always allowed.
+  - Nothing checks whether a prediction was thought through.
+  - The evidence for predicting first comes from university physics demonstrations, not from 11–16-year-olds working alone.
+
+See [the review and fixes note](review/integrated-science-fixes-20261125.md).
+
+## 2026-11-25 · Integrated Science: independent review and round 1 of fixes
+
+- **Review.** An independent reviewer read all 24 lessons and ran every model.
+  - About 80 numbers and claims are correct.
+  - The weaknesses are in teaching and assessment:
+    - about half of the step predictions are answered just above them;
+    - at least 15 of 48 "new situation" checks repeat the lessons;
+    - in 49 of 72 questions the right option is the longest;
+    - the understanding check covers 5 of 24 lessons.
+  - There is one model error, in lesson 22.
+- **Round 1: errors and misleading setups.**
+  - **Lesson 22.** It compared each barrier only with itself, so a catalyst's lower barrier looked slower. The graph now reads "× its own rate at 25 °C", and a readout compares barriers at the same temperature: at 25 °C, 40 kJ/mol is about 1.0 × 10⁷ times as fast as 80 kJ/mol.
+  - **Lessons 3 and 18.** The two cooling rates are explained: about 10 °C per km for rising cloud-free air, and about 6.5 °C per km on average around a mountain.
+  - **Lesson 2.** The energy slider reaches 1,600 kJ and the axis scales with the mass, so the boiling plateau at 500 g is no longer cut off.
+  - **Lesson 16.** A sample slider draws 10 samples; sample 1 is unchanged. Three of the ten samples of 4 have no white offspring, near the expected 32%.
+  - **Lesson 20.** The readout gives energy per degree: 0.84 kJ for water and 0.09 kJ for iron.
+  - **Lessons 9 and 24.** Lesson 9's missing graph and lesson 24's model value stated as fact are corrected.
+  - **Lessons 12, 18 and 6.** Rewording.
+  - **Lessons 19 and 20.** Both now refer back to lesson 2.
+  - **Definitions.** kJ, albedo, IPCC, upwelling and µmol/kg.
+  - **Safety.** Notes added.
+  - **Reviews.** Science questions ask a reviewer to judge "the science".
+- **Saved work.** A lab control added to a lesson takes its default in older records. Every answer and setting is kept, with a test.
+- **Next.**
+  - Round 2: predict before reading.
+  - Round 3: rewrite checks as new situations with misconception-based options of similar length.
+  - Round 4: understanding problems for grades 7–8.
+  - The fox model's chance of dying out is separate work.
+
+See [the review and fixes note](review/integrated-science-fixes-20261125.md).
+
 ## 2026-11-25 · Random spot-check of the whole site
 
 - **Method.** `scripts/spot-check-browser.cjs` draws seeded random samples: a page state, an appearance and a width from 320 to 1920 px, then 0–3 random clicks. It runs automated checks and saves screenshots.
