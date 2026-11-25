@@ -84,3 +84,7 @@ A separate review recomputed every key from its prompt alone. It also ran the si
 ## Update · 2026-11-25
 
 Bank 15 adds four understanding problems for grades 7 and 8 (is-c05 to is-c08), so the check now has eight problems. The four problems described here are carried over unchanged, and checks started earlier keep them as they were. See [the round 4 section of the review and fixes note](integrated-science-fixes-20261125.md#round-4-understanding-problems-for-grades-7-and-8-this-change).
+
+## Update · 2026-11-25, later
+
+Bank 16 adds six problems (is-c09 to is-c14) for the 11 lessons that had none, so the check covers all 24 lessons. The check now comes in two parts, each with its own report: grades 6–8 (7 problems) and high school (7 problems). The eight earlier problems are carried over unchanged. See [the review and fixes note](integrated-science-fixes-20261125.md#the-check-in-two-parts-covering-every-lesson-later-change).

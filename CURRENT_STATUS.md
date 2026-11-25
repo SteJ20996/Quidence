@@ -1,3 +1,25 @@
+## 2026-11-25 · Integrated Science: a check in two parts that covers all 24 lessons
+
+- **Checks in parts, for any subject.**
+  - A subject's check can now come in parts. Each part has its own session, report and export, so it can be taken on a different day.
+  - The overview offers the parts and marks the chosen one, and switching parts keeps every draft.
+  - Saved checks without a part open with their earlier problems.
+  - Only Integrated Science uses parts so far.
+- **Integrated Science.**
+  - **Two parts.** Grades 6–8 has 7 problems on lessons 1–12, and high school has 7 problems on lessons 13–24.
+  - **New problems.** Six new problems (is-c09 to is-c14) cover the 11 lessons that had none: cells; rain shadows and the greenhouse effect; food chains and the Keeling curve; DNA clocks and range shifts; heat flow and homeostasis; ions and reaction rates.
+  - **The eight earlier problems are unchanged.**
+- **Bank 16.**
+  - Bank 15 is frozen as `assets/challenge-bank-v15.js`, and checks started under it keep their eight problems.
+  - The course page shows 14 problems, and the homepage counts 94.
+- **Checked separately.** `scripts/audit-challenges.py` recomputes all 100 tasks exactly.
+- **Gaps.**
+  - No learner data.
+  - Some problems ask more than their grade usually does.
+  - A part samples 12 lessons, one or two questions each, so it is not a test of any one lesson.
+
+See [the review and fixes note](review/integrated-science-fixes-20261125.md#the-check-in-two-parts-covering-every-lesson-later-change).
+
 ## 2026-11-25 · Integrated Science lesson 8: a chance of dying out
 
 - **New controls.**

@@ -1,5 +1,5 @@
 {
-  "method": "Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel\u2013Hakimi degree tests, every equally likely spin, coin and letter arrangement, a 10,000-part factory, algorithms run step by step with counters, every simple route and every set of four roads, every coin combination and every subset of 20, a double-precision exponential value with endpoint comparisons, and for Integrated Science the heating, burning and respiration arithmetic with balanced atoms, every Punnett box, a feedback series summed term by term, the fox model run year by year, and a ratio doubled block by block. Authored answer keys are not imported.",
+  "method": "Separately implemented Python Fraction arithmetic (project-authored, not independent human certification), Gaussian elimination, polynomial products, exact integrals, interval checks, statistical identities, brute-force enumeration of divisors, residues, equidistant grid points, committees, stone paths and board merges, Havel\u2013Hakimi degree tests, every equally likely spin, coin and letter arrangement, a 10,000-part factory, algorithms run step by step with counters, every simple route and every set of four roads, every coin combination and every subset of 20, a double-precision exponential value with endpoint comparisons, and for Integrated Science the heating, burning and respiration arithmetic with balanced atoms, every Punnett box, a feedback series summed term by term, the fox model run year by year, a ratio doubled block by block, unit cubes counted, air followed over a range meter by meter, and charges cancelled by search. Authored answer keys are not imported.",
   "questions": {
     "la-c01": {
       "k": "3",
@@ -554,6 +554,42 @@
       "half": "45",
       "percent": "80",
       "phase": "waning"
+    },
+    "is-c09": {
+      "ratio": "3/2",
+      "volume": "27",
+      "surface": "3",
+      "elephant": "more"
+    },
+    "is-c10": {
+      "cloudBase": "1000",
+      "far": "30",
+      "warming": "6",
+      "how": "infrared"
+    },
+    "is-c11": {
+      "top": "200",
+      "times": "8",
+      "peak": "442",
+      "fall": "plants"
+    },
+    "is-c12": {
+      "differences": "12",
+      "split": "15",
+      "shift": "400",
+      "next": "summit"
+    },
+    "is-c13": {
+      "final": "35",
+      "energy": "37620",
+      "iron": "22",
+      "response": "sweat"
+    },
+    "is-c14": {
+      "sulfide": "3",
+      "heat": "8",
+      "both": "16",
+      "why": "share"
     },
     "qr-c01": {
       "perStudent": "1/2",
