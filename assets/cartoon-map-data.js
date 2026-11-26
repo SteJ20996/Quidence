@@ -18,7 +18,7 @@ const maps=[
  node('coordinate',980,535,tr('Coordinate geometry'),'course','axes',tr('Use coordinates to connect algebraic relationships and geometric figures.')),
  node('data',500,10,tr('Data & graphs'),'concept','bars',tr('Read scales and representations; this connects to probability and statistics.'))
  ],edges:[['arithmetic','fractions'],['arithmetic','signed'],['fractions','prealgebra'],['signed','prealgebra'],['prealgebra','algebra1'],['algebra1','algebra2'],['shapes','geometry'],['geometry','coordinate'],['algebra1','coordinate','related'],['fractions','data','related'],['algebra1','logic','related'],['geometry','logic','related']]},
-{id:'further',number:'02',name:tr('Further Mathematics'),count:8,
+{id:'further',number:'02',name:tr('Further Mathematics'),count:9,
  intro:tr('Functions, proof and data — connected, without one compulsory route.'),
  note:tr('Advanced branches are concept previews. Select one to see its topics; a node does not promise a complete course.'),
  selected:'calculus',nodes:[
@@ -39,10 +39,11 @@ const maps=[
  node('quantitative',740,560,tr('Quantitative Reasoning'),'course','bell',tr('An available course in applied mathematics: fast estimates, probability shortcuts and decisions under uncertainty, in points, never money.')),
  node('applied',980,590,tr('Applied mathematics'),'branch','axes',tr('Mathematics put to work on data, computation and decisions. Quantitative Reasoning is the course entrance to this branch.'),[tr('Quantitative reasoning & decisions'),tr('Numerical analysis & optimization'),tr('Probability theory & mathematical statistics')])
  ],edges:[['schoolbridge','precalc'],['schoolbridge','linear'],['schoolbridge','proof'],['schoolbridge','probability','related'],['precalc','calculus'],['proof','number'],['proof','discrete'],['probability','statistics'],['linear','game','related'],['calculus','multivar'],['multivar','analysis','related'],['number','algebra','related'],['multivar','space','related'],['statistics','applied','related'],['probability','quantitative'],['quantitative','applied']]},
-{id:'science',number:'03',name:tr('Science'),count:2,
- intro:tr('Start with the physics we offer. See where the ideas can lead.'),
- note:tr('Physics 1 and 2 use algebra and graphs; no calculus is required. Later branches introduce more advanced mathematics.'),
+{id:'science',number:'03',name:tr('Science'),count:3,
+ intro:tr('Start with integrated science or physics. See where the ideas can lead.'),
+ note:tr('Integrated Science 6–10 needs arithmetic and simple graphs. Physics 1 and 2 use algebra and graphs; no calculus is required. Later branches introduce more advanced mathematics.'),
  selected:'physics2',nodes:[
+ node('integrated',20,40,tr('Integrated Science 6⁠–⁠10'),'course','science',tr('An available course for grades 6 to 10: cells, energy, atoms, forces, ecosystems and chemical reactions, one lesson for each of 24 segments.')),
  node('mathbridge',20,295,tr('Algebra, graphs & ratios'),'bridge','axes',tr('The introductory physics courses supply physical relationships and use algebraic reasoning.')),
  node('physics1',260,120,tr('Physics 1 Foundations'),'course','pendulum',tr('Motion, forces, energy, momentum, rotation, oscillations and fluids.')),
  node('physics2',260,485,tr('Physics 2 Foundations'),'course','circuit',tr('Build on mechanics with heat, electric fields, circuits, magnetism, optics, waves and photons.')),
@@ -56,7 +57,7 @@ const maps=[
  node('relativity',980,20,tr('Relativity & the universe'),'branch','orbit',tr('A family of later directions, with additional mathematical preparation.'),[tr('Special & general relativity'),tr('Astrophysics')]),
  node('quantum',980,285,tr('Quantum & particles'),'branch','orbit',tr('Wave ideas connect to later quantum models; several other foundations are also needed.'),[tr('Quantum mechanics & nuclear physics'),tr('Quantum fields & particle physics')]),
  node('materials',980,590,tr('Fields & materials'),'branch','shapes',tr('Electromagnetism, optics and material systems.'),[tr('Electromagnetism & optics'),tr('Condensed matter & plasma')])
- ],edges:[['mathbridge','physics1'],['physics1','physics2'],['physics1','motion'],['physics1','energy'],['physics2','heat'],['physics2','fields'],['physics2','waves'],['motion','mechanics','related'],['energy','mechanics','related'],['heat','thermal','related'],['mechanics','relativity','related'],['waves','quantum','related'],['fields','materials','related'],['thermal','materials','related'],['quantum','materials','related']]}
+ ],edges:[['integrated','physics1','related'],['mathbridge','physics1'],['physics1','physics2'],['physics1','motion'],['physics1','energy'],['physics2','heat'],['physics2','fields'],['physics2','waves'],['motion','mechanics','related'],['energy','mechanics','related'],['heat','thermal','related'],['mechanics','relativity','related'],['waves','quantum','related'],['fields','materials','related'],['thermal','materials','related'],['quantum','materials','related']]}
 ,
 {id:'cs',number:'04',name:tr('Computer Science'),count:1,
  intro:tr('Follow the logic. Then question it and improve it.'),
@@ -74,9 +75,11 @@ const maps=[
  edges:[['csbridge','algorithms'],['algorithms','searching'],['algorithms','sorting'],['algorithms','numberalgo'],['searching','graphalgo','related'],['sorting','recursion','related'],['numberalgo','recursion','related'],['graphalgo','complexity','related'],['recursion','dynamic','related']]}
 ];
 
-const bindings={prealgebra:'pre-algebra',algebra1:'algebra-1',algebra2:'algebra-2',logic:'basic-logic',geometry:'geometry',coordinate:'coordinate-geometry',precalc:'af01',linear:'ab01',calculus:'ad01',game:'ac01',number:'number-theory',discrete:'discrete-math',probability:'probability',quantitative:'quantitative',statistics:'ae01',physics1:'physics-1',physics2:'physics-2',algorithms:'algorithms'};for(const m of maps)for(const n of m.nodes)if(n.kind==='course')n.module=bindings[n.id];
+const bindings={prealgebra:'pre-algebra',algebra1:'algebra-1',algebra2:'algebra-2',logic:'basic-logic',geometry:'geometry',coordinate:'coordinate-geometry',precalc:'af01',linear:'ab01',calculus:'ad01',game:'ac01',number:'number-theory',discrete:'discrete-math',probability:'probability',quantitative:'quantitative',statistics:'ae01',physics1:'physics-1',physics2:'physics-2',integrated:'integrated-science',algorithms:'algorithms'};for(const m of maps)for(const n of m.nodes)if(n.kind==='course')n.module=bindings[n.id];
 // Suggested starting courses only, never promises of a complete advanced course.
 const related={arithmetic:'pre-algebra',fractions:'pre-algebra',signed:'pre-algebra',shapes:'geometry',coordinate:'coordinate-geometry',data:'ae01',schoolbridge:'pre-algebra',proof:'discrete-math',multivar:'ad01',analysis:'ad01',algebra:'number-theory',space:'geometry',applied:'ae01',mathbridge:'algebra-1',motion:'physics-1',energy:'physics-1',heat:'physics-2',fields:'physics-2',waves:'physics-2',mechanics:'physics-1',thermal:'physics-2',relativity:'physics-1',quantum:'physics-2',materials:'physics-2',csbridge:'basic-logic',searching:'algorithms',sorting:'algorithms',numberalgo:'number-theory',graphalgo:'algorithms',recursion:'algorithms',complexity:'algorithms',dynamic:'algorithms'};
 for(const m of maps)for(const n of m.nodes)if(!n.module)n.relatedModule=related[n.id];
+// The number shown beside each map title is the number of available courses on it.
+for(const m of maps)m.count=m.nodes.filter(n=>n.kind==='course').length;
 const api={maps};if(typeof module==='object'&&module.exports)module.exports=api;else root.QuidenceCartoonMapData=api;})(typeof window==='undefined'?globalThis:window);
 

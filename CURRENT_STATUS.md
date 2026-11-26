@@ -1,3 +1,21 @@
+## 2026-11-26 · What the site still needs, and a first round of consistency fixes
+
+- **Inventory:** every open item in the project's notes and scope lines, checked against later commits; 57 remain. The main ones are in `review/gap-inventory-20261126.md`:
+  - school mathematics has four introductory lessons per course;
+  - phone layouts for charts and flowcharts;
+  - explanations that nobody reviews;
+  - no learner or outside teacher has tried the site;
+  - source and rights review is open.
+- **Fixed now:**
+  - "bilingual" and "in English" removed from the Game Theory card and the knowledge map; the knowledge map gives Number Theory's real count, eleven projects;
+  - the Geometry course page no longer says coordinate geometry comes later;
+  - the retired economics pages describe today's subjects;
+  - Integrated Science 6–10 is on the hand-drawn map, and each panel's course count is computed from its nodes;
+  - the Kelly problem (qr-c04) carries the course's gambling-harm notice, in a new problem version and bank `quidence-challenges-17`. Bank 16 is kept, and earlier checks keep their wording.
+- **Left:**
+  - foundation question bl-f10 needs a versioned foundation bank first;
+  - `∫₁^∞` stays plain in exports, because Unicode has no superscript infinity.
+
 ## 2026-11-26 · Second random spot-check of the whole site
 
 - **Samples.**

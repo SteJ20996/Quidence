@@ -78,7 +78,7 @@ const data={
       "node": "number",
       "en": "Number Theory",
       "scope": {
-        "en": "Ten bilingual projects · Proof review stays open"
+        "en": "Eleven proof projects · Proof review stays open"
       },
       "module": "number-theory"
     },
@@ -88,7 +88,7 @@ const data={
       "node": "proof",
       "en": "Discrete Mathematics",
       "scope": {
-        "en": "Ten bilingual projects on graphs, counting, recurrences and induction"
+        "en": "Ten proof projects on graphs, counting, recurrences and induction"
       },
       "module": "discrete-math"
     },
@@ -198,7 +198,7 @@ const data={
       "node": "probability",
       "en": "Probability",
       "scope": {
-        "en": "Ten bilingual proof projects on chance, conditional probability, expected value and the law of large numbers"
+        "en": "Ten proof projects on chance, conditional probability, expected value and the law of large numbers"
       },
       "module": "probability"
     },
