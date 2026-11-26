@@ -791,7 +791,7 @@ const MAP={rows:[[L('MIDDLE SCHOOL'),50],[L('HIGH SCHOOL'),160],[L('UNIVERSITY')
  [1,L('Find the\nmaximum'),85,50],[2,L('Linear search'),235,50],[3,L('Bubble sort'),385,50],[4,L('Insertion sort'),535,50],[5,L('Euclid’s\nalgorithm'),685,50],
  [10,L('Depth-first\nsearch'),85,160],[6,L('Binary search'),235,160],[7,L('Merge sort'),385,160],[8,L('Recursion:\nTower of Hanoi'),535,160],[11,L('Greedy change'),685,160],[9,L('Breadth-first\nsearch'),835,160],
  [16,L('P versus NP'),85,270],[15,L('Spanning trees'),235,270],[12,L('Quicksort'),385,270],[13,L('Dynamic\nprogramming'),685,270],[14,L('Dijkstra’s\nshortest paths'),835,270]],
- edges:[[1,2],[2,6,L('sorted: halve it')],[3,4],[3,7,L('divide and merge')],[4,7],[5,8],[8,7],[7,12],[10,15],[11,13,L('greedy can fail')],[9,14,L('add weights')],[6,7]]};
+ edges:[[1,2],[2,6,L('sorted: halve it')],[3,4],[3,7,L('divide and merge'),'left'],[4,7],[5,8],[8,7],[7,12],[10,15],[11,13,L('greedy can fail')],[9,14,L('add weights')],[6,7]]};
 const NUM={};for(const k of ORDER)NUM[ALGS[k].num]=k;
 
 /* ---------------- Challenge checks ---------------- */
@@ -1007,7 +1007,7 @@ const NAMES={12:L('#12 Quicksort'),15:L('#15 Spanning trees'),16:L('#16 P versus
 const FIND_REASON=L('Find the reason'),WHY_PENDING=L('You found a counterexample. Now answer the question under it: what makes it work?');
 function recommend(key,e={},pred){const items=[],add=(text,good)=>items.push({text,good}),c=e.cplx,x=e.counter,im=e.improve,b=e.bottle,bt=e.built;
  const low=!!pred&&pred.asked>=5&&pred.matched/pred.asked<.6,found=!!x&&x.status==='counter',reason=found&&x.why===0;
- if(pred)add(L(`Predictions: ${pred.matched} of ${pred.asked} matched`),false);
+ if(pred)add(pred.asked?L(`Predictions: ${pred.matched} of ${pred.asked} matched`):L('Predictions: none made yet'),false);
  if(c)add(c.ok?L('Predicted how the cost grows'):L('Missed how the cost grows'),c.ok);
  if(e.idea)add(L('Wrote an idea in your own words (kept in this browser)'),false);
  const r=(num,title,why,alt=[])=>({num,key:NUM[num]||null,title,why,alt,items});

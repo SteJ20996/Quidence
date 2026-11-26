@@ -104,10 +104,12 @@ html[data-ui-theme] body[data-q-theme] details>summary{
 }
 html[data-ui-theme] body[data-q-theme] details>summary:hover{border-color:currentColor;background:color-mix(in srgb,currentColor 12%,transparent)}
 /* 3. Tabs and steppers: each choice is outlined; the current one keeps its own fill. */
-html[data-ui-theme] body[data-q-theme] :is(nav.module-nav,.f-mode-nav,.f-view-controls,.qi-filters,.activity-tabs,.q-categories,.step-nav,nav.steps,.header-tools,.qa-chapters,.qf-page-nav)>:is(a,button){
+html[data-ui-theme] body[data-q-theme] :is(nav.module-nav,.f-mode-nav,.f-view-controls,.qi-filters,.activity-tabs,.explore-tabs,.q-categories,.step-nav,nav.steps,.header-tools,.qa-chapters,.qf-page-nav)>:is(a,button){
   border:1px solid color-mix(in srgb,currentColor 38%,transparent);border-radius:var(--q-link-button-radius)
 }
 html[data-ui-theme] body[data-q-theme] nav.steps>button{padding-left:12px;padding-right:12px}
+/* Algebra I explore tabs: the current one keeps its underline, now inside the outline. */
+html[data-ui-theme] body[data-q-theme] .explore-tabs>button[aria-current]{border-color:currentColor;border-bottom-width:2px}
 /* The homepage category tabs and the Intuition Lab filters have stronger appearance rules of their own. */
 html[data-ui-theme] body[data-q-theme].quidence-home .q-categories>button:not([aria-pressed="true"]),
 html[data-ui-theme] body[data-q-theme] #intuition-view .qi-filters>button:not([aria-pressed="true"]){border:1px solid color-mix(in srgb,currentColor 38%,transparent)}
@@ -127,3 +129,7 @@ html[data-ui-theme] body[data-q-theme] .f-eyebrow{color:color-mix(in srgb,var(--
 html[data-ui-theme] body[data-q-theme] .dialog-close{display:inline-grid;place-items:center;min-width:40px;min-height:40px;padding:0;border:1px solid color-mix(in srgb,currentColor 40%,transparent);border-radius:50%;background:color-mix(in srgb,currentColor 5%,transparent)}
 /* Inline link chips are at least 24 px tall, WCAG 2.2's minimum target, even inside small notes. */
 :where(html[data-ui-theme] body[data-q-theme] :is(p,li,aside,footer,figcaption,small,dd,td,blockquote) a[href]:not([class])){box-sizing:border-box;min-height:24px}
+/* Homepage "More activities & scope": room inside its outline, and text large enough to read. */
+html[data-ui-theme] body[data-q-theme].quidence-home .subject-card .card-more>summary{padding-left:10px;padding-right:12px;font-size:12px;line-height:1.4}
+/* A disabled button must not look ready to press: fade it in every appearance. */
+html[data-ui-theme] body[data-q-theme] button:disabled{opacity:.5;cursor:not-allowed}
