@@ -175,9 +175,10 @@ function renderMap(recNum){const pos=Object.fromEntries(A.MAP.nodes.map(([n,name
  for(const [label,y] of A.MAP.rows)s+=`<text class="maprow" x="10" y="${y-29}">${esc(tx(label))}</text>`;
  // Edge labels are drawn last, over every line and box, so nothing crosses them.
  let labels='';
- for(const [a,b,label] of A.MAP.edges){const p=pos[a],q=pos[b];let x1=p.x,y1=p.y,x2=q.x,y2=q.y;if(y1===y2){x1+=x2>x1?70:-70;x2+=x2>x1?-70:70;}else{y1+=22;y2-=22;}
+ for(const [a,b,label,side] of A.MAP.edges){const p=pos[a],q=pos[b];let x1=p.x,y1=p.y,x2=q.x,y2=q.y;if(y1===y2){x1+=x2>x1?70:-70;x2+=x2>x1?-70:70;}else{y1+=22;y2-=22;}
   const live=A.NUM[a]&&A.NUM[b];s+=`<path class="mapedge${live?' live':''}" d="M${x1} ${y1}L${x2} ${y2}" marker-end="url(#mh${live?'l':''})"/>`;
-  if(label)labels+=`<text class="mapedgelabel" x="${(x1+x2)/2+6}" y="${(y1+y2)/2+4}">${esc(tx(label))}</text>`;}
+  // A label goes to the right of its edge, or to the left when another edge comes in from the right.
+  if(label)labels+=`<text class="mapedgelabel" x="${(x1+x2)/2+(side==='left'?-6:6)}" y="${(y1+y2)/2+4}"${side==='left'?' text-anchor="end"':''}>${esc(tx(label))}</text>`;}
  for(const [n,name,x,y] of A.MAP.nodes){const key=A.NUM[n],parts=tx(name).split('\n'),label=parts.join(' ');
   const cls=['mapnode',key?'live':'',key===cur.key?'on':'',n===recNum?'rec':''].filter(Boolean).join(' ');
   const text=parts.length>1?`<text x="${x-40}" y="${y-3}">${esc(parts[0])}</text><text x="${x-40}" y="${y+12}">${esc(parts[1])}</text>`:`<text x="${x-40}" y="${y+5}">${esc(label)}</text>`;

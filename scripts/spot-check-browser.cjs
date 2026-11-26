@@ -16,11 +16,18 @@ const states=[...pages,'/?view=courses','/?view=map','/?view=intuition','/?view=
  ...'multiply plans perimeter fair square cards waves sphere groups tosses transforms primes regions choices apex circuit melt patterns halves'.split(' ').map(id=>'/intuition/#'+id),
  ...[1,2,3,4].map(n=>'/cross-disciplinary/?project=cross-p0'+n),
  ...['food-trucks','shared-printer','missed-deadline'].map(id=>'/modules/ac01/dist/projects/?activity='+id),
- ...'bfs binary-search bubble-sort dfs dijkstra euclid fewest-coins find-max greedy-change hanoi insertion-sort kruskal linear-search merge-sort quicksort subset-sum'.split(' ').map(id=>'/courses/algorithms/?algorithm='+id)];
+ ...'bfs binary-search bubble-sort dfs dijkstra euclid fewest-coins find-max greedy-change hanoi insertion-sort kruskal linear-search merge-sort quicksort subset-sum'.split(' ').map(id=>'/courses/algorithms/?algorithm='+id),
+ // Checks for several subjects, including a check taken in parts.
+ ...'integrated-science quantitative algebra-1 number-theory algorithms probability'.split(' ').flatMap(m=>['/diagnostics/?module='+m,'/foundations/?module='+m]),
+ // Walks: open a random lesson of a course, answer its first question, then open a few of its steps.
+ ...'integrated-science quantitative pre-algebra algebra-1 geometry algebra-2 basic-logic physics-1 physics-2'.split(' ').map(c=>'walk:/courses/'+c+'/')];
 const THEMES=['classic','paper','atlas','studio'],WIDTHS=[320,390,768,1024,1366,1920];
 function checks(){
   const out={overflow:document.documentElement.scrollWidth-innerWidth,clipped:[],overlaps:[],small:[],brokenImages:[],lowContrast:[],offscreen:[]};
-  const vis=e=>{const r=e.getBoundingClientRect();if(r.width<=4||r.height<=2)return false;for(let x=e.closest('details:not([open])');x;x=x.parentElement&&x.parentElement.closest('details:not([open])')){const sum=x.querySelector(':scope>summary');if(!(sum&&sum.contains(e)))return false;}for(let p=e;p;p=p.parentElement){const s=getComputedStyle(p);if(s.visibility==='hidden'||s.display==='none'||+s.opacity===0)return false;}return true;};
+  // Controls behind an open modal dialog, or scrolled out of an ancestor that clips its content, are not on screen.
+  const modal=document.querySelector('dialog:modal');
+  const clippedOut=(e,r)=>{for(let p=e.parentElement;p&&p!==document.body;p=p.parentElement){const st=getComputedStyle(p);if(/hidden|clip|auto|scroll/.test(st.overflowX+st.overflowY)){const q=p.getBoundingClientRect();if(r.bottom<=q.top+1||r.top>=q.bottom-1||r.right<=q.left+1||r.left>=q.right-1)return true;}}return false;};
+  const vis=e=>{const r=e.getBoundingClientRect();if(r.width<=4||r.height<=2)return false;if(modal&&!modal.contains(e))return false;if(clippedOut(e,r))return false;for(let x=e.closest('details:not([open])');x;x=x.parentElement&&x.parentElement.closest('details:not([open])')){const sum=x.querySelector(':scope>summary');if(!(sum&&sum.contains(e)))return false;}for(let p=e;p;p=p.parentElement){const s=getComputedStyle(p);if(s.visibility==='hidden'||s.display==='none'||+s.opacity===0)return false;}return true;};
   const name=e=>e.localName+(e.id?'#'+e.id:'')+(typeof e.className==='string'&&e.className.trim()?'.'+e.className.trim().split(/\s+/).slice(0,2).join('.'):'');
   const label=e=>(e.textContent||e.getAttribute('aria-label')||'').replace(/\s+/g,' ').trim().slice(0,50);
   // Text cut off by its own box.
@@ -63,7 +70,20 @@ function checks(){
   const p=await ctx.newPage();const errors=[];p.on('pageerror',e=>errors.push(String(e.message).slice(0,160)));p.on('console',m=>{if(m.type()==='error')errors.push('console: '+m.text().slice(0,160));});
   const rec={i,theme,width,url,clicks:[],errors};
   try{
-   await p.goto(origin+url,{waitUntil:'load'});await p.waitForFunction(()=>window.QuidenceI18n?.locale==='en',null,{timeout:8000}).catch(()=>{});await p.waitForTimeout(400);
+   const walk=url.startsWith('walk:'),target=walk?url.slice(5):url;
+   await p.goto(origin+target,{waitUntil:'load'});await p.waitForFunction(()=>window.QuidenceI18n?.locale==='en',null,{timeout:8000}).catch(()=>{});await p.waitForTimeout(400);
+   if(walk){
+    // Choose the lesson and the number of steps from the seeded generator, so a seed always walks the same way.
+    const lessons=await p.locator('[data-action="open"]').count(),lesson=Math.floor(rnd()*Math.max(1,lessons)),steps=Math.floor(rnd()*5);
+    if(lessons){await p.locator('[data-action="open"]').nth(lesson).click().catch(()=>{});await p.waitForTimeout(300);}
+    await p.evaluate(()=>{const f=document.querySelector('form');if(!f)return;const r=f.querySelector('input[type="radio"]');if(r)r.click();const t=f.querySelector('textarea');if(t&&!t.value){t.value='Because the pattern doubles each time.';t.dispatchEvent(new Event('input',{bubbles:true}));}});
+    const submit=p.locator('form button[type="submit"]').first();if(await submit.count())await submit.click().catch(()=>{});await p.waitForTimeout(300);
+    for(let k=0;k<steps;k++){for(const a of['continue','skip-step-prediction','next-step']){const b=p.locator(`[data-action="${a}"]`).first();if(await b.count()&&await b.isVisible().catch(()=>false)){await b.click().catch(()=>{});await p.waitForTimeout(250);}}}
+    // Move each lab control to a random allowed value.
+    const ranges=await p.locator('input[type="range"]').count();for(let k=0;k<ranges;k++){const v=rnd();await p.locator('input[type="range"]').nth(k).evaluate((e,v)=>{const lo=+e.min,hi=+e.max,st=+e.step||1;e.value=String(lo+Math.round((hi-lo)*v/st)*st);e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));},v).catch(()=>{});}
+    const selects=await p.locator('select').count();for(let k=0;k<selects;k++){const v=rnd();await p.locator('select').nth(k).evaluate((e,v)=>{if(!e.options.length||e.closest('[data-f-subject],.q-theme-bar'))return;e.selectedIndex=Math.floor(v*e.options.length);e.dispatchEvent(new Event('change',{bubbles:true}));},v).catch(()=>{});}
+    await p.waitForTimeout(300);rec.walk={lesson,steps};
+   }
    for(let c=0;c<clicks;c++){
     // Fill empty visible text fields, then click a random safe control on this page.
     await p.evaluate(()=>{for(const f of document.querySelectorAll('textarea,input[type="text"],input:not([type])')){const r=f.getBoundingClientRect();if(r.width&&!f.value&&!f.disabled&&!f.readOnly){f.value='Because the pattern doubles each time.';f.dispatchEvent(new Event('input',{bubbles:true}));}}

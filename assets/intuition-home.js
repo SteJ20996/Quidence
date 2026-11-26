@@ -23,11 +23,11 @@ function card(d,lang,c,theme,progress){
  const subject=window.QuidenceCourseCatalog.COURSES[ids[d.id]].title,arrow={classic:'→',atlas:'›'}[theme]||'↗';
  return `<a class="qi-card" href="intuition/#${d.id}" data-intuition-activity="${d.id}" data-intuition-subject="${ids[d.id]}"><span class="qi-card-art" aria-hidden="true">${picture(d,lang,theme)}</span><span class="qi-card-copy"><span class="qi-eyebrow">${e(subject)}</span><h3>${e(d.title[lang])}</h3><span class="qi-card-meta">${c.time} · ${c.reason}</span><span class="qi-card-action">${started(progress[d.id])?c.resume:c.start} <i aria-hidden="true">${arrow}</i></span></span></a>`;
 }
-function filters(c,theme){
+function filters(c,theme,shown){
  // Paper Explorer reuses the category drawings already placed in its subject tabs.
  const drawing=group=>home.querySelector('#subject-categories [data-category="'+group+'"] .q-paper-category-icon svg')?.outerHTML;
  const icon=group=>theme==='paper'&&group!=='all'&&drawing(group)?'<span class="qi-filter-icon" aria-hidden="true">'+drawing(group)+'</span>':'';
- return `<div class="qi-filters" role="group" aria-label="${c.filterLabel}">${['all',...GROUPS].map((g,i)=>`<button type="button" data-intuition-filter="${g}" aria-pressed="${filter===g}">${icon(g)}<span>${c.groups[i]}</span></button>`).join('')}</div><p class="qi-count">${c.count}</p>`;
+ return `<div class="qi-filters" role="group" aria-label="${c.filterLabel}">${['all',...GROUPS].map((g,i)=>`<button type="button" data-intuition-filter="${g}" aria-pressed="${filter===g}">${icon(g)}<span>${c.groups[i]}</span></button>`).join('')}</div><p class="qi-count">${filter==='all'?c.count:(shown===1?'1 subject':shown+' subjects')+' shown · one question worth investigating in each'}</p>`;
 }
 function grouped(items,render,c){
  return GROUPS.filter(g=>items.some(d=>d.group===g)).map(g=>`<section class="qi-group" data-intuition-group="${g}" aria-labelledby="qi-group-${g}"><div class="qi-group-heading"><h2 id="qi-group-${g}">${c.groups[GROUPS.indexOf(g)+1]}</h2><p>${c.notes[g]}</p></div><div class="qi-grid">${items.filter(d=>d.group===g).map(render).join('')}</div></section>`).join('');
@@ -50,9 +50,9 @@ function render(){
  const random=D[Math.floor(Math.random()*D.length)],items=D.filter(d=>filter==='all'||d.group===filter),cardFor=d=>card(d,lang,c,theme,progress);
  host.dataset.qiTheme=theme;
  if(theme==='classic')host.innerHTML=intro(c)+guide(c,lang,random,theme)+`<div class="qi-main">${grouped(items,cardFor,c)}</div>`;
- else if(theme==='paper')host.innerHTML=`<div class="qi-layout">${intro(c)}<div class="qi-main">${filters(c,theme)}<div class="qi-grid">${items.map(cardFor).join('')}</div></div>${guide(c,lang,random,theme)}</div>`;
- else if(theme==='atlas')host.innerHTML=`<div class="qi-layout">${intro(c,'<div class="qi-intro-art" aria-hidden="true"></div>')}<div class="qi-main">${filters(c,theme)}${grouped(items,cardFor,c)}</div>${guide(c,lang,random,theme)}</div>`;
- else host.innerHTML=intro(c,`<a class="qi-random" href="intuition/#${random.id}">${c.random} ↗</a><div class="qi-intro-art" aria-hidden="true">${window.QuidenceStudioArt?.shapes()||''}</div>`)+filters(c,theme)+`<div class="qi-grid">${items.map(cardFor).join('')}</div>`;
+ else if(theme==='paper')host.innerHTML=`<div class="qi-layout">${intro(c)}<div class="qi-main">${filters(c,theme,items.length)}<div class="qi-grid">${items.map(cardFor).join('')}</div></div>${guide(c,lang,random,theme)}</div>`;
+ else if(theme==='atlas')host.innerHTML=`<div class="qi-layout">${intro(c,'<div class="qi-intro-art" aria-hidden="true"></div>')}<div class="qi-main">${filters(c,theme,items.length)}${grouped(items,cardFor,c)}</div>${guide(c,lang,random,theme)}</div>`;
+ else host.innerHTML=intro(c,`<a class="qi-random" href="intuition/#${random.id}">${c.random} ↗</a><div class="qi-intro-art" aria-hidden="true">${window.QuidenceStudioArt?.shapes()||''}</div>`)+filters(c,theme,items.length)+`<div class="qi-grid">${items.map(cardFor).join('')}</div>`;
  host.querySelectorAll('[data-intuition-filter]').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.intuitionFilter;render();host.querySelector('[data-intuition-filter="'+filter+'"]')?.focus();}));
 }
 render();document.addEventListener('quidence:theme',render);document.addEventListener('quidence:home-view',event=>{if(event.detail.view==='intuition')render();});window.addEventListener('pageshow',()=>{if(home.dataset.homeView==='intuition')render();});

@@ -1,3 +1,45 @@
+## 2026-11-26 · Second random spot-check of the whole site
+
+- **Samples.**
+  - Five seeded rounds drew 240 samples across pages, appearances, widths and clicks.
+  - New this round: walks into lessons (lab sliders moved at random) and the check pages, including the two-part check.
+  - No broken links, no script errors and no page overflow.
+- **The checker.** Six of its seven overlap flags came from controls behind a modal dialog or scrolled out of a side panel. It now skips those, and a rerun showed no flags.
+- **Independent read.** Two reviewers read 111 screenshots. Every point fixed was confirmed first.
+- **Fixed.**
+  - **Check pages.**
+    - Save errors appear beside "Save my answer" and mark the field.
+    - Number rules show only on number questions.
+    - The mode tabs no longer look disabled.
+  - **Calculus.** The home illustration had a tangent that crossed the curve and area bars above it. Both are redrawn from the curve.
+  - **Homepage.**
+    - The summary paragraph no longer splits the cross-disciplinary cards.
+    - "More activities & scope" is readable and padded.
+    - The footer text is current.
+  - **Throughout.**
+    - The note under "Explain your thinking" is three short sentences in small type.
+    - Physics reviewers judge "the physics".
+    - Lesson buttons are 13 px on phones.
+    - Disabled buttons are faded.
+  - **Smaller fixes.**
+    - Algebra I's Explore tabs are outlined.
+    - The Algorithms route label is moved.
+    - Header badges stay on one line.
+    - In Matrix Explorer, the formula wraps between its parts and the e₂ label is visible.
+    - "Responses written" replaces "Responses saved".
+    - The Intuition Lab count follows its filter.
+    - The shared printer prompt matches its one choice.
+    - The outdated language note is removed.
+    - Plurals and empty states read correctly.
+- **Left.**
+  - Small chart text on phones.
+  - Flowcharts that scroll sideways.
+  - Knowledge-map edges through labels.
+  - Uneven layouts at some widths.
+  - Four content points for the course authors.
+
+See [the spot-check note](review/spot-check-20261126.md).
+
 ## 2026-11-25 · Integrated Science: a check in two parts that covers all 24 lessons
 
 - **Checks in parts, for any subject.**
